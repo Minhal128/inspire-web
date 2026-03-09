@@ -43,6 +43,9 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Methods', value: 'GET,POST,PUT,PATCH,DELETE,OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization, X-Requested-With' },
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          // Required for Google OAuth popup to communicate with parent window
+          { key: 'Cross-Origin-Opener-Policy', value: 'unsafe-none' },
+          { key: 'Cross-Origin-Embedder-Policy', value: 'unsafe-none' },
         ],
       },
     ]

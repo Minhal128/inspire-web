@@ -244,7 +244,7 @@ export default function Home() {
               <div className="flex -space-x-2 md:-space-x-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 md:border-[3px] border-white overflow-hidden">
                   <Image
-                    src="/freepik1.jpg"
+                    src="/why.jpg"
                     alt="Customer"
                     width={48}
                     height={48}
@@ -253,7 +253,7 @@ export default function Home() {
                 </div>
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 md:border-[3px] border-white overflow-hidden">
                   <Image
-                    src="/freepik2.jpg"
+                    src="/why2.jpg"
                     alt="Customer"
                     width={48}
                     height={48}
@@ -262,7 +262,7 @@ export default function Home() {
                 </div>
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 md:border-[3px] border-white overflow-hidden">
                   <Image
-                    src="/freepik3.jpg"
+                    src="/why3.jpg"
                     alt="Customer"
                     width={48}
                     height={48}
@@ -271,7 +271,7 @@ export default function Home() {
                 </div>
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 md:border-[3px] border-white overflow-hidden">
                   <Image
-                    src="/freepik4.jpg"
+                    src="/why.jpg"
                     alt="Customer"
                     width={48}
                     height={48}
@@ -280,7 +280,7 @@ export default function Home() {
                 </div>
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 md:border-[3px] border-white overflow-hidden">
                   <Image
-                    src="/freepik5.jpg"
+                    src="/why2.jpg"
                     alt="Customer"
                     width={48}
                     height={48}
