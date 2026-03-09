@@ -73,13 +73,15 @@ export const initGoogleLogin = (portal: string): Promise<OAuthResult> => {
 
         window.addEventListener('message', handleMessage)
 
-        // Check if popup was closed
+        // Check if popup was closed (try/catch: COOP policy can block window.closed)
         const checkClosed = setInterval(() => {
-            if (popup.closed) {
-                clearInterval(checkClosed)
-                window.removeEventListener('message', handleMessage)
-                reject(new Error('Authentication cancelled'))
-            }
+            try {
+                if (popup.closed) {
+                    clearInterval(checkClosed)
+                    window.removeEventListener('message', handleMessage)
+                    reject(new Error('Authentication cancelled'))
+                }
+            } catch (e) { /* COOP policy blocked access – rely on message listener */ }
         }, 1000)
     })
 }
@@ -149,11 +151,13 @@ export const initFacebookLogin = (portal: string): Promise<OAuthResult> => {
             window.addEventListener('message', handleMessage)
 
             const checkClosed = setInterval(() => {
-                if (popup.closed) {
-                    clearInterval(checkClosed)
-                    window.removeEventListener('message', handleMessage)
-                    reject(new Error('Authentication cancelled'))
-                }
+                try {
+                    if (popup.closed) {
+                        clearInterval(checkClosed)
+                        window.removeEventListener('message', handleMessage)
+                        reject(new Error('Authentication cancelled'))
+                    }
+                } catch (e) { /* COOP policy blocked access – rely on message listener */ }
             }, 1000)
         } catch (error: any) {
             if (error.message?.toLowerCase().includes('already signed in')) {
@@ -228,13 +232,15 @@ export const initAppleLogin = (portal: string): Promise<OAuthResult> => {
 
         window.addEventListener('message', handleMessage)
 
-        // Check if popup was closed
+        // Check if popup was closed (try/catch: COOP policy can block window.closed)
         const checkClosed = setInterval(() => {
-            if (popup.closed) {
-                clearInterval(checkClosed)
-                window.removeEventListener('message', handleMessage)
-                reject(new Error('Authentication cancelled'))
-            }
+            try {
+                if (popup.closed) {
+                    clearInterval(checkClosed)
+                    window.removeEventListener('message', handleMessage)
+                    reject(new Error('Authentication cancelled'))
+                }
+            } catch (e) { /* COOP policy blocked access – rely on message listener */ }
         }, 1000)
     })
 }

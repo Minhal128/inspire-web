@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: 'INSPIRE - Smart Inspections',
   description: 'Smart Inspections. Real-Time Results.',
   generator: 'v0.app',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
 }
 
 export default function RootLayout({
