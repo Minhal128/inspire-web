@@ -1,6 +1,6 @@
 import { Clerk } from '@clerk/clerk-js'
 
-const OAUTH_REDIRECT_URI = 'https://nspire-five.vercel.app/oauth-callback'
+const OAUTH_REDIRECT_URI = process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL || 'https://whale-app-wi6lz.ondigitalocean.app/oauth-callback'
 const CLERK_PUBLISHABLE_KEY = 'pk_test_bGlnaHQtbXV0dC03Mi5jbGVyay5hY2NvdW50cy5kZXYk'
 
 let clerkInstance: Clerk | null = null
