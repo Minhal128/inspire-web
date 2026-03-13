@@ -23,7 +23,7 @@ export default function Home() {
   const handleUnitSelectionContinue = (selectedUnits: string[]) => {
     setUnitSelectionOpen(false);
     // Store selected units in localStorage or state management
-    localStorage.setItem('selectedUnits', JSON.stringify(selectedUnits));
+    localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
     // Redirect to profile selection
     router.push("/profile-selection");
   };
@@ -74,150 +74,320 @@ export default function Home() {
           <div
             className={`md:hidden fixed top-0 left-0 h-full w-64 bg-[#E8F4F8] z-40 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
           >
-            <div className="flex flex-col gap-6 p-8 pt-20">
+            <div className="flex flex-col gap-6 p-8 pt-36">
               <a
                 href="#home"
                 className="flex flex-col group"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">HOME</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Welcome</span>
+                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                  HOME
+                </span>
+                <span className="text-[11px] text-gray-500 italic tracking-wider">
+                  Welcome
+                </span>
               </a>
               <div>
-                <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="flex flex-col group w-full">
-                  <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-2">SERVICES <svg className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></span>
-                  <span className="text-[11px] text-gray-500 italic tracking-wider">Professional Solutions</span>
+                <button
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="flex flex-col group w-full"
+                >
+                  <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-2">
+                    SERVICES{" "}
+                    <svg
+                      className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </span>
+                  <span className="text-[11px] text-gray-500 italic tracking-wider">
+                    Professional Solutions
+                  </span>
                 </button>
                 {mobileServicesOpen && (
                   <div className="pl-4 pt-3 space-y-3">
-                    <Link href="/inspection-services" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>All Services</Link>
-                    <Link href="/inspection-services/buyers" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Buyers Inspections</Link>
-                    <Link href="/inspection-services/owners" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Owners Inspections</Link>
-                    <Link href="/inspection-services/sellers" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Sellers Inspections</Link>
-                    <Link href="/inspection-services/specialized" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Specialized Services</Link>
-                    <Link href="/inspection-services/commercial" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Commercial Inspections</Link>
-                    <Link href="/inspection-services/public-housing" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Public Housing</Link>
-                    <Link href="/inspection-services/rental" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Rental Inspections</Link>
-                    <Link href="/inspection-services/insurance-risk" className="block text-sm text-gray-600 hover:text-[#0D6A8D]" onClick={() => setMobileMenuOpen(false)}>Insurance Risk</Link>
+                    <Link
+                      href="/inspection-services"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      All Services
+                    </Link>
+                    <Link
+                      href="/inspection-services/buyers"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Buyers Inspections
+                    </Link>
+                    <Link
+                      href="/inspection-services/owners"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Owners Inspections
+                    </Link>
+                    <Link
+                      href="/inspection-services/sellers"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sellers Inspections
+                    </Link>
+                    <Link
+                      href="/inspection-services/specialized"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Specialized Services
+                    </Link>
+                    <Link
+                      href="/inspection-services/commercial"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Commercial Inspections
+                    </Link>
+                    <Link
+                      href="/inspection-services/public-housing"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Public Housing
+                    </Link>
+                    <Link
+                      href="/inspection-services/rental"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Rental Inspections
+                    </Link>
+                    <Link
+                      href="/inspection-services/insurance-risk"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Insurance Risk
+                    </Link>
                   </div>
                 )}
               </div>
-              <a
-                href="#education"
+              <Link
+                href="/about"
                 className="flex flex-col group"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">EDUCATION AND TRAINING</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Learning & Training</span>
-              </a>
-              <a
-                href="#purpose"
-                className="flex flex-col group"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">PURPOSE OF INSPECTION</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Why We Inspect</span>
-              </a>
-              <Link href="/contact" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">CONTACT</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Get in Touch</span>
+                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                  ABOUT
+                </span>
+                <span className="text-[11px] text-gray-500 italic tracking-wider">
+                  Our Story
+                </span>
               </Link>
-              <Link href="/faq" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">FAQ</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Answers to Questions</span>
+              <Link
+                href="/contact"
+                className="flex flex-col group"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                  CONTACT
+                </span>
+                <span className="text-[11px] text-gray-500 italic tracking-wider">
+                  Get in Touch
+                </span>
+              </Link>
+              <Link
+                href="/faq"
+                className="flex flex-col group"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                  FAQ
+                </span>
+                <span className="text-[11px] text-gray-500 italic tracking-wider">
+                  Answers to Questions
+                </span>
               </Link>
               <Link
                 href="/blog"
                 className="flex flex-col group"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">BLOG</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Articles & Insights</span>
+                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                  BLOG
+                </span>
+                <span className="text-[11px] text-gray-500 italic tracking-wider">
+                  Articles & Insights
+                </span>
               </Link>
             </div>
           </div>
 
           {/* Desktop Menu - Left aligned */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a
-              href="#home"
-              className="flex flex-col group items-center"
-            >
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">HOME</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider">Welcome</span>
+            <a href="#home" className="flex flex-col group items-center">
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                HOME
+              </span>
+              <span className="text-[10px] text-gray-500 italic tracking-wider">
+                Welcome
+              </span>
             </a>
-            <div className="relative" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-              <button className="flex flex-col group items-center cursor-pointer" onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}>
-                <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-1">SERVICES <svg className={`w-3 h-3 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></span>
-                <span className="text-[10px] text-gray-500 italic tracking-wider">Professional Solutions</span>
+            <div
+              className="relative"
+              onMouseEnter={() => setServicesDropdownOpen(true)}
+              onMouseLeave={() => setServicesDropdownOpen(false)}
+            >
+              <button
+                className="flex flex-col group items-center cursor-pointer"
+                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+              >
+                <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-1">
+                  SERVICES{" "}
+                  <svg
+                    className={`w-3 h-3 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+                <span className="text-[10px] text-gray-500 italic tracking-wider">
+                  Professional Solutions
+                </span>
               </button>
               {servicesDropdownOpen && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
                   <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2 min-w-[220px]">
-                    <Link href="/inspection-services/buyers" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/buyers"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#0D6A8D]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Buyers Inspections</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Buyers Inspections
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/owners" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/owners"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#FF4757]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Owners Inspections</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Owners Inspections
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/sellers" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/sellers"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#F97316]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Sellers Inspections</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Sellers Inspections
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/rental" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/rental"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Rental Inspections</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Rental Inspections
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/specialized" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/specialized"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#22C55E]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Specialized Services</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Specialized Services
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/commercial" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/commercial"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Commercial Inspections</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Commercial Inspections
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/public-housing" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/public-housing"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#8B5CF6]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Public Housing</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Public Housing
+                      </span>
                     </Link>
-                    <Link href="/inspection-services/insurance-risk" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
+                    <Link
+                      href="/inspection-services/insurance-risk"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
                       <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Insurance Risk</span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Insurance Risk
+                      </span>
                     </Link>
                   </div>
                 </div>
               )}
             </div>
-            <a
-              href="#education"
-              className="flex flex-col group items-center"
-            >
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">EDUCATION AND TRAINING</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider text-center">Learning & Training</span>
-            </a>
-            <a
-              href="#purpose"
-              className="flex flex-col group items-center"
-            >
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">PURPOSE OF INSPECTION</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider text-center">Why We Inspect</span>
-            </a>
+            <Link href="/about" className="flex flex-col group items-center">
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">
+                ABOUT
+              </span>
+              <span className="text-[10px] text-gray-500 italic tracking-wider text-center">
+                Our Story
+              </span>
+            </Link>
             <Link href="/contact" className="flex flex-col group items-center">
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">CONTACT</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider">Get in Touch</span>
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                CONTACT
+              </span>
+              <span className="text-[10px] text-gray-500 italic tracking-wider">
+                Get in Touch
+              </span>
             </Link>
             <Link href="/faq" className="flex flex-col group items-center">
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">FAQ</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider">Answers to Questions</span>
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                FAQ
+              </span>
+              <span className="text-[10px] text-gray-500 italic tracking-wider">
+                Answers to Questions
+              </span>
             </Link>
-            <Link
-              href="/blog"
-              className="flex flex-col group items-center"
-            >
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">BLOG</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider">Articles & Insights</span>
+            <Link href="/blog" className="flex flex-col group items-center">
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                BLOG
+              </span>
+              <span className="text-[10px] text-gray-500 italic tracking-wider">
+                Articles & Insights
+              </span>
             </Link>
           </div>
 
@@ -252,17 +422,15 @@ export default function Home() {
             {/* Left Content */}
             <div className="flex-1 w-full lg:max-w-[600px] pt-4 md:pt-8">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold text-black mb-4 md:mb-6 leading-[1.1]">
-                Efficient Property
+                Trusted and Certified
                 <br />
-                Inspections Made
+                Home Inspections
                 <br />
-                <span className="text-[#FF4757] italic font-bold">Simple</span>
+                <span className="text-[#FF4757] italic font-bold">Across the USA</span>
               </h1>
 
               <p className="text-gray-700 mb-8 md:mb-12 leading-relaxed text-sm md:text-[15px] max-w-xl">
-                Empower your team with INSPIRE the self-inspection app built on
-                NSPIRE national standards. Ensure safety, streamline workflows,
-                and stay compliant, all in one platform.
+                Inspire stands at the forefront of the home inspection industry, offering home inspections and advanced risk-mitigation solutions. Whether you are a first-time buyer or a seasoned property investor, our certified professionals provide comprehensive inspections backed by nationally recognized training.
               </p>
 
               {/* CTA Buttons */}
@@ -353,8 +521,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-xs md:text-[14px] leading-tight">
-                <div className="font-bold text-black">72+ Happy</div>
-                <div className="font-bold text-black">Customers</div>
+                <div className="font-bold text-black">72+ Certified</div>
+                <div className="font-bold text-black">Inspectors</div>
               </div>
             </div>
 
@@ -370,9 +538,9 @@ export default function Home() {
                 />
               </div>
               <div className="text-xs md:text-[14px] leading-tight">
-                <div className="font-bold text-black">200+ New</div>
+                <div className="font-bold text-black">200+ Local</div>
                 <div className="font-bold text-black">
-                  Inspections Everyday!
+                  Inspections Daily!
                 </div>
               </div>
             </div>
@@ -386,13 +554,13 @@ export default function Home() {
           {/* Header */}
           <div className="mb-10 md:mb-14 lg:mb-16 pl-0 md:pl-6 lg:pl-10">
             <p className="text-xs font-bold text-[#0D6A8D] uppercase tracking-wider mb-2 md:mb-3">
-              Key Benefits
+              Comprehensive Services
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-black leading-tight mb-2 md:mb-3">
-              Why INSPIRE?
+              What Is a Home Inspection?
             </h2>
-            <p className="text-gray-600 text-sm md:text-base">
-              Why Property Managers Choose INSPIRE
+            <p className="text-gray-600 text-sm md:text-base max-w-2xl">
+              A professional evaluation helping buyers, sellers, and homeowners identify existing or potential issues. Our services are designed for single-family homes, condos, mobile homes, and newly constructed properties.
             </p>
           </div>
 
@@ -418,10 +586,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg md:text-xl text-black mb-1 md:mb-2">
-                    Compliance First
+                    Complete Inspection Checklist
                   </h3>
                   <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed">
-                    Every inspection is aligned with NSPIRE national standards.
+                    Our inspectors evaluate roof conditions, HVAC, structural framing, plumbing, and electrical panels, highlighting things that fail a home inspection.
                   </p>
                 </div>
               </Card>
@@ -445,11 +613,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg md:text-xl text-black mb-1 md:mb-2">
-                    Safety Guaranteed
+                    Certified Mold & Termite
                   </h3>
                   <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed">
-                    Protect your residents with health & safety-focused
-                    checklists.
+                    Specialized home mold inspection, termite inspection, and foundation evaluations to uncover hidden structural or environmental threats.
                   </p>
                 </div>
               </Card>
@@ -479,10 +646,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg md:text-xl text-black mb-1 md:mb-2">
-                    Streamlined Efficiency
+                    New Home & Construction
                   </h3>
                   <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed">
-                    Manage multiple properties and inspections with ease.
+                    Detailed new construction home inspections evaluating every phase to catch improper wiring or foundation shifts.
                   </p>
                 </div>
               </Card>
@@ -506,10 +673,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg md:text-xl text-black mb-1 md:mb-2">
-                    Powerful Reporting
+                    Detailed Inspection Reports
                   </h3>
                   <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed">
-                    Get instant insights and share compliance-ready reports.
+                    Receive transparent digital reports with photos and repair recommendations for buyers, sellers, and agents.
                   </p>
                 </div>
               </Card>
@@ -581,13 +748,16 @@ export default function Home() {
           {/* Left Content */}
           <div className="flex-1 max-w-xl w-full">
             <p className="text-xs font-semibold text-[#0D6A8D] uppercase tracking-wider mb-3 md:mb-4">
-              How it Works
+              The Process
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-tight text-black mb-6 md:mb-8">
-              Inspections in
+              How Long It Takes &
               <br />
-              Just <span className="text-[#FF4757] italic">Three Steps</span>
+              What to <span className="text-[#FF4757] italic">Expect</span>
             </h2>
+            <p className="text-gray-700 leading-relaxed text-sm md:text-base mb-6 max-w-xl">
+              Most standard home inspections take 2 to 4 hours depending on the property's size, age, and condition. Here is our structured process:
+            </p>
           </div>
 
           {/* Right Side - Curved Path with Steps - Hidden on mobile, use simple list */}
@@ -612,13 +782,13 @@ export default function Home() {
             <div className="absolute top-[50px] right-[30px] flex items-center gap-4 z-20">
               <div className="w-24 h-24 rounded-full bg-[#0D6A8D] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
                 <div className="text-3xl font-bold">1</div>
-                <div className="text-xs font-semibold italic">Register</div>
+                <div className="text-xs font-semibold italic">Schedule</div>
               </div>
               <div className="bg-white rounded-2xl px-5 py-3 shadow-lg max-w-[200px]">
                 <p className="text-xs text-gray-800 leading-relaxed">
-                  <span className="font-bold">Create your account</span>
+                  <span className="font-bold">Book an inspection</span>
                   <br />
-                  and add your properties.
+                  with our local professionals.
                 </p>
               </div>
             </div>
@@ -627,13 +797,13 @@ export default function Home() {
             <div className="absolute top-[180px] right-[30px] flex items-center gap-4 z-20">
               <div className="w-24 h-24 rounded-full bg-[#0D6A8D] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
                 <div className="text-3xl font-bold">2</div>
-                <div className="text-xs font-semibold italic">Inspect</div>
+                <div className="text-xs font-semibold italic">Evaluate</div>
               </div>
               <div className="bg-white rounded-2xl px-5 py-3 shadow-lg max-w-[200px]">
                 <p className="text-xs text-gray-800 leading-relaxed">
-                  <span className="font-bold">Use guided checklists,</span>
+                  <span className="font-bold">System-by-system check</span>
                   <br />
-                  capture photos, and flag issues.
+                  and detailed moisture or safety testing.
                 </p>
               </div>
             </div>
@@ -646,9 +816,9 @@ export default function Home() {
               </div>
               <div className="bg-white rounded-2xl px-5 py-3 shadow-lg max-w-[200px]">
                 <p className="text-xs text-gray-800 leading-relaxed">
-                  <span className="font-bold">Generate and share</span>
+                  <span className="font-bold">Receive digital reports</span>
                   <br />
-                  compliance-ready reports instantly.
+                  with clear repair recommendations.
                 </p>
               </div>
             </div>
@@ -659,18 +829,18 @@ export default function Home() {
             {[
               {
                 num: "1",
-                title: "Register",
-                desc: "Create your account and add your properties.",
+                title: "Schedule",
+                desc: "Book your inspection locally. Most standard evaluations take 2-4 hours.",
               },
               {
                 num: "2",
-                title: "Inspect",
-                desc: "Use guided checklists, capture photos, and flag issues.",
+                title: "Evaluate",
+                desc: "System-by-system check and detailed moisture or safety testing.",
               },
               {
                 num: "3",
                 title: "Report",
-                desc: "Generate and share compliance-ready reports instantly.",
+                desc: "Receive digital reports with clear repair recommendations to ease negotiations.",
               },
             ].map((step) => (
               <div
@@ -700,15 +870,15 @@ export default function Home() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-6 lg:px-10 py-16 md:py-20 lg:py-24 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight text-black mb-6 md:mb-8">
-              Aligned with NSPIRE
+              Specialized FHA <br/>& VA Home Loan 
               <br />
-              National Standards
+              Requirements
             </h2>
+            <p className="text-gray-700 leading-relaxed text-sm md:text-[15px] max-w-xl mb-4">
+              Inspire assists buyers navigating federal loan programs with inspection services aligned fully with FHA home inspection requirements and VA home loan inspection requirements. 
+            </p>
             <p className="text-gray-700 leading-relaxed text-sm md:text-[15px] max-w-xl">
-              INSPIRE is designed to help property managers and owners meet
-              HUD's NSPIRE requirements with confidence. Every checklist, every
-              report, and every inspection is built around the highest standards
-              of safety and compliance.
+              Our certified inspectors evaluate roofing integrity, heating systems, electrical safety, and environmental concerns to ensure homes meet fundamental safety, security, and structural standards. Knowing what lenders review helps buyers prepare for approval avoiding closing delays.
             </p>
           </div>
           <div className="flex justify-center items-center">
@@ -748,21 +918,20 @@ export default function Home() {
           {/* Right Side - Content */}
           <div className="text-white z-10 order-1 lg:order-2">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight mb-4 md:mb-6">
-              Your Entire Inspection
+              Local Home Inspection
               <br />
-              Workflow, Simplified
+              Services Near You
             </h2>
             <p className="text-white/90 mb-8 md:mb-10 leading-relaxed text-sm md:text-[15px] max-w-xl">
-              Whether you're managing a single building or a portfolio of
-              properties, INSPIRE brings every tool you need into one platform.
+              From Chicago to Houston, Denver, Orlando FL, and San Diego, our verified network provides fast, reliable, and compliant inspection services across the USA.
             </p>
 
             <div className="space-y-3 md:space-y-4">
               {[
-                "Guided Self-Inspection Tool",
-                "Multi-Property Management",
-                "Compliance Dashboard & Analytics",
-                "Easy Report Generation (PDF/Email)",
+                "General, Mobile, & Elite Home Inspections",
+                "Aligns with InterNACHI Training Standards",
+                "Expertise in Foundation & Safety Deficiencies",
+                "Dedicated Solutions for Buyers, Sellers & Agents",
               ].map((feature, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <svg
@@ -788,7 +957,6 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Pricing Section */}
       <section className="bg-white px-4 md:px-6 py-16 md:py-20 lg:py-24">
         <div className="max-w-[1400px] mx-auto flex justify-center px-0 md:px-6 lg:px-10">
@@ -802,103 +970,21 @@ export default function Home() {
               {/* Left side - Text */}
               <div className="text-white text-center md:text-left">
                 <h2 className="text-lg md:text-[20px] font-bold leading-tight mb-2 md:mb-3">
-                  Start your inspections
-                  <br />
-                  today for just
+                  Transparent Home Inspection Pricing:<br/>What It Costs & What You Get
                 </h2>
+                <div className="mt-4 max-w-md text-sm md:text-base opacity-90 mb-4 font-normal">
+                  Rates vary based on location, home size, age, and extra services like mold or foundation checks. Use our cost calculator for quick, transparent estimates.
+                </div>
                 <div className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-none">
-                  $99<span className="text-2xl md:text-[32px]">/year.</span>
+                  $300<span className="text-2xl md:text-[32px]"> - $600 /avg.</span>
                 </div>
               </div>
 
               {/* Right side - Button */}
               <div>
                 <Button className="bg-white text-[#FF4757] hover:bg-gray-50 rounded-full px-8 md:px-10 py-5 md:py-6 text-sm md:text-[16px] font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto">
-                  Subscribe Now
+                  Get Free Quote
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEO Content Section */}
-      <section className="bg-[#F8F9FA] px-4 md:px-6 py-16 md:py-20">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col gap-12 lg:gap-16">
-            {/* Main Title */}
-            <div className="text-center max-w-4xl mx-auto">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight mb-6">
-                Home Inspection Services in the USA | Certified Full Home Inspections by Nspire
-              </h2>
-              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
-                Choosing the right home inspection service is one of the most important steps in the home buying process, and Nspire provides comprehensive inspections designed to protect your investment with accuracy and transparency. Our certified inspectors deliver detailed home inspection reports, clear explanations of safety issues, and complete documentation so buyers fully understand what is looked for in a home inspection. Whether you are searching for home inspection near me, comparing home inspection cost, or needing inspections for FHA or VA loan requirements, Nspire ensures fast scheduling and expert guidance. We evaluate structural integrity, systems performance, mold risks, roofing, foundations, and more covering everything included in a homes home inspection. With advanced tools, modern home inspection software, and inspectors trained through top programs like InterNACHI home inspection, Nspire delivers reliable results buyers trust. From first time buyers to investors, we provide full service inspections nationwide, ensuring you make confident decisions with complete peace of mind.
-              </p>
-            </div>
-
-            {/* Grid for other sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Complete Home Inspection Services</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire provides full service home inspection services to help buyers, sellers, and agents evaluate property condition with complete confidence. Our inspections cover structural, electrical, plumbing, roofing, HVAC, insulation, and foundation systems, giving clients clear answers to what is a home inspection and what to expect during the process. Whether you need home inspections near me, home inspection service near me, or specialized reviews such as new home inspections, our certified experts deliver top tier evaluations.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">New Construction & Mobile Homes</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire offers a wide range of solutions including full home inspection, new construction home inspection, new home inspection, mobile home inspection, and general home inspection services. Each inspection evaluates structural integrity, foundation stability, electrical systems, plumbing components, HVAC functionality, roofing condition, insulation coverage, and safety hazards ensuring that clients understand what is looked for in a home inspection.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Understanding Cost & Timeframes</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire provides clear guidance on home inspection cost, including what influences pricing and how buyers can compare home inspection rates, home inspection prices, and average cost of home inspection. Factors such as home size, age, location, system complexity, and additional testing needs impact how much should a home inspection cost. We also clarify timelines, answering common questions like how long does a home inspection take or how long do home inspections take.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Process & Reporting for Buyers</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire uses a structured and certified process to ensure every home inspection is complete, accurate, and aligned with national standards. Each inspection begins with a full walkthrough, followed by a system by system evaluation using advanced tools. Buyers receive a detailed home inspection report that includes photos, descriptions, repair recommendations, and safety considerations.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Systems, Safety & Integrity</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire inspectors focus on identifying all critical issues that impact home safety and value. This includes structural components like foundations, walls, floors, ceilings, and roofs, along with electrical panels, wiring, plumbing fixtures, HVAC equipment, insulation levels, ventilation, and appliances. We explain clearly what is looked for in a home inspection, from roof leaks and electrical hazards to moisture damage or foundation cracks.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Modern Digital Tools</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire uses advanced home inspection software and digital reporting tools to deliver fast, accurate, and visually detailed inspection results. Our reports include annotated images, defect descriptions, severity levels, repair recommendations, and maintenance guidance. For clients searching for home inspection companies near me, our modern reporting system sets us apart as a trusted leader.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Specialty & Mold Services</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire provides specialized inspections tailored to unique property needs, ranging from mold detection to regional services in Chicago, Houston, Denver, Orlando, San Antonio, San Diego, Austin, and Los Angeles. We also support termite evaluations for buyers researching termite inspection for home purchase, offering complete documentation to identify hidden damage.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Environmental Safety</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire's environmental inspection services include mold evaluations, indoor air testing, moisture mapping, and termite assessments. Home buyers researching home and mold inspections can rely on our team to identify hidden risks affecting air quality, safety, and long term home durability. Our inspectors use advanced tools including infrared cameras, moisture meters, and sampling equipment.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-black border-b border-gray-200 pb-2">Regional Local Expertise</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Nspire provides local expertise with certified professionals serving major regions across the USA. Each region has unique construction types, climate conditions, and inspection requirements, so our inspectors deliver tailored solutions based on local building standards. Nspire’s national network ensures consistent quality regardless of location, making us a leading choice for buyers seeking reliability.
-                </p>
               </div>
             </div>
           </div>
@@ -946,8 +1032,18 @@ export default function Home() {
               <h3 className="font-bold mb-4">Contact</h3>
               <div className="space-y-3 text-gray-400">
                 <p className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
                   </svg>
                   <a
                     href="mailto:support@inspire.com"
@@ -957,8 +1053,18 @@ export default function Home() {
                   </a>
                 </p>
                 <p className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                   <a href="tel:9202202220" className="hover:text-white">
                     9202202220
@@ -972,8 +1078,18 @@ export default function Home() {
               <h3 className="font-bold mb-4">Subscribe</h3>
               <div className="flex mb-4">
                 <div className="relative flex-1">
-                  <svg className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <svg
+                    className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
                   </svg>
                   <input
                     type="email"
@@ -982,8 +1098,18 @@ export default function Home() {
                   />
                 </div>
                 <button className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded-r flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
                   </svg>
                 </button>
               </div>
@@ -1018,19 +1144,43 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="LinkedIn">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="Facebook">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white"
+                aria-label="Facebook"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                 </svg>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="X (Twitter)">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white"
+                aria-label="X (Twitter)"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
             </div>

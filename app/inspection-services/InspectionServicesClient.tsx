@@ -100,7 +100,7 @@ export default function InspectionServicesClient() {
           </button>
           {mobileMenuOpen && (<div className="md:hidden fixed inset-0 bg-black/50 z-30" onClick={() => setMobileMenuOpen(false)}></div>)}
           <div className={`md:hidden fixed top-0 left-0 h-full w-64 bg-[#E8F4F8] z-40 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-            <div className="flex flex-col gap-6 p-8 pt-20">
+            <div className="flex flex-col gap-6 p-8 pt-36">
               <Link href="/" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}><span className="text-lg font-medium text-gray-800">HOME</span></Link>
               <Link href="/about" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}><span className="text-lg font-medium text-gray-800">ABOUT</span></Link>
               <Link href="/inspection-services" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}><span className="text-lg font-medium text-[#0D6A8D] font-bold">SERVICES</span></Link>

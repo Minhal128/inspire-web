@@ -61,7 +61,7 @@ export default function WhatIsSewerScopeInspection() {
           )}
 
           <div className={`md:hidden fixed top-0 left-0 h-full w-64 bg-[#E8F4F8] z-40 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-            <div className="flex flex-col gap-6 p-8 pt-20">
+            <div className="flex flex-col gap-6 p-8 pt-36">
               <Link href="/#home" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}>
                 <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">HOME</span>
                 <span className="text-[11px] text-gray-500 italic tracking-wider">Welcome</span>
@@ -70,13 +70,9 @@ export default function WhatIsSewerScopeInspection() {
                 <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">SERVICES</span>
                 <span className="text-[11px] text-gray-500 italic tracking-wider">Professional Solutions</span>
               </Link>
-              <Link href="/#education" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">EDUCATION AND TRAINING</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Learning & Training</span>
-              </Link>
-              <Link href="/#purpose" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">PURPOSE OF INSPECTION</span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">Why We Inspect</span>
+              <Link href="/about" className="flex flex-col group">
+                <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">ABOUT</span>
+                <span className="text-[11px] text-gray-500 italic tracking-wider">Discover Inspire</span>
               </Link>
               <Link href="/contact" className="flex flex-col group" onClick={() => setMobileMenuOpen(false)}>
                 <span className="text-lg font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">CONTACT</span>
@@ -102,13 +98,9 @@ export default function WhatIsSewerScopeInspection() {
               <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">SERVICES</span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">Professional Solutions</span>
             </Link>
-            <Link href="/#education" className="flex flex-col group items-center">
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">EDUCATION AND TRAINING</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider text-center">Learning & Training</span>
-            </Link>
-            <Link href="/#purpose" className="flex flex-col group items-center">
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">PURPOSE OF INSPECTION</span>
-              <span className="text-[10px] text-gray-500 italic tracking-wider text-center">Why We Inspect</span>
+            <Link href="/about" className="flex flex-col group items-center">
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">ABOUT</span>
+              <span className="text-[10px] text-gray-500 italic tracking-wider text-center">Discover Inspire</span>
             </Link>
             <Link href="/contact" className="flex flex-col group items-center">
               <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">CONTACT</span>
