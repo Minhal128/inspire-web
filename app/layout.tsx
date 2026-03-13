@@ -7,8 +7,8 @@ import './globals.css'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'INSPIRE - Smart Inspections',
-  description: 'Smart Inspections. Real-Time Results.',
+  title: 'Home Inspection Services in USA | Certified Inspectors | Nspire',
+  description: 'Book a certified home inspection with Nspire. Affordable prices, detailed reports, and trusted home inspectors near you. Find out home inspection cost today.',
   generator: 'v0.app',
   icons: {
     icon: '/logo.png',

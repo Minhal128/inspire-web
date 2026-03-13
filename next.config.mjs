@@ -6,6 +6,7 @@ const __dirname = dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {},
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -15,13 +16,8 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  turbopack: {
-    resolveExtensions: ['.tsx', '.ts', '.jsx', '.js'],
-  },
-  swcMinify: true,
   compress: true,
   productionBrowserSourceMaps: false,
-  optimizeFonts: true,
   poweredByHeader: false,
   // Cache optimization for local development
   onDemandEntries: {
@@ -31,7 +27,6 @@ const nextConfig = {
   // Experimental features for faster builds
   experimental: {
     optimizePackageImports: ['@radix-ui/react-*', 'lucide-react'],
-    turbopack: true,
   },
   // Allow all origins (CORS headers for all routes)
   async headers() {
