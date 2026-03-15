@@ -115,6 +115,13 @@ export default function Home() {
                 {mobileServicesOpen && (
                   <div className="pl-4 pt-3 space-y-3">
                     <Link
+                      href="/service"
+                      className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Service Details
+                    </Link>
+                    <Link
                       href="/inspection-services"
                       className="block text-sm text-gray-600 hover:text-[#0D6A8D]"
                       onClick={() => setMobileMenuOpen(false)}
@@ -246,14 +253,16 @@ export default function Home() {
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
             >
-              <button
+              <Link
+                href="/service"
                 className="flex flex-col group items-center cursor-pointer"
-                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
               >
                 <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-1">
                   SERVICES{" "}
                   <svg
-                    className={`w-3 h-3 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`}
+                    className={`w-3 h-3 transition-transform ${
+                      servicesDropdownOpen ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -269,10 +278,20 @@ export default function Home() {
                 <span className="text-[10px] text-gray-500 italic tracking-wider">
                   Professional Solutions
                 </span>
-              </button>
+              </Link>
               {servicesDropdownOpen && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
                   <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2 min-w-[220px]">
+                    <Link
+                      href="/service"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
+                      onClick={() => setServicesDropdownOpen(false)}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-[#0D6A8D]"></span>
+                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                        Service Details
+                      </span>
+                    </Link>
                     <Link
                       href="/inspection-services/buyers"
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
