@@ -109,9 +109,9 @@ export default function ManagementDashboardLayout({ children }: ManagementDashbo
           <Image
             src="/logo.png"
             alt="INSPIRE"
-            width={250}
-            height={90}
-            className="w-auto h-20 cursor-pointer"
+            width={300}
+            height={100}
+            className="h-28 w-auto cursor-pointer"
             onClick={() => router.push('/')}
           />
         </div>

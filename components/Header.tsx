@@ -28,15 +28,15 @@ export default function Header() {
       <nav className="bg-[#E8F4F8] px-4 md:px-6 py-3 md:py-6 sticky top-0 z-50 border-b border-black/5 shadow-sm">
         <div className="max-w-[1400px] mx-auto w-full flex items-center justify-between gap-4 md:gap-8">
           {/* Logo - Left Aligned */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 ml-4 md:ml-8">
             <Link href="/">
               <Image
                 src="/logo.png"
                 alt="INSPIRE"
-                width={180}
-                height={60}
+                width={320}
+                height={100}
                 priority
-                className="h-14 md:h-28 w-auto"
+                className="h-20 md:h-36 w-auto"
               />
             </Link>
           </div>

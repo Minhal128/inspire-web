@@ -73,21 +73,18 @@ export default function AdminDashboardLayout({ children }: AdminDashboardLayoutP
     <div className="min-h-screen bg-[#E8F4F8] flex">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:flex-col w-64 bg-gradient-to-b from-[#1E3A5F] to-[#152A45] shadow-lg fixed h-full z-10">
-        <div className="px-0 border-b border-[#1E3A5F] flex justify-center">
+        <div className="p-6 border-b border-[#1E3A5F] flex justify-center">
           <Image
             src="/logo.png"
             alt="INSPIRE"
-            width={850}
-            height={150}
-            className="w-full h-auto cursor-pointer"
+            width={300}
+            height={100}
+            className="h-28 w-auto cursor-pointer"
             onClick={() => router.push('/')}
-            style={{
-              marginTop: "-80px"
-            }}
           />
         </div>
 
-        <nav className="flex-1 p-4 overflow-y-auto" style={{marginTop:"-60px"}}>
+        <nav className="flex-1 p-4 overflow-y-auto">
           {navigationItems.map((item) => (
             <button
               key={item.path}
