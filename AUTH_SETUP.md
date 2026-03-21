@@ -6,7 +6,10 @@ To enable social login functionality, you need to set up OAuth credentials for G
 
 ```env
 # Backend API
-NEXT_PUBLIC_API_URL=https://qosynebackend.vercel.app
+NEXT_PUBLIC_API_URL=https://sea-lion-app-2u676.ondigitalocean.app
+
+# OAuth Redirect URL
+NEXT_PUBLIC_GOOGLE_REDIRECT_URL=https://whale-app-wi6lz.ondigitalocean.app/oauth-callback
 
 # Google OAuth
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id_here
