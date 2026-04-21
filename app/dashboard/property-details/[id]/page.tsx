@@ -9,6 +9,8 @@ import { propertiesAPI, authAPI } from "@/lib/api"
 import { toast } from "react-toastify"
 import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check } from "lucide-react"
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'
+
 // ---- Unit inspection state persistence (localStorage) ----
 interface UnitStatus {
     unitName: string
@@ -85,6 +87,7 @@ export default function PropertyDetailsPage() {
     const [property, setProperty] = useState<any>(null)
     const [user, setUser] = useState<any>(null)
     const [loading, setLoading] = useState(true)
+    const [isExporting, setIsExporting] = useState(false)
 
     // Unit selection popup state
     const [unitPopupOpen, setUnitPopupOpen] = useState(false)
@@ -382,6 +385,373 @@ export default function PropertyDetailsPage() {
 
     const isAllCompleted = (building: typeof buildings[0]) => {
         return getCompletedCount(building.buildingId) >= building.unitsForInspection
+    }
+
+    const normalizeToken = (value: unknown): string => String(value ?? '').trim().toLowerCase()
+
+    const looksLikeBuildingLabel = (value: unknown): boolean => {
+        const label = String(value ?? '').trim()
+        if (!label) return false
+        return /^b\d+$/i.test(label) || /^building[\s_-]?[a-z0-9]+$/i.test(label)
+    }
+
+    const mapDraftDeficienciesToFindings = (items: any[] = [], fallbackBuilding = ''): any[] => {
+        return items.map((f: any, idx: number) => {
+            const areaToken = String(f?._area || f?.area || f?.category || f?.inspectionType || '').trim().toLowerCase()
+            const resolvedArea = areaToken.includes('outside')
+                ? 'Outside'
+                : areaToken.includes('inside')
+                    ? 'Inside'
+                    : areaToken.includes('unit')
+                        ? 'Unit'
+                        : 'General'
+
+            const resolvedBuilding = String(
+                f?.buildingInspectionId ||
+                f?.building_id ||
+                f?.building ||
+                f?.buildingName ||
+                f?.buildingId ||
+                (looksLikeBuildingLabel(f?.unit) ? f?.unit : '') ||
+                (looksLikeBuildingLabel(f?._unit) ? f?._unit : '') ||
+                fallbackBuilding ||
+                'Building'
+            ).trim() || 'Building'
+
+            const unitCandidate = String(f?.unit || f?._unit || f?.unitId || '').trim()
+
+            return {
+                id: String(f?.id || f?._id || `draft-${idx + 1}`),
+                title: f?.title || f?.deficiency?.name || f?.deficiencyName || 'Deficiency',
+                deficiencyName: f?.deficiencyName || f?.deficiency?.name || f?.title || f?.name || 'Deficiency',
+                deficiencyDetails:
+                    f?.deficiencyDetails ||
+                    f?.description ||
+                    f?.detail ||
+                    f?.deficiency?.detail ||
+                    f?.title ||
+                    f?.deficiency?.title ||
+                    f?.name ||
+                    f?.deficiency?.name ||
+                    'Issue recorded',
+                severity: f?.severity || f?.deficiency?.severity || f?.deficiency?.aiSeverity || 'Moderate',
+                area: resolvedArea,
+                category: resolvedArea,
+                location: f?.location || f?.room || f?.itemName || f?.module || 'General',
+                building: resolvedBuilding,
+                unit: unitCandidate && !/^b\d+$/i.test(unitCandidate) ? unitCandidate : '-',
+                imageUri:
+                    f?.imageUri ||
+                    f?.imageUrl ||
+                    f?.deficiency?.imageUri ||
+                    f?.deficiency?.imageUrl ||
+                    f?.photos?.[0]?.url ||
+                    '',
+                nspireCode: f?.nspireCode || f?.deficiency?.code || '-',
+                codeReference: f?.codeReference || f?.deficiency?.codeReference || '',
+                comments: f?.comments || f?.note || f?.deficiency?.aiAnalysis || '',
+                status: f?.status || 'Open',
+                timestamp: f?.timestamp || new Date().toISOString(),
+            }
+        })
+    }
+
+    const dedupeFindings = (findings: any[]): any[] => {
+        const deduped = new Map<string, any>()
+
+        findings.forEach((finding) => {
+            if (!finding) return
+
+            const key = [
+                normalizeToken(finding?.building),
+                normalizeToken(finding?.area),
+                normalizeToken(finding?.unit),
+                normalizeToken(finding?.deficiencyName),
+                normalizeToken(finding?.deficiencyDetails),
+                normalizeToken(finding?.nspireCode),
+                normalizeToken(finding?.imageUri),
+            ].join('|')
+
+            if (!deduped.has(key)) {
+                deduped.set(key, finding)
+            }
+        })
+
+        return Array.from(deduped.values())
+    }
+
+    const handleExportInProgress = async () => {
+        if (!property) return
+
+        setIsExporting(true)
+        try {
+            const token = localStorage.getItem('token')
+            if (!token) {
+                toast.error('Please login to export in-progress report.', { position: 'top-right' })
+                router.push('/login')
+                return
+            }
+
+            const propertyId = String(property?._id || id)
+            const propertyTokenSet = new Set<string>([
+                normalizeToken(property?._id),
+                normalizeToken(property?.id),
+                normalizeToken(property?.propertyId),
+                normalizeToken(property?.name),
+            ].filter(Boolean))
+
+            let inspectorName = user?.fullName || 'Inspector'
+            try {
+                const me = await authAPI.getMe()
+                if (me?.success && me?.user?.fullName) {
+                    inspectorName = me.user.fullName
+                }
+            } catch {
+                // Fallback to already loaded user name
+            }
+
+            const fetchProgress = async (queryParams: Record<string, string>) => {
+                const query = new URLSearchParams(queryParams).toString()
+                const response = await fetch(`${API_URL}/api/inspections/progress?${query}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+
+                if (!response.ok) {
+                    throw new Error(`Progress fetch failed (${response.status})`)
+                }
+
+                const data = await response.json()
+                return Array.isArray(data?.progress) ? data.progress : []
+            }
+
+            let progressRecords: any[] = []
+            let findings: any[] = []
+            let notes = ''
+
+            // 1) Mobile parity source: backend draft records first
+            try {
+                const draftProgress = await fetchProgress({
+                    property_id: propertyId,
+                    draft_only: 'true',
+                    include_property: 'true',
+                })
+
+                progressRecords = draftProgress
+
+                const latestDraft = draftProgress
+                    .filter((record: any) => {
+                        const inspectionType = String(record?.inspectionType || '')
+                        if (!inspectionType.startsWith('REPORT_DRAFT_')) return false
+
+                        const draftFindings = record?.inspectionData?.deficiencies || record?.inspectionData?.findings || []
+                        if (!Array.isArray(draftFindings) || draftFindings.length === 0) return false
+
+                        const recordTokens = [
+                            normalizeToken(record?.propertyId?._id),
+                            normalizeToken(record?.propertyId?.id),
+                            normalizeToken(record?.propertyId?.propertyId),
+                            normalizeToken(record?.propertyId),
+                            normalizeToken(record?.inspectionData?.property?._id),
+                            normalizeToken(record?.inspectionData?.property?.id),
+                            normalizeToken(record?.inspectionData?.property?.propertyId),
+                            normalizeToken(record?.inspectionData?.property?.name),
+                            normalizeToken(record?.propertyId?.name),
+                        ].filter(Boolean)
+
+                        return recordTokens.some((tokenValue) => propertyTokenSet.has(tokenValue))
+                    })
+                    .sort((a: any, b: any) => {
+                        const tA = Date.parse(String(a?.updatedAt || a?.createdAt || a?.inspectionData?.savedAt || 0))
+                        const tB = Date.parse(String(b?.updatedAt || b?.createdAt || b?.inspectionData?.savedAt || 0))
+                        return (Number.isFinite(tB) ? tB : 0) - (Number.isFinite(tA) ? tA : 0)
+                    })[0]
+
+                if (latestDraft) {
+                    const rawDraftFindings = latestDraft?.inspectionData?.deficiencies || latestDraft?.inspectionData?.findings || []
+                    findings = mapDraftDeficienciesToFindings(
+                        rawDraftFindings,
+                        String(latestDraft?.buildingId || latestDraft?.inspectionData?.buildingId || latestDraft?.unitId || '')
+                    )
+                    notes = String(latestDraft?.inspectionData?.notes || '')
+                }
+            } catch (error) {
+                console.warn('Draft progress fetch failed:', error)
+            }
+
+            // 2) Fallback to latest in-browser inspection payload
+            if (findings.length === 0) {
+                try {
+                    const storedData = localStorage.getItem('currentInspectionData')
+                    const parsed = storedData ? JSON.parse(storedData) : null
+
+                    if (parsed) {
+                        const parsedPropertyTokens = [
+                            normalizeToken(parsed?.propertyId),
+                            normalizeToken(parsed?.property?._id),
+                            normalizeToken(parsed?.property?.id),
+                            normalizeToken(parsed?.property?.propertyId),
+                            normalizeToken(parsed?.propertyName),
+                            normalizeToken(parsed?.property?.name),
+                        ].filter(Boolean)
+
+                        const belongsToCurrentProperty = parsedPropertyTokens.some((tokenValue: string) => propertyTokenSet.has(tokenValue))
+                        if (belongsToCurrentProperty) {
+                            const localRawFindings = parsed?.findings || parsed?.deficiencies || []
+                            if (Array.isArray(localRawFindings) && localRawFindings.length > 0) {
+                                findings = mapDraftDeficienciesToFindings(localRawFindings, String(parsed?.building || ''))
+                                notes = String(parsed?.notes || notes)
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.warn('Local inspection payload parse failed:', error)
+                }
+            }
+
+            // 3) Final fallback: non-draft progress records with answered responses
+            if (findings.length === 0) {
+                try {
+                    const allProgress = progressRecords.length > 0
+                        ? progressRecords
+                        : await fetchProgress({ property_id: propertyId })
+
+                    progressRecords = allProgress
+
+                    const collected = allProgress.flatMap((record: any) => {
+                        const inspectionType = String(record?.inspectionType || '').toLowerCase()
+                        const responses = (record?.responses && typeof record.responses === 'object') ? record.responses : {}
+                        const answeredCount = Object.values(responses).filter((value) => value !== null && value !== undefined && String(value).trim() !== '').length
+
+                        const shouldInclude = inspectionType.startsWith('report_draft_') || answeredCount > 0
+                        if (!shouldInclude) return []
+
+                        const rawRecordFindings = record?.inspectionData?.deficiencies || record?.inspectionData?.findings || []
+                        if (!Array.isArray(rawRecordFindings) || rawRecordFindings.length === 0) return []
+
+                        return mapDraftDeficienciesToFindings(
+                            rawRecordFindings,
+                            String(record?.buildingId || record?.inspectionData?.buildingId || record?.unitId || '')
+                        )
+                    })
+
+                    findings = collected
+                } catch (error) {
+                    console.warn('Full progress fallback failed:', error)
+                }
+            }
+
+            const dedupedFindings = dedupeFindings(findings)
+
+            const buildingProgressMap = buildings.reduce((acc: Record<string, any>, building) => {
+                const completedUnits = completedUnitsMap[building.buildingId] || []
+                acc[building.buildingId] = {
+                    out: 0,
+                    in: 0,
+                    un: completedUnits.length,
+                    totalUnits: building.totalUnits,
+                    unitsForInspection: building.unitsForInspection,
+                    inspectedUnits: [...completedUnits],
+                }
+                return acc
+            }, {})
+
+            progressRecords.forEach((record: any) => {
+                const inspectionType = String(record?.inspectionType || '').toLowerCase()
+                const responses = (record?.responses && typeof record.responses === 'object') ? record.responses : {}
+                const answeredCount = Object.values(responses).filter((value) => value !== null && value !== undefined && String(value).trim() !== '').length
+                if (answeredCount === 0 && !inspectionType.startsWith('report_draft_')) return
+
+                const buildingCandidate = String(
+                    record?.buildingId ||
+                    record?.inspectionData?.buildingId ||
+                    record?.inspectionData?.buildingInspectionId ||
+                    (looksLikeBuildingLabel(record?.unitId) ? record?.unitId : '') ||
+                    'B1'
+                ).trim() || 'B1'
+
+                if (!buildingProgressMap[buildingCandidate]) {
+                    buildingProgressMap[buildingCandidate] = {
+                        out: 0,
+                        in: 0,
+                        un: 0,
+                        totalUnits: 0,
+                        unitsForInspection: 0,
+                        inspectedUnits: [],
+                    }
+                }
+
+                if (inspectionType.startsWith('outside')) {
+                    buildingProgressMap[buildingCandidate].out = Math.max(buildingProgressMap[buildingCandidate].out, answeredCount)
+                } else if (inspectionType.startsWith('inside')) {
+                    buildingProgressMap[buildingCandidate].in = Math.max(buildingProgressMap[buildingCandidate].in, answeredCount)
+                } else if (inspectionType.startsWith('unit_')) {
+                    const unitLabel = inspectionType.split('_').slice(1).join('_').trim()
+                    if (unitLabel && !buildingProgressMap[buildingCandidate].inspectedUnits.includes(unitLabel)) {
+                        buildingProgressMap[buildingCandidate].inspectedUnits.push(unitLabel)
+                    }
+                    buildingProgressMap[buildingCandidate].un = buildingProgressMap[buildingCandidate].inspectedUnits.length
+                }
+            })
+
+            const progressRows = Object.values(buildingProgressMap)
+            const progressData = {
+                outsideProgress: progressRows.reduce((sum: number, row: any) => sum + Number(row.out || 0), 0),
+                insideProgress: progressRows.reduce((sum: number, row: any) => sum + Number(row.in || 0), 0),
+                unitProgress: progressRows.reduce((sum: number, row: any) => sum + Number(row.un || 0), 0),
+                outsideTotal: 29,
+                insideTotal: 36,
+                unitTotal: 35,
+                buildingRows: buildings.map((building) => ({
+                    buildingId: building.buildingId,
+                    totalUnits: building.totalUnits,
+                    unitsForInspection: building.unitsForInspection,
+                })),
+                buildingProgressMap,
+            }
+
+            const inspectionDataForSummary = {
+                inspectionId: `INPROG-${Date.now()}`,
+                inspectionNo: `INSP-${Date.now().toString(36).toUpperCase()}`,
+                propertyId,
+                propertyName: property?.name || '-',
+                propertyAddress: property?.address || '-',
+                inspectorId: user?.id || user?._id || 'INS-001',
+                inspectorName,
+                inspectionType: 'In-Progress Inspection',
+                status: 'in-progress',
+                building: buildings.map((building) => getBuildingDisplayName(building.buildingId)).join(', '),
+                buildingColumnHeader: columnHeaderName,
+                findings: dedupedFindings,
+                deficiencies: dedupedFindings,
+                notes: notes || `In-progress export generated on ${new Date().toLocaleString()}`,
+                selectedUnits: Object.values(completedUnitsMap).flat(),
+                complianceScore: Math.max(0, 100 - Math.min(dedupedFindings.length * 3, 100)),
+                startDate: new Date().toLocaleDateString(),
+                startTime: new Date().toLocaleTimeString(),
+                progressData,
+            }
+
+            localStorage.setItem('currentInspectionData', JSON.stringify(inspectionDataForSummary))
+            localStorage.setItem('currentInspectionProperty', JSON.stringify(property))
+
+            toast.success('In-progress report prepared. Opening summary...', {
+                position: 'top-right',
+                autoClose: 1800,
+            })
+
+            router.push('/dashboard/inspection/summary')
+        } catch (error: any) {
+            console.error('Export in-progress failed:', error)
+            toast.error(`Failed to export in-progress report: ${error?.message || 'Unknown error'}`, {
+                position: 'top-right',
+            })
+        } finally {
+            setIsExporting(false)
+        }
     }
 
     if (loading) {
@@ -700,6 +1070,16 @@ export default function PropertyDetailsPage() {
                             </div>
                         )
                     })}
+                </div>
+
+                <div className="mt-8 flex justify-center">
+                    <Button
+                        onClick={handleExportInProgress}
+                        disabled={isExporting}
+                        className="w-full md:w-auto min-w-[220px] bg-[#10B981] hover:bg-[#0ea56f] text-white font-black py-3 px-8 rounded-xl shadow-md"
+                    >
+                        {isExporting ? 'Preparing Report...' : 'Export In Progress'}
+                    </Button>
                 </div>
             </div>
 

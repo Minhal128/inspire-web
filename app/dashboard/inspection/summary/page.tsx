@@ -28,6 +28,26 @@ const Download = () => (
   </svg>
 )
 
+const Excel = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 3h7l5 5v12a1 1 0 01-1 1H7a2 2 0 01-2-2V5a2 2 0 012-2z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 3v6h6" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 16l4-4m0 4l-4-4" />
+  </svg>
+)
+
+const Lock = ({ className }: { className?: string }) => (
+  <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c1.104 0 2 .896 2 2v1a2 2 0 01-4 0v-1c0-1.104.896-2 2-2zm6 8H6a2 2 0 01-2-2v-6a2 2 0 012-2h1V7a5 5 0 1110 0v2h1a2 2 0 012 2v6a2 2 0 01-2 2zM9 9h6V7a3 3 0 10-6 0v2z" />
+  </svg>
+)
+
+const Unlock = ({ className }: { className?: string }) => (
+  <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 10-8 0m10 4H8a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2z" />
+  </svg>
+)
+
 
 const ImageIcon = ({ className }: { className?: string }) => (
   <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,6 +85,10 @@ function NSPIREInspectionSummaryContent() {
   const [report, setReport] = useState<NSPIREInspectionReport | null>(null)
   const [loading, setLoading] = useState(true)
   const [exporting, setExporting] = useState(false)
+  const [exportingExcel, setExportingExcel] = useState(false)
+  const [checkingUnlock, setCheckingUnlock] = useState(true)
+  const [isReportUnlocked, setIsReportUnlocked] = useState(false)
+  const [purchasingUnlock, setPurchasingUnlock] = useState(false)
   const [activeTab, setActiveTab] = useState<'summary' | 'deficiencies' | 'preview'>('summary')
   // Custom column header from the building table (editable in property-details)
   const [buildingColumnHeader, setBuildingColumnHeader] = useState('Building')
@@ -84,6 +108,39 @@ function NSPIREInspectionSummaryContent() {
       if (ctx) setInspectionContext(JSON.parse(ctx))
     } catch {}
   }, [])
+
+  const inspectionIdentifier = useMemo(() => {
+    const fromQuery = searchParams.get('inspectionId') || searchParams.get('id')
+    if (fromQuery) {
+      return fromQuery
+    }
+
+    try {
+      const storedData = localStorage.getItem('currentInspectionData')
+      if (storedData) {
+        const parsed = JSON.parse(storedData)
+        const fallbackId =
+          parsed?._id ||
+          parsed?.id ||
+          parsed?.inspectionId ||
+          parsed?.inspectionNo
+
+        if (fallbackId) {
+          return String(fallbackId)
+        }
+      }
+    } catch {
+      // Ignore local parsing errors and continue with report fallback
+    }
+
+    return report?.metadata?.inspectionNo || null
+  }, [searchParams, report?.metadata?.inspectionNo])
+
+  const visibleDeficiencies = useMemo(() => {
+    if (!report) return []
+    if (isReportUnlocked) return report.deficiencies
+    return report.deficiencies.slice(0, 2)
+  }, [report, isReportUnlocked])
 
   // Handle "Continue Inspection" - mark unit as completed and go back to property details
   const handleContinueInspection = () => {
@@ -138,6 +195,116 @@ function NSPIREInspectionSummaryContent() {
 
     loadInspectionData()
   }, [searchParams])
+
+  useEffect(() => {
+    const checkUnlockStatus = async () => {
+      if (!inspectionIdentifier) {
+        setCheckingUnlock(false)
+        setIsReportUnlocked(false)
+        return
+      }
+
+      try {
+        setCheckingUnlock(true)
+        const token = localStorage.getItem('token')
+
+        if (!token) {
+          setIsReportUnlocked(false)
+          return
+        }
+
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/payments/check-unlock/${encodeURIComponent(inspectionIdentifier)}`,
+          {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          }
+        )
+
+        if (!response.ok) {
+          throw new Error('Unable to check unlock status.')
+        }
+
+        const data = await response.json()
+        setIsReportUnlocked(!!data?.isReportUnlocked)
+      } catch (error) {
+        console.error('Unlock status check error:', error)
+        setIsReportUnlocked(false)
+      } finally {
+        setCheckingUnlock(false)
+      }
+    }
+
+    checkUnlockStatus()
+  }, [inspectionIdentifier])
+
+  useEffect(() => {
+    const paymentStatus = searchParams.get('payment')
+    const sessionId = searchParams.get('session_id')
+
+    if (!paymentStatus) {
+      return
+    }
+
+    const cleanUrl = () => {
+      const cleanParams = new URLSearchParams(searchParams.toString())
+      cleanParams.delete('payment')
+      cleanParams.delete('session_id')
+      const nextUrl = cleanParams.toString()
+        ? `/dashboard/inspection/summary?${cleanParams.toString()}`
+        : '/dashboard/inspection/summary'
+      router.replace(nextUrl)
+    }
+
+    const verifyStripeSession = async () => {
+      try {
+        if (paymentStatus === 'cancelled') {
+          toast.info('Payment was cancelled. Report remains locked.', { position: 'top-right' })
+          cleanUrl()
+          return
+        }
+
+        if (paymentStatus === 'success' && sessionId) {
+          const token = localStorage.getItem('token')
+          if (!token) {
+            throw new Error('You must be logged in to verify payment status.')
+          }
+
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/payments/stripe-session-status/${encodeURIComponent(sessionId)}`,
+            {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+              },
+            }
+          )
+
+          const data = await response.json()
+
+          if (!response.ok || !data?.success) {
+            throw new Error(data?.message || 'Unable to verify Stripe payment status.')
+          }
+
+          if (data?.isReportUnlocked) {
+            setIsReportUnlocked(true)
+            toast.success('Payment confirmed. Report unlocked!', { position: 'top-right' })
+          } else {
+            toast.warning('Payment is not completed yet. Please try again in a moment.', { position: 'top-right' })
+          }
+        }
+      } catch (error: any) {
+        console.error('Stripe payment verification error:', error)
+        toast.error(`Payment verification failed: ${error.message}`, { position: 'top-right' })
+      } finally {
+        cleanUrl()
+      }
+    }
+
+    verifyStripeSession()
+  }, [searchParams, router])
 
   // Convert inspection data to NSPIRE report format
   const convertToNSPIREReport = (data: any, property: any): NSPIREInspectionReport => {
@@ -370,8 +537,67 @@ function NSPIREInspectionSummaryContent() {
   }
 
   // Handlers
+  const handleUnlockWithStripe = async () => {
+    try {
+      if (!inspectionIdentifier) {
+        toast.error('Inspection ID is missing. Please refresh and try again.', { position: 'top-right' })
+        return
+      }
+
+      const token = localStorage.getItem('token')
+      if (!token) {
+        toast.error('You must be logged in to unlock this report.', { position: 'top-right' })
+        return
+      }
+
+      setPurchasingUnlock(true)
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/payments/create-stripe-checkout-session`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({ inspectionId: inspectionIdentifier }),
+        }
+      )
+
+      const data = await response.json()
+
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.message || 'Unable to start Stripe checkout.')
+      }
+
+      if (data?.isReportUnlocked || data?.alreadyUnlocked) {
+        setIsReportUnlocked(true)
+        toast.success('Report is already unlocked.', { position: 'top-right' })
+        return
+      }
+
+      if (!data?.checkoutUrl) {
+        throw new Error('Stripe checkout URL is missing.')
+      }
+
+      window.location.href = data.checkoutUrl
+    } catch (error: any) {
+      console.error('Stripe checkout start error:', error)
+      toast.error(`Unable to start payment: ${error.message}`, { position: 'top-right' })
+    } finally {
+      setPurchasingUnlock(false)
+    }
+  }
+
   const handleExportPDF = async () => {
     if (!report) return
+
+    if (!isReportUnlocked) {
+      toast.info('This report is locked. Redirecting to unlock checkout...', { position: 'top-right' })
+      await handleUnlockWithStripe()
+      return
+    }
+
     setExporting(true)
     try {
       toast.info("Generating PDF through Puppeteer service...", { position: "top-right" })
@@ -380,11 +606,34 @@ function NSPIREInspectionSummaryContent() {
 
       // Prepare the payload matching backend expectations
       let payloadData;
+      let mergedInspectionPayload: any = null;
 
       const storedData = localStorage.getItem('currentInspectionData');
       const storedProperty = localStorage.getItem('currentInspectionProperty');
 
-      if (storedData) {
+      // First persist/update the inspection in backend to obtain merged property-level data
+      // (prevents previous building details from being dropped when exporting after partial updates)
+      if (storedData && storedProperty) {
+        mergedInspectionPayload = await markInspectionAsCompleted({
+          silentToast: true,
+          returnInspection: true,
+        });
+      }
+
+      if (mergedInspectionPayload) {
+        const propertyData = storedProperty ? JSON.parse(storedProperty) : null;
+        payloadData = {
+          ...mergedInspectionPayload,
+          property: propertyData || mergedInspectionPayload.property,
+          findings: mergedInspectionPayload.findings || mergedInspectionPayload.deficiencies || [],
+          deficiencies: mergedInspectionPayload.deficiencies || mergedInspectionPayload.findings || [],
+          inspectionNo: mergedInspectionPayload.inspectionId || report.metadata.inspectionNo,
+          propertyName: propertyData?.name || report.metadata.propertyName,
+          propertyAddress: propertyData?.address || report.metadata.propertyAddress,
+        };
+      }
+
+      if (!payloadData && storedData) {
         // Use raw data if available (best for metadata preservation)
         const rawData = JSON.parse(storedData);
         if (storedProperty) {
@@ -484,9 +733,11 @@ function NSPIREInspectionSummaryContent() {
       window.URL.revokeObjectURL(url)
 
       toast.success("PDF downloaded successfully", { position: "top-right" })
-      
-      // Mark inspection as completed after successful PDF export
-      await markInspectionAsCompleted();
+
+      // If pre-update did not run/succeed, attempt completion now
+      if (!mergedInspectionPayload) {
+        await markInspectionAsCompleted();
+      }
       
     } catch (error: any) {
       console.error('PDF export error:', error)
@@ -496,8 +747,76 @@ function NSPIREInspectionSummaryContent() {
     }
   }
 
+  const handleExportExcel = async () => {
+    if (!report) return
+
+    if (!isReportUnlocked) {
+      toast.info('This report is locked. Redirecting to unlock checkout...', { position: 'top-right' })
+      await handleUnlockWithStripe()
+      return
+    }
+
+    setExportingExcel(true)
+    try {
+      const XLSX = await import('xlsx')
+
+      const summaryRows = [
+        { Field: 'Inspection Number', Value: report.metadata.inspectionNo },
+        { Field: 'Property Name', Value: report.metadata.propertyName },
+        { Field: 'Property Address', Value: report.metadata.propertyAddress },
+        { Field: 'Inspector', Value: report.metadata.inspectorName },
+        { Field: 'Inspection Type', Value: report.metadata.inspectionType },
+        { Field: 'Start Date', Value: report.metadata.startDate },
+        { Field: 'End Date', Value: report.metadata.endDate },
+        { Field: 'Final Score', Value: report.metadata.finalScore },
+        { Field: 'Total Deficiencies', Value: report.summary.total },
+        { Field: 'Life-Threatening', Value: report.summary.lifeThreatening },
+        { Field: 'Severe', Value: report.summary.severe },
+        { Field: 'Moderate', Value: report.summary.moderate },
+        { Field: 'Low', Value: report.summary.low },
+      ]
+
+      const deficiencyRows = report.deficiencies.map((def, index) => ({
+        '#': index + 1,
+        Building: def.building,
+        Unit: def.unit,
+        Room: def.room,
+        Area: def.area,
+        'Deficiency Name': def.deficiencyName,
+        'NSPIRE Code': def.nspireCode,
+        Details: def.deficiencyDetails,
+        Comments: def.comments,
+        Severity: def.severity,
+        'Health & Safety': def.healthAndSafety,
+        'Repair Timeline': def.repairTimeline,
+        'Deduction Points': def.deductionPts,
+        Status: def.status,
+      }))
+
+      const workbook = XLSX.utils.book_new()
+      const summarySheet = XLSX.utils.json_to_sheet(summaryRows)
+      const deficienciesSheet = XLSX.utils.json_to_sheet(deficiencyRows)
+
+      XLSX.utils.book_append_sheet(workbook, summarySheet, 'Summary')
+      XLSX.utils.book_append_sheet(workbook, deficienciesSheet, 'Deficiencies')
+
+      const fileName = `INSPIRE_Report_${report.metadata.inspectionNo}.xlsx`
+      XLSX.writeFile(workbook, fileName)
+
+      toast.success('Excel downloaded successfully', { position: 'top-right' })
+      await markInspectionAsCompleted({ silentToast: true })
+    } catch (error: any) {
+      console.error('Excel export error:', error)
+      toast.error(`Failed to export Excel: ${error.message}`, { position: 'top-right' })
+    } finally {
+      setExportingExcel(false)
+    }
+  }
+
   // Mark inspection as completed in the backend
-  const markInspectionAsCompleted = async () => {
+  const markInspectionAsCompleted = async (options?: { silentToast?: boolean; returnInspection?: boolean }) => {
+    const { silentToast = false, returnInspection = false } = options || {};
+
     try {
       // Also mark the unit as completed in localStorage for property-details tracking
       if (inspectionContext) {
@@ -521,7 +840,7 @@ function NSPIREInspectionSummaryContent() {
 
       if (!storedData || !storedProperty) {
         console.log('No inspection data to save');
-        return;
+        return null;
       }
 
       const inspectionData = JSON.parse(storedData);
@@ -529,7 +848,7 @@ function NSPIREInspectionSummaryContent() {
 
       // Update or create inspection record as completed
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/complete`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -548,13 +867,18 @@ function NSPIREInspectionSummaryContent() {
       if (response.ok) {
         const data = await response.json();
         console.log('Inspection marked as completed:', data);
-        toast.success("Inspection saved and marked as completed!", { position: "top-right" });
+        if (!silentToast) {
+          toast.success("Inspection saved and marked as completed!", { position: "top-right" });
+        }
+        return returnInspection ? (data?.inspection || null) : null;
       } else {
         console.error('Failed to mark inspection as completed');
+        return null;
       }
     } catch (error) {
       console.error('Error marking inspection as completed:', error);
       // Don't show error to user as PDF was still downloaded successfully
+      return null;
     }
   }
 
@@ -622,14 +946,53 @@ function NSPIREInspectionSummaryContent() {
                   {buildingColumnHeader}: {inspectionContext.buildingId} &rarr; {inspectionContext.unitName}
                 </p>
               )}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                {checkingUnlock ? (
+                  <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
+                    <svg className="h-3 w-3 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    </svg>
+                    Checking report access...
+                  </span>
+                ) : isReportUnlocked ? (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+                    <Unlock className="w-3.5 h-3.5" />
+                    Report unlocked
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                    <Lock className="w-3.5 h-3.5" />
+                    Report locked
+                  </span>
+                )}
+
+                {!checkingUnlock && !isReportUnlocked && (
+                  <Button
+                    onClick={handleUnlockWithStripe}
+                    disabled={purchasingUnlock}
+                    className="h-8 gap-1 bg-amber-500 px-3 text-xs font-semibold text-white hover:bg-amber-600"
+                  >
+                    <Lock className="w-3.5 h-3.5" />
+                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $0.99'}
+                  </Button>
+                )}
+              </div>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button
                 onClick={handleExportPDF}
-                disabled={exporting}
+                disabled={exporting || checkingUnlock || purchasingUnlock}
                 className="gap-2 bg-[#0D6A8D] hover:bg-[#0a5670] text-white"
               >
-                <Download /> {exporting ? 'Generating...' : 'Export PDF'}
+                {isReportUnlocked ? <Download /> : <Lock className="w-5 h-5" />} {exporting ? 'Generating...' : isReportUnlocked ? 'Export PDF' : 'Unlock to Export'}
+              </Button>
+              <Button
+                onClick={handleExportExcel}
+                disabled={exportingExcel || checkingUnlock || purchasingUnlock}
+                className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white"
+              >
+                {isReportUnlocked ? <Excel /> : <Lock className="w-5 h-5" />} {exportingExcel ? 'Generating...' : isReportUnlocked ? 'Export Excel' : 'Unlock to Export Excel'}
               </Button>
               <Button
                 onClick={handleContinueInspection}
@@ -837,6 +1200,12 @@ function NSPIREInspectionSummaryContent() {
               DEFICIENCY DETAILS
             </h2>
 
+            {!checkingUnlock && !isReportUnlocked && report.deficiencies.length > visibleDeficiencies.length && (
+              <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+                <span className="font-semibold">Locked preview:</span> showing {visibleDeficiencies.length} of {report.deficiencies.length} deficiencies. Unlock for $0.99 to view all items and export PDF.
+              </div>
+            )}
+
             {/* Unit header banner */}
             {inspectionContext?.unitName && (
               <div className="bg-gradient-to-r from-[#0D6A8D]/10 to-[#0891B2]/10 rounded-lg p-4 mb-4 border border-[#0D6A8D]/20">
@@ -872,7 +1241,7 @@ function NSPIREInspectionSummaryContent() {
                       </tr>
                     </thead>
                     <tbody>
-                      {report.deficiencies.map((def, index) => (
+                      {visibleDeficiencies.map((def, index) => (
                         <tr key={def.id} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} border-b`}>
                           <td className="p-3 font-bold text-center">{index + 1}</td>
                           <td className="p-3 text-center">
@@ -944,7 +1313,7 @@ function NSPIREInspectionSummaryContent() {
 
                 {/* Mobile Card View */}
                 <div className="lg:hidden space-y-4">
-                  {report.deficiencies.map((def, index) => (
+                  {visibleDeficiencies.map((def, index) => (
                     <div key={def.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                       <div className="flex items-start gap-3 mb-3">
                         <div className="flex-shrink-0 w-8 h-8 bg-[#0D6A8D] text-white rounded-full flex items-center justify-center font-bold text-sm">

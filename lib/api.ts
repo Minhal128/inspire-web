@@ -649,6 +649,38 @@ export const adminAPI = {
   },
 };
 
+// Payments API
+export const paymentsAPI = {
+  checkReportUnlock: async (inspectionId: string) => {
+    return apiRequest<{ success: boolean; isReportUnlocked: boolean }>(
+      `/api/payments/check-unlock/${encodeURIComponent(inspectionId)}`
+    );
+  },
+
+  createStripeCheckoutSession: async (inspectionId: string) => {
+    return apiRequest<{
+      success: boolean;
+      message: string;
+      checkoutUrl?: string;
+      sessionId?: string;
+      isReportUnlocked?: boolean;
+      alreadyUnlocked?: boolean;
+    }>('/api/payments/create-stripe-checkout-session', {
+      method: 'POST',
+      body: JSON.stringify({ inspectionId }),
+    });
+  },
+
+  getStripeSessionStatus: async (sessionId: string) => {
+    return apiRequest<{
+      success: boolean;
+      paymentStatus: string;
+      isReportUnlocked: boolean;
+      sessionId: string;
+    }>(`/api/payments/stripe-session-status/${encodeURIComponent(sessionId)}`);
+  },
+};
+
 export default {
   auth: authAPI,
   properties: propertiesAPI,
@@ -657,4 +689,5 @@ export default {
   assets: assetsAPI,
   users: usersAPI,
   admin: adminAPI,
+  payments: paymentsAPI,
 };
