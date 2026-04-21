@@ -695,7 +695,16 @@ function NSPIREInspectionSummaryContent() {
               printWindow.print();
             };
           } else {
-            throw new Error("Popup blocked. Please allow popups to print the report.");
+            const htmlBlob = new Blob([data.html], { type: 'text/html' });
+            const htmlUrl = window.URL.createObjectURL(htmlBlob);
+            const htmlLink = document.createElement('a');
+            htmlLink.href = htmlUrl;
+            htmlLink.download = (data.filename || `INSPIRE_Report_${report.metadata.inspectionNo}.html`).replace(/\.pdf$/i, '.html');
+            document.body.appendChild(htmlLink);
+            htmlLink.click();
+            document.body.removeChild(htmlLink);
+            window.URL.revokeObjectURL(htmlUrl);
+            toast.warning('Popup blocked. Downloaded HTML backup instead—open it and print to PDF.', { position: 'top-right' });
           }
           
           // Still mark as completed even with HTML fallback
@@ -848,7 +857,7 @@ function NSPIREInspectionSummaryContent() {
 
       // Update or create inspection record as completed
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/complete`, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
