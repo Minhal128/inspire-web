@@ -1022,15 +1022,6 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
     onClose()
   }
 
-  const handleHoldInspection = () => {
-    if (onHoldInspection) {
-      onHoldInspection()
-    } else {
-      toast.info("Inspection put on hold", { position: "top-right" })
-      onClose()
-    }
-  }
-
   const handleRemove = () => {
     if (onRemoveProperty) {
       onRemoveProperty()
@@ -1043,35 +1034,37 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black flex items-center justify-center z-50 p-6 sm:p-8">
-      <div className="bg-white rounded-2xl p-8 sm:p-10 max-w-md w-full relative shadow-2xl">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-6 sm:p-8 backdrop-blur-sm">
+      <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-sm w-full relative shadow-2xl border border-gray-100">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
         >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <h2 className="text-lg sm:text-xl font-black text-gray-900 mb-8 text-center uppercase tracking-widest">Action</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Action</h2>
 
         <div className="space-y-4">
           <button
-            onClick={handleStartInspection}
-            className="w-full px-6 py-4 bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-black rounded-xl text-sm sm:text-base uppercase tracking-widest transition-colors shadow-md"
+            onClick={onEdit}
+            className="w-full px-6 py-4 bg-white border-2 border-black text-black font-bold rounded-xl text-base transition-all hover:bg-gray-50 active:scale-95"
           >
-            Start Inspection
+            Edit Property
           </button>
+          
           <button
-            onClick={handleHoldInspection}
-            className="w-full px-6 py-4 bg-white border-2 border-gray-200 text-gray-400 font-black rounded-xl hover:bg-gray-50 text-sm sm:text-base uppercase tracking-widest transition-colors"
+            onClick={handleStartInspection}
+            className="w-full px-6 py-4 bg-[#00718F] text-white font-bold rounded-xl text-base transition-all hover:bg-[#005a72] shadow-lg active:scale-95"
           >
-            Hold Inspection
+            Ready For Inspection
           </button>
+
           <button
             onClick={handleRemove}
-            className="w-full px-6 py-4 bg-[#FF4757] hover:bg-[#EE3646] text-white font-black rounded-xl text-sm sm:text-base uppercase tracking-widest transition-colors shadow-md"
+            className="w-full px-6 py-4 bg-[#FF0000] text-white font-bold rounded-xl text-base transition-all hover:bg-[#cc0000] shadow-lg active:scale-95"
           >
             Remove Property
           </button>
