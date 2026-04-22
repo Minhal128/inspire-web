@@ -293,7 +293,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   className="rounded-full w-8 h-8 md:w-10 md:h-10"
                 />
                 <div className="hidden sm:block">
-                  <p className="text-sm font-semibold text-white">{userName.toUpperCase()}</p>
+                  <p className="text-sm font-semibold text-white">{(userName || '').toUpperCase()}</p>
                   <p className="text-xs text-white text-opacity-70">{userRole}</p>
                 </div>
               </div>

@@ -359,7 +359,7 @@ function NSPIREInspectionSummaryContent() {
       version: '1.0',
       generatedAt: now.toISOString(),
       metadata: {
-        inspectionNo: data.inspectionNo || data.inspectionId || `INSP-${Date.now().toString(36).toUpperCase()}`,
+        inspectionNo: data?.inspectionNo || data?.inspectionId || `INSP-${Date.now().toString(36).toUpperCase()}`,
         inspectionType: data.inspectionType || 'General NSPIRE',
         escortName: data.escortName || property?.contactName || '-',
         propertyAddress: property?.address || data.address || data.propertyAddress || '-',
@@ -983,7 +983,7 @@ function NSPIREInspectionSummaryContent() {
                     className="h-8 gap-1 bg-amber-500 px-3 text-xs font-semibold text-white hover:bg-amber-600"
                   >
                     <Lock className="w-3.5 h-3.5" />
-                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $0.99'}
+                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $99.00'}
                   </Button>
                 )}
               </div>

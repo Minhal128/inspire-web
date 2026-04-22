@@ -794,7 +794,7 @@ export default function PropertyDetailsPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-12">
                         <div className="space-y-1">
                             <span className="text-sm font-black text-gray-900">Property ID: </span>
-                            <span className="text-sm text-[#1A73E8] font-black">{property.propertyId || property._id?.slice(-8).toUpperCase()}</span>
+                            <span className="text-sm text-[#1A73E8] font-black">{property.propertyId || property._id?.slice(-8)?.toUpperCase()}</span>
                             <div className="mt-1">
                                 <span className="text-sm font-black text-gray-900">State: </span>
                                 <span className="text-sm text-gray-600 font-bold">{property.state}</span>
