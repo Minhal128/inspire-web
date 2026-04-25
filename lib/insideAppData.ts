@@ -1335,28 +1335,38 @@ export const CLOTHES_DRYER_DEFICIENCIES: InsideItemDeficiencies = {
             criteria: 'Dryer is being used indoor.',
             severity: 'Life-Threatening',
             repairBy: '24Hrs',
-            points: '60/n',
+            points: '27.25/n',
             code: 'DRYER-01',
-            codeReference: `🧭 Step 1: Identify Dryer Type & Location
-- Electric or Gas Dryer: Inspection requirements differ slightly
-- Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
-- Location: Typically in laundry rooms, closets, or utility spaces
-🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
-NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
-🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
-📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
-⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+            codeReference: `🔍 1. Locate and Identify System Type
+• Dryer type: Electric or gas (gas requires combustion venting)
+• Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+
+🧩 2. Transition Duct Inspection
+• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• Material: Must be UL-listed metal or aluminum—no plastic or foil
+• Secure connection: Check clamps or fasteners at both ends
+
+💨 3. Airflow & Obstruction Check
+• Visual scan: Look for lint buildup around the duct or the floor
+• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
+
+🧱 4. Exterior Vent Termination (IRC §M1502.3)
+• Location: Must be ≥3 feet from windows, doors, or other openings
+• Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• No screens allowed: IRC prohibits screens that trap lint
+
+🔥 5. Fire Safety & IRC Compliance
+• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
+
+🧠 6. Accessibility & Labeling
+• Reachability: Ensure duct and vent are visually accessible without tools
+• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
+• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
         },
         {
             id: 'dryer_2',
@@ -1365,28 +1375,38 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
             criteria: 'Airflow may be restricted.',
             severity: 'Life-Threatening',
             repairBy: '24Hrs',
-            points: '60/n',
+            points: '27.25/n',
             code: 'DRYER-02',
-            codeReference: `🧭 Step 1: Identify Dryer Type & Location
-- Electric or Gas Dryer: Inspection requirements differ slightly
-- Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
-- Location: Typically in laundry rooms, closets, or utility spaces
-🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
-NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
-🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
-📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
-⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+            codeReference: `🔍 1. Locate and Identify System Type
+• Dryer type: Electric or gas (gas requires combustion venting)
+• Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+
+🧩 2. Transition Duct Inspection
+• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• Material: Must be UL-listed metal or aluminum—no plastic or foil
+• Secure connection: Check clamps or fasteners at both ends
+
+💨 3. Airflow & Obstruction Check
+• Visual scan: Look for lint buildup around the duct or the floor
+• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
+
+🧱 4. Exterior Vent Termination (IRC §M1502.3)
+• Location: Must be ≥3 feet from windows, doors, or other openings
+• Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• No screens allowed: IRC prohibits screens that trap lint
+
+🔥 5. Fire Safety & IRC Compliance
+• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
+
+🧠 6. Accessibility & Labeling
+• Reachability: Ensure duct and vent are visually accessible without tools
+• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
+• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
         },
         {
             id: 'dryer_3',
@@ -1395,28 +1415,38 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
             criteria: 'Dryer transition duct is not securely attached.',
             severity: 'Life-Threatening',
             repairBy: '24Hrs',
-            points: '30/n',
+            points: '27.25/n',
             code: 'DRYER-03',
-            codeReference: `🧭 Step 1: Identify Dryer Type & Location
-- Electric or Gas Dryer: Inspection requirements differ slightly
-- Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
-- Location: Typically in laundry rooms, closets, or utility spaces
-🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
-NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
-🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
-📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
-⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+            codeReference: `🔍 1. Locate and Identify System Type
+• Dryer type: Electric or gas (gas requires combustion venting)
+• Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+
+🧩 2. Transition Duct Inspection
+• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• Material: Must be UL-listed metal or aluminum—no plastic or foil
+• Secure connection: Check clamps or fasteners at both ends
+
+💨 3. Airflow & Obstruction Check
+• Visual scan: Look for lint buildup around the duct or the floor
+• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
+
+🧱 4. Exterior Vent Termination (IRC §M1502.3)
+• Location: Must be ≥3 feet from windows, doors, or other openings
+• Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• No screens allowed: IRC prohibits screens that trap lint
+
+🔥 5. Fire Safety & IRC Compliance
+• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
+
+🧠 6. Accessibility & Labeling
+• Reachability: Ensure duct and vent are visually accessible without tools
+• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
+• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
         },
         {
             id: 'dryer_4',
@@ -1425,58 +1455,78 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
             criteria: 'Airflow may be restricted.',
             severity: 'Life-Threatening',
             repairBy: '24Hrs',
-            points: '30/n',
+            points: '27.25/n',
             code: 'DRYER-04',
-            codeReference: `🧭 Step 1: Identify Dryer Type & Location
-- Electric or Gas Dryer: Inspection requirements differ slightly
-- Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
-- Location: Typically in laundry rooms, closets, or utility spaces
-🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
-NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
-🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
-📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
-⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+            codeReference: `🔍 1. Locate and Identify System Type
+• Dryer type: Electric or gas (gas requires combustion venting)
+• Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+
+🧩 2. Transition Duct Inspection
+• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• Material: Must be UL-listed metal or aluminum—no plastic or foil
+• Secure connection: Check clamps or fasteners at both ends
+
+💨 3. Airflow & Obstruction Check
+• Visual scan: Look for lint buildup around the duct or the floor
+• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
+
+🧱 4. Exterior Vent Termination (IRC §M1502.3)
+• Location: Must be ≥3 feet from windows, doors, or other openings
+• Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• No screens allowed: IRC prohibits screens that trap lint
+
+🔥 5. Fire Safety & IRC Compliance
+• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
+
+🧠 6. Accessibility & Labeling
+• Reachability: Ensure duct and vent are visually accessible without tools
+• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
+• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
         },
         {
             id: 'dryer_5',
             name: 'Gas dryer transition duct is detached or missing.',
-            detail: 'Gas dryer transition duct is detached or missing (i.e., evidence of prior installation, but is now not present or is incomplete).',
-            criteria: 'The dryer transition duct is not securely attached.',
+            detail: 'Gas dryer transition duct is detached or missing (i.e., evidence of prior installation but is now not present or is incomplete).',
+            criteria: 'Gas dryer transition duct is not securely attached.',
             severity: 'Life-Threatening',
             repairBy: '24Hrs',
-            points: '30/n',
+            points: '27.25/n',
             code: 'DRYER-05',
-            codeReference: `🧭 Step 1: Identify Dryer Type & Location
-- Electric or Gas Dryer: Inspection requirements differ slightly
-- Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
-- Location: Typically in laundry rooms, closets, or utility spaces
-🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
-NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
-🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
-📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
-⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+            codeReference: `🔍 1. Locate and Identify System Type
+• Dryer type: Electric or gas (gas requires combustion venting)
+• Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+
+🧩 2. Transition Duct Inspection
+• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• Material: Must be UL-listed metal or aluminum—no plastic or foil
+• Secure connection: Check clamps or fasteners at both ends
+
+💨 3. Airflow & Obstruction Check
+• Visual scan: Look for lint buildup around the duct or the floor
+• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
+
+🧱 4. Exterior Vent Termination (IRC §M1502.3)
+• Location: Must be ≥3 feet from windows, doors, or other openings
+• Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• No screens allowed: IRC prohibits screens that trap lint
+
+🔥 5. Fire Safety & IRC Compliance
+• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
+
+🧠 6. Accessibility & Labeling
+• Reachability: Ensure duct and vent are visually accessible without tools
+• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
+• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
         }
     ]
 };
