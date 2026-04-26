@@ -25,18 +25,18 @@ export default function Header() {
 
   return (
     <>
-      <nav className="bg-[#E8F4F8] px-4 md:px-6 py-3 md:py-6 sticky top-0 z-50 border-b border-black/5 shadow-sm">
-        <div className="max-w-[1400px] mx-auto w-full flex items-center justify-between gap-4 md:gap-8">
+      <nav className="bg-white/95 border-b border-slate-200 px-4 md:px-6 py-2 md:py-3 sticky top-0 z-50 backdrop-blur-xl shadow-sm">
+        <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between gap-3 md:gap-6">
           {/* Logo - Left Aligned */}
-          <div className="flex-shrink-0 ml-4 md:ml-8">
+          <div className="flex-shrink-0 ml-2 md:ml-6">
             <Link href="/">
               <Image
                 src="/logo.png"
                 alt="INSPIRE"
-                width={320}
-                height={100}
+                width={160}
+                height={44}
                 priority
-                className="h-20 md:h-36 w-auto"
+                className="h-10 md:h-12 w-auto"
               />
             </Link>
           </div>
@@ -59,9 +59,9 @@ export default function Header() {
           </button>
 
           {/* Desktop Menu - Centered */}
-          <div className="hidden md:flex flex-1 items-center justify-center gap-6 lg:gap-10">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-4 lg:gap-6">
             <Link href="/" className="flex flex-col group items-center">
-              <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+                  <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 HOME
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">
@@ -77,7 +77,7 @@ export default function Header() {
                 href="/service"
                 className="flex flex-col group items-center cursor-pointer"
               >
-                <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-1">
+                <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight flex items-center gap-1">
                   SERVICES{" "}
                   <svg
                     className={`w-3 h-3 transition-transform ${
@@ -107,8 +107,8 @@ export default function Header() {
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
                       onClick={() => setServicesDropdownOpen(false)}
                     >
-                      <span className="w-2 h-2 rounded-full bg-[#0D6A8D]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="w-2 h-2 rounded-full bg-primary"></span>
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         All Services
                       </span>
                     </Link>
@@ -117,8 +117,8 @@ export default function Header() {
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
                       onClick={() => setServicesDropdownOpen(false)}
                     >
-                      <span className="w-2 h-2 rounded-full bg-[#0D6A8D]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="w-2 h-2 rounded-full bg-[#0E7490]"></span>
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Buyers Inspections
                       </span>
                     </Link>
@@ -128,7 +128,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#FF4757]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Owners Inspections
                       </span>
                     </Link>
@@ -138,7 +138,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#F97316]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Sellers Inspections
                       </span>
                     </Link>
@@ -148,7 +148,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Rental Inspections
                       </span>
                     </Link>
@@ -158,7 +158,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#22C55E]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Specialized Services
                       </span>
                     </Link>
@@ -168,7 +168,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Commercial Inspections
                       </span>
                     </Link>
@@ -178,7 +178,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#8B5CF6]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Public Housing
                       </span>
                     </Link>
@@ -188,7 +188,7 @@ export default function Header() {
                       onClick={() => setServicesDropdownOpen(false)}
                     >
                       <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
-                      <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">
+                      <span className="text-sm text-gray-700 hover:text-primary">
                         Insurance Risk
                       </span>
                     </Link>
@@ -197,7 +197,7 @@ export default function Header() {
               )}
             </div>
             <Link href="/about" className="flex flex-col group items-center">
-              <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">
+              <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight text-center">
                 ABOUT
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider text-center">
@@ -205,7 +205,7 @@ export default function Header() {
               </span>
             </Link>
             <Link href="/contact" className="flex flex-col group items-center">
-              <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 CONTACT
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">
@@ -213,7 +213,7 @@ export default function Header() {
               </span>
             </Link>
             <Link href="/faq" className="flex flex-col group items-center">
-              <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 FAQ
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">
@@ -221,7 +221,7 @@ export default function Header() {
               </span>
             </Link>
             <Link href="/blog" className="flex flex-col group items-center">
-              <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 BLOG
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">
@@ -234,7 +234,7 @@ export default function Header() {
           <div className="hidden md:flex flex-shrink-0">
             <Button
               onClick={() => router.push("/profile-selection")}
-              className="bg-[#1E88A8] hover:bg-[#176B87] text-white rounded-full px-4 md:px-6 lg:px-8 py-2 md:py-2.5 text-xs md:text-sm font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
+              className="bg-primary hover:bg-[#0A5670] text-primary-foreground rounded-full px-4 md:px-5 py-2 text-xs md:text-sm font-semibold flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
               <svg
                 className="w-3 h-3 md:w-4 md:h-4"
@@ -273,7 +273,7 @@ export default function Header() {
               className="flex flex-col group"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 HOME
               </span>
               <span className="text-[11px] text-gray-500 italic tracking-wider">
@@ -285,7 +285,7 @@ export default function Header() {
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                 className="flex flex-col group w-full text-left"
               >
-                <span className="text-lg font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-2">
+                <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight flex items-center gap-2">
                   SERVICES{" "}
                   <svg
                     className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
@@ -309,63 +309,63 @@ export default function Header() {
                 <div className="pl-4 pt-3 space-y-3">
                   <Link
                     href="/service"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Service Details
                   </Link>
                   <Link
                     href="/inspection-services/buyers"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Buyers Inspections
                   </Link>
                   <Link
                     href="/inspection-services/owners"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Owners Inspections
                   </Link>
                   <Link
                     href="/inspection-services/sellers"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Sellers Inspections
                   </Link>
                   <Link
                     href="/inspection-services/specialized"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Specialized Services
                   </Link>
                   <Link
                     href="/inspection-services/commercial"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Commercial Inspections
                   </Link>
                   <Link
                     href="/inspection-services/public-housing"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Public Housing
                   </Link>
                   <Link
                     href="/inspection-services/rental"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Rental Inspections
                   </Link>
                   <Link
                     href="/inspection-services/insurance-risk"
-                    className="block text-sm font-medium text-gray-600 hover:text-[#0D6A8D]"
+                    className="block text-sm font-medium text-gray-600 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Insurance Risk
@@ -378,7 +378,7 @@ export default function Header() {
               className="flex flex-col group"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 ABOUT
               </span>
               <span className="text-[11px] text-gray-500 italic tracking-wider">
@@ -390,7 +390,7 @@ export default function Header() {
               className="flex flex-col group"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 CONTACT
               </span>
               <span className="text-[11px] text-gray-500 italic tracking-wider">
@@ -402,7 +402,7 @@ export default function Header() {
               className="flex flex-col group"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 FAQ
               </span>
               <span className="text-[11px] text-gray-500 italic tracking-wider">
@@ -414,7 +414,7 @@ export default function Header() {
               className="flex flex-col group"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">
+              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 BLOG
               </span>
               <span className="text-[11px] text-gray-500 italic tracking-wider">
@@ -429,7 +429,7 @@ export default function Header() {
                   setMobileMenuOpen(false);
                   router.push("/profile-selection");
                 }}
-                className="w-full bg-[#1E88A8] hover:bg-[#176B87] text-white rounded-xl py-4 text-base font-bold flex items-center justify-center gap-3 shadow-md transition-all cursor-pointer"
+                className="w-full bg-primary hover:bg-[#0A5670] text-primary-foreground rounded-xl py-4 text-base font-bold flex items-center justify-center gap-3 shadow-md transition-all cursor-pointer"
               >
                 <svg
                   className="w-5 h-5"
