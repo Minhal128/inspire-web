@@ -13,8 +13,8 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
-    <nav className="bg-[#E8F4F8] px-4 md:px-6 py-3 md:py-4 sticky top-0 z-50">
-      <div className="max-w-[1400px] mx-auto w-full flex items-center justify-between">
+    <nav className="bg-white/95 border-b border-slate-200 px-4 md:px-6 py-2 sticky top-0 z-50 backdrop-blur-xl shadow-sm">
+      <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between">
         {/* Mobile Menu Button - Left */}
         <button
           className="md:hidden p-2 -ml-2 text-gray-800"
@@ -32,7 +32,7 @@ export default function Navbar() {
         {/* Logo - Center on mobile, Left on desktop */}
         <div className="flex-1 md:flex-none flex justify-center md:justify-start lg:mr-8 xl:mr-16">
           <Link href="/">
-            <Image src="/logo.png" alt="INSPIRE" width={160} height={50} className="object-contain h-10 md:h-12 w-auto" priority />
+            <Image src="/logo.png" alt="INSPIRE" width={140} height={44} className="object-contain h-9 md:h-10 w-auto" priority />
           </Link>
         </div>
 
@@ -74,10 +74,10 @@ export default function Navbar() {
         )}
 
         {/* Desktop Navigation Links Container */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-14 flex-1 justify-center">
+        <div className="hidden md:flex items-center gap-5 lg:gap-6 xl:gap-8 flex-1 justify-center">
           <Link href="/" className="flex flex-col group items-center">
-            <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">HOME</span>
-            <span className="text-[10px] text-gray-500 italic tracking-wider">Welcome</span>
+            <span className="text-sm font-medium text-slate-800 group-hover:text-slate-950 transition-colors leading-tight">HOME</span>
+            <span className="text-[10px] text-slate-500 italic tracking-wide">Welcome</span>
           </Link>
           <div className="relative group p-4 -m-4" onMouseLeave={() => setServicesDropdownOpen(false)}>
             <button
@@ -154,7 +154,7 @@ export default function Navbar() {
         {/* Login/Register Button */}
         <Button
           onClick={() => router.push("/profile-selection")}
-          className="bg-[#1E88A8] hover:bg-[#176B87] text-white rounded-full px-4 md:px-6 lg:px-8 py-2 md:py-2.5 text-xs md:text-sm font-medium flex items-center gap-2 shadow-md transition-all cursor-pointer"
+          className="bg-slate-900 hover:bg-slate-800 text-white rounded-full px-4 md:px-5 py-2 text-xs md:text-sm font-medium flex items-center gap-2 shadow-sm transition-all cursor-pointer"
         >
           <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
