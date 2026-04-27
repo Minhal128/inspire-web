@@ -352,7 +352,8 @@ function NSPIREInspectionSummaryContent() {
 
     // Calculate score
     const totalDeductions = deficiencies.reduce((sum, d) => sum + d.deductionPts, 0)
-    const finalScore = Math.max(0, 100 - totalDeductions)
+    const preliminaryScore = Math.max(0, 100 - totalDeductions)
+    const finalScore = Math.max(0, preliminaryScore - 5)
 
     return {
       reportId: `RPT-${Date.now()}`,
@@ -370,9 +371,9 @@ function NSPIREInspectionSummaryContent() {
         endDate: data.endDate || now.toLocaleDateString(),
         endTime: data.endTime || now.toLocaleTimeString(),
         reportCreatedDate: now.toLocaleDateString(),
-        preliminaryScore: data.preliminaryScore || finalScore,
-        finalScore: data.finalScore || data.complianceScore || finalScore,
-        calculatedScore: data.calculatedScore || finalScore,
+        preliminaryScore: preliminaryScore,
+        finalScore: finalScore,
+        calculatedScore: finalScore,
         healthSafetyThreshold: 60,
         physicalConditionThreshold: 60,
         inspectorName: data.inspectorName || 'Inspector',

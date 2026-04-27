@@ -19,12 +19,13 @@ import {
 import {
   getInsideSubcategoryDeficiencies,
   ALL_UNIT_CATEGORIES,
-} from './unitAppData'
+} from './insideAppData'
 
 import {
+
   getInsideDeficienciesForItem,
   ALL_INSIDE_CATEGORIES,
-} from './insideAppData'
+} from './unitAppData'
 
 // ---------------------------------------------------------------------------
 // Helpers

@@ -7,7 +7,8 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI } from "@/lib/api"
 import { toast } from "react-toastify"
-import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check } from "lucide-react"
+import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check, RefreshCw } from "lucide-react"
+import { generateRandomUnitSample, getUnitsToInspect, getSamplingExplanation } from "@/lib/unitSamplingService"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'
 
@@ -1106,6 +1107,28 @@ export default function PropertyDetailsPage() {
                             >
                                 <X className="w-4 h-4 text-white" />
                             </button>
+                        </div>
+
+                        {/* Sampling Information & Random Selection */}
+                        <div className="px-5 pt-4">
+                            <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-4">
+                                <p className="text-xs text-blue-800 font-bold leading-relaxed">
+                                    {getSamplingExplanation(selectedBuilding.totalUnits)}
+                                </p>
+                                <button
+                                    onClick={() => {
+                                        const sample = generateRandomUnitSample(selectedBuilding.totalUnits, property._id || id);
+                                        // Mark all selected units as completed/available? 
+                                        // Actually the app just highlights them.
+                                        // For the web, we'll toast the selection.
+                                        toast.info(`Randomly selected: ${sample.selectedUnits.join(', ')}`, { position: 'top-right' });
+                                    }}
+                                    className="mt-3 flex items-center gap-2 text-xs font-black text-[#0D6A8D] hover:text-[#0a5670] transition-colors"
+                                >
+                                    <RefreshCw className="w-3.5 h-3.5" />
+                                    Generate Random Sample
+                                </button>
+                            </div>
                         </div>
 
                         {/* Progress Bar */}

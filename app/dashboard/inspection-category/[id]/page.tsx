@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI } from "@/lib/api"
 import { outsideDeficiencyMapping, insideDeficiencyMapping, DeficiencyDetail } from "@/lib/deficiencyMapping"
 import { unitDeficiencyMapping } from "@/lib/unitDeficiencyMapping"
-import { calculateUnitScore, ScoringResult, POSSIBLE_SCORE, SEVERITY_LEVELS } from "@/lib/scoringCalculations"
+import { calculateUnitInspectionScore, calculateUnitScore, ScoringResult, POSSIBLE_SCORE, SEVERITY_LEVELS } from "@/lib/scoringCalculations"
 import { lookupCodeReference } from "@/lib/appDeficiencyLookup"
 import {
     calculateOutsideScore,
@@ -23,44 +23,15 @@ import {
     InsideScoringResult,
     INSIDE_POSSIBLE_SCORE
 } from "@/lib/insideScoringCalculations"
+import { getSamplingRequirements } from "@/lib/unitSamplingService"
 import { toast } from "react-toastify"
 import { Search, ChevronDown, ChevronUp, ChevronRight, Plus, Filter, ArrowUpDown, MoreHorizontal, Camera, X, ChevronLeft, CheckCircle2, FileText, User, Grid, Clock, Video, Monitor, Image as ImageIcon, Laptop, Tablet, Pencil, Check } from "lucide-react";
 
-const outsideItemsList = [
-    "1. Address and Signage", "2. Chimney", "3. Clothes Dryer Exhaust Ventilation", "4. Door", "5. Drain",
-    "6. Egress", "7. Electrical", "8. Fencing/Gate", "9. Fire Safety", "10. Foundation Standard",
-    "11. Graffiti", "12. Guardrail", "13. Hazard", "14. Infestation", "15. Kitchen",
-    "16. Leak - Gas or Oil", "17. Leak - sewage system", "18. Leak - water", "19. Lighting",
-    "20. Parking lots, Driveways, Roads", "21. Paint - Potential Lead-Based Paint Hazards - Visual Assessment",
-    "22. Railings", "23. Roof Assembly", "24. Sidewalk, walkway, and ramp", "25. Step and Stairs",
-    "26. Structural", "27. RETAINING WALL", "28. Water Heater", "29. General Comment"
-];
+import { OUTSIDE_ITEMS, INSIDE_ITEMS, UNIT_ITEMS } from "@/lib/inspectionData";
 
-const insideItemsList = [
-    "1. Bathroom", "2. Cabinets and Storage (Pantry/Laundry)", "3. Call-for-Aid System",
-    "4. Carbon Monoxide Alarm", "5. Ceiling", "6. Chimney", "7. Clothes Dryer Exhaust Ventilation",
-    "8. Door", "9. Drainage", "10. Egress", "11. Electrical", "12. Elevator", "13. Fire Safety",
-    "14. Floor", "15. Foundation Standard", "16. Grab Bar", "17. Hazard",
-    "18. Heating, Ventilation, and Air Conditioning (HVAC)", "19. Kitchen", "20. LEAK - Gas or Oil",
-    "21. Leak - sewage system", "22. Leak - water", "23. Lighting", "24. Mold-like Substance",
-    "25. Paint - Potential Lead-Based Paint Hazards", "26. Railings", "27. Restroom",
-    "28. Sink (Laundry, Garage, or patio)", "29. Steps and Stairs", "30. Structural System",
-    "31. Trash Chute", "32. Ventilation (other)", "33. Wall", "34. Water Heater", "35. Window",
-    "36. General comment:*"
-];
-
-const unitItemsList = [
-    "1. Bathroom", "2. Cabinets and Storage (Pantry/Laundry)", "3. Call-for-Aid System",
-    "4. Carbon Monoxide Alarm", "5. Ceiling", "6. Chimney", "7. Clothes Dryer Exhaust Ventilation",
-    "8. Door", "9. Drainage", "10. Egress", "11. Electrical", "12. Elevator", "13. Fire Safety",
-    "14. Floor", "15. Foundation Standard", "16. Grab Bar", "17. Hazard",
-    "18. Heating, Ventilation, and Air Conditioning (HVAC)", "19. Kitchen", "20. LEAK - Gas or Oil",
-    "21. Leak - sewage system", "22. Leak - water", "23. Lighting", "24. Mold-like Substance",
-    "25. Paint - Potential Lead-Based Paint Hazards", "26. Railings", "27. Restroom",
-    "28. Sink (Laundry, Garage, or patio)", "29. Steps and Stairs", "30. Structural System",
-    "31. Ventilation (other)", "32. Wall", "33. Water Heater", "34. Window",
-    "35. General comment:*"
-];
+const outsideItemsList = OUTSIDE_ITEMS.map(item => `${item.id}. ${item.name}`);
+const insideItemsList = INSIDE_ITEMS.map(item => `${item.id}. ${item.name}`);
+const unitItemsList = UNIT_ITEMS.map(item => `${item.id}. ${item.name}`);
 
 // Map frontend categories to valid backend enum values
 const mapToBackendCategory = (category: string): string => {
@@ -213,8 +184,12 @@ export default function InspectionCategoryPage() {
     const [outsideScoringResult, setOutsideScoringResult] = useState<OutsideScoringResult | null>(null);
     const [insideScoringResult, setInsideScoringResult] = useState<InsideScoringResult | null>(null);
 
-    // Get total samples from units (default to 20 if not available)
-    const totalSamples = useMemo(() => units?.length || 20, [units]);
+    // Get total samples based on NSPIRE Sampling Table (same as app)
+    const totalSamples = useMemo(() => {
+        // Use the total units from URL or property to find required sample size 'n'
+        const sampling = getSamplingRequirements(urlTotalUnits || property?.units || units?.length || 0);
+        return sampling.requiredSize || 20;
+    }, [urlTotalUnits, property?.units, units?.length]);
 
     // Auto-count deficiencies: 1 if a deficiency is selected, 0 otherwise
     const deficiencyCount = selectedDeficiency ? 1 : 0;
@@ -262,6 +237,34 @@ export default function InspectionCategoryPage() {
                 score: outsideResult.score,
                 severity: outsideResult.severity,
             });
+        } else if (currentSection === 'unit') {
+            // Use Unit-specific scoring logic
+            const unitResult = calculateUnitInspectionScore({
+                totalSamples,
+                deficiencyCount,
+                severity: selectedDeficiency?.healthAndSafety || odForm.healthAndSafety || 'Moderate',
+                deficiencyPointsFormula: selectedDeficiency?.pointsFormula,
+            });
+
+            setScoringResult({
+                allSample: unitResult.allSample,
+                deficiencies: unitResult.deficiencyCount,
+                violations: unitResult.deficiencyCount,
+                ptsLostRaw: unitResult.pointsLostRaw,
+                ptsLost: unitResult.pointsLost,
+                possibleScore: unitResult.possibleScore,
+                maxPtsLost: unitResult.maxPtsLost,
+                score: unitResult.score,
+                severity: unitResult.severity,
+            });
+
+            // Update the health & safety based on unit scoring
+            setOdForm(prev => ({
+                ...prev,
+                healthAndSafety: unitResult.severity,
+            }));
+            setOutsideScoringResult(null);
+            setInsideScoringResult(null);
         } else {
             // Use Inside-specific scoring with category-based and deficiency-based rules
             const categoryNumber = extractInsideCategoryNumber(undefined, currentModalItem || '');
@@ -351,7 +354,7 @@ export default function InspectionCategoryPage() {
 
     const handleStatusChange = (section: 'outside' | 'inside' | 'unit', itemName: string, status: ItemStatus) => {
         // Intercept General Comment items → open simple note+image modal
-        if (itemName.toLowerCase().includes('general')) {
+        if (itemName.toLowerCase().includes('general comment')) {
             setCurrentGeneralSection(section);
             setCurrentGeneralItem(itemName);
             setGeneralNote('');
@@ -650,8 +653,8 @@ export default function InspectionCategoryPage() {
         const mapping = currentSection === 'outside'
             ? outsideDeficiencyMapping
             : currentSection === 'inside'
-                ? insideDeficiencyMapping
-                : unitDeficiencyMapping;
+                ? unitDeficiencyMapping
+                : insideDeficiencyMapping;
 
         // Try exact match first
         if (mapping[baseName]) return mapping[baseName];
@@ -664,12 +667,28 @@ export default function InspectionCategoryPage() {
         return matchedKey ? mapping[matchedKey] : [];
     };
 
+    const getDisplayDeficiencies = () => {
+        const allDefs = getFilteredDeficiencies();
+        if (selectionType === 'selected') {
+            const seen = new Set();
+            return allDefs.filter(def => {
+                if (seen.has(def.selected)) return false;
+                seen.add(def.selected);
+                return true;
+            });
+        }
+        if (selectionType === 'detail' && selectedDeficiency) {
+            return allDefs.filter(def => def.selected === selectedDeficiency.selected);
+        }
+        return allDefs;
+    };
+
     const renderTable = (section: 'outside' | 'inside' | 'unit', items: string[], statuses: Record<string, ItemStatus>) => (
         <div className="bg-white p-3 sm:p-6 animate-in slide-in-from-top duration-300">
             {/* Mobile View - Card Layout */}
             <div className="block md:hidden space-y-3">
                 {items.map((item, index) => {
-                    const isGeneral = item.toLowerCase().includes('general');
+                    const isGeneral = item.toLowerCase().includes('general comment');
                     return (
                         <div key={index} className="border border-gray-200 rounded-lg p-3 bg-white">
                             <div className="font-bold text-xs text-gray-800 mb-3 text-left">{item}</div>
@@ -750,7 +769,7 @@ export default function InspectionCategoryPage() {
                     </thead>
                     <tbody className="divide-y divide-gray-50">
                         {items.map((item, index) => {
-                            const isGeneral = item.toLowerCase().includes('general');
+                            const isGeneral = item.toLowerCase().includes('general comment');
                             return (
                                 <tr key={index} className="hover:bg-gray-50/50 transition-colors">
                                     <td className="py-4 px-4 text-xs font-bold text-gray-800 text-left">{item}</td>
@@ -1303,15 +1322,15 @@ export default function InspectionCategoryPage() {
                                         )}
                                     </div>
 
-                                    {/* 2. DEFICIENCY DETAIL - Editable text box */}
+                                    {/* 2. DEFICIENCY DETAIL - Clickable Dropdown */}
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Detail</label>
-                                        <textarea
-                                            className={`w-full border rounded-2xl p-4 text-xs font-bold text-gray-800 min-h-[100px] focus:bg-white focus:border-[#0E7490] outline-none transition-all resize-none ${selectedDeficiency ? 'bg-white border-[#0E7490]' : 'bg-gray-50 border-gray-100'}`}
-                                            value={selectedDeficiency?.detail || ''}
-                                            placeholder="-- Select deficiency first --"
-                                            readOnly
-                                        />
+                                        <div onClick={() => selectedDeficiency && handleOpenSelection('detail')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold ${selectedDeficiency ? 'cursor-pointer hover:bg-white hover:border-blue-400' : 'cursor-not-allowed opacity-70'} transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
+                                            <span className={selectedDeficiency ? "text-gray-900" : "text-gray-400"}>
+                                                {selectedDeficiency ? selectedDeficiency.detail : "-- Select deficiency first --"}
+                                            </span>
+                                            {selectedDeficiency && <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />}
+                                        </div>
                                     </div>
 
                                     {/* 3. CODE OF REFERENCE */}
@@ -1446,7 +1465,7 @@ export default function InspectionCategoryPage() {
                                                 onChange={(e) => setOdForm({ ...odForm, location: e.target.value })}
                                             >
                                                 {currentSection === 'outside' ? (
-                                                    OUTSIDE_LOCATION_OPTIONS.map((loc) => (
+                                                    OUTSIDE_LOCATION_OPTIONS.map((loc: string) => (
                                                         <option key={loc} value={loc}>{loc}</option>
                                                     ))
                                                 ) : (
@@ -1557,7 +1576,7 @@ export default function InspectionCategoryPage() {
                                         </div>
                                     </div>
                                     <div className="space-y-3">
-                                        {getFilteredDeficiencies().length > 0 ? getFilteredDeficiencies().map((def: DeficiencyDetail) => (
+                                        {getDisplayDeficiencies().length > 0 ? getDisplayDeficiencies().map((def: DeficiencyDetail) => (
                                             <button
                                                 key={def.id}
                                                 onClick={() => handleDeficiencySelect(def)}

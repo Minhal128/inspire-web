@@ -7,25 +7,17 @@ export interface OutsideSeverityConfig {
   pointsLostFormula: number; // The numerator in the formula Pts Lost = X / n
 }
 
-// Outside inspection location options
 export const OUTSIDE_LOCATION_OPTIONS = [
-  'Building Site N',
   'Building Site S',
-  'Building Site W',
+  'Building Site N',
   'Building Site E',
-  'Courtyard',
-  'Exterior E',
-  'Exterior N',
-  'Exterior S',
-  'Exterior W',
-  'Garage/Carport',
-  'Grounds',
-  'Other',
-  'Parking Lot/Driveway/Roads',
-  'Patio/Porch/Balcony',
-  'Playground',
-  'Roof (flat)',
-  'Sidewalks/Walkways/Stoops',
+  'Building Site W',
+  'Parking Lot',
+  'Driveway',
+  'Sidewalk',
+  'Roof',
+  'Common Area',
+  'Other'
 ];
 
 // Category-based severity mapping for Outside inspection
@@ -100,6 +92,22 @@ const LOW_DEFICIENCY_PATTERNS = [
   '10x10 ft area not designated for garbage disposal',
 ];
 
+// Moderate severity deficiencies: Pts Lost = 4.5 / n
+// These override category-based severity (e.g., category 14 default is Severe but some deficiencies are Moderate)
+const MODERATE_DEFICIENCY_PATTERNS = [
+  // Leak - Sewage System (Category 14) - Moderate deficiencies
+  'cleanout cap or riser is damaged',
+  'cap to the cleanout or pump cover is detached or missing',
+  'cap to the cleanout or pump cover is detached',
+  'pump cover is detached or missing',
+  'visibly defective, impacts functionality',
+  // Electrical Service Panel (Category 7) - Moderate deficiencies
+  'electrical service panel is not reasonably accessible',
+  'panel is not reasonably accessible',
+  'cannot be reached and opened without moving obstructions',
+  'cannot be reached without moving obstructions',
+];
+
 /**
  * Get severity configuration based on category number
  * @param categoryNumber The NSPIRE Outside category number (1-26)
@@ -121,7 +129,7 @@ export function getSeverityByCategoryNumber(categoryNumber: number): OutsideSeve
   if (SEVERE_CATEGORIES.includes(categoryNumber)) {
     return { severity: 'Severe', pointsLostFormula: 12.20 };
   }
-  
+
   // Default to Moderate if category not found
   return { severity: 'Moderate', pointsLostFormula: 4.5 };
 }
@@ -147,6 +155,16 @@ function matchesLowDeficiencyPattern(deficiencyDescription: string): boolean {
 }
 
 /**
+ * Check if deficiency description matches any moderate severity deficiency patterns
+ * @param deficiencyDescription The deficiency description or detail text
+ * @returns True if matches moderate severity pattern
+ */
+function matchesModerateDeficiencyPattern(deficiencyDescription: string): boolean {
+  const normalizedDesc = deficiencyDescription.toLowerCase();
+  return MODERATE_DEFICIENCY_PATTERNS.some(pattern => normalizedDesc.includes(pattern.toLowerCase()));
+}
+
+/**
  * Get severity configuration with deficiency-based override
  * Deficiency-based rules take precedence over category-based rules
  * 
@@ -164,13 +182,18 @@ export function getOutsideSeverityConfig(
     if (matchesSevereDeficiencyPattern(deficiencyDescription)) {
       return { severity: 'Severe', pointsLostFormula: 12.20 };
     }
-    
+
+    // Check for moderate deficiency patterns (overrides category defaults like Severe or Life-Threatening)
+    if (matchesModerateDeficiencyPattern(deficiencyDescription)) {
+      return { severity: 'Moderate', pointsLostFormula: 4.5 };
+    }
+
     // Check for low severity deficiency patterns
     if (matchesLowDeficiencyPattern(deficiencyDescription)) {
       return { severity: 'Low', pointsLostFormula: 2.00 };
     }
   }
-  
+
   // Fall back to category-based severity
   return getSeverityByCategoryNumber(categoryNumber);
 }
@@ -180,6 +203,8 @@ export interface OutsideScoringInput {
   totalSamples: number;         // n - number of sample units
   deficiencyDescription?: string; // Optional deficiency description for override checking
   deficiencyCount?: number;     // Number of deficiencies (default: 1)
+  deficiencyPointsFormula?: string; // Direct points formula from deficiency (e.g., "4.5/n", "12.20/n")
+  deficiencySeverity?: 'Life-Threatening' | 'Severe' | 'Moderate' | 'Low'; // Direct severity from deficiency
 }
 
 export interface OutsideScoringResult {
@@ -194,10 +219,10 @@ export interface OutsideScoringResult {
   score: number;                // Score = 25 - maxPtsLost
   formulaNumerator: number;     // The numerator used in the formula
   isDeficiencyOverride: boolean; // Whether deficiency-based override was applied
-  // Additional fields for backward compatibility with existing UI
-  allSample: number;            // Alias for totalSamples
-  ptsLostRaw: number;           // Alias for pointsLostRaw
-  ptsLost: number;              // Alias for pointsLost
+  // Backward compatibility aliases
+  allSample: number;
+  ptsLostRaw: number;
+  ptsLost: number;
 }
 
 const POSSIBLE_SCORE = 25;
@@ -215,53 +240,75 @@ const POSSIBLE_SCORE = 25;
  * @returns Complete scoring result
  */
 export function calculateOutsideScore(input: OutsideScoringInput): OutsideScoringResult {
-  const { 
-    categoryNumber, 
-    totalSamples, 
+  const {
+    categoryNumber,
+    totalSamples,
     deficiencyDescription,
-    deficiencyCount = 1 
+    deficiencyCount = 1,
+    deficiencyPointsFormula,
+    deficiencySeverity,
   } = input;
 
   // Ensure we don't divide by zero - minimum 1 sample
   const n = Math.max(totalSamples, 1);
   const count = Math.max(deficiencyCount, 0);
 
-  // Get severity config (with deficiency override if applicable)
-  const severityConfig = getOutsideSeverityConfig(categoryNumber, deficiencyDescription);
-  
-  // Check if deficiency override was applied
-  const categoryOnlyConfig = getSeverityByCategoryNumber(categoryNumber);
-  const isDeficiencyOverride = deficiencyDescription !== undefined && 
-    (severityConfig.severity !== categoryOnlyConfig.severity || 
-     severityConfig.pointsLostFormula !== categoryOnlyConfig.pointsLostFormula);
+  // PRIORITY 1: Use direct deficiency points formula if provided (from deficiency data)
+  let pointsLostRaw: number;
+  let severity: 'Life-Threatening' | 'Severe' | 'Moderate' | 'Low';
+  let isDeficiencyOverride = false;
 
-  // Pts Lost (Raw) = the base formula numerator (4.5, 24.8, 49.60, 2.00, or 12.20)
-  // This is the raw base points lost value based on severity/category
-  const pointsLostRaw = severityConfig.pointsLostFormula;
+  if (deficiencyPointsFormula) {
+    // Parse formula like "4.5/n", "12.20/n", "49.60/n", "24.8/n", "2.00/n"
+    const match = deficiencyPointsFormula.match(/^([\d.]+)/);
+    if (match) {
+      pointsLostRaw = parseFloat(match[1]);
+      severity = deficiencySeverity || 'Moderate';
+      isDeficiencyOverride = true;
+    } else {
+      // Fallback to category-based if parsing fails
+      const severityConfig = getOutsideSeverityConfig(categoryNumber, deficiencyDescription);
+      pointsLostRaw = severityConfig.pointsLostFormula;
+      severity = severityConfig.severity;
+    }
+  } else {
+    // PRIORITY 2: Use category-based and deficiency description pattern matching
+    const severityConfig = getOutsideSeverityConfig(categoryNumber, deficiencyDescription);
+    const categoryOnlyConfig = getSeverityByCategoryNumber(categoryNumber);
+
+    pointsLostRaw = severityConfig.pointsLostFormula;
+    severity = severityConfig.severity;
+    isDeficiencyOverride = deficiencyDescription !== undefined &&
+      (severityConfig.severity !== categoryOnlyConfig.severity ||
+        severityConfig.pointsLostFormula !== categoryOnlyConfig.pointsLostFormula);
+  }
 
   // Pts Lost = numerator / n (calculated points lost)
-  const pointsLost = severityConfig.pointsLostFormula / n;
+  // This is the NSPIRE formula: Pts Lost = X / n where X is the severity points (e.g., 12.20 for Severe)
+  const pointsLost = pointsLostRaw / n;
 
-  // Calculate Max Points Lost = Points Lost / n
-  const maxPtsLost = pointsLost / n;
+  // Max Points Lost = Same as Points Lost (X / n)
+  // NOT divided by n again - that was a bug causing severe to show as moderate
+  const maxPtsLost = pointsLost;
 
-  // Calculate Score = Possible Score (25) - Max Points Lost
-  const score = POSSIBLE_SCORE - maxPtsLost;
+  // Calculate Score = Possible Score (25) - Points Lost
+  // For example: Severe with n=1: Score = 25 - 12.20 = 12.80
+  const score = POSSIBLE_SCORE - pointsLost;
 
   return {
     categoryNumber,
     totalSamples: n,
-    allSample: n, // Alias for backward compatibility
-    severity: severityConfig.severity,
+    allSample: n,
+    severity,
     pointsLostRaw: parseFloat(pointsLostRaw.toFixed(4)),
-    ptsLostRaw: parseFloat(pointsLostRaw.toFixed(4)), // Alias
+    ptsLostRaw: parseFloat(pointsLostRaw.toFixed(4)),
     pointsLost: parseFloat(pointsLost.toFixed(4)),
-    ptsLost: parseFloat(pointsLost.toFixed(4)), // Alias
+    ptsLost: parseFloat(pointsLost.toFixed(4)),
     deficiencyCount: count,
     possibleScore: POSSIBLE_SCORE,
     maxPtsLost: parseFloat(maxPtsLost.toFixed(4)),
     score: parseFloat(score.toFixed(2)),
-    formulaNumerator: severityConfig.pointsLostFormula,
+    formulaNumerator: pointsLostRaw,
     isDeficiencyOverride,
   };
 }
@@ -280,7 +327,7 @@ export function extractCategoryNumber(itemId?: string, itemName?: string): numbe
       return num;
     }
   }
-  
+
   // Try to extract from item name (e.g., "1. Address and Signage")
   if (itemName) {
     const match = itemName.match(/^(\d+)\./);
@@ -291,7 +338,7 @@ export function extractCategoryNumber(itemId?: string, itemName?: string): numbe
       }
     }
   }
-  
+
   // Default to category 1 if not found
   return 1;
 }

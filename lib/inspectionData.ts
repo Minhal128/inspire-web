@@ -1,6 +1,6 @@
 // Inspection data for NSPIRE compliance
-import { ALL_UNIT_CATEGORIES } from './unitDeficiencyMapping';
-import { ALL_INSIDE_CATEGORIES } from './insideDeficiencyMapping';
+import { ALL_UNIT_CATEGORIES } from './insideAppData';
+import { ALL_INSIDE_CATEGORIES } from './unitAppData';
 
 export const UNIT_LOCATIONS = [
   'Attic/Loft',
@@ -65,8 +65,8 @@ export const OUTSIDE_ITEMS: InspectionItem[] = [
   { id: '26', name: 'General Comment' }
 ];
 
-// Inside items generated directly from unitDeficiencyMapping.ts (35 categories)
-export const INSIDE_ITEMS: InspectionItem[] = ALL_UNIT_CATEGORIES.map((cat, index) => {
+// Inside items (Common Areas) generated from ALL_UNIT_CATEGORIES in insideAppData.ts
+export const INSIDE_ITEMS: InspectionItem[] = ALL_UNIT_CATEGORIES.map((cat: any, index: number) => {
   let name = cat.category.replace(/^\d+\.\s*/, ''); // Remove number prefix like "1. "
   if (name.toLowerCase().includes('general comment')) {
     name = 'General Comment';
@@ -74,9 +74,9 @@ export const INSIDE_ITEMS: InspectionItem[] = ALL_UNIT_CATEGORIES.map((cat, inde
   return { id: String(index + 1), name };
 });
 
-// Unit items generated from insideDeficiencyMapping.ts (32 categories)
-export const UNIT_ITEMS: InspectionItem[] = ALL_INSIDE_CATEGORIES.map((cat, index) => {
-  let name = cat.itemName;
+// Unit items (Apartments) generated from ALL_INSIDE_CATEGORIES in unitAppData.ts
+export const UNIT_ITEMS: InspectionItem[] = ALL_INSIDE_CATEGORIES.map((item: any, index: number) => {
+  let name = item.itemName;
   if (name.toLowerCase().includes('general comment')) {
     name = 'General Comment';
   }

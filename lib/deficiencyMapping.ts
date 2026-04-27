@@ -1,5 +1,5 @@
 import { ALL_OUTSIDE_DEFICIENCIES } from './outsideAppData';
-import { ALL_INSIDE_CATEGORIES } from './insideAppData';
+import { ALL_INSIDE_CATEGORIES } from './unitAppData';
 
 export interface DeficiencyDetail {
     id: string;
@@ -11,6 +11,8 @@ export interface DeficiencyDetail {
     repairBy: string;
     notes?: string;
     location?: string;
+    pointsFormula?: string;
+    subcategory?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ function convertToUIDetail(d: any): DeficiencyDetail {
         codeAndCompliance: d.code ? `NSPIRE - ${d.code}` : 'NSPIRE',
         healthAndSafety: d.severity,
         repairBy: d.repairBy,
+        pointsFormula: d.points,
     };
 }
 
@@ -46,12 +49,23 @@ ALL_INSIDE_CATEGORIES.forEach(item => {
 
     // Some items have flat deficiencies, some have subcategories
     if (item.deficiencies) {
-        allDefs = [...allDefs, ...item.deficiencies.map(convertToUIDetail)];
+        const mappedDefs = item.deficiencies.map(d => ({
+            ...convertToUIDetail(d),
+            selected: item.itemName,
+            subcategory: item.itemName
+        }));
+        allDefs = [...allDefs, ...mappedDefs];
     }
 
     if (item.subcategories) {
         item.subcategories.forEach(sub => {
-            allDefs = [...allDefs, ...sub.deficiencies.map(convertToUIDetail)];
+            const subName = (sub as any).name || (sub as any).itemName || item.itemName;
+            const subDefs = sub.deficiencies.map(d => ({
+                ...convertToUIDetail(d),
+                selected: subName,
+                subcategory: subName
+            }));
+            allDefs = [...allDefs, ...subDefs];
         });
     }
 

@@ -1,4 +1,4 @@
-import { ALL_UNIT_CATEGORIES } from './unitAppData';
+import { ALL_UNIT_CATEGORIES } from './insideAppData';
 import { DeficiencyDetail } from './deficiencyMapping';
 
 /**
@@ -13,6 +13,7 @@ function convertToUIDetail(d: any): DeficiencyDetail {
         codeAndCompliance: d.code ? `NSPIRE - ${d.code}` : 'NSPIRE',
         healthAndSafety: d.severity,
         repairBy: d.repairBy,
+        pointsFormula: d.points,
     };
 }
 
@@ -20,21 +21,39 @@ function convertToUIDetail(d: any): DeficiencyDetail {
 export const unitDeficiencyMapping: Record<string, DeficiencyDetail[]> = {};
 
 ALL_UNIT_CATEGORIES.forEach(categoryObj => {
+    const categoryName = categoryObj.category.replace(/^\d+\.\s*/, '').trim();
+    let allCategoryDefs: DeficiencyDetail[] = [];
+
     categoryObj.items.forEach(item => {
-        let allDefs: DeficiencyDetail[] = [];
+        let itemDefs: DeficiencyDetail[] = [];
 
-        if (item.deficiencies) {
-            allDefs = [...allDefs, ...item.deficiencies.map(convertToUIDetail)];
-        }
+        const mappedDefs = item.deficiencies.map(d => ({
+            ...convertToUIDetail(d),
+            selected: item.itemName, // The top-level selection is the sub-item name (e.g. Door - Entry)
+            subcategory: item.itemName
+        }));
+        itemDefs = [...itemDefs, ...mappedDefs];
 
-        // Use a type cast or check if subcategories exist on the item
         const itemAny = item as any;
         if (itemAny.subcategories) {
             itemAny.subcategories.forEach((sub: any) => {
-                allDefs = [...allDefs, ...sub.deficiencies.map(convertToUIDetail)];
+                const subName = sub.name || sub.itemName || item.itemName;
+                const subDefs = sub.deficiencies.map((d: any) => ({
+                    ...convertToUIDetail(d),
+                    selected: subName,
+                    subcategory: subName
+                }));
+                itemDefs = [...itemDefs, ...subDefs];
             });
         }
 
-        unitDeficiencyMapping[item.itemName] = allDefs;
+        // Key by specific item name
+        unitDeficiencyMapping[item.itemName] = itemDefs;
+        
+        // Also accumulate for the category
+        allCategoryDefs = [...allCategoryDefs, ...itemDefs];
     });
+
+    // Key by the main category name (e.g., "Door")
+    unitDeficiencyMapping[categoryName] = allCategoryDefs;
 });
