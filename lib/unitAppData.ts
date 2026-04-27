@@ -816,8 +816,8 @@ export const BATHROOM_VENTILATION: InsideSubcategory = {
     deficiencies: [
         {
             id: 'bath_vent_1',
-            name: 'The restroom does not have ventilation, not present and operable.',
-            detail: 'The restroom does not have ventilation, not present and operable.',
+            name: 'An exhaust fan, window, or adequate means of ventilation is not present and operable.',
+            detail: 'An exhaust fan, window, or adequate means of ventilation is not present and operable.',
             criteria: 'An exhaust fan, window, or adequate means of ventilation is not present and operable.',
             severity: 'Moderate',
             repairBy: '30 Day',
