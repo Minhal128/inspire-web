@@ -165,6 +165,7 @@ export default function InspectionCategoryPage() {
     const generalFileInputRef = useRef<HTMLInputElement>(null);
     const generalGalleryInputRef = useRef<HTMLInputElement>(null);
     const [modalStep, setModalStep] = useState(1); // 1: Add New, 2: Form, 3: Selection (Selected/Detail/Criteria)
+    const [isHowToInspectOpen, setIsHowToInspectOpen] = useState(false);
     const [currentModalItem, setCurrentModalItem] = useState<string | null>(null);
     const [selectionType, setSelectionType] = useState<'selected' | 'detail' | 'criteria'>('selected');
     const [selectedDeficiency, setSelectedDeficiency] = useState<DeficiencyDetail | null>(null);
@@ -1333,62 +1334,29 @@ export default function InspectionCategoryPage() {
                                         </div>
                                     </div>
 
-                                    {/* 3. CODE OF REFERENCE */}
+                                    {/* 3. HOW TO INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Code of Reference</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How to Inspect</label>
                                         {(() => {
-                                            const codeRef = selectedDeficiency
-                                                ? lookupCodeReference(
-                                                    currentSection,
-                                                    currentModalItem || '',
-                                                    selectedDeficiency.selected,
-                                                )
-                                                : undefined
                                             if (!selectedDeficiency) {
                                                 return (
-                                                    <div className="w-full border-2 rounded-2xl p-4 text-xs font-bold leading-relaxed border-gray-100 bg-gray-50 text-gray-400">
-                                                        -- Select deficiency first --
-                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        disabled
+                                                        className="w-full border-2 rounded-2xl p-4 text-xs font-bold leading-relaxed border-gray-100 bg-gray-50 text-gray-400 text-left cursor-not-allowed"
+                                                    >
+                                                        Select deficiency first to open How to Inspect
+                                                    </button>
                                                 )
                                             }
-                                            if (!codeRef) {
-                                                return (
-                                                    <div className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-gray-700">
-                                                        {selectedDeficiency.codeAndCompliance || 'No code reference available.'}
-                                                    </div>
-                                                )
-                                            }
-                                            // Render the multi-step codeReference with styled headers and bullets
                                             return (
-                                                <div className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs leading-relaxed bg-white space-y-1 max-h-72 overflow-y-auto custom-scrollbar">
-                                                    {codeRef.split('\n').map((line, i) => {
-                                                        const trimmed = line.trim()
-                                                        if (!trimmed) return <div key={i} className="h-1" />
-                                                        // Step / header lines start with an emoji
-                                                        const isHeader = /^[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}]/u.test(trimmed)
-                                                        if (isHeader) {
-                                                            return (
-                                                                <p key={i} className="font-black text-[#0E7490] mt-3 first:mt-0 text-[11px]">
-                                                                    {trimmed}
-                                                                </p>
-                                                            )
-                                                        }
-                                                        // Bullet lines
-                                                        if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
-                                                            return (
-                                                                <p key={i} className="text-gray-700 ml-3 font-medium">
-                                                                    {trimmed}
-                                                                </p>
-                                                            )
-                                                        }
-                                                        // Normal paragraph
-                                                        return (
-                                                            <p key={i} className="text-gray-600 font-normal">
-                                                                {trimmed}
-                                                            </p>
-                                                        )
-                                                    })}
-                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsHowToInspectOpen(true)}
+                                                    className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
+                                                >
+                                                    Open How to Inspect Guide
+                                                </button>
                                             )
                                         })()}
                                     </div>
@@ -1707,6 +1675,67 @@ export default function InspectionCategoryPage() {
                                 </Button>
                             </div>
                         )}
+                    </Card>
+                </div>
+            )}
+
+            {/* How to Inspect Popup */}
+            {isHowToInspectOpen && (
+                <div className="fixed inset-0 bg-black/70 z-[1100] flex items-center justify-center p-4">
+                    <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
+                    <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
+                        <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How to Inspect</h3>
+                            <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+                        <div className="p-6 md:p-8 overflow-y-auto space-y-2 custom-scrollbar">
+                            {(() => {
+                                const guideText = selectedDeficiency
+                                    ? lookupCodeReference(currentSection, currentModalItem || '', selectedDeficiency.selected)
+                                    : ''
+                                const fallbackText = selectedDeficiency?.codeAndCompliance || 'No inspection guide available.'
+                                const content = guideText || fallbackText
+
+                                return content.split('\n').map((line, i) => {
+                                    const trimmed = line.trim()
+                                    if (!trimmed) return <div key={i} className="h-1" />
+
+                                    const isHeader = /^[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}]/u.test(trimmed)
+                                    if (isHeader) {
+                                        return (
+                                            <p key={i} className="font-black text-[#0E7490] mt-3 first:mt-0 text-sm">
+                                                {trimmed}
+                                            </p>
+                                        )
+                                    }
+
+                                    if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
+                                        return (
+                                            <p key={i} className="text-gray-700 ml-3 font-medium text-sm">
+                                                {trimmed}
+                                            </p>
+                                        )
+                                    }
+
+                                    return (
+                                        <p key={i} className="text-gray-600 font-normal text-sm">
+                                            {trimmed}
+                                        </p>
+                                    )
+                                })
+                            })()}
+                        </div>
+                        <div className="p-4 border-t bg-gray-50">
+                            <Button
+                                variant="outline"
+                                onClick={() => setIsHowToInspectOpen(false)}
+                                className="w-full font-black h-12 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-600 uppercase text-[10px] tracking-widest"
+                            >
+                                Close
+                            </Button>
+                        </div>
                     </Card>
                 </div>
             )}

@@ -145,18 +145,8 @@ function NSPIREInspectionSummaryContent() {
   // Handle "Continue Inspection" - mark unit as completed and go back to property details
   const handleContinueInspection = () => {
     if (inspectionContext) {
-      // Set flag for property-details page to pick up and mark unit completed
-      localStorage.setItem('inspectionReturnToProperty', JSON.stringify({
-        propertyId: inspectionContext.propertyId,
-        buildingId: inspectionContext.buildingId,
-        unitName: inspectionContext.unitName
-      }))
-      // Navigate back to property details
-      if (inspectionContext.propertyDetailsUrl) {
-        router.push(inspectionContext.propertyDetailsUrl)
-      } else {
-        router.push(`/dashboard/property-details/${inspectionContext.propertyId}`)
-      }
+      const unitQuery = inspectionContext.unitName ? `&unit=${encodeURIComponent(inspectionContext.unitName)}&units=1` : ''
+      router.push(`/dashboard/inspection-category/${inspectionContext.propertyId}?building=${encodeURIComponent(inspectionContext.buildingId)}${unitQuery}`)
     } else {
       router.push('/dashboard')
     }
