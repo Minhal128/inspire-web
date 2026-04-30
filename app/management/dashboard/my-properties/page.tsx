@@ -155,13 +155,13 @@ export default function MyProperties() {
 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                   <Button
                     onClick={() => setShowUnitSelectionModal(true)}
-                    className="w-full sm:w-auto bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
+                    className="w-full sm:w-auto bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
                   >
                     Select Units for Inspection
                   </Button>
                 <Button
                   onClick={() => setShowAddPropertyModal(true)}
-                  className="w-full sm:w-auto bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
+                  className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
                 >
                   Add Property
                 </Button>
@@ -306,7 +306,7 @@ export default function MyProperties() {
                   
                   <Button
                     onClick={() => router.push(`/management/dashboard/unit-selection?property=${property.propertyId}`)}
-                    className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-medium py-2 rounded-lg text-sm"
+                    className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-medium py-2 rounded-lg text-sm"
                   >
                     View Details
                   </Button>
@@ -360,7 +360,7 @@ export default function MyProperties() {
                 <div className="flex justify-center gap-3 mb-6">
                   <Button
                     onClick={() => setSelectedUnits([...demoUnits])}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-6 py-2 rounded-lg"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-6 py-2 rounded-lg"
                   >
                     Select All
                   </Button>
@@ -369,7 +369,7 @@ export default function MyProperties() {
                       const shuffled = [...demoUnits].sort(() => Math.random() - 0.5)
                       setSelectedUnits(shuffled.slice(0, Math.floor(demoUnits.length * 0.3)))
                     }}
-                    className="bg-[#FF4757] hover:bg-[#E63946] text-white font-semibold px-6 py-2 rounded-lg"
+                    className="bg-[#F84B5F] hover:bg-[#E63946] text-white font-semibold px-6 py-2 rounded-lg"
                   >
                     Random Selection
                   </Button>
@@ -392,7 +392,7 @@ export default function MyProperties() {
                       }}
                       className={`py-3 px-4 rounded-lg border-2 text-sm font-medium transition-all ${
                         selectedUnits.includes(unit)
-                          ? 'bg-[#E8F4F8] border-[#0D6A8D] text-[#0D6A8D]'
+                          ? 'bg-[#E8F4F8] border-[#006795] text-[#006795]'
                           : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -412,7 +412,7 @@ export default function MyProperties() {
                       setShowUnitSelectionModal(false)
                       setSelectedUnits([])
                     }}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-8 py-3 rounded-full min-w-[200px]"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-8 py-3 rounded-full min-w-[200px]"
                   >
                     Continue with {selectedUnits.length} Units
                   </Button>

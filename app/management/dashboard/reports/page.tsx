@@ -283,7 +283,7 @@ export default function Reports() {
               <select
                 value={selectedProperty}
                 onChange={(e) => setSelectedProperty(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               >
                 <option value="">All Properties</option>
                 {properties.map(property => (
@@ -295,7 +295,7 @@ export default function Reports() {
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-2">Date Range</label>
               <select
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               >
                 <option value="">All Dates</option>
                 <option value="today">Today</option>
@@ -309,7 +309,7 @@ export default function Reports() {
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               >
                 <option value="">All Status</option>
                 <option value="paid">Paid</option>
@@ -326,7 +326,7 @@ export default function Reports() {
               placeholder="Search by property, unit or inspector name"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+              className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
             />
           </div>
         </Card>
@@ -422,7 +422,7 @@ export default function Reports() {
               <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
                 Prev
               </button>
-              <button className="px-4 py-2 text-sm font-medium text-white bg-[#0D6A8D] rounded-lg hover:bg-[#0A5670]">
+              <button className="px-4 py-2 text-sm font-medium text-white bg-[#006795] rounded-lg hover:bg-[#0A5670]">
                 1
               </button>
               <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -469,7 +469,7 @@ export default function Reports() {
                     </Button>
                     <Button
                       onClick={() => handleExport(report._id)}
-                      className="flex-1 bg-[#0D6A8D] hover:bg-[#0A5670] text-white px-4 py-2 rounded-lg text-sm"
+                      className="flex-1 bg-[#006795] hover:bg-[#0A5670] text-white px-4 py-2 rounded-lg text-sm"
                     >
                       Download
                     </Button>

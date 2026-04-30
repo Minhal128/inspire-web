@@ -96,7 +96,7 @@ export default function Settings() {
               <button
                 onClick={() => setActiveTab("profile")}
                 className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeTab === "profile" ? "bg-[#FF4757] text-white" : "text-gray-700 hover:bg-gray-100"
+                  activeTab === "profile" ? "bg-[#F84B5F] text-white" : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 Profile Settings
@@ -104,7 +104,7 @@ export default function Settings() {
               <button
                 onClick={() => setActiveTab("notifications")}
                 className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeTab === "notifications" ? "bg-[#FF4757] text-white" : "text-gray-700 hover:bg-gray-100"
+                  activeTab === "notifications" ? "bg-[#F84B5F] text-white" : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 Notification Preferences
@@ -112,7 +112,7 @@ export default function Settings() {
               <button
                 onClick={() => setActiveTab("security")}
                 className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeTab === "security" ? "bg-[#FF4757] text-white" : "text-gray-700 hover:bg-gray-100"
+                  activeTab === "security" ? "bg-[#F84B5F] text-white" : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 Security Settings
@@ -132,7 +132,7 @@ export default function Settings() {
                   </div>
                   <Button
                     onClick={handleSaveProfile}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
                   >
                     Save Changes
                   </Button>
@@ -149,7 +149,7 @@ export default function Settings() {
                   />
                   <Button
                     onClick={() => toast.info("Change profile picture feature coming soon!", { position: "top-right" })}
-                    className="bg-white border border-[#0D6A8D] text-[#0D6A8D] hover:bg-[#E8F4F8] px-4 py-2 rounded-lg font-medium"
+                    className="bg-white border border-[#006795] text-[#006795] hover:bg-[#E8F4F8] px-4 py-2 rounded-lg font-medium"
                   >
                     Change Photo
                   </Button>
@@ -160,52 +160,52 @@ export default function Settings() {
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Name
-                      <button className="ml-2 text-[#0D6A8D] text-xs font-normal hover:underline">Edit</button>
+                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
                     </label>
                     <input
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Email
-                      <button className="ml-2 text-[#0D6A8D] text-xs font-normal hover:underline">Edit</button>
+                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
                     </label>
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Phone
-                      <button className="ml-2 text-[#0D6A8D] text-xs font-normal hover:underline">Edit</button>
+                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
                     </label>
                     <input
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Role
-                      <button className="ml-2 text-[#0D6A8D] text-xs font-normal hover:underline">Edit</button>
+                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
                     </label>
                     <input
                       type="text"
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
@@ -214,7 +214,7 @@ export default function Settings() {
                     <select
                       value={language}
                       onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
                       <option value="English US">English US</option>
                       <option value="Spanish">Spanish</option>
@@ -227,7 +227,7 @@ export default function Settings() {
                     <select
                       value={timezone}
                       onChange={(e) => setTimezone(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
                       <option value="GMT +05:00">GMT +05:00</option>
                       <option value="GMT -05:00">GMT -05:00</option>
@@ -248,7 +248,7 @@ export default function Settings() {
                   </div>
                   <Button
                     onClick={handleSaveNotifications}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
                   >
                     Save Changes
                   </Button>
@@ -376,7 +376,7 @@ export default function Settings() {
                   </div>
                   <Button
                     onClick={handleSaveSecurity}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
                   >
                     Save Changes
                   </Button>
@@ -393,7 +393,7 @@ export default function Settings() {
                         value={oldPassword}
                         onChange={(e) => setOldPassword(e.target.value)}
                         placeholder="Enter your old password"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                       />
                     </div>
                     <div>
@@ -403,7 +403,7 @@ export default function Settings() {
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                         placeholder="Enter your old password"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                       />
                     </div>
                     <div>
@@ -413,7 +413,7 @@ export default function Settings() {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder="Confirm your new password"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                       />
                     </div>
                   </div>

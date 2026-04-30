@@ -127,7 +127,7 @@ export default function Header() {
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
                       onClick={() => setServicesDropdownOpen(false)}
                     >
-                      <span className="w-2 h-2 rounded-full bg-[#FF4757]"></span>
+                      <span className="w-2 h-2 rounded-full bg-[#F84B5F]"></span>
                       <span className="text-sm text-gray-700 hover:text-primary">
                         Owners Inspections
                       </span>

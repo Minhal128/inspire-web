@@ -125,7 +125,7 @@ export default function SellersClient() {
         <section className="bg-black py-20 px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to List With Confidence?</h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Get a pre-listing inspection and maximize your property's market value today.</p>
-          <Button onClick={() => router.push("/contact")} className="bg-[#F97316] hover:bg-[#EA580C] text-white rounded-full px-12 py-7 text-lg font-bold shadow-2xl hover:scale-105 transition-all">Schedule Your Inspection</Button>
+          <Button onClick={() => router.push("/contact")} size="lg" className="bg-[#F97316] hover:bg-[#EA580C] hover:scale-105 transition-all">Schedule Your Inspection</Button>
         </section>
       </div>
     </MainLayout>

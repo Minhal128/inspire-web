@@ -79,7 +79,7 @@ export default function BlogIndex() {
         <section className="bg-white py-12 md:py-16 border-b border-gray-100">
           <div className="max-w-[1400px] mx-auto px-4 md:px-6">
             <h1 className="text-4xl md:text-5xl font-bold text-[#333333] mb-4">Blog</h1>
-            <div className="w-20 h-1 bg-[#FF4757] rounded-full"></div>
+            <div className="w-20 h-1 bg-[#F84B5F] rounded-full"></div>
           </div>
         </section>
 
@@ -101,10 +101,10 @@ export default function BlogIndex() {
                 
                 <div className="max-w-[900px]">
                   <Link href={`/blog/${blog.slug}`}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2 leading-tight group-hover:text-[#0D6A8D] transition-colors">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2 leading-tight group-hover:text-[#006795] transition-colors">
                       {blog.title}
                     </h2>
-                    <p className="text-xl text-[#0D6A8D] font-medium mb-4">
+                    <p className="text-xl text-[#006795] font-medium mb-4">
                       {blog.subtitle}
                     </p>
                   </Link>
@@ -114,7 +114,7 @@ export default function BlogIndex() {
                     <span>|</span>
                     <span>{blog.date}</span>
                     <span>|</span>
-                    <span className="text-[#0D6A8D]">{blog.category}</span>
+                    <span className="text-[#006795]">{blog.category}</span>
                   </div>
                   
                   <p className="text-lg text-gray-600 leading-relaxed mb-8">
@@ -123,7 +123,7 @@ export default function BlogIndex() {
                   
                   <Link 
                     href={`/blog/${blog.slug}`}
-                    className="inline-flex items-center gap-2 text-[#0D6A8D] font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-[#006795] font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all"
                   >
                     Read More
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,7 +137,7 @@ export default function BlogIndex() {
             {/* Pagination Placeholder */}
             <div className="pt-12 border-t border-gray-100 flex items-center gap-6">
               <span className="text-gray-400 cursor-not-allowed uppercase text-sm tracking-widest font-bold">« Newer Entries</span>
-              <Link href="#" className="text-[#333333] hover:text-[#0D6A8D] uppercase text-sm tracking-widest font-bold">Older Entries »</Link>
+              <Link href="#" className="text-[#333333] hover:text-[#006795] uppercase text-sm tracking-widest font-bold">Older Entries »</Link>
             </div>
           </div>
 
@@ -149,7 +149,7 @@ export default function BlogIndex() {
                 <input 
                   type="text" 
                   placeholder="Search..." 
-                  className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#0D6A8D] transition-all"
+                  className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#006795] transition-all"
                 />
                 <svg className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -157,11 +157,11 @@ export default function BlogIndex() {
               </div>
             </div>
 
-            <div className="bg-[#0D6A8D] p-10 rounded-[40px] text-white shadow-xl relative overflow-hidden group">
+            <div className="bg-[#006795] p-10 rounded-[40px] text-white shadow-xl relative overflow-hidden group">
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-4">Free NSPIRE Checklist</h3>
                 <p className="opacity-80 mb-8 text-sm leading-relaxed">Download our comprehensive home inspection checklist for free.</p>
-                <Button className="w-full bg-[#FF4757] hover:bg-[#EE3646] text-white rounded-full py-6 font-bold transition-all shadow-lg">Download Now</Button>
+                <Button className="w-full bg-[#F84B5F] hover:bg-[#EE3646] text-white rounded-full py-6 font-bold transition-all shadow-lg">Download Now</Button>
               </div>
               <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all"></div>
             </div>

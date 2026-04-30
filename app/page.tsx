@@ -39,7 +39,7 @@ export default function Home() {
                   <br />
                   Home Inspections
                   <br />
-                  <span className="text-[#FF4757] italic font-bold">Across the USA</span>
+                  <span className="text-[#F84B5F] italic font-bold">Across the USA</span>
                 </h1>
 
                 <p className="text-gray-700 mb-8 md:mb-12 leading-relaxed text-sm md:text-[15px] max-w-xl">
@@ -50,7 +50,9 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4 md:gap-5 mb-8 md:mb-16">
                   <Button
                     onClick={handleGetStarted}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white rounded-full px-8 md:px-11 py-5 md:py-6 text-sm md:text-[15px] font-semibold shadow-lg transition-all hover:shadow-xl w-full sm:w-auto cursor-pointer"
+                    variant="default"
+                    size="lg"
+                    className="hover:scale-105 transition-all w-full sm:w-auto cursor-pointer"
                   >
                     Get Started
                   </Button>
@@ -118,7 +120,7 @@ export default function Home() {
         <section className="px-4 md:px-6 pt-20 md:pt-32 lg:pt-40 pb-12 md:pb-16 lg:pb-20 bg-[#F8F9FA] relative">
           <div className="max-w-[1400px] mx-auto">
             <div className="mb-10 md:mb-14 lg:mb-16 pl-0 md:pl-6 lg:pl-10">
-              <p className="text-xs font-bold text-[#0D6A8D] uppercase tracking-wider mb-2 md:mb-3">
+              <p className="text-xs font-bold text-[#006795] uppercase tracking-wider mb-2 md:mb-3">
                 Comprehensive Services
               </p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-black leading-tight mb-2 md:mb-3">
@@ -139,7 +141,7 @@ export default function Home() {
                 ].map((benefit, idx) => (
                   <Card key={idx} className="bg-white border-none shadow-sm p-5 md:p-8 flex gap-4 md:gap-6 hover:shadow-md transition-all rounded-[30px] md:rounded-[50px]">
                     <div className="flex-shrink-0 mt-1">
-                      <svg className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-[#FF4757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-[#F84B5F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={benefit.icon} />
                       </svg>
                     </div>
@@ -182,9 +184,9 @@ export default function Home() {
           </div>
           <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-6 lg:px-10 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
             <div className="flex-1 max-w-xl w-full">
-              <p className="text-xs font-semibold text-[#0D6A8D] uppercase tracking-wider mb-3 md:mb-4">The Process</p>
+              <p className="text-xs font-semibold text-[#006795] uppercase tracking-wider mb-3 md:mb-4">The Process</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-tight text-black mb-6 md:mb-8">
-                How Long It Takes &<br />What to <span className="text-[#FF4757] italic">Expect</span>
+                How Long It Takes &<br />What to <span className="text-[#F84B5F] italic">Expect</span>
               </h2>
               <p className="text-gray-700 leading-relaxed text-sm md:text-base mb-6 max-w-xl">
                 Most standard home inspections take 2 to 4 hours depending on the property's size, age, and condition. Here is our structured process:
@@ -192,11 +194,11 @@ export default function Home() {
             </div>
             <div className="hidden lg:flex flex-1 relative h-[400px] items-center justify-center">
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
-                <path d="M 350 80 Q 250 80 250 160 Q 250 240 350 240 Q 450 240 450 320" fill="none" stroke="#0D6A8D" strokeWidth="12" strokeLinecap="round" />
+                <path d="M 350 80 Q 250 80 250 160 Q 250 240 350 240 Q 450 240 450 320" fill="none" stroke="#006795" strokeWidth="12" strokeLinecap="round" />
               </svg>
               {/* Steps */}
               <div className="absolute top-[50px] right-[30px] flex items-center gap-4 z-20">
-                <div className="w-24 h-24 rounded-full bg-[#0D6A8D] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
+                <div className="w-24 h-24 rounded-full bg-[#006795] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
                   <div className="text-3xl font-bold">1</div>
                   <div className="text-xs font-semibold italic">Schedule</div>
                 </div>
@@ -205,7 +207,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="absolute top-[180px] right-[30px] flex items-center gap-4 z-20">
-                <div className="w-24 h-24 rounded-full bg-[#0D6A8D] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
+                <div className="w-24 h-24 rounded-full bg-[#006795] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
                   <div className="text-3xl font-bold">2</div>
                   <div className="text-xs font-semibold italic">Evaluate</div>
                 </div>
@@ -214,7 +216,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="absolute top-[310px] right-[30px] flex items-center gap-4 z-20">
-                <div className="w-24 h-24 rounded-full bg-[#0D6A8D] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
+                <div className="w-24 h-24 rounded-full bg-[#006795] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white">
                   <div className="text-3xl font-bold">3</div>
                   <div className="text-xs font-semibold italic">Report</div>
                 </div>
@@ -231,7 +233,7 @@ export default function Home() {
                 { num: "3", title: "Report", desc: "Receive digital reports with clear repair recommendations to ease negotiations." }
               ].map((step) => (
                 <div key={step.num} className="bg-white rounded-2xl p-5 shadow-lg flex gap-4 items-center">
-                  <div className="w-16 h-16 rounded-full bg-[#0D6A8D] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-[#006795] text-white flex flex-col items-center justify-center shadow-xl border-4 border-white flex-shrink-0">
                     <div className="text-2xl font-bold">{step.num}</div>
                   </div>
                   <div>
@@ -269,7 +271,7 @@ export default function Home() {
         <section className="relative bg-[#006795] overflow-visible">
           <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-10 py-20 md:py-28 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative">
             <div className="relative flex justify-center items-center order-2 lg:order-1">
-              <div className="absolute w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] bg-gradient-to-br from-[#FF6B8A] to-[#FF4757] rounded-full blur-sm opacity-90"></div>
+              <div className="absolute w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] bg-gradient-to-br from-[#FF6B8A] to-[#F84B5F] rounded-full blur-sm opacity-90"></div>
               <div className="relative z-10 -mb-0 lg:-mb-12 max-w-[250px] md:max-w-[300px] lg:max-w-none">
                 <Image src="/inspectionWorkflow.png" alt="Inspection Workflow" width={320} height={650} priority className="object-contain drop-shadow-2xl w-full h-auto" />
               </div>
@@ -289,7 +291,7 @@ export default function Home() {
                   "Dedicated Solutions for Buyers, Sellers & Agents",
                 ].map((feature, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <svg className="w-5 h-5 md:w-6 md:h-6 text-[#7FFF00] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 md:w-6 md:h-6 text-[#006795] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-white text-sm md:text-[16px] font-medium">{feature}</span>
@@ -303,7 +305,7 @@ export default function Home() {
         {/* Pricing Section */}
         <section className="bg-white px-4 md:px-6 py-16 md:py-20 lg:py-24">
           <div className="max-w-[1400px] mx-auto flex justify-center px-0 md:px-6 lg:px-10">
-            <div className="relative bg-gradient-to-r from-[#FF6B8A] to-[#FF4757] rounded-[24px] md:rounded-[32px] px-8 md:px-16 lg:px-20 py-10 md:py-12 lg:py-14 shadow-2xl overflow-hidden w-full">
+            <div className="relative bg-gradient-to-r from-[#FF6B8A] to-[#F84B5F] rounded-[24px] md:rounded-[32px] px-8 md:px-16 lg:px-20 py-10 md:py-12 lg:py-14 shadow-2xl overflow-hidden w-full">
               <div className="absolute top-0 right-10 md:right-20 w-40 h-40 md:w-48 md:h-48 lg:w-64 lg:h-64 bg-[#FF9BAB] rounded-full opacity-40 -translate-y-1/2"></div>
               <div className="absolute bottom-0 right-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-[#FF9BAB] rounded-full opacity-40 translate-y-1/2 translate-x-1/4"></div>
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
@@ -319,7 +321,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <Button className="bg-white text-[#FF4757] hover:bg-gray-50 rounded-full px-8 md:px-10 py-5 md:py-6 text-sm md:text-[16px] font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto">
+                  <Button variant="outline" size="lg" className="bg-white text-[#F84B5F] hover:bg-gray-50 border-none hover:scale-105 transition-all w-full md:w-auto">
                     Get Free Quote
                   </Button>
                 </div>

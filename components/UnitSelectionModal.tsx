@@ -109,7 +109,7 @@ export function UnitSelectionModal({ isOpen, onClose, onContinue, totalUnits = 2
         <div className="flex justify-center gap-3 mb-6">
           <Button
             onClick={handleSelectAll}
-            className="bg-[#0D6A8D] hover:bg-[#0a5670] text-white px-6 py-2 text-sm rounded-xl font-bold"
+            className="bg-[#006795] hover:bg-[#0a5670] text-white px-6 py-2 text-sm rounded-xl font-bold"
           >
             {allSelected ? "Deselect All" : "Select All"}
           </Button>
@@ -137,15 +137,15 @@ export function UnitSelectionModal({ isOpen, onClose, onContinue, totalUnits = 2
               className={`
                 p-3 rounded-xl border-2 cursor-pointer transition-all text-center text-sm font-semibold select-none
                 ${selectedUnits.includes(unit)
-                  ? 'border-[#0D6A8D] bg-[#E8F4F8] text-[#0D6A8D]'
-                  : 'border-gray-200 bg-white text-gray-600 hover:border-[#0D6A8D] hover:bg-[#E8F4F8]'
+                  ? 'border-[#006795] bg-[#E8F4F8] text-[#006795]'
+                  : 'border-gray-200 bg-white text-gray-600 hover:border-[#006795] hover:bg-[#E8F4F8]'
                 }
               `}
             >
               {unit}
               {selectedUnits.includes(unit) && (
                 <div className="mt-1">
-                  <svg className="w-4 h-4 mx-auto text-[#0D6A8D]" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 mx-auto text-[#006795]" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
@@ -159,7 +159,7 @@ export function UnitSelectionModal({ isOpen, onClose, onContinue, totalUnits = 2
           <Button
             onClick={handleContinue}
             disabled={selectedUnits.length === 0}
-            className="w-full sm:w-auto px-8 sm:px-16 py-3 bg-[#0D6A8D] hover:bg-[#0a5670] text-white font-semibold rounded-xl text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto px-8 sm:px-16 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-xl text-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Continue with {selectedUnits.length} Unit{selectedUnits.length !== 1 ? 's' : ''}
           </Button>

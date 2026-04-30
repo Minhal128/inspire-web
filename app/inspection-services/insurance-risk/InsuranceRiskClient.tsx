@@ -91,7 +91,7 @@ export default function InsuranceRiskClient() {
         <section className="bg-black py-20 px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Reduce Risk, Reduce Premiums</h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Schedule a comprehensive risk assessment and protect your property investments today.</p>
-          <Button onClick={() => router.push("/contact")} className="bg-[#DC2626] hover:bg-[#991B1B] text-white rounded-full px-12 py-7 text-lg font-bold shadow-2xl hover:scale-105 transition-all">Get a Risk Assessment</Button>
+          <Button onClick={() => router.push("/contact")} size="lg" className="bg-[#DC2626] hover:bg-[#991B1B] hover:scale-105 transition-all">Get a Risk Assessment</Button>
         </section>
       </div>
     </MainLayout>

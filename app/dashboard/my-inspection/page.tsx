@@ -259,7 +259,7 @@ export default function MyInspection() {
                     {properties.map((property) => (
                       <tr key={property._id} className="hover:bg-gray-50/50 transition-colors">
                         <td className="py-5 px-6 text-center">
-                          <span className="bg-cyan-50 text-[#0D6A8D] font-black px-3 py-1.5 rounded-lg text-xs shadow-sm border border-cyan-100/50 inline-block">
+                          <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-xs shadow-sm border border-cyan-100/50 inline-block">
                             {property.propertyId}
                           </span>
                         </td>

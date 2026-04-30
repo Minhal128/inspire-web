@@ -220,7 +220,7 @@ export default function Login() {
           Smart Inspections. Real-Time Results.
         </p>
         {role && role !== 'user' && (
-          <p className="text-xs md:text-sm text-[#0D6A8D] font-semibold mb-8">
+          <p className="text-xs md:text-sm text-[#006795] font-semibold mb-8">
             Logging in as {getRoleDisplayName()}
           </p>
         )}
@@ -245,7 +245,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@example.com"
-                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               />
             </div>
 
@@ -261,7 +261,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your Password"
                 maxLength={128}
-                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               />
             </div>
 
@@ -272,13 +272,13 @@ export default function Login() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300 text-[#0D6A8D] focus:ring-[#0D6A8D]"
+                  className="w-4 h-4 rounded border-gray-300 text-[#006795] focus:ring-[#006795]"
                 />
                 <span className="text-sm text-gray-700">Remember Me</span>
               </label>
               <a
                 href="/forgot-password"
-                className="text-sm text-[#0D6A8D] hover:underline font-medium"
+                className="text-sm text-[#006795] hover:underline font-medium"
                 onClick={(e) => { e.preventDefault(); router.push('/forgot-password') }}
               >
                 Forgot Password?
@@ -289,7 +289,7 @@ export default function Login() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
+              className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
             >
               {isLoading ? "Logging in..." : "Log In"}
             </Button>
@@ -310,7 +310,7 @@ export default function Login() {
             Don't have an account?{" "}
             <button
               onClick={() => router.push(`/signup${role && role !== 'user' ? `?role=${role}` : ''}`)}
-              className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer"
+              className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer"
             >
               Sign Up
             </button>
@@ -320,7 +320,7 @@ export default function Login() {
           <p className="text-center text-sm text-gray-600 mt-4">
             <button
               onClick={() => router.push('/profile-selection')}
-              className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer flex items-center justify-center gap-2 mx-auto"
+              className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer flex items-center justify-center gap-2 mx-auto"
             >
               ← Back to Portal Selection
             </button>

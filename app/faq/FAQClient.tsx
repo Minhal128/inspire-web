@@ -12,17 +12,17 @@ export default function FAQClient() {
         <section className="bg-white px-4 md:px-6 py-20 md:py-28 lg:py-32">
           <div className="max-w-[1400px] mx-auto">
             <div className="text-center mb-16 md:mb-24">
-              <p className="text-xs font-bold text-[#0D6A8D] uppercase tracking-widest mb-4">Questions & Answers</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">Frequently Asked <span className="text-[#FF4757] italic font-medium">Questions</span></h2>
-              <div className="w-24 h-1.5 bg-[#FF4757] mx-auto rounded-full"></div>
+              <p className="text-xs font-bold text-[#006795] uppercase tracking-widest mb-4">Questions & Answers</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">Frequently Asked <span className="text-[#F84B5F] italic font-medium">Questions</span></h2>
+              <div className="w-24 h-1.5 bg-[#F84B5F] mx-auto rounded-full"></div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
               {/* Buyer & Seller FAQs */}
               <div className="space-y-12">
                 <div className="space-y-8">
-                  <h3 className="text-2xl font-bold text-[#0D6A8D] flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-full bg-[#0D6A8D] text-white flex items-center justify-center text-sm">01</span>
+                  <h3 className="text-2xl font-bold text-[#006795] flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-[#006795] text-white flex items-center justify-center text-sm">01</span>
                     For Home Buyers
                   </h3>
                   <div className="space-y-6">
@@ -42,8 +42,8 @@ export default function FAQClient() {
                 </div>
 
                 <div className="space-y-8">
-                  <h3 className="text-2xl font-bold text-[#0D6A8D] flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-full bg-[#0D6A8D] text-white flex items-center justify-center text-sm">02</span>
+                  <h3 className="text-2xl font-bold text-[#006795] flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-[#006795] text-white flex items-center justify-center text-sm">02</span>
                     For Home Sellers
                   </h3>
                   <div className="space-y-6">
@@ -62,8 +62,8 @@ export default function FAQClient() {
               {/* Homeowner & Commercial FAQs */}
               <div className="space-y-12">
                 <div className="space-y-8">
-                  <h3 className="text-2xl font-bold text-[#FF4757] flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-full bg-[#FF4757] text-white flex items-center justify-center text-sm">03</span>
+                  <h3 className="text-2xl font-bold text-[#F84B5F] flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-[#F84B5F] text-white flex items-center justify-center text-sm">03</span>
                     For Homeowners
                   </h3>
                   <div className="space-y-6">
@@ -79,8 +79,8 @@ export default function FAQClient() {
                 </div>
 
                 <div className="space-y-8">
-                  <h3 className="text-2xl font-bold text-[#FF4757] flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-full bg-[#FF4757] text-white flex items-center justify-center text-sm">04</span>
+                  <h3 className="text-2xl font-bold text-[#F84B5F] flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-[#F84B5F] text-white flex items-center justify-center text-sm">04</span>
                     Commercial Properties
                   </h3>
                   <div className="space-y-6">

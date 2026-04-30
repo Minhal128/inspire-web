@@ -91,7 +91,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
               value={formData.purpose}
               onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
               placeholder="Enter purpose of inspection"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
             />
           </div>
 
@@ -102,7 +102,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
               value={formData.hudFre}
               onChange={(e) => setFormData({ ...formData, hudFre: e.target.value })}
               placeholder="Select option"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
             />
           </div>
 
@@ -113,7 +113,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
               value={formData.management}
               onChange={(e) => setFormData({ ...formData, management: e.target.value })}
               placeholder="Enter management company or assessment"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
             />
           </div>
 
@@ -125,7 +125,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
                 value={formData.insurance}
                 onChange={(e) => setFormData({ ...formData, insurance: e.target.value })}
                 placeholder="Insurance company"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -135,7 +135,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
                 value={formData.banker}
                 onChange={(e) => setFormData({ ...formData, banker: e.target.value })}
                 placeholder="Banker or sale"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
@@ -148,7 +148,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
                 value={formData.buildings}
                 onChange={(e) => setFormData({ ...formData, buildings: e.target.value })}
                 placeholder="e.g. 4"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -158,7 +158,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
                 value={formData.units}
                 onChange={(e) => setFormData({ ...formData, units: e.target.value })}
                 placeholder="e.g. 43"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                 placeholder="Enter state / city"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -181,7 +181,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
                 value={formData.zipCode}
                 onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
                 placeholder="Enter zip / postal code"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
@@ -190,7 +190,7 @@ export function RequestInspectionModal({ isOpen, onClose }: RequestInspectionMod
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#0D6A8D] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm disabled:opacity-50"
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm disabled:opacity-50"
             >
               {isLoading ? "Submitting..." : "Submit"}
             </Button>
@@ -592,8 +592,8 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
         </button>
 
         <div className="flex items-center justify-between mb-4 sm:mb-6 pr-8">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#FF4757]">Add New Property</h2>
-          <span className="bg-[#0D6A8D] text-white text-sm font-medium px-3 py-1 rounded-full">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#F84B5F]">Add New Property</h2>
+          <span className="bg-[#006795] text-white text-sm font-medium px-3 py-1 rounded-full">
             {properties.length} {properties.length === 1 ? 'Property' : 'Properties'}
           </span>
         </div>
@@ -603,7 +603,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
             <div key={index} className="border border-gray-200 rounded-lg p-4 sm:p-5 relative">
               {properties.length > 1 && (
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-semibold text-[#0D6A8D]">Property {index + 1}</span>
+                  <span className="text-sm font-semibold text-[#006795]">Property {index + 1}</span>
                   <button
                     onClick={() => removeProperty(index)}
                     className="text-red-500 hover:text-red-700 text-sm font-medium flex items-center gap-1"
@@ -618,46 +618,46 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Property ID (Optional)</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Property ID (Optional)</label>
                   <input
                     type="text"
                     value={formData.propertyId}
                     onChange={(e) => updateProperty(index, 'propertyId', e.target.value)}
                     placeholder="Property ID"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Address *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Address *</label>
                   <input
                     type="text"
                     value={formData.address}
                     onChange={(e) => updateProperty(index, 'address', e.target.value)}
                     placeholder="Enter your Address"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Property Name *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Property Name *</label>
                   <input
                     type="text"
                     value={formData.propertyName}
                     onChange={(e) => updateProperty(index, 'propertyName', e.target.value)}
                     placeholder="Enter your Property Name"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">City *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">City *</label>
                   <input
                     type="text"
                     value={formData.city}
                     onChange={(e) => updateProperty(index, 'city', e.target.value)}
                     placeholder="Enter City"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                     required
                   />
                 </div>
@@ -665,23 +665,23 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Number Of Buildings *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Number Of Buildings *</label>
                   <input
                     type="text"
                     value={formData.buildings}
                     onChange={(e) => updateProperty(index, 'buildings', e.target.value)}
                     placeholder="Number of Buildings"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">State *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State *</label>
                   <input
                     type="text"
                     value={formData.state}
                     onChange={(e) => updateProperty(index, 'state', e.target.value)}
                     placeholder="Enter State"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                     required
                   />
                 </div>
@@ -689,23 +689,23 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Number Of Units *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Number Of Units *</label>
                   <input
                     type="text"
                     value={formData.units}
                     onChange={(e) => updateProperty(index, 'units', e.target.value)}
                     placeholder="Number of Units"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Zip *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Zip *</label>
                   <input
                     type="text"
                     value={formData.zipCode}
                     onChange={(e) => updateProperty(index, 'zipCode', e.target.value)}
                     placeholder="Postal Code"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                     required
                   />
                 </div>
@@ -714,13 +714,13 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="sm:col-span-2 flex justify-center">
                   <div className="w-full sm:w-1/2">
-                    <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2 text-center">Country *</label>
+                    <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2 text-center">Country *</label>
                     <input
                       type="text"
                       value={formData.country}
                       onChange={(e) => updateProperty(index, 'country', e.target.value)}
                       placeholder="Enter Country"
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm text-center placeholder:text-center"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm text-center placeholder:text-center"
                       required
                     />
                   </div>
@@ -733,7 +733,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
           <div className="flex justify-center">
             <button
               onClick={addNewProperty}
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold rounded-lg text-sm transition-colors"
+              className="flex items-center gap-2 px-6 py-2.5 bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold rounded-lg text-sm transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -758,13 +758,13 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               className={`border-2 border-dashed rounded-lg p-6 sm:p-8 text-center transition-all cursor-pointer ${isDragging
-                ? 'border-[#0D6A8D] bg-[#E8F4F8]'
-                : 'border-gray-300 hover:border-[#0D6A8D] hover:bg-[#E8F4F8]/50'
+                ? 'border-[#006795] bg-[#E8F4F8]'
+                : 'border-gray-300 hover:border-[#006795] hover:bg-[#E8F4F8]/50'
                 }`}
             >
               {isProcessing ? (
                 <div className="flex flex-col items-center gap-3">
-                  <div className="w-10 h-10 border-4 border-[#0D6A8D] border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-10 h-10 border-4 border-[#006795] border-t-transparent rounded-full animate-spin"></div>
                   <p className="text-sm text-gray-600">Processing file...</p>
                 </div>
               ) : uploadedFile ? (
@@ -791,12 +791,12 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
               ) : (
                 <>
                   <div className="w-12 h-12 mx-auto mb-3 bg-[#E8F4F8] rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-[#0D6A8D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[#006795]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                   </div>
                   <p className="text-sm text-gray-700 mb-1">
-                    <span className="font-semibold text-[#0D6A8D]">Drag & drop</span> your file here
+                    <span className="font-semibold text-[#006795]">Drag & drop</span> your file here
                   </p>
                   <p className="text-xs text-gray-500 mb-3">or click to browse</p>
                   <input
@@ -808,7 +808,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                   <label
                     htmlFor="property-file-upload"
-                    className="inline-block px-4 py-2 bg-[#0D6A8D] hover:bg-[#0a5670] text-white text-sm font-medium rounded-lg cursor-pointer transition-colors"
+                    className="inline-block px-4 py-2 bg-[#006795] hover:bg-[#0a5670] text-white text-sm font-medium rounded-lg cursor-pointer transition-colors"
                   >
                     Browse Files
                   </label>
@@ -835,7 +835,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
           <div className="flex justify-center pt-4 sm:pt-6">
             <Button
               onClick={handleNext}
-              className="w-full sm:w-auto px-8 sm:px-16 py-3 bg-[#0D6A8D] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm"
+              className="w-full sm:w-auto px-8 sm:px-16 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm"
             >
               Next
             </Button>
@@ -958,7 +958,7 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
                     type="text"
                     value={building.name}
                     onChange={(e) => updateBuildingName(index, e.target.value)}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
                   />
                 </div>
                 <div className="flex-1">
@@ -968,14 +968,14 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
                     value={building.units}
                     onChange={(e) => updateBuildingUnits(index, parseInt(e.target.value) || 0)}
                     min={0}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
                   />
                 </div>
                 <button
                   onClick={() => {
                     toast.success(`Building ${building.name} updated`, { position: "top-right" })
                   }}
-                  className="px-3 py-2 bg-[#0D6A8D] hover:bg-[#0a5670] text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
+                  className="px-3 py-2 bg-[#006795] hover:bg-[#0a5670] text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
                 >
                   Update<br />Unit
                 </button>
@@ -1169,18 +1169,18 @@ export function CoverageSelectionModal({ isOpen, onClose, onStartInspection, pro
               key={option.value}
               onClick={() => handleCoverageChange(option.value)}
               className={`w-full flex items-start gap-3 p-4 rounded-xl border-2 transition-all text-left ${selectedCoverage === option.value
-                ? 'border-[#0D6A8D] bg-[#E8F4F8]'
+                ? 'border-[#006795] bg-[#E8F4F8]'
                 : 'border-gray-200 hover:border-gray-300 bg-white'
                 }`}
             >
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 flex-shrink-0 ${selectedCoverage === option.value ? 'border-[#0D6A8D]' : 'border-gray-300'
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 flex-shrink-0 ${selectedCoverage === option.value ? 'border-[#006795]' : 'border-gray-300'
                 }`}>
                 {selectedCoverage === option.value && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#0D6A8D]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#006795]" />
                 )}
               </div>
               <div>
-                <p className={`text-sm font-bold ${selectedCoverage === option.value ? 'text-[#0D6A8D]' : 'text-gray-900'
+                <p className={`text-sm font-bold ${selectedCoverage === option.value ? 'text-[#006795]' : 'text-gray-900'
                   }`}>
                   {option.label}
                 </p>
@@ -1192,12 +1192,12 @@ export function CoverageSelectionModal({ isOpen, onClose, onStartInspection, pro
 
         <div className="bg-[#F1F7FE] rounded-xl p-4 mb-6 flex items-center justify-between">
           <span className="text-sm font-bold text-gray-700">Units to Inspect:</span>
-          <span className="text-lg font-black text-[#0D6A8D]">{calculatedUnits}</span>
+          <span className="text-lg font-black text-[#006795]">{calculatedUnits}</span>
         </div>
 
         <button
           onClick={handleStart}
-          className="w-full py-3.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-bold rounded-xl text-sm sm:text-base transition-colors shadow-md flex items-center justify-center gap-2"
+          className="w-full py-3.5 bg-[#006795] hover:bg-[#00567a] text-white font-bold rounded-xl text-sm sm:text-base transition-colors shadow-md flex items-center justify-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -1331,94 +1331,94 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
         <div className="space-y-3 sm:space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Property ID</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Property ID</label>
               <input
                 type="text"
                 value={formData.propertyId}
                 onChange={(e) => setFormData({ ...formData, propertyId: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Address</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Address</label>
               <input
                 type="text"
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Property Name</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Property Name</label>
               <input
                 type="text"
                 value={formData.propertyName}
                 onChange={(e) => setFormData({ ...formData, propertyName: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Country</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Country</label>
               <input
                 type="text"
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                 placeholder="Enter Country"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">State (Province)</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State (Province)</label>
               <input
                 type="text"
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                 placeholder="Enter State"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">City (Area)</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">City (Area)</label>
               <input
                 type="text"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 placeholder="Enter City"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Postal Code</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Postal Code</label>
               <input
                 type="text"
                 value={formData.zipCode}
                 onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Number Of Building</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Number Of Building</label>
               <input
                 type="text"
                 value={formData.buildings}
                 onChange={(e) => setFormData({ ...formData, buildings: e.target.value })}
                 placeholder="Number of Buildings"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#0D6A8D] mb-2">Number Of Unit</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Number Of Unit</label>
               <input
                 type="text"
                 value={formData.units}
                 onChange={(e) => setFormData({ ...formData, units: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
@@ -1426,13 +1426,13 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
             <Button
               onClick={handleUpdate}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#0D6A8D] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm"
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm"
             >
               Update
             </Button>
             <Button
               onClick={handleDelete}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold rounded-lg text-sm"
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold rounded-lg text-sm"
             >
               Delete
             </Button>

@@ -277,7 +277,7 @@ export default function SharedReportPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0D6A8D] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795] mx-auto mb-4"></div>
           <p className="text-gray-600">Loading inspection report...</p>
         </div>
       </div>
@@ -331,7 +331,7 @@ export default function SharedReportPage() {
             </div>
             <button
               onClick={handleDownloadPDF}
-              className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white px-4 md:px-6 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm md:text-base"
+              className="bg-[#006795] hover:bg-[#0A5670] text-white px-4 md:px-6 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm md:text-base"
             >
               <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -359,9 +359,9 @@ export default function SharedReportPage() {
         <Card className="p-6 md:p-8 mb-6">
           <div className="flex flex-col md:flex-row items-center justify-around gap-6">
             <div className="flex flex-col items-center">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-blue-50 border-4 border-[#0D6A8D] flex items-center justify-center">
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-blue-50 border-4 border-[#006795] flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#0D6A8D]">{complianceScore}%</div>
+                  <div className="text-2xl md:text-3xl font-bold text-[#006795]">{complianceScore}%</div>
                   <div className="text-xs text-gray-600">Compliance</div>
                 </div>
               </div>

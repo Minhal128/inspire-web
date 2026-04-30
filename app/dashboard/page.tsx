@@ -240,7 +240,7 @@ export default function Dashboard() {
         <div className="flex flex-col sm:flex-row gap-3 mb-6 lg:mb-8">
           <Button
             onClick={() => setShowAddPropertyModal(true)}
-            className="w-full sm:w-auto bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
+            className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
           >
             Add New Property
           </Button>
@@ -259,7 +259,7 @@ export default function Dashboard() {
                   placeholder="Enter property name"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent text-sm transition-colors duration-200"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
                 />
                 {searchQuery && (
                   <button
@@ -279,7 +279,7 @@ export default function Dashboard() {
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
                 placeholder="Enter Country"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent bg-white text-sm transition-colors duration-200"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent bg-white text-sm transition-colors duration-200"
               />
             </div>
 
@@ -290,7 +290,7 @@ export default function Dashboard() {
                 value={selectedState}
                 onChange={(e) => setSelectedState(e.target.value)}
                 placeholder="Enter State"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent bg-white text-sm transition-colors duration-200"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent bg-white text-sm transition-colors duration-200"
               />
             </div>
 
@@ -301,14 +301,14 @@ export default function Dashboard() {
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
                 placeholder="Enter City"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent bg-white text-sm transition-colors duration-200"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent bg-white text-sm transition-colors duration-200"
               />
             </div>
 
             <div className="flex items-end">
               <Button
                 onClick={handleSearch}
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
               >
                 Search Properties
               </Button>
@@ -374,7 +374,7 @@ export default function Dashboard() {
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => handleInitiate(property)}
-                            className="px-3 py-1.5 text-xs font-semibold text-white bg-[#0D6A8D] hover:bg-[#0A5670] rounded-md transition-colors"
+                            className="px-3 py-1.5 text-xs font-semibold text-white bg-[#006795] hover:bg-[#0A5670] rounded-md transition-colors"
                           >
                             Initiate
                           </button>
@@ -417,7 +417,7 @@ export default function Dashboard() {
                     </div>
                     <Button
                       onClick={() => handleInitiate(property)}
-                      className="bg-[#7FFF00] hover:bg-[#6FDF00] text-gray-900 font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
+                      className="bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
                     >
                       Initiate
                     </Button>

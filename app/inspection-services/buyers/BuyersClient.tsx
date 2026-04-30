@@ -54,13 +54,13 @@ export default function BuyersClient() {
     <MainLayout>
       <div className="w-full min-h-screen bg-white overflow-x-hidden">
         {/* Hero with Image */}
-        <section className="relative bg-[#0D6A8D] py-24 md:py-36 overflow-hidden">
+        <section className="relative bg-[#006795] py-24 md:py-36 overflow-hidden">
           <div className="absolute inset-0 opacity-25">
             <Image src="/why.jpg" alt="" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D6A8D] via-[#0D6A8D]/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#006795] via-[#006795]/70 to-transparent"></div>
           <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-6 text-center">
-            <p className="text-[#7FFF00] font-bold uppercase tracking-[0.2em] mb-6">Expert Inspection Services</p>
+            <p className="text-[#006795] font-bold uppercase tracking-[0.2em] mb-6">Expert Inspection Services</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.1]">
               Buyers Inspection <span className="italic font-medium">Services</span>
             </h1>
@@ -73,17 +73,17 @@ export default function BuyersClient() {
         {/* Service Sections */}
         <section className="max-w-[1400px] mx-auto px-4 md:px-6 py-20 md:py-28">
           <div className="text-center mb-16">
-            <p className="text-xs font-bold text-[#0D6A8D] uppercase tracking-widest mb-4">Our Services</p>
+            <p className="text-xs font-bold text-[#006795] uppercase tracking-widest mb-4">Our Services</p>
             <h2 className="text-3xl md:text-4xl font-bold text-black">Comprehensive Services</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sections.map((s, i) => (
               <div key={i} className="bg-white border border-gray-100 rounded-[32px] p-10 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="w-12 h-12 rounded-2xl bg-[#E8F4F8] flex items-center justify-center text-[#0D6A8D] font-bold text-lg">
+                  <span className="w-12 h-12 rounded-2xl bg-[#E8F4F8] flex items-center justify-center text-[#006795] font-bold text-lg">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="text-xl font-bold text-black group-hover:text-[#0D6A8D] transition-colors">{s.title}</h3>
+                  <h3 className="text-xl font-bold text-black group-hover:text-[#006795] transition-colors">{s.title}</h3>
                 </div>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.content}</p>
               </div>
@@ -95,7 +95,7 @@ export default function BuyersClient() {
         <section className="bg-black py-20 px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Get Started?</h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Protect your investment with a comprehensive pre-purchase inspection from Nspire.</p>
-          <Button onClick={() => router.push("/contact")} className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white rounded-full px-12 py-7 text-lg font-bold shadow-2xl hover:scale-105 transition-all">Book Your Buyer Inspection</Button>
+          <Button onClick={() => router.push("/contact")} className="bg-[#006795] hover:bg-[#0A5670] text-white rounded-full px-12 py-7 text-lg font-bold shadow-2xl hover:scale-105 transition-all">Book Your Buyer Inspection</Button>
         </section>
       </div>
     </MainLayout>

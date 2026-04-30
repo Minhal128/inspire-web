@@ -103,25 +103,25 @@ export default function AssetManagerSignup() {
             {/* Row 1: Full Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="fullName" className="block text-sm font-semibold text-[#0D6A8D] mb-2">Full Name</label>
+                <label htmlFor="fullName" className="block text-sm font-semibold text-[#006795] mb-2">Full Name</label>
                 <input
                   type="text"
                   id="fullName"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-[#0D6A8D] mb-2">Email Address</label>
+                <label htmlFor="email" className="block text-sm font-semibold text-[#006795] mb-2">Email Address</label>
                 <input
                   type="email"
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
             </div>
@@ -129,23 +129,23 @@ export default function AssetManagerSignup() {
             {/* Row 2: Password & Role */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="password" className="block text-sm font-semibold text-[#0D6A8D] mb-2">Password</label>
+                <label htmlFor="password" className="block text-sm font-semibold text-[#006795] mb-2">Password</label>
                 <input
                   type="password"
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Create your Password"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
               <div>
-                <label htmlFor="role" className="block text-sm font-semibold text-[#0D6A8D] mb-2">Role</label>
+                <label htmlFor="role" className="block text-sm font-semibold text-[#006795] mb-2">Role</label>
                 <select
                   id="role"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] appearance-none cursor-pointer"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795] appearance-none cursor-pointer"
                   style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center' }}
                 >
                   <option value="asset-manager">Asset Manager</option>
@@ -157,7 +157,7 @@ export default function AssetManagerSignup() {
             </div>
 
             {/* Signup Button */}
-            <Button type="submit" disabled={isLoading} className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
+            <Button type="submit" disabled={isLoading} className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
               {isLoading ? "Creating Account..." : "Sign Up"}
             </Button>
           </form>
@@ -165,12 +165,12 @@ export default function AssetManagerSignup() {
           {/* Login Link */}
           <p className="text-center text-sm text-gray-600 mt-6">
             Already have an account?{" "}
-            <button onClick={() => router.push('/asset-manager/login')} className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Log in here</button>
+            <button onClick={() => router.push('/asset-manager/login')} className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Log in here</button>
           </p>
 
           {/* Back to Portal Selection */}
           <p className="text-center text-sm text-gray-600 mt-4">
-            <button onClick={() => router.push('/profile-selection')} className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Back to Portal Selection</button>
+            <button onClick={() => router.push('/profile-selection')} className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Back to Portal Selection</button>
           </p>
 
           {/* Terms */}

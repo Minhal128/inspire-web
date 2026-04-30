@@ -61,7 +61,7 @@ export function LocationDemo() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Country Input */}
         <div>
-          <label className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+          <label className="block text-sm font-semibold text-[#006795] mb-2">
             Country
           </label>
           <input
@@ -69,13 +69,13 @@ export function LocationDemo() {
             value={selectedCountry}
             onChange={(e) => setSelectedCountry(e.target.value)}
             placeholder="Enter Country"
-            className="w-full px-4 py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+            className="w-full px-4 py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
           />
         </div>
 
         {/* State/Province Input */}
         <div>
-          <label className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+          <label className="block text-sm font-semibold text-[#006795] mb-2">
             State/Province
           </label>
           <input
@@ -83,13 +83,13 @@ export function LocationDemo() {
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
             placeholder="Enter State/Province"
-            className="w-full px-4 py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+            className="w-full px-4 py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
           />
         </div>
 
         {/* City Input */}
         <div>
-          <label className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+          <label className="block text-sm font-semibold text-[#006795] mb-2">
             City
           </label>
           <input
@@ -97,7 +97,7 @@ export function LocationDemo() {
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
             placeholder="Enter City"
-            className="w-full px-4 py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+            className="w-full px-4 py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
           />
         </div>
       </div>

@@ -122,7 +122,7 @@ export default function ManagementDashboardLayout({ children }: ManagementDashbo
               key={item.path}
               onClick={() => router.push(item.path)}
               className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-                isActive(item.path) ? 'bg-[#FF4757] text-white' : 'text-gray-700 hover:bg-gray-100'
+                isActive(item.path) ? 'bg-[#F84B5F] text-white' : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               {item.icon}
@@ -135,7 +135,7 @@ export default function ManagementDashboardLayout({ children }: ManagementDashbo
           <button
             onClick={() => router.push('/management/dashboard/settings')}
             className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-              isActive('/management/dashboard/settings') ? 'bg-[#FF4757] text-white' : 'text-gray-700 hover:bg-gray-100'
+              isActive('/management/dashboard/settings') ? 'bg-[#F84B5F] text-white' : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -199,7 +199,7 @@ export default function ManagementDashboardLayout({ children }: ManagementDashbo
                 setIsMobileMenuOpen(false)
               }}
               className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-                isActive(item.path) ? 'bg-[#FF4757] text-white' : 'text-gray-700 hover:bg-gray-100'
+                isActive(item.path) ? 'bg-[#F84B5F] text-white' : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               {item.icon}
@@ -215,7 +215,7 @@ export default function ManagementDashboardLayout({ children }: ManagementDashbo
               setIsMobileMenuOpen(false)
             }}
             className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-              isActive('/management/dashboard/settings') ? 'bg-[#FF4757] text-white' : 'text-gray-700 hover:bg-gray-100'
+              isActive('/management/dashboard/settings') ? 'bg-[#F84B5F] text-white' : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

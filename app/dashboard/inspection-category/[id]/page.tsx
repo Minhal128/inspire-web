@@ -5,7 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { propertiesAPI, authAPI } from "@/lib/api"
+import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
 import { outsideDeficiencyMapping, insideDeficiencyMapping, DeficiencyDetail } from "@/lib/deficiencyMapping"
 import { unitDeficiencyMapping } from "@/lib/unitDeficiencyMapping"
 import { calculateUnitInspectionScore, calculateUnitScore, ScoringResult, POSSIBLE_SCORE, SEVERITY_LEVELS } from "@/lib/scoringCalculations"
@@ -312,8 +312,127 @@ export default function InspectionCategoryPage() {
     useEffect(() => {
         if (id) {
             fetchData()
+            loadSavedProgress()
         }
     }, [id])
+
+    const loadSavedProgress = async () => {
+        try {
+            // Fetch ALL progress for this property to populate all progress bars
+            const res = await inspectionsAPI.getProgress({
+                property_id: id
+            });
+
+            if (res.success && res.progress) {
+                // Find Inside and Outside progress for this building
+                const outsideRec = res.progress.find((p: any) => 
+                    p.inspectionType === 'Outside' && (p.unitId === urlBuilding || p.buildingId === urlBuilding)
+                );
+                const insideRec = res.progress.find((p: any) => 
+                    p.inspectionType === 'Inside' && (p.unitId === urlBuilding || p.buildingId === urlBuilding)
+                );
+                
+                if (outsideRec && outsideRec.responses) setOutsideStatuses(outsideRec.responses);
+                if (insideRec && insideRec.responses) setInsideStatuses(insideRec.responses);
+
+                // If a unit is active, find its progress too
+                if (activeInspectionUnit) {
+                    const unitRec = res.progress.find((p: any) => 
+                        p.inspectionType === 'Unit' && p.unitId === activeInspectionUnit
+                    );
+                    if (unitRec && unitRec.responses) setUnitStatuses(unitRec.responses);
+                }
+
+                // Restore findings for summary page if they exist in any record
+                const allFindings: any[] = [];
+                res.progress.forEach((p: any) => {
+                    if (p.inspectionData && Array.isArray(p.inspectionData.findings)) {
+                        allFindings.push(...p.inspectionData.findings);
+                    }
+                });
+
+                if (allFindings.length > 0) {
+                    // Dedupe findings
+                    const seen = new Set();
+                    const uniqueFindings = allFindings.filter(f => {
+                        const key = `${f.title}|${f.description}|${f.unit}`;
+                        if (seen.has(key)) return false;
+                        seen.add(key);
+                        return true;
+                    });
+
+                    const existingDataRaw = localStorage.getItem('currentInspectionData');
+                    let finalData: any = { findings: uniqueFindings };
+                    if (existingDataRaw) {
+                        try {
+                            const existingData = JSON.parse(existingDataRaw);
+                            finalData = { ...existingData, findings: uniqueFindings };
+                        } catch (e) {}
+                    }
+                    localStorage.setItem('currentInspectionData', JSON.stringify(finalData));
+                }
+            }
+        } catch (error) {
+            console.error("Error loading progress:", error);
+        }
+    };
+
+    // Save progress whenever statuses change
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            saveCurrentProgress();
+        }, 2000); // Debounce save
+
+        return () => clearTimeout(timer);
+    }, [outsideStatuses, insideStatuses, unitStatuses]);
+
+    const saveCurrentProgress = async () => {
+        if (!id || !user) return;
+        
+        try {
+            const promises = [];
+            
+            if (Object.keys(outsideStatuses).length > 0) {
+                promises.push(inspectionsAPI.saveProgress({
+                    property_id: id,
+                    unit_id: urlBuilding,
+                    inspection_type: 'Outside',
+                    responses: outsideStatuses,
+                    building_id: urlBuilding
+                }));
+            }
+            
+            if (Object.keys(insideStatuses).length > 0) {
+                promises.push(inspectionsAPI.saveProgress({
+                    property_id: id,
+                    unit_id: urlBuilding,
+                    inspection_type: 'Inside',
+                    responses: insideStatuses,
+                    building_id: urlBuilding
+                }));
+            }
+            
+            if (Object.keys(unitStatuses).length > 0 && activeInspectionUnit) {
+                promises.push(inspectionsAPI.saveProgress({
+                    property_id: id,
+                    unit_id: activeInspectionUnit,
+                    inspection_type: 'Unit',
+                    responses: unitStatuses,
+                    building_id: urlBuilding
+                }));
+            }
+            
+            await Promise.all(promises);
+        } catch (error) {
+            console.error("Error saving progress:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (activeInspectionUnit) {
+            loadSavedProgress();
+        }
+    }, [activeInspectionUnit]);
 
     const fetchData = async () => {
         try {
@@ -588,13 +707,70 @@ export default function InspectionCategoryPage() {
                     startDate: new Date().toLocaleDateString(),
                     startTime: new Date().toLocaleTimeString()
                 };
+                // Save finding to backend progress instead of just redirecting
+                const type = currentSection.charAt(0).toUpperCase() + currentSection.slice(1);
+                const currentStatuses = currentSection === 'outside' ? outsideStatuses 
+                                     : currentSection === 'inside' ? insideStatuses 
+                                     : unitStatuses;
+                
+                // Ensure the item is marked as OD
+                const updatedStatuses = {
+                    ...currentStatuses,
+                    [currentModalItem]: 'OD'
+                };
 
-                localStorage.setItem('currentInspectionData', JSON.stringify(inspectionDataForSummary));
+                if (currentSection === 'outside') setOutsideStatuses(updatedStatuses as Record<string, ItemStatus>);
+                else if (currentSection === 'inside') setInsideStatuses(updatedStatuses as Record<string, ItemStatus>);
+                else setUnitStatuses(updatedStatuses as Record<string, ItemStatus>);
+
+                await inspectionsAPI.saveProgress({
+                    property_id: property?._id || params.id,
+                    unit_id: currentSection === 'unit' ? activeInspectionUnit : urlBuilding,
+                    inspection_type: type,
+                    responses: updatedStatuses,
+                    inspectionData: {
+                        findings: [inspectionDataForSummary.findings[0]] // Just send this one finding to merge
+                    },
+                    building_id: urlBuilding
+                });
+
+                // Update local storage for summary (merging instead of overwriting)
+                const existingDataRaw = localStorage.getItem('currentInspectionData');
+                let mergedFindings = inspectionDataForSummary.findings;
+                if (existingDataRaw) {
+                    try {
+                        const existingData = JSON.parse(existingDataRaw);
+                        if (Array.isArray(existingData.findings)) {
+                            // Merge and dedupe findings
+                            const allFindings = [...existingData.findings, ...inspectionDataForSummary.findings];
+                            const seen = new Set();
+                            mergedFindings = allFindings.filter(f => {
+                                const key = `${f.title}|${f.description}|${f.unit}`;
+                                if (seen.has(key)) return false;
+                                seen.add(key);
+                                return true;
+                            });
+                        }
+                    } catch (e) {
+                        console.error("Error merging findings:", e);
+                    }
+                }
+                
+                const finalData = {
+                    ...inspectionDataForSummary,
+                    findings: mergedFindings
+                };
+
+                localStorage.setItem('currentInspectionData', JSON.stringify(finalData));
                 localStorage.setItem('currentInspectionProperty', JSON.stringify(property));
 
-                // Close modal and redirect to summary
+                toast.info("Item saved. You can continue with other items or view summary.", { position: "top-right" });
+                
+                // Close modal but STAY on the page
                 setIsODModalOpen(false);
-                router.push('/dashboard/inspection/summary');
+                setSelectedDeficiency(null);
+                setPhotos([]);
+                setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
 
             } else {
                 throw new Error(data.message || "Analysis failed");
@@ -696,7 +872,7 @@ export default function InspectionCategoryPage() {
                             {isGeneral ? (
                                 <button
                                     onClick={() => handleStatusChange(section, item, 'OD')}
-                                    className="w-full py-3 rounded text-[11px] font-bold bg-[#0D6A8D] hover:bg-[#0a5670] text-white shadow-sm transition-all uppercase tracking-wider"
+                                    className="w-full py-3 rounded text-[11px] font-bold bg-[#006795] hover:bg-[#0a5670] text-white shadow-sm transition-all uppercase tracking-wider"
                                 >
                                     General Button
                                 </button>
@@ -743,7 +919,7 @@ export default function InspectionCategoryPage() {
                         <tr className="border-b-2 border-gray-100">
                             <th className="text-center py-4 px-4 text-xs font-black text-gray-900 uppercase">Outline Items</th>
                             <th className="py-2 px-2">
-                                <Button onClick={() => selectAll(section, 'No OD')} className="w-full bg-[#0D6A8D] hover:bg-[#0a5670] text-white text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
+                                <Button onClick={() => selectAll(section, 'No OD')} className="w-full bg-[#006795] hover:bg-[#0a5670] text-white text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
                                     <div className="w-3 h-3 bg-white border border-cyan-800 flex items-center justify-center">
                                         {items.length > 0 && items.every(item => statuses[item] === 'No OD') && <Check className="w-2.5 h-2.5 text-cyan-800" strokeWidth={4} />}
                                     </div>
@@ -759,7 +935,7 @@ export default function InspectionCategoryPage() {
                                 </Button>
                             </th>
                             <th className="py-2 px-2">
-                                <Button onClick={() => selectAll(section, 'N/A')} className="w-full bg-[#0D6A8D] hover:bg-[#0a5670] text-white text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
+                                <Button onClick={() => selectAll(section, 'N/A')} className="w-full bg-[#006795] hover:bg-[#0a5670] text-white text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
                                     <div className="w-3 h-3 bg-white border border-cyan-800 flex items-center justify-center">
                                         {items.length > 0 && items.every(item => statuses[item] === 'N/A') && <Check className="w-2.5 h-2.5 text-cyan-800" strokeWidth={4} />}
                                     </div>
@@ -778,7 +954,7 @@ export default function InspectionCategoryPage() {
                                         <td colSpan={3} className="py-2 px-2 text-center">
                                             <button
                                                 onClick={() => handleStatusChange(section, item, 'OD')}
-                                                className="w-full py-2.5 rounded text-[11px] font-bold bg-[#0D6A8D] hover:bg-[#0a5670] text-white shadow-sm transition-all uppercase tracking-wider"
+                                                className="w-full py-2.5 rounded text-[11px] font-bold bg-[#006795] hover:bg-[#0a5670] text-white shadow-sm transition-all uppercase tracking-wider"
                                             >
                                                 General Button
                                             </button>
@@ -875,7 +1051,7 @@ export default function InspectionCategoryPage() {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0D6A8D]"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
                 </div>
             </DashboardLayout>
         )
@@ -893,15 +1069,25 @@ export default function InspectionCategoryPage() {
                         <div className="w-3 h-1.5 border-2 border-gray-400 rotate-45 border-t-0 border-l-0 ml-1" />
                     </div>
                 </div>
-                <div className="mb-8 flex items-center gap-3">
-                    <p className="text-base font-bold text-gray-900 uppercase tracking-tight">{columnHeaderName}: {buildingName}</p>
-                    <button
-                        onClick={openBuildingEditModal}
-                        className="p-1.5 rounded-full hover:bg-[#0D6A8D]/10 text-[#0D6A8D] transition-colors"
-                        title="Edit building name"
+                <div className="mb-8 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <p className="text-base font-bold text-gray-900 uppercase tracking-tight">{columnHeaderName}: {buildingName}</p>
+                        <button
+                            onClick={openBuildingEditModal}
+                            className="p-1.5 rounded-full hover:bg-[#006795]/10 text-[#006795] transition-colors"
+                            title="Edit building name"
+                        >
+                            <Pencil className="w-4 h-4" />
+                        </button>
+                    </div>
+                    
+                    <Button 
+                        onClick={() => router.push('/dashboard/inspection/summary')}
+                        className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
-                        <Pencil className="w-4 h-4" />
-                    </button>
+                        <FileText className="w-4 h-4" />
+                        View Summary
+                    </Button>
                 </div>
 
 
@@ -922,7 +1108,7 @@ export default function InspectionCategoryPage() {
                                     type="text"
                                     value={tempBuildingName}
                                     onChange={(e) => setTempBuildingName(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent text-sm"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm"
                                     placeholder="Enter building name"
                                     autoFocus
                                 />
@@ -936,7 +1122,7 @@ export default function InspectionCategoryPage() {
                                 </button>
                                 <button
                                     onClick={handleSaveBuildingName}
-                                    className="flex-1 px-4 py-3 bg-[#1A73E8] text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
+                                    className="flex-1 px-4 py-3 bg-[#006795] text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
                                 >
                                     Save
                                 </button>
@@ -963,7 +1149,7 @@ export default function InspectionCategoryPage() {
                                             type="text"
                                             value={tempUnitNames[uid] || ''}
                                             onChange={(e) => setTempUnitNames(prev => ({ ...prev, [uid]: e.target.value }))}
-                                            className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent text-sm"
+                                            className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm"
                                             placeholder={`Unit ${uid}`}
                                         />
                                     </div>
@@ -978,7 +1164,7 @@ export default function InspectionCategoryPage() {
                                 </button>
                                 <button
                                     onClick={handleSaveUnitNames}
-                                    className="flex-1 px-4 py-3 bg-[#1A73E8] text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
+                                    className="flex-1 px-4 py-3 bg-[#006795] text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
                                 >
                                     Save All
                                 </button>
@@ -992,15 +1178,15 @@ export default function InspectionCategoryPage() {
                     <div key={sec} className="mb-6 border border-blue-100/50 rounded-lg overflow-hidden shadow-sm">
                         <div className="w-full bg-[#EBF5FF] p-4 flex items-center justify-between transition-colors text-left font-black">
                             <div className="flex-1">
-                                <p className="text-sm text-[#1A73E8] mb-1 uppercase tracking-tight">
+                                <p className="text-sm text-[#006795] mb-1 uppercase tracking-tight">
                                     {sec === 'outside' ? 'Outside (Areas affected by Rain, Snow, Wind)' : sec === 'inside' ? 'Inside (Interior Common area, Utility closet, Mechanical rooms)' : 'Units (Individual unit inspections)'}
                                 </p>
-                                <div className="flex items-center gap-4 mb-2 text-[#1A73E8]">
+                                <div className="flex items-center gap-4 mb-2 text-[#006795]">
                                     <p className="text-[11px]">({sec === 'outside' ? outsideProgress.completed : sec === 'inside' ? insideProgress.completed : unitProgress.completed}/{sec === 'outside' ? outsideItemsList.length : sec === 'inside' ? insideItemsList.length : unitItemsList.length})</p>
                                     <p className="text-[11px]">{sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}% Completed</p>
                                 </div>
                                 <div className="w-full h-2 bg-white rounded-full overflow-hidden max-w-4xl shadow-inner">
-                                    <div className="h-full bg-[#3B82F6] transition-all duration-500" style={{ width: `${sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}%` }}></div>
+                                    <div className="h-full bg-[#006795] transition-all duration-500" style={{ width: `${sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}%` }}></div>
                                 </div>
                             </div>
                             <button
@@ -1014,7 +1200,7 @@ export default function InspectionCategoryPage() {
                                 }}
                                 className="p-2 rounded-full hover:bg-blue-100/50"
                             >
-                                {expandedSection === sec ? <ChevronUp className="w-6 h-6 text-[#1A73E8]" /> : <ChevronDown className="w-6 h-6 text-[#1A73E8]" />}
+                                {expandedSection === sec ? <ChevronUp className="w-6 h-6 text-[#006795]" /> : <ChevronDown className="w-6 h-6 text-[#006795]" />}
                             </button>
                         </div>
                         {expandedSection === sec && (
@@ -1023,7 +1209,7 @@ export default function InspectionCategoryPage() {
                                     <div className="p-4 sm:p-6 pb-0 space-y-4 border-b border-blue-50">
                                         {activeInspectionUnit && (
                                             <div className="flex items-center gap-2">
-                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0D6A8D]/10 text-[#0D6A8D] text-sm font-bold">
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#006795]/10 text-[#006795] text-sm font-bold">
                                                     <User className="w-3.5 h-3.5" /> Inspecting: {activeInspectionUnit}
                                                 </span>
                                             </div>
@@ -1034,7 +1220,7 @@ export default function InspectionCategoryPage() {
                                             </p>
                                             <button
                                                 onClick={openUnitEditModal}
-                                                className="p-1.5 rounded-full hover:bg-[#0D6A8D]/10 text-[#0D6A8D] transition-colors"
+                                                className="p-1.5 rounded-full hover:bg-[#006795]/10 text-[#006795] transition-colors"
                                                 title="Edit unit names"
                                             >
                                                 <Pencil className="w-4 h-4" />
@@ -1060,7 +1246,7 @@ export default function InspectionCategoryPage() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header */}
-                        <div className="bg-gradient-to-r from-[#0D6A8D] to-[#0891B2] p-5 flex items-center justify-between">
+                        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] p-5 flex items-center justify-between">
                             <div>
                                 <h3 className="text-lg font-black text-white tracking-tight">
                                     {buildingName} — Select Unit
@@ -1082,7 +1268,7 @@ export default function InspectionCategoryPage() {
                         {/* Progress bar placeholder */}
                         <div className="px-5 pt-4 pb-2">
                             <div className="w-full bg-gray-200 rounded-full h-2">
-                                <div className="bg-gradient-to-r from-[#0D6A8D] to-[#0891B2] h-2 rounded-full transition-all duration-500" style={{ width: '0%' }} />
+                                <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] h-2 rounded-full transition-all duration-500" style={{ width: '0%' }} />
                             </div>
                         </div>
 
@@ -1095,12 +1281,12 @@ export default function InspectionCategoryPage() {
                                     <div
                                         key={unitName}
                                         className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${activeInspectionUnit === displayName
-                                            ? 'border-[#0D6A8D] bg-[#F1F7FE]'
-                                            : 'border-gray-100 bg-white hover:border-[#0D6A8D]/30 hover:bg-[#F1F7FE]'
+                                            ? 'border-[#006795] bg-[#F1F7FE]'
+                                            : 'border-gray-100 bg-white hover:border-[#006795]/30 hover:bg-[#F1F7FE]'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3 flex-1 min-w-0">
-                                            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shrink-0 ${activeInspectionUnit === displayName ? 'bg-[#0D6A8D] text-white' : 'bg-gray-100 text-gray-600'
+                                            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shrink-0 ${activeInspectionUnit === displayName ? 'bg-[#006795] text-white' : 'bg-gray-100 text-gray-600'
                                                 }`}>
                                                 {idx + 1}
                                             </div>
@@ -1118,7 +1304,7 @@ export default function InspectionCategoryPage() {
                                                                 }
                                                                 if (e.key === 'Escape') setEditingUnitIdx(null);
                                                             }}
-                                                            className="flex-1 px-2 py-1 border border-[#0D6A8D] rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]/30"
+                                                            className="flex-1 px-2 py-1 border border-[#006795] rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#006795]/30"
                                                             autoFocus
                                                         />
                                                         <button
@@ -1126,7 +1312,7 @@ export default function InspectionCategoryPage() {
                                                                 setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
                                                                 setEditingUnitIdx(null);
                                                             }}
-                                                            className="p-1 rounded-full bg-[#0D6A8D] text-white hover:bg-[#0a5670]"
+                                                            className="p-1 rounded-full bg-[#006795] text-white hover:bg-[#0a5670]"
                                                         >
                                                             <Check className="w-3.5 h-3.5" />
                                                         </button>
@@ -1136,7 +1322,7 @@ export default function InspectionCategoryPage() {
                                                         <p className="text-sm font-bold text-gray-900 truncate">{displayName}</p>
                                                         <button
                                                             onClick={(e) => { e.stopPropagation(); setEditingUnitIdx(idx); setEditingUnitValue(displayName); }}
-                                                            className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#0D6A8D] transition-colors shrink-0"
+                                                            className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#006795] transition-colors shrink-0"
                                                             title="Rename unit"
                                                         >
                                                             <Pencil className="w-3 h-3" />
@@ -1153,7 +1339,7 @@ export default function InspectionCategoryPage() {
                                                     setUnitSelectionPopupOpen(false)
                                                     setExpandedSection('unit')
                                                 }}
-                                                className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md transition-all flex items-center gap-1 ml-3 shrink-0"
+                                                className="bg-[#006795] hover:bg-[#00567a] text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md transition-all flex items-center gap-1 ml-3 shrink-0"
                                             >
                                                 Start <ChevronRight className="w-3.5 h-3.5" />
                                             </button>
@@ -1199,7 +1385,7 @@ export default function InspectionCategoryPage() {
                                     onChange={(e) => setGeneralNote(e.target.value)}
                                     placeholder="Enter your general comment here..."
                                     rows={4}
-                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]/40 focus:border-[#0D6A8D] resize-none transition-all"
+                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#006795]/40 focus:border-[#006795] resize-none transition-all"
                                 />
                             </div>
 
@@ -1222,10 +1408,10 @@ export default function InspectionCategoryPage() {
                                         <button
                                             onClick={() => generalFileInputRef.current?.click()}
                                             disabled={isUploadingGeneralImage}
-                                            className="flex flex-col items-center justify-center gap-2 py-6 border-2 border-dashed border-[#0D6A8D]/40 rounded-xl text-[#0D6A8D] bg-[#F1F7FE] hover:bg-[#e1eef8] hover:border-[#0D6A8D] transition-all cursor-pointer"
+                                            className="flex flex-col items-center justify-center gap-2 py-6 border-2 border-dashed border-[#006795]/40 rounded-xl text-[#006795] bg-[#F1F7FE] hover:bg-[#e1eef8] hover:border-[#006795] transition-all cursor-pointer"
                                         >
                                             {isUploadingGeneralImage ? (
-                                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#0D6A8D]" />
+                                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#006795]" />
                                             ) : (
                                                 <Camera className="w-6 h-6" />
                                             )}
@@ -1272,7 +1458,7 @@ export default function InspectionCategoryPage() {
                             </button>
                             <button
                                 onClick={handleSaveGeneralComment}
-                                className="flex-1 px-4 py-3 bg-[#0D6A8D] hover:bg-[#0a5670] text-white rounded-xl text-sm font-bold transition-colors"
+                                className="flex-1 px-4 py-3 bg-[#006795] hover:bg-[#0a5670] text-white rounded-xl text-sm font-bold transition-colors"
                             >
                                 Save Comment
                             </button>
@@ -1301,7 +1487,7 @@ export default function InspectionCategoryPage() {
                                         <Plus className="w-8 h-8 text-gray-300" />
                                     </div>
                                     <p className="text-sm font-bold text-gray-400 mb-8 max-w-xs">{`No existing deficiency record for this item.`}</p>
-                                    <Button onClick={() => setModalStep(2)} className="bg-[#1A73E8] hover:bg-blue-700 text-white font-black px-12 h-14 rounded-2xl shadow-lg uppercase tracking-widest text-xs">Add New</Button>
+                                    <Button onClick={() => setModalStep(2)} className="bg-[#006795] hover:bg-blue-700 text-white font-black px-12 h-14 rounded-2xl shadow-lg uppercase tracking-widest text-xs">Add New</Button>
                                 </div>
                             )}
 
@@ -1636,7 +1822,7 @@ export default function InspectionCategoryPage() {
                                         handleODModalClose();
                                         router.push('/dashboard/inspection/summary');
                                     }}
-                                    className="w-full bg-[#0D6A8D] hover:bg-[#0a5670] text-white font-black h-14 rounded-xl shadow-lg uppercase text-[10px] tracking-widest flex items-center justify-center gap-3"
+                                    className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-14 rounded-xl shadow-lg uppercase text-[10px] tracking-widest flex items-center justify-center gap-3"
                                 >
                                     <FileText className="w-4 h-4" />
                                     View NSPIRE Summary

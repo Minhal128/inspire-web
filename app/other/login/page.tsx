@@ -150,23 +150,23 @@ export default function OtherLogin() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
-              <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@example.com" className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]" />
+              <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@example.com" className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]" />
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-semibold text-gray-900 mb-2">Password</label>
-              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your Password" className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]" />
+              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your Password" className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]" />
             </div>
 
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-[#0D6A8D] focus:ring-[#0D6A8D]" />
+                <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-[#006795] focus:ring-[#006795]" />
                 <span className="text-sm text-gray-700">Remember Me</span>
               </label>
-              <button type="button" onClick={() => router.push('/forgot-password')} className="text-sm text-[#0D6A8D] hover:underline font-medium bg-transparent border-0 cursor-pointer">Forgot Password?</button>
+              <button type="button" onClick={() => router.push('/forgot-password')} className="text-sm text-[#006795] hover:underline font-medium bg-transparent border-0 cursor-pointer">Forgot Password?</button>
             </div>
 
-            <Button type="submit" disabled={isLoading} className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
+            <Button type="submit" disabled={isLoading} className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
               {isLoading ? "Logging in..." : "Log In"}
             </Button>
           </form>
@@ -183,11 +183,11 @@ export default function OtherLogin() {
 
           <p className="text-center text-sm text-gray-600 mt-6">
             Don't have an account?{" "}
-            <button onClick={() => router.push('/other/signup')} className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Sign Up</button>
+            <button onClick={() => router.push('/other/signup')} className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Sign Up</button>
           </p>
 
           <p className="text-center text-sm text-gray-600 mt-4">
-            <button onClick={() => router.push('/profile-selection')} className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Back to Portal Selection</button>
+            <button onClick={() => router.push('/profile-selection')} className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer">Back to Portal Selection</button>
           </p>
 
           <p className="text-center text-xs text-gray-500 mt-6">

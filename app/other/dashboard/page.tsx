@@ -142,7 +142,7 @@ export default function OtherDashboard() {
                   placeholder="Search by property or inspector name"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent text-sm transition-colors duration-200"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
                 />
                 {searchQuery && (
                   <button
@@ -158,7 +158,7 @@ export default function OtherDashboard() {
             <div className="flex items-end">
               <Button
                 onClick={handleSearch}
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
               >
                 Search
               </Button>
@@ -225,7 +225,7 @@ export default function OtherDashboard() {
                     <td className="py-4 px-4">
                       <Button
                         onClick={() => toast.info(`Viewing inspection ${inspection.inspectionId || inspection._id}`, { position: "top-right" })}
-                        className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
                       >
                         View
                       </Button>
@@ -265,7 +265,7 @@ export default function OtherDashboard() {
                   </div>
                   <Button
                     onClick={() => toast.info(`Viewing inspection ${inspection.inspectionId || inspection._id}`, { position: "top-right" })}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
                   >
                     View
                   </Button>
@@ -301,7 +301,7 @@ export default function OtherDashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {otherUsers.map((user) => (
                 <div key={user._id} className="bg-gray-50 rounded-lg p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#0D6A8D] flex items-center justify-center text-white font-semibold">
+                  <div className="w-10 h-10 rounded-full bg-[#006795] flex items-center justify-center text-white font-semibold">
                     {user.fullName?.charAt(0) || 'U'}
                   </div>
                   <div>

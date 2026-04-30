@@ -116,7 +116,7 @@ export default function InspectionPage() {
                 </Button>
                 <Button 
                   onClick={handleSubmit}
-                  className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-[#B8FF00] hover:bg-[#A5E600] text-black font-semibold text-sm sm:text-base"
+                  className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-[#006795] hover:bg-[#00567a] text-white font-semibold text-sm sm:text-base"
                 >
                   Submit Inspection
                 </Button>
@@ -130,11 +130,11 @@ export default function InspectionPage() {
               <p className="text-xs sm:text-sm font-medium text-gray-700">
                 Progress: {completedItems} of {totalItems} items checked
               </p>
-              <span className="text-base sm:text-lg font-bold text-[#0D6A8D]">{progressPercentage}%</span>
+              <span className="text-base sm:text-lg font-bold text-[#006795]">{progressPercentage}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3">
               <div 
-                className="bg-[#0D6A8D] h-2 sm:h-3 rounded-full transition-all duration-300"
+                className="bg-[#006795] h-2 sm:h-3 rounded-full transition-all duration-300"
                 style={{ width: `${progressPercentage}%` }}
               ></div>
             </div>
@@ -149,7 +149,7 @@ export default function InspectionPage() {
                   onClick={() => setCurrentSection(index)}
                   className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-medium whitespace-nowrap transition-colors text-sm sm:text-base ${
                     currentSection === index 
-                      ? 'bg-[#0D6A8D] text-white' 
+                      ? 'bg-[#006795] text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -211,7 +211,7 @@ export default function InspectionPage() {
                         value={item.remarks}
                         onChange={(e) => updateItemRemarks(currentSection, item.id, e.target.value)}
                         placeholder="Enter any additional notes or observations..."
-                        className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] resize-none text-sm sm:text-base"
+                        className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] resize-none text-sm sm:text-base"
                         rows={2}
                       />
                     </div>
@@ -244,7 +244,7 @@ export default function InspectionPage() {
             <Button
               onClick={goToNextSection}
               disabled={currentSection === sections.length - 1}
-              className="w-full sm:w-auto px-6 sm:px-8 py-2 bg-[#0D6A8D] hover:bg-[#0a5670] text-white text-sm sm:text-base"
+              className="w-full sm:w-auto px-6 sm:px-8 py-2 bg-[#006795] hover:bg-[#0a5670] text-white text-sm sm:text-base"
             >
               Next Section →
             </Button>

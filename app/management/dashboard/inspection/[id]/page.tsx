@@ -91,7 +91,7 @@ export default function InspectionForm() {
             </Button>
             <Button
               onClick={handleSubmit}
-              className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
+              className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
             >
               Submit
             </Button>
@@ -102,7 +102,7 @@ export default function InspectionForm() {
         <div className="mb-6">
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div 
-              className="bg-[#7FFF00] h-3 rounded-full transition-all duration-300"
+              className="bg-[#006795] h-3 rounded-full transition-all duration-300"
               style={{ width: `${(currentPage / totalPages) * 100}%` }}
             ></div>
           </div>
@@ -157,7 +157,7 @@ export default function InspectionForm() {
                   placeholder="Add Remarks..."
                   value={inspectionData.electrical.smokeDetectorRemarks}
                   onChange={(e) => handleRemarksChange('electrical', 'smokeDetectorRemarks', e.target.value)}
-                  className="flex-1 px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="flex-1 px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
                 <button className="p-3 bg-[#E8F4F8] rounded-lg hover:bg-[#D0E8F0]">
                   <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +215,7 @@ export default function InspectionForm() {
                   placeholder="Add Remarks..."
                   value={inspectionData.plumbing.faucetLeaksRemarks}
                   onChange={(e) => handleRemarksChange('plumbing', 'faucetLeaksRemarks', e.target.value)}
-                  className="flex-1 px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="flex-1 px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
                 <button className="p-3 bg-[#E8F4F8] rounded-lg hover:bg-[#D0E8F0]">
                   <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

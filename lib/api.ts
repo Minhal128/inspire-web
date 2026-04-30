@@ -442,6 +442,42 @@ export const inspectionsAPI = {
       `/api/inspections/shared/${token}`
     );
   },
+
+  getUnitStatus: async (propertyId: string, buildingId: string) => {
+    return apiRequest<{
+      success: boolean;
+      statuses: any[];
+      unitStatusMap: Record<string, boolean>;
+    }>(`/api/inspections/unit-status?property_id=${propertyId}&building_id=${buildingId}`);
+  },
+
+  saveProgress: async (data: any) => {
+    return apiRequest<{
+      success: boolean;
+      msg: string;
+      buildingInspectionId: string;
+    }>('/api/inspections/progress', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  getProgress: async (params: {
+    property_id: string;
+    unit_id?: string;
+    inspection_type?: string;
+    draft_only?: string;
+  }) => {
+    const queryString = new URLSearchParams(
+      Object.entries(params).filter(([_, v]) => v !== undefined) as [string, string][]
+    ).toString();
+    return apiRequest<{
+      success: boolean;
+      items?: Record<string, string>;
+      inspectionData?: any;
+      progress?: any[];
+    }>(`/api/inspections/progress?${queryString}`);
+  },
 };
 
 // Orders API

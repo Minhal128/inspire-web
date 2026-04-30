@@ -70,7 +70,7 @@ function UnitSelectionContent() {
           </div>
           <Button
             onClick={handleSelectRandomUnits}
-            className="w-full sm:w-auto bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
+            className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
           >
             Select Random Units
           </Button>
@@ -90,7 +90,7 @@ function UnitSelectionContent() {
             <Card 
               key={unit.id} 
               className={`bg-white rounded-lg shadow-sm p-4 md:p-6 cursor-pointer transition-all ${
-                selectedUnits.includes(unit.id) ? 'ring-2 ring-[#0D6A8D] bg-[#E8F4F8]' : ''
+                selectedUnits.includes(unit.id) ? 'ring-2 ring-[#006795] bg-[#E8F4F8]' : ''
               }`}
               onClick={() => handleUnitToggle(unit.id)}
             >
@@ -100,7 +100,7 @@ function UnitSelectionContent() {
                     type="checkbox"
                     checked={selectedUnits.includes(unit.id)}
                     onChange={() => handleUnitToggle(unit.id)}
-                    className="w-5 h-5 rounded border-gray-300 text-[#0D6A8D] focus:ring-[#0D6A8D]"
+                    className="w-5 h-5 rounded border-gray-300 text-[#006795] focus:ring-[#006795]"
                     onClick={(e) => e.stopPropagation()}
                   />
                   <div>

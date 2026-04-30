@@ -132,7 +132,7 @@ export default function Analytics() {
               <select
                 value={selectedProperty}
                 onChange={(e) => setSelectedProperty(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               >
                 <option value="">All Properties</option>
                 {properties.map(property => (
@@ -146,7 +146,7 @@ export default function Analytics() {
               <select
                 value={selectedTimeRange}
                 onChange={(e) => setSelectedTimeRange(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               >
                 <option value="">Select Period</option>
                 <option value="7days">Last 7 Days</option>
@@ -161,7 +161,7 @@ export default function Analytics() {
               <select
                 value={selectedInspector}
                 onChange={(e) => setSelectedInspector(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               >
                 <option value="">All Inspectors</option>
                 {inspectors.map(inspector => (
@@ -173,7 +173,7 @@ export default function Analytics() {
             <div className="flex items-end">
               <Button
                 onClick={handleApply}
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-medium py-2 rounded-lg"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-medium py-2 rounded-lg"
               >
                 Apply
               </Button>

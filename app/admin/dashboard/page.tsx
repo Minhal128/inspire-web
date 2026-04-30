@@ -181,7 +181,7 @@ export default function AdminDashboard() {
           </div>
           <Button
             onClick={handleAddProperty}
-            className="w-full sm:w-auto bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
+            className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
           >
             Add Property
           </Button>

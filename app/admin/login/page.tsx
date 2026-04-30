@@ -118,7 +118,7 @@ export default function AdminLogin() {
         <p className="text-sm md:text-base text-gray-600">
           INSPIRE Administration Panel
         </p>
-        <p className="text-xs md:text-sm text-[#0D6A8D] font-semibold mt-2">
+        <p className="text-xs md:text-sm text-[#006795] font-semibold mt-2">
           Authorized Personnel Only
         </p>
       </div>
@@ -142,7 +142,7 @@ export default function AdminLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@inspire.com"
-                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               />
             </div>
 
@@ -157,7 +157,7 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your Password"
-                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               />
             </div>
 
@@ -168,13 +168,13 @@ export default function AdminLogin() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300 text-[#0D6A8D] focus:ring-[#0D6A8D]"
+                  className="w-4 h-4 rounded border-gray-300 text-[#006795] focus:ring-[#006795]"
                 />
                 <span className="text-sm text-gray-700">Remember Me</span>
               </label>
               <a
                 href="/forgot-password"
-                className="text-sm text-[#0D6A8D] hover:underline font-medium"
+                className="text-sm text-[#006795] hover:underline font-medium"
               >
                 Forgot Password?
               </a>
@@ -184,7 +184,7 @@ export default function AdminLogin() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
+              className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
             >
               {isLoading ? "Logging in..." : "Login as Admin"}
             </Button>
@@ -192,7 +192,7 @@ export default function AdminLogin() {
 
           {/* Back to Home */}
           <p className="text-center text-sm text-gray-600 mt-6">
-            <a href="/" className="text-[#0D6A8D] hover:underline font-semibold">
+            <a href="/" className="text-[#006795] hover:underline font-semibold">
               ← Back to Home
             </a>
           </p>

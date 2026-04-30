@@ -126,7 +126,7 @@ export default function OtherUsersPage() {
                   placeholder="Search users..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent text-sm transition-colors duration-200"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
                 />
                 {searchQuery && (
                   <button
@@ -142,7 +142,7 @@ export default function OtherUsersPage() {
             <div className="flex items-end">
               <Button
                 onClick={handleSearch}
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
               >
                 Search
               </Button>
@@ -168,7 +168,7 @@ export default function OtherUsersPage() {
               {filteredUsers.map((user) => (
                 <Card key={user._id} className="p-4 bg-gray-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#0D6A8D] flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-[#006795] flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
                       {user.fullName?.charAt(0)?.toUpperCase() || 'U'}
                     </div>
                     <div className="flex-1 min-w-0">

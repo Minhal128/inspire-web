@@ -206,7 +206,7 @@ export default function NotificationsPage() {
             onClick={() => setFilter('all')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'all' 
-                ? 'bg-[#0D6A8D] text-white' 
+                ? 'bg-[#006795] text-white' 
                 : 'bg-white text-gray-700 hover:bg-gray-100'
             }`}
           >
@@ -216,7 +216,7 @@ export default function NotificationsPage() {
             onClick={() => setFilter('unread')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'unread' 
-                ? 'bg-[#0D6A8D] text-white' 
+                ? 'bg-[#006795] text-white' 
                 : 'bg-white text-gray-700 hover:bg-gray-100'
             }`}
           >
@@ -226,7 +226,7 @@ export default function NotificationsPage() {
             onClick={() => setFilter('read')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'read' 
-                ? 'bg-[#0D6A8D] text-white' 
+                ? 'bg-[#006795] text-white' 
                 : 'bg-white text-gray-700 hover:bg-gray-100'
             }`}
           >

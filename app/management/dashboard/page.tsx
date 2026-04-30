@@ -201,7 +201,7 @@ export default function ManagementDashboard() {
     <ManagementDashboardLayout>
       <div className="p-3 sm:p-4 md:p-6">
         {/* Inspection Overview Section */}
-        <Card className="bg-gradient-to-r from-[#0D6A8D] to-[#0A5670] rounded-lg shadow-sm p-4 sm:p-6 mb-4 md:mb-6">
+        <Card className="bg-gradient-to-r from-[#006795] to-[#0A5670] rounded-lg shadow-sm p-4 sm:p-6 mb-4 md:mb-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="text-white">
               <h2 className="text-lg sm:text-xl font-bold mb-1">Inspection Overview</h2>
@@ -209,7 +209,7 @@ export default function ManagementDashboard() {
             </div>
             <Button
               onClick={() => setShowAddPropertyModal(true)}
-              className="w-full sm:w-auto bg-[#7FFF00] hover:bg-[#6FDF00] text-gray-900 font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -234,7 +234,7 @@ export default function ManagementDashboard() {
                   placeholder="Enter property name"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                  className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
                 />
                 {searchQuery && (
                   <button
@@ -254,7 +254,7 @@ export default function ManagementDashboard() {
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
                 placeholder="Enter Country"
-                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] bg-white text-sm"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] bg-white text-sm"
               />
             </div>
 
@@ -265,7 +265,7 @@ export default function ManagementDashboard() {
                 value={selectedState}
                 onChange={(e) => setSelectedState(e.target.value)}
                 placeholder="Enter State"
-                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] bg-white text-sm"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] bg-white text-sm"
               />
             </div>
 
@@ -276,14 +276,14 @@ export default function ManagementDashboard() {
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
                 placeholder="Enter City"
-                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] bg-white text-sm"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] bg-white text-sm"
               />
             </div>
 
             <div className="flex items-end">
               <Button
                 onClick={handleSearch}
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm"
               >
                 Search Properties
               </Button>
@@ -319,7 +319,7 @@ export default function ManagementDashboard() {
                   properties.map((property) => (
                     <tr key={property._id} className="border-b hover:bg-gray-50">
                       <td className="py-4 px-4 text-center">
-                        <span className="text-[#0D6A8D] font-medium">{property.propertyId}</span>
+                        <span className="text-[#006795] font-medium">{property.propertyId}</span>
                       </td>
                       <td className="py-4 px-4 text-gray-900 text-center">{property.name}</td>
                       <td className="py-4 px-4 text-gray-900 text-center">{property.buildings?.length || 0}</td>
@@ -331,7 +331,7 @@ export default function ManagementDashboard() {
                       <td className="py-4 px-4">
                         <Button
                           onClick={() => handleInitiate(property)}
-                          className="bg-[#7FFF00] hover:bg-[#6FDF00] text-gray-900 font-semibold px-4 py-2 rounded-lg text-sm"
+                          className="bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-4 py-2 rounded-lg text-sm"
                         >
                           Initiate
                         </Button>
@@ -354,7 +354,7 @@ export default function ManagementDashboard() {
                 <Card key={property._id} className="p-4 bg-gray-50 border border-gray-200">
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <span className="text-[#0D6A8D] font-semibold text-sm">#{property.propertyId}</span>
+                      <span className="text-[#006795] font-semibold text-sm">#{property.propertyId}</span>
                       <h3 className="text-base font-bold text-gray-900 mt-1">{property.name}</h3>
                     </div>
                   </div>
@@ -388,7 +388,7 @@ export default function ManagementDashboard() {
 
                   <Button
                     onClick={() => handleInitiate(property)}
-                    className="w-full bg-[#7FFF00] hover:bg-[#6FDF00] text-gray-900 font-semibold py-2 rounded-lg text-sm"
+                    className="w-full bg-[#006795] hover:bg-[#00567a] text-white font-semibold py-2 rounded-lg text-sm"
                   >
                     Initiate
                   </Button>

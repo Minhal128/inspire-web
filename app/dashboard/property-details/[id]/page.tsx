@@ -5,7 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { propertiesAPI, authAPI } from "@/lib/api"
+import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
 import { toast } from "react-toastify"
 import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check, RefreshCw } from "lucide-react"
 import { generateRandomUnitSample, getUnitsToInspect, getSamplingExplanation } from "@/lib/unitSamplingService"
@@ -300,15 +300,37 @@ export default function PropertyDetailsPage() {
     }
 
     // Load completed units for all buildings
-    const refreshCompletedUnits = useCallback(() => {
+    const refreshCompletedUnits = useCallback(async () => {
         if (!property || buildings.length === 0) return
         const propId = property._id || id
         const map: Record<string, string[]> = {}
-        buildings.forEach(b => {
-            const unitNames = generateUnitNames(b.buildingId, b.unitsForInspection)
-            initBuildingState(propId, b.buildingId, unitNames)
-            map[b.buildingId] = getCompletedUnits(propId, b.buildingId)
-        })
+        
+        try {
+            // Fetch status for each building from backend
+            for (const b of buildings) {
+                const res = await inspectionsAPI.getUnitStatus(propId, b.buildingId);
+                if (res.success) {
+                    // Map backend statuses to unit names
+                    map[b.buildingId] = res.statuses
+                        .filter(s => s.isInspected)
+                        .map(s => s.unitLabel);
+                } else {
+                    // Fallback to local storage if API fails
+                    const unitNames = generateUnitNames(b.buildingId, b.unitsForInspection)
+                    initBuildingState(propId, b.buildingId, unitNames)
+                    map[b.buildingId] = getCompletedUnits(propId, b.buildingId)
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching unit status:", error);
+            // Fallback to local storage on error
+            buildings.forEach(b => {
+                const unitNames = generateUnitNames(b.buildingId, b.unitsForInspection)
+                initBuildingState(propId, b.buildingId, unitNames)
+                map[b.buildingId] = getCompletedUnits(propId, b.buildingId)
+            })
+        }
+        
         setCompletedUnitsMap(map)
     }, [property, buildings, id])
 
@@ -759,7 +781,7 @@ export default function PropertyDetailsPage() {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1A73E8]"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
                 </div>
             </DashboardLayout>
         )
@@ -795,7 +817,7 @@ export default function PropertyDetailsPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-12">
                         <div className="space-y-1">
                             <span className="text-sm font-black text-gray-900">Property ID: </span>
-                            <span className="text-sm text-[#1A73E8] font-black">{property.propertyId || property._id?.slice(-8)?.toUpperCase()}</span>
+                            <span className="text-sm text-[#006795] font-black">{property.propertyId || property._id?.slice(-8)?.toUpperCase()}</span>
                             <div className="mt-1">
                                 <span className="text-sm font-black text-gray-900">State: </span>
                                 <span className="text-sm text-gray-600 font-bold">{property.state}</span>
@@ -851,7 +873,7 @@ export default function PropertyDetailsPage() {
                                     value={tempColumnHeaderName}
                                     onChange={(e) => setTempColumnHeaderName(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleSaveColumnHeader()}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1A73E8] focus:border-transparent text-sm"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm"
                                     placeholder="Building Unique ID"
                                 />
                             </div>
@@ -864,7 +886,7 @@ export default function PropertyDetailsPage() {
                                 </button>
                                 <button
                                     onClick={handleSaveColumnHeader}
-                                    className="flex-1 px-4 py-3 bg-[#1A73E8] text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
+                                    className="flex-1 px-4 py-3 bg-[#006795] text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
                                 >
                                     Save
                                 </button>
@@ -883,7 +905,7 @@ export default function PropertyDetailsPage() {
                                         {columnHeaderName}
                                         <button
                                             onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }}
-                                            className="p-1 rounded hover:bg-blue-50 text-[#1A73E8] transition-colors"
+                                            className="p-1 rounded hover:bg-blue-50 text-[#006795] transition-colors"
                                             title="Edit column name"
                                         >
                                             <Pencil className="w-3.5 h-3.5" />
@@ -910,9 +932,9 @@ export default function PropertyDetailsPage() {
                                                         value={tempBuildingName}
                                                         onChange={e => setTempBuildingName(e.target.value)}
                                                         onKeyDown={e => { if (e.key === 'Enter') handleSaveBuildingName(building.buildingId); if (e.key === 'Escape') setEditingBuildingId(null) }}
-                                                        className="w-20 text-sm font-black text-gray-900 border-2 border-[#3B82F6] rounded-lg py-1 px-2 focus:outline-none"
+                                                        className="w-20 text-sm font-black text-gray-900 border-2 border-[#006795] rounded-lg py-1 px-2 focus:outline-none"
                                                     />
-                                                    <button onClick={() => handleSaveBuildingName(building.buildingId)} className="p-1 rounded-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]">
+                                                    <button onClick={() => handleSaveBuildingName(building.buildingId)} className="p-1 rounded-lg bg-[#006795] text-white hover:bg-[#00567a]">
                                                         <Check className="w-3.5 h-3.5" />
                                                     </button>
                                                     <button onClick={() => setEditingBuildingId(null)} className="p-1 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200">
@@ -922,7 +944,7 @@ export default function PropertyDetailsPage() {
                                             ) : (
                                                 <div className="flex items-center gap-1.5 group">
                                                     <span className="text-sm text-gray-900 font-black">{getBuildingDisplayName(building.buildingId)}</span>
-                                                    <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#1A73E8] transition-opacity">
+                                                    <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
                                                         <Pencil className="w-3.5 h-3.5" />
                                                     </button>
                                                 </div>
@@ -936,7 +958,7 @@ export default function PropertyDetailsPage() {
                                                 max={totalInspectionUnits}
                                                 value={building.unitsForInspection}
                                                 onChange={(e) => handleInspectionUnitChange(building.buildingId, parseInt(e.target.value) || 0)}
-                                                className="w-20 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1.5 px-2 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all hover:border-[#3B82F6]/50"
+                                                className="w-20 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1.5 px-2 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent transition-all hover:border-[#006795]/50"
                                             />
                                         </td>
                                         <td className="py-6 px-8 text-center">
@@ -957,7 +979,7 @@ export default function PropertyDetailsPage() {
                                                         ? 'bg-green-500 hover:bg-green-600 text-white'
                                                         : completed > 0
                                                         ? 'bg-amber-500 hover:bg-amber-600 text-white'
-                                                        : 'bg-[#3B82F6] hover:bg-[#2563EB] text-white'
+                                                        : 'bg-[#006795] hover:bg-[#00567a] text-white'
                                                 }`}
                                             >
                                                 {allDone ? 'Completed ✓' : completed > 0 ? 'Continue Inspection' : 'Start Inspection'}
@@ -1000,7 +1022,7 @@ export default function PropertyDetailsPage() {
                                     <div className="flex justify-between items-center pb-3 border-b border-gray-100">
                                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest inline-flex items-center gap-1">
                                             {columnHeaderName}
-                                            <button onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }} className="p-0.5 rounded hover:bg-blue-50 text-[#1A73E8]" title="Edit column name">
+                                            <button onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }} className="p-0.5 rounded hover:bg-blue-50 text-[#006795]" title="Edit column name">
                                                 <Pencil className="w-3 h-3" />
                                             </button>
                                         </span>
@@ -1011,9 +1033,9 @@ export default function PropertyDetailsPage() {
                                                         value={tempBuildingName}
                                                         onChange={e => setTempBuildingName(e.target.value)}
                                                         onKeyDown={e => { if (e.key === 'Enter') handleSaveBuildingName(building.buildingId); if (e.key === 'Escape') setEditingBuildingId(null) }}
-                                                        className="w-20 text-sm font-black text-gray-900 border-2 border-[#3B82F6] rounded-lg py-1 px-2 focus:outline-none"
+                                                        className="w-20 text-sm font-black text-gray-900 border-2 border-[#006795] rounded-lg py-1 px-2 focus:outline-none"
                                                     />
-                                                    <button onClick={() => handleSaveBuildingName(building.buildingId)} className="p-1 rounded-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]">
+                                                    <button onClick={() => handleSaveBuildingName(building.buildingId)} className="p-1 rounded-lg bg-[#006795] text-white hover:bg-[#00567a]">
                                                         <Check className="w-3.5 h-3.5" />
                                                     </button>
                                                     <button onClick={() => setEditingBuildingId(null)} className="p-1 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200">
@@ -1023,7 +1045,7 @@ export default function PropertyDetailsPage() {
                                             ) : (
                                                 <div className="flex items-center gap-1.5 group">
                                                     <span className="text-sm text-gray-900 font-black">{getBuildingDisplayName(building.buildingId)}</span>
-                                                    <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#1A73E8] transition-opacity">
+                                                    <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
                                                         <Pencil className="w-3.5 h-3.5" />
                                                     </button>
                                                 </div>
@@ -1041,7 +1063,7 @@ export default function PropertyDetailsPage() {
                                             max={totalInspectionUnits}
                                             value={building.unitsForInspection}
                                             onChange={(e) => handleInspectionUnitChange(building.buildingId, parseInt(e.target.value) || 0)}
-                                            className="w-16 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1 px-1 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent"
+                                            className="w-16 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1 px-1 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent"
                                         />
                                     </div>
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
@@ -1062,7 +1084,7 @@ export default function PropertyDetailsPage() {
                                                 ? 'bg-green-500 hover:bg-green-600 text-white'
                                                 : completed > 0
                                                 ? 'bg-amber-500 hover:bg-amber-600 text-white'
-                                                : 'bg-[#3B82F6] hover:bg-[#2563EB] text-white'
+                                                : 'bg-[#006795] hover:bg-[#00567a] text-white'
                                         }`}
                                     >
                                         {allDone ? 'Completed ✓' : completed > 0 ? 'Continue Inspection' : 'Start Inspection'}
@@ -1092,7 +1114,7 @@ export default function PropertyDetailsPage() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Popup Header */}
-                        <div className="bg-gradient-to-r from-[#0D6A8D] to-[#0891B2] p-5 flex items-center justify-between">
+                        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] p-5 flex items-center justify-between">
                             <div>
                                 <h3 className="text-lg font-black text-white tracking-tight">
                                     {selectedBuilding.buildingId} — Select Unit
@@ -1123,7 +1145,7 @@ export default function PropertyDetailsPage() {
                                         // For the web, we'll toast the selection.
                                         toast.info(`Randomly selected: ${sample.selectedUnits.join(', ')}`, { position: 'top-right' });
                                     }}
-                                    className="mt-3 flex items-center gap-2 text-xs font-black text-[#0D6A8D] hover:text-[#0a5670] transition-colors"
+                                    className="mt-3 flex items-center gap-2 text-xs font-black text-[#006795] hover:text-[#0a5670] transition-colors"
                                 >
                                     <RefreshCw className="w-3.5 h-3.5" />
                                     Generate Random Sample
@@ -1135,7 +1157,7 @@ export default function PropertyDetailsPage() {
                         <div className="px-5 pt-4 pb-2">
                             <div className="w-full bg-gray-200 rounded-full h-2">
                                 <div
-                                    className="bg-gradient-to-r from-[#0D6A8D] to-[#0891B2] h-2 rounded-full transition-all duration-500"
+                                    className="bg-gradient-to-r from-[#006795] to-[#0891B2] h-2 rounded-full transition-all duration-500"
                                     style={{ width: `${(getCompletedCount(selectedBuilding.buildingId) / selectedBuilding.unitsForInspection) * 100}%` }}
                                 />
                             </div>
@@ -1151,7 +1173,7 @@ export default function PropertyDetailsPage() {
                                         className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${
                                             completed
                                                 ? 'border-green-200 bg-green-50'
-                                                : 'border-gray-100 bg-white hover:border-[#0D6A8D]/30 hover:bg-[#F1F7FE]'
+                                                : 'border-gray-100 bg-white hover:border-[#006795]/30 hover:bg-[#F1F7FE]'
                                         }`}
                                     >
                                         <div className="flex items-center gap-3">
@@ -1176,7 +1198,7 @@ export default function PropertyDetailsPage() {
                                             className={`font-bold text-xs px-4 py-2 rounded-lg transition-all ${
                                                 completed
                                                     ? 'bg-green-100 text-green-700 hover:bg-green-200 border border-green-200'
-                                                    : 'bg-[#3B82F6] hover:bg-[#2563EB] text-white shadow-md'
+                                                    : 'bg-[#006795] hover:bg-[#00567a] text-white shadow-md'
                                             }`}
                                         >
                                             {completed ? (

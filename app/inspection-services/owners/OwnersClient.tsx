@@ -50,11 +50,11 @@ export default function OwnersClient() {
     <MainLayout>
       <div className="w-full min-h-screen bg-white overflow-x-hidden">
         {/* Hero with Image */}
-        <section className="relative bg-[#FF4757] py-24 md:py-36 overflow-hidden">
+        <section className="relative bg-[#F84B5F] py-24 md:py-36 overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <Image src="/why3.jpg" alt="" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FF4757] via-[#FF4757]/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F84B5F] via-[#F84B5F]/70 to-transparent"></div>
           <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-6 text-center">
             <p className="text-white/90 font-bold uppercase tracking-[0.2em] mb-6">Maintain & Protect Your Investment</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.1]">
@@ -71,7 +71,7 @@ export default function OwnersClient() {
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row-reverse gap-10 items-center">
               <div className="flex-1">
-                <p className="text-xs font-bold text-[#FF4757] uppercase tracking-widest mb-4">Preventive Maintenance</p>
+                <p className="text-xs font-bold text-[#F84B5F] uppercase tracking-widest mb-4">Preventive Maintenance</p>
                 <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Preventive Maintenance and Owner Compliance Reporting</h2>
                 <p className="text-gray-600 leading-relaxed">
                   Our owner inspections focus on actionable intelligence, including pre-renovation inspections and owner repair priority reports. Inspire evaluates structural integrity, MEP systems, and safety features to identify early-stage deterioration. Preventive maintenance reports reduce emergency repairs and extend asset lifespan. Compliance reviews address local codes, insurance requirements, and Inspire standards. By integrating risk assessment with maintenance planning, Inspire supports sustainable ownership strategies for residential, multi-family, and commercial properties throughout the USA.
@@ -87,17 +87,17 @@ export default function OwnersClient() {
         {/* Service Sections */}
         <section className="max-w-[1400px] mx-auto px-4 md:px-6 py-20 md:py-28">
           <div className="text-center mb-16">
-            <p className="text-xs font-bold text-[#FF4757] uppercase tracking-widest mb-4">Our Services</p>
+            <p className="text-xs font-bold text-[#F84B5F] uppercase tracking-widest mb-4">Our Services</p>
             <h2 className="text-3xl md:text-4xl font-bold text-black">Comprehensive Services</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sections.map((s, i) => (
               <div key={i} className="bg-white border border-gray-100 rounded-[32px] p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="w-11 h-11 rounded-xl bg-[#FEF2F2] flex items-center justify-center text-[#FF4757] font-bold text-sm">
+                  <span className="w-11 h-11 rounded-xl bg-[#FEF2F2] flex items-center justify-center text-[#F84B5F] font-bold text-sm">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="text-lg font-bold text-black group-hover:text-[#FF4757] transition-colors leading-tight">{s.title}</h3>
+                  <h3 className="text-lg font-bold text-black group-hover:text-[#F84B5F] transition-colors leading-tight">{s.title}</h3>
                 </div>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.content}</p>
               </div>
@@ -109,7 +109,7 @@ export default function OwnersClient() {
         <section className="bg-black py-20 px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Protect Your Property Investment</h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Schedule a comprehensive owner inspection and preserve your property's long-term value.</p>
-          <Button onClick={() => router.push("/contact")} className="bg-[#FF4757] hover:bg-[#EE3646] text-white rounded-full px-12 py-7 text-lg font-bold shadow-2xl hover:scale-105 transition-all">Schedule an Inspection</Button>
+          <Button onClick={() => router.push("/contact")} variant="secondary" size="lg" className="hover:scale-105 transition-all">Schedule an Inspection</Button>
         </section>
       </div>
     </MainLayout>

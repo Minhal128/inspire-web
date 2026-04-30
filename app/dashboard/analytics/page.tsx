@@ -133,7 +133,7 @@ export default function OthersPage() {
                     placeholder="Search users..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
                   />
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function OthersPage() {
                 <select
                   value={roleFilter}
                   onChange={(e) => setRoleFilter(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
                 >
                   <option value="">All Roles</option>
                   {uniqueRoles.map((role) => (
@@ -159,7 +159,7 @@ export default function OthersPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
                 >
                   <option value="">All Status</option>
                   <option value="Active">Active</option>
@@ -178,7 +178,7 @@ export default function OthersPage() {
                     {/* User Info */}
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0D6A8D] to-[#0A5F7F] flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#006795] to-[#0A5F7F] flex items-center justify-center text-white font-bold text-lg">
                           {user.name.charAt(0)}
                         </div>
                         <div>
@@ -209,7 +209,7 @@ export default function OthersPage() {
                           {user.properties.map((property, index) => (
                             <span
                               key={index}
-                              className="px-3 py-1 rounded-lg bg-[#E8F4F8] text-[#0D6A8D] text-xs font-medium"
+                              className="px-3 py-1 rounded-lg bg-[#E8F4F8] text-[#006795] text-xs font-medium"
                             >
                               {property}
                             </span>
@@ -222,7 +222,7 @@ export default function OthersPage() {
                     <div className="flex flex-col gap-2 md:w-auto">
                       <Button
                         onClick={() => handleViewDetails(user.id)}
-                        className="w-full md:w-auto bg-[#0D6A8D] hover:bg-[#0a5670] text-white px-4 py-2 rounded-lg text-sm font-medium"
+                        className="w-full md:w-auto bg-[#006795] hover:bg-[#0a5670] text-white px-4 py-2 rounded-lg text-sm font-medium"
                       >
                         View Details
                       </Button>

@@ -133,7 +133,7 @@ export default function OtherInspectionsPage() {
                   placeholder="Search by ID, property, or type..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent text-sm transition-colors duration-200"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
                 />
                 {searchQuery && (
                   <button
@@ -151,7 +151,7 @@ export default function OtherInspectionsPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent text-sm"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm"
               >
                 <option value="">All Status</option>
                 <option value="scheduled">Scheduled</option>
@@ -164,7 +164,7 @@ export default function OtherInspectionsPage() {
             <div className="flex items-end">
               <Button
                 onClick={handleSearch}
-                className="w-full sm:w-auto bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-2.5 px-6 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                className="w-full sm:w-auto bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 px-6 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
               >
                 Search
               </Button>
@@ -231,7 +231,7 @@ export default function OtherInspectionsPage() {
                     <td className="py-4 px-4">
                       <Button
                         onClick={() => toast.info(`Viewing inspection ${inspection.inspectionId || inspection._id}`, { position: "top-right" })}
-                        className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
                       >
                         View
                       </Button>
@@ -271,7 +271,7 @@ export default function OtherInspectionsPage() {
                   </div>
                   <Button
                     onClick={() => toast.info(`Viewing inspection ${inspection.inspectionId || inspection._id}`, { position: "top-right" })}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
                   >
                     View
                   </Button>

@@ -262,7 +262,7 @@ export default function ManagementSignup() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name Field */}
               <div>
-                <label htmlFor="fullName" className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+                <label htmlFor="fullName" className="block text-sm font-semibold text-[#006795] mb-2">
                   Full Name
                 </label>
                 <input
@@ -271,13 +271,13 @@ export default function ManagementSignup() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
 
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-[#006795] mb-2">
                   Email Address
                 </label>
                 <input
@@ -286,7 +286,7 @@ export default function ManagementSignup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
             </div>
@@ -294,7 +294,7 @@ export default function ManagementSignup() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Password Field */}
               <div>
-                <label htmlFor="password" className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+                <label htmlFor="password" className="block text-sm font-semibold text-[#006795] mb-2">
                   Password
                 </label>
                 <input
@@ -303,13 +303,13 @@ export default function ManagementSignup() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Create your Password"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
 
               {/* Role Field */}
               <div>
-                <label htmlFor="role" className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+                <label htmlFor="role" className="block text-sm font-semibold text-[#006795] mb-2">
                   Role
                 </label>
                 <input
@@ -324,23 +324,23 @@ export default function ManagementSignup() {
 
             {/* CAPTCHA */}
             <div>
-              <label className="block text-sm font-semibold text-[#0D6A8D] mb-2">
+              <label className="block text-sm font-semibold text-[#006795] mb-2">
                 Security Check
               </label>
               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-3">
                 <div className="flex items-center gap-3">
                   {captchaLoading ? (
-                    <div className="w-40 sm:w-48 h-14 sm:h-16 bg-[#E8F4F8] rounded-lg flex items-center justify-center border-2 border-[#0D6A8D]">
-                      <div className="animate-spin h-5 w-5 sm:h-6 sm:w-6 border-2 border-[#0D6A8D] border-t-transparent rounded-full"></div>
+                    <div className="w-40 sm:w-48 h-14 sm:h-16 bg-[#E8F4F8] rounded-lg flex items-center justify-center border-2 border-[#006795]">
+                      <div className="animate-spin h-5 w-5 sm:h-6 sm:w-6 border-2 border-[#006795] border-t-transparent rounded-full"></div>
                     </div>
                   ) : captchaImage ? (
                     <img
                       src={captchaImage}
                       alt="Security Code"
-                      className="w-40 sm:w-48 h-14 sm:h-16 rounded-lg border-2 border-[#0D6A8D] object-contain bg-white"
+                      className="w-40 sm:w-48 h-14 sm:h-16 rounded-lg border-2 border-[#006795] object-contain bg-white"
                     />
                   ) : (
-                    <div className="w-40 sm:w-48 h-14 sm:h-16 bg-[#E8F4F8] rounded-lg flex items-center justify-center border-2 border-[#0D6A8D]">
+                    <div className="w-40 sm:w-48 h-14 sm:h-16 bg-[#E8F4F8] rounded-lg flex items-center justify-center border-2 border-[#006795]">
                       <span className="text-xs text-gray-500">Click refresh →</span>
                     </div>
                   )}
@@ -351,7 +351,7 @@ export default function ManagementSignup() {
                     className="p-2 sm:p-3 bg-[#E8F4F8] rounded-lg hover:bg-[#D1F2EB] transition-colors disabled:opacity-50 flex-shrink-0"
                     title="Refresh security code"
                   >
-                    <svg className="w-5 h-5 text-[#0D6A8D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[#006795]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                   </button>
@@ -363,7 +363,7 @@ export default function ManagementSignup() {
                 onChange={(e) => setCaptchaCode(e.target.value.toUpperCase())}
                 placeholder="Enter code from image"
                 maxLength={5}
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-center text-base sm:text-lg font-semibold tracking-widest uppercase"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795] text-center text-base sm:text-lg font-semibold tracking-widest uppercase"
               />
             </div>
 
@@ -371,7 +371,7 @@ export default function ManagementSignup() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
+              className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
             >
               {isLoading ? "Creating Account..." : "Create Account"}
             </Button>
@@ -392,7 +392,7 @@ export default function ManagementSignup() {
             Already have an account?{" "}
             <button
               onClick={() => router.push('/management/login')}
-              className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer"
+              className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer"
             >
               Log in here
             </button>

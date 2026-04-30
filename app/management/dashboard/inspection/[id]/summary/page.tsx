@@ -138,13 +138,13 @@ export default function InspectionSummary() {
           </Button>
           <Button
             onClick={handleExportPDF}
-            className="flex-1 sm:flex-none bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
+            className="flex-1 sm:flex-none bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
           >
             Export PDF
           </Button>
           <Button
             onClick={handleShareReport}
-            className="flex-1 sm:flex-none bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
+            className="flex-1 sm:flex-none bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
           >
             Share Report
           </Button>

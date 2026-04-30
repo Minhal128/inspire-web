@@ -170,7 +170,7 @@ export default function ReportsPage() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search by property, unit, or inspector..."
-                    className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm sm:text-base"
+                    className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm sm:text-base"
                   />
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function ReportsPage() {
                 <select
                   value={propertyFilter}
                   onChange={(e) => setPropertyFilter(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm sm:text-base"
                 >
                   <option value="">All Properties</option>
                   <option value="sunset">Sunset Apartments</option>
@@ -199,7 +199,7 @@ export default function ReportsPage() {
                 <select
                   value={dateRange}
                   onChange={(e) => setDateRange(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm sm:text-base"
                 >
                   <option value="">All Time</option>
                   <option value="today">Today</option>
@@ -216,7 +216,7 @@ export default function ReportsPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm sm:text-base"
                 >
                   <option value="">All Status</option>
                   <option value="completed">Completed</option>
@@ -229,7 +229,7 @@ export default function ReportsPage() {
             <div className="flex justify-end mt-3 sm:mt-4">
               <Button
                 onClick={handleApplyFilters}
-                className="w-full sm:w-auto px-6 sm:px-8 py-2 bg-[#0D6A8D] hover:bg-[#0a5670] text-white text-sm sm:text-base"
+                className="w-full sm:w-auto px-6 sm:px-8 py-2 bg-[#006795] hover:bg-[#0a5670] text-white text-sm sm:text-base"
               >
                 Apply Filters
               </Button>
@@ -285,7 +285,7 @@ export default function ReportsPage() {
                         className={`p-2 rounded-lg transition-colors ${
                           inspectionCount >= INSPECTION_LIMIT
                             ? 'text-gray-300 bg-gray-100 cursor-not-allowed'
-                            : 'text-gray-600 hover:text-[#0D6A8D] hover:bg-gray-100'
+                            : 'text-gray-600 hover:text-[#006795] hover:bg-gray-100'
                         }`}
                         title={inspectionCount >= INSPECTION_LIMIT ? 'Inspection limit reached' : 'Download'}
                       >
@@ -299,7 +299,7 @@ export default function ReportsPage() {
                         className={`p-2 rounded-lg transition-colors ${
                           inspectionCount >= INSPECTION_LIMIT
                             ? 'text-gray-300 bg-gray-100 cursor-not-allowed'
-                            : 'text-gray-600 hover:text-[#0D6A8D] hover:bg-gray-100'
+                            : 'text-gray-600 hover:text-[#006795] hover:bg-gray-100'
                         }`}
                         title={inspectionCount >= INSPECTION_LIMIT ? 'Inspection limit reached' : 'Share'}
                       >
@@ -388,7 +388,7 @@ export default function ReportsPage() {
                             className={`p-2 rounded-lg transition-colors ${
                               inspectionCount >= INSPECTION_LIMIT
                                 ? 'text-gray-300 bg-gray-100 cursor-not-allowed'
-                                : 'text-gray-600 hover:text-[#0D6A8D] hover:bg-gray-100'
+                                : 'text-gray-600 hover:text-[#006795] hover:bg-gray-100'
                             }`}
                             title={inspectionCount >= INSPECTION_LIMIT ? 'Inspection limit reached' : 'Download'}
                           >
@@ -402,7 +402,7 @@ export default function ReportsPage() {
                             className={`p-2 rounded-lg transition-colors ${
                               inspectionCount >= INSPECTION_LIMIT
                                 ? 'text-gray-300 bg-gray-100 cursor-not-allowed'
-                                : 'text-gray-600 hover:text-[#0D6A8D] hover:bg-gray-100'
+                                : 'text-gray-600 hover:text-[#006795] hover:bg-gray-100'
                             }`}
                             title={inspectionCount >= INSPECTION_LIMIT ? 'Inspection limit reached' : 'Share'}
                           >
@@ -429,7 +429,7 @@ export default function ReportsPage() {
                   <Button variant="outline" disabled className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm">
                     Previous
                   </Button>
-                  <Button variant="outline" className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#0D6A8D] text-white hover:bg-[#0a5670] text-sm">
+                  <Button variant="outline" className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#006795] text-white hover:bg-[#0a5670] text-sm">
                     1
                   </Button>
                   <Button variant="outline" disabled className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm">

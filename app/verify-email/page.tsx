@@ -158,7 +158,7 @@ function VerifyEmailContent() {
                         <Button
                             onClick={handleVerify}
                             disabled={isLoading}
-                            className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
+                            className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50"
                         >
                             {isLoading ? "Verifying..." : "Verify Email"}
                         </Button>
@@ -171,7 +171,7 @@ function VerifyEmailContent() {
                                     <button
                                         onClick={handleResendOTP}
                                         disabled={isLoading}
-                                        className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer disabled:opacity-50"
+                                        className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer disabled:opacity-50"
                                     >
                                         Resend OTP
                                     </button>
@@ -197,7 +197,7 @@ function VerifyEmailContent() {
                         <div className="text-center">
                             <button
                                 onClick={() => router.push("/login")}
-                                className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer"
+                                className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer"
                             >
                                 ← Back to Sign In
                             </button>

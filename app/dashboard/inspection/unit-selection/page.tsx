@@ -38,7 +38,7 @@ export default function UnitSelection() {
           {/* Action Buttons */}
           <div className="flex flex-col gap-3 mb-6">
             <Button
-              className="w-full bg-[#FF4757] hover:bg-[#E63946] text-white font-semibold py-3 sm:py-4 md:py-5 rounded-lg text-sm sm:text-base md:text-lg shadow-md transition-all"
+              className="w-full bg-[#F84B5F] hover:bg-[#E63946] text-white font-semibold py-3 sm:py-4 md:py-5 rounded-lg text-sm sm:text-base md:text-lg shadow-md transition-all"
             >
               Add Property
             </Button>
@@ -57,7 +57,7 @@ export default function UnitSelection() {
                   placeholder="Property Name"
                   value={searchName}
                   onChange={(e) => setSearchName(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006795] focus:border-transparent"
                 />
               </div>
 
@@ -71,7 +71,7 @@ export default function UnitSelection() {
                   placeholder="Enter State"
                   value={selectedState}
                   onChange={(e) => setSelectedState(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006795] focus:border-transparent"
                 />
               </div>
 
@@ -85,13 +85,13 @@ export default function UnitSelection() {
                   placeholder="Enter City"
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006795] focus:border-transparent"
                 />
               </div>
 
               {/* Search Button */}
               <Button
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
               >
                 Search
               </Button>
@@ -121,7 +121,7 @@ export default function UnitSelection() {
                   </div>
                   <Button
                     onClick={() => router.push(`/dashboard/inspection/unit-selection?property=${property.id}`)}
-                    className="w-full sm:w-auto bg-[#B8FF00] hover:bg-[#A5E600] text-gray-900 font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base shadow-md transition-all"
+                    className="w-full sm:w-auto bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base shadow-md transition-all"
                   >
                     Initiate
                   </Button>
@@ -141,7 +141,7 @@ export default function UnitSelection() {
                 {units.map((unit) => (
                   <Card
                     key={unit.id}
-                    className={`${unit.bgColor} border-2 border-gray-300 rounded-xl p-4 sm:p-5 md:p-6 cursor-pointer hover:shadow-lg hover:border-[#0D6A8D] transition-all`}
+                    className={`${unit.bgColor} border-2 border-gray-300 rounded-xl p-4 sm:p-5 md:p-6 cursor-pointer hover:shadow-lg hover:border-[#006795] transition-all`}
                     onClick={() => router.push(`/dashboard/inspection/${unit.id}`)}
                   >
                     <div className="flex items-center justify-between mb-3">
@@ -168,7 +168,7 @@ export default function UnitSelection() {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button
                   onClick={() => router.push('/dashboard/inspection/summary')}
-                  className="w-full sm:flex-1 bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
+                  className="w-full sm:flex-1 bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
                 >
                   View Summary
                 </Button>

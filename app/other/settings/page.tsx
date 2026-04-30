@@ -179,7 +179,7 @@ export default function OtherSettingsPage() {
                   onClick={() => setActiveTab("profile")}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                     activeTab === "profile"
-                      ? "bg-[#0D6A8D] text-white"
+                      ? "bg-[#006795] text-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -193,7 +193,7 @@ export default function OtherSettingsPage() {
                   onClick={() => setActiveTab("notifications")}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                     activeTab === "notifications"
-                      ? "bg-[#0D6A8D] text-white"
+                      ? "bg-[#006795] text-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -207,7 +207,7 @@ export default function OtherSettingsPage() {
                   onClick={() => setActiveTab("security")}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                     activeTab === "security"
-                      ? "bg-[#0D6A8D] text-white"
+                      ? "bg-[#006795] text-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -234,7 +234,7 @@ export default function OtherSettingsPage() {
                     className="rounded-full"
                   />
                   <div>
-                    <Button className="bg-[#0D6A8D] hover:bg-[#0a5670] text-white">
+                    <Button className="bg-[#006795] hover:bg-[#0a5670] text-white">
                       Change Photo
                     </Button>
                     <p className="text-sm text-gray-500 mt-2">JPG, PNG or GIF. Max size 2MB</p>
@@ -248,7 +248,7 @@ export default function OtherSettingsPage() {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
@@ -258,7 +258,7 @@ export default function OtherSettingsPage() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
@@ -268,7 +268,7 @@ export default function OtherSettingsPage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
@@ -277,7 +277,7 @@ export default function OtherSettingsPage() {
                     <select
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
                       <option value="other">Other</option>
                       <option value="property-manager">Property Manager</option>
@@ -291,7 +291,7 @@ export default function OtherSettingsPage() {
                     <select
                       value={language}
                       onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
                       <option value="English">English</option>
                       <option value="Spanish">Spanish</option>
@@ -304,7 +304,7 @@ export default function OtherSettingsPage() {
                     <select
                       value={timezone}
                       onChange={(e) => setTimezone(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
                       <option value="EST">EST (UTC-5)</option>
                       <option value="CST">CST (UTC-6)</option>
@@ -315,7 +315,7 @@ export default function OtherSettingsPage() {
                 </div>
 
                 <div className="flex justify-end">
-                  <Button onClick={handleSaveProfile} disabled={isLoading} className="px-8 bg-[#7FFF00] hover:bg-[#6de600] text-black font-semibold">
+                  <Button onClick={handleSaveProfile} disabled={isLoading} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
                     {isLoading ? "Saving..." : "Save Changes"}
                   </Button>
                 </div>
@@ -350,7 +350,7 @@ export default function OtherSettingsPage() {
                               }
                               className="sr-only peer"
                             />
-                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#0D6A8D]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0D6A8D]"></div>
+                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#006795]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#006795]"></div>
                           </label>
                         </div>
                       ))}
@@ -380,7 +380,7 @@ export default function OtherSettingsPage() {
                               }
                               className="sr-only peer"
                             />
-                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#0D6A8D]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0D6A8D]"></div>
+                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#006795]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#006795]"></div>
                           </label>
                         </div>
                       ))}
@@ -389,7 +389,7 @@ export default function OtherSettingsPage() {
                 </div>
 
                 <div className="flex justify-end mt-6">
-                  <Button onClick={handleSaveNotifications} disabled={isLoading} className="px-8 bg-[#7FFF00] hover:bg-[#6de600] text-black font-semibold">
+                  <Button onClick={handleSaveNotifications} disabled={isLoading} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
                     {isLoading ? "Saving..." : "Save Preferences"}
                   </Button>
                 </div>
@@ -409,7 +409,7 @@ export default function OtherSettingsPage() {
                         type="password"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                         placeholder="Enter current password"
                       />
                     </div>
@@ -419,7 +419,7 @@ export default function OtherSettingsPage() {
                         type="password"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                         placeholder="Enter new password"
                       />
                     </div>
@@ -429,11 +429,11 @@ export default function OtherSettingsPage() {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                         placeholder="Confirm new password"
                       />
                     </div>
-                    <Button onClick={handleChangePassword} disabled={isLoading} className="bg-[#0D6A8D] hover:bg-[#0a5670] text-white">
+                    <Button onClick={handleChangePassword} disabled={isLoading} className="bg-[#006795] hover:bg-[#0a5670] text-white">
                       {isLoading ? "Updating..." : "Update Password"}
                     </Button>
                   </div>
@@ -454,7 +454,7 @@ export default function OtherSettingsPage() {
                       className={`${
                         twoFactorEnabled
                           ? "bg-red-500 hover:bg-red-600"
-                          : "bg-[#7FFF00] hover:bg-[#6de600] text-black"
+                          : "bg-[#006795] hover:bg-[#6de600] text-black"
                       } text-white font-semibold`}
                     >
                       {twoFactorEnabled ? "Disable" : "Enable"}

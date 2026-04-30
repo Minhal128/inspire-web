@@ -50,12 +50,12 @@ export default function ProfileSelection() {
             <Card className="flex-1 min-w-0 rounded-2xl border border-gray-200 p-5 sm:p-6 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-shadow">
               <div className="w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-5 flex items-center justify-center">
                 <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-12 sm:h-12">
-                  <rect x="16" y="8" width="32" height="48" rx="2" stroke="#FF4757" strokeWidth="2" fill="none" />
-                  <line x1="22" y1="16" x2="42" y2="16" stroke="#FF4757" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="22" y1="24" x2="42" y2="24" stroke="#FF4757" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="22" y1="32" x2="36" y2="32" stroke="#FF4757" strokeWidth="2" strokeLinecap="round" />
-                  <circle cx="24" cy="42" r="2" fill="#FF4757" />
-                  <line x1="30" y1="42" x2="42" y2="42" stroke="#FF4757" strokeWidth="2" strokeLinecap="round" />
+                  <rect x="16" y="8" width="32" height="48" rx="2" stroke="#F84B5F" strokeWidth="2" fill="none" />
+                  <line x1="22" y1="16" x2="42" y2="16" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="22" y1="24" x2="42" y2="24" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="22" y1="32" x2="36" y2="32" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
+                  <circle cx="24" cy="42" r="2" fill="#F84B5F" />
+                  <line x1="30" y1="42" x2="42" y2="42" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Inspector</h2>
@@ -63,7 +63,7 @@ export default function ProfileSelection() {
                 For field inspectors conducting property compliance checks.
               </p>
               <Button
-                className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
+                className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
                 onClick={() => handleRoleSelection('inspector')}
               >
                 Continue
@@ -74,10 +74,10 @@ export default function ProfileSelection() {
             <Card className="flex-1 min-w-0 rounded-2xl border border-gray-200 p-5 sm:p-6 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-shadow">
               <div className="w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-5 flex items-center justify-center">
                 <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-12 sm:h-12">
-                  <rect x="12" y="12" width="16" height="16" rx="1" stroke="#FF4757" strokeWidth="2" fill="none" />
-                  <rect x="36" y="12" width="16" height="16" rx="1" stroke="#FF4757" strokeWidth="2" fill="none" />
-                  <rect x="12" y="36" width="16" height="16" rx="1" stroke="#FF4757" strokeWidth="2" fill="none" />
-                  <rect x="36" y="36" width="16" height="16" rx="1" stroke="#FF4757" strokeWidth="2" fill="none" />
+                  <rect x="12" y="12" width="16" height="16" rx="1" stroke="#F84B5F" strokeWidth="2" fill="none" />
+                  <rect x="36" y="12" width="16" height="16" rx="1" stroke="#F84B5F" strokeWidth="2" fill="none" />
+                  <rect x="12" y="36" width="16" height="16" rx="1" stroke="#F84B5F" strokeWidth="2" fill="none" />
+                  <rect x="36" y="36" width="16" height="16" rx="1" stroke="#F84B5F" strokeWidth="2" fill="none" />
                 </svg>
               </div>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Management</h2>
@@ -85,7 +85,7 @@ export default function ProfileSelection() {
                 For property managers and supervisors.
               </p>
               <Button
-                className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
+                className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
                 onClick={() => handleRoleSelection('management')}
               >
                 Continue
@@ -96,10 +96,10 @@ export default function ProfileSelection() {
             <Card className="flex-1 min-w-0 rounded-2xl border border-gray-200 p-5 sm:p-6 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-shadow">
               <div className="w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-5 flex items-center justify-center">
                 <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-12 sm:h-12">
-                  <rect x="12" y="12" width="40" height="40" rx="2" stroke="#FF4757" strokeWidth="2" fill="none" />
-                  <line x1="12" y1="24" x2="52" y2="24" stroke="#FF4757" strokeWidth="2" />
-                  <line x1="20" y1="32" x2="44" y2="32" stroke="#FF4757" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="20" y1="40" x2="36" y2="40" stroke="#FF4757" strokeWidth="2" strokeLinecap="round" />
+                  <rect x="12" y="12" width="40" height="40" rx="2" stroke="#F84B5F" strokeWidth="2" fill="none" />
+                  <line x1="12" y1="24" x2="52" y2="24" stroke="#F84B5F" strokeWidth="2" />
+                  <line x1="20" y1="32" x2="44" y2="32" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="20" y1="40" x2="36" y2="40" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Other</h2>
@@ -107,7 +107,7 @@ export default function ProfileSelection() {
                 For other users and stakeholders.
               </p>
               <Button
-                className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
+                className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
                 onClick={() => handleRoleSelection('other')}
               >
                 Continue

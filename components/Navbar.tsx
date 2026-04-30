@@ -85,7 +85,7 @@ export default function Navbar() {
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onClick={() => router.push('/service')}
             >
-              <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight flex items-center gap-1">
+              <span className="text-sm font-medium text-gray-800 group-hover:text-[#006795] transition-colors leading-tight flex items-center gap-1">
                 SERVICES{" "}
                 <svg className={`w-3 h-3 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -98,55 +98,55 @@ export default function Navbar() {
                 <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2 min-w-[220px]">
                   <Link href="/service" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors text-sm font-bold text-gray-800" onClick={() => setServicesDropdownOpen(false)}>All Services</Link>
                   <Link href="/inspection-services/buyers" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
-                    <span className="w-2 h-2 rounded-full bg-[#0D6A8D]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Buyers Inspections</span>
+                    <span className="w-2 h-2 rounded-full bg-[#006795]"></span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Buyers Inspections</span>
                   </Link>
                   <Link href="/inspection-services/owners" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
-                    <span className="w-2 h-2 rounded-full bg-[#FF4757]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Owners Inspections</span>
+                    <span className="w-2 h-2 rounded-full bg-[#F84B5F]"></span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Owners Inspections</span>
                   </Link>
                   <Link href="/inspection-services/sellers" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
                     <span className="w-2 h-2 rounded-full bg-[#F97316]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Sellers Inspections</span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Sellers Inspections</span>
                   </Link>
                   <Link href="/inspection-services/rental" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
                     <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Rental Inspections</span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Rental Inspections</span>
                   </Link>
                   <Link href="/inspection-services/specialized" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
                     <span className="w-2 h-2 rounded-full bg-[#22C55E]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Specialized Services</span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Specialized Services</span>
                   </Link>
                   <Link href="/inspection-services/commercial" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
                     <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Commercial Inspections</span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Commercial Inspections</span>
                   </Link>
                   <Link href="/inspection-services/public-housing" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
                     <span className="w-2 h-2 rounded-full bg-[#8B5CF6]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Public Housing</span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Public Housing</span>
                   </Link>
                   <Link href="/inspection-services/insurance-risk" className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors" onClick={() => setServicesDropdownOpen(false)}>
                     <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
-                    <span className="text-sm text-gray-700 hover:text-[#0D6A8D]">Insurance Risk</span>
+                    <span className="text-sm text-gray-700 hover:text-[#006795]">Insurance Risk</span>
                   </Link>
                 </div>
               </div>
             )}
           </div>
           <Link href="/about" className="flex flex-col group items-center">
-            <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight text-center">ABOUT</span>
+            <span className="text-sm font-medium text-gray-800 group-hover:text-[#006795] transition-colors leading-tight text-center">ABOUT</span>
             <span className="text-[10px] text-gray-500 italic tracking-wider text-center">Our Story</span>
           </Link>
           <Link href="/contact" className="flex flex-col group items-center">
-            <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">CONTACT</span>
+            <span className="text-sm font-medium text-gray-800 group-hover:text-[#006795] transition-colors leading-tight">CONTACT</span>
             <span className="text-[10px] text-gray-500 italic tracking-wider">Get in Touch</span>
           </Link>
           <Link href="/faq" className="flex flex-col group items-center">
-            <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">FAQ</span>
+            <span className="text-sm font-medium text-gray-800 group-hover:text-[#006795] transition-colors leading-tight">FAQ</span>
             <span className="text-[10px] text-gray-500 italic tracking-wider">Answers to Questions</span>
           </Link>
           <Link href="/blog" className="flex flex-col group items-center">
-            <span className="text-sm font-medium text-gray-800 group-hover:text-[#0D6A8D] transition-colors leading-tight">BLOG</span>
+            <span className="text-sm font-medium text-gray-800 group-hover:text-[#006795] transition-colors leading-tight">BLOG</span>
             <span className="text-[10px] text-gray-500 italic tracking-wider">Articles & Insights</span>
           </Link>
         </div>

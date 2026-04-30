@@ -60,7 +60,7 @@ function LoadingFallback() {
   return (
     <DashboardLayout>
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0D6A8D]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
       </div>
     </DashboardLayout>
   )
@@ -907,7 +907,7 @@ function NSPIREInspectionSummaryContent() {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center h-96">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0D6A8D]"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
         </div>
       </DashboardLayout>
     )
@@ -934,7 +934,7 @@ function NSPIREInspectionSummaryContent() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-2xl font-bold text-[#0D6A8D]">HUD INSPIRE INSPECTION REPORT</h1>
+                <h1 className="text-2xl font-bold text-[#006795]">HUD INSPIRE INSPECTION REPORT</h1>
               </div>
               <p className="text-gray-600 font-medium">{report.metadata.propertyName}</p>
               <p className="text-sm text-gray-500">{report.metadata.propertyAddress}</p>
@@ -942,7 +942,7 @@ function NSPIREInspectionSummaryContent() {
                 Inspection #{report.metadata.inspectionNo} | {report.metadata.startDate}
               </p>
               {inspectionContext?.unitName && (
-                <p className="text-sm font-bold text-[#0D6A8D] mt-1">
+                <p className="text-sm font-bold text-[#006795] mt-1">
                   {buildingColumnHeader}: {inspectionContext.buildingId} &rarr; {inspectionContext.unitName}
                 </p>
               )}
@@ -983,7 +983,7 @@ function NSPIREInspectionSummaryContent() {
               <Button
                 onClick={handleExportPDF}
                 disabled={exporting || checkingUnlock || purchasingUnlock}
-                className="gap-2 bg-[#0D6A8D] hover:bg-[#0a5670] text-white"
+                className="gap-2 bg-[#006795] hover:bg-[#0a5670] text-white"
               >
                 {isReportUnlocked ? <Download /> : <Lock className="w-5 h-5" />} {exporting ? 'Generating...' : isReportUnlocked ? 'Export PDF' : 'Unlock to Export'}
               </Button>
@@ -1008,7 +1008,7 @@ function NSPIREInspectionSummaryContent() {
         </div>
 
         {/* Score Cards */}
-        <div className="bg-gradient-to-r from-[#0D6A8D] to-[#0891B2] rounded-lg p-4 mb-6 text-white">
+        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 mb-6 text-white">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
             <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
               <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary Score</p>
@@ -1035,7 +1035,7 @@ function NSPIREInspectionSummaryContent() {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-4 sm:px-6 py-2 rounded-md font-medium transition-all whitespace-nowrap ${activeTab === tab
-                ? 'bg-white text-[#0D6A8D] shadow-sm'
+                ? 'bg-white text-[#006795] shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
                 }`}
             >
@@ -1049,7 +1049,7 @@ function NSPIREInspectionSummaryContent() {
           <div className="space-y-6">
             {/* Deficiency Summary */}
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-              <h2 className="text-lg font-bold text-[#0D6A8D] mb-4 pb-2 border-b-2 border-[#0D6A8D]">
+              <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 DEFICIENCY SUMMARY
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-4">
@@ -1089,7 +1089,7 @@ function NSPIREInspectionSummaryContent() {
             {/* Property Info */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h2 className="text-lg font-bold text-[#0D6A8D] mb-4 pb-2 border-b-2 border-[#0D6A8D]">
+                <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                   PROPERTY INFORMATION
                 </h2>
                 <div className="space-y-3">
@@ -1113,7 +1113,7 @@ function NSPIREInspectionSummaryContent() {
               </div>
 
               <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h2 className="text-lg font-bold text-[#0D6A8D] mb-4 pb-2 border-b-2 border-[#0D6A8D]">
+                <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                   OCCUPANCY INFORMATION
                 </h2>
                 <div className="grid grid-cols-2 gap-4">
@@ -1139,7 +1139,7 @@ function NSPIREInspectionSummaryContent() {
 
             {/* Inspection Data Table */}
             <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
-              <h2 className="text-lg font-bold text-[#0D6A8D] mb-4 pb-2 border-b-2 border-[#0D6A8D]">
+              <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 INSPECTION DATA
               </h2>
               
@@ -1147,7 +1147,7 @@ function NSPIREInspectionSummaryContent() {
               <div className="hidden sm:block overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-[#0D6A8D] text-white">
+                    <tr className="bg-[#006795] text-white">
                       <th className="text-left p-3 rounded-tl-lg">Type</th>
                       <th className="text-center p-3">Property Total</th>
                       <th className="text-center p-3">Sample Size</th>
@@ -1171,7 +1171,7 @@ function NSPIREInspectionSummaryContent() {
               <div className="sm:hidden space-y-3">
                 {report.inspectionData.map((row, index) => (
                   <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                    <div className="font-bold text-[#0D6A8D] mb-2">{row.type}</div>
+                    <div className="font-bold text-[#006795] mb-2">{row.type}</div>
                     <div className="grid grid-cols-3 gap-2 text-sm">
                       <div>
                         <div className="text-xs text-gray-500">Property Total</div>
@@ -1196,7 +1196,7 @@ function NSPIREInspectionSummaryContent() {
         {/* Deficiencies Tab */}
         {activeTab === 'deficiencies' && (
           <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
-            <h2 className="text-lg font-bold text-[#0D6A8D] mb-4 pb-2 border-b-2 border-[#0D6A8D]">
+            <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
               DEFICIENCY DETAILS
             </h2>
 
@@ -1208,8 +1208,8 @@ function NSPIREInspectionSummaryContent() {
 
             {/* Unit header banner */}
             {inspectionContext?.unitName && (
-              <div className="bg-gradient-to-r from-[#0D6A8D]/10 to-[#0891B2]/10 rounded-lg p-4 mb-4 border border-[#0D6A8D]/20">
-                <h3 className="text-base font-black text-[#0D6A8D] tracking-tight">
+              <div className="bg-gradient-to-r from-[#006795]/10 to-[#0891B2]/10 rounded-lg p-4 mb-4 border border-[#006795]/20">
+                <h3 className="text-base font-black text-[#006795] tracking-tight">
                   {inspectionContext.unitName} — Inspection Details
                 </h3>
                 <p className="text-xs text-gray-500 mt-0.5">{buildingColumnHeader}: {inspectionContext.buildingId}</p>
@@ -1228,7 +1228,7 @@ function NSPIREInspectionSummaryContent() {
                 <div className="hidden lg:block overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-[#0D6A8D] text-white">
+                      <tr className="bg-[#006795] text-white">
                         <th className="p-3 text-left rounded-tl-lg">#</th>
                         <th className="p-3 text-center">Proof</th>
                         <th className="p-3 text-left">Location</th>
@@ -1316,7 +1316,7 @@ function NSPIREInspectionSummaryContent() {
                   {visibleDeficiencies.map((def, index) => (
                     <div key={def.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#0D6A8D] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        <div className="flex-shrink-0 w-8 h-8 bg-[#006795] text-white rounded-full flex items-center justify-center font-bold text-sm">
                           {index + 1}
                         </div>
                         {def.imageUri ? (
@@ -1396,8 +1396,8 @@ function NSPIREInspectionSummaryContent() {
 
         {/* General Comments */}
         {report.generalComments && (
-          <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-[#0D6A8D] mt-6">
-            <h3 className="font-bold text-[#0D6A8D] mb-2">General Comments</h3>
+          <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-[#006795] mt-6">
+            <h3 className="font-bold text-[#006795] mb-2">General Comments</h3>
             <p className="text-gray-700">{report.generalComments}</p>
           </div>
         )}
@@ -1425,7 +1425,7 @@ function NSPIREInspectionSummaryContent() {
           </Button>
           <Button
             onClick={() => router.push('/dashboard')}
-            className="px-8 w-full sm:w-auto bg-[#0D6A8D] hover:bg-[#0a5670] text-white"
+            className="px-8 w-full sm:w-auto bg-[#006795] hover:bg-[#0a5670] text-white"
           >
             Go to Dashboard
           </Button>

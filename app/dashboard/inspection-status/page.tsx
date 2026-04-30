@@ -218,7 +218,7 @@ export default function InspectionStatusPage() {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1A73E8]"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
         </div>
       </DashboardLayout>
     )
@@ -295,7 +295,7 @@ export default function InspectionStatusPage() {
             <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Add a property to start inspections.</p>
             <Button
               onClick={() => router.push('/dashboard')}
-              className="bg-[#1A73E8] hover:bg-blue-700 text-white text-sm sm:text-base"
+              className="bg-[#006795] hover:bg-blue-700 text-white text-sm sm:text-base"
             >
               Add Property
             </Button>
@@ -372,7 +372,7 @@ export default function InspectionStatusPage() {
                       <Button
                         onClick={() => handleDownloadPDF(property)}
                         disabled={downloadingId === property._id}
-                        className="bg-[#0D6A8D] hover:bg-[#0a5670] text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                        className="bg-[#006795] hover:bg-[#0a5670] text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
                       >
                         {downloadingId === property._id ? (
                           <>
@@ -391,7 +391,7 @@ export default function InspectionStatusPage() {
                     ) : (
                       <Button
                         onClick={() => handleStartInspection(property._id)}
-                        className="bg-[#1A73E8] hover:bg-blue-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                        className="bg-[#006795] hover:bg-blue-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
                       >
                         <FileText className="w-4 h-4 flex-shrink-0" />
                         Start Inspection

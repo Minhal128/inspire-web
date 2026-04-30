@@ -166,7 +166,7 @@ export default function AssetManagerDashboard() {
               toast.info("Adding new asset...", { position: "top-right" })
               router.push('/asset-manager/assets')
             }}
-            className="w-full sm:w-auto bg-[#7FFF00] hover:bg-[#6FDF00] text-gray-900 font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
+            className="w-full sm:w-auto bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
           >
             Add New Asset
           </Button>
@@ -174,7 +174,7 @@ export default function AssetManagerDashboard() {
             onClick={() => {
               toast.info("Generating report...", { position: "top-right" })
             }}
-            className="w-full sm:w-auto bg-[#FF4757] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
+            className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
           >
             Generate Report
           </Button>
@@ -193,7 +193,7 @@ export default function AssetManagerDashboard() {
                   placeholder="Search by asset name or ID"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] focus:border-transparent text-sm transition-colors duration-200"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
                 />
                 {searchQuery && (
                   <button
@@ -209,7 +209,7 @@ export default function AssetManagerDashboard() {
             <div className="flex items-end">
               <Button
                 onClick={handleSearch}
-                className="w-full bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
               >
                 Search
               </Button>
@@ -274,7 +274,7 @@ export default function AssetManagerDashboard() {
                     <td className="py-4 px-4">
                       <Button
                         onClick={() => toast.info(`Viewing asset ${asset.assetId}`, { position: "top-right" })}
-                        className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
                       >
                         View
                       </Button>
@@ -310,7 +310,7 @@ export default function AssetManagerDashboard() {
                   </div>
                   <Button
                     onClick={() => toast.info(`Viewing asset ${asset.assetId}`, { position: "top-right" })}
-                    className="bg-[#0D6A8D] hover:bg-[#0A5670] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
+                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
                   >
                     View
                   </Button>

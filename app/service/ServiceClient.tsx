@@ -92,12 +92,12 @@ export default function ServiceClient() {
           <section className="bg-[#E8F4F8] py-20 md:py-32 text-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-20">
               <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FF4757] rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+              <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#F84B5F] rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
             </div>
             <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
-              <p className="text-[#0D6A8D] font-bold uppercase tracking-[0.2em] mb-6">Nationwide Solutions</p>
+              <p className="text-[#006795] font-bold uppercase tracking-[0.2em] mb-6">Nationwide Solutions</p>
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-black mb-8 leading-[1.1]">
-                Inspection <span className="text-[#FF4757] italic font-medium">Services</span> in USA
+                Inspection <span className="text-[#F84B5F] italic font-medium">Services</span> in USA
               </h1>
               <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
                 Inspire provides professional Inspection Services across the USA, delivering end-to-end solutions for buyers, owners, sellers, landlords, investors, and public housing authorities.
@@ -162,8 +162,8 @@ export default function ServiceClient() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {processSteps.map((step, index) => (
-                <div key={index} className="relative bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center hover:bg-[#0D6A8D] hover:text-white transition-colors group">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-[#0D6A8D] group-hover:text-[#0D6A8D] font-bold text-xl">
+                <div key={index} className="relative bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center hover:bg-[#006795] hover:text-white transition-colors group">
+                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-[#006795] group-hover:text-[#006795] font-bold text-xl">
                     {index + 1}
                   </div>
                   <h3 className="font-bold text-lg mb-2">{step.title}</h3>
@@ -186,7 +186,7 @@ export default function ServiceClient() {
                 Clients benefit from inspections that are not only comprehensive but also recognized by public housing authorities, lenders, and commercial stakeholders across the USA. This emphasis on compliance strengthens client confidence, enhances report credibility, and improves long-term property management and decision-making outcomes.
               </p>
               <div className="bg-white/10 p-6 rounded-2xl border border-white/20">
-                <h4 className="font-bold text-lg text-[#FF4757] mb-2">Why it matters</h4>
+                <h4 className="font-bold text-lg text-[#F84B5F] mb-2">Why it matters</h4>
                 <p className="text-sm text-gray-200 leading-relaxed">
                   Compliance ensures properties meet legal, safety, and regulatory requirements, reducing risk, avoiding penalties, and enhancing trust for buyers, owners, and public housing authorities.
                 </p>

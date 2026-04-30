@@ -193,9 +193,9 @@ export default function ManagementForgotPassword() {
         
         {/* Step Indicator */}
         <div className="flex items-center gap-2">
-          <div className={`w-3 h-3 rounded-full ${step === 'email' ? 'bg-[#0D6A8D]' : 'bg-gray-300'}`} />
-          <div className={`w-3 h-3 rounded-full ${step === 'otp' ? 'bg-[#0D6A8D]' : 'bg-gray-300'}`} />
-          <div className={`w-3 h-3 rounded-full ${step === 'password' ? 'bg-[#0D6A8D]' : 'bg-gray-300'}`} />
+          <div className={`w-3 h-3 rounded-full ${step === 'email' ? 'bg-[#006795]' : 'bg-gray-300'}`} />
+          <div className={`w-3 h-3 rounded-full ${step === 'otp' ? 'bg-[#006795]' : 'bg-gray-300'}`} />
+          <div className={`w-3 h-3 rounded-full ${step === 'password' ? 'bg-[#006795]' : 'bg-gray-300'}`} />
         </div>
       </div>
 
@@ -213,10 +213,10 @@ export default function ManagementForgotPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="enter your registered email"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
-              <Button type="submit" disabled={isLoading} className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
+              <Button type="submit" disabled={isLoading} className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
                 {isLoading ? "Sending..." : "Send Verification Code"}
               </Button>
             </form>
@@ -233,15 +233,15 @@ export default function ManagementForgotPassword() {
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   placeholder="Enter 6-digit code"
                   maxLength={6}
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D] text-center text-2xl tracking-widest"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795] text-center text-2xl tracking-widest"
                 />
               </div>
-              <Button type="submit" disabled={isLoading} className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
+              <Button type="submit" disabled={isLoading} className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
                 {isLoading ? "Verifying..." : "Verify Code"}
               </Button>
               <p className="text-center text-sm text-gray-600">
                 Didn't receive the code?{" "}
-                <button type="button" onClick={resendOTP} disabled={isLoading} className="text-[#0D6A8D] hover:underline font-semibold bg-transparent border-0 cursor-pointer disabled:opacity-50">Resend</button>
+                <button type="button" onClick={resendOTP} disabled={isLoading} className="text-[#006795] hover:underline font-semibold bg-transparent border-0 cursor-pointer disabled:opacity-50">Resend</button>
               </p>
             </form>
           )}
@@ -257,7 +257,7 @@ export default function ManagementForgotPassword() {
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Enter new password"
                   maxLength={128}
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
                 <p className="text-xs text-gray-500 mt-1">8-128 characters with uppercase, lowercase, number, and special character (@$!%*?&)</p>
               </div>
@@ -270,10 +270,10 @@ export default function ManagementForgotPassword() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm new password"
                   maxLength={128}
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0D6A8D]"
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
                 />
               </div>
-              <Button type="submit" disabled={isLoading} className="w-full bg-[#0D6A8D] hover:bg-[#0D6A8D]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
+              <Button type="submit" disabled={isLoading} className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-6 font-semibold text-base disabled:opacity-50">
                 {isLoading ? "Resetting..." : "Reset Password"}
               </Button>
             </form>
@@ -283,7 +283,7 @@ export default function ManagementForgotPassword() {
           <p className="text-center text-sm mt-6">
             <button 
               onClick={() => step === 'email' ? router.push('/management/login') : setStep('email')}
-              className="text-[#FF4757] hover:underline font-semibold cursor-pointer bg-transparent border-0"
+              className="text-[#F84B5F] hover:underline font-semibold cursor-pointer bg-transparent border-0"
             >
               {step === 'email' ? 'Back to Login' : '← Start Over'}
             </button>
