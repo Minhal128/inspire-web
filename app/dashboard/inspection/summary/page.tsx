@@ -144,6 +144,31 @@ function NSPIREInspectionSummaryContent() {
 
   // Handle "Continue Inspection" - mark unit as completed and go back to property details
   const handleContinueInspection = () => {
+    try {
+      const storedDataRaw = localStorage.getItem('currentInspectionData');
+      if (storedDataRaw) {
+        const parsed = JSON.parse(storedDataRaw);
+        const propertyId = parsed.propertyId || parsed.inspectionId;
+        const building = parsed.building || '';
+        const unit = parsed.currentUnit || '';
+        
+        if (propertyId) {
+          let url = `/dashboard/inspection-category/${propertyId}`;
+          const params = new URLSearchParams();
+          if (building) params.append('building', building);
+          if (unit) params.append('unit', unit);
+          
+          if (params.toString()) {
+            url += `?${params.toString()}`;
+          }
+          router.push(url);
+          return;
+        }
+      }
+    } catch (e) {
+      console.error('Failed to parse inspection data for return URL', e);
+    }
+
     if (inspectionContext) {
       const unitQuery = inspectionContext.unitName ? `&unit=${encodeURIComponent(inspectionContext.unitName)}&units=1` : ''
       router.push(`/dashboard/inspection-category/${inspectionContext.propertyId}?building=${encodeURIComponent(inspectionContext.buildingId)}${unitQuery}`)

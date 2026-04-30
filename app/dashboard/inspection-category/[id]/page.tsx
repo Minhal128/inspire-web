@@ -766,11 +766,12 @@ export default function InspectionCategoryPage() {
 
                 toast.info("Item saved. You can continue with other items or view summary.", { position: "top-right" });
                 
-                // Close modal but STAY on the page
-                setIsODModalOpen(false);
-                setSelectedDeficiency(null);
-                setPhotos([]);
-                setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
+                // Update state to show the Analysis Complete screen (modalStep 4)
+                setAnalysisResult(analysisResult);
+                if (resultData.reportUrl) {
+                    setReportUrl(resultData.reportUrl);
+                }
+                setModalStep(4);
 
             } else {
                 throw new Error(data.message || "Analysis failed");
@@ -1522,7 +1523,7 @@ export default function InspectionCategoryPage() {
 
                                     {/* 3. HOW TO INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How to Inspect</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How To Inspect IRU, BRU, Local</label>
                                         {(() => {
                                             if (!selectedDeficiency) {
                                                 return (
@@ -1541,7 +1542,7 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => setIsHowToInspectOpen(true)}
                                                     className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
                                                 >
-                                                    Open How to Inspect Guide
+                                                    Open How To Inspect IRU, BRU, Local
                                                 </button>
                                             )
                                         })()}
@@ -1750,7 +1751,7 @@ export default function InspectionCategoryPage() {
                         </div>
 
                         {modalStep === 4 && (
-                            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="flex-1 overflow-y-auto flex flex-col items-center justify-start p-8 text-center space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 min-h-0">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-2">
                                     <CheckCircle2 className="w-10 h-10 text-green-600" />
                                 </div>
@@ -1842,7 +1843,14 @@ export default function InspectionCategoryPage() {
                                     </a>
                                 )}
 
-                                <Button variant="outline" onClick={handleODModalClose} className="w-full font-black h-14 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-500 uppercase text-[10px] tracking-widest">
+                                <Button variant="outline" onClick={() => {
+                                    // Reset modal and stay on inspection page
+                                    setModalStep(1);
+                                    setSelectedDeficiency(null);
+                                    setPhotos([]);
+                                    setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
+                                    setIsODModalOpen(false);
+                                }} className="w-full font-black h-14 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-500 uppercase text-[10px] tracking-widest">
                                     Continue Inspection
                                 </Button>
                             </div>
@@ -1871,7 +1879,7 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How to Inspect</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How To Inspect IRU, BRU, Local</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>
