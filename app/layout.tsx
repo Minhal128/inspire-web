@@ -7,8 +7,8 @@ import './globals.css'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Home Inspection Services in USA | Certified Inspectors | Nspire',
-  description: 'Book a certified home inspection with Nspire. Affordable prices, detailed reports, and trusted home inspectors near you. Find out home inspection cost today.',
+  title: 'Best Certified Home Inspectors Inspection Services USA',
+  description: 'Our reliable home inspectors deliver accurate reports, and trusted service for buyers, sellers, and others.',
   generator: 'v0.app',
   icons: {
     icon: '/logo.png',
@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${inter.className} antialiased`}>
         {children}
         <ToastContainer
           position="top-right"

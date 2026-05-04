@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import FAQClient from './FAQClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ | Nspire Home Inspections',
+  title: 'Home Inspection App Support & Help Guide',
   description: 'Frequently asked questions about home inspections, pre-buy inspections, cost, and commercial services from Nspire experts.',
 }
 

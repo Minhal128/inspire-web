@@ -54,7 +54,7 @@ export const OUTSIDE_ITEMS: InspectionItem[] = [
   { id: '15', name: 'Leak - Water' },
   { id: '16', name: 'Lighting' },
   { id: '17', name: 'Parking Lots, Driveways, Roads' },
-  { id: '18', name: 'Paint - Lead-Based Paint' },
+  { id: '18', name: 'Paint - Potential Lead-Based Paint Hazards – Visual Assessment' },
   { id: '19', name: 'Railings' },
   { id: '20', name: 'Roof Assembly' },
   { id: '21', name: 'Sidewalk, Walkway, and Ramp' },

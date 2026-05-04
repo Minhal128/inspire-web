@@ -259,40 +259,6 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
   const updateProperty = (index: number, field: keyof PropertyFormData, value: string) => {
     const updated = [...properties]
     updated[index] = { ...updated[index], [field]: value }
-
-    // Reset dependent fields when country changes
-    if (field === 'country') {
-      const selectedCountry = countries.find(c => c.name === value)
-      updated[index].countryCode = selectedCountry?.isoCode || ''
-      updated[index].state = ''
-      updated[index].stateCode = ''
-      updated[index].city = ''
-
-      // Load states for selected country
-      if (selectedCountry) {
-        const countryStates = State.getStatesOfCountry(selectedCountry.isoCode)
-        setStates(countryStates)
-      } else {
-        setStates([])
-      }
-      setCities([])
-    }
-
-    // Reset city when state changes
-    if (field === 'state') {
-      const selectedState = states.find(s => s.name === value)
-      updated[index].stateCode = selectedState?.isoCode || ''
-      updated[index].city = ''
-
-      // Load cities for selected state
-      if (selectedState && updated[index].countryCode) {
-        const stateCities = City.getCitiesOfState(updated[index].countryCode, selectedState.isoCode)
-        setCities(stateCities)
-      } else {
-        setCities([])
-      }
-    }
-
     setProperties(updated)
   }
 

@@ -51,7 +51,7 @@ ALL_INSIDE_CATEGORIES.forEach(item => {
     if (item.deficiencies) {
         const mappedDefs = item.deficiencies.map(d => ({
             ...convertToUIDetail(d),
-            selected: item.itemName,
+            selected: d.name, // Use deficiency name directly instead of creating an intermediate item name step
             subcategory: item.itemName
         }));
         allDefs = [...allDefs, ...mappedDefs];

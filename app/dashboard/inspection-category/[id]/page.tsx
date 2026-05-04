@@ -155,6 +155,17 @@ export default function InspectionCategoryPage() {
     const [isODModalOpen, setIsODModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    // Track items that have actual saved OD findings (to protect from accidental Select All overwrite)
+    const [savedODItems, setSavedODItems] = useState<Set<string>>(new Set());
+
+    // Store previously saved OD form data per item key (section:itemName) for pre-filling when re-opened
+    const [savedODFormData, setSavedODFormData] = useState<Record<string, {
+        odForm: { category: string; note: string; location: string; healthAndSafety: string; repairBy: string; codeAndCompliance: string };
+        selectedDeficiency: DeficiencyDetail | null;
+        photos: string[];
+        modalStep: number;
+    }>>({});
+
     // General Comment modal state
     const [isGeneralModalOpen, setIsGeneralModalOpen] = useState(false);
     const [generalNote, setGeneralNote] = useState('');
@@ -371,6 +382,21 @@ export default function InspectionCategoryPage() {
                     }
                     localStorage.setItem('currentInspectionData', JSON.stringify(finalData));
                 }
+                // Restore OD form snapshots so re-opening a saved OD pre-fills the form
+                const restoredSnapshots: Record<string, any> = {};
+                const restoredSavedODKeys = new Set<string>();
+                res.progress.forEach((p: any) => {
+                    if (p.inspectionData && p.inspectionData.odFormSnapshots) {
+                        Object.entries(p.inspectionData.odFormSnapshots).forEach(([key, val]) => {
+                            restoredSnapshots[key] = val;
+                            restoredSavedODKeys.add(key);
+                        });
+                    }
+                });
+                if (Object.keys(restoredSnapshots).length > 0) {
+                    setSavedODFormData(restoredSnapshots);
+                    setSavedODItems(restoredSavedODKeys);
+                }
             }
         } catch (error) {
             console.error("Error loading progress:", error);
@@ -487,16 +513,30 @@ export default function InspectionCategoryPage() {
             const cleanCategory = itemName.split('. ')[1] || itemName;
             setCurrentSection(section);
             setCurrentModalItem(itemName);
-            setOdForm(prev => ({
-                ...prev,
-                category: cleanCategory,
-                note: "",
-                location: section === 'outside' ? OUTSIDE_LOCATION_OPTIONS[0] : "Main Lobby",
-                healthAndSafety: "",
-                repairBy: "",
-                codeAndCompliance: ""
-            }));
-            setModalStep(1);
+
+            // If this item was previously saved, pre-fill the form with saved data
+            const savedKey = `${section}:${itemName}`;
+            const previousData = savedODFormData[savedKey];
+            if (previousData) {
+                setOdForm(previousData.odForm);
+                setSelectedDeficiency(previousData.selectedDeficiency);
+                setPhotos(previousData.photos);
+                // Jump to step 2 (the form) so user can review/edit their previous entry
+                setModalStep(2);
+            } else {
+                setOdForm(prev => ({
+                    ...prev,
+                    category: cleanCategory,
+                    note: "",
+                    location: section === 'outside' ? OUTSIDE_LOCATION_OPTIONS[0] : "Main Lobby",
+                    healthAndSafety: "",
+                    repairBy: "",
+                    codeAndCompliance: ""
+                }));
+                setSelectedDeficiency(null);
+                setPhotos([]);
+                setModalStep(1);
+            }
             setIsODModalOpen(true);
             return;
         }
@@ -522,11 +562,36 @@ export default function InspectionCategoryPage() {
     const selectAll = (section: 'outside' | 'inside' | 'unit', status: ItemStatus) => {
         const list = section === 'outside' ? outsideItemsList : section === 'inside' ? insideItemsList : unitItemsList;
         const currentStatuses = section === 'outside' ? outsideStatuses : section === 'inside' ? insideStatuses : unitStatuses;
-        const allSelected = list.every(item => currentStatuses[item] === status);
-        const newStatuses: Record<string, ItemStatus> = {};
-        list.forEach(item => {
+
+        // Items with saved OD findings are always locked to 'OD'
+        const itemsWithFindings = new Set(
+            Array.from(savedODItems)
+                .filter(key => key.startsWith(`${section}:`))
+                .map(key => key.slice(section.length + 1))
+        );
+
+        // IMPORTANT: Only touch items that are either:
+        // 1. Currently unset (null) — so we never overwrite user's existing selections
+        // 2. Already set to THIS same status — so the toggle (undo) still works
+        // This prevents "Select All OD" from wiping existing No OD / N/A selections
+        const itemsToToggle = list.filter(item =>
+            !itemsWithFindings.has(item) &&
+            (currentStatuses[item] === null || currentStatuses[item] === undefined || currentStatuses[item] === status)
+        );
+
+        const allSelected = itemsToToggle.length > 0 && itemsToToggle.every(item => currentStatuses[item] === status);
+
+        const newStatuses: Record<string, ItemStatus> = { ...currentStatuses };
+
+        itemsToToggle.forEach(item => {
             newStatuses[item] = allSelected ? null : status;
         });
+
+        // Always keep saved OD items as 'OD'
+        itemsWithFindings.forEach(item => {
+            newStatuses[item] = 'OD';
+        });
+
         if (section === 'outside') setOutsideStatuses(newStatuses);
         else if (section === 'inside') setInsideStatuses(newStatuses);
         else setUnitStatuses(newStatuses);
@@ -729,7 +794,17 @@ export default function InspectionCategoryPage() {
                     inspection_type: type,
                     responses: updatedStatuses,
                     inspectionData: {
-                        findings: [inspectionDataForSummary.findings[0]] // Just send this one finding to merge
+                        findings: [inspectionDataForSummary.findings[0]],
+                        // Persist OD form snapshots so pre-fill survives page refresh
+                        odFormSnapshots: {
+                            ...(savedODFormData),
+                            [`${currentSection}:${currentModalItem}`]: {
+                                odForm: { ...odForm },
+                                selectedDeficiency: selectedDeficiency,
+                                photos: [...photos],
+                                modalStep: 2
+                            }
+                        }
                     },
                     building_id: urlBuilding
                 });
@@ -770,6 +845,21 @@ export default function InspectionCategoryPage() {
                 setAnalysisResult(analysisResult);
                 if (resultData.reportUrl) {
                     setReportUrl(resultData.reportUrl);
+                }
+                // Mark this item as having a saved OD finding so Select All can't overwrite it
+                if (currentSection && currentModalItem) {
+                    const savedKey = `${currentSection}:${currentModalItem}`;
+                    setSavedODItems(prev => new Set(prev).add(savedKey));
+                    // Snapshot the current form data so it can be pre-filled on re-open
+                    setSavedODFormData(prev => ({
+                        ...prev,
+                        [savedKey]: {
+                            odForm: { ...odForm },
+                            selectedDeficiency: selectedDeficiency,
+                            photos: [...photos],
+                            modalStep: 2
+                        }
+                    }));
                 }
                 setModalStep(4);
 
@@ -834,13 +924,22 @@ export default function InspectionCategoryPage() {
                 ? unitDeficiencyMapping
                 : insideDeficiencyMapping;
 
-        // Try exact match first
-        if (mapping[baseName]) return mapping[baseName];
+        // Try exact match first (case-insensitive)
+        const exactKey = Object.keys(mapping).find(k => k.toLowerCase() === baseName.toLowerCase());
+        if (exactKey) return mapping[exactKey];
 
         // Fallback to fuzzy match
-        const matchedKey = Object.keys(mapping).find(k =>
-            baseName.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(baseName.toLowerCase())
-        );
+        const matchedKey = Object.keys(mapping).find(k => {
+            const nk = k.toLowerCase();
+            const nb = baseName.toLowerCase();
+            if (nb.includes(nk) || nk.includes(nb)) return true;
+            
+            // Special case for Paint to be more resilient
+            if (nb.includes('paint') && nk.includes('paint')) return true;
+            
+            // Other keywords could be added here if needed
+            return false;
+        });
 
         return matchedKey ? mapping[matchedKey] : [];
     };
@@ -922,7 +1021,11 @@ export default function InspectionCategoryPage() {
                             <th className="py-2 px-2">
                                 <Button onClick={() => selectAll(section, 'No OD')} className="w-full bg-[#006795] hover:bg-[#0a5670] text-white text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
                                     <div className="w-3 h-3 bg-white border border-cyan-800 flex items-center justify-center">
-                                        {items.length > 0 && items.every(item => statuses[item] === 'No OD') && <Check className="w-2.5 h-2.5 text-cyan-800" strokeWidth={4} />}
+                                        {(() => {
+                                            const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                            const isChecked = toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD');
+                                            return isChecked ? <Check className="w-2.5 h-2.5 text-cyan-800" strokeWidth={4} /> : null;
+                                        })()}
                                     </div>
                                     Select All No OD
                                 </Button>
@@ -930,7 +1033,11 @@ export default function InspectionCategoryPage() {
                             <th className="py-2 px-2">
                                 <Button onClick={() => selectAll(section, 'OD')} className="w-full bg-white hover:bg-red-50 text-[#DC2626] border border-[#DC2626] text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
                                     <div className="w-3 h-3 bg-white border border-[#DC2626] flex items-center justify-center">
-                                        {items.length > 0 && items.every(item => statuses[item] === 'OD') && <Check className="w-2.5 h-2.5 text-[#DC2626]" strokeWidth={4} />}
+                                        {(() => {
+                                            const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                            const isChecked = toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                                            return isChecked ? <Check className="w-2.5 h-2.5 text-[#DC2626]" strokeWidth={4} /> : null;
+                                        })()}
                                     </div>
                                     Observe Deficiency
                                 </Button>
@@ -938,7 +1045,11 @@ export default function InspectionCategoryPage() {
                             <th className="py-2 px-2">
                                 <Button onClick={() => selectAll(section, 'N/A')} className="w-full bg-[#006795] hover:bg-[#0a5670] text-white text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
                                     <div className="w-3 h-3 bg-white border border-cyan-800 flex items-center justify-center">
-                                        {items.length > 0 && items.every(item => statuses[item] === 'N/A') && <Check className="w-2.5 h-2.5 text-cyan-800" strokeWidth={4} />}
+                                        {(() => {
+                                            const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                            const isChecked = toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A');
+                                            return isChecked ? <Check className="w-2.5 h-2.5 text-cyan-800" strokeWidth={4} /> : null;
+                                        })()}
                                     </div>
                                     Select All N/A
                                 </Button>

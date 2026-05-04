@@ -29,7 +29,7 @@ ALL_UNIT_CATEGORIES.forEach(categoryObj => {
 
         const mappedDefs = item.deficiencies.map(d => ({
             ...convertToUIDetail(d),
-            selected: item.itemName, // The top-level selection is the sub-item name (e.g. Door - Entry)
+            selected: categoryObj.items.length === 1 ? d.name : item.itemName, // Use deficiency name if no other sub-items to group by
             subcategory: item.itemName
         }));
         itemDefs = [...itemDefs, ...mappedDefs];

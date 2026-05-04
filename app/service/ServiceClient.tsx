@@ -15,7 +15,8 @@ const services = [
     description: "Inspire’s Buyer Inspection Services support confident purchasing decisions for residential, multi-family, commercial, and public housing properties across the USA. Our inspections include multi-unit buyer inspection, single-family home buyer inspection, condominium and townhome buyer inspection, and commercial property pre-purchase evaluation. We conduct comprehensive property condition assessments for buyers, covering structural, mechanical, and electrical review while identifying hazards and compliance risks. Each buyer inspection includes Inspire buyer safety compliance checks, repair and maintenance cost estimation, and buyer decision support reports.",
     moreText: "Buyer Risk Analysis, Compliance, and Negotiation Support: Our buyer-focused inspections emphasize hazard and risk identification, safety compliance, and financial clarity. Inspire delivers buyer decision support reports that highlight structural deficiencies, system failures, and safety concerns affecting value and insurability.",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-blue-50"
+    color: "bg-blue-50",
+    href: "/inspection-services/buyers"
   },
   {
     title: "Owner Inspection Services",
@@ -23,7 +24,8 @@ const services = [
     description: "Inspire’s Owner Inspection Services help property owners maintain asset value, ensure compliance, and plan preventive maintenance. Our annual owner property inspection, multi-unit owner inspection, and building health and maintenance evaluation identify issues before they escalate. We perform property condition assessments (PCA), insurance risk checks for owners, and tenant safety and habitability reviews.",
     moreText: "Preventive Maintenance and Owner Compliance Reporting: Our owner inspections focus on actionable intelligence, including pre-renovation inspections and owner repair priority reports. Inspire evaluates structural integrity, MEP systems, and safety features to identify early-stage deterioration.",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-red-50"
+    color: "bg-red-50",
+    href: "/inspection-services/owners"
   },
   {
     title: "Seller Inspection Services",
@@ -31,7 +33,8 @@ const services = [
     description: "Inspire’s Seller Inspection Services prepare properties for listing with transparency and confidence. Our pre-listing inspection, multi-unit seller inspection, and property readiness evaluation identify major and minor defects before marketing. We provide HUD/REAC pre-sale support, repair and upgrade recommendations, and pricing advantage inspection reports. Marketability enhancement reviews focus on safety, compliance, and presentation factors that influence buyer perception.",
     moreText: "Seller Transparency and Pricing Advantage Reports: Seller inspections include detailed seller transparency reports designed to minimize post-offer disputes. Inspire documents defects, compliance gaps, and improvement opportunities with clear prioritization.",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-orange-50"
+    color: "bg-orange-50",
+    href: "/inspection-services/sellers"
   },
   {
     title: "Rental Property Inspection",
@@ -39,7 +42,8 @@ const services = [
     description: "Inspire delivers comprehensive rental property inspection services, including move-in inspection, move-out inspection, annual rental safety inspection, and habitability standards review. We assess tenant damage, occupancy health and safety, and multi-unit rental inspection requirements. Inspire rental compliance and HUD/REAC pre-audit support ensure landlords meet federal and local housing standards.",
     moreText: "Rental Risk Management and Documentation Support: Our rental inspections focus on risk mitigation and regulatory readiness. Inspire evaluates life-safety systems, habitability conditions, and compliance gaps that impact leasing and audits.",
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-green-50"
+    color: "bg-green-50",
+    href: "/inspection-services/rental"
   },
   {
     title: "Commercial Building Inspection",
@@ -47,7 +51,8 @@ const services = [
     description: "Inspire provides commercial building inspection services for multi-unit commercial facilities, industrial properties, office buildings, retail spaces, warehouses, and shopping centers. Our inspections include construction quality assessment, safety and code compliance, fire and life safety checks, and roof, HVAC, electrical, and plumbing analysis.",
     moreText: "Commercial Compliance, Systems, and Structural Evaluation: Commercial inspections emphasize operational continuity and regulatory alignment. Inspire identifies deficiencies affecting safety, insurability, and asset performance. Our reporting supports capital planning, compliance remediation, and insurance coordination.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-yellow-50"
+    color: "bg-yellow-50",
+    href: "/inspection-services/commercial"
   },
   {
     title: "Public Housing Inspection",
@@ -55,7 +60,8 @@ const services = [
     description: "Inspire specializes in public housing inspection services aligned with Inspire standards. We provide HUD/REAC inspection preparation, multi-family housing inspection, apartment community compliance, and federal housing standards review. Our habitability and safety evaluations, energy and environmental standards checks, and occupancy health inspections support REAC scoring improvement and regulatory readiness for public housing authorities (PHAs).",
     moreText: "Public Housing Risk, Compliance, and Documentation: Our public housing inspections deliver risk and deficiency reporting with clear remediation guidance. Inspire supports PHAs with documentation, compliance verification, and audit preparation.",
     image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-purple-50"
+    color: "bg-purple-50",
+    href: "/inspection-services/public-housing"
   },
   {
     title: "Insurance Risk Management",
@@ -63,7 +69,8 @@ const services = [
     description: "Inspire’s insurance risk management inspections address property risk assessment, hazard and liability review, and multi-unit insurance inspection requirements. We conduct commercial insurance inspections, fire and safety risk reporting, and environmental risk analysis. Our foundation, electrical, and structural risk reviews support insurance claim prevention and pre-coverage inspection needs.",
     moreText: "Insurance Compliance and Claim Prevention Reporting: Insurance-focused inspections emphasize loss prevention and underwriting readiness. Inspire provides annual insurance compliance checks and actionable recommendations to reduce exposure.",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "bg-teal-50"
+    color: "bg-teal-50",
+    href: "/inspection-services/insurance-risk"
   },
   {
     title: "Specialized & Add-On",
@@ -71,7 +78,8 @@ const services = [
     description: "Inspire offers specialized inspection services, including sewer scope video inspections, pool and spa inspections, mold sampling, roof inspection, and foundation and crawlspace inspection. We also provide luxury home inspections, historic homes inspections, Malibu and beach home inspections, and general home inspections. Commercial add-on inspections and multi-unit specialized evaluations extend our capabilities across property types.",
     moreText: "Environmental, Air Quality, and Advanced Evaluations: Our environmental and air quality sampling services address health, safety, and regulatory concerns. Inspire evaluates indoor air quality, moisture intrusion, and environmental risks affecting occupancy and compliance.",
     image: "https://img.freepik.com/free-photo/building-contractor-doing-home-inspection_53876-137128.jpg?size=626&ext=jpg",
-    color: "bg-indigo-50"
+    color: "bg-indigo-50",
+    href: "/inspection-services/specialized"
   }
 ];
 
@@ -130,7 +138,9 @@ export default function ServiceClient() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                     <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
+                      <Link href={service.href || "#"}>
+                        <h3 className="text-2xl font-bold text-white mb-2 hover:text-[#F84B5F] transition-colors cursor-pointer">{service.title}</h3>
+                      </Link>
                       <p className="text-white/90 font-medium">{service.subtitle}</p>
                     </div>
                   </div>
