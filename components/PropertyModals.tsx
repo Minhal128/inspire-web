@@ -1178,23 +1178,44 @@ export function CoverageSelectionModal({ isOpen, onClose, onStartInspection, pro
 interface EditPropertyModalProps {
   isOpen: boolean
   onClose: () => void
+  onSuccess?: () => void
   propertyData: any
 }
 
-export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropertyModalProps) {
+export function EditPropertyModal({ isOpen, onClose, onSuccess, propertyData }: EditPropertyModalProps) {
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
-    propertyId: propertyData?.propertyId || "80000017",
-    address: propertyData?.address || "3200 LATOUCHE ST",
-    propertyName: propertyData?.propertyName || "STEPHEN'S PARK APARTMENTS",
-    country: propertyData?.country || "United States",
-    countryCode: propertyData?.countryCode || "US",
-    state: propertyData?.state || "Alaska",
-    stateCode: propertyData?.stateCode || "AK",
-    buildings: propertyData?.buildings || "12",
-    city: propertyData?.city || "Anchorage",
-    units: propertyData?.units || "160",
-    zipCode: propertyData?.zipCode || "99508"
+    propertyId: "",
+    address: "",
+    propertyName: "",
+    country: "",
+    countryCode: "",
+    state: "",
+    stateCode: "",
+    buildings: "",
+    city: "",
+    units: "",
+    zipCode: ""
   })
+
+  // Sync formData with propertyData when modal opens or propertyData changes
+  useEffect(() => {
+    if (isOpen && propertyData) {
+      setFormData({
+        propertyId: propertyData.propertyId || "",
+        address: propertyData.address || "",
+        propertyName: propertyData.name || propertyData.propertyName || "",
+        country: propertyData.country || "United States",
+        countryCode: propertyData.countryCode || "US",
+        state: propertyData.state || "",
+        stateCode: propertyData.stateCode || "",
+        buildings: String(propertyData.buildings || ""),
+        city: propertyData.city || "",
+        units: String(propertyData.units || ""),
+        zipCode: propertyData.zipCode || ""
+      })
+    }
+  }, [isOpen, propertyData])
 
   // Location data from country-state-city package
   const [countries, setCountries] = useState<any[]>([])
@@ -1268,14 +1289,56 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
     }
   }
 
-  const handleUpdate = () => {
-    toast.success("Property updated successfully!", { position: "top-right" })
-    onClose()
+  const handleUpdate = async () => {
+    if (!propertyData?._id) {
+      toast.error("Property ID not found");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await propertiesAPI.update(propertyData._id, {
+        propertyId: formData.propertyId,
+        name: formData.propertyName,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        zipCode: formData.zipCode,
+        country: formData.country,
+        buildings: parseInt(formData.buildings) || 0,
+        units: parseInt(formData.units) || 0,
+      });
+
+      if (response.success) {
+        toast.success("Property updated successfully!", { position: "top-right" });
+        if (onSuccess) onSuccess();
+        onClose();
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to update property");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  const handleDelete = () => {
-    toast.error("Property deleted", { position: "top-right" })
-    onClose()
+  const handleDelete = async () => {
+    if (!propertyData?._id) return;
+    
+    if (!confirm(`Are you sure you want to delete ${formData.propertyName}?`)) return;
+
+    setIsLoading(true);
+    try {
+      const response = await propertiesAPI.delete(propertyData._id);
+      if (response.success) {
+        toast.success("Property deleted successfully", { position: "top-right" });
+        if (onSuccess) onSuccess();
+        onClose();
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to delete property");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   if (!isOpen) return null
@@ -1302,7 +1365,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 type="text"
                 value={formData.propertyId}
                 onChange={(e) => setFormData({ ...formData, propertyId: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -1311,7 +1374,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 type="text"
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -1320,7 +1383,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 type="text"
                 value={formData.propertyName}
                 onChange={(e) => setFormData({ ...formData, propertyName: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
@@ -1333,7 +1396,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                 placeholder="Enter Country"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -1343,7 +1406,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                 placeholder="Enter State"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -1353,7 +1416,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 placeholder="Enter City"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -1362,7 +1425,7 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
                 type="text"
                 value={formData.zipCode}
                 onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>
@@ -1392,15 +1455,17 @@ export function EditPropertyModal({ isOpen, onClose, propertyData }: EditPropert
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
             <Button
               onClick={handleUpdate}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm"
+              disabled={isLoading}
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm disabled:opacity-50"
             >
-              Update
+              {isLoading ? "Updating..." : "Update"}
             </Button>
             <Button
               onClick={handleDelete}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold rounded-lg text-sm"
+              disabled={isLoading}
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold rounded-lg text-sm disabled:opacity-50"
             >
-              Delete
+              {isLoading ? "Deleting..." : "Delete"}
             </Button>
           </div>
         </div>

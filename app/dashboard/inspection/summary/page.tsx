@@ -55,6 +55,12 @@ const ImageIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const ChevronLeft = ({ className }: { className?: string }) => (
+  <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  </svg>
+)
+
 // Loading fallback component
 function LoadingFallback() {
   return (
@@ -138,29 +144,39 @@ function NSPIREInspectionSummaryContent() {
 
   const visibleDeficiencies = useMemo(() => {
     if (!report) return []
-    if (isReportUnlocked) return report.deficiencies
+    // If we're just previewing progress (not finalizing), show everything so they can review
+    const isFinalizing = searchParams.get('finalize') === 'true';
+    if (isReportUnlocked || !isFinalizing) return report.deficiencies
     return report.deficiencies.slice(0, 2)
-  }, [report, isReportUnlocked])
+  }, [report, isReportUnlocked, searchParams])
 
-  // Handle "Continue Inspection" - mark unit as completed and go back to property details
-  const handleContinueInspection = () => {
+  // Handle "Back to Inspection" - return to the active inspection screen
+  const handleBackToInspection = () => {
+    // Priority 1: Current unit context from localStorage
+    if (inspectionContext) {
+      const unitParam = inspectionContext.unitName ? `&unit=${encodeURIComponent(inspectionContext.unitName)}` : ''
+      const url = `/dashboard/inspection-category/${inspectionContext.propertyId}?building=${encodeURIComponent(inspectionContext.buildingId)}${unitParam}&units=1`;
+      router.push(url);
+      return;
+    }
+
+    // Priority 2: Fallback to currentInspectionData
     try {
       const storedDataRaw = localStorage.getItem('currentInspectionData');
       if (storedDataRaw) {
         const parsed = JSON.parse(storedDataRaw);
         const propertyId = parsed.propertyId || parsed.inspectionId;
-        const building = parsed.building || '';
-        const unit = parsed.currentUnit || '';
+        const building = parsed.building || parsed.buildingId || '';
+        const unit = parsed.currentUnit || parsed.unitId || '';
         
         if (propertyId) {
           let url = `/dashboard/inspection-category/${propertyId}`;
           const params = new URLSearchParams();
           if (building) params.append('building', building);
           if (unit) params.append('unit', unit);
+          params.append('units', '1');
           
-          if (params.toString()) {
-            url += `?${params.toString()}`;
-          }
+          url += `?${params.toString()}`;
           router.push(url);
           return;
         }
@@ -169,25 +185,120 @@ function NSPIREInspectionSummaryContent() {
       console.error('Failed to parse inspection data for return URL', e);
     }
 
-    if (inspectionContext) {
-      const unitQuery = inspectionContext.unitName ? `&unit=${encodeURIComponent(inspectionContext.unitName)}&units=1` : ''
-      router.push(`/dashboard/inspection-category/${inspectionContext.propertyId}?building=${encodeURIComponent(inspectionContext.buildingId)}${unitQuery}`)
-    } else {
-      router.push('/dashboard')
+    // Priority 3: Try to find any progress record to go back to
+    const storedPropertyRaw = localStorage.getItem('currentInspectionProperty');
+    if (storedPropertyRaw) {
+      try {
+        const prop = JSON.parse(storedPropertyRaw);
+        const pid = prop._id || prop.id;
+        if (pid) {
+          router.push(`/dashboard/inspection-category/${pid}?building=B1&unit=Outside&units=1`);
+          return;
+        }
+      } catch {}
     }
+
+    // Priority 4: Dashboard
+    router.push('/dashboard');
   }
 
   // Load inspection data from URL params or localStorage
   useEffect(() => {
     const loadInspectionData = async () => {
       try {
+        setLoading(true);
         // Try to get data from localStorage (set by inspection flow)
-        const storedData = localStorage.getItem('currentInspectionData')
-        const storedProperty = localStorage.getItem('currentInspectionProperty')
+        const storedDataRaw = localStorage.getItem('currentInspectionData');
+        const storedPropertyRaw = localStorage.getItem('currentInspectionProperty');
+        
+        let inspectionData = storedDataRaw ? JSON.parse(storedDataRaw) : null;
+        let propertyData = storedPropertyRaw ? JSON.parse(storedPropertyRaw) : null;
+        
+        const propertyId = inspectionData?.propertyId || propertyData?._id || propertyData?.id || searchParams.get('propertyId');
+        const token = localStorage.getItem('token');
 
-        if (storedData) {
-          const inspectionData = JSON.parse(storedData)
-          const propertyData = storedProperty ? JSON.parse(storedProperty) : null
+        if (propertyId && token) {
+          try {
+            // Fetch ALL progress records for this property to show "All Summary"
+            const response = await fetch(
+              `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/progress?property_id=${propertyId}&include_property=true`,
+              {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              }
+            );
+
+            if (response.ok) {
+              const data = await response.json();
+              let allFindings: any[] = [];
+              
+              // 1. Collect findings from all backend records
+              const allProgress = data.progress || [];
+              allProgress.forEach((record: any) => {
+                const recordFindings = record.inspectionData?.findings || record.inspectionData?.deficiencies || [];
+                if (Array.isArray(recordFindings)) {
+                  const building = record.buildingId || record.inspectionData?.buildingId || '';
+                  const unit = record.unitId || record.inspectionData?.currentUnit || '-';
+                  const rawArea = record.inspectionType || (unit === 'Outside' ? 'Outside' : unit === 'Inside' ? 'Inside' : 'Unit');
+                  const area = rawArea.charAt(0).toUpperCase() + rawArea.slice(1).toLowerCase();
+                  
+                  recordFindings.forEach((f: any) => {
+                    allFindings.push({
+                      ...f,
+                      building: f.building || building,
+                      unit: f.unit || unit,
+                      area: f.area || area
+                    });
+                  });
+                }
+              });
+
+              // Local storage fallback removed per user request: summary is now strictly server-side
+
+              // 3. Deduplicate by ID to avoid duplicates between local and backend, and fallback to item+unit if missing
+              const deduped = new Map<string, any>();
+              
+              allFindings.forEach(f => {
+                const key = f.id || (f.item ? `${f.item}|${f.unit}|${f.area}` : [
+                  String(f.building || '').toLowerCase().trim(),
+                  String(f.unit || '').toLowerCase().trim(),
+                  String(f.room || '').toLowerCase().trim(),
+                  String(f.area || '').toLowerCase().trim(),
+                  String(f.title || f.deficiencyName || '').toLowerCase().trim(),
+                  String(f.description || f.deficiencyDetails || '').toLowerCase().trim(),
+                  String(f.imageUri || '').trim()
+                ].join('|'));
+                
+                // Override with the latest (which will be local findings since they are added last)
+                deduped.set(key, f);
+              });
+
+              const finalFindings = Array.from(deduped.values());
+
+              // 4. Update inspectionData with combined findings
+              if (!inspectionData) {
+                inspectionData = {
+                  propertyId,
+                  propertyName: propertyData?.name || allProgress[0]?.propertyId?.name || 'Property',
+                  propertyAddress: propertyData?.address || allProgress[0]?.propertyId?.address || '-',
+                };
+              }
+              
+              inspectionData.findings = finalFindings;
+              inspectionData.deficiencies = finalFindings;
+              
+              // If we got property metadata from backend, use it
+              if (!propertyData && allProgress[0]?.propertyId) {
+                propertyData = allProgress[0].propertyId;
+              }
+            }
+          } catch (fetchError) {
+            console.error('Error fetching property-wide progress:', fetchError);
+          }
+        }
+
+        if (inspectionData) {
           // Load custom column header if present
           if (inspectionData.buildingColumnHeader) {
             setBuildingColumnHeader(inspectionData.buildingColumnHeader)
@@ -364,6 +475,12 @@ function NSPIREInspectionSummaryContent() {
       repeatDeficiencies: deficiencies.filter(d => d.repeatIndicator).length,
       newDeficiencies: deficiencies.filter(d => !d.repeatIndicator).length,
     }
+
+    // Populate category breakdown
+    deficiencies.forEach(d => {
+      const cat = d.area || 'General';
+      summary.byCategory[cat] = (summary.byCategory[cat] || 0) + 1;
+    });
 
     // Calculate score
     const totalDeductions = deficiencies.reduce((sum, d) => sum + d.deductionPts, 0)
@@ -608,10 +725,11 @@ function NSPIREInspectionSummaryContent() {
   const handleExportPDF = async () => {
     if (!report) return
 
-    if (!isReportUnlocked) {
-      toast.info('This report is locked. Redirecting to unlock checkout...', { position: 'top-right' })
-      await handleUnlockWithStripe()
-      return
+    // If not unlocked, we allow a "Preview" export with only 2 items
+    const isPreview = !isReportUnlocked;
+    
+    if (isPreview) {
+      toast.info('Exporting 2-item preview PDF...', { position: 'top-right' })
     }
 
     setExporting(true)
@@ -638,11 +756,15 @@ function NSPIREInspectionSummaryContent() {
 
       if (mergedInspectionPayload) {
         const propertyData = storedProperty ? JSON.parse(storedProperty) : null;
+        
+        // Limit deficiencies for preview export if locked
+        const exportDeficiencies = isPreview ? (mergedInspectionPayload.deficiencies || mergedInspectionPayload.findings || []).slice(0, 2) : (mergedInspectionPayload.deficiencies || mergedInspectionPayload.findings || []);
+
         payloadData = {
           ...mergedInspectionPayload,
           property: propertyData || mergedInspectionPayload.property,
-          findings: mergedInspectionPayload.findings || mergedInspectionPayload.deficiencies || [],
-          deficiencies: mergedInspectionPayload.deficiencies || mergedInspectionPayload.findings || [],
+          findings: exportDeficiencies,
+          deficiencies: exportDeficiencies,
           inspectionNo: mergedInspectionPayload.inspectionId || report.metadata.inspectionNo,
           propertyName: propertyData?.name || report.metadata.propertyName,
           propertyAddress: propertyData?.address || report.metadata.propertyAddress,
@@ -655,14 +777,26 @@ function NSPIREInspectionSummaryContent() {
         if (storedProperty) {
           rawData.property = JSON.parse(storedProperty);
         }
+        
+        // Limit deficiencies for preview export if locked
+        if (isPreview && Array.isArray(rawData.findings)) {
+          rawData.findings = rawData.findings.slice(0, 2);
+        }
+        if (isPreview && Array.isArray(rawData.deficiencies)) {
+          rawData.deficiencies = rawData.deficiencies.slice(0, 2);
+        }
+        
         payloadData = rawData;
-      } else {
+      } else if (!payloadData) {
         // Fallback: Reconstruct compatible object from current report state
         // The backend expects flat properties for metadata (e.g. propertyName)
         // or a nested property object.
+        // Limit deficiencies for preview export if locked
+        const exportDeficiencies = isPreview ? report.deficiencies.slice(0, 2) : report.deficiencies;
+
         payloadData = {
           ...report.metadata, // Spread metadata (inspectionNo, propertyName, etc.) to root
-          deficiencies: report.deficiencies.map(d => ({
+          deficiencies: exportDeficiencies.map(d => ({
             ...d,
             // Ensure compatibility with backend mapping
             title: d.deficiencyName,
@@ -670,7 +804,7 @@ function NSPIREInspectionSummaryContent() {
             notes: d.comments,
             category: d.area // SubCategory/Area
           })),
-          findings: report.deficiencies // Backend checks findings or deficiencies
+          findings: exportDeficiencies // Backend checks findings or deficiencies
         }
       }
 
@@ -959,7 +1093,9 @@ function NSPIREInspectionSummaryContent() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-2xl font-bold text-[#006795]">HUD INSPIRE INSPECTION REPORT</h1>
+                <h1 className="text-2xl font-bold text-[#006795]">
+                  {searchParams.get('finalize') === 'true' ? 'HUD INSPIRE INSPECTION REPORT' : 'HUD INSPIRE INSPECTION PROGRESS'}
+                </h1>
               </div>
               <p className="text-gray-600 font-medium">{report.metadata.propertyName}</p>
               <p className="text-sm text-gray-500">{report.metadata.propertyAddress}</p>
@@ -993,14 +1129,17 @@ function NSPIREInspectionSummaryContent() {
                 )}
 
                 {!checkingUnlock && !isReportUnlocked && (
-                  <Button
-                    onClick={handleUnlockWithStripe}
-                    disabled={purchasingUnlock}
-                    className="h-8 gap-1 bg-amber-500 px-3 text-xs font-semibold text-white hover:bg-amber-600"
-                  >
-                    <Lock className="w-3.5 h-3.5" />
-                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $99.00'}
-                  </Button>
+                  <div className="flex flex-col gap-1.5 p-3 rounded-lg bg-amber-50 border border-amber-200">
+                    <h3 className="text-sm font-black text-amber-900 uppercase tracking-tight">Unlock to Export PDF</h3>
+                    <Button
+                      onClick={handleUnlockWithStripe}
+                      disabled={purchasingUnlock}
+                      className="h-9 gap-1.5 bg-amber-500 px-4 text-xs font-bold text-white hover:bg-amber-600 shadow-sm"
+                    >
+                      <Lock className="w-4 h-4" />
+                      {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $99.00'}
+                    </Button>
+                  </div>
                 )}
               </div>
             </div>
@@ -1020,13 +1159,11 @@ function NSPIREInspectionSummaryContent() {
                 {isReportUnlocked ? <Excel /> : <Lock className="w-5 h-5" />} {exportingExcel ? 'Generating...' : isReportUnlocked ? 'Export Excel' : 'Unlock to Export Excel'}
               </Button>
               <Button
-                onClick={handleContinueInspection}
+                onClick={handleBackToInspection}
                 className="gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Continue Inspection
+                <ChevronLeft className="w-5 h-5" />
+                {searchParams.get('finalize') === 'true' ? 'Back to Inspection' : 'CONTINUE INSPECTION'}
               </Button>
             </div>
           </div>
@@ -1227,7 +1364,8 @@ function NSPIREInspectionSummaryContent() {
 
             {!checkingUnlock && !isReportUnlocked && report.deficiencies.length > visibleDeficiencies.length && (
               <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-                <span className="font-semibold">Locked preview:</span> showing {visibleDeficiencies.length} of {report.deficiencies.length} deficiencies. Unlock for $0.99 to view all items and export PDF.
+                <span className="font-semibold text-base block mb-1">Unlock to Export PDF</span>
+                <span className="font-semibold italic">Locked preview:</span> showing {visibleDeficiencies.length} of {report.deficiencies.length} deficiencies. Unlock for $99.00 to view all items and export full PDF.
               </div>
             )}
 
@@ -1248,173 +1386,157 @@ function NSPIREInspectionSummaryContent() {
                 <p className="text-gray-600 mt-2">This property passed inspection with no issues identified.</p>
               </div>
             ) : (
-              <>
-                {/* Desktop Table View */}
-                <div className="hidden lg:block overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-[#006795] text-white">
-                        <th className="p-3 text-left rounded-tl-lg">#</th>
-                        <th className="p-3 text-center">Proof</th>
-                        <th className="p-3 text-left">Location</th>
-                        <th className="p-3 text-left">Deficiency</th>
-                        <th className="p-3 text-left">Description</th>
-                        <th className="p-3 text-center">Severity</th>
-                        <th className="p-3 text-center">H&S</th>
-                        <th className="p-3 text-center">Repair By</th>
-                        <th className="p-3 text-center rounded-tr-lg">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {visibleDeficiencies.map((def, index) => (
-                        <tr key={def.id} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} border-b`}>
-                          <td className="p-3 font-bold text-center">{index + 1}</td>
-                          <td className="p-3 text-center">
-                            {def.imageUri ? (
-                              <div className="relative w-16 h-16 mx-auto group">
+              <div className="space-y-8">
+                {/* Group by Area (Outside, Inside, Unit) */}
+                {['Outside', 'Inside', 'Unit', 'General'].map(area => {
+                  const areaDeficiencies = visibleDeficiencies.filter(d => d.area === area);
+                  if (areaDeficiencies.length === 0) return null;
+
+                  return (
+                    <div key={area} className="space-y-4">
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-lg w-fit border border-gray-200">
+                        <span className="text-sm font-black text-[#006795] uppercase tracking-wider">{area} Summary</span>
+                        <span className="bg-[#006795] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          {areaDeficiencies.length}
+                        </span>
+                      </div>
+                      
+                      {/* Desktop Table View for this Area */}
+                      <div className="hidden lg:block overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
+                        <table className="w-full text-sm">
+                          <thead>
+                            <tr className="bg-[#006795] text-white">
+                              <th className="p-3 text-left w-12">#</th>
+                              <th className="p-3 text-center w-24">Proof</th>
+                              <th className="p-3 text-left">Location</th>
+                              <th className="p-3 text-left">Deficiency</th>
+                              <th className="p-3 text-left">Description</th>
+                              <th className="p-3 text-center">Severity</th>
+                              <th className="p-3 text-center">H&S</th>
+                              <th className="p-3 text-center">Repair By</th>
+                              <th className="p-3 text-center">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {areaDeficiencies.map((def, idx) => (
+                              <tr key={def.id} className={`${idx % 2 === 0 ? 'bg-gray-50/50' : 'bg-white'} border-b border-gray-50`}>
+                                <td className="p-3 font-bold text-center text-gray-400">{idx + 1}</td>
+                                <td className="p-3 text-center">
+                                  {def.imageUri ? (
+                                    <div className="relative w-16 h-16 mx-auto group">
+                                      <img
+                                        src={def.imageUri}
+                                        alt="Deficiency Proof"
+                                        className="w-full h-full object-cover rounded-md border border-gray-200 shadow-sm cursor-zoom-in group-hover:scale-150 transition-transform z-10 relative"
+                                      />
+                                    </div>
+                                  ) : (
+                                    <div className="w-16 h-16 mx-auto bg-gray-100 rounded-md flex items-center justify-center text-gray-300">
+                                      <ImageIcon className="w-6 h-6" />
+                                    </div>
+                                  )}
+                                </td>
+                                <td className="p-3 min-w-[120px]">
+                                  <div className="text-xs">
+                                    {area === 'Unit' && (
+                                      <>
+                                        <div><span className="text-gray-500">{buildingColumnHeader}:</span> <span className="font-semibold">{def.building}</span></div>
+                                        <div><span className="text-gray-500">Unit:</span> <span className="font-semibold">{def.unit}</span></div>
+                                      </>
+                                    )}
+                                    {area !== 'Unit' && (
+                                      <div><span className="text-gray-500">Location:</span> <span className="font-semibold">{def.building}</span></div>
+                                    )}
+                                    <div><span className="text-gray-500">Room/Area:</span> <span className="font-semibold">{def.room}</span></div>
+                                  </div>
+                                </td>
+                                <td className="p-3">
+                                  <div className="font-bold text-gray-800 mb-1">{def.deficiencyName}</div>
+                                  <span className="inline-block bg-cyan-100 text-cyan-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">
+                                    {def.nspireCode}
+                                  </span>
+                                </td>
+                                <td className="p-3 max-w-[250px]">
+                                  <div className="text-gray-700 text-xs mb-2 leading-relaxed">{def.deficiencyDetails}</div>
+                                  {def.comments && (
+                                    <div className="text-[10px] text-gray-500 italic bg-gray-100 p-1.5 rounded-lg">
+                                      <span className="font-bold uppercase text-[9px] block mb-0.5">Inspector Notes:</span>
+                                      {def.comments}
+                                    </div>
+                                  )}
+                                </td>
+                                <td className="p-3 text-center">
+                                  <span className={`inline-block px-3 py-1 rounded text-[10px] font-black uppercase ${getSeverityBadgeClass(def.severity)}`}>
+                                    {def.severity}
+                                  </span>
+                                  <div className="text-[10px] text-gray-400 mt-1 font-bold">-{def.deductionPts} PTS</div>
+                                </td>
+                                <td className="p-3 text-center">
+                                  <span className="text-[10px] font-black text-red-600 uppercase">{def.healthAndSafety}</span>
+                                </td>
+                                <td className="p-3 text-center">
+                                  <span className="inline-block bg-amber-100 text-amber-800 text-[10px] font-black px-2 py-1 rounded">
+                                    {def.repairTimeline}
+                                  </span>
+                                </td>
+                                <td className="p-3 text-center">
+                                  <span className={`inline-block px-2 py-1 rounded text-[10px] font-black uppercase ${getStatusBadgeClass(def.status)}`}>
+                                    {def.status}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+
+                      {/* Mobile View for this Area */}
+                      <div className="lg:hidden space-y-4">
+                        {areaDeficiencies.map((def, idx) => (
+                          <div key={def.id} className="border border-gray-200 rounded-xl p-4 bg-gray-50 shadow-sm">
+                            <div className="flex items-start gap-3 mb-3">
+                              <div className="flex-shrink-0 w-8 h-8 bg-[#006795] text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">
+                                {idx + 1}
+                              </div>
+                              {def.imageUri ? (
                                 <img
                                   src={def.imageUri}
                                   alt="Deficiency Proof"
-                                  className="w-full h-full object-cover rounded-md border border-gray-200 shadow-sm cursor-zoom-in group-hover:scale-150 transition-transform z-10 relative"
+                                  className="w-20 h-20 object-cover rounded-xl border-2 border-white shadow-sm"
                                 />
+                              ) : (
+                                <div className="w-20 h-20 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400">
+                                  <ImageIcon className="w-8 h-8" />
+                                </div>
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <h3 className="font-black text-gray-900 text-sm mb-1 break-words">{def.deficiencyName}</h3>
+                                <div className="flex flex-wrap gap-1">
+                                  <span className="inline-block bg-cyan-100 text-cyan-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">
+                                    {def.nspireCode}
+                                  </span>
+                                  <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase ${getSeverityBadgeClass(def.severity)}`}>
+                                    {def.severity}
+                                  </span>
+                                </div>
                               </div>
-                            ) : (
-                              <div className="w-16 h-16 mx-auto bg-gray-100 rounded-md flex items-center justify-center text-gray-300">
-                                <ImageIcon className="w-6 h-6" />
-                              </div>
-                            )}
-                          </td>
-                          <td className="p-3 min-w-[120px]">
-                            <div className="text-xs">
-                              <div><span className="text-gray-500">{buildingColumnHeader}:</span> <span className="font-semibold">{def.building}</span></div>
-                              <div><span className="text-gray-500">Unit:</span> <span className="font-semibold">{def.unit}</span></div>
-                              <div><span className="text-gray-500">Room:</span> <span className="font-semibold">{def.room}</span></div>
-                              <div><span className="text-gray-500">Area:</span> <span className="font-semibold">{def.area}</span></div>
                             </div>
-                          </td>
-                          <td className="p-3">
-                            <div className="font-bold text-gray-800 mb-1">{def.deficiencyName}</div>
-                            <span className="inline-block bg-cyan-100 text-cyan-700 text-xs font-semibold px-2 py-1 rounded">
-                              {def.nspireCode}
-                            </span>
-                            {def.repeatIndicator && (
-                              <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-1 rounded ml-1">
-                                REPEAT
-                              </span>
-                            )}
-                          </td>
-                          <td className="p-3 max-w-[250px]">
-                            <div className="text-gray-700 mb-2">{def.deficiencyDetails}</div>
-                            {def.comments && (
-                              <div className="text-xs text-gray-500 italic">
-                                <span className="font-semibold">Notes:</span> {def.comments}
-                              </div>
-                            )}
-                          </td>
-                          <td className="p-3 text-center">
-                            <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${getSeverityBadgeClass(def.severity)}`}>
-                              {def.severity}
-                            </span>
-                            <div className="text-xs text-gray-500 mt-1">-{def.deductionPts} pts</div>
-                          </td>
-                          <td className="p-3 text-center">
-                            <span className="text-xs font-medium text-red-600">{def.healthAndSafety}</span>
-                          </td>
-                          <td className="p-3 text-center">
-                            <span className="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded">
-                              {def.repairTimeline}
-                            </span>
-                          </td>
-                          <td className="p-3 text-center">
-                            <span className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusBadgeClass(def.status)}`}>
-                              {def.status}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Mobile Card View */}
-                <div className="lg:hidden space-y-4">
-                  {visibleDeficiencies.map((def, index) => (
-                    <div key={def.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                      <div className="flex items-start gap-3 mb-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#006795] text-white rounded-full flex items-center justify-center font-bold text-sm">
-                          {index + 1}
-                        </div>
-                        {def.imageUri ? (
-                          <img
-                            src={def.imageUri}
-                            alt="Deficiency Proof"
-                            className="w-20 h-20 object-cover rounded-md border border-gray-200 shadow-sm"
-                          />
-                        ) : (
-                          <div className="w-20 h-20 bg-gray-100 rounded-md flex items-center justify-center text-gray-300">
-                            <ImageIcon className="w-8 h-8" />
+                            <div className="pt-3 border-t border-gray-200 text-xs space-y-2">
+                               <p className="text-gray-700 leading-relaxed">{def.deficiencyDetails}</p>
+                               <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px] text-gray-500">
+                                  <div><span className="font-bold">Location:</span> {def.building} {def.unit !== '-' ? `| Unit ${def.unit}` : ''}</div>
+                                  <div><span className="font-bold">Room:</span> {def.room}</div>
+                                  <div><span className="font-bold">Repair By:</span> {def.repairTimeline}</div>
+                                  <div><span className="font-bold">Status:</span> {def.status}</div>
+                               </div>
+                            </div>
                           </div>
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-bold text-gray-800 text-sm mb-1 break-words">{def.deficiencyName}</h3>
-                          <div className="flex flex-wrap gap-1">
-                            <span className="inline-block bg-cyan-100 text-cyan-700 text-xs font-semibold px-2 py-1 rounded">
-                              {def.nspireCode}
-                            </span>
-                            {def.repeatIndicator && (
-                              <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-1 rounded">
-                                REPEAT
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2 text-sm">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-gray-500 text-xs">{buildingColumnHeader}:</span>
-                            <span className="font-semibold ml-1">{def.building}</span>
-                          </div>
-                          <div>
-                            <span className="text-gray-500 text-xs">Unit:</span>
-                            <span className="font-semibold ml-1">{def.unit}</span>
-                          </div>
-                          <div>
-                            <span className="text-gray-500 text-xs">Room:</span>
-                            <span className="font-semibold ml-1">{def.room}</span>
-                          </div>
-                          <div>
-                            <span className="text-gray-500 text-xs">Area:</span>
-                            <span className="font-semibold ml-1">{def.area}</span>
-                          </div>
-                        </div>
-
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-gray-700 text-xs mb-2">{def.deficiencyDetails}</p>
-                          {def.comments && (
-                            <p className="text-xs text-gray-500 italic">
-                              <span className="font-semibold">Notes:</span> {def.comments}
-                            </p>
-                          )}
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 pt-2">
-                          <span className={`inline-block px-2 py-1 rounded text-xs font-bold ${getSeverityBadgeClass(def.severity)}`}>
-                            {def.severity} (-{def.deductionPts} pts)
-                          </span>
-                          <span className="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded">
-                            {def.repairTimeline}
-                          </span>
-                          <span className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusBadgeClass(def.status)}`}>
-                            {def.status}
-                          </span>
-                        </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                </div>
-              </>
+                  );
+                })}
+              </div>
             )}
           </div>
         )}
@@ -1440,19 +1562,20 @@ function NSPIREInspectionSummaryContent() {
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12 mb-12">
+          <Button
+            onClick={handleBackToInspection}
+            className="px-10 h-14 w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-white font-black rounded-xl shadow-lg flex items-center justify-center gap-2"
+          >
+            <ChevronLeft className="w-5 h-5" />
+            BACK TO INSPECTION
+          </Button>
           <Button
             onClick={() => router.push('/dashboard/my-inspection')}
             variant="outline"
-            className="px-8 w-full sm:w-auto"
+            className="px-10 h-14 w-full sm:w-auto font-black rounded-xl border-2 hover:bg-gray-50 text-gray-600"
           >
-            Back to Inspections
-          </Button>
-          <Button
-            onClick={() => router.push('/dashboard')}
-            className="px-8 w-full sm:w-auto bg-[#006795] hover:bg-[#0a5670] text-white"
-          >
-            Go to Dashboard
+            MY INSPECTIONS
           </Button>
         </div>
       </div>

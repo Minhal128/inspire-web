@@ -413,6 +413,7 @@ export default function ManagementDashboard() {
       <EditPropertyModal
         isOpen={showEditModal}
         onClose={() => setShowEditModal(false)}
+        onSuccess={fetchProperties}
         propertyData={newPropertyData}
       />
     </ManagementDashboardLayout>

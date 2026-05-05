@@ -403,11 +403,18 @@ export default function PropertyDetailsPage() {
     }
 
     const getCompletedCount = (buildingId: string) => {
-        return (completedUnitsMap[buildingId] || []).length
+        const completed = completedUnitsMap[buildingId] || []
+        // Return only the unit count for the progress column (X/Y)
+        return completed.filter(u => u !== 'Outside' && u !== 'Inside').length
     }
 
     const isAllCompleted = (building: typeof buildings[0]) => {
-        return getCompletedCount(building.buildingId) >= building.unitsForInspection
+        const completed = completedUnitsMap[building.buildingId] || []
+        const hasOutside = completed.includes('Outside')
+        const hasInside = completed.includes('Inside')
+        const unitCompletedCount = getCompletedCount(building.buildingId)
+        
+        return hasOutside && hasInside && unitCompletedCount >= building.unitsForInspection && building.unitsForInspection > 0
     }
 
     const normalizeToken = (value: unknown): string => String(value ?? '').trim().toLowerCase()
@@ -485,14 +492,12 @@ export default function PropertyDetailsPage() {
         findings.forEach((finding) => {
             if (!finding) return
 
-            const key = [
+            // ONLY deduplicate by unique ID, or fallback to exact same item+title if missing ID
+            const key = finding.id || [
                 normalizeToken(finding?.building),
                 normalizeToken(finding?.area),
                 normalizeToken(finding?.unit),
                 normalizeToken(finding?.deficiencyName),
-                normalizeToken(finding?.deficiencyDetails),
-                normalizeToken(finding?.nspireCode),
-                normalizeToken(finding?.imageUri),
             ].join('|')
 
             if (!deduped.has(key)) {
@@ -605,35 +610,8 @@ export default function PropertyDetailsPage() {
                 console.warn('Draft progress fetch failed:', error)
             }
 
-            // 2) Fallback to latest in-browser inspection payload
-            if (findings.length === 0) {
-                try {
-                    const storedData = localStorage.getItem('currentInspectionData')
-                    const parsed = storedData ? JSON.parse(storedData) : null
+            // 2) Local storage fallback removed per user request: summary is now strictly server-side
 
-                    if (parsed) {
-                        const parsedPropertyTokens = [
-                            normalizeToken(parsed?.propertyId),
-                            normalizeToken(parsed?.property?._id),
-                            normalizeToken(parsed?.property?.id),
-                            normalizeToken(parsed?.property?.propertyId),
-                            normalizeToken(parsed?.propertyName),
-                            normalizeToken(parsed?.property?.name),
-                        ].filter(Boolean)
-
-                        const belongsToCurrentProperty = parsedPropertyTokens.some((tokenValue: string) => propertyTokenSet.has(tokenValue))
-                        if (belongsToCurrentProperty) {
-                            const localRawFindings = parsed?.findings || parsed?.deficiencies || []
-                            if (Array.isArray(localRawFindings) && localRawFindings.length > 0) {
-                                findings = mapDraftDeficienciesToFindings(localRawFindings, String(parsed?.building || ''))
-                                notes = String(parsed?.notes || notes)
-                            }
-                        }
-                    }
-                } catch (error) {
-                    console.warn('Local inspection payload parse failed:', error)
-                }
-            }
 
             // 3) Final fallback: non-draft progress records with answered responses
             if (findings.length === 0) {

@@ -332,6 +332,7 @@ export default function MyProperties() {
         <EditPropertyModal 
           isOpen={showEditModal} 
           onClose={() => setShowEditModal(false)}
+          onSuccess={fetchProperties}
           propertyData={newPropertyData}
         />
 

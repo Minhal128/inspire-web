@@ -4,59 +4,11 @@
  * This file imports directly from the mobile app's data files (which contain
  * full multi-step `codeReference` content) and exposes a single lookup function
  * that the frontend uses to display Code of Reference information.
- *
- * Section mapping (matches inspection-category page):
- *   outside  → outsideDeficiencyMapping.ts  (26 OUTSIDE categories)
- *   inside   → unitDeficiencyMapping.ts      (35 INSIDE/common-area categories)
- *   unit     → insideDeficiencyMapping.ts    (32 UNIT categories)
  */
 
-import {
-  getOutsideDeficienciesByCategory,
-  ALL_OUTSIDE_DEFICIENCIES,
-} from './outsideAppData'
-
-import {
-  getInsideSubcategoryDeficiencies,
-  ALL_UNIT_CATEGORIES,
-} from './insideAppData'
-
-import {
-
-  getInsideDeficienciesForItem,
-  ALL_INSIDE_CATEGORIES,
-} from './unitAppData'
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-/** Normalise a deficiency name so fuzzy matching is more reliable */
-const normalise = (str: string): string =>
-  str
-    .replace(/^\d+[\.\-]\s*/, '')          // strip leading "1. " or "1- "
-    .toLowerCase()
-    .replace(/[\u2013\u2014\u2012]/g, '-') // curly dashes → hyphen
-    .replace(/[^a-z0-9\s\-]/g, ' ')        // strip punctuation
-    .replace(/\s+/g, ' ')
-    .trim()
-
-/** Return true when two deficiency names are a reasonable match */
-const namesMatch = (a: string, b: string): boolean => {
-  const na = normalise(a)
-  const nb = normalise(b)
-  if (na === nb) return true
-  if (na.includes(nb) || nb.includes(na)) return true
-  // word-overlap: ≥ 4 shared words
-  const wa = new Set(na.split(' ').filter(w => w.length > 3))
-  const wb = nb.split(' ').filter(w => w.length > 3)
-  const overlap = wb.filter(w => wa.has(w)).length
-  return overlap >= 4
-}
-
-// ---------------------------------------------------------------------------
-// Public API
-// ---------------------------------------------------------------------------
+import { ALL_OUTSIDE_DEFICIENCIES } from './outsideAppData'
+import { ALL_UNIT_CATEGORIES } from './insideAppData'
+import { ALL_INSIDE_CATEGORIES } from './unitAppData'
 
 /**
  * Look up the full multi-step `codeReference` text for a deficiency.
@@ -66,80 +18,110 @@ const namesMatch = (a: string, b: string): boolean => {
  * @param deficiencyName   The deficiency label that the user selected
  * @returns                The full codeReference string, or undefined if not found
  */
-export function lookupCodeReference(
+export const lookupCodeReference = (
   section: string,
   categoryName: string,
-  deficiencyName: string,
-): string | undefined {
-  if (!deficiencyName) return undefined
+  deficiencyName: string
+): string | undefined => {
+  if (!categoryName || !deficiencyName) return undefined
 
+  // Normalise names for fuzzy matching
+  const normalise = (s: string) => s.toLowerCase().replace(/^\d+[\.\-]\s*/, '').trim()
   const cat = normalise(categoryName)
+  
+  // Helper for name matching
+  const namesMatch = (a: string, b: string) => {
+    const na = normalise(a)
+    const nb = normalise(b)
+    return na === nb || na.includes(nb) || nb.includes(na)
+  }
 
-  // ── OUTSIDE section ─────────────────────────────────────────────────────
+  // ── OUTSIDE SECTION ──────────────────────────────────────────────────────
   if (section === 'outside') {
-    // Try the direct lookup first
-    const item = getOutsideDeficienciesByCategory(categoryName)
-    if (item) {
-      for (const d of item.deficiencies) {
-        if (namesMatch(d.name, deficiencyName)) return d.codeReference
-      }
+    const category = ALL_OUTSIDE_DEFICIENCIES[categoryName]
+    if (category) {
+      const deficiency = category.deficiencies.find((d: any) =>
+        namesMatch(d.name, deficiencyName)
+      )
+      if (deficiency) return deficiency.codeReference
     }
-    // Fallback: search all outside items
+    // Fallback: search all outside
     for (const key of Object.keys(ALL_OUTSIDE_DEFICIENCIES)) {
-      if (cat.includes(normalise(key)) || normalise(key).includes(cat)) {
-        for (const d of ALL_OUTSIDE_DEFICIENCIES[key].deficiencies) {
-          if (namesMatch(d.name, deficiencyName)) return d.codeReference
+        if (namesMatch(key, categoryName)) {
+            const found = ALL_OUTSIDE_DEFICIENCIES[key].deficiencies.find((d: any) => namesMatch(d.name, deficiencyName));
+            if (found) return found.codeReference;
         }
-      }
     }
     return undefined
   }
 
-  // ── INSIDE section (uses unitDeficiencyMapping – 35 common-area cats) ───
+  // ── INSIDE SECTION (Common Areas) ───────────────────────────────────────
   if (section === 'inside') {
-    // Try direct subcategory lookup
-    const item = getInsideSubcategoryDeficiencies(categoryName)
-    if (item) {
-      for (const d of item.deficiencies) {
-        if (namesMatch(d.name, deficiencyName)) return d.codeReference
-      }
-    }
-    // Fallback: search all unit categories
-    for (const category of ALL_UNIT_CATEGORIES) {
-      for (const subItem of category.items) {
-        if (
-          cat.includes(normalise(subItem.itemName)) ||
-          normalise(subItem.itemName).includes(cat)
-        ) {
-          for (const d of subItem.deficiencies) {
-            if (namesMatch(d.name, deficiencyName)) return d.codeReference
+    // Search in ALL_UNIT_CATEGORIES (which actually contains Inside/Common data)
+    for (const categoryObj of ALL_UNIT_CATEGORIES) {
+      const currentCatName = normalise(categoryObj.category)
+      
+      // If the category matches (e.g., "Kitchen")
+      if (currentCatName === cat || cat.includes(currentCatName) || currentCatName.includes(cat)) {
+        // 1. Try to match the deficiencyName to one of the items (e.g., "Cooking Appliance")
+        for (const item of categoryObj.items) {
+          if (namesMatch(item.itemName, deficiencyName)) {
+            return item.deficiencies[0]?.codeReference;
           }
         }
-      }
-    }
-    return undefined
-  }
-
-  // ── UNIT section (uses insideDeficiencyMapping – 32 unit cats) ──────────
-  if (section === 'unit') {
-    // getInsideDeficienciesForItem returns a flat InsideDeficiencyOption[]
-    const deficiencies = getInsideDeficienciesForItem(categoryName)
-    for (const d of deficiencies) {
-      if (namesMatch(d.name, deficiencyName)) return d.codeReference
-    }
-    // Fallback: search all inside categories with normalized name matching
-    for (const insideCat of ALL_INSIDE_CATEGORIES) {
-      if (
-        cat.includes(normalise(insideCat.itemName)) ||
-        normalise(insideCat.itemName).includes(cat)
-      ) {
-        const flatDefs = getInsideDeficienciesForItem(insideCat.itemName)
-        for (const d of flatDefs) {
-          if (namesMatch(d.name, deficiencyName)) return d.codeReference
+        
+        // 2. Fallback: Search all deficiencies in all items of this category
+        for (const item of categoryObj.items) {
+          const found = item.deficiencies.find((d: any) => namesMatch(d.name, deficiencyName));
+          if (found) return found.codeReference;
         }
       }
     }
-    return undefined
+    
+    // Global fallback for inside
+    for (const categoryObj of ALL_UNIT_CATEGORIES) {
+      for (const item of categoryObj.items) {
+        const found = item.deficiencies.find((d: any) => namesMatch(d.name, deficiencyName));
+        if (found) return found.codeReference;
+      }
+    }
+  }
+
+  // ── UNIT SECTION (Apartments) ──────────────────────────────────────────
+  if (section === 'unit') {
+    // Search in ALL_INSIDE_CATEGORIES (which actually contains Unit data)
+    for (const item of ALL_INSIDE_CATEGORIES) {
+      const currentItemName = normalise(item.itemName);
+      
+      // If the item matches (e.g., "Bathroom")
+      if (currentItemName === cat || cat.includes(currentItemName) || currentItemName.includes(cat)) {
+        // 1. Check subcategories (e.g., "Bathtub/Shower")
+        if (item.subcategories) {
+          const sub = item.subcategories.find((s: any) => namesMatch((s as any).name || (s as any).itemName || '', deficiencyName));
+          if (sub && sub.deficiencies[0]) return sub.deficiencies[0].codeReference;
+        }
+        
+        // 2. Check direct deficiencies
+        if (item.deficiencies) {
+          const found = item.deficiencies.find((d: any) => namesMatch(d.name, deficiencyName));
+          if (found) return found.codeReference;
+        }
+      }
+    }
+
+    // Global fallback for unit
+    for (const item of ALL_INSIDE_CATEGORIES) {
+      if (item.deficiencies) {
+        const found = item.deficiencies.find((d: any) => namesMatch(d.name, deficiencyName));
+        if (found) return found.codeReference;
+      }
+      if (item.subcategories) {
+        for (const sub of item.subcategories) {
+          const found = sub.deficiencies.find((d: any) => namesMatch(d.name, deficiencyName));
+          if (found) return found.codeReference;
+        }
+      }
+    }
   }
 
   return undefined

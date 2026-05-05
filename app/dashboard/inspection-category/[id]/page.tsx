@@ -109,6 +109,17 @@ export default function InspectionCategoryPage() {
     const [unitSelectionPopupOpen, setUnitSelectionPopupOpen] = useState(false)
     const [activeInspectionUnit, setActiveInspectionUnit] = useState(currentUnitName)
 
+    // Set initial section based on URL param
+    useEffect(() => {
+        if (currentUnitName === 'Outside') {
+            setCurrentSection('outside');
+        } else if (currentUnitName === 'Inside') {
+            setCurrentSection('inside');
+        } else if (currentUnitName) {
+            setCurrentSection('unit');
+        }
+    }, [currentUnitName]);
+
     // Custom column header name (set from property-details building table)
     const [columnHeaderName, setColumnHeaderName] = useState('Building Unique ID')
 
@@ -365,8 +376,9 @@ export default function InspectionCategoryPage() {
                 if (allFindings.length > 0) {
                     // Dedupe findings
                     const seen = new Set();
-                    const uniqueFindings = allFindings.filter(f => {
-                        const key = `${f.title}|${f.description}|${f.unit}`;
+                    const uniqueFindings = allFindings.filter((f: any) => {
+                        // Deduplicate strictly by unique ID, fallback to title/desc if missing
+                        const key = f.id || `${f.title}|${f.description}|${f.unit}`;
                         if (seen.has(key)) return false;
                         seen.add(key);
                         return true;
@@ -419,32 +431,43 @@ export default function InspectionCategoryPage() {
             const promises = [];
             
             if (Object.keys(outsideStatuses).length > 0) {
+                const isComplete = outsideItemsList.every(item => outsideStatuses[item] !== null && outsideStatuses[item] !== undefined);
                 promises.push(inspectionsAPI.saveProgress({
                     property_id: id,
                     unit_id: urlBuilding,
                     inspection_type: 'Outside',
                     responses: outsideStatuses,
-                    building_id: urlBuilding
+                    building_id: urlBuilding,
+                    inspectionData: { isComplete }
                 }));
             }
             
             if (Object.keys(insideStatuses).length > 0) {
+                const isComplete = insideItemsList.every(item => insideStatuses[item] !== null && insideStatuses[item] !== undefined);
                 promises.push(inspectionsAPI.saveProgress({
                     property_id: id,
                     unit_id: urlBuilding,
                     inspection_type: 'Inside',
                     responses: insideStatuses,
-                    building_id: urlBuilding
+                    building_id: urlBuilding,
+                    inspectionData: { isComplete }
                 }));
             }
             
             if (Object.keys(unitStatuses).length > 0 && activeInspectionUnit) {
+                // Check if all items are filled to mark as fully complete
+                const isComplete = unitItemsList.every(item => {
+                    const status = unitStatuses[item];
+                    return status !== null && status !== undefined;
+                });
+
                 promises.push(inspectionsAPI.saveProgress({
                     property_id: id,
                     unit_id: activeInspectionUnit,
                     inspection_type: 'Unit',
                     responses: unitStatuses,
-                    building_id: urlBuilding
+                    building_id: urlBuilding,
+                    inspectionData: { isComplete }
                 }));
             }
             
@@ -746,7 +769,7 @@ export default function InspectionCategoryPage() {
                     inspectorName: user?.fullName,
                     building: buildingName,
                     buildingColumnHeader: columnHeaderName,
-                    currentUnit: activeInspectionUnit,
+                    currentUnit: currentSection === 'unit' ? activeInspectionUnit : '',
                     unitNames: Object.keys(unitNames).length > 0 ? unitNames : undefined,
                     findings: [{
                         id: `DEF-${Date.now()}`,
@@ -755,7 +778,7 @@ export default function InspectionCategoryPage() {
                         description: analysisResult?.description || selectedDeficiency?.detail || 'Deficiency detected by AI inspection',
                         category: odForm.category,
                         building: buildingName,
-                        unit: activeInspectionUnit || unitsString,
+                        unit: currentSection === 'unit' ? (activeInspectionUnit || unitsString) : '-',
                         location: odForm.location,
                         severity: analysisResult?.severity || odForm.healthAndSafety || 'Moderate',
                         healthAndSafety: odForm.healthAndSafety || analysisResult?.severity || 'Moderate',
@@ -764,7 +787,9 @@ export default function InspectionCategoryPage() {
                         notes: odForm.note,
                         nspireCode: analysisResult?.nspireCode || selectedDeficiency?.id || 'HS-12',
                         status: 'Open',
-                        timestamp: new Date().toISOString()
+                        timestamp: new Date().toISOString(),
+                        area: currentSection,
+                        item: currentModalItem
                     }],
                     reportUrl: resultData.reportUrl,
                     complianceScore: analysisResult?.complianceScore || 85,
@@ -788,13 +813,51 @@ export default function InspectionCategoryPage() {
                 else if (currentSection === 'inside') setInsideStatuses(updatedStatuses as Record<string, ItemStatus>);
                 else setUnitStatuses(updatedStatuses as Record<string, ItemStatus>);
 
+                const isComplete = currentSection === 'outside'
+                    ? outsideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
+                    : currentSection === 'inside'
+                        ? insideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
+                        : currentSection === 'unit'
+                            ? unitItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
+                            : false;
+
+                const existingDataRaw = localStorage.getItem('currentInspectionData');
+                let mergedFindings = inspectionDataForSummary.findings;
+                if (existingDataRaw) {
+                    try {
+                        const existingData = JSON.parse(existingDataRaw);
+                        if (Array.isArray(existingData.findings)) {
+                            // If the user is re-saving an OD for the exact same item in the same area/unit, update it instead of appending a duplicate
+                            const newFinding = inspectionDataForSummary.findings[0];
+                            const existingIndex = existingData.findings.findIndex((f: any) => 
+                                f.item === newFinding.item && 
+                                f.area === newFinding.area && 
+                                f.unit === newFinding.unit
+                            );
+
+                            if (existingIndex >= 0) {
+                                // Preserve the original ID so it overwrites correctly on the backend
+                                newFinding.id = existingData.findings[existingIndex].id || newFinding.id;
+                                const updatedFindings = [...existingData.findings];
+                                updatedFindings[existingIndex] = newFinding;
+                                mergedFindings = updatedFindings;
+                            } else {
+                                mergedFindings = [...existingData.findings, newFinding];
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Error merging findings:", e);
+                    }
+                }
+
                 await inspectionsAPI.saveProgress({
                     property_id: property?._id || params.id,
                     unit_id: currentSection === 'unit' ? activeInspectionUnit : urlBuilding,
                     inspection_type: type,
                     responses: updatedStatuses,
                     inspectionData: {
-                        findings: [inspectionDataForSummary.findings[0]],
+                        findings: mergedFindings,
+                        isComplete,
                         // Persist OD form snapshots so pre-fill survives page refresh
                         odFormSnapshots: {
                             ...(savedODFormData),
@@ -808,28 +871,6 @@ export default function InspectionCategoryPage() {
                     },
                     building_id: urlBuilding
                 });
-
-                // Update local storage for summary (merging instead of overwriting)
-                const existingDataRaw = localStorage.getItem('currentInspectionData');
-                let mergedFindings = inspectionDataForSummary.findings;
-                if (existingDataRaw) {
-                    try {
-                        const existingData = JSON.parse(existingDataRaw);
-                        if (Array.isArray(existingData.findings)) {
-                            // Merge and dedupe findings
-                            const allFindings = [...existingData.findings, ...inspectionDataForSummary.findings];
-                            const seen = new Set();
-                            mergedFindings = allFindings.filter(f => {
-                                const key = `${f.title}|${f.description}|${f.unit}`;
-                                if (seen.has(key)) return false;
-                                seen.add(key);
-                                return true;
-                            });
-                        }
-                    } catch (e) {
-                        console.error("Error merging findings:", e);
-                    }
-                }
                 
                 const finalData = {
                     ...inspectionDataForSummary,
@@ -1890,47 +1931,8 @@ export default function InspectionCategoryPage() {
                                 {/* View Summary Button - Primary Action */}
                                 <Button
                                     onClick={() => {
-                                        // Save inspection data for summary page
-                                        const inspectionDataForSummary = {
-                                            inspectionId: params.id,
-                                            propertyId: property?._id,
-                                            propertyName: property?.name,
-                                            address: property?.address,
-                                            inspectorId: user?.id || user?._id,
-                                            inspectorName: user?.fullName,
-                                            building: buildingName,
-                                            buildingColumnHeader: columnHeaderName,
-                                            currentUnit: activeInspectionUnit,
-                                            unitNames: Object.keys(unitNames).length > 0 ? unitNames : undefined,
-                                            findings: [{
-                                                id: `DEF-${Date.now()}`,
-                                                imageUri: photos[0],
-                                                title: selectedDeficiency?.selected || analysisResult?.defect || odForm.category,
-                                                description: analysisResult?.description || selectedDeficiency?.detail || 'Deficiency detected by AI inspection',
-                                                category: odForm.category,
-                                                building: buildingName,
-                                                unit: activeInspectionUnit || unitsString,
-                                                location: odForm.location,
-                                                severity: analysisResult?.severity || odForm.healthAndSafety || 'Moderate',
-                                                healthAndSafety: odForm.healthAndSafety || analysisResult?.severity || 'Moderate',
-                                                repairBy: odForm.repairBy || '30 Days',
-                                                codeAndCompliance: odForm.codeAndCompliance,
-                                                notes: odForm.note,
-                                                nspireCode: analysisResult?.nspireCode || selectedDeficiency?.id || 'HS-12',
-                                                status: 'Open',
-                                                timestamp: new Date().toISOString()
-                                            }],
-                                            reportUrl: reportUrl,
-                                            complianceScore: analysisResult?.complianceScore || 85,
-                                            notes: odForm.note,
-                                            startDate: new Date().toLocaleDateString(),
-                                            startTime: new Date().toLocaleTimeString()
-                                        };
-
-                                        localStorage.setItem('currentInspectionData', JSON.stringify(inspectionDataForSummary));
-                                        localStorage.setItem('currentInspectionProperty', JSON.stringify(property));
-
                                         // Close modal and redirect to summary
+
                                         handleODModalClose();
                                         router.push('/dashboard/inspection/summary');
                                     }}

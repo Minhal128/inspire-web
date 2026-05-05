@@ -480,6 +480,7 @@ export default function Dashboard() {
       <EditPropertyModal
         isOpen={showEditModal}
         onClose={() => setShowEditModal(false)}
+        onSuccess={fetchProperties}
         propertyData={newPropertyData}
       />
     </DashboardLayout>
