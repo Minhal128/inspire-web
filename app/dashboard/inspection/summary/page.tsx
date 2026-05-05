@@ -802,9 +802,15 @@ function NSPIREInspectionSummaryContent() {
             title: d.deficiencyName,
             description: d.deficiencyDetails,
             notes: d.comments,
-            category: d.area // SubCategory/Area
+            category: d.area, // SubCategory/Area
+            imageUri: d.imageUri || d.imageUrl || '',
+            imageUrl: d.imageUrl || d.imageUri || ''
           })),
-          findings: exportDeficiencies // Backend checks findings or deficiencies
+          findings: exportDeficiencies.map(d => ({
+            ...d,
+            imageUri: d.imageUri || d.imageUrl || '',
+            imageUrl: d.imageUrl || d.imageUri || ''
+          }))
         }
       }
 
