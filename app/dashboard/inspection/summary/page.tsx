@@ -244,6 +244,9 @@ function NSPIREInspectionSummaryContent() {
                   const area = rawArea.charAt(0).toUpperCase() + rawArea.slice(1).toLowerCase();
                   
                   recordFindings.forEach((f: any) => {
+                    if (f) {
+                      console.log("DEBUG: This finding has these fields:", Object.keys(f), "Values:", f);
+                    }
                     allFindings.push({
                       ...f,
                       building: f.building || building,
@@ -757,8 +760,49 @@ function NSPIREInspectionSummaryContent() {
       if (mergedInspectionPayload) {
         const propertyData = storedProperty ? JSON.parse(storedProperty) : null;
         
-        // Limit deficiencies for preview export if locked
-        const exportDeficiencies = isPreview ? (mergedInspectionPayload.deficiencies || mergedInspectionPayload.findings || []).slice(0, 2) : (mergedInspectionPayload.deficiencies || mergedInspectionPayload.findings || []);
+        // PHOTO FIX: Prefer `findings` (raw data with imageUri strings) over
+        // `deficiencies` (transformed objects where imageUri is nested inside photos[].url)
+        const rawItems = isPreview
+          ? (mergedInspectionPayload.findings || mergedInspectionPayload.deficiencies || []).slice(0, 2)
+          : (mergedInspectionPayload.findings || mergedInspectionPayload.deficiencies || []);
+
+        // Deep-scan helper: extract the first valid image URL from any field
+        const extractImageUrl = (d: any): string => {
+          // 1. Direct string fields
+          if (typeof d.imageUri === 'string' && d.imageUri.startsWith('http')) return d.imageUri;
+          if (typeof d.imageUrl === 'string' && d.imageUrl.startsWith('http')) return d.imageUrl;
+          if (typeof d.photo === 'string' && d.photo.startsWith('http')) return d.photo;
+          if (typeof d.image === 'string' && d.image.startsWith('http')) return d.image;
+          // 2. photos array (could be strings or {url} objects)
+          if (Array.isArray(d.photos) && d.photos.length > 0) {
+            const first = d.photos[0];
+            if (typeof first === 'string' && first.startsWith('http')) return first;
+            if (first?.url && typeof first.url === 'string' && first.url.startsWith('http')) return first.url;
+          }
+          // 3. Fallback: scan all keys for any http URL
+          for (const key of Object.keys(d)) {
+            const val = d[key];
+            if (typeof val === 'string' && val.startsWith('http') && (val.includes('cloudinary') || val.includes('.jpg') || val.includes('.png') || val.includes('.jpeg') || val.includes('.webp'))) {
+              return val;
+            }
+          }
+          return '';
+        };
+
+        // MAPPING FIX: Ensure photos are correctly formatted for the generator
+        const exportDeficiencies = rawItems.map((d: any) => {
+          const img = extractImageUrl(d);
+          return {
+            ...d,
+            title: d.deficiencyName || d.title,
+            description: d.deficiencyDetails || d.description,
+            notes: d.comments || d.notes,
+            category: d.area || d.category,
+            imageUri: img,
+            imageUrl: img,
+            photos: img ? [img] : []
+          };
+        });
 
         payloadData = {
           ...mergedInspectionPayload,
@@ -796,25 +840,36 @@ function NSPIREInspectionSummaryContent() {
 
         payloadData = {
           ...report.metadata, // Spread metadata (inspectionNo, propertyName, etc.) to root
-          deficiencies: exportDeficiencies.map(d => ({
-            ...d,
-            // Ensure compatibility with backend mapping
-            title: d.deficiencyName,
-            description: d.deficiencyDetails,
-            notes: d.comments,
-            category: d.area, // SubCategory/Area
-            imageUri: d.imageUri || d.imageUrl || '',
-            imageUrl: d.imageUrl || d.imageUri || ''
-          })),
-          findings: exportDeficiencies.map(d => ({
-            ...d,
-            imageUri: d.imageUri || d.imageUrl || '',
-            imageUrl: d.imageUrl || d.imageUri || ''
-          }))
-        }
+          deficiencies: exportDeficiencies.map(d => {
+            const img = d.imageUri || d.imageUrl || (Array.isArray(d.photos) && d.photos.length > 0 ? (typeof d.photos[0] === 'string' ? d.photos[0] : d.photos[0].url) : '') || '';
+            return {
+              ...d,
+              title: d.deficiencyName,
+              description: d.deficiencyDetails,
+              notes: d.comments,
+              category: d.area,
+              imageUri: img,
+              imageUrl: img,
+              photos: [img]
+            };
+          }),
+          findings: exportDeficiencies.map(d => {
+            const img = d.imageUri || d.imageUrl || (Array.isArray(d.photos) && d.photos.length > 0 ? (typeof d.photos[0] === 'string' ? d.photos[0] : d.photos[0].url) : '') || '';
+            return {
+              ...d,
+              imageUri: img,
+              imageUrl: img,
+              photos: [img]
+            };
+          })
+        };
+
+        const imageCount = payloadData.deficiencies.filter((d: any) => d.imageUri || (d.photos && d.photos.length > 0)).length;
+        console.log(`FINAL PDF PAYLOAD: ${payloadData.deficiencies.length} items, ${imageCount} have images.`);
+        console.log("PAYLOAD SAMPLE:", JSON.stringify(payloadData.deficiencies[0]).substring(0, 500));
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/generate-pdf?includeImages=true`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inspections/generate-pdf?includeImages=true`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
