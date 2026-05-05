@@ -100,7 +100,7 @@ export default function Reports() {
       }
 
       // Make the request with proper authorization and open in new window
-      const previewUrl = `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/${reportId}/nspire-preview`
+      const previewUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/${reportId}/nspire-preview`
       
       const response = await fetch(previewUrl, {
         method: 'GET',
@@ -144,7 +144,7 @@ export default function Reports() {
         return
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/${reportId}/nspire-pdf?includeImages=true&includeSummary=true&includeDeficiencies=true`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/${reportId}/nspire-pdf?includeImages=true&includeSummary=true&includeDeficiencies=true`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -489,3 +489,4 @@ export default function Reports() {
     </ManagementDashboardLayout>
   )
 }
+

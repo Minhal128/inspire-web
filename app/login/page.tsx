@@ -66,7 +66,7 @@ export default function Login() {
     setIsLoading(true)
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
 
       // Only include role if it's a valid role (not 'user')
       const requestBody: any = {
@@ -343,3 +343,4 @@ export default function Login() {
     </div>
   )
 }
+

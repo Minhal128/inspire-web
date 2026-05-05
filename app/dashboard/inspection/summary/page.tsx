@@ -116,31 +116,9 @@ function NSPIREInspectionSummaryContent() {
   }, [])
 
   const inspectionIdentifier = useMemo(() => {
-    const fromQuery = searchParams.get('inspectionId') || searchParams.get('id')
-    if (fromQuery) {
-      return fromQuery
-    }
-
-    try {
-      const storedData = localStorage.getItem('currentInspectionData')
-      if (storedData) {
-        const parsed = JSON.parse(storedData)
-        const fallbackId =
-          parsed?._id ||
-          parsed?.id ||
-          parsed?.inspectionId ||
-          parsed?.inspectionNo
-
-        if (fallbackId) {
-          return String(fallbackId)
-        }
-      }
-    } catch {
-      // Ignore local parsing errors and continue with report fallback
-    }
-
-    return report?.metadata?.inspectionNo || null
-  }, [searchParams, report?.metadata?.inspectionNo])
+    const id = searchParams.get('id') || searchParams.get('inspectionId') || searchParams.get('propertyId')
+    return id || null
+  }, [searchParams])
 
   const visibleDeficiencies = useMemo(() => {
     if (!report) return []
@@ -207,21 +185,27 @@ function NSPIREInspectionSummaryContent() {
     const loadInspectionData = async () => {
       try {
         setLoading(true);
-        // Try to get data from localStorage (set by inspection flow)
-        const storedDataRaw = localStorage.getItem('currentInspectionData');
-        const storedPropertyRaw = localStorage.getItem('currentInspectionProperty');
-        
-        let inspectionData = storedDataRaw ? JSON.parse(storedDataRaw) : null;
-        let propertyData = storedPropertyRaw ? JSON.parse(storedPropertyRaw) : null;
-        
-        const propertyId = inspectionData?.propertyId || propertyData?._id || propertyData?.id || searchParams.get('propertyId');
+        // IGNORE localStorage - fetch everything from server to ensure fresh data
+        let inspectionData = null;
+        let propertyData = null;
+
+        const propertyId = searchParams.get('propertyId') || searchParams.get('id');
         const token = localStorage.getItem('token');
 
         if (propertyId && token) {
           try {
+            // Fetch property details first to ensure correct names
+            const propRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/properties/${propertyId}`, {
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (propRes.ok) {
+              const propData = await propRes.json();
+              if (propData.success) propertyData = propData.property;
+            }
+
             // Fetch ALL progress records for this property to show "All Summary"
             const response = await fetch(
-              `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/progress?property_id=${propertyId}&include_property=true`,
+              `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/progress?property_id=${propertyId}&include_property=true`,
               {
                 headers: {
                   'Authorization': `Bearer ${token}`
@@ -280,16 +264,14 @@ function NSPIREInspectionSummaryContent() {
               const finalFindings = Array.from(deduped.values());
 
               // 4. Update inspectionData with combined findings
-              if (!inspectionData) {
-                inspectionData = {
-                  propertyId,
-                  propertyName: propertyData?.name || allProgress[0]?.propertyId?.name || 'Property',
-                  propertyAddress: propertyData?.address || allProgress[0]?.propertyId?.address || '-',
-                };
-              }
-              
-              inspectionData.findings = finalFindings;
-              inspectionData.deficiencies = finalFindings;
+              inspectionData = {
+                ...(inspectionData || {}),
+                propertyId,
+                propertyName: propertyData?.name || inspectionData?.propertyName || 'Property',
+                propertyAddress: propertyData?.address || inspectionData?.propertyAddress || '-',
+                findings: finalFindings,
+                deficiencies: finalFindings
+              };
               
               // If we got property metadata from backend, use it
               if (!propertyData && allProgress[0]?.propertyId) {
@@ -343,7 +325,7 @@ function NSPIREInspectionSummaryContent() {
         }
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/payments/check-unlock/${encodeURIComponent(inspectionIdentifier)}`,
+          `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/payments/check-unlock/${encodeURIComponent(inspectionIdentifier)}`,
           {
             method: 'GET',
             headers: {
@@ -402,7 +384,7 @@ function NSPIREInspectionSummaryContent() {
           }
 
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/payments/stripe-session-status/${encodeURIComponent(sessionId)}`,
+            `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/payments/stripe-session-status/${encodeURIComponent(sessionId)}`,
             {
               method: 'GET',
               headers: {
@@ -689,7 +671,7 @@ function NSPIREInspectionSummaryContent() {
       setPurchasingUnlock(true)
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/payments/create-stripe-checkout-session`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/payments/create-stripe-checkout-session`,
         {
           method: 'POST',
           headers: {
@@ -978,52 +960,29 @@ function NSPIREInspectionSummaryContent() {
 
     setExportingExcel(true)
     try {
-      const XLSX = await import('xlsx')
+      const token = localStorage.getItem('token')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/generate-excel`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ data: report })
+      })
 
-      const summaryRows = [
-        { Field: 'Inspection Number', Value: report.metadata.inspectionNo },
-        { Field: 'Property Name', Value: report.metadata.propertyName },
-        { Field: 'Property Address', Value: report.metadata.propertyAddress },
-        { Field: 'Inspector', Value: report.metadata.inspectorName },
-        { Field: 'Inspection Type', Value: report.metadata.inspectionType },
-        { Field: 'Start Date', Value: report.metadata.startDate },
-        { Field: 'End Date', Value: report.metadata.endDate },
-        { Field: 'Final Score', Value: report.metadata.finalScore },
-        { Field: 'Total Deficiencies', Value: report.summary.total },
-        { Field: 'Life-Threatening', Value: report.summary.lifeThreatening },
-        { Field: 'Severe', Value: report.summary.severe },
-        { Field: 'Moderate', Value: report.summary.moderate },
-        { Field: 'Low', Value: report.summary.low },
-      ]
+      if (!response.ok) throw new Error('Failed to generate Excel report')
 
-      const deficiencyRows = report.deficiencies.map((def, index) => ({
-        '#': index + 1,
-        Building: def.building,
-        Unit: def.unit,
-        Room: def.room,
-        Area: def.area,
-        'Deficiency Name': def.deficiencyName,
-        'NSPIRE Code': def.nspireCode,
-        Details: def.deficiencyDetails,
-        Comments: def.comments,
-        Severity: def.severity,
-        'Health & Safety': def.healthAndSafety,
-        'Repair Timeline': def.repairTimeline,
-        'Deduction Points': def.deductionPts,
-        Status: def.status,
-      }))
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `NSPIRE_Report_${report.metadata.inspectionNo || 'Export'}.xlsx`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
 
-      const workbook = XLSX.utils.book_new()
-      const summarySheet = XLSX.utils.json_to_sheet(summaryRows)
-      const deficienciesSheet = XLSX.utils.json_to_sheet(deficiencyRows)
-
-      XLSX.utils.book_append_sheet(workbook, summarySheet, 'Summary')
-      XLSX.utils.book_append_sheet(workbook, deficienciesSheet, 'Deficiencies')
-
-      const fileName = `INSPIRE_Report_${report.metadata.inspectionNo}.xlsx`
-      XLSX.writeFile(workbook, fileName)
-
-      toast.success('Excel downloaded successfully', { position: 'top-right' })
+      toast.success('Professional Excel report downloaded!', { position: 'top-right' })
       await markInspectionAsCompleted({ silentToast: true })
     } catch (error: any) {
       console.error('Excel export error:', error)
@@ -1067,7 +1026,7 @@ function NSPIREInspectionSummaryContent() {
       const propertyData = JSON.parse(storedProperty);
 
       // Update or create inspection record as completed
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/complete`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/complete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1643,3 +1602,4 @@ function NSPIREInspectionSummaryContent() {
     </DashboardLayout>
   )
 }
+

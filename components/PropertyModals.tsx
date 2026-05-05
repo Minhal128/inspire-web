@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "react-toastify"
-import { inspectionsAPI } from "@/lib/api"
+import { inspectionsAPI, propertiesAPI } from "@/lib/api"
 import { Country, State, City } from 'country-state-city'
 import * as XLSX from 'xlsx'
 
@@ -1438,7 +1438,7 @@ export function EditPropertyModal({ isOpen, onClose, onSuccess, propertyData }: 
                 value={formData.buildings}
                 onChange={(e) => setFormData({ ...formData, buildings: e.target.value })}
                 placeholder="Number of Buildings"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
             <div>
@@ -1447,7 +1447,7 @@ export function EditPropertyModal({ isOpen, onClose, onSuccess, propertyData }: 
                 type="text"
                 value={formData.units}
                 onChange={(e) => setFormData({ ...formData, units: e.target.value })}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-200 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#E8F4F8] border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
               />
             </div>
           </div>

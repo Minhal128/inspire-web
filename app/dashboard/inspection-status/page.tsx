@@ -69,7 +69,7 @@ export default function InspectionStatusPage() {
       const [userRes, propertiesRes, inspectionsRes] = await Promise.all([
         authAPI.getMe(),
         propertiesAPI.getAll(),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -141,7 +141,7 @@ export default function InspectionStatusPage() {
 
       const token = localStorage.getItem('token')
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/${property.inspection._id}/nspire-pdf?includeImages=true`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/${property.inspection._id}/nspire-pdf?includeImages=true`,
         {
           method: 'GET',
           headers: {
@@ -407,3 +407,4 @@ export default function InspectionStatusPage() {
     </DashboardLayout>
   )
 }
+

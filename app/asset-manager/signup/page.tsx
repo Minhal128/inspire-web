@@ -45,7 +45,7 @@ export default function AssetManagerSignup() {
     setIsLoading(true)
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
       const response = await fetch(`${apiUrl}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -185,3 +185,4 @@ export default function AssetManagerSignup() {
     </div>
   )
 }
+

@@ -52,7 +52,7 @@ export default function DeleteAccountPage() {
     try {
       const token = localStorage.getItem('token')
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/auth/delete-account`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/auth/delete-account`,
         {
           method: 'DELETE',
           headers: {
@@ -276,3 +276,4 @@ export default function DeleteAccountPage() {
     </DashboardLayout>
   )
 }
+

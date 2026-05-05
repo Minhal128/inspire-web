@@ -10,7 +10,7 @@ import { toast } from "react-toastify"
 import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check, RefreshCw } from "lucide-react"
 import { generateRandomUnitSample, getUnitsToInspect, getSamplingExplanation } from "@/lib/unitSamplingService"
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
 
 // ---- Unit inspection state persistence (localStorage) ----
 interface UnitStatus {
@@ -97,6 +97,26 @@ export default function PropertyDetailsPage() {
 
     // Editable inspection units per building
     const [editableInspectionUnits, setEditableInspectionUnits] = useState<Record<string, number>>({})
+
+    // CRITICAL: Clear stale inspection data if navigating to a different property
+    useEffect(() => {
+        if (!id) return;
+        const storedDataRaw = localStorage.getItem('currentInspectionData');
+        if (storedDataRaw) {
+            try {
+                const data = JSON.parse(storedDataRaw);
+                const storageId = data.propertyId || data.inspectionId;
+                if (storageId && storageId !== id) {
+                    console.log('Detected property change. Clearing stale local inspection data.');
+                    localStorage.removeItem('currentInspectionData');
+                    localStorage.removeItem('currentInspectionProperty');
+                    localStorage.removeItem('currentInspectionUnit');
+                    // Also clear specific OD form snapshots to be thorough
+                    setCompletedUnitsMap({});
+                }
+            } catch (e) {}
+        }
+    }, [id]);
 
     // Editable column header name
     const [columnHeaderName, setColumnHeaderName] = useState('Building Unique ID')
@@ -744,7 +764,7 @@ export default function PropertyDetailsPage() {
                 autoClose: 1800,
             })
 
-            router.push('/dashboard/inspection/summary')
+            router.push(`/dashboard/inspection/summary?propertyId=${id}`)
         } catch (error: any) {
             console.error('Export in-progress failed:', error)
             toast.error(`Failed to export in-progress report: ${error?.message || 'Unknown error'}`, {

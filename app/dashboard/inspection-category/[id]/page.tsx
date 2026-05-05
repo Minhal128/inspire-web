@@ -97,6 +97,7 @@ export default function InspectionCategoryPage() {
     const [outsideStatuses, setOutsideStatuses] = useState<Record<string, ItemStatus>>({})
     const [insideStatuses, setInsideStatuses] = useState<Record<string, ItemStatus>>({})
     const [unitStatuses, setUnitStatuses] = useState<Record<string, ItemStatus>>({})
+    const [propertyFindings, setPropertyFindings] = useState<any[]>([])
     const [currentSection, setCurrentSection] = useState<'outside' | 'inside' | 'unit'>('outside')
 
     // Read building & unit from URL query params (set by property-details page)
@@ -333,10 +334,18 @@ export default function InspectionCategoryPage() {
 
     useEffect(() => {
         if (id) {
-            fetchData()
-            loadSavedProgress()
+            // CRITICAL: Reset building/unit specific states when location changes
+            // This prevents findings from B1 leaking into B2 if the page isn't refreshed
+            setOutsideStatuses({});
+            setInsideStatuses({});
+            setUnitStatuses({});
+            setSavedODItems(new Set());
+            setSavedODFormData({});
+            
+            fetchData();
+            loadSavedProgress();
         }
-    }, [id])
+    }, [id, urlBuilding, activeInspectionUnit]);
 
     const loadSavedProgress = async () => {
         try {
@@ -377,22 +386,21 @@ export default function InspectionCategoryPage() {
                     // Dedupe findings
                     const seen = new Set();
                     const uniqueFindings = allFindings.filter((f: any) => {
-                        // Deduplicate strictly by unique ID, fallback to title/desc if missing
-                        const key = f.id || `${f.title}|${f.description}|${f.unit}`;
+                        // Aggressive deduplication: Building + Area + Unit + Item
+                        // If building is unknown, we treat it as potentially belonging to the current building to avoid duplicates
+                        const bldg = (f.building && !['unknown', 'UNKNOWN-BUILDING'].includes(f.building)) ? f.building : (urlBuilding || 'unknown');
+                        const area = f.area || f.category || 'unknown';
+                        const unit = f.unit || '-';
+                        const item = f.item || f.deficiencyName || f.title || 'unknown';
+                        
+                        const key = `${bldg}|${area}|${unit}|${item}`.toLowerCase().trim();
                         if (seen.has(key)) return false;
                         seen.add(key);
                         return true;
                     });
 
-                    const existingDataRaw = localStorage.getItem('currentInspectionData');
-                    let finalData: any = { findings: uniqueFindings };
-                    if (existingDataRaw) {
-                        try {
-                            const existingData = JSON.parse(existingDataRaw);
-                            finalData = { ...existingData, findings: uniqueFindings };
-                        } catch (e) {}
-                    }
-                    localStorage.setItem('currentInspectionData', JSON.stringify(finalData));
+                    // CRITICAL: Always use server findings as the source of truth
+                    setPropertyFindings(uniqueFindings);
                 }
                 // Restore OD form snapshots so re-opening a saved OD pre-fills the form
                 const restoredSnapshots: Record<string, any> = {};
@@ -422,7 +430,7 @@ export default function InspectionCategoryPage() {
         }, 2000); // Debounce save
 
         return () => clearTimeout(timer);
-    }, [outsideStatuses, insideStatuses, unitStatuses]);
+    }, [outsideStatuses, insideStatuses, unitStatuses, urlBuilding, activeInspectionUnit]);
 
     const saveCurrentProgress = async () => {
         if (!id || !user) return;
@@ -494,7 +502,7 @@ export default function InspectionCategoryPage() {
             if (propRes.success) {
                 setProperty(propRes.property)
                 try {
-                    const unitsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/inspections/sample-units`, {
+                    const unitsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/sample-units`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -538,7 +546,7 @@ export default function InspectionCategoryPage() {
             setCurrentModalItem(itemName);
 
             // If this item was previously saved, pre-fill the form with saved data
-            const savedKey = `${section}:${itemName}`;
+            const savedKey = `${urlBuilding}:${section}:${itemName}`;
             const previousData = savedODFormData[savedKey];
             if (previousData) {
                 setOdForm(previousData.odForm);
@@ -579,6 +587,23 @@ export default function InspectionCategoryPage() {
                 ...prev,
                 [itemName]: prev[itemName] === status ? null : status
             }));
+        }
+
+        // If status is being changed away from OD, clean up the saved finding
+        if (status !== 'OD') {
+            const savedKey = `${urlBuilding}:${section}:${itemName}`;
+            setSavedODItems(prev => {
+                const next = new Set(prev);
+                next.delete(savedKey);
+                return next;
+            });
+            // Also remove from state to keep summary in sync
+            setPropertyFindings(prev => {
+                const unitVal = section === 'unit' ? (activeInspectionUnit || unitsString) : '-';
+                return prev.filter((f: any) => 
+                    !(f.item === itemName && f.area === section && f.unit === unitVal && (f.building === urlBuilding || f.building === buildingName))
+                );
+            });
         }
     };
 
@@ -657,7 +682,7 @@ export default function InspectionCategoryPage() {
             const formData = new FormData();
             formData.append('image', file);
             formData.append('folder', 'nspire-inspections/general-comments');
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/ai/upload-image`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/upload-image`, {
                 method: 'POST',
                 body: formData,
             });
@@ -706,7 +731,7 @@ export default function InspectionCategoryPage() {
         const toastId = toast.loading("AI is analyzing the photo...", { autoClose: false });
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/ai/inspect`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/inspect`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -821,38 +846,41 @@ export default function InspectionCategoryPage() {
                             ? unitItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
                             : false;
 
-                const existingDataRaw = localStorage.getItem('currentInspectionData');
-                let mergedFindings = inspectionDataForSummary.findings;
-                if (existingDataRaw) {
-                    try {
-                        const existingData = JSON.parse(existingDataRaw);
-                        if (Array.isArray(existingData.findings)) {
-                            // If the user is re-saving an OD for the exact same item in the same area/unit, update it instead of appending a duplicate
-                            const newFinding = inspectionDataForSummary.findings[0];
-                            const existingIndex = existingData.findings.findIndex((f: any) => 
-                                f.item === newFinding.item && 
-                                f.area === newFinding.area && 
-                                f.unit === newFinding.unit
-                            );
+                const newFinding = inspectionDataForSummary.findings[0];
+                let mergedFindings = [newFinding];
 
-                            if (existingIndex >= 0) {
-                                // Preserve the original ID so it overwrites correctly on the backend
-                                newFinding.id = existingData.findings[existingIndex].id || newFinding.id;
-                                const updatedFindings = [...existingData.findings];
-                                updatedFindings[existingIndex] = newFinding;
-                                mergedFindings = updatedFindings;
-                            } else {
-                                mergedFindings = [...existingData.findings, newFinding];
-                            }
+                if (propertyFindings.length > 0) {
+                    try {
+                        // Find if this exact item already has a finding to avoid duplicates
+                        const existingIndex = propertyFindings.findIndex((f: any) => 
+                            f.item === newFinding.item && 
+                            f.area === newFinding.area && 
+                            f.unit === newFinding.unit &&
+                            (f.building === urlBuilding || f.building === buildingName)
+                        );
+
+                        if (existingIndex >= 0) {
+                            // Preserve original ID for backend overwriting
+                            newFinding.id = propertyFindings[existingIndex].id || newFinding.id;
+                            const updatedFindings = [...propertyFindings];
+                            updatedFindings[existingIndex] = newFinding;
+                            mergedFindings = updatedFindings;
+                        } else {
+                            mergedFindings = [...propertyFindings, newFinding];
                         }
                     } catch (e) {
                         console.error("Error merging findings:", e);
+                        mergedFindings = [...propertyFindings, newFinding];
                     }
                 }
+
+                // Update local state immediately
+                setPropertyFindings(mergedFindings);
 
                 await inspectionsAPI.saveProgress({
                     property_id: property?._id || params.id,
                     unit_id: currentSection === 'unit' ? activeInspectionUnit : urlBuilding,
+                    building_id: urlBuilding,
                     inspection_type: type,
                     responses: updatedStatuses,
                     inspectionData: {
@@ -861,7 +889,7 @@ export default function InspectionCategoryPage() {
                         // Persist OD form snapshots so pre-fill survives page refresh
                         odFormSnapshots: {
                             ...(savedODFormData),
-                            [`${currentSection}:${currentModalItem}`]: {
+                            [`${urlBuilding}:${currentSection}:${currentModalItem}`]: {
                                 odForm: { ...odForm },
                                 selectedDeficiency: selectedDeficiency,
                                 photos: [...photos],
@@ -872,13 +900,8 @@ export default function InspectionCategoryPage() {
                     building_id: urlBuilding
                 });
                 
-                const finalData = {
-                    ...inspectionDataForSummary,
-                    findings: mergedFindings
-                };
-
-                localStorage.setItem('currentInspectionData', JSON.stringify(finalData));
-                localStorage.setItem('currentInspectionProperty', JSON.stringify(property));
+                // NO LONGER USING localStorage FOR FINDINGS
+                // The summary page and other views will fetch directly from the backend.
 
                 toast.info("Item saved. You can continue with other items or view summary.", { position: "top-right" });
                 
@@ -889,7 +912,7 @@ export default function InspectionCategoryPage() {
                 }
                 // Mark this item as having a saved OD finding so Select All can't overwrite it
                 if (currentSection && currentModalItem) {
-                    const savedKey = `${currentSection}:${currentModalItem}`;
+                    const savedKey = `${urlBuilding}:${currentSection}:${currentModalItem}`;
                     setSavedODItems(prev => new Set(prev).add(savedKey));
                     // Snapshot the current form data so it can be pre-filled on re-open
                     setSavedODFormData(prev => ({
@@ -926,7 +949,7 @@ export default function InspectionCategoryPage() {
             formData.append('image', file);
             formData.append('folder', 'nspire-inspections/deficiencies');
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}/api/ai/upload-image`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/upload-image`, {
                 method: 'POST',
                 body: formData,
             });
@@ -1235,7 +1258,7 @@ export default function InspectionCategoryPage() {
                     </div>
                     
                     <Button 
-                        onClick={() => router.push('/dashboard/inspection/summary')}
+                        onClick={() => router.push(`/dashboard/inspection/summary?propertyId=${id}`)}
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
@@ -1943,7 +1966,7 @@ export default function InspectionCategoryPage() {
 
                                 {reportUrl && (
                                     <a
-                                        href={`${process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app'}${reportUrl}`}
+                                        href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}${reportUrl}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full"
