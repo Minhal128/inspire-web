@@ -551,7 +551,7 @@ export default function InspectionCategoryPage() {
                     ...prev,
                     category: cleanCategory,
                     note: "",
-                    location: section === 'outside' ? OUTSIDE_LOCATION_OPTIONS[0] : "Main Lobby",
+                    location: "Building Site S",
                     healthAndSafety: "",
                     repairBy: "",
                     codeAndCompliance: ""
@@ -1771,18 +1771,17 @@ export default function InspectionCategoryPage() {
                                                 value={odForm.location}
                                                 onChange={(e) => setOdForm({ ...odForm, location: e.target.value })}
                                             >
-                                                {currentSection === 'outside' ? (
-                                                    OUTSIDE_LOCATION_OPTIONS.map((loc: string) => (
-                                                        <option key={loc} value={loc}>{loc}</option>
-                                                    ))
-                                                ) : (
-                                                    <>
-                                                        <option>Building Site S</option>
-                                                        <option>Basement</option>
-                                                        <option>Main Lobby</option>
-                                                        <option>Roof</option>
-                                                    </>
-                                                )}
+                                                {[
+                                                    'Building Site S', 'Building Site N', 'Building Site E', 'Building Site W',
+                                                    'Parking Lot', 'Driveway', 'Sidewalk', 'Roof', 'Common Area', 'Main Lobby',
+                                                    'Basement', 'Attic/Loft', 'Bathroom 1', 'Bathroom 2', 'Bathroom 3',
+                                                    'Bedroom 1', 'Bedroom 2', 'Bedroom 3', 'Bedroom 4', 'Bedroom 5',
+                                                    'Closet', 'Dining Area', 'Entryway', 'Garage', 'Hallway/Stairs',
+                                                    'Home Office/Study', 'Kitchen', 'Laundry Room', 'Living Room',
+                                                    'Mechanical Room', 'Office', 'Patio/Porch/Balcony', 'Storage Room', 'Other'
+                                                ].map((loc: string) => (
+                                                    <option key={loc} value={loc}>{loc}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div>
