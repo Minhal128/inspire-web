@@ -472,11 +472,32 @@ export const inspectionsAPI = {
       Object.entries(params).filter(([_, v]) => v !== undefined) as [string, string][]
     ).toString();
     return apiRequest<{
-      success: boolean;
-      items?: Record<string, string>;
-      inspectionData?: any;
       progress?: any[];
     }>(`/api/inspections/progress?${queryString}`);
+  },
+
+  generateExcel: async (data: any) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_URL}/api/inspections/generate-excel`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
+      body: JSON.stringify({ data }),
+    });
+    if (!response.ok) throw new Error('Failed to generate Excel report');
+    return response.blob();
+  },
+
+  completeByProperty: async (propertyId: string, data: any) => {
+    return apiRequest<{ success: boolean; message: string; inspection: any }>(
+      '/api/inspections/complete',
+      {
+        method: 'POST',
+        body: JSON.stringify({ property_id: propertyId, ...data }),
+      }
+    );
   },
 };
 

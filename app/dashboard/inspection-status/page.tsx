@@ -89,9 +89,7 @@ export default function InspectionStatusPage() {
       if (inspectionsRes.ok) {
         const data = await inspectionsRes.json()
         if (data.success) {
-          completedInspections = data.inspections.filter(
-            (insp: Inspection) => insp.status === 'completed' || insp.status === 'Completed'
-          )
+          completedInspections = data.inspections;
         }
       }
 
@@ -104,7 +102,7 @@ export default function InspectionStatusPage() {
         return {
           ...property,
           inspection,
-          hasInspection: !!inspection
+          hasInspection: !!inspection && (inspection.status?.toLowerCase() === 'completed')
         }
       })
 
@@ -329,11 +327,17 @@ export default function InspectionStatusPage() {
                             {property.name}
                           </h3>
                           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold w-fit flex-shrink-0 whitespace-nowrap ${
-                            property.hasInspection 
+                            property.inspection?.status?.toLowerCase() === 'completed' 
                               ? 'bg-green-100 text-green-800' 
-                              : 'bg-red-100 text-red-800'
+                              : property.inspection
+                                ? 'bg-amber-100 text-amber-800'
+                                : 'bg-red-100 text-red-800'
                           }`}>
-                            {property.hasInspection ? 'Completed' : 'Pending'}
+                            {property.inspection?.status?.toLowerCase() === 'completed' 
+                              ? 'Completed' 
+                              : property.inspection 
+                                ? 'In Progress' 
+                                : 'Pending'}
                           </span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">

@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Button } from "@/components/ui/button"
 import { toast } from "react-toastify"
+import { propertiesAPI, inspectionsAPI, paymentsAPI } from "@/lib/api"
 import {
   NSPIREInspectionReport,
   DeficiencyEntry,
@@ -18,6 +19,7 @@ import {
   calculateDeductionPoints,
   mapCategoryToNSPIRECode,
 } from "@/lib/nspireReport"
+
 
 // Icons
 // Icons
@@ -130,11 +132,15 @@ function NSPIREInspectionSummaryContent() {
 
   // Handle "Back to Inspection" - return to the active inspection screen
   const handleBackToInspection = () => {
+    const propertyId = searchParams.get('propertyId') || searchParams.get('id');
+    if (propertyId) {
+      router.push(`/dashboard/inspection-category/${propertyId}`);
+      return;
+    }
+    
     // Priority 1: Current unit context from localStorage
     if (inspectionContext) {
-      const unitParam = inspectionContext.unitName ? `&unit=${encodeURIComponent(inspectionContext.unitName)}` : ''
-      const url = `/dashboard/inspection-category/${inspectionContext.propertyId}?building=${encodeURIComponent(inspectionContext.buildingId)}${unitParam}&units=1`;
-      router.push(url);
+      router.push(`/dashboard/inspection-category/${inspectionContext.propertyId}`);
       return;
     }
 
@@ -194,31 +200,30 @@ function NSPIREInspectionSummaryContent() {
 
         if (propertyId && token) {
           try {
-            // Fetch property details first to ensure correct names
-            const propRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/properties/${propertyId}`, {
-              headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (propRes.ok) {
-              const propData = await propRes.json();
-              if (propData.success) propertyData = propData.property;
+            // Fetch property details
+            const propRes = await propertiesAPI.getById(propertyId);
+            if (propRes.success) {
+              propertyData = propRes.property;
             }
 
-            // Fetch ALL progress records for this property to show "All Summary"
-            const response = await fetch(
-              `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/progress?property_id=${propertyId}&include_property=true`,
-              {
-                headers: {
-                  'Authorization': `Bearer ${token}`
-                }
-              }
-            );
+            // Fetch current progress (drafts)
+            const progData = await inspectionsAPI.getProgress({
+              property_id: propertyId,
+              draft_only: 'false'
+            });
 
-            if (response.ok) {
-              const data = await response.json();
-              let allFindings: any[] = [];
-              
-              // 1. Collect findings from all backend records
-              const allProgress = data.progress || [];
+            // Fetch finalized inspections (completed)
+            const inspectionsRes = await inspectionsAPI.getAll({
+              property: propertyId,
+              status: 'completed'
+            });
+
+            let allFindings: any[] = [];
+            let serverUnlocked = false;
+
+            // 1. Collect findings from all progress (draft) records
+            if (progData.success && progData.progress) {
+              const allProgress = progData.progress || [];
               allProgress.forEach((record: any) => {
                 const recordFindings = record.inspectionData?.findings || record.inspectionData?.deficiencies || [];
                 if (Array.isArray(recordFindings)) {
@@ -228,9 +233,6 @@ function NSPIREInspectionSummaryContent() {
                   const area = rawArea.charAt(0).toUpperCase() + rawArea.slice(1).toLowerCase();
                   
                   recordFindings.forEach((f: any) => {
-                    if (f) {
-                      console.log("DEBUG: This finding has these fields:", Object.keys(f), "Values:", f);
-                    }
                     allFindings.push({
                       ...f,
                       building: f.building || building,
@@ -240,44 +242,65 @@ function NSPIREInspectionSummaryContent() {
                   });
                 }
               });
-
-              // Local storage fallback removed per user request: summary is now strictly server-side
-
-              // 3. Deduplicate by ID to avoid duplicates between local and backend, and fallback to item+unit if missing
-              const deduped = new Map<string, any>();
-              
-              allFindings.forEach(f => {
-                const key = f.id || (f.item ? `${f.item}|${f.unit}|${f.area}` : [
-                  String(f.building || '').toLowerCase().trim(),
-                  String(f.unit || '').toLowerCase().trim(),
-                  String(f.room || '').toLowerCase().trim(),
-                  String(f.area || '').toLowerCase().trim(),
-                  String(f.title || f.deficiencyName || '').toLowerCase().trim(),
-                  String(f.description || f.deficiencyDetails || '').toLowerCase().trim(),
-                  String(f.imageUri || '').trim()
-                ].join('|'));
-                
-                // Override with the latest (which will be local findings since they are added last)
-                deduped.set(key, f);
-              });
-
-              const finalFindings = Array.from(deduped.values());
-
-              // 4. Update inspectionData with combined findings
-              inspectionData = {
-                ...(inspectionData || {}),
-                propertyId,
-                propertyName: propertyData?.name || inspectionData?.propertyName || 'Property',
-                propertyAddress: propertyData?.address || inspectionData?.propertyAddress || '-',
-                findings: finalFindings,
-                deficiencies: finalFindings
-              };
-              
-              // If we got property metadata from backend, use it
-              if (!propertyData && allProgress[0]?.propertyId) {
-                propertyData = allProgress[0].propertyId;
-              }
             }
+
+            // 2. Collect findings from finalized (completed) inspections
+            if (inspectionsRes.success && inspectionsRes.inspections) {
+              inspectionsRes.inspections.forEach((insp: any) => {
+                const inspFindings = insp.findings || insp.deficiencies || [];
+                if (insp.isReportUnlocked) serverUnlocked = true;
+                
+                if (Array.isArray(inspFindings)) {
+                  inspFindings.forEach((f: any) => {
+                    allFindings.push({
+                      ...f,
+                      building: f.building || insp.building?.name || '',
+                      unit: f.unit || insp.unit?.name || insp.unit || '-',
+                      area: f.area || insp.inspectionType || 'Final',
+                      isFinalized: true
+                    });
+                  });
+                }
+              });
+            }
+
+            // 3. Smart aggregation: deduplicate findings by a unique key
+            const deduped = new Map<string, any>();
+            allFindings.forEach(f => {
+              // Normalize common identifiers to ensure matches
+              const normBuilding = String(f.building || '').replace(/^Building\s+/i, 'B').toUpperCase().trim();
+              const normUnit = String(f.unit || '').replace(/^Unit\s+/i, '').replace(/^-$/, '').toUpperCase().trim();
+              const normName = String(f.deficiencyName || f.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+              // Create a key that identifies the SAME physical deficiency across different states
+              const key = [normName, normBuilding, normUnit].filter(Boolean).join('|');
+              
+              // If we have duplicates, prefer the one that came from a finalized inspection or has an image
+              const existing = deduped.get(key);
+              const isNewerOrBetter = !existing || 
+                                     (f.isFinalized && !existing.isFinalized) || 
+                                     (!existing.imageUri && f.imageUri);
+                                     
+              if (isNewerOrBetter) {
+                deduped.set(key, f);
+              }
+            });
+
+            const finalFindings = Array.from(deduped.values());
+            console.log(`Summary Aggregation: Raw=${allFindings.length}, Deduped=${finalFindings.length}`);
+
+            // Update local unlock state if server reports any inspection is unlocked
+            if (serverUnlocked) setIsReportUnlocked(true);
+
+            // 4. Update inspectionData with combined findings
+            inspectionData = {
+              ...(inspectionData || {}),
+              propertyId,
+              propertyName: propertyData?.name || 'Property',
+              propertyAddress: propertyData?.address || '-',
+              findings: finalFindings,
+              deficiencies: finalFindings
+            };
           } catch (fetchError) {
             console.error('Error fetching property-wide progress:', fetchError);
           }
@@ -291,14 +314,18 @@ function NSPIREInspectionSummaryContent() {
           // Convert to NSPIRE report format
           const nspireReport = convertToNSPIREReport(inspectionData, propertyData)
           setReport(nspireReport)
+        } else if (propertyId) {
+          // If we have an ID but no data, don't show demo data - show error
+          toast.error("Property data not found on server.", { position: "top-right" });
+          setReport(null);
         } else {
-          // Use demo data for testing
+          // Only show demo data if explicitly requested or no ID provided at all
           setReport(getDemoReport())
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error loading inspection data:', error)
-        // Fallback to demo data
-        setReport(getDemoReport())
+        toast.error(`Failed to load inspection: ${error.message}`, { position: "top-right" });
+        setReport(null);
       } finally {
         setLoading(false)
       }
@@ -317,28 +344,7 @@ function NSPIREInspectionSummaryContent() {
 
       try {
         setCheckingUnlock(true)
-        const token = localStorage.getItem('token')
-
-        if (!token) {
-          setIsReportUnlocked(false)
-          return
-        }
-
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/payments/check-unlock/${encodeURIComponent(inspectionIdentifier)}`,
-          {
-            method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            },
-          }
-        )
-
-        if (!response.ok) {
-          throw new Error('Unable to check unlock status.')
-        }
-
-        const data = await response.json()
+        const data = await paymentsAPI.checkReportUnlock(inspectionIdentifier);
         setIsReportUnlocked(!!data?.isReportUnlocked)
       } catch (error) {
         console.error('Unlock status check error:', error)
@@ -378,24 +384,9 @@ function NSPIREInspectionSummaryContent() {
         }
 
         if (paymentStatus === 'success' && sessionId) {
-          const token = localStorage.getItem('token')
-          if (!token) {
-            throw new Error('You must be logged in to verify payment status.')
-          }
-
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/payments/stripe-session-status/${encodeURIComponent(sessionId)}`,
-            {
-              method: 'GET',
-              headers: {
-                'Authorization': `Bearer ${token}`,
-              },
-            }
-          )
-
-          const data = await response.json()
-
-          if (!response.ok || !data?.success) {
+          const data = await paymentsAPI.getStripeSessionStatus(sessionId);
+          
+          if (!data?.success) {
             throw new Error(data?.message || 'Unable to verify Stripe payment status.')
           }
 
@@ -662,31 +653,8 @@ function NSPIREInspectionSummaryContent() {
         return
       }
 
-      const token = localStorage.getItem('token')
-      if (!token) {
-        toast.error('You must be logged in to unlock this report.', { position: 'top-right' })
-        return
-      }
-
       setPurchasingUnlock(true)
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/payments/create-stripe-checkout-session`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-          body: JSON.stringify({ inspectionId: inspectionIdentifier }),
-        }
-      )
-
-      const data = await response.json()
-
-      if (!response.ok || !data?.success) {
-        throw new Error(data?.message || 'Unable to start Stripe checkout.')
-      }
+      const data = await paymentsAPI.createStripeCheckoutSession(inspectionIdentifier);
 
       if (data?.isReportUnlocked || data?.alreadyUnlocked) {
         setIsReportUnlocked(true)
@@ -960,19 +928,8 @@ function NSPIREInspectionSummaryContent() {
 
     setExportingExcel(true)
     try {
-      const token = localStorage.getItem('token')
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/generate-excel`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ data: report })
-      })
+      const blob = await inspectionsAPI.generateExcel(report);
 
-      if (!response.ok) throw new Error('Failed to generate Excel report')
-
-      const blob = await response.blob()
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
@@ -1036,7 +993,7 @@ function NSPIREInspectionSummaryContent() {
           propertyId: propertyData._id,
           inspectionData: {
             ...inspectionData,
-            status: 'completed',
+            status: 'in-progress',
             completedAt: new Date().toISOString(),
             pdfExported: true
           }

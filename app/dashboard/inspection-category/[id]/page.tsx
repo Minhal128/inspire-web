@@ -356,21 +356,35 @@ export default function InspectionCategoryPage() {
 
             if (res.success && res.progress) {
                 // Find Inside and Outside progress for this building
-                const outsideRec = res.progress.find((p: any) => 
-                    p.inspectionType === 'Outside' && (p.unitId === urlBuilding || p.buildingId === urlBuilding)
-                );
-                const insideRec = res.progress.find((p: any) => 
-                    p.inspectionType === 'Inside' && (p.unitId === urlBuilding || p.buildingId === urlBuilding)
-                );
+                const outsideRec = res.progress.find((p: any) => {
+                    const typeMatch = p.inspectionType === 'Outside';
+                    const bId = String(urlBuilding || '').toUpperCase();
+                    const pUnitId = String(p.unitId || '').toUpperCase();
+                    const pBldgId = String(p.buildingId || '').toUpperCase();
+                    const isB1Match = (bId === 'B1' || bId === 'BUILDING 1') && (pUnitId === 'B1' || pUnitId === 'BUILDING 1' || pBldgId === 'B1' || pBldgId === 'BUILDING 1');
+                    return typeMatch && (pUnitId === bId || pBldgId === bId || isB1Match);
+                });
+
+                const insideRec = res.progress.find((p: any) => {
+                    const typeMatch = p.inspectionType === 'Inside';
+                    const bId = String(urlBuilding || '').toUpperCase();
+                    const pUnitId = String(p.unitId || '').toUpperCase();
+                    const pBldgId = String(p.buildingId || '').toUpperCase();
+                    const isB1Match = (bId === 'B1' || bId === 'BUILDING 1') && (pUnitId === 'B1' || pUnitId === 'BUILDING 1' || pBldgId === 'B1' || pBldgId === 'BUILDING 1');
+                    return typeMatch && (pUnitId === bId || pBldgId === bId || isB1Match);
+                });
                 
                 if (outsideRec && outsideRec.responses) setOutsideStatuses(outsideRec.responses);
                 if (insideRec && insideRec.responses) setInsideStatuses(insideRec.responses);
 
                 // If a unit is active, find its progress too
                 if (activeInspectionUnit) {
-                    const unitRec = res.progress.find((p: any) => 
-                        p.inspectionType === 'Unit' && p.unitId === activeInspectionUnit
-                    );
+                    const unitRec = res.progress.find((p: any) => {
+                        const typeMatch = p.inspectionType === 'Unit';
+                        const uId = String(activeInspectionUnit).toUpperCase();
+                        const pUnitId = String(p.unitId).toUpperCase();
+                        return typeMatch && pUnitId === uId;
+                    });
                     if (unitRec && unitRec.responses) setUnitStatuses(unitRec.responses);
                 }
 
