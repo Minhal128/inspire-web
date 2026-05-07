@@ -1402,6 +1402,13 @@ export default function InspectionCategoryPage() {
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#006795]/10 text-[#006795] text-sm font-bold">
                                                     <User className="w-3.5 h-3.5" /> Inspecting: {activeInspectionUnit}
                                                 </span>
+                                                <button
+                                                    onClick={() => setUnitSelectionPopupOpen(true)}
+                                                    className="text-xs font-bold text-[#006795] hover:underline flex items-center gap-1 bg-[#006795]/5 px-2 py-1 rounded-md transition-colors"
+                                                >
+                                                    <ArrowUpDown className="w-3 h-3" />
+                                                    Change Unit
+                                                </button>
                                             </div>
                                         )}
                                         <div className="flex items-center gap-3">
