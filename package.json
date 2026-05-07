@@ -8,6 +8,9 @@
     "lint": "eslint .",
     "start": "next start"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@clerk/clerk-js": "^5.121.1",
     "@hookform/resolvers": "^3.10.0",
