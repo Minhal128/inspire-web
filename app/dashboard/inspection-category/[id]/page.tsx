@@ -1025,8 +1025,8 @@ export default function InspectionCategoryPage() {
         const mapping = currentSection === 'outside'
             ? outsideDeficiencyMapping
             : currentSection === 'inside'
-                ? unitDeficiencyMapping
-                : insideDeficiencyMapping;
+                ? insideDeficiencyMapping
+                : unitDeficiencyMapping;
 
         // Try exact match first (case-insensitive)
         const exactKey = Object.keys(mapping).find(k => k.toLowerCase() === baseName.toLowerCase());
@@ -1066,7 +1066,70 @@ export default function InspectionCategoryPage() {
 
     const renderTable = (section: 'outside' | 'inside' | 'unit', items: string[], statuses: Record<string, ItemStatus>) => (
         <div className="bg-white p-3 sm:p-6 animate-in slide-in-from-top duration-300">
-            {/* Mobile View - Card Layout */}
+            {/* Mobile View - Card Layout - Bulk Actions */}
+            <div className="block md:hidden mb-4 p-2 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="space-y-2">
+                    <Button 
+                        onClick={() => selectAll(section, 'No OD')} 
+                        className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${
+                            (() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD');
+                            })() ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
+                        }`}
+                    >
+                        <div className="w-4 h-4 bg-white/20 border border-white/40 flex items-center justify-center rounded">
+                            {(() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
+                            })()}
+                        </div>
+                        Select All No OD
+                    </Button>
+                    <div className="grid grid-cols-2 gap-2">
+                        <Button 
+                            onClick={() => selectAll(section, 'OD')} 
+                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm border transition-all ${
+                                (() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                                })() ? 'bg-red-600 hover:bg-red-700 text-white border-red-600' : 'bg-white hover:bg-red-50 text-[#DC2626] border-[#DC2626]'
+                            }`}
+                        >
+                            <div className={`w-4 h-4 border flex items-center justify-center rounded ${
+                                (() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                                })() ? 'bg-white/20 border-white/40' : 'bg-white border-[#DC2626]'
+                            }`}>
+                                {(() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
+                                })()}
+                            </div>
+                            Observe Deficiency
+                        </Button>
+                        <Button 
+                            onClick={() => selectAll(section, 'N/A')} 
+                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${
+                                (() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A');
+                                })() ? 'bg-gray-600 hover:bg-gray-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
+                            }`}
+                        >
+                            <div className="w-4 h-4 bg-white/20 border border-white/40 flex items-center justify-center rounded">
+                                {(() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
+                                })()}
+                            </div>
+                            Select All N/A
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
             <div className="block md:hidden space-y-3">
                 {items.map((item, index) => {
                     const isGeneral = item.toLowerCase().includes('general comment');
