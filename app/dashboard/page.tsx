@@ -17,6 +17,8 @@ import {
 import { propertiesAPI } from "@/lib/api"
 import { Country, State, City } from 'country-state-city'
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+
 export default function Dashboard() {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState("")
@@ -33,6 +35,7 @@ export default function Dashboard() {
   const [newPropertyData, setNewPropertyData] = useState<any>(null)
   const [properties, setProperties] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
 
   // Location data from country-state-city package
   const [countries, setCountries] = useState<any[]>([])
@@ -96,6 +99,8 @@ export default function Dashboard() {
       })
       if (response.success) {
         setProperties(response.properties)
+        // Fetch progress for these properties
+        fetchProgress(response.properties)
       }
     } catch (error: any) {
       console.error('Error fetching properties:', error)
@@ -126,6 +131,50 @@ export default function Dashboard() {
       ])
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchProgress = async (propertyList: any[]) => {
+    try {
+      // Fetch all progress records for current user
+      const response = await fetch(`${API_URL}/api/inspections/progress`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      const data = await response.json()
+      if (data.success && Array.isArray(data.progress)) {
+        const progressMap: Record<string, number> = {}
+        
+        propertyList.forEach(prop => {
+            const propId = prop._id
+            const propProgress = data.progress.filter((p: any) => 
+                p.propertyId === propId || p.propertyId?._id === propId
+            )
+            
+            // Heuristic: Count unique units/categories completed
+            const uniqueTasks = new Set()
+            propProgress.forEach((p: any) => {
+                const type = String(p.inspectionType || '').toLowerCase()
+                if (type.startsWith('unit_')) {
+                    uniqueTasks.add(`unit_${p.unitId}`)
+                } else if (type === 'inside' || type === 'outside') {
+                    uniqueTasks.add(type)
+                }
+            })
+            
+            // Total tasks = (buildings * 2) + units
+            const totalTasks = (prop.buildings * 2) + prop.units
+            if (totalTasks > 0) {
+                progressMap[propId] = Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100))
+            } else {
+                progressMap[propId] = 0
+            }
+        })
+        setPropertyProgress(progressMap)
+      }
+    } catch (e) {
+      console.error('Error fetching progress:', e)
     }
   }
 
@@ -343,6 +392,7 @@ export default function Dashboard() {
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">City</th>
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">State</th>
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">Zip Code</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[12%]">Progress</th>
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[17%]">Actions</th>
                   </tr>
                 </thead>
@@ -370,6 +420,17 @@ export default function Dashboard() {
                         </span>
                       </td>
                       <td className="py-3 px-3 text-gray-600 font-mono text-xs text-center">{property.zipCode}</td>
+                      <td className="py-3 px-3">
+                        <div className="w-full bg-gray-100 rounded-full h-2 mb-1">
+                          <div 
+                            className="bg-blue-600 h-2 rounded-full transition-all duration-500" 
+                            style={{ width: `${propertyProgress[property._id] || 0}%` }}
+                          />
+                        </div>
+                        <span className="text-[10px] font-bold text-gray-500 block text-center">
+                          {propertyProgress[property._id] || 0}%
+                        </span>
+                      </td>
                       <td className="py-3 px-3">
                         <div className="flex items-center justify-center gap-2">
                           <button
@@ -439,6 +500,18 @@ export default function Dashboard() {
                     <div className="bg-gray-50 p-2 rounded-lg">
                       <span className="text-gray-500 text-xs block mb-1">Zip Code</span>
                       <p className="font-semibold text-gray-900 text-base font-mono">{property.zipCode}</p>
+                    </div>
+                    <div className="col-span-2 bg-gray-50 p-3 rounded-lg">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-gray-500 text-xs font-bold uppercase tracking-wider">Progress</span>
+                        <span className="text-blue-600 font-bold text-sm">{propertyProgress[property._id] || 0}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2.5">
+                        <div 
+                          className="bg-blue-600 h-2.5 rounded-full transition-all duration-500" 
+                          style={{ width: `${propertyProgress[property._id] || 0}%` }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </Card>

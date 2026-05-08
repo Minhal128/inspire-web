@@ -99,6 +99,7 @@ export default function InspectionCategoryPage() {
     const [unitStatuses, setUnitStatuses] = useState<Record<string, ItemStatus>>({})
     const [propertyFindings, setPropertyFindings] = useState<any[]>([])
     const [currentSection, setCurrentSection] = useState<'outside' | 'inside' | 'unit'>('outside')
+    const [completedUnits, setCompletedUnits] = useState<string[]>([])
 
     // Read building & unit from URL query params (set by property-details page)
     const urlBuilding = searchParams.get('building') || 'B1'
@@ -109,6 +110,22 @@ export default function InspectionCategoryPage() {
     // Unit selection popup (shown when user clicks Units section and no unit is pre-selected)
     const [unitSelectionPopupOpen, setUnitSelectionPopupOpen] = useState(false)
     const [activeInspectionUnit, setActiveInspectionUnit] = useState(currentUnitName)
+
+    const refreshCompletedUnits = async () => {
+        if (!id || !urlBuilding) return;
+        try {
+            const res = await inspectionsAPI.getUnitStatus(id, urlBuilding);
+            if (res.success) {
+                setCompletedUnits(res.statuses.filter((s: any) => s.isInspected).map((s: any) => s.unitLabel));
+            }
+        } catch (error) {
+            console.error("Error fetching completed units:", error);
+        }
+    };
+
+    useEffect(() => {
+        refreshCompletedUnits();
+    }, [id, urlBuilding]);
 
     // Set initial section based on URL param
     useEffect(() => {
@@ -351,7 +368,8 @@ export default function InspectionCategoryPage() {
         try {
             // Fetch ALL progress for this property to populate all progress bars
             const res = await inspectionsAPI.getProgress({
-                property_id: id
+                property_id: id,
+                building_id: urlBuilding
             });
 
             if (res.success && res.progress) {
@@ -380,10 +398,17 @@ export default function InspectionCategoryPage() {
                 // If a unit is active, find its progress too
                 if (activeInspectionUnit) {
                     const unitRec = res.progress.find((p: any) => {
-                        const typeMatch = p.inspectionType === 'Unit';
+                        const pType = String(p.inspectionType || '').toLowerCase();
+                        const typeMatch = pType === 'unit' 
+                            || pType === `unit_${activeInspectionUnit}`.toLowerCase()
+                            || pType === `unit_${urlBuilding}_${activeInspectionUnit}`.toLowerCase();
                         const uId = String(activeInspectionUnit).toUpperCase();
                         const pUnitId = String(p.unitId).toUpperCase();
-                        return typeMatch && pUnitId === uId;
+                        const bId = String(urlBuilding || '').toUpperCase();
+                        const pBldgId = String(p.buildingId || '').toUpperCase();
+                        
+                        // Cross-building fix: ensure buildingId matches
+                        return typeMatch && pUnitId === uId && (pBldgId === bId || !pBldgId);
                     });
                     if (unitRec && unitRec.responses) setUnitStatuses(unitRec.responses);
                 }
@@ -486,7 +511,7 @@ export default function InspectionCategoryPage() {
                 promises.push(inspectionsAPI.saveProgress({
                     property_id: id,
                     unit_id: activeInspectionUnit,
-                    inspection_type: 'Unit',
+                    inspection_type: `unit_${urlBuilding}_${activeInspectionUnit}`,
                     responses: unitStatuses,
                     building_id: urlBuilding,
                     inspectionData: { isComplete }
@@ -494,6 +519,7 @@ export default function InspectionCategoryPage() {
             }
             
             await Promise.all(promises);
+            await refreshCompletedUnits();
         } catch (error) {
             console.error("Error saving progress:", error);
         }
@@ -837,7 +863,7 @@ export default function InspectionCategoryPage() {
                     startTime: new Date().toLocaleTimeString()
                 };
                 // Save finding to backend progress instead of just redirecting
-                const type = currentSection.charAt(0).toUpperCase() + currentSection.slice(1);
+                const type = currentSection === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (currentSection.charAt(0).toUpperCase() + currentSection.slice(1));
                 const currentStatuses = currentSection === 'outside' ? outsideStatuses 
                                      : currentSection === 'inside' ? insideStatuses 
                                      : unitStatuses;
@@ -1187,13 +1213,13 @@ export default function InspectionCategoryPage() {
         return { completed, percentage: Math.round((completed / (insideItemsList.length || 1)) * 100) };
     }, [insideStatuses]);
 
-    const unitProgress = useMemo(() => {
-        const completed = Object.values(unitStatuses).filter(s => s !== null).length;
-        return { completed, percentage: Math.round((completed / (unitItemsList.length || 1)) * 100) };
-    }, [unitStatuses]);
+
 
     // Build the raw unit identifiers list
     const rawUnitIds = useMemo(() => {
+        if (urlTotalUnits > 0) {
+            return Array.from({ length: urlTotalUnits }, (_, i) => `Unit ${String(i + 1).padStart(3, '0')}`);
+        }
         if (units && units.length > 0) {
             return units.map(u => u.unitNumber || u.unitId || String(u));
         }
@@ -1201,7 +1227,14 @@ export default function InspectionCategoryPage() {
             return Array.from({ length: property.units }, (_, i) => `${i + 1}`);
         }
         return [];
-    }, [units, property]);
+    }, [urlTotalUnits, units, property]);
+
+    const unitProgress = useMemo(() => {
+        const unitsOnly = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside');
+        const completed = unitsOnly.length;
+        const total = rawUnitIds.length > 0 ? rawUnitIds.length : 1;
+        return { completed, percentage: Math.round((completed / total) * 100), total };
+    }, [completedUnits, rawUnitIds]);
 
     // Display unit names (edited names take priority)
     const unitsString = useMemo(() => {
@@ -1372,7 +1405,7 @@ export default function InspectionCategoryPage() {
                                     {sec === 'outside' ? 'Outside (Areas affected by Rain, Snow, Wind)' : sec === 'inside' ? 'Inside (Interior Common area, Utility closet, Mechanical rooms)' : 'Units (Individual unit inspections)'}
                                 </p>
                                 <div className="flex items-center gap-4 mb-2 text-[#006795]">
-                                    <p className="text-[11px]">({sec === 'outside' ? outsideProgress.completed : sec === 'inside' ? insideProgress.completed : unitProgress.completed}/{sec === 'outside' ? outsideItemsList.length : sec === 'inside' ? insideItemsList.length : unitItemsList.length})</p>
+                                    <p className="text-[11px]">({sec === 'outside' ? outsideProgress.completed : sec === 'inside' ? insideProgress.completed : unitProgress.completed}/{sec === 'outside' ? outsideItemsList.length : sec === 'inside' ? insideItemsList.length : unitProgress.total})</p>
                                     <p className="text-[11px]">{sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}% Completed</p>
                                 </div>
                                 <div className="w-full h-2 bg-white rounded-full overflow-hidden max-w-4xl shadow-inner">
@@ -1526,7 +1559,9 @@ export default function InspectionCategoryPage() {
                                                         </button>
                                                     </div>
                                                 )}
-                                                <p className="text-[11px] text-gray-400 font-medium">Pending inspection</p>
+                                                <p className={`text-[11px] font-medium ${completedUnits.includes(displayName) ? 'text-green-600' : 'text-gray-400'}`}>
+                                                    {completedUnits.includes(displayName) ? 'Completed' : 'Pending inspection'}
+                                                </p>
                                             </div>
                                         </div>
                                         {!isEditing && (

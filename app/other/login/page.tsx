@@ -66,6 +66,19 @@ export default function OtherLogin() {
       }
     } catch (error: any) {
       console.error('Login error:', error)
+      
+      // Handle unverified email
+      if (error.data?.requiresVerification) {
+        toast.info("Email verification required. Redirecting to verification page...", {
+          position: "top-right",
+          autoClose: 3000,
+        })
+        setTimeout(() => {
+          router.push(`/verify-email?email=${encodeURIComponent(email)}&role=other`)
+        }, 2000)
+        return
+      }
+
       toast.error(error.message || "Error connecting to server. Please check if backend is running.", { position: "top-right", autoClose: 3000 })
       setIsLoading(false)
     }
