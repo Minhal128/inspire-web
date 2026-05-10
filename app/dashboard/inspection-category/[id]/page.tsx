@@ -71,7 +71,7 @@ const mapToBackendCategory = (category: string): string => {
 
     // Unit-specific items
     if (lowerCategory.includes('cabinet') || lowerCategory.includes('kitchen') ||
-        lowerCategory.includes('restroom') || lowerCategory.includes('sink') ||
+        lowerCategory.includes('bathroom') || lowerCategory.includes('restroom') || lowerCategory.includes('sink') ||
         lowerCategory.includes('ceiling') || lowerCategory.includes('floor') ||
         lowerCategory.includes('wall') || lowerCategory.includes('mold') ||
         lowerCategory.includes('grab bar') || lowerCategory.includes('call-for-aid')) {
@@ -1025,8 +1025,8 @@ export default function InspectionCategoryPage() {
         const mapping = currentSection === 'outside'
             ? outsideDeficiencyMapping
             : currentSection === 'inside'
-                ? insideDeficiencyMapping
-                : unitDeficiencyMapping;
+                ? unitDeficiencyMapping
+                : insideDeficiencyMapping;
 
         // Try exact match first (case-insensitive)
         const exactKey = Object.keys(mapping).find(k => k.toLowerCase() === baseName.toLowerCase());
