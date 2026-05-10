@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 import { useState, useEffect } from "react"
 import { propertiesAPI } from "@/lib/api"
 import { UnitSelectionModal } from "@/components/UnitSelectionModal"
-import { ActionModal } from "@/components/PropertyModals"
+import { ActionModal, EditPropertyModal } from "@/components/PropertyModals"
 import { Country, State, City } from 'country-state-city'
 
 export default function MyInspection() {
@@ -22,6 +22,7 @@ export default function MyInspection() {
   const [unitSelectionOpen, setUnitSelectionOpen] = useState(false)
   const [selectedProperty, setSelectedProperty] = useState<any>(null)
   const [actionModalOpen, setActionModalOpen] = useState(false)
+  const [editModalOpen, setEditModalOpen] = useState(false)
 
   // Location data
   const [countries, setCountries] = useState<any[]>([])
@@ -111,6 +112,11 @@ export default function MyInspection() {
   const handleActionClick = (property: any) => {
     setSelectedProperty(property)
     setActionModalOpen(true)
+  }
+
+  const handleEditProperty = () => {
+    setActionModalOpen(false)
+    setEditModalOpen(true)
   }
 
   const handleHoldInspection = async () => {
@@ -297,7 +303,7 @@ export default function MyInspection() {
       <ActionModal
         isOpen={actionModalOpen}
         onClose={() => setActionModalOpen(false)}
-        onEdit={() => setActionModalOpen(false)}
+        onEdit={handleEditProperty}
         onStartInspection={() => {
           setActionModalOpen(false)
           router.push(`/dashboard/property-details/${selectedProperty?._id}`)
@@ -312,6 +318,13 @@ export default function MyInspection() {
         onClose={() => setUnitSelectionOpen(false)}
         onContinue={handleUnitSelectionContinue}
         totalUnits={selectedProperty?.units || 20}
+      />
+
+      <EditPropertyModal
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        onSuccess={fetchProperties}
+        propertyData={selectedProperty}
       />
     </DashboardLayout>
   )
