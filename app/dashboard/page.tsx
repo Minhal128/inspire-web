@@ -164,8 +164,13 @@ export default function Dashboard() {
                 }
             })
             
-            // Total tasks = (buildings * 2) + units
-            const totalTasks = (prop.buildings * 2) + prop.units
+            // Total tasks = (buildings * 2) + allocated units for inspection
+            const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
+                ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                : prop.units
+            
+            const totalTasks = (prop.buildings * 2) + actualUnitsForInspection
+            
             if (totalTasks > 0) {
                 progressMap[propId] = Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100))
             } else {
