@@ -1114,7 +1114,7 @@ function NSPIREInspectionSummaryContent() {
                       className="h-9 gap-1.5 bg-amber-500 px-4 text-xs font-bold text-white hover:bg-amber-600 shadow-sm"
                     >
                       <Lock className="w-4 h-4" />
-                      {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $99.00'}
+                      {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $49.00'}
                     </Button>
                   </div>
                 )}

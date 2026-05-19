@@ -680,6 +680,16 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
             </div>
           ))}
 
+          {/* Primary Action Button (Next) */}
+          <div className="flex justify-center mb-4">
+            <Button
+              onClick={handleNext}
+              className="w-full sm:w-auto px-8 sm:px-16 py-3 bg-[#006795] hover:bg-[#0a5670] text-white font-semibold rounded-lg text-sm"
+            >
+              Next
+            </Button>
+          </div>
+
           {/* Add Button */}
           <div className="flex justify-center">
             <button
