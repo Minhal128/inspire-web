@@ -152,14 +152,15 @@ export default function Dashboard() {
                 p.propertyId === propId || p.propertyId?._id === propId
             )
             
-            // Heuristic: Count unique units/categories completed
+            // Heuristic: Count unique units/categories completed per building
             const uniqueTasks = new Set()
             propProgress.forEach((p: any) => {
                 const type = String(p.inspectionType || '').toLowerCase()
+                const buildingId = p.buildingId || 'B1'
                 if (type.startsWith('unit_')) {
-                    uniqueTasks.add(`unit_${p.unitId}`)
+                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
                 } else if (type === 'inside' || type === 'outside') {
-                    uniqueTasks.add(type)
+                    uniqueTasks.add(`${buildingId}_${type}`)
                 }
             })
             
@@ -295,75 +296,6 @@ export default function Dashboard() {
           </Button>
         </div>
 
-        {/* Search Filters */}
-        <Card className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-6 lg:mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Search Properties</h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Property Name</label>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Enter property name"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg font-bold transition-colors duration-200"
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Country</label>
-              <input
-                type="text"
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
-                placeholder="Enter Country"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent bg-white text-sm transition-colors duration-200"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">State</label>
-              <input
-                type="text"
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                placeholder="Enter State"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent bg-white text-sm transition-colors duration-200"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">City</label>
-              <input
-                type="text"
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
-                placeholder="Enter City"
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent bg-white text-sm transition-colors duration-200"
-              />
-            </div>
-
-            <div className="flex items-end">
-              <Button
-                onClick={handleSearch}
-                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
-              >
-                Search Properties
-              </Button>
-            </div>
-          </div>
-        </Card>
 
         {/* Properties Section */}
         <Card className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">

@@ -129,42 +129,7 @@ export default function OtherDashboard() {
           ))}
         </div>
 
-        {/* Search and Filter */}
-        <Card className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-6 lg:mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Search Inspections</h2>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Property or Inspector</label>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search by property or inspector name"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent text-sm transition-colors duration-200"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-lg font-bold transition-colors duration-200"
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-            </div>
-            
-            <div className="flex items-end">
-              <Button
-                onClick={handleSearch}
-                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
-              >
-                Search
-              </Button>
-            </div>
-          </div>
-        </Card>
+
 
         {/* Inspections Table */}
         <Card className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">

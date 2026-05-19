@@ -228,9 +228,10 @@ export default function InspectionCategoryPage() {
     // Get total samples based on NSPIRE Sampling Table (same as app)
     const totalSamples = useMemo(() => {
         // Use the total units from URL or property to find required sample size 'n'
-        const sampling = getSamplingRequirements(urlTotalUnits || property?.units || units?.length || 0);
-        return sampling.requiredSize || 20;
-    }, [urlTotalUnits, property?.units, units?.length]);
+        const count = searchParams.has('totalUnits') ? urlTotalUnits : (urlTotalUnits || property?.units || units?.length || 0);
+        const sampling = getSamplingRequirements(count);
+        return count === 0 ? 0 : (sampling.requiredSize || 20);
+    }, [searchParams, urlTotalUnits, property?.units, units?.length]);
 
     // Auto-count deficiencies: 1 if a deficiency is selected, 0 otherwise
     const deficiencyCount = selectedDeficiency ? 1 : 0;
@@ -1280,6 +1281,13 @@ export default function InspectionCategoryPage() {
 
     // Build the raw unit identifiers list
     const rawUnitIds = useMemo(() => {
+        if (searchParams.has('totalUnits')) {
+            const count = parseInt(searchParams.get('totalUnits') || '0', 10);
+            if (count > 0) {
+                return Array.from({ length: count }, (_, i) => `Unit ${String(i + 1).padStart(3, '0')}`);
+            }
+            return [];
+        }
         if (urlTotalUnits > 0) {
             return Array.from({ length: urlTotalUnits }, (_, i) => `Unit ${String(i + 1).padStart(3, '0')}`);
         }
@@ -1290,7 +1298,7 @@ export default function InspectionCategoryPage() {
             return Array.from({ length: property.units }, (_, i) => `${i + 1}`);
         }
         return [];
-    }, [urlTotalUnits, units, property]);
+    }, [searchParams, urlTotalUnits, units, property]);
 
     const unitProgress = useMemo(() => {
         const unitsOnly = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside');
@@ -1502,8 +1510,8 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => setUnitSelectionPopupOpen(true)}
                                                     className="text-xs font-bold text-[#006795] hover:underline flex items-center gap-1 bg-[#006795]/5 px-2 py-1 rounded-md transition-colors"
                                                 >
-                                                    <ArrowUpDown className="w-3 h-3" />
-                                                    Change Unit
+                                                    <CheckCircle2 className="w-3.5 h-3.5" />
+                                                    Submit Unit
                                                 </button>
                                             </div>
                                         )}
@@ -1545,9 +1553,9 @@ export default function InspectionCategoryPage() {
                                     {buildingName} — Select Unit
                                 </h3>
                                 <p className="text-xs text-white/80 mt-0.5 font-medium">
-                                    {buildingUnitNames.length > 0
-                                        ? `${buildingUnitNames.length} units available`
-                                        : 'Select a unit to inspect'}
+                                    {rawUnitIds.length > 0
+                                        ? `${rawUnitIds.length} units available`
+                                        : 'No units allocated to this building'}
                                 </p>
                             </div>
                             <button
@@ -1567,81 +1575,88 @@ export default function InspectionCategoryPage() {
 
                         {/* Unit List */}
                         <div className="p-5 overflow-y-auto max-h-[55vh] space-y-2">
-                            {(buildingUnitNames.length > 0 ? buildingUnitNames : ['Unit 001', 'Unit 002', 'Unit 003']).map((unitName, idx) => {
-                                const displayName = popupUnitCustomNames[unitName] || unitName;
-                                const isEditing = editingUnitIdx === idx;
-                                return (
-                                    <div
-                                        key={unitName}
-                                        className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${activeInspectionUnit === displayName
-                                            ? 'border-[#006795] bg-[#F1F7FE]'
-                                            : 'border-gray-100 bg-white hover:border-[#006795]/30 hover:bg-[#F1F7FE]'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3 flex-1 min-w-0">
-                                            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shrink-0 ${activeInspectionUnit === displayName ? 'bg-[#006795] text-white' : 'bg-gray-100 text-gray-600'
-                                                }`}>
-                                                {idx + 1}
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                {isEditing ? (
-                                                    <div className="flex items-center gap-2">
-                                                        <input
-                                                            type="text"
-                                                            value={editingUnitValue}
-                                                            onChange={(e) => setEditingUnitValue(e.target.value)}
-                                                            onKeyDown={(e) => {
-                                                                if (e.key === 'Enter') {
+                            {rawUnitIds.length > 0 ? (
+                                rawUnitIds.map((unitName, idx) => {
+                                    const displayName = popupUnitCustomNames[unitName] || unitName;
+                                    const isEditing = editingUnitIdx === idx;
+                                    return (
+                                        <div
+                                            key={unitName}
+                                            className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${activeInspectionUnit === displayName
+                                                ? 'border-[#006795] bg-[#F1F7FE]'
+                                                : 'border-gray-100 bg-white hover:border-[#006795]/30 hover:bg-[#F1F7FE]'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                                                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shrink-0 ${activeInspectionUnit === displayName ? 'bg-[#006795] text-white' : 'bg-gray-100 text-gray-600'
+                                                    }`}>
+                                                    {idx + 1}
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    {isEditing ? (
+                                                        <div className="flex items-center gap-2">
+                                                            <input
+                                                                type="text"
+                                                                value={editingUnitValue}
+                                                                onChange={(e) => setEditingUnitValue(e.target.value)}
+                                                                onKeyDown={(e) => {
+                                                                    if (e.key === 'Enter') {
+                                                                        setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
+                                                                        setEditingUnitIdx(null);
+                                                                    }
+                                                                    if (e.key === 'Escape') setEditingUnitIdx(null);
+                                                                }}
+                                                                className="flex-1 px-2 py-1 border border-[#006795] rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#006795]/30"
+                                                                autoFocus
+                                                            />
+                                                            <button
+                                                                onClick={() => {
                                                                     setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
                                                                     setEditingUnitIdx(null);
-                                                                }
-                                                                if (e.key === 'Escape') setEditingUnitIdx(null);
-                                                            }}
-                                                            className="flex-1 px-2 py-1 border border-[#006795] rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#006795]/30"
-                                                            autoFocus
-                                                        />
-                                                        <button
-                                                            onClick={() => {
-                                                                setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
-                                                                setEditingUnitIdx(null);
-                                                            }}
-                                                            className="p-1 rounded-full bg-[#006795] text-white hover:bg-[#0a5670]"
-                                                        >
-                                                            <Check className="w-3.5 h-3.5" />
-                                                        </button>
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex items-center gap-1.5">
-                                                        <p className="text-sm font-bold text-gray-900 truncate">{displayName}</p>
-                                                        <button
-                                                            onClick={(e) => { e.stopPropagation(); setEditingUnitIdx(idx); setEditingUnitValue(displayName); }}
-                                                            className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#006795] transition-colors shrink-0"
-                                                            title="Rename unit"
-                                                        >
-                                                            <Pencil className="w-3 h-3" />
-                                                        </button>
-                                                    </div>
-                                                )}
-                                                <p className={`text-[11px] font-medium ${completedUnits.includes(displayName) ? 'text-green-600' : 'text-gray-400'}`}>
-                                                    {completedUnits.includes(displayName) ? 'Completed' : 'Pending inspection'}
-                                                </p>
+                                                                }}
+                                                                className="p-1 rounded-full bg-[#006795] text-white hover:bg-[#0a5670]"
+                                                            >
+                                                                <Check className="w-3.5 h-3.5" />
+                                                            </button>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex items-center gap-1.5">
+                                                            <p className="text-sm font-bold text-gray-900 truncate">{displayName}</p>
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); setEditingUnitIdx(idx); setEditingUnitValue(displayName); }}
+                                                                className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#006795] transition-colors shrink-0"
+                                                                title="Rename unit"
+                                                            >
+                                                                <Pencil className="w-3 h-3" />
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                    <p className={`text-[11px] font-medium ${completedUnits.includes(displayName) ? 'text-green-600' : 'text-gray-400'}`}>
+                                                        {completedUnits.includes(displayName) ? 'Completed' : 'Pending inspection'}
+                                                    </p>
+                                                </div>
                                             </div>
+                                            {!isEditing && (
+                                                <button
+                                                    onClick={() => {
+                                                        setActiveInspectionUnit(displayName)
+                                                        setUnitSelectionPopupOpen(false)
+                                                        setExpandedSection('unit')
+                                                    }}
+                                                    className="bg-[#006795] hover:bg-[#00567a] text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md transition-all flex items-center gap-1 ml-3 shrink-0"
+                                                >
+                                                    Start <ChevronRight className="w-3.5 h-3.5" />
+                                                </button>
+                                            )}
                                         </div>
-                                        {!isEditing && (
-                                            <button
-                                                onClick={() => {
-                                                    setActiveInspectionUnit(displayName)
-                                                    setUnitSelectionPopupOpen(false)
-                                                    setExpandedSection('unit')
-                                                }}
-                                                className="bg-[#006795] hover:bg-[#00567a] text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md transition-all flex items-center gap-1 ml-3 shrink-0"
-                                            >
-                                                Start <ChevronRight className="w-3.5 h-3.5" />
-                                            </button>
-                                        )}
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })
+                            ) : (
+                                <div className="text-center py-8 px-4 text-gray-500">
+                                    <p className="font-bold text-sm">No units allocated to this building.</p>
+                                    <p className="text-xs text-gray-400 mt-1">This building has 0 allocated inspection units.</p>
+                                </div>
+                            )}
                         </div>
 
                         {/* Footer */}
@@ -1815,9 +1830,9 @@ export default function InspectionCategoryPage() {
                                         </div>
                                     </div>
 
-                                    {/* 3. HOW TO INSPECT */}
+                                    {/* 3. INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How To Inspect IRU, BRU, Local</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Inspect IRU, BRU, Local</label>
                                         {(() => {
                                             if (!selectedDeficiency) {
                                                 return (
@@ -1826,7 +1841,7 @@ export default function InspectionCategoryPage() {
                                                         disabled
                                                         className="w-full border-2 rounded-2xl p-4 text-xs font-bold leading-relaxed border-gray-100 bg-gray-50 text-gray-400 text-left cursor-not-allowed"
                                                     >
-                                                        Select deficiency first to open How to Inspect
+                                                        Select deficiency first to open Inspect
                                                     </button>
                                                 )
                                             }
@@ -1836,7 +1851,7 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => setIsHowToInspectOpen(true)}
                                                     className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
                                                 >
-                                                    Open How To Inspect IRU, BRU, Local
+                                                    Open Inspect IRU, BRU, Local
                                                 </button>
                                             )
                                         })()}
@@ -2069,18 +2084,19 @@ export default function InspectionCategoryPage() {
                                     </div>
                                 </div>
 
-                                {/* View Summary Button - Primary Action */}
-                                <Button
+                                {/* Primary Action: Continue Inspection styled like View Summary */}
+                                <Button 
                                     onClick={() => {
-                                        // Close modal and redirect to summary
-
-                                        handleODModalClose();
-                                        router.push('/dashboard/inspection/summary');
-                                    }}
+                                        // Reset modal and stay on inspection page
+                                        setModalStep(1);
+                                        setSelectedDeficiency(null);
+                                        setPhotos([]);
+                                        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
+                                        setIsODModalOpen(false);
+                                    }} 
                                     className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-14 rounded-xl shadow-lg uppercase text-[10px] tracking-widest flex items-center justify-center gap-3"
                                 >
-                                    <FileText className="w-4 h-4" />
-                                    View NSPIRE Summary
+                                    Continue Inspection
                                 </Button>
 
                                 {reportUrl && (
@@ -2096,17 +2112,6 @@ export default function InspectionCategoryPage() {
                                         </Button>
                                     </a>
                                 )}
-
-                                <Button variant="outline" onClick={() => {
-                                    // Reset modal and stay on inspection page
-                                    setModalStep(1);
-                                    setSelectedDeficiency(null);
-                                    setPhotos([]);
-                                    setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
-                                    setIsODModalOpen(false);
-                                }} className="w-full font-black h-14 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-500 uppercase text-[10px] tracking-widest">
-                                    Continue Inspection
-                                </Button>
                             </div>
                         )}
 
@@ -2133,7 +2138,7 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How To Inspect IRU, BRU, Local</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">Inspect IRU, BRU, Local</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>
