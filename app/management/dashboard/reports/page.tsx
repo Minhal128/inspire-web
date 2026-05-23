@@ -319,16 +319,7 @@ export default function Reports() {
             </div>
           </div>
 
-          {/* Search Bar */}
-          <div className="mt-4">
-            <input
-              type="text"
-              placeholder="Search by property, unit or inspector name"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
-            />
-          </div>
+
         </Card>
 
         {/* Desktop Table View */}

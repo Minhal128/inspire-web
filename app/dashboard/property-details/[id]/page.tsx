@@ -98,6 +98,7 @@ export default function PropertyDetailsPage() {
     // Editable inspection units per building
     const [editableInspectionUnits, setEditableInspectionUnits] = useState<Record<string, number>>({})
 
+
     // CRITICAL: Clear stale inspection data if navigating to a different property
     useEffect(() => {
         if (!id) return;
@@ -253,6 +254,32 @@ export default function PropertyDetailsPage() {
             unitsForInspection: editableInspectionUnits[b.buildingId] ?? b.unitsForInspection,
         }))
     }, [initialBuildings, editableInspectionUnits])
+
+    const overallProgress = useMemo(() => {
+        if (!buildings.length) return 0
+        
+        let totalPossible = 0
+        let totalCompleted = 0
+        
+        buildings.forEach(b => {
+            // Each building has:
+            // 1) Inside category
+            // 2) Outside category
+            // 3) N units
+            const possible = 2 + b.unitsForInspection
+            totalPossible += possible
+            
+            const completed = completedUnitsMap[b.buildingId] || []
+            const hasOutside = completed.includes('Outside')
+            const hasInside = completed.includes('Inside')
+            const unitsDone = completed.filter(u => u !== 'Outside' && u !== 'Inside').length
+            
+            totalCompleted += (hasOutside ? 1 : 0) + (hasInside ? 1 : 0) + Math.min(unitsDone, b.unitsForInspection)
+        })
+        
+        if (totalPossible === 0) return 0
+        return Math.round((totalCompleted / totalPossible) * 100)
+    }, [buildings, completedUnitsMap])
 
     // Handler: when user edits a building's unit-for-inspection value
     const handleInspectionUnitChange = (buildingId: string, newValue: number) => {
@@ -850,6 +877,45 @@ export default function PropertyDetailsPage() {
                         </div>
                     </div>
                 </Card>
+
+                <div className="mb-12">
+                    <h2 className="text-xl font-black text-gray-900 mb-6 px-1 tracking-tight">Unit Status Summary</h2>
+                    <Card className="bg-white border border-gray-100 shadow-sm p-8 rounded-2xl">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                            <div className="flex-1">
+                                <div className="flex items-center justify-between mb-4">
+                                    <span className="text-sm font-black text-gray-500 uppercase tracking-widest">Overall Inspection Progress</span>
+                                    <span className="text-2xl font-black text-[#006795]">{overallProgress}%</span>
+                                </div>
+                                <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden border border-gray-50">
+                                    <div 
+                                        className="h-full bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-full transition-all duration-1000 ease-out shadow-inner"
+                                        style={{ width: `${overallProgress}%` }}
+                                    />
+                                </div>
+                                <div className="flex justify-between mt-3">
+                                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">Not Started</span>
+                                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">Completed</span>
+                                </div>
+                            </div>
+                            
+                            <div className="flex gap-4 md:border-l md:pl-8 border-gray-100">
+                                <div className="text-center px-4">
+                                    <p className="text-2xl font-black text-gray-900">
+                                        {Object.values(completedUnitsMap).flat().length}
+                                    </p>
+                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Tasks Done</p>
+                                </div>
+                                <div className="text-center px-4">
+                                    <p className="text-2xl font-black text-gray-900">
+                                        {buildings.reduce((sum, b) => sum + (2 + b.unitsForInspection), 0)}
+                                    </p>
+                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Tasks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
 
                 <h2 className="text-xl font-black text-gray-900 mb-6 px-1 tracking-tight">Building</h2>
 

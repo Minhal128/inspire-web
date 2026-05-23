@@ -71,7 +71,7 @@ const mapToBackendCategory = (category: string): string => {
 
     // Unit-specific items
     if (lowerCategory.includes('cabinet') || lowerCategory.includes('kitchen') ||
-        lowerCategory.includes('restroom') || lowerCategory.includes('sink') ||
+        lowerCategory.includes('bathroom') || lowerCategory.includes('restroom') || lowerCategory.includes('sink') ||
         lowerCategory.includes('ceiling') || lowerCategory.includes('floor') ||
         lowerCategory.includes('wall') || lowerCategory.includes('mold') ||
         lowerCategory.includes('grab bar') || lowerCategory.includes('call-for-aid')) {
@@ -99,6 +99,7 @@ export default function InspectionCategoryPage() {
     const [unitStatuses, setUnitStatuses] = useState<Record<string, ItemStatus>>({})
     const [propertyFindings, setPropertyFindings] = useState<any[]>([])
     const [currentSection, setCurrentSection] = useState<'outside' | 'inside' | 'unit'>('outside')
+    const [completedUnits, setCompletedUnits] = useState<string[]>([])
 
     // Read building & unit from URL query params (set by property-details page)
     const urlBuilding = searchParams.get('building') || 'B1'
@@ -109,6 +110,22 @@ export default function InspectionCategoryPage() {
     // Unit selection popup (shown when user clicks Units section and no unit is pre-selected)
     const [unitSelectionPopupOpen, setUnitSelectionPopupOpen] = useState(false)
     const [activeInspectionUnit, setActiveInspectionUnit] = useState(currentUnitName)
+
+    const refreshCompletedUnits = async () => {
+        if (!id || !urlBuilding) return;
+        try {
+            const res = await inspectionsAPI.getUnitStatus(id, urlBuilding);
+            if (res.success) {
+                setCompletedUnits(res.statuses.filter((s: any) => s.isInspected).map((s: any) => s.unitLabel));
+            }
+        } catch (error) {
+            console.error("Error fetching completed units:", error);
+        }
+    };
+
+    useEffect(() => {
+        refreshCompletedUnits();
+    }, [id, urlBuilding]);
 
     // Set initial section based on URL param
     useEffect(() => {
@@ -211,9 +228,10 @@ export default function InspectionCategoryPage() {
     // Get total samples based on NSPIRE Sampling Table (same as app)
     const totalSamples = useMemo(() => {
         // Use the total units from URL or property to find required sample size 'n'
-        const sampling = getSamplingRequirements(urlTotalUnits || property?.units || units?.length || 0);
-        return sampling.requiredSize || 20;
-    }, [urlTotalUnits, property?.units, units?.length]);
+        const count = searchParams.has('totalUnits') ? urlTotalUnits : (urlTotalUnits || property?.units || units?.length || 0);
+        const sampling = getSamplingRequirements(count);
+        return count === 0 ? 0 : (sampling.requiredSize || 20);
+    }, [searchParams, urlTotalUnits, property?.units, units?.length]);
 
     // Auto-count deficiencies: 1 if a deficiency is selected, 0 otherwise
     const deficiencyCount = selectedDeficiency ? 1 : 0;
@@ -351,7 +369,8 @@ export default function InspectionCategoryPage() {
         try {
             // Fetch ALL progress for this property to populate all progress bars
             const res = await inspectionsAPI.getProgress({
-                property_id: id
+                property_id: id,
+                building_id: urlBuilding
             });
 
             if (res.success && res.progress) {
@@ -380,10 +399,17 @@ export default function InspectionCategoryPage() {
                 // If a unit is active, find its progress too
                 if (activeInspectionUnit) {
                     const unitRec = res.progress.find((p: any) => {
-                        const typeMatch = p.inspectionType === 'Unit';
+                        const pType = String(p.inspectionType || '').toLowerCase();
+                        const typeMatch = pType === 'unit' 
+                            || pType === `unit_${activeInspectionUnit}`.toLowerCase()
+                            || pType === `unit_${urlBuilding}_${activeInspectionUnit}`.toLowerCase();
                         const uId = String(activeInspectionUnit).toUpperCase();
                         const pUnitId = String(p.unitId).toUpperCase();
-                        return typeMatch && pUnitId === uId;
+                        const bId = String(urlBuilding || '').toUpperCase();
+                        const pBldgId = String(p.buildingId || '').toUpperCase();
+                        
+                        // Cross-building fix: ensure buildingId matches
+                        return typeMatch && pUnitId === uId && (pBldgId === bId || !pBldgId);
                     });
                     if (unitRec && unitRec.responses) setUnitStatuses(unitRec.responses);
                 }
@@ -486,7 +512,7 @@ export default function InspectionCategoryPage() {
                 promises.push(inspectionsAPI.saveProgress({
                     property_id: id,
                     unit_id: activeInspectionUnit,
-                    inspection_type: 'Unit',
+                    inspection_type: `unit_${urlBuilding}_${activeInspectionUnit}`,
                     responses: unitStatuses,
                     building_id: urlBuilding,
                     inspectionData: { isComplete }
@@ -494,6 +520,7 @@ export default function InspectionCategoryPage() {
             }
             
             await Promise.all(promises);
+            await refreshCompletedUnits();
         } catch (error) {
             console.error("Error saving progress:", error);
         }
@@ -837,7 +864,7 @@ export default function InspectionCategoryPage() {
                     startTime: new Date().toLocaleTimeString()
                 };
                 // Save finding to backend progress instead of just redirecting
-                const type = currentSection.charAt(0).toUpperCase() + currentSection.slice(1);
+                const type = currentSection === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (currentSection.charAt(0).toUpperCase() + currentSection.slice(1));
                 const currentStatuses = currentSection === 'outside' ? outsideStatuses 
                                      : currentSection === 'inside' ? insideStatuses 
                                      : unitStatuses;
@@ -1040,7 +1067,70 @@ export default function InspectionCategoryPage() {
 
     const renderTable = (section: 'outside' | 'inside' | 'unit', items: string[], statuses: Record<string, ItemStatus>) => (
         <div className="bg-white p-3 sm:p-6 animate-in slide-in-from-top duration-300">
-            {/* Mobile View - Card Layout */}
+            {/* Mobile View - Card Layout - Bulk Actions */}
+            <div className="block md:hidden mb-4 p-2 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="space-y-2">
+                    <Button 
+                        onClick={() => selectAll(section, 'No OD')} 
+                        className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${
+                            (() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD');
+                            })() ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
+                        }`}
+                    >
+                        <div className="w-4 h-4 bg-white/20 border border-white/40 flex items-center justify-center rounded">
+                            {(() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
+                            })()}
+                        </div>
+                        Select All No OD
+                    </Button>
+                    <div className="grid grid-cols-2 gap-2">
+                        <Button 
+                            onClick={() => selectAll(section, 'OD')} 
+                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm border transition-all ${
+                                (() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                                })() ? 'bg-red-600 hover:bg-red-700 text-white border-red-600' : 'bg-white hover:bg-red-50 text-[#DC2626] border-[#DC2626]'
+                            }`}
+                        >
+                            <div className={`w-4 h-4 border flex items-center justify-center rounded ${
+                                (() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                                })() ? 'bg-white/20 border-white/40' : 'bg-white border-[#DC2626]'
+                            }`}>
+                                {(() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
+                                })()}
+                            </div>
+                            Observe Deficiency
+                        </Button>
+                        <Button 
+                            onClick={() => selectAll(section, 'N/A')} 
+                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${
+                                (() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A');
+                                })() ? 'bg-gray-600 hover:bg-gray-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
+                            }`}
+                        >
+                            <div className="w-4 h-4 bg-white/20 border border-white/40 flex items-center justify-center rounded">
+                                {(() => {
+                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
+                                })()}
+                            </div>
+                            Select All N/A
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
             <div className="block md:hidden space-y-3">
                 {items.map((item, index) => {
                     const isGeneral = item.toLowerCase().includes('general comment');
@@ -1187,13 +1277,20 @@ export default function InspectionCategoryPage() {
         return { completed, percentage: Math.round((completed / (insideItemsList.length || 1)) * 100) };
     }, [insideStatuses]);
 
-    const unitProgress = useMemo(() => {
-        const completed = Object.values(unitStatuses).filter(s => s !== null).length;
-        return { completed, percentage: Math.round((completed / (unitItemsList.length || 1)) * 100) };
-    }, [unitStatuses]);
+
 
     // Build the raw unit identifiers list
     const rawUnitIds = useMemo(() => {
+        if (searchParams.has('totalUnits')) {
+            const count = parseInt(searchParams.get('totalUnits') || '0', 10);
+            if (count > 0) {
+                return Array.from({ length: count }, (_, i) => `Unit ${String(i + 1).padStart(3, '0')}`);
+            }
+            return [];
+        }
+        if (urlTotalUnits > 0) {
+            return Array.from({ length: urlTotalUnits }, (_, i) => `Unit ${String(i + 1).padStart(3, '0')}`);
+        }
         if (units && units.length > 0) {
             return units.map(u => u.unitNumber || u.unitId || String(u));
         }
@@ -1201,7 +1298,14 @@ export default function InspectionCategoryPage() {
             return Array.from({ length: property.units }, (_, i) => `${i + 1}`);
         }
         return [];
-    }, [units, property]);
+    }, [searchParams, urlTotalUnits, units, property]);
+
+    const unitProgress = useMemo(() => {
+        const unitsOnly = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside');
+        const completed = unitsOnly.length;
+        const total = rawUnitIds.length > 0 ? rawUnitIds.length : 1;
+        return { completed, percentage: Math.round((completed / total) * 100), total };
+    }, [completedUnits, rawUnitIds]);
 
     // Display unit names (edited names take priority)
     const unitsString = useMemo(() => {
@@ -1372,7 +1476,7 @@ export default function InspectionCategoryPage() {
                                     {sec === 'outside' ? 'Outside (Areas affected by Rain, Snow, Wind)' : sec === 'inside' ? 'Inside (Interior Common area, Utility closet, Mechanical rooms)' : 'Units (Individual unit inspections)'}
                                 </p>
                                 <div className="flex items-center gap-4 mb-2 text-[#006795]">
-                                    <p className="text-[11px]">({sec === 'outside' ? outsideProgress.completed : sec === 'inside' ? insideProgress.completed : unitProgress.completed}/{sec === 'outside' ? outsideItemsList.length : sec === 'inside' ? insideItemsList.length : unitItemsList.length})</p>
+                                    <p className="text-[11px]">({sec === 'outside' ? outsideProgress.completed : sec === 'inside' ? insideProgress.completed : unitProgress.completed}/{sec === 'outside' ? outsideItemsList.length : sec === 'inside' ? insideItemsList.length : unitProgress.total})</p>
                                     <p className="text-[11px]">{sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}% Completed</p>
                                 </div>
                                 <div className="w-full h-2 bg-white rounded-full overflow-hidden max-w-4xl shadow-inner">
@@ -1402,6 +1506,13 @@ export default function InspectionCategoryPage() {
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#006795]/10 text-[#006795] text-sm font-bold">
                                                     <User className="w-3.5 h-3.5" /> Inspecting: {activeInspectionUnit}
                                                 </span>
+                                                <button
+                                                    onClick={() => setUnitSelectionPopupOpen(true)}
+                                                    className="text-xs font-bold text-[#006795] hover:underline flex items-center gap-1 bg-[#006795]/5 px-2 py-1 rounded-md transition-colors"
+                                                >
+                                                    <CheckCircle2 className="w-3.5 h-3.5" />
+                                                    Submit Unit
+                                                </button>
                                             </div>
                                         )}
                                         <div className="flex items-center gap-3">
@@ -1442,9 +1553,9 @@ export default function InspectionCategoryPage() {
                                     {buildingName} — Select Unit
                                 </h3>
                                 <p className="text-xs text-white/80 mt-0.5 font-medium">
-                                    {buildingUnitNames.length > 0
-                                        ? `${buildingUnitNames.length} units available`
-                                        : 'Select a unit to inspect'}
+                                    {rawUnitIds.length > 0
+                                        ? `${rawUnitIds.length} units available`
+                                        : 'No units allocated to this building'}
                                 </p>
                             </div>
                             <button
@@ -1464,79 +1575,88 @@ export default function InspectionCategoryPage() {
 
                         {/* Unit List */}
                         <div className="p-5 overflow-y-auto max-h-[55vh] space-y-2">
-                            {(buildingUnitNames.length > 0 ? buildingUnitNames : ['Unit 001', 'Unit 002', 'Unit 003']).map((unitName, idx) => {
-                                const displayName = popupUnitCustomNames[unitName] || unitName;
-                                const isEditing = editingUnitIdx === idx;
-                                return (
-                                    <div
-                                        key={unitName}
-                                        className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${activeInspectionUnit === displayName
-                                            ? 'border-[#006795] bg-[#F1F7FE]'
-                                            : 'border-gray-100 bg-white hover:border-[#006795]/30 hover:bg-[#F1F7FE]'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3 flex-1 min-w-0">
-                                            <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shrink-0 ${activeInspectionUnit === displayName ? 'bg-[#006795] text-white' : 'bg-gray-100 text-gray-600'
-                                                }`}>
-                                                {idx + 1}
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                {isEditing ? (
-                                                    <div className="flex items-center gap-2">
-                                                        <input
-                                                            type="text"
-                                                            value={editingUnitValue}
-                                                            onChange={(e) => setEditingUnitValue(e.target.value)}
-                                                            onKeyDown={(e) => {
-                                                                if (e.key === 'Enter') {
+                            {rawUnitIds.length > 0 ? (
+                                rawUnitIds.map((unitName, idx) => {
+                                    const displayName = popupUnitCustomNames[unitName] || unitName;
+                                    const isEditing = editingUnitIdx === idx;
+                                    return (
+                                        <div
+                                            key={unitName}
+                                            className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${activeInspectionUnit === displayName
+                                                ? 'border-[#006795] bg-[#F1F7FE]'
+                                                : 'border-gray-100 bg-white hover:border-[#006795]/30 hover:bg-[#F1F7FE]'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                                                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shrink-0 ${activeInspectionUnit === displayName ? 'bg-[#006795] text-white' : 'bg-gray-100 text-gray-600'
+                                                    }`}>
+                                                    {idx + 1}
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    {isEditing ? (
+                                                        <div className="flex items-center gap-2">
+                                                            <input
+                                                                type="text"
+                                                                value={editingUnitValue}
+                                                                onChange={(e) => setEditingUnitValue(e.target.value)}
+                                                                onKeyDown={(e) => {
+                                                                    if (e.key === 'Enter') {
+                                                                        setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
+                                                                        setEditingUnitIdx(null);
+                                                                    }
+                                                                    if (e.key === 'Escape') setEditingUnitIdx(null);
+                                                                }}
+                                                                className="flex-1 px-2 py-1 border border-[#006795] rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#006795]/30"
+                                                                autoFocus
+                                                            />
+                                                            <button
+                                                                onClick={() => {
                                                                     setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
                                                                     setEditingUnitIdx(null);
-                                                                }
-                                                                if (e.key === 'Escape') setEditingUnitIdx(null);
-                                                            }}
-                                                            className="flex-1 px-2 py-1 border border-[#006795] rounded-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#006795]/30"
-                                                            autoFocus
-                                                        />
-                                                        <button
-                                                            onClick={() => {
-                                                                setPopupUnitCustomNames(prev => ({ ...prev, [unitName]: editingUnitValue.trim() || unitName }));
-                                                                setEditingUnitIdx(null);
-                                                            }}
-                                                            className="p-1 rounded-full bg-[#006795] text-white hover:bg-[#0a5670]"
-                                                        >
-                                                            <Check className="w-3.5 h-3.5" />
-                                                        </button>
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex items-center gap-1.5">
-                                                        <p className="text-sm font-bold text-gray-900 truncate">{displayName}</p>
-                                                        <button
-                                                            onClick={(e) => { e.stopPropagation(); setEditingUnitIdx(idx); setEditingUnitValue(displayName); }}
-                                                            className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#006795] transition-colors shrink-0"
-                                                            title="Rename unit"
-                                                        >
-                                                            <Pencil className="w-3 h-3" />
-                                                        </button>
-                                                    </div>
-                                                )}
-                                                <p className="text-[11px] text-gray-400 font-medium">Pending inspection</p>
+                                                                }}
+                                                                className="p-1 rounded-full bg-[#006795] text-white hover:bg-[#0a5670]"
+                                                            >
+                                                                <Check className="w-3.5 h-3.5" />
+                                                            </button>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex items-center gap-1.5">
+                                                            <p className="text-sm font-bold text-gray-900 truncate">{displayName}</p>
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); setEditingUnitIdx(idx); setEditingUnitValue(displayName); }}
+                                                                className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#006795] transition-colors shrink-0"
+                                                                title="Rename unit"
+                                                            >
+                                                                <Pencil className="w-3 h-3" />
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                    <p className={`text-[11px] font-medium ${completedUnits.includes(displayName) ? 'text-green-600' : 'text-gray-400'}`}>
+                                                        {completedUnits.includes(displayName) ? 'Completed' : 'Pending inspection'}
+                                                    </p>
+                                                </div>
                                             </div>
+                                            {!isEditing && (
+                                                <button
+                                                    onClick={() => {
+                                                        setActiveInspectionUnit(displayName)
+                                                        setUnitSelectionPopupOpen(false)
+                                                        setExpandedSection('unit')
+                                                    }}
+                                                    className="bg-[#006795] hover:bg-[#00567a] text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md transition-all flex items-center gap-1 ml-3 shrink-0"
+                                                >
+                                                    Start <ChevronRight className="w-3.5 h-3.5" />
+                                                </button>
+                                            )}
                                         </div>
-                                        {!isEditing && (
-                                            <button
-                                                onClick={() => {
-                                                    setActiveInspectionUnit(displayName)
-                                                    setUnitSelectionPopupOpen(false)
-                                                    setExpandedSection('unit')
-                                                }}
-                                                className="bg-[#006795] hover:bg-[#00567a] text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md transition-all flex items-center gap-1 ml-3 shrink-0"
-                                            >
-                                                Start <ChevronRight className="w-3.5 h-3.5" />
-                                            </button>
-                                        )}
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })
+                            ) : (
+                                <div className="text-center py-8 px-4 text-gray-500">
+                                    <p className="font-bold text-sm">No units allocated to this building.</p>
+                                    <p className="text-xs text-gray-400 mt-1">This building has 0 allocated inspection units.</p>
+                                </div>
+                            )}
                         </div>
 
                         {/* Footer */}
@@ -1710,9 +1830,9 @@ export default function InspectionCategoryPage() {
                                         </div>
                                     </div>
 
-                                    {/* 3. HOW TO INSPECT */}
+                                    {/* 3. INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How To Inspect IRU, BRU, Local</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Inspect IRU, BRU, Local</label>
                                         {(() => {
                                             if (!selectedDeficiency) {
                                                 return (
@@ -1721,7 +1841,7 @@ export default function InspectionCategoryPage() {
                                                         disabled
                                                         className="w-full border-2 rounded-2xl p-4 text-xs font-bold leading-relaxed border-gray-100 bg-gray-50 text-gray-400 text-left cursor-not-allowed"
                                                     >
-                                                        Select deficiency first to open How to Inspect
+                                                        Select deficiency first to open Inspect
                                                     </button>
                                                 )
                                             }
@@ -1731,7 +1851,7 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => setIsHowToInspectOpen(true)}
                                                     className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
                                                 >
-                                                    Open How To Inspect IRU, BRU, Local
+                                                    Open Inspect IRU, BRU, Local
                                                 </button>
                                             )
                                         })()}
@@ -1964,18 +2084,19 @@ export default function InspectionCategoryPage() {
                                     </div>
                                 </div>
 
-                                {/* View Summary Button - Primary Action */}
-                                <Button
+                                {/* Primary Action: Continue Inspection styled like View Summary */}
+                                <Button 
                                     onClick={() => {
-                                        // Close modal and redirect to summary
-
-                                        handleODModalClose();
-                                        router.push('/dashboard/inspection/summary');
-                                    }}
+                                        // Reset modal and stay on inspection page
+                                        setModalStep(1);
+                                        setSelectedDeficiency(null);
+                                        setPhotos([]);
+                                        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
+                                        setIsODModalOpen(false);
+                                    }} 
                                     className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-14 rounded-xl shadow-lg uppercase text-[10px] tracking-widest flex items-center justify-center gap-3"
                                 >
-                                    <FileText className="w-4 h-4" />
-                                    View NSPIRE Summary
+                                    Continue Inspection
                                 </Button>
 
                                 {reportUrl && (
@@ -1991,17 +2112,6 @@ export default function InspectionCategoryPage() {
                                         </Button>
                                     </a>
                                 )}
-
-                                <Button variant="outline" onClick={() => {
-                                    // Reset modal and stay on inspection page
-                                    setModalStep(1);
-                                    setSelectedDeficiency(null);
-                                    setPhotos([]);
-                                    setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
-                                    setIsODModalOpen(false);
-                                }} className="w-full font-black h-14 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-500 uppercase text-[10px] tracking-widest">
-                                    Continue Inspection
-                                </Button>
                             </div>
                         )}
 
@@ -2028,7 +2138,7 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How To Inspect IRU, BRU, Local</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">Inspect IRU, BRU, Local</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>

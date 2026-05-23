@@ -32,7 +32,7 @@ export default function UnitSelection() {
         {/* Header Section */}
         <div className="max-w-7xl mx-auto">
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">
-            Search By Name, City Or State
+            Unit Selection
           </h1>
 
           {/* Action Buttons */}
@@ -42,60 +42,6 @@ export default function UnitSelection() {
             >
               Add Property
             </Button>
-          </div>
-
-          {/* Search Form */}
-          <div className="bg-white rounded-xl shadow-md p-4 sm:p-5 md:p-6 mb-6">
-            <div className="space-y-4">
-              {/* Name Input */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                  Property Name
-                </label>
-                <Input
-                  type="text"
-                  placeholder="Property Name"
-                  value={searchName}
-                  onChange={(e) => setSearchName(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006795] focus:border-transparent"
-                />
-              </div>
-
-              {/* State Input */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                  State
-                </label>
-                <Input
-                  type="text"
-                  placeholder="Enter State"
-                  value={selectedState}
-                  onChange={(e) => setSelectedState(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006795] focus:border-transparent"
-                />
-              </div>
-
-              {/* City Input */}
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                  City
-                </label>
-                <Input
-                  type="text"
-                  placeholder="Enter City"
-                  value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006795] focus:border-transparent"
-                />
-              </div>
-
-              {/* Search Button */}
-              <Button
-                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
-              >
-                Search
-              </Button>
-            </div>
           </div>
 
           {/* Property Results */}

@@ -8,7 +8,7 @@ function convertToUIDetail(d: any): DeficiencyDetail {
     return {
         id: d.id,
         selected: d.name,
-        detail: d.detail,
+        detail: d.detail || d.name,
         criteria: d.criteria,
         codeAndCompliance: d.code ? `NSPIRE - ${d.code}` : 'NSPIRE',
         healthAndSafety: d.severity,
@@ -29,7 +29,8 @@ ALL_UNIT_CATEGORIES.forEach(categoryObj => {
 
         const mappedDefs = item.deficiencies.map(d => ({
             ...convertToUIDetail(d),
-            selected: categoryObj.items.length === 1 ? d.name : item.itemName, // Use deficiency name if no other sub-items to group by
+            selected: d.name, 
+            detail: d.detail,
             subcategory: item.itemName
         }));
         itemDefs = [...itemDefs, ...mappedDefs];
@@ -40,7 +41,8 @@ ALL_UNIT_CATEGORIES.forEach(categoryObj => {
                 const subName = sub.name || sub.itemName || item.itemName;
                 const subDefs = sub.deficiencies.map((d: any) => ({
                     ...convertToUIDetail(d),
-                    selected: subName,
+                    selected: (d as any).name || subName,
+                    detail: (d as any).detail || (d as any).name,
                     subcategory: subName
                 }));
                 itemDefs = [...itemDefs, ...subDefs];

@@ -22,7 +22,7 @@ function convertToUIDetail(d: any): DeficiencyDetail {
     return {
         id: d.id,
         selected: d.name,
-        detail: d.detail,
+        detail: d.detail || d.name,
         criteria: d.criteria,
         codeAndCompliance: d.code ? `NSPIRE - ${d.code}` : 'NSPIRE',
         healthAndSafety: d.severity,
@@ -37,7 +37,12 @@ export const outsideDeficiencyMapping: Record<string, DeficiencyDetail[]> = {};
 
 Object.keys(ALL_OUTSIDE_DEFICIENCIES).forEach(categoryName => {
     const item = ALL_OUTSIDE_DEFICIENCIES[categoryName];
-    outsideDeficiencyMapping[categoryName] = item.deficiencies.map(convertToUIDetail);
+    outsideDeficiencyMapping[categoryName] = item.deficiencies.map(d => ({
+        ...convertToUIDetail(d),
+        selected: d.name,
+        detail: d.detail,
+        subcategory: item.itemName
+    }));
 });
 
 // ── UNIT DEFICIENCIES (Mapped to insideDeficiencyMapping) ────────────────
@@ -51,7 +56,8 @@ ALL_INSIDE_CATEGORIES.forEach(item => {
     if (item.deficiencies) {
         const mappedDefs = item.deficiencies.map(d => ({
             ...convertToUIDetail(d),
-            selected: d.name, // Use deficiency name directly instead of creating an intermediate item name step
+            selected: d.name,
+            detail: d.detail,
             subcategory: item.itemName
         }));
         allDefs = [...allDefs, ...mappedDefs];
@@ -62,12 +68,18 @@ ALL_INSIDE_CATEGORIES.forEach(item => {
             const subName = (sub as any).name || (sub as any).itemName || item.itemName;
             const subDefs = sub.deficiencies.map(d => ({
                 ...convertToUIDetail(d),
-                selected: subName,
+                selected: d.name || subName,
+                detail: d.detail || d.name,
                 subcategory: subName
             }));
             allDefs = [...allDefs, ...subDefs];
+            
+            // Also map by subcategory name for flat list lookups
+            insideDeficiencyMapping[subName] = subDefs;
         });
     }
 
+    const cleanName = item.itemName.replace(/^\d+\.\s*/, '').trim();
+    insideDeficiencyMapping[cleanName] = allDefs;
     insideDeficiencyMapping[item.itemName] = allDefs;
 });

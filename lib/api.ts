@@ -30,7 +30,10 @@ async function apiRequest<T>(
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || 'Something went wrong');
+    const error = new Error(data.message || 'Something went wrong') as any;
+    error.data = data;
+    error.status = response.status;
+    throw error;
   }
 
   return data;
@@ -465,6 +468,7 @@ export const inspectionsAPI = {
   getProgress: async (params: {
     property_id: string;
     unit_id?: string;
+    building_id?: string;
     inspection_type?: string;
     draft_only?: string;
   }) => {

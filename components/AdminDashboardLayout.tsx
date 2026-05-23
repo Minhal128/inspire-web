@@ -211,19 +211,9 @@ export default function AdminDashboardLayout({ children }: AdminDashboardLayoutP
               />
             </div>
 
-            {/* Desktop Search */}
-            <div className="hidden md:flex items-center gap-3 flex-1 max-w-xl px-4 py-2 border border-white rounded-lg">
-              <svg className="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search"
-                className="flex-1 outline-none text-sm bg-transparent text-white placeholder-white placeholder-opacity-70"
-              />
-            </div>
 
-            <div className="flex items-center gap-2 md:gap-4">
+
+            <div className="flex items-center gap-2 md:gap-4 ml-auto">
               <button 
                 onClick={() => router.push('/admin/notifications')}
                 className="relative p-2 hover:bg-[#152A45] rounded-lg transition-colors"

@@ -218,77 +218,8 @@ export default function ManagementDashboard() {
             </Button>
           </div>
         </Card>
-
-        <div className="flex flex-col gap-3 mb-4 md:mb-6">
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">Search By Name, City Or State</h1>
-        </div>
-
-        {/* Search Filters */}
+        {/* Properties List */}
         <Card className="bg-white rounded-lg shadow-sm p-3 sm:p-4 md:p-6 mb-4 md:mb-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4 mb-4 md:mb-6">
-            <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">Property Name</label>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Enter property name"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">Country</label>
-              <input
-                type="text"
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
-                placeholder="Enter Country"
-                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] bg-white text-sm"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">State</label>
-              <input
-                type="text"
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                placeholder="Enter State"
-                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] bg-white text-sm"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">City</label>
-              <input
-                type="text"
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
-                placeholder="Enter City"
-                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795] bg-white text-sm"
-              />
-            </div>
-
-            <div className="flex items-end">
-              <Button
-                onClick={handleSearch}
-                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-2.5 rounded-lg text-sm"
-              >
-                Search Properties
-              </Button>
-            </div>
-          </div>
 
           {/* Properties Table - Desktop */}
           <div className="hidden md:block overflow-x-auto">

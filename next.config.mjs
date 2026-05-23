@@ -6,9 +6,6 @@ const __dirname = dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbopack: {
-    root: __dirname,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -46,17 +43,6 @@ const nextConfig = {
         ],
       },
     ]
-  },
-  // Webpack cache for faster rebuilds
-  webpack: (config, { isServer }) => {
-    config.cache = {
-      type: 'filesystem',
-      cacheDirectory: '.next/cache',
-      buildDependencies: {
-        config: [__filename],
-      },
-    }
-    return config
   },
 }
 

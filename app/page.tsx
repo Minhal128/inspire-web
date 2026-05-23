@@ -14,7 +14,14 @@ export default function Home() {
   const [unitSelectionOpen, setUnitSelectionOpen] = useState(false);
 
   const handleGetStarted = () => {
-    setUnitSelectionOpen(true);
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token");
+      if (token) {
+        router.push("/dashboard");
+      } else {
+        router.push("/login");
+      }
+    }
   };
 
   const handleUnitSelectionContinue = (selectedUnits: string[]) => {
