@@ -1,6 +1,8 @@
 import { Clerk } from '@clerk/clerk-js'
 
-const OAUTH_REDIRECT_URI = process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL || 'https://whale-app-wi6lz.ondigitalocean.app/oauth-callback'
+const getOAuthRedirectUri = () => {
+    return process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL || (typeof window !== 'undefined' ? window.location.origin + '/oauth-callback' : 'https://inspireinspectionapp.com/oauth-callback')
+}
 const CLERK_PUBLISHABLE_KEY = 'pk_test_bGlnaHQtbXV0dC03Mi5jbGVyay5hY2NvdW50cy5kZXYk'
 
 let clerkInstance: Clerk | null = null
@@ -33,7 +35,7 @@ export const initGoogleLogin = (portal: string): Promise<OAuthResult> => {
 
         const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
             `client_id=${clientId}&` +
-            `redirect_uri=${encodeURIComponent(OAUTH_REDIRECT_URI)}&` +
+            `redirect_uri=${encodeURIComponent(getOAuthRedirectUri())}&` +
             `response_type=token&` +
             `scope=openid email profile&` +
             `state=google_${portal}`
@@ -110,7 +112,7 @@ export const initFacebookLogin = (portal: string): Promise<OAuthResult> => {
             // Create a sign-in attempt to get the correct OAuth redirection URL
             const signIn = await clerk.client.signIn.create({
                 strategy: 'oauth_facebook',
-                redirectUrl: OAUTH_REDIRECT_URI + '?state=facebook_' + portal,
+                redirectUrl: getOAuthRedirectUri() + '?state=facebook_' + portal,
             })
 
             const authUrl = signIn.firstFactorVerification.externalVerificationRedirectURL
@@ -191,7 +193,7 @@ export const initAppleLogin = (portal: string): Promise<OAuthResult> => {
 
         const authUrl = `https://appleid.apple.com/auth/authorize?` +
             `client_id=${clientId}&` +
-            `redirect_uri=${encodeURIComponent(OAUTH_REDIRECT_URI)}&` +
+            `redirect_uri=${encodeURIComponent(getOAuthRedirectUri())}&` +
             `response_type=code id_token&` +
             `scope=name email&` +
             `response_mode=form_post&` +
