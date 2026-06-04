@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"h:\\\\Development\\\\Nspire\\\\inspirefrontend\" -Directory | Where-Object { $_.Name -match 'src|data|components|pages' } | Select-Object -First 20 Name)",
+      "Bash(git checkout *)",
+      "Bash(node update_deficiency_names.js)",
+      "Bash(node -e \"const fs = require\\('fs'\\); const content = fs.readFileSync\\('lib/unitAppData.ts','utf8'\\); const lines = content.split\\('\\\\n'\\); const nameLines = []; for\\(let i=0;i<lines.length;i++\\){if\\(lines[i].includes\\(\\\\\"id: '\\\\\"\\)\\){const id=lines[i].trim\\(\\).slice\\(5,-2\\);const nameLine=lines[i+1];if\\(nameLine&&nameLine.trim\\(\\).startsWith\\(\\\\\"name: '\\\\\"\\)\\){const val=nameLine.trim\\(\\).slice\\(7,-2\\);nameLines.push\\(id+' → '+val\\);}}} nameLines.slice\\(0,35\\).forEach\\(l=>console.log\\(l\\)\\);\")",
+      "Bash(node -e \"const fs = require\\('fs'\\); const content = fs.readFileSync\\('lib/unitAppData.ts','utf8'\\); const lines = content.split\\('\\\\n'\\); const nameLines = []; for\\(let i=0;i<lines.length;i++\\){if\\(lines[i].includes\\(\\\\\"id: '\\\\\"\\)\\){const id=lines[i].trim\\(\\).slice\\(5,-2\\);const nameLine=lines[i+1];if\\(nameLine&&nameLine.trim\\(\\).startsWith\\(\\\\\"name: '\\\\\"\\)\\){const val=nameLine.trim\\(\\).slice\\(7,-2\\);nameLines.push\\(id+' → '+val\\);}}} nameLines.slice\\(130,197\\).forEach\\(l=>console.log\\(l\\)\\);\")",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
