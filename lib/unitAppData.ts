@@ -950,8 +950,8 @@ export const CABINETS_STORAGE_DEFICIENCIES: InsideItemDeficiencies = {
     deficiencies: [
         {
             id: 'cab_1',
-            name: 'Pantry, Food Storage Space Not Present - damaged/inoperable/missing affecting >50% of components',
-            detail: 'Food storage space is not present.',
+            name: 'Pantry, Food Storage Space Not Present',
+            detail: 'Storage for essential food items is damaged, inoperable, or missing—affecting over 50% of cabinet doors, drawers, or shelves',
             criteria: 'Storage for essential food items is damaged, inoperable, or missing—affecting over 50% of cabinet doors, drawers, or shelves.',
             severity: 'Moderate',
             repairBy: '30 Day',
