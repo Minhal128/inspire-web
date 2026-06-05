@@ -29,7 +29,7 @@ ALL_UNIT_CATEGORIES.forEach(categoryObj => {
 
         const mappedDefs = item.deficiencies.map(d => ({
             ...convertToUIDetail(d),
-            selected: d.name, 
+            selected: d.name,
             detail: d.detail,
             subcategory: item.itemName
         }));
@@ -51,7 +51,7 @@ ALL_UNIT_CATEGORIES.forEach(categoryObj => {
 
         // Key by specific item name
         unitDeficiencyMapping[item.itemName] = itemDefs;
-        
+
         // Also accumulate for the category
         allCategoryDefs = [...allCategoryDefs, ...itemDefs];
     });

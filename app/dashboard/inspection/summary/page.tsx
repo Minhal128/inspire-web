@@ -1071,7 +1071,7 @@ function NSPIREInspectionSummaryContent() {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <h1 className="text-2xl font-bold text-[#006795]">
-                  {searchParams.get('finalize') === 'true' ? 'HUD NSPIRE INSPECTION REPORT' : 'HUD NSPIRE INSPECTION PROGRESS'}
+                  {searchParams.get('finalize') === 'true' ? 'HUD INSPIRE INSPECTION REPORT' : 'HUD INSPIRE INSPECTION PROGRESS'}
                 </h1>
               </div>
               <p className="text-gray-600 font-medium">{report.metadata.propertyName}</p>

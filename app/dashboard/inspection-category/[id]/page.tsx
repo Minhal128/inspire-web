@@ -189,7 +189,7 @@ export default function InspectionCategoryPage() {
 
     // Store previously saved OD form data per item key (section:itemName) for pre-filling when re-opened
     const [savedODFormData, setSavedODFormData] = useState<Record<string, {
-        odForm: { category: string; note: string; location: string; healthAndSafety: string; repairBy: string; codeAndCompliance: string };
+        odForm: { category: string; note: string; location: string; healthAndSafety: string; repairBy: string; codeAndCompliance: string; deficiencySelected?: string; deficiencyDetail?: string };
         selectedDeficiency: DeficiencyDetail | null;
         photos: string[];
         modalStep: number;
@@ -217,7 +217,9 @@ export default function InspectionCategoryPage() {
         location: "Building Site S",
         healthAndSafety: "",
         repairBy: "",
-        codeAndCompliance: ""
+        codeAndCompliance: "",
+        deficiencySelected: "",
+        deficiencyDetail: ""
     });
 
     // Auto-scoring state - calculated based on deficiency selection
@@ -359,7 +361,7 @@ export default function InspectionCategoryPage() {
             setUnitStatuses({});
             setSavedODItems(new Set());
             setSavedODFormData({});
-            
+
             fetchData();
             loadSavedProgress();
         }
@@ -373,9 +375,9 @@ export default function InspectionCategoryPage() {
                 building_id: urlBuilding
             });
 
-            if (res.success && res.progress) {
+            if ((res as any).success && (res as any).progress) {
                 // Find Inside and Outside progress for this building
-                const outsideRec = res.progress.find((p: any) => {
+                const outsideRec = (res as any).progress.find((p: any) => {
                     const typeMatch = p.inspectionType === 'Outside';
                     const bId = String(urlBuilding || '').toUpperCase();
                     const pUnitId = String(p.unitId || '').toUpperCase();
@@ -384,7 +386,7 @@ export default function InspectionCategoryPage() {
                     return typeMatch && (pUnitId === bId || pBldgId === bId || isB1Match);
                 });
 
-                const insideRec = res.progress.find((p: any) => {
+                const insideRec = (res as any).progress.find((p: any) => {
                     const typeMatch = p.inspectionType === 'Inside';
                     const bId = String(urlBuilding || '').toUpperCase();
                     const pUnitId = String(p.unitId || '').toUpperCase();
@@ -392,22 +394,22 @@ export default function InspectionCategoryPage() {
                     const isB1Match = (bId === 'B1' || bId === 'BUILDING 1') && (pUnitId === 'B1' || pUnitId === 'BUILDING 1' || pBldgId === 'B1' || pBldgId === 'BUILDING 1');
                     return typeMatch && (pUnitId === bId || pBldgId === bId || isB1Match);
                 });
-                
+
                 if (outsideRec && outsideRec.responses) setOutsideStatuses(outsideRec.responses);
                 if (insideRec && insideRec.responses) setInsideStatuses(insideRec.responses);
 
                 // If a unit is active, find its progress too
                 if (activeInspectionUnit) {
-                    const unitRec = res.progress.find((p: any) => {
+                    const unitRec = (res as any).progress.find((p: any) => {
                         const pType = String(p.inspectionType || '').toLowerCase();
-                        const typeMatch = pType === 'unit' 
+                        const typeMatch = pType === 'unit'
                             || pType === `unit_${activeInspectionUnit}`.toLowerCase()
                             || pType === `unit_${urlBuilding}_${activeInspectionUnit}`.toLowerCase();
                         const uId = String(activeInspectionUnit).toUpperCase();
                         const pUnitId = String(p.unitId).toUpperCase();
                         const bId = String(urlBuilding || '').toUpperCase();
                         const pBldgId = String(p.buildingId || '').toUpperCase();
-                        
+
                         // Cross-building fix: ensure buildingId matches
                         return typeMatch && pUnitId === uId && (pBldgId === bId || !pBldgId);
                     });
@@ -416,7 +418,7 @@ export default function InspectionCategoryPage() {
 
                 // Restore findings for summary page if they exist in any record
                 const allFindings: any[] = [];
-                res.progress.forEach((p: any) => {
+                (res as any).progress.forEach((p: any) => {
                     if (p.inspectionData && Array.isArray(p.inspectionData.findings)) {
                         allFindings.push(...p.inspectionData.findings);
                     }
@@ -432,7 +434,7 @@ export default function InspectionCategoryPage() {
                         const area = f.area || f.category || 'unknown';
                         const unit = f.unit || '-';
                         const item = f.item || f.deficiencyName || f.title || 'unknown';
-                        
+
                         const key = `${bldg}|${area}|${unit}|${item}`.toLowerCase().trim();
                         if (seen.has(key)) return false;
                         seen.add(key);
@@ -445,7 +447,7 @@ export default function InspectionCategoryPage() {
                 // Restore OD form snapshots so re-opening a saved OD pre-fills the form
                 const restoredSnapshots: Record<string, any> = {};
                 const restoredSavedODKeys = new Set<string>();
-                res.progress.forEach((p: any) => {
+                (res as any).progress.forEach((p: any) => {
                     if (p.inspectionData && p.inspectionData.odFormSnapshots) {
                         Object.entries(p.inspectionData.odFormSnapshots).forEach(([key, val]) => {
                             restoredSnapshots[key] = val;
@@ -474,10 +476,10 @@ export default function InspectionCategoryPage() {
 
     const saveCurrentProgress = async () => {
         if (!id || !user) return;
-        
+
         try {
             const promises = [];
-            
+
             if (Object.keys(outsideStatuses).length > 0) {
                 const isComplete = outsideItemsList.every(item => outsideStatuses[item] !== null && outsideStatuses[item] !== undefined);
                 promises.push(inspectionsAPI.saveProgress({
@@ -489,7 +491,7 @@ export default function InspectionCategoryPage() {
                     inspectionData: { isComplete }
                 }));
             }
-            
+
             if (Object.keys(insideStatuses).length > 0) {
                 const isComplete = insideItemsList.every(item => insideStatuses[item] !== null && insideStatuses[item] !== undefined);
                 promises.push(inspectionsAPI.saveProgress({
@@ -501,7 +503,7 @@ export default function InspectionCategoryPage() {
                     inspectionData: { isComplete }
                 }));
             }
-            
+
             if (Object.keys(unitStatuses).length > 0 && activeInspectionUnit) {
                 // Check if all items are filled to mark as fully complete
                 const isComplete = unitItemsList.every(item => {
@@ -518,7 +520,7 @@ export default function InspectionCategoryPage() {
                     inspectionData: { isComplete }
                 }));
             }
-            
+
             await Promise.all(promises);
             await refreshCompletedUnits();
         } catch (error) {
@@ -590,27 +592,49 @@ export default function InspectionCategoryPage() {
             const savedKey = `${urlBuilding}:${section}:${itemName}`;
             const previousData = savedODFormData[savedKey];
             if (previousData) {
-                setOdForm(previousData.odForm);
+                setOdForm({
+                    ...previousData.odForm,
+                    deficiencySelected: previousData.odForm.deficiencySelected || "",
+                    deficiencyDetail: previousData.odForm.deficiencyDetail || ""
+                });
                 setSelectedDeficiency(previousData.selectedDeficiency);
                 setPhotos(previousData.photos);
                 // Jump to step 2 (the form) so user can review/edit their previous entry
                 setModalStep(2);
             } else {
-                setOdForm(prev => ({
-                    ...prev,
+                setOdForm({
                     category: cleanCategory,
                     note: "",
                     location: "Building Site S",
                     healthAndSafety: "",
                     repairBy: "",
-                    codeAndCompliance: ""
-                }));
+                    codeAndCompliance: "",
+                    deficiencySelected: "",
+                    deficiencyDetail: ""
+                });
                 setSelectedDeficiency(null);
                 setPhotos([]);
                 setModalStep(1);
             }
             setIsODModalOpen(true);
             return;
+        }
+
+        // If status is being changed away from OD, clean up the saved finding
+        if ((status as string) !== 'OD') {
+            const savedKey = `${urlBuilding}:${section}:${itemName}`;
+            setSavedODItems(prev => {
+                const next = new Set(prev);
+                next.delete(savedKey);
+                return next;
+            });
+            // Also remove from state to keep summary in sync
+            setPropertyFindings(prev => {
+                const unitVal = section === 'unit' ? (activeInspectionUnit || unitsString) : '-';
+                return prev.filter((f: any) =>
+                    !(f.item === itemName && f.area === section && f.unit === unitVal && (f.building === urlBuilding || f.building === buildingName))
+                );
+            });
         }
 
         if (section === 'outside') {
@@ -628,23 +652,6 @@ export default function InspectionCategoryPage() {
                 ...prev,
                 [itemName]: prev[itemName] === status ? null : status
             }));
-        }
-
-        // If status is being changed away from OD, clean up the saved finding
-        if (status !== 'OD') {
-            const savedKey = `${urlBuilding}:${section}:${itemName}`;
-            setSavedODItems(prev => {
-                const next = new Set(prev);
-                next.delete(savedKey);
-                return next;
-            });
-            // Also remove from state to keep summary in sync
-            setPropertyFindings(prev => {
-                const unitVal = section === 'unit' ? (activeInspectionUnit || unitsString) : '-';
-                return prev.filter((f: any) => 
-                    !(f.item === itemName && f.area === section && f.unit === unitVal && (f.building === urlBuilding || f.building === buildingName))
-                );
-            });
         }
     };
 
@@ -690,7 +697,7 @@ export default function InspectionCategoryPage() {
         setIsODModalOpen(false);
         setSelectedDeficiency(null);
         setPhotos([]);
-        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
+        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
     };
 
     const handleGeneralModalClose = () => {
@@ -748,15 +755,34 @@ export default function InspectionCategoryPage() {
     };
 
     const handleDeficiencySelect = (def: DeficiencyDetail) => {
-        setSelectedDeficiency(def);
-        setOdForm(prev => ({
-            ...prev,
-            healthAndSafety: def.healthAndSafety,
-            repairBy: def.repairBy,
-            codeAndCompliance: def.codeAndCompliance,
-            location: def.location || prev.location // Auto-fill location if available
-        }));
-        setModalStep(2);
+        const allDefs = getFilteredDeficiencies();
+        const normalizedSelected = def.selected.trim().toLowerCase();
+        const matchingDetails = allDefs.filter(d => d.selected.trim().toLowerCase() === normalizedSelected);
+
+        // If selecting from main name list and multiple details exist, switch to detail selection mode
+        if (selectionType === 'selected' && matchingDetails.length > 1) {
+            setSelectedDeficiency(def);
+            setOdForm(prev => ({
+                ...prev,
+                deficiencySelected: def.selected.trim(),
+                deficiencyDetail: ""
+            }));
+            setSelectionType('detail');
+            // Stay in modalStep 3
+        } else {
+            // Only one detail or we've explicitly picked a detail
+            setSelectedDeficiency(def);
+            setOdForm(prev => ({
+                ...prev,
+                deficiencySelected: def.selected.trim(),
+                deficiencyDetail: def.detail,
+                healthAndSafety: def.healthAndSafety,
+                repairBy: def.repairBy,
+                codeAndCompliance: def.codeAndCompliance,
+                location: def.location || prev.location
+            }));
+            setModalStep(2);
+        }
     };
 
     const [reportUrl, setReportUrl] = useState<string | null>(null);
@@ -840,8 +866,8 @@ export default function InspectionCategoryPage() {
                     findings: [{
                         id: `DEF-${Date.now()}`,
                         imageUri: photos[0],
-                        title: selectedDeficiency?.selected || analysisResult?.defect || odForm.category,
-                        description: analysisResult?.description || selectedDeficiency?.detail || 'Deficiency detected by AI inspection',
+                        title: selectedDeficiency?.selected || analysisResult?.defect || odForm.deficiencySelected || odForm.category,
+                        description: analysisResult?.description || analysisResult?.comment || selectedDeficiency?.detail || odForm.deficiencyDetail || 'Deficiency detected by AI inspection',
                         category: odForm.category,
                         building: buildingName,
                         unit: currentSection === 'unit' ? (activeInspectionUnit || unitsString) : '-',
@@ -865,14 +891,14 @@ export default function InspectionCategoryPage() {
                 };
                 // Save finding to backend progress instead of just redirecting
                 const type = currentSection === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (currentSection.charAt(0).toUpperCase() + currentSection.slice(1));
-                const currentStatuses = currentSection === 'outside' ? outsideStatuses 
-                                     : currentSection === 'inside' ? insideStatuses 
-                                     : unitStatuses;
-                
+                const currentStatuses = currentSection === 'outside' ? outsideStatuses
+                    : currentSection === 'inside' ? insideStatuses
+                        : unitStatuses;
+
                 // Ensure the item is marked as OD
                 const updatedStatuses = {
                     ...currentStatuses,
-                    [currentModalItem]: 'OD'
+                    [currentModalItem as string]: 'OD'
                 };
 
                 if (currentSection === 'outside') setOutsideStatuses(updatedStatuses as Record<string, ItemStatus>);
@@ -893,9 +919,9 @@ export default function InspectionCategoryPage() {
                 if (propertyFindings.length > 0) {
                     try {
                         // Find if this exact item already has a finding to avoid duplicates
-                        const existingIndex = propertyFindings.findIndex((f: any) => 
-                            f.item === newFinding.item && 
-                            f.area === newFinding.area && 
+                        const existingIndex = propertyFindings.findIndex((f: any) =>
+                            f.item === newFinding.item &&
+                            f.area === newFinding.area &&
                             f.unit === newFinding.unit &&
                             (f.building === urlBuilding || f.building === buildingName)
                         );
@@ -937,15 +963,14 @@ export default function InspectionCategoryPage() {
                                 modalStep: 2
                             }
                         }
-                    },
-                    building_id: urlBuilding
+                    }
                 });
-                
+
                 // NO LONGER USING localStorage FOR FINDINGS
                 // The summary page and other views will fetch directly from the backend.
 
                 toast.info("Item saved. You can continue with other items or view summary.", { position: "top-right" });
-                
+
                 // Update state to show the Analysis Complete screen (modalStep 4)
                 setAnalysisResult(analysisResult);
                 if (resultData.reportUrl) {
@@ -1020,9 +1045,9 @@ export default function InspectionCategoryPage() {
         const baseName = currentModalItem.replace(/^\d+\.\s+/, '').trim();
 
         // Mapping assignment:
-        // outside → outsideDeficiencyMapping
-        // inside  → insideDeficiencyMapping
-        // unit    → unitDeficiencyMapping
+        // outside -> outsideDeficiencyMapping
+        // inside  -> unitDeficiencyMapping
+        // unit    -> insideDeficiencyMapping
         const mapping = currentSection === 'outside'
             ? outsideDeficiencyMapping
             : currentSection === 'inside'
@@ -1038,10 +1063,10 @@ export default function InspectionCategoryPage() {
             const nk = k.toLowerCase();
             const nb = baseName.toLowerCase();
             if (nb.includes(nk) || nk.includes(nb)) return true;
-            
+
             // Special case for Paint to be more resilient
             if (nb.includes('paint') && nk.includes('paint')) return true;
-            
+
             // Other keywords could be added here if needed
             return false;
         });
@@ -1054,13 +1079,15 @@ export default function InspectionCategoryPage() {
         if (selectionType === 'selected') {
             const seen = new Set();
             return allDefs.filter(def => {
-                if (seen.has(def.selected)) return false;
-                seen.add(def.selected);
+                const normalized = def.selected.trim().toLowerCase();
+                if (seen.has(normalized)) return false;
+                seen.add(normalized);
                 return true;
             });
         }
         if (selectionType === 'detail' && selectedDeficiency) {
-            return allDefs.filter(def => def.selected === selectedDeficiency.selected);
+            const currentSelected = selectedDeficiency.selected.trim().toLowerCase();
+            return allDefs.filter(def => def.selected.trim().toLowerCase() === currentSelected);
         }
         return allDefs;
     };
@@ -1070,14 +1097,13 @@ export default function InspectionCategoryPage() {
             {/* Mobile View - Card Layout - Bulk Actions */}
             <div className="block md:hidden mb-4 p-2 bg-gray-50 rounded-xl border border-gray-100">
                 <div className="space-y-2">
-                    <Button 
-                        onClick={() => selectAll(section, 'No OD')} 
-                        className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${
-                            (() => {
-                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD');
-                            })() ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
-                        }`}
+                    <Button
+                        onClick={() => selectAll(section, 'No OD')}
+                        className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${(() => {
+                            const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                            return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'No OD');
+                        })() ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
+                            }`}
                     >
                         <div className="w-4 h-4 bg-white/20 border border-white/40 flex items-center justify-center rounded">
                             {(() => {
@@ -1088,21 +1114,19 @@ export default function InspectionCategoryPage() {
                         Select All No OD
                     </Button>
                     <div className="grid grid-cols-2 gap-2">
-                        <Button 
-                            onClick={() => selectAll(section, 'OD')} 
-                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm border transition-all ${
-                                (() => {
-                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
-                                })() ? 'bg-red-600 hover:bg-red-700 text-white border-red-600' : 'bg-white hover:bg-red-50 text-[#DC2626] border-[#DC2626]'
-                            }`}
+                        <Button
+                            onClick={() => selectAll(section, 'OD')}
+                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm border transition-all ${(() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                            })() ? 'bg-red-600 hover:bg-red-700 text-white border-red-600' : 'bg-white hover:bg-red-50 text-[#DC2626] border-[#DC2626]'
+                                }`}
                         >
-                            <div className={`w-4 h-4 border flex items-center justify-center rounded ${
-                                (() => {
-                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
-                                })() ? 'bg-white/20 border-white/40' : 'bg-white border-[#DC2626]'
-                            }`}>
+                            <div className={`w-4 h-4 border flex items-center justify-center rounded ${(() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
+                            })() ? 'bg-white/20 border-white/40' : 'bg-white border-[#DC2626]'
+                                }`}>
                                 {(() => {
                                     const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
                                     return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
@@ -1110,14 +1134,13 @@ export default function InspectionCategoryPage() {
                             </div>
                             Observe Deficiency
                         </Button>
-                        <Button 
-                            onClick={() => selectAll(section, 'N/A')} 
-                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${
-                                (() => {
-                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A');
-                                })() ? 'bg-gray-600 hover:bg-gray-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
-                            }`}
+                        <Button
+                            onClick={() => selectAll(section, 'N/A')}
+                            className={`w-full text-[10px] h-10 font-bold flex items-center justify-center gap-2 uppercase rounded-lg shadow-sm transition-all ${(() => {
+                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
+                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'N/A');
+                            })() ? 'bg-gray-600 hover:bg-gray-700 text-white' : 'bg-[#006795] hover:bg-[#0a5670] text-white'
+                                }`}
                         >
                             <div className="w-4 h-4 bg-white/20 border border-white/40 flex items-center justify-center rounded">
                                 {(() => {
@@ -1374,8 +1397,8 @@ export default function InspectionCategoryPage() {
                             <Pencil className="w-4 h-4" />
                         </button>
                     </div>
-                    
-                    <Button 
+
+                    <Button
                         onClick={() => router.push(`/dashboard/inspection/summary?propertyId=${id}`)}
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
@@ -1807,8 +1830,8 @@ export default function InspectionCategoryPage() {
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Selected</label>
                                         <div onClick={() => handleOpenSelection('selected')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold cursor-pointer hover:bg-white hover:border-blue-400 transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
-                                            <span className={selectedDeficiency ? "text-gray-900" : "text-gray-400"}>
-                                                {selectedDeficiency ? selectedDeficiency.selected : "--Select--"}
+                                            <span className={(odForm.deficiencySelected || selectedDeficiency) ? "text-gray-900" : "text-gray-400"}>
+                                                {odForm.deficiencySelected || (selectedDeficiency ? selectedDeficiency.selected : "--Select--")}
                                             </span>
                                             <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />
                                         </div>
@@ -1823,8 +1846,8 @@ export default function InspectionCategoryPage() {
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Detail</label>
                                         <div onClick={() => selectedDeficiency && handleOpenSelection('detail')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold ${selectedDeficiency ? 'cursor-pointer hover:bg-white hover:border-blue-400' : 'cursor-not-allowed opacity-70'} transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
-                                            <span className={selectedDeficiency ? "text-gray-900" : "text-gray-400"}>
-                                                {selectedDeficiency ? selectedDeficiency.detail : "-- Select deficiency first --"}
+                                            <span className={(odForm.deficiencyDetail || selectedDeficiency) ? "text-gray-900" : "text-gray-400"}>
+                                                {odForm.deficiencyDetail || (selectedDeficiency ? selectedDeficiency.detail : "-- Select deficiency first --")}
                                             </span>
                                             {selectedDeficiency && <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />}
                                         </div>
@@ -2030,7 +2053,16 @@ export default function InspectionCategoryPage() {
                             {modalStep === 3 && (
                                 <div className="space-y-4 animate-in slide-in-from-right duration-300 pb-10">
                                     <div className="flex items-center gap-4 mb-8 sticky top-0 bg-white/95 backdrop-blur-sm p-1 z-10">
-                                        <button onClick={() => setModalStep(2)} className="w-10 h-10 border border-gray-100 bg-white rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all text-blue-600 shadow-sm">
+                                        <button
+                                            onClick={() => {
+                                                if (selectionType === 'detail') {
+                                                    setSelectionType('selected');
+                                                } else {
+                                                    setModalStep(2);
+                                                }
+                                            }}
+                                            className="w-10 h-10 border border-gray-100 bg-white rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all text-blue-600 shadow-sm"
+                                        >
                                             <ChevronLeft className="w-5 h-5" />
                                         </button>
                                         <div>
@@ -2085,15 +2117,15 @@ export default function InspectionCategoryPage() {
                                 </div>
 
                                 {/* Primary Action: Continue Inspection styled like View Summary */}
-                                <Button 
+                                <Button
                                     onClick={() => {
                                         // Reset modal and stay on inspection page
                                         setModalStep(1);
                                         setSelectedDeficiency(null);
                                         setPhotos([]);
-                                        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "" });
+                                        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
                                         setIsODModalOpen(false);
-                                    }} 
+                                    }}
                                     className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-14 rounded-xl shadow-lg uppercase text-[10px] tracking-widest flex items-center justify-center gap-3"
                                 >
                                     Continue Inspection
