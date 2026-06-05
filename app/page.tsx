@@ -2,23 +2,41 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { UnitSelectionModal } from "@/components/UnitSelectionModal";
 import MainLayout from "@/components/MainLayout";
 
 export default function Home() {
   const router = useRouter();
-  const [unitSelectionOpen, setUnitSelectionOpen] = useState(false);
 
   const handleGetStarted = () => {
-    setUnitSelectionOpen(true);
-  };
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.push('/login');
+      return;
+    }
 
-  const handleUnitSelectionContinue = (selectedUnits: string[]) => {
-    setUnitSelectionOpen(false);
-    localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
-    router.push("/profile-selection");
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      try {
+        const user = JSON.parse(userData);
+        const userRole = user.role;
+
+        if (userRole === 'admin') {
+          router.push('/admin/dashboard');
+        } else if (userRole === 'management' || userRole === 'property-manager' || userRole === 'supervisor') {
+          router.push('/management/dashboard');
+        } else if (userRole === 'inspector') {
+          router.push('/dashboard');
+        } else {
+          router.push('/other/dashboard');
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        router.push('/login');
+      }
+    } else {
+      router.push('/login');
+    }
   };
 
   return (
@@ -109,11 +127,6 @@ export default function Home() {
           </div>
         </section>
 
-        <UnitSelectionModal
-          isOpen={unitSelectionOpen}
-          onClose={() => setUnitSelectionOpen(false)}
-          onContinue={handleUnitSelectionContinue}
-        />
       </div>
     </MainLayout>
   );
