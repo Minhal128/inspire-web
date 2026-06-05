@@ -98,11 +98,11 @@ export default function Login() {
             position: "top-right",
             autoClose: 3000,
           })
-          
+
           // Clear any previous partial data
           localStorage.removeItem('token')
           localStorage.removeItem('user')
-          
+
           setTimeout(() => {
             router.push(`/verify-email?email=${encodeURIComponent(email)}&role=${role || 'inspector'}`)
           }, 2000)
@@ -224,7 +224,7 @@ export default function Login() {
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
-            alt="INSPIRE Logo"
+            alt="NSPIREinspection.AI Logo"
             width={480}
             height={560}
             className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer"
@@ -232,7 +232,7 @@ export default function Login() {
           />
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-          Welcome to INSPIRE
+          Welcome to NSPIREinspection.AI
         </h1>
         <p className="text-sm md:text-base text-gray-600">
           Smart Inspections. Real-Time Results.

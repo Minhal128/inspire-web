@@ -236,7 +236,7 @@ export default function ManagementSignup() {
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
-            alt="INSPIRE Logo"
+            alt="NSPIREinspection.AI Logo"
             width={480}
             height={560}
             className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer"
@@ -244,10 +244,10 @@ export default function ManagementSignup() {
           />
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-          Create Your INSPIRE Account
+          Create Your NSPIREinspection.AI Account
         </h1>
         <p className="text-sm md:text-base text-gray-600 px-4">
-          Start inspecting smarter — join property managers and inspectors using INSPIRE to streamline inspections and stay NSPIRE compliant.
+          Start inspecting smarter — join property managers and inspectors using NSPIREinspection.AI to streamline inspections and stay NSPIRE compliant.
         </p>
       </div>
 

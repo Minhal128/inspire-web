@@ -105,7 +105,7 @@ export default function AdminLogin() {
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
-            alt="INSPIRE Logo"
+            alt="NSPIREinspection.AI Logo"
             width={480}
             height={560}
             className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer"
@@ -116,7 +116,7 @@ export default function AdminLogin() {
           Admin Portal
         </h1>
         <p className="text-sm md:text-base text-gray-600">
-          INSPIRE Administration Panel
+          NSPIREinspection.AI Administration Panel
         </p>
         <p className="text-xs md:text-sm text-[#006795] font-semibold mt-2">
           Authorized Personnel Only
@@ -141,7 +141,7 @@ export default function AdminLogin() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@inspire.com"
+                placeholder="admin@nspireinspection.ai"
                 className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
               />
             </div>

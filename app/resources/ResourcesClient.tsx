@@ -29,7 +29,7 @@ const resources = [
   },
   {
     title: "News & Articles",
-    description: "Stay updated with the latest industry news, regulatory changes, and Nspire announcements.",
+    description: "Stay updated with the latest industry news, regulatory changes, and NSPIREinspection.AI announcements.",
     href: "/news-articles",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2" /></svg>
@@ -56,7 +56,7 @@ export default function ResourcesClient() {
   return (
     <main className="w-full min-h-screen bg-white overflow-x-hidden">
       <div className="bg-[#E8F4F8] pt-[-25] pb-4 flex justify-center">
-        <Image src="/logo.png" alt="INSPIRE" width={500} height={600} priority className="h-14 md:h-32 lg:h-40 w-auto" />
+        <Image src="/logo.png" alt="NSPIREinspection.AI" width={500} height={600} priority className="h-14 md:h-32 lg:h-40 w-auto" />
       </div>
 
       <nav className="bg-[#E8F4F8] px-4 md:px-6 py-3 md:py-4">
@@ -126,8 +126,8 @@ export default function ResourcesClient() {
       {/* Footer */}
       <footer className="bg-black text-white py-12 px-4 md:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <Image src="/logo.png" alt="INSPIRE" width={120} height={40} className="mx-auto mb-6 h-8 w-auto" />
-          <p className="text-gray-400 text-xs">© 2026 Nspire Home Inspections. All rights reserved.</p>
+          <Image src="/logo.png" alt="NSPIREinspection.AI" width={120} height={40} className="mx-auto mb-6 h-8 w-auto" />
+          <p className="text-gray-400 text-xs">© 2026 NSPIREinspection.AI Home Inspections. All rights reserved.</p>
         </div>
       </footer>
     </main>

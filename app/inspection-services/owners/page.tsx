@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import OwnersClient from "./OwnersClient";
 
 export const metadata: Metadata = {
-  title: "Owners Inspection Services in USA | Nspire Home Inspections",
-  description: "Inspire offers comprehensive Owners Inspection Services across the USA for property owners, landlords, and multi-unit managers with precise evaluations.",
+  title: "Owners Inspection Services | NSPIREinspection.AI",
+  description: "Comprehensive owners inspection services nationwide. NSPIREinspection.AI helps property owners and landlords maintain property health and protect investments.",
 };
 
 export default function OwnersPage() {

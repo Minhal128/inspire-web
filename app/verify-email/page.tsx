@@ -56,9 +56,9 @@ function VerifyEmailContent() {
                 // Redirect directly to the correct login page based on the registered role
                 const loginPath =
                     role === 'management' ? '/management/login' :
-                    role === 'other'       ? '/other/login' :
-                    role === 'inspector'   ? '/login?role=inspector' :
-                    '/profile-selection'
+                        role === 'other' ? '/other/login' :
+                            role === 'inspector' ? '/login?role=inspector' :
+                                '/profile-selection'
 
                 toast.success("Email verified successfully! Redirecting to login...", {
                     position: "top-right",
@@ -123,7 +123,7 @@ function VerifyEmailContent() {
                 <div className="flex justify-center mb-8">
                     <Image
                         src="/logo.png"
-                        alt="INSPIRE Logo"
+                        alt="NSPIREinspection.AI Logo"
                         width={480}
                         height={560}
                         className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer"

@@ -114,7 +114,7 @@ function NSPIREInspectionSummaryContent() {
     try {
       const ctx = localStorage.getItem('currentInspectionUnit')
       if (ctx) setInspectionContext(JSON.parse(ctx))
-    } catch {}
+    } catch { }
   }, [])
 
   const inspectionIdentifier = useMemo(() => {
@@ -137,7 +137,7 @@ function NSPIREInspectionSummaryContent() {
       router.push(`/dashboard/inspection-category/${propertyId}`);
       return;
     }
-    
+
     // Priority 1: Current unit context from localStorage
     if (inspectionContext) {
       router.push(`/dashboard/inspection-category/${inspectionContext.propertyId}`);
@@ -152,14 +152,14 @@ function NSPIREInspectionSummaryContent() {
         const propertyId = parsed.propertyId || parsed.inspectionId;
         const building = parsed.building || parsed.buildingId || '';
         const unit = parsed.currentUnit || parsed.unitId || '';
-        
+
         if (propertyId) {
           let url = `/dashboard/inspection-category/${propertyId}`;
           const params = new URLSearchParams();
           if (building) params.append('building', building);
           if (unit) params.append('unit', unit);
           params.append('units', '1');
-          
+
           url += `?${params.toString()}`;
           router.push(url);
           return;
@@ -179,7 +179,7 @@ function NSPIREInspectionSummaryContent() {
           router.push(`/dashboard/inspection-category/${pid}?building=B1&unit=Outside&units=1`);
           return;
         }
-      } catch {}
+      } catch { }
     }
 
     // Priority 4: Dashboard
@@ -231,7 +231,7 @@ function NSPIREInspectionSummaryContent() {
                   const unit = record.unitId || record.inspectionData?.currentUnit || '-';
                   const rawArea = record.inspectionType || (unit === 'Outside' ? 'Outside' : unit === 'Inside' ? 'Inside' : 'Unit');
                   const area = rawArea.charAt(0).toUpperCase() + rawArea.slice(1).toLowerCase();
-                  
+
                   recordFindings.forEach((f: any) => {
                     allFindings.push({
                       ...f,
@@ -249,7 +249,7 @@ function NSPIREInspectionSummaryContent() {
               inspectionsRes.inspections.forEach((insp: any) => {
                 const inspFindings = insp.findings || insp.deficiencies || [];
                 if (insp.isReportUnlocked) serverUnlocked = true;
-                
+
                 if (Array.isArray(inspFindings)) {
                   inspFindings.forEach((f: any) => {
                     allFindings.push({
@@ -274,13 +274,13 @@ function NSPIREInspectionSummaryContent() {
 
               // Create a key that identifies the SAME physical deficiency across different states
               const key = [normName, normBuilding, normUnit].filter(Boolean).join('|');
-              
+
               // If we have duplicates, prefer the one that came from a finalized inspection or has an image
               const existing = deduped.get(key);
-              const isNewerOrBetter = !existing || 
-                                     (f.isFinalized && !existing.isFinalized) || 
-                                     (!existing.imageUri && f.imageUri);
-                                     
+              const isNewerOrBetter = !existing ||
+                (f.isFinalized && !existing.isFinalized) ||
+                (!existing.imageUri && f.imageUri);
+
               if (isNewerOrBetter) {
                 deduped.set(key, f);
               }
@@ -385,7 +385,7 @@ function NSPIREInspectionSummaryContent() {
 
         if (paymentStatus === 'success' && sessionId) {
           const data = await paymentsAPI.getStripeSessionStatus(sessionId);
-          
+
           if (!data?.success) {
             throw new Error(data?.message || 'Unable to verify Stripe payment status.')
           }
@@ -680,7 +680,7 @@ function NSPIREInspectionSummaryContent() {
 
     // If not unlocked, we allow a "Preview" export with only 2 items
     const isPreview = !isReportUnlocked;
-    
+
     if (isPreview) {
       toast.info('Exporting 2-item preview PDF...', { position: 'top-right' })
     }
@@ -709,7 +709,7 @@ function NSPIREInspectionSummaryContent() {
 
       if (mergedInspectionPayload) {
         const propertyData = storedProperty ? JSON.parse(storedProperty) : null;
-        
+
         // PHOTO FIX: Prefer `findings` (raw data with imageUri strings) over
         // `deficiencies` (transformed objects where imageUri is nested inside photos[].url)
         const rawItems = isPreview
@@ -771,7 +771,7 @@ function NSPIREInspectionSummaryContent() {
         if (storedProperty) {
           rawData.property = JSON.parse(storedProperty);
         }
-        
+
         // Limit deficiencies for preview export if locked
         if (isPreview && Array.isArray(rawData.findings)) {
           rawData.findings = rawData.findings.slice(0, 2);
@@ -779,7 +779,7 @@ function NSPIREInspectionSummaryContent() {
         if (isPreview && Array.isArray(rawData.deficiencies)) {
           rawData.deficiencies = rawData.deficiencies.slice(0, 2);
         }
-        
+
         payloadData = rawData;
       } else if (!payloadData) {
         // Fallback: Reconstruct compatible object from current report state
@@ -860,14 +860,14 @@ function NSPIREInspectionSummaryContent() {
             const htmlUrl = window.URL.createObjectURL(htmlBlob);
             const htmlLink = document.createElement('a');
             htmlLink.href = htmlUrl;
-            htmlLink.download = (data.filename || `INSPIRE_Report_${report.metadata.inspectionNo}.html`).replace(/\.pdf$/i, '.html');
+            htmlLink.download = (data.filename || `NSPIREinspection.AI_Report_${report.metadata.inspectionNo}.html`).replace(/\.pdf$/i, '.html');
             document.body.appendChild(htmlLink);
             htmlLink.click();
             document.body.removeChild(htmlLink);
             window.URL.revokeObjectURL(htmlUrl);
             toast.warning('Popup blocked. Downloaded HTML backup instead—open it and print to PDF.', { position: 'top-right' });
           }
-          
+
           // Still mark as completed even with HTML fallback
           await markInspectionAsCompleted();
           return; // Exit, handled
@@ -896,7 +896,7 @@ function NSPIREInspectionSummaryContent() {
       const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = `INSPIRE_Report_${report.metadata.inspectionNo}.pdf`
+      link.download = `NSPIREinspection.AI_Report_${report.metadata.inspectionNo}.pdf`
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
@@ -908,7 +908,7 @@ function NSPIREInspectionSummaryContent() {
       if (!mergedInspectionPayload) {
         await markInspectionAsCompleted();
       }
-      
+
     } catch (error: any) {
       console.error('PDF export error:', error)
       toast.error(`Failed to export PDF: ${error.message}`, { position: "top-right" })
@@ -1071,7 +1071,7 @@ function NSPIREInspectionSummaryContent() {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <h1 className="text-2xl font-bold text-[#006795]">
-                  {searchParams.get('finalize') === 'true' ? 'HUD INSPIRE INSPECTION REPORT' : 'HUD INSPIRE INSPECTION PROGRESS'}
+                  {searchParams.get('finalize') === 'true' ? 'HUD NSPIRE INSPECTION REPORT' : 'HUD NSPIRE INSPECTION PROGRESS'}
                 </h1>
               </div>
               <p className="text-gray-600 font-medium">{report.metadata.propertyName}</p>
@@ -1281,7 +1281,7 @@ function NSPIREInspectionSummaryContent() {
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 INSPECTION DATA
               </h2>
-              
+
               {/* Desktop Table */}
               <div className="hidden sm:block overflow-x-auto">
                 <table className="w-full">
@@ -1377,7 +1377,7 @@ function NSPIREInspectionSummaryContent() {
                           {areaDeficiencies.length}
                         </span>
                       </div>
-                      
+
                       {/* Desktop Table View for this Area */}
                       <div className="hidden lg:block overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
                         <table className="w-full text-sm">
@@ -1499,13 +1499,13 @@ function NSPIREInspectionSummaryContent() {
                               </div>
                             </div>
                             <div className="pt-3 border-t border-gray-200 text-xs space-y-2">
-                               <p className="text-gray-700 leading-relaxed">{def.deficiencyDetails}</p>
-                               <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px] text-gray-500">
-                                  <div><span className="font-bold">Location:</span> {def.building} {def.unit !== '-' ? `| Unit ${def.unit}` : ''}</div>
-                                  <div><span className="font-bold">Room:</span> {def.room}</div>
-                                  <div><span className="font-bold">Repair By:</span> {def.repairTimeline}</div>
-                                  <div><span className="font-bold">Status:</span> {def.status}</div>
-                               </div>
+                              <p className="text-gray-700 leading-relaxed">{def.deficiencyDetails}</p>
+                              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px] text-gray-500">
+                                <div><span className="font-bold">Location:</span> {def.building} {def.unit !== '-' ? `| Unit ${def.unit}` : ''}</div>
+                                <div><span className="font-bold">Room:</span> {def.room}</div>
+                                <div><span className="font-bold">Repair By:</span> {def.repairTimeline}</div>
+                                <div><span className="font-bold">Status:</span> {def.status}</div>
+                              </div>
                             </div>
                           </div>
                         ))}

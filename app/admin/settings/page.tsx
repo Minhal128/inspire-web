@@ -6,8 +6,8 @@ import { toast } from "react-toastify"
 
 export default function AdminSettings() {
   // General Settings
-  const [companyName, setCompanyName] = useState("INSPIRE Inspections")
-  const [companyEmail, setCompanyEmail] = useState("admin@inspire.com")
+  const [companyName, setCompanyName] = useState("NSPIREinspection.AI Inspections")
+  const [companyEmail, setCompanyEmail] = useState("admin@nspireinspection.ai")
   const [companyPhone, setCompanyPhone] = useState("(555) 123-4567")
   const [timezone, setTimezone] = useState("America/Los_Angeles")
 
@@ -62,7 +62,7 @@ export default function AdminSettings() {
               </svg>
               General Settings
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
@@ -73,7 +73,7 @@ export default function AdminSettings() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Admin Email</label>
                 <input
@@ -83,7 +83,7 @@ export default function AdminSettings() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                 <input
@@ -93,7 +93,7 @@ export default function AdminSettings() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Timezone</label>
                 <select
@@ -108,7 +108,7 @@ export default function AdminSettings() {
                 </select>
               </div>
             </div>
-            
+
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleSaveGeneral}
@@ -127,7 +127,7 @@ export default function AdminSettings() {
               </svg>
               Notification Settings
             </h2>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <div>
@@ -144,7 +144,7 @@ export default function AdminSettings() {
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#1E3A5F]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
                 </label>
               </div>
-              
+
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <div>
                   <div className="font-medium text-gray-900">SMS Notifications</div>
@@ -160,7 +160,7 @@ export default function AdminSettings() {
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#1E3A5F]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
                 </label>
               </div>
-              
+
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <div>
                   <div className="font-medium text-gray-900">Inspection Reminders</div>
@@ -176,7 +176,7 @@ export default function AdminSettings() {
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#1E3A5F]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
                 </label>
               </div>
-              
+
               <div className="flex items-center justify-between py-2">
                 <div>
                   <div className="font-medium text-gray-900">Report Alerts</div>
@@ -193,7 +193,7 @@ export default function AdminSettings() {
                 </label>
               </div>
             </div>
-            
+
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleSaveNotifications}
@@ -213,7 +213,7 @@ export default function AdminSettings() {
               </svg>
               Inspection Settings
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Default Inspection Duration (minutes)</label>
@@ -224,7 +224,7 @@ export default function AdminSettings() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Passing Score (%)</label>
                 <input
@@ -237,7 +237,7 @@ export default function AdminSettings() {
                 />
               </div>
             </div>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <div>
@@ -254,7 +254,7 @@ export default function AdminSettings() {
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#1E3A5F]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
                 </label>
               </div>
-              
+
               <div className="flex items-center justify-between py-2">
                 <div>
                   <div className="font-medium text-gray-900">Auto-Assign Inspectors</div>
@@ -271,7 +271,7 @@ export default function AdminSettings() {
                 </label>
               </div>
             </div>
-            
+
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleSaveInspection}
@@ -290,7 +290,7 @@ export default function AdminSettings() {
               </svg>
               Security Settings
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Session Timeout (minutes)</label>
@@ -301,7 +301,7 @@ export default function AdminSettings() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Password Expiry (days)</label>
                 <input
@@ -312,7 +312,7 @@ export default function AdminSettings() {
                 />
               </div>
             </div>
-            
+
             <div className="flex items-center justify-between py-2">
               <div>
                 <div className="font-medium text-gray-900">Two-Factor Authentication</div>
@@ -328,7 +328,7 @@ export default function AdminSettings() {
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#1E3A5F]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
               </label>
             </div>
-            
+
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleSaveSecurity}

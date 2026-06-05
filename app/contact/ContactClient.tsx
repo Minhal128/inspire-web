@@ -43,7 +43,7 @@ export default function ContactClient() {
                 </div>
                 <h3 className="text-xl font-bold text-black mb-2">Email Us</h3>
                 <p className="text-gray-500 text-sm mb-4">Our friendly team is here to help.</p>
-                <a href="mailto:support@inspire.com" className="text-[#006795] font-bold hover:underline text-lg">support@inspire.com</a>
+                <a href="mailto:support@nspireinspection.ai" className="text-[#006795] font-bold hover:underline text-lg">support@nspireinspection.ai</a>
               </div>
 
               <div className="bg-white p-8 rounded-[40px] shadow-xl border border-gray-100 flex flex-col items-center text-center">
@@ -73,7 +73,7 @@ export default function ContactClient() {
             {/* Contact Form */}
             <div className="lg:col-span-2 bg-white p-8 md:p-12 rounded-[50px] shadow-2xl border border-gray-100">
               <h2 className="text-3xl font-bold text-black mb-8">Send us a <span className="text-[#F84B5F]">Message</span></h2>
-              
+
               {submitted ? (
                 <div className="py-20 text-center">
                   <div className="w-20 h-20 bg-[#006795]/20 text-[#006795] rounded-full flex items-center justify-center mx-auto mb-6">
@@ -121,16 +121,16 @@ export default function ContactClient() {
 
         {/* Map Section Mockup */}
         <section className="pb-20 px-4 md:px-6">
-           <div className="max-w-[1200px] mx-auto overflow-hidden rounded-[50px] bg-gray-100 h-[400px] relative">
-              <div className="absolute inset-0 bg-[#006795]/5 flex items-center justify-center">
-                   <div className="text-center">
-                      <div className="w-12 h-12 bg-[#F84B5F] rounded-full mx-auto mb-4 animate-bounce flex items-center justify-center">
-                           <div className="w-4 h-4 bg-white rounded-full"></div>
-                      </div>
-                      <p className="font-bold text-gray-400 uppercase tracking-widest text-xs">Interactive Map Data</p>
-                   </div>
+          <div className="max-w-[1200px] mx-auto overflow-hidden rounded-[50px] bg-gray-100 h-[400px] relative">
+            <div className="absolute inset-0 bg-[#006795]/5 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-[#F84B5F] rounded-full mx-auto mb-4 animate-bounce flex items-center justify-center">
+                  <div className="w-4 h-4 bg-white rounded-full"></div>
+                </div>
+                <p className="font-bold text-gray-400 uppercase tracking-widest text-xs">Interactive Map Data</p>
               </div>
-           </div>
+            </div>
+          </div>
         </section>
       </div>
     </MainLayout>

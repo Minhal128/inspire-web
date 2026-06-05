@@ -30,7 +30,7 @@ export default function ManagementForgotPassword() {
 
   const handleEmailSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    
+
     if (!email.trim()) {
       toast.error("Please enter your email address", { position: "top-right", autoClose: 3000 })
       return
@@ -71,7 +71,7 @@ export default function ManagementForgotPassword() {
 
   const handleOTPSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    
+
     if (!otp.trim() || otp.length !== 6 || !/^\d{6}$/.test(otp)) {
       toast.error("Please enter a valid 6-digit OTP", { position: "top-right", autoClose: 3000 })
       return
@@ -107,7 +107,7 @@ export default function ManagementForgotPassword() {
 
   const handlePasswordSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    
+
     if (!newPassword || !validatePassword(newPassword)) {
       toast.error("Password must be 8-128 characters with uppercase, lowercase, number, and special character (@$!%*?&)", { position: "top-right", autoClose: 5000 })
       return
@@ -179,10 +179,10 @@ export default function ManagementForgotPassword() {
       {/* Header Section */}
       <div className="w-full bg-[#E8F4F8] px-6 text-center flex flex-col items-center justify-center rounded-b-[70px]" style={{ height: '280px' }}>
         <div className="flex justify-center mb-8">
-          <Image 
-            src="/logo.png" 
-            alt="INSPIRE Logo" 
-            width={480} 
+          <Image
+            src="/logo.png"
+            alt="NSPIREinspection.AI Logo"
+            width={480}
             height={560}
             className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer"
             onClick={() => router.push('/')}
@@ -190,7 +190,7 @@ export default function ManagementForgotPassword() {
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">{getStepTitle()}</h1>
         <p className="text-sm md:text-base text-gray-600 px-4 mb-8">{getStepDescription()}</p>
-        
+
         {/* Step Indicator */}
         <div className="flex items-center gap-2">
           <div className={`w-3 h-3 rounded-full ${step === 'email' ? 'bg-[#006795]' : 'bg-gray-300'}`} />
@@ -202,7 +202,7 @@ export default function ManagementForgotPassword() {
       {/* Form Section */}
       <div className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-[600px] px-6 md:px-12 py-8">
-          
+
           {step === 'email' && (
             <form onSubmit={handleEmailSubmit} className="space-y-6">
               <div>
@@ -281,7 +281,7 @@ export default function ManagementForgotPassword() {
 
           {/* Back Link */}
           <p className="text-center text-sm mt-6">
-            <button 
+            <button
               onClick={() => step === 'email' ? router.push('/management/login') : setStep('email')}
               className="text-[#F84B5F] hover:underline font-semibold cursor-pointer bg-transparent border-0"
             >

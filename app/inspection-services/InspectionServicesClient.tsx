@@ -10,65 +10,72 @@ const serviceCategories = [
   {
     title: "Buyers Inspection Services",
     subtitle: "Pre-Purchase Protection",
-    description: "Comprehensive inspections for single-family homes, multi-unit properties, condominiums, and commercial pre-purchase evaluations.",
+    description: "NSPIREinspection.AI provides comprehensive pre-purchase inspections for single-family homes, multi-unit properties, and commercial evaluations nationwide.",
     href: "/inspection-services/buyers",
     items: ["Single-Family Inspections", "Multi-Unit Inspections", "Condominium/Townhouse", "Commercial Pre-Purchase", "Structural & Mechanical Reviews", "NSPIRE/REAC Compliance"],
     color: "#006795",
-    accent: "#E8F4F8"
+    accent: "#E8F4F8",
+    image: "/candid_house_people.png"
   },
   {
     title: "Owners Inspection Services",
     subtitle: "Maintain & Protect Your Investment",
-    description: "Annual property inspections, pre-listing evaluations, property condition assessments, and maintenance surveys for current owners.",
+    description: "Ensure your investment is maintained with annual inspections, pre-listing evaluations, and property condition assessments from NSPIREinspection.AI.",
     href: "/inspection-services/owners",
     items: ["Annual Owner Property Inspection", "Pre-Listing Home Inspection", "Property Condition Evaluation", "Homeowner Maintenance Survey", "Tenant Safety Review"],
     color: "#F84B5F",
-    accent: "#FEF2F2"
+    accent: "#FEF2F2",
+    image: "/candid_inspection.png"
   },
   {
     title: "Sellers Inspection Services",
     subtitle: "Maximize Marketability",
-    description: "Pre-listing inspections, HUD/REAC pre-sale support, property readiness evaluations, seller transparency reports, and pricing advantage strategies.",
+    description: "NSPIREinspection.AI offers pre-listing inspections and HUD/REAC pre-sale support to maximize your property's marketability and seller transparency.",
     href: "/inspection-services/sellers",
     items: ["Pre-Listing Inspection", "HUD/REAC Pre-Sale Support", "Defect Detection", "Pricing Advantage Report", "Marketability Enhancement", "Seller Transparency Report"],
     color: "#F97316",
-    accent: "#FFF7ED"
+    accent: "#FFF7ED",
+    image: "/candid_street.png"
   },
   {
     title: "Specialized & Add-On Services",
     subtitle: "Deep-Dive Assessments",
-    description: "Targeted inspections including sewer scope, thermal imaging, mold and air quality testing, radon, pool, lead paint, and asbestos surveys.",
+    description: "Targeted deep-dive assessments including sewer scope, thermal imaging, and environmental testing by NSPIREinspection.AI's certified experts.",
     href: "/inspection-services/specialized",
     items: ["Sewer Scope Inspection", "Thermal Imaging/Infrared", "Mold & Air Quality Testing", "Radon Testing", "Pool & Spa Evaluation", "Lead-Based Paint Assessment", "Asbestos Survey"],
     color: "#22C55E",
-    accent: "#F0FDF4"
+    accent: "#F0FDF4",
+    image: "/blog-sewer-scope.png"
   },
   {
     title: "Commercial Inspection Services",
     subtitle: "For Business Properties",
-    description: "Professional evaluations for multifamily buildings, warehouses, industrial, retail, office, healthcare, and hospitality properties.",
+    description: "Professional commercial evaluations for multifamily, industrial, retail, and hospitality properties by NSPIREinspection.AI.",
     href: "/inspection-services/commercial",
     items: ["Multifamily/Apartment Buildings", "Warehouse & Industrial", "Retail & Office Spaces", "Healthcare Facilities", "Hospitality Properties"],
     color: "#F59E0B",
-    accent: "#FFFBEB"
+    accent: "#FFFBEB",
+    image: "/candid_commercial_building.png"
   },
   {
     title: "Public Housing & Multi-Family",
     subtitle: "Compliance & Standards",
-    description: "REAC/NSPIRE standard compliance inspections, physical needs assessments, ADA accessibility, and quality assurance program reviews.",
+    description: "Expert REAC/NSPIRE compliance inspections and physical needs assessments for public housing authorities and multi-family managers.",
     href: "/inspection-services/public-housing",
     items: ["REAC/NSPIRE Compliance", "Physical Needs Assessment (PNA)", "UFAS/ADA Accessibility", "Quality Assurance Reviews"],
     color: "#8B5CF6",
-    accent: "#F5F3FF"
+    accent: "#F5F3FF",
+    image: "/candid_public_housing.png"
   },
   {
     title: "Rental Property Inspections",
     subtitle: "Landlord & Tenant Solutions",
-    description: "Move-in, move-out, and annual safety inspections for rental properties. Tenant damage assessment, habitability reviews, and compliance documentation packages.",
+    description: "NSPIREinspection.AI provides comprehensive rental safety, move-in, and move-out inspections to ensure compliance and tenant satisfaction.",
     href: "/inspection-services/rental",
     items: ["Move-In Inspection", "Move-Out Inspection", "Annual Safety Inspection", "Tenant Damage Assessment", "Habitability Review", "Compliance Documentation"],
     color: "#10B981",
-    accent: "#ECFDF5"
+    accent: "#ECFDF5",
+    image: "/plaza_shops.png"
   },
   {
     title: "Insurance Risk Management",
@@ -77,7 +84,8 @@ const serviceCategories = [
     href: "/inspection-services/insurance-risk",
     items: ["Property Risk Assessment", "Hazard & Liability Review", "Fire & Safety Reporting", "Environmental Risk Analysis", "Claim Prevention", "Annual Compliance Checks"],
     color: "#DC2626",
-    accent: "#FEF2F2"
+    accent: "#FEF2F2",
+    image: "/blog-roof.png"
   }
 ];
 
@@ -94,13 +102,18 @@ export default function InspectionServicesClient() {
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#F84B5F] rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
           </div>
           <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-6">
-            <p className="text-[#006795] font-bold uppercase tracking-[0.2em] mb-6">Professional Inspections</p>
+            <p className="text-[#006795] font-bold uppercase tracking-[0.2em] mb-6">NATIONWIDE SOLUTIONS</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-8 leading-[1.1]">
               Inspection <span className="text-[#F84B5F] italic font-medium">Services</span>
             </h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-              From first-time homebuyers to large commercial portfolios, our certified inspectors deliver comprehensive, technology-driven assessments you can trust.
-            </p>
+            <div className="text-gray-600 text-lg max-w-4xl mx-auto leading-relaxed space-y-6">
+              <p>
+                NSPIREinspection.AI provides professional Inspection Services nationwide, delivering end-to-end solutions for buyers, owners, sellers, landlords, investors, and public housing authorities.
+              </p>
+              <p>
+                From single-family homes to multi-unit commercial buildings, NSPIREinspection.AI combines structural, mechanical, electrical, and safety evaluations into a single trusted framework. We support purchase decisions, risk management, compliance verification, and long-term asset planning through data-driven inspections.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -131,8 +144,15 @@ export default function InspectionServicesClient() {
                 </div>
 
                 {/* Visual */}
-                <div className="flex-shrink-0 w-full lg:w-[300px] h-[200px] lg:h-[300px] rounded-[32px] flex items-center justify-center" style={{ backgroundColor: cat.accent }}>
-                  <div className="text-6xl font-extrabold opacity-20" style={{ color: cat.color }}>0{idx + 1}</div>
+                <div className="flex-shrink-0 w-full lg:w-[450px] h-[250px] lg:h-[350px] rounded-[32px] overflow-hidden shadow-inner relative">
+                  <Image
+                    src={cat.image || "/why.jpg"}
+                    alt={cat.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  <div className="absolute top-4 right-4 text-4xl font-extrabold text-white/50">0{idx + 1}</div>
                 </div>
               </div>
             </Link>

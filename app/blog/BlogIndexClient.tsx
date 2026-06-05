@@ -98,7 +98,7 @@ export default function BlogIndex() {
                     />
                   </div>
                 </Link>
-                
+
                 <div className="max-w-[900px]">
                   <Link href={`/blog/${blog.slug}`}>
                     <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-2 leading-tight group-hover:text-[#006795] transition-colors">
@@ -108,20 +108,20 @@ export default function BlogIndex() {
                       {blog.subtitle}
                     </p>
                   </Link>
-                  
+
                   <div className="flex items-center gap-2 text-sm text-gray-400 mb-6 font-medium">
-                    <span>by Inspire Experts</span>
+                    <span>by NSPIREinspection.AI Experts</span>
                     <span>|</span>
                     <span>{blog.date}</span>
                     <span>|</span>
                     <span className="text-[#006795]">{blog.category}</span>
                   </div>
-                  
+
                   <p className="text-lg text-gray-600 leading-relaxed mb-8">
                     {blog.excerpt}...
                   </p>
-                  
-                  <Link 
+
+                  <Link
                     href={`/blog/${blog.slug}`}
                     className="inline-flex items-center gap-2 text-[#006795] font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all"
                   >
@@ -133,7 +133,7 @@ export default function BlogIndex() {
                 </div>
               </article>
             ))}
-            
+
             {/* Pagination Placeholder */}
             <div className="pt-12 border-t border-gray-100 flex items-center gap-6">
               <span className="text-gray-400 cursor-not-allowed uppercase text-sm tracking-widest font-bold">« Newer Entries</span>
@@ -146,9 +146,9 @@ export default function BlogIndex() {
             <div className="bg-white p-8 rounded-[32px] shadow-lg border border-gray-50">
               <h3 className="text-xl font-bold text-black mb-6">Search Blogs</h3>
               <div className="relative">
-                <input 
-                  type="text" 
-                  placeholder="Search..." 
+                <input
+                  type="text"
+                  placeholder="Search..."
                   className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#006795] transition-all"
                 />
                 <svg className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

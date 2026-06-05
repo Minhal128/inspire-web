@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import SpecializedClient from "./SpecializedClient";
 
 export const metadata: Metadata = {
-  title: "Special Inspection Services in USA | Nspire Home Inspections",
-  description: "Comprehensive special inspection services including sewer scope, mold sampling, pool inspections, roof inspections, foundation assessments, and luxury home inspections.",
+  title: "Special Inspection Services | NSPIREinspection.AI",
+  description: "Comprehensive special inspection services nationwide. NSPIREinspection.AI addresses every residential, commercial, and specialized property need with precision.",
 };
 
 export default function SpecializedPage() {

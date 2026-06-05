@@ -14,7 +14,7 @@ export default function TermsClient() {
     <main className="w-full min-h-screen bg-white overflow-x-hidden">
       {/* Logo */}
       <div className="bg-[#E8F4F8] pt-[-25] pb-4 flex justify-center">
-        <Image src="/logo.png" alt="INSPIRE" width={500} height={600} priority className="h-14 md:h-32 lg:h-40 w-auto" />
+        <Image src="/logo.png" alt="NSPIREinspection.AI" width={500} height={600} priority className="h-14 md:h-32 lg:h-40 w-auto" />
       </div>
 
       {/* Navigation */}
@@ -60,12 +60,12 @@ export default function TermsClient() {
         <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-10">
           <div>
             <h2 className="text-2xl font-bold text-black mb-4">1. Acceptance of Terms</h2>
-            <p>By accessing and using the Nspire Home Inspections website and services, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should not use our services.</p>
+            <p>By accessing and using the NSPIREinspection.AI website and services, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should not use our services.</p>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold text-black mb-4">2. Services</h2>
-            <p>Nspire Home Inspections provides professional property inspection services, including but not limited to home inspections, commercial inspections, specialized inspections, and related consulting services. All inspections are performed by certified professionals following industry standards.</p>
+            <p>NSPIREinspection.AI provides professional property inspection services, including but not limited to home inspections, commercial inspections, specialized inspections, and related consulting services. All inspections are performed by certified professionals following industry standards.</p>
           </div>
 
           <div>
@@ -80,17 +80,17 @@ export default function TermsClient() {
 
           <div>
             <h2 className="text-2xl font-bold text-black mb-4">5. Inspection Reports</h2>
-            <p>Inspection reports are prepared for the exclusive use of the client who ordered the inspection. Reports represent the condition of the property at the time of inspection and are not warranties or guarantees. The report is not transferable without written consent from Nspire Home Inspections.</p>
+            <p>Inspection reports are prepared for the exclusive use of the client who ordered the inspection. Reports represent the condition of the property at the time of inspection and are not warranties or guarantees. The report is not transferable without written consent from NSPIREinspection.AI.</p>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold text-black mb-4">6. Limitation of Liability</h2>
-            <p>Nspire Home Inspections' liability is limited to the fee paid for the inspection. We are not responsible for conditions that were concealed, not readily accessible, or that occurred after the inspection date. Our inspections are visual and non-invasive in nature.</p>
+            <p>NSPIREinspection.AI' liability is limited to the fee paid for the inspection. We are not responsible for conditions that were concealed, not readily accessible, or that occurred after the inspection date. Our inspections are visual and non-invasive in nature.</p>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold text-black mb-4">7. Intellectual Property</h2>
-            <p>All content on the Nspire Home Inspections website, including text, graphics, logos, images, and software, is the property of Nspire Home Inspections and is protected by copyright and trademark laws.</p>
+            <p>All content on the NSPIREinspection.AI website, including text, graphics, logos, images, and software, is the property of NSPIREinspection.AI and is protected by copyright and trademark laws.</p>
           </div>
 
           <div>
@@ -102,8 +102,8 @@ export default function TermsClient() {
             <h2 className="text-2xl font-bold text-black mb-4">9. Contact</h2>
             <p>For questions about these Terms of Service, contact us:</p>
             <div className="bg-[#F8F9FA] p-8 rounded-[32px] border border-gray-100 mt-6">
-              <p className="font-bold text-black mb-2">Nspire Home Inspections</p>
-              <p>Email: <a href="mailto:support@nspireexperts.com" className="text-[#006795] hover:underline">support@nspireexperts.com</a></p>
+              <p className="font-bold text-black mb-2">NSPIREinspection.AI</p>
+              <p>Email: <a href="mailto:support@nspireinspection.ai" className="text-[#006795] hover:underline">support@nspireinspection.ai</a></p>
               <p>Phone: <a href="tel:9202202220" className="text-[#006795] hover:underline">920-220-2220</a></p>
             </div>
           </div>
@@ -113,8 +113,8 @@ export default function TermsClient() {
       {/* Footer */}
       <footer className="bg-black text-white py-12 px-4 md:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <Image src="/logo.png" alt="INSPIRE" width={120} height={40} className="mx-auto mb-6 h-8 w-auto" />
-          <p className="text-gray-400 text-xs">© 2026 Nspire Home Inspections. All rights reserved.</p>
+          <Image src="/logo.png" alt="NSPIREinspection.AI" width={120} height={40} className="mx-auto mb-6 h-8 w-auto" />
+          <p className="text-gray-400 text-xs">© 2026 NSPIREinspection.AI. All rights reserved.</p>
         </div>
       </footer>
     </main>

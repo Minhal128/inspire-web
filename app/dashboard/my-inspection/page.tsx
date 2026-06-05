@@ -161,7 +161,7 @@ export default function MyInspection() {
             </svg>
             <div className="flex-1">
               <p className="text-sm text-gray-700">
-                <span className="font-semibold">You can manage properties, buildings, and units here. To perform inspections, please use the INSPIRE app in the tablet.</span>
+                <span className="font-semibold">You can manage properties, buildings, and units here. To perform inspections, please use the NSPIREinspection.AI app in the tablet.</span>
               </p>
             </div>
           </div>

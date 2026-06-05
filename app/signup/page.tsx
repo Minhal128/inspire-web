@@ -230,7 +230,7 @@ export default function Signup() {
         <div className="flex justify-center mb-4 sm:mb-8">
           <Image
             src="/logo.png"
-            alt="INSPIRE Logo"
+            alt="NSPIREinspection.AI Logo"
             width={480}
             height={560}
             className="w-auto h-16 sm:h-24 md:h-32 cursor-pointer"
@@ -238,10 +238,10 @@ export default function Signup() {
           />
         </div>
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">
-          Create Your INSPIRE Account
+          Create Your NSPIREinspection.AI Account
         </h1>
         <p className="text-xs sm:text-sm md:text-base text-gray-600 px-2 sm:px-4 mb-4">
-          Start inspecting smarter — join property managers and inspectors using INSPIRE.
+          Start inspecting smarter — join property managers and inspectors using NSPIREinspection.AI.
         </p>
       </div>
 

@@ -27,8 +27,8 @@ export default function FAQClient() {
                   </h3>
                   <div className="space-y-6">
                     <div className="bg-[#F8F9FA] p-8 rounded-[32px] border border-gray-100">
-                      <h4 className="font-bold text-black mb-3">What is included in a pre buy inspection by Nspire?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">A pre buy inspection from Nspire includes a full evaluation of structural components, electrical systems, plumbing, HVAC, roofing, interior and exterior features, and safety hazards. Buyers can also add services like radon testing, mold testing, sewer scope inspection, termite inspection, deck inspection, septic inspection, and more.</p>
+                      <h4 className="font-bold text-black mb-3">What is included in a pre buy inspection by NSPIREinspection.AI?</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">A pre buy inspection from NSPIREinspection.AI includes a full evaluation of structural components, electrical systems, plumbing, HVAC, roofing, interior and exterior features, and safety hazards. Buyers can also add services like radon testing, mold testing, sewer scope inspection, termite inspection, deck inspection, septic inspection, and more.</p>
                     </div>
                     <div className="bg-[#F8F9FA] p-8 rounded-[32px] border border-gray-100">
                       <h4 className="font-bold text-black mb-3">Who pays for the inspection when buying a house in the USA?</h4>
@@ -36,7 +36,7 @@ export default function FAQClient() {
                     </div>
                     <div className="bg-[#F8F9FA] p-8 rounded-[32px] border border-gray-100">
                       <h4 className="font-bold text-black mb-3">How much does a pre buy inspection cost?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">The pre buy inspection cost depends on the size of the home, location, and selected add on services. Nspire provides transparent pricing so buyers can customize their inspection based on property type and risk level.</p>
+                      <p className="text-gray-600 text-sm leading-relaxed">The pre buy inspection cost depends on the size of the home, location, and selected add on services. NSPIREinspection.AI provides transparent pricing so buyers can customize their inspection based on property type and risk level.</p>
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ export default function FAQClient() {
                   </h3>
                   <div className="space-y-6">
                     <div className="bg-[#F8F9FA] p-8 rounded-[32px] border border-gray-100">
-                      <h4 className="font-bold text-black mb-3">What is included in a commercial inspection by Nspire?</h4>
+                      <h4 className="font-bold text-black mb-3">What is included in a commercial inspection by NSPIREinspection.AI?</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">A commercial inspection covers core building systems, structural components, roofing, HVAC units, electrical panels, fire and life safety systems, and more. Retail, office, and industrial sites are all covered.</p>
                     </div>
                     <div className="bg-[#F8F9FA] p-8 rounded-[32px] border border-gray-100">

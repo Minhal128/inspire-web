@@ -66,7 +66,7 @@ export default function OtherLogin() {
       }
     } catch (error: any) {
       console.error('Login error:', error)
-      
+
       // Handle unverified email
       if (error.data?.requiresVerification) {
         toast.info("Email verification required. Redirecting to verification page...", {
@@ -150,9 +150,9 @@ export default function OtherLogin() {
     <div className="min-h-screen bg-white flex flex-col">
       <div className="w-full bg-[#E8F4F8] px-6 text-center flex flex-col items-center justify-center rounded-b-[70px]" style={{ height: '280px' }}>
         <div className="flex justify-center mb-8">
-          <Image src="/logo.png" alt="INSPIRE Logo" width={480} height={560} className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer" onClick={() => router.push('/')} />
+          <Image src="/logo.png" alt="NSPIREinspection.AI Logo" width={480} height={560} className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer" onClick={() => router.push('/')} />
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Welcome to INSPIRE</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Welcome to NSPIREinspection.AI</h1>
         <p className="text-sm md:text-base text-gray-600">Other Portal</p>
       </div>
 

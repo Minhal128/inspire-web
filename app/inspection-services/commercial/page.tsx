@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import CommercialClient from "./CommercialClient";
 
 export const metadata: Metadata = {
-  title: "Commercial Buildings Inspection Services in USA | Nspire Home Inspections",
-  description: "Top-tier commercial buildings inspection services for businesses, property managers, and industrial facility owners ensuring safety, functionality, and compliance.",
+  title: "Commercial Building Inspection Services | NSPIREinspection.AI",
+  description: "Top-tier commercial buildings multi-unit, mixed-use inspection services nationwide. Ensuring safety, functionality, and compliance with NSPIREinspection.AI.",
 };
 
 export default function CommercialPage() {
