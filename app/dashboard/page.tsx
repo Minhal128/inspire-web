@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Button } from "@/components/ui/button"
@@ -189,8 +189,21 @@ export default function Dashboard() {
     toast.info("Searching properties...", { position: "top-right" })
   }
 
-  const handleHoldInspection = (property: any) => {
-    toast.info(`Inspection for ${property.name} put on hold`, { position: "top-right" })
+  const handleHoldInspection = async (property: any) => {
+    if (!property) return
+    try {
+      const response = await propertiesAPI.hold(property._id)
+      if (response.success) {
+        const newStatus = response.property?.status ?? 'hold'
+        setProperties(prev =>
+          prev.map(p => (p._id === property._id ? { ...p, status: newStatus } : p))
+        )
+        toast.success(response.message || `Inspection for ${property.name} put on hold`, { position: "top-right" })
+        fetchProperties()
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to hold inspection")
+    }
   }
 
   const handleRemoveProperty = async (property: any) => {
@@ -266,17 +279,53 @@ export default function Dashboard() {
     setShowCoverageModal(true)
   }
 
-  const handleCoverageStart = (coverage: string, calculatedUnits: number) => {
+  const handleCoverageStart = async (coverage: string, calculatedUnits: number) => {
     setShowCoverageModal(false)
-    // Navigate to property details page with coverage info
     const prop = newPropertyData || selectedProperty
     const propId = prop?._id || prop?.id || 'new'
+
+    // Resume this property if it was on hold so it becomes the active inspection
+    if (prop?.status === 'hold' && propId !== 'new') {
+      try {
+        const response = await propertiesAPI.hold(propId)
+        if (response.success) {
+          const newStatus = response.property?.status ?? 'active'
+          setProperties(prev =>
+            prev.map(p => (p._id === propId ? { ...p, status: newStatus } : p))
+          )
+        }
+      } catch (error: any) {
+        toast.error(error.message || 'Failed to resume inspection')
+        return
+      }
+    }
+
     router.push(
       `/dashboard/property-details/${propId}?coverage=${coverage}&calculatedUnits=${calculatedUnits}`
     )
   }
 
+  // The property currently being actively inspected (progress > 0 and < 100, not on hold)
+  const activeInspectionPropertyId = useMemo(() => {
+    return Object.keys(propertyProgress).find(
+      id => {
+        const prop = properties.find(p => p._id === id)
+        if (prop?.status === 'hold') return false
+        return propertyProgress[id] > 0 && propertyProgress[id] < 100
+      }
+    ) || null
+  }, [propertyProgress, properties])
+
   const handleInitiate = (property: any) => {
+    // Block only when another property is actively in progress (not on hold)
+    if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
+      const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
+      toast.error(
+        `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
+        { position: 'top-right', autoClose: 6000 }
+      )
+      return
+    }
     setSelectedProperty(property)
     setNewPropertyData(property)
     setShowActionModal(true)
@@ -369,20 +418,39 @@ export default function Dashboard() {
                         </span>
                       </td>
                       <td className="py-3 px-3">
-                        <div className="flex items-center justify-center gap-2">
-                          <button
-                            onClick={() => handleInitiate(property)}
-                            className="px-3 py-1.5 text-xs font-semibold text-white bg-[#006795] hover:bg-[#0A5670] rounded-md transition-colors"
-                          >
-                            Initiate
-                          </button>
-                          <button
-                            onClick={() => handleRemoveProperty(property)}
-                            className="px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
-                          >
-                            Remove
-                          </button>
-                        </div>
+                        {(() => {
+                          const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
+                          const isActive = activeInspectionPropertyId === property._id
+                          return (
+                            <div className="flex items-center justify-center gap-2">
+                              <button
+                                onClick={() => handleInitiate(property)}
+                                disabled={isLocked}
+                                title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
+                                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 ${
+                                  isLocked
+                                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                    : isActive
+                                      ? 'text-white bg-amber-500 hover:bg-amber-600'
+                                      : 'text-white bg-[#006795] hover:bg-[#0A5670]'
+                                }`}
+                              >
+                                {isLocked ? (
+                                  <>
+                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                                    Locked
+                                  </>
+                                ) : isActive ? 'In Progress' : 'Initiate'}
+                              </button>
+                              <button
+                                onClick={() => handleRemoveProperty(property)}
+                                className="px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          )
+                        })()}
                       </td>
                     </tr>
                   ))}
@@ -413,12 +481,31 @@ export default function Dashboard() {
                       <h3 className="font-bold text-gray-900 text-base mb-1">{property.name}</h3>
                       <p className="text-gray-600 text-sm">{property.address}</p>
                     </div>
-                    <Button
-                      onClick={() => handleInitiate(property)}
-                      className="bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
-                    >
-                      Initiate
-                    </Button>
+                    {(() => {
+                      const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
+                      const isActive = activeInspectionPropertyId === property._id
+                      return (
+                        <Button
+                          onClick={() => handleInitiate(property)}
+                          disabled={isLocked}
+                          title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
+                          className={`font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap ml-2 flex items-center gap-1 ${
+                            isLocked
+                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                              : isActive
+                                ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-md'
+                                : 'bg-[#006795] hover:bg-[#00567a] text-white shadow-sm hover:shadow-md'
+                          }`}
+                        >
+                          {isLocked ? (
+                            <>
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                              Locked
+                            </>
+                          ) : isActive ? 'In Progress' : 'Initiate'}
+                        </Button>
+                      )
+                    })()}
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 text-sm">
@@ -479,7 +566,9 @@ export default function Dashboard() {
         onClose={() => setShowActionModal(false)}
         onEdit={handleEditProperty}
         onStartInspection={handleActionStartInspection}
-        propertyData={newPropertyData}
+        onHoldInspection={() => handleHoldInspection(newPropertyData || selectedProperty)}
+        propertyData={newPropertyData || selectedProperty}
+        inspectionStarted={(propertyProgress[newPropertyData?._id] || propertyProgress[selectedProperty?._id] || 0) > 0}
       />
       <CoverageSelectionModal
         isOpen={showCoverageModal}

@@ -6,6 +6,8 @@ import { toast } from "react-toastify"
 import { inspectionsAPI, propertiesAPI } from "@/lib/api"
 import { Country, State, City } from 'country-state-city'
 import * as XLSX from 'xlsx'
+import { useRouter } from "next/navigation"
+
 
 interface RequestInspectionModalProps {
   isOpen: boolean
@@ -973,9 +975,12 @@ interface ActionModalProps {
   onHoldInspection?: () => void
   onRemoveProperty?: () => void
   propertyData: any
+  inspectionStarted?: boolean
 }
 
-export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHoldInspection, onRemoveProperty, propertyData }: ActionModalProps) {
+export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHoldInspection, onRemoveProperty, propertyData, inspectionStarted }: ActionModalProps) {
+  const router = useRouter()
+
   const handleStartInspection = () => {
     if (onStartInspection) {
       onStartInspection()
@@ -1009,13 +1014,38 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
         <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Action</h2>
 
         <div className="space-y-4">
-          <button
-            onClick={onEdit}
-            className="w-full px-6 py-4 bg-white border-2 border-black text-black font-bold rounded-xl text-base transition-all hover:bg-gray-50 active:scale-95"
-          >
-            Edit Property
-          </button>
+          {inspectionStarted ? (
+            <button
+              onClick={() => {
+                const propId = propertyData?._id || propertyData?.id
+                router.push(`/dashboard/inspection/summary?propertyId=${propId}`)
+                onClose()
+              }}
+              className="w-full px-6 py-4 bg-white border-2 border-black text-black font-bold rounded-xl text-base transition-all hover:bg-gray-50 active:scale-95 text-center"
+            >
+              View Summary
+            </button>
+          ) : (
+            <button
+              onClick={onEdit}
+              className="w-full px-6 py-4 bg-white border-2 border-black text-black font-bold rounded-xl text-base transition-all hover:bg-gray-50 active:scale-95"
+            >
+              Edit Property
+            </button>
+          )}
           
+          {inspectionStarted && onHoldInspection && (
+            <button
+              onClick={() => {
+                onHoldInspection()
+                onClose()
+              }}
+              className="w-full px-6 py-4 bg-amber-500 text-white font-bold rounded-xl text-base transition-all hover:bg-amber-600 shadow-lg active:scale-95"
+            >
+              Hold Inspection
+            </button>
+          )}
+
           <button
             onClick={handleStartInspection}
             className="w-full px-6 py-4 bg-[#00718F] text-white font-bold rounded-xl text-base transition-all hover:bg-[#005a72] shadow-lg active:scale-95"

@@ -414,8 +414,92 @@ export default function PropertyDetailsPage() {
         return '-'
     }
 
-    const handleBuildingClick = (building: typeof buildings[0]) => {
+    const resumeFromHoldIfNeeded = async () => {
+        if (property?.status !== 'hold') return true
+        try {
+            const response = await propertiesAPI.hold(property._id || id)
+            if (response.success) {
+                setProperty((prev: any) =>
+                    prev ? { ...prev, status: response.property?.status ?? 'active' } : prev
+                )
+                return true
+            }
+        } catch (error: any) {
+            toast.error(error.message || 'Failed to resume inspection')
+        }
+        return false
+    }
+
+    const handleBuildingClick = async (building: typeof buildings[0]) => {
         const propId = property._id || id
+
+        if (!(await resumeFromHoldIfNeeded())) return
+
+        // Check if there is another property that has active progress (started but not complete)
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+            const response = await fetch(`${API_URL}/api/inspections/progress`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const data = await response.json()
+            if (data.success && Array.isArray(data.progress)) {
+                // Find any other property IDs that have progress records
+                const propertiesWithProgress = new Set(
+                    data.progress
+                        .map((p: any) => p.propertyId?._id || p.propertyId)
+                        .filter((pid): pid is string => !!pid && pid !== propId)
+                )
+
+                // If we found other properties with progress, check if any of them is not fully complete yet
+                if (propertiesWithProgress.size > 0) {
+                    // Fetch properties list to calculate if they are under 100%
+                    const propsRes = await propertiesAPI.getAll()
+                    if (propsRes.success) {
+                        const activeOtherProps = propsRes.properties.filter(p => propertiesWithProgress.has(p._id))
+                        
+                        // Check if any of these active other properties is not completed (100% progress)
+                        for (const activeProp of activeOtherProps) {
+                            if (activeProp.status === 'hold') continue
+
+                            const propProgress = data.progress.filter((p: any) => 
+                                p.propertyId === activeProp._id || p.propertyId?._id === activeProp._id
+                            )
+                            
+                            const uniqueTasks = new Set()
+                            propProgress.forEach((p: any) => {
+                                const type = String(p.inspectionType || '').toLowerCase()
+                                const buildingId = p.buildingId || 'B1'
+                                if (type.startsWith('unit_')) {
+                                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
+                                } else if (type === 'inside' || type === 'outside') {
+                                    uniqueTasks.add(`${buildingId}_${type}`)
+                                }
+                            })
+                            
+                            const actualUnitsForInspection = activeProp.buildingDetails && activeProp.buildingDetails.length > 0
+                                ? activeProp.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                                : activeProp.units || 0
+                            
+                            const totalTasks = ((activeProp.buildings || 0) * 2) + actualUnitsForInspection
+                            const progressPercent = totalTasks > 0 ? Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100)) : 0
+                            
+                            if (progressPercent > 0 && progressPercent < 100) {
+                                toast.error(`Cannot start inspection. Property "${activeProp.name}" is already in progress. Please put it on hold or complete it first.`, {
+                                    position: "top-right",
+                                    autoClose: 5000
+                                })
+                                return
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Failed to check active inspections:", e)
+        }
+
         // Store column header name so inspection-category can read it
         localStorage.setItem(`buildingColHeader_${propId}`, columnHeaderName)
         // Store custom building display name
@@ -426,8 +510,71 @@ export default function PropertyDetailsPage() {
         )
     }
 
-    const handleStartUnitInspection = (buildingId: string, unitName: string) => {
+    const handleStartUnitInspection = async (buildingId: string, unitName: string) => {
         const propId = property._id || id
+
+        if (!(await resumeFromHoldIfNeeded())) return
+
+        // Check if there is another property that has active progress (started but not complete)
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+            const response = await fetch(`${API_URL}/api/inspections/progress`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const data = await response.json()
+            if (data.success && Array.isArray(data.progress)) {
+                const propertiesWithProgress = new Set(
+                    data.progress
+                        .map((p: any) => p.propertyId?._id || p.propertyId)
+                        .filter((pid): pid is string => !!pid && pid !== propId)
+                )
+
+                if (propertiesWithProgress.size > 0) {
+                    const propsRes = await propertiesAPI.getAll()
+                    if (propsRes.success) {
+                        const activeOtherProps = propsRes.properties.filter(p => propertiesWithProgress.has(p._id))
+                        for (const activeProp of activeOtherProps) {
+                            if (activeProp.status === 'hold') continue
+
+                            const propProgress = data.progress.filter((p: any) => 
+                                p.propertyId === activeProp._id || p.propertyId?._id === activeProp._id
+                            )
+                            
+                            const uniqueTasks = new Set()
+                            propProgress.forEach((p: any) => {
+                                const type = String(p.inspectionType || '').toLowerCase()
+                                const buildingId = p.buildingId || 'B1'
+                                if (type.startsWith('unit_')) {
+                                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
+                                } else if (type === 'inside' || type === 'outside') {
+                                    uniqueTasks.add(`${buildingId}_${type}`)
+                                }
+                            })
+                            
+                            const actualUnitsForInspection = activeProp.buildingDetails && activeProp.buildingDetails.length > 0
+                                ? activeProp.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                                : activeProp.units || 0
+                            
+                            const totalTasks = ((activeProp.buildings || 0) * 2) + actualUnitsForInspection
+                            const progressPercent = totalTasks > 0 ? Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100)) : 0
+                            
+                            if (progressPercent > 0 && progressPercent < 100) {
+                                toast.error(`Cannot start inspection. Property "${activeProp.name}" is already in progress. Please put it on hold or complete it first.`, {
+                                    position: "top-right",
+                                    autoClose: 5000
+                                })
+                                return
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Failed to check active inspections:", e)
+        }
+
         const completed = completedUnitsMap[buildingId] || []
 
         if (completed.includes(unitName)) {
@@ -967,13 +1114,15 @@ export default function PropertyDetailsPage() {
                                 <th className="text-left py-4 px-8 text-xs font-black text-gray-900 uppercase tracking-widest">
                                     <span className="inline-flex items-center gap-2">
                                         {columnHeaderName}
-                                        <button
-                                            onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }}
-                                            className="p-1 rounded hover:bg-blue-50 text-[#006795] transition-colors"
-                                            title="Edit column name"
-                                        >
-                                            <Pencil className="w-3.5 h-3.5" />
-                                        </button>
+                                        {!(overallProgress > 0) && (
+                                            <button
+                                                onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }}
+                                                className="p-1 rounded hover:bg-blue-50 text-[#006795] transition-colors"
+                                                title="Edit column name"
+                                            >
+                                                <Pencil className="w-3.5 h-3.5" />
+                                            </button>
+                                        )}
                                     </span>
                                 </th>
                                 <th className="text-center py-4 px-8 text-xs font-black text-gray-900 uppercase tracking-widest">Total Units</th>
@@ -1008,9 +1157,11 @@ export default function PropertyDetailsPage() {
                                             ) : (
                                                 <div className="flex items-center gap-1.5 group">
                                                     <span className="text-sm text-gray-900 font-black">{getBuildingDisplayName(building.buildingId)}</span>
-                                                    <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
-                                                        <Pencil className="w-3.5 h-3.5" />
-                                                    </button>
+                                                    {!(overallProgress > 0) && (
+                                                        <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
+                                                            <Pencil className="w-3.5 h-3.5" />
+                                                        </button>
+                                                    )}
                                                 </div>
                                             )}
                                         </td>
@@ -1022,7 +1173,8 @@ export default function PropertyDetailsPage() {
                                                 max={totalInspectionUnits}
                                                 value={building.unitsForInspection}
                                                 onChange={(e) => handleInspectionUnitChange(building.buildingId, parseInt(e.target.value) || 0)}
-                                                className="w-20 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1.5 px-2 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent transition-all hover:border-[#006795]/50"
+                                                disabled={overallProgress > 0}
+                                                className="w-20 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1.5 px-2 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent transition-all hover:border-[#006795]/50 disabled:opacity-50 disabled:cursor-not-allowed"
                                             />
                                         </td>
                                         <td className="py-6 px-8 text-center">
@@ -1086,9 +1238,11 @@ export default function PropertyDetailsPage() {
                                     <div className="flex justify-between items-center pb-3 border-b border-gray-100">
                                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest inline-flex items-center gap-1">
                                             {columnHeaderName}
-                                            <button onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }} className="p-0.5 rounded hover:bg-blue-50 text-[#006795]" title="Edit column name">
-                                                <Pencil className="w-3 h-3" />
-                                            </button>
+                                            {!(overallProgress > 0) && (
+                                                <button onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }} className="p-0.5 rounded hover:bg-blue-50 text-[#006795]" title="Edit column name">
+                                                    <Pencil className="w-3 h-3" />
+                                                </button>
+                                            )}
                                         </span>
                                         {editingBuildingId === building.buildingId ? (
                                                 <div className="flex items-center gap-1">
@@ -1109,9 +1263,11 @@ export default function PropertyDetailsPage() {
                                             ) : (
                                                 <div className="flex items-center gap-1.5 group">
                                                     <span className="text-sm text-gray-900 font-black">{getBuildingDisplayName(building.buildingId)}</span>
-                                                    <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
-                                                        <Pencil className="w-3.5 h-3.5" />
-                                                    </button>
+                                                    {!(overallProgress > 0) && (
+                                                        <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
+                                                            <Pencil className="w-3.5 h-3.5" />
+                                                        </button>
+                                                    )}
                                                 </div>
                                             )}
                                     </div>
@@ -1127,7 +1283,8 @@ export default function PropertyDetailsPage() {
                                             max={totalInspectionUnits}
                                             value={building.unitsForInspection}
                                             onChange={(e) => handleInspectionUnitChange(building.buildingId, parseInt(e.target.value) || 0)}
-                                            className="w-16 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1 px-1 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent"
+                                            disabled={overallProgress > 0}
+                                            className="w-16 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1 px-1 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                                         />
                                     </div>
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">

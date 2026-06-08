@@ -23,6 +23,8 @@ export default function MyInspection() {
   const [selectedProperty, setSelectedProperty] = useState<any>(null)
   const [actionModalOpen, setActionModalOpen] = useState(false)
   const [editModalOpen, setEditModalOpen] = useState(false)
+  const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+
 
   // Location data
   const [countries, setCountries] = useState<any[]>([])
@@ -96,12 +98,61 @@ export default function MyInspection() {
       })
       if (response.success) {
         setProperties(response.properties)
+        fetchProgress(response.properties)
       }
     } catch (error: any) {
       console.error('Error fetching properties:', error)
       toast.error("Failed to load properties")
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchProgress = async (propertyList: any[]) => {
+    try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+      const response = await fetch(`${API_URL}/api/inspections/progress`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      const data = await response.json()
+      if (data.success && Array.isArray(data.progress)) {
+        const progressMap: Record<string, number> = {}
+        
+        propertyList.forEach(prop => {
+            const propId = prop._id
+            const propProgress = data.progress.filter((p: any) => 
+                p.propertyId === propId || p.propertyId?._id === propId
+            )
+            
+            const uniqueTasks = new Set()
+            propProgress.forEach((p: any) => {
+                const type = String(p.inspectionType || '').toLowerCase()
+                const buildingId = p.buildingId || 'B1'
+                if (type.startsWith('unit_')) {
+                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
+                } else if (type === 'inside' || type === 'outside') {
+                    uniqueTasks.add(`${buildingId}_${type}`)
+                }
+            })
+            
+            const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
+                ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                : prop.units
+            
+            const totalTasks = (prop.buildings * 2) + actualUnitsForInspection
+            
+            if (totalTasks > 0) {
+                progressMap[propId] = Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100))
+            } else {
+                progressMap[propId] = 0
+            }
+        })
+        setPropertyProgress(progressMap)
+      }
+    } catch (e) {
+      console.error('Error fetching progress:', e)
     }
   }
 
@@ -251,6 +302,7 @@ export default function MyInspection() {
         onHoldInspection={handleHoldInspection}
         onRemoveProperty={handleRemoveProperty}
         propertyData={selectedProperty}
+        inspectionStarted={(propertyProgress[selectedProperty?._id] || 0) > 0}
       />
 
       <UnitSelectionModal

@@ -5,9 +5,8 @@ import { useRouter } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { propertiesAPI, authAPI } from "@/lib/api"
-import { toast } from "react-toastify"
-import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw } from "lucide-react"
+import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
+import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock } from "lucide-react"
 
 interface Property {
   _id: string
@@ -18,6 +17,7 @@ interface Property {
   buildings?: number
   units?: number
   createdAt: string
+  buildingDetails?: any[]
 }
 
 interface Inspection {
@@ -43,6 +43,7 @@ interface Inspection {
 interface PropertyWithInspection extends Property {
   inspection?: Inspection
   hasInspection: boolean
+  isUnlocked?: boolean
 }
 
 export default function InspectionStatusPage() {
@@ -52,6 +53,7 @@ export default function InspectionStatusPage() {
   const [refreshing, setRefreshing] = useState(false)
   const [downloadingId, setDownloadingId] = useState<string | null>(null)
   const [user, setUser] = useState<any>(null)
+  const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
 
   useEffect(() => {
     fetchData()
@@ -93,20 +95,45 @@ export default function InspectionStatusPage() {
         }
       }
 
+      // Fetch progress records to calculate accurate progress
+      const progressMap = await fetchProgress(allProperties)
+      setPropertyProgress(progressMap)
+
       // Map properties with their inspection status
-      const propertiesWithStatus: PropertyWithInspection[] = allProperties.map(property => {
+      const mappedProperties: PropertyWithInspection[] = allProperties.map(property => {
         const inspection = completedInspections.find(
           insp => insp.property._id === property._id || insp.property._id.toString() === property._id.toString()
         )
         
+        const isComplete = progressMap[property._id] === 100
+
         return {
           ...property,
           inspection,
-          hasInspection: !!inspection && (inspection.status?.toLowerCase() === 'completed')
+          hasInspection: isComplete,
+          isUnlocked: false
         }
       })
 
-      // Sort: properties without inspections first (red), then with inspections (green)
+      // Fetch payment/unlock status for properties that have a completed inspection
+      const propertiesWithStatus = await Promise.all(
+        mappedProperties.map(async (property) => {
+          if (property.hasInspection && property.inspection?._id) {
+            try {
+              const unlockData = await paymentsAPI.checkReportUnlock(property.inspection._id)
+              return {
+                ...property,
+                isUnlocked: !!unlockData?.isReportUnlocked
+              }
+            } catch (err) {
+              console.error(`Error checking unlock status for ${property._id}:`, err)
+            }
+          }
+          return property
+        })
+      )
+
+      // Sort: properties without inspections first (red/amber), then with inspections (green)
       propertiesWithStatus.sort((a, b) => {
         if (a.hasInspection === b.hasInspection) return 0
         return a.hasInspection ? 1 : -1
@@ -120,6 +147,56 @@ export default function InspectionStatusPage() {
       setLoading(false)
       setRefreshing(false)
     }
+  }
+
+  const fetchProgress = async (propertyList: Property[]) => {
+    try {
+      const token = localStorage.getItem('token')
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+      const response = await fetch(`${API_URL}/api/inspections/progress`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await response.json()
+      if (data.success && Array.isArray(data.progress)) {
+        const progressMap: Record<string, number> = {}
+        
+        propertyList.forEach(prop => {
+            const propId = prop._id
+            const propProgress = data.progress.filter((p: any) => 
+                p.propertyId === propId || p.propertyId?._id === propId
+            )
+            
+            const uniqueTasks = new Set()
+            propProgress.forEach((p: any) => {
+                const type = String(p.inspectionType || '').toLowerCase()
+                const buildingId = p.buildingId || 'B1'
+                if (type.startsWith('unit_')) {
+                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
+                } else if (type === 'inside' || type === 'outside') {
+                    uniqueTasks.add(`${buildingId}_${type}`)
+                }
+            })
+            
+            const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
+                ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                : prop.units || 0
+            
+            const totalTasks = ((prop.buildings || 0) * 2) + actualUnitsForInspection
+            
+            if (totalTasks > 0) {
+                progressMap[propId] = Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100))
+            } else {
+                progressMap[propId] = 0
+            }
+        })
+        return progressMap
+      }
+    } catch (e) {
+      console.error('Error fetching progress:', e)
+    }
+    return {}
   }
 
   const handleRefresh = () => {
@@ -304,19 +381,23 @@ export default function InspectionStatusPage() {
               <Card 
                 key={property._id} 
                 className={`p-4 sm:p-6 hover:shadow-lg transition-all overflow-hidden ${
-                  property.hasInspection 
+                  propertyProgress[property._id] === 100 
                     ? 'border-2 border-green-500 bg-green-50/30' 
-                    : 'border-2 border-red-500 bg-red-50/30'
+                    : propertyProgress[property._id] > 0
+                      ? 'border-2 border-amber-500 bg-amber-50/30'
+                      : 'border-2 border-red-500 bg-red-50/30'
                 }`}
               >
-                <div className="flex flex-col gap-4 min-w-0">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 min-w-0">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start gap-3 sm:gap-4 min-w-0">
                       <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                        property.hasInspection ? 'bg-green-100' : 'bg-red-100'
+                        propertyProgress[property._id] === 100 ? 'bg-green-100' : propertyProgress[property._id] > 0 ? 'bg-amber-100' : 'bg-red-100'
                       }`}>
-                        {property.hasInspection ? (
+                        {propertyProgress[property._id] === 100 ? (
                           <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+                        ) : propertyProgress[property._id] > 0 ? (
+                          <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 animate-spin" />
                         ) : (
                           <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
                         )}
@@ -327,16 +408,16 @@ export default function InspectionStatusPage() {
                             {property.name}
                           </h3>
                           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold w-fit flex-shrink-0 whitespace-nowrap ${
-                            property.inspection?.status?.toLowerCase() === 'completed' 
+                            propertyProgress[property._id] === 100 
                               ? 'bg-green-100 text-green-800' 
-                              : property.inspection
+                              : propertyProgress[property._id] > 0
                                 ? 'bg-amber-100 text-amber-800'
                                 : 'bg-red-100 text-red-800'
                           }`}>
-                            {property.inspection?.status?.toLowerCase() === 'completed' 
+                            {propertyProgress[property._id] === 100 
                               ? 'Completed' 
-                              : property.inspection 
-                                ? 'In Progress' 
+                              : propertyProgress[property._id] > 0 
+                                ? `In Progress (${propertyProgress[property._id]}%)` 
                                 : 'Pending'}
                           </span>
                         </div>
@@ -370,28 +451,44 @@ export default function InspectionStatusPage() {
                       </div>
                     </div>
                   </div>
-
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0">
-                    {property.hasInspection ? (
-                      <Button
-                        onClick={() => handleDownloadPDF(property)}
-                        disabled={downloadingId === property._id}
-                        className="bg-[#006795] hover:bg-[#0a5670] text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
-                      >
-                        {downloadingId === property._id ? (
-                          <>
-                            <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
-                            <span className="hidden sm:inline">Generating...</span>
-                            <span className="sm:hidden">Loading...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Download className="w-4 h-4 flex-shrink-0" />
-                            <span className="hidden sm:inline">Download PDF</span>
-                            <span className="sm:hidden">Download</span>
-                          </>
-                        )}
-                      </Button>
+ 
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0 flex-shrink-0">
+                    {propertyProgress[property._id] === 100 ? (
+                      property.isUnlocked ? (
+                        <Button
+                          onClick={() => handleDownloadPDF(property)}
+                          disabled={downloadingId === property._id}
+                          className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                        >
+                          {downloadingId === property._id ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
+                              <span className="hidden sm:inline">Generating...</span>
+                              <span className="sm:hidden">Loading...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Download className="w-4 h-4 flex-shrink-0" />
+                              <span className="hidden sm:inline">Download PDF</span>
+                              <span className="sm:hidden">Download</span>
+                            </>
+                          )}
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            if (property.inspection?._id) {
+                              router.push(`/dashboard/inspection/summary?id=${property.inspection._id}`)
+                            } else {
+                              toast.error("Inspection details not found")
+                            }
+                          }}
+                          className="bg-amber-600 hover:bg-amber-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                        >
+                          <Lock className="w-4 h-4 flex-shrink-0" />
+                          <span>Pay to Unlock Report</span>
+                        </Button>
+                      )
                     ) : (
                       <Button
                         onClick={() => handleStartInspection(property._id)}
