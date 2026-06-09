@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo, useRef } from "react"
+import { useState, useEffect, useMemo, useRef, useCallback } from "react"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
@@ -210,8 +210,9 @@ export default function InspectionCategoryPage() {
     const [currentModalItem, setCurrentModalItem] = useState<string | null>(null);
     const [selectionType, setSelectionType] = useState<'selected' | 'detail' | 'criteria'>('selected');
     const [detailFilterName, setDetailFilterName] = useState<string | null>(null);
-    const [selectedDeficiencies, setSelectedDeficiencies] = useState<DeficiencyDetail[]>([]);
+    const [selectedDeficiency, setSelectedDeficiency] = useState<DeficiencyDetail | null>(null);
     const [guideDeficiency, setGuideDeficiency] = useState<DeficiencyDetail | null>(null);
+    const [lastSavedFindingId, setLastSavedFindingId] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [photos, setPhotos] = useState<string[]>([]);
     const [odForm, setOdForm] = useState({
@@ -238,20 +239,23 @@ export default function InspectionCategoryPage() {
         return count === 0 ? 0 : (sampling.requiredSize || 20);
     }, [searchParams, urlTotalUnits, property?.units, units?.length]);
 
-    const deficiencyCount = selectedDeficiencies.length;
+    const getCurrentItemUnit = useCallback(() =>
+        currentSection === 'unit' ? (activeInspectionUnit || '-') : '-',
+    [currentSection, activeInspectionUnit]);
 
-    const getWorstSeverity = (defs: DeficiencyDetail[]) => {
-        const order = ['Low', 'Moderate', 'Severe', 'Life-Threatening'];
-        let worst = 'Low';
-        defs.forEach(d => {
-            const s = d.healthAndSafety || 'Moderate';
-            if (order.indexOf(s) > order.indexOf(worst)) worst = s;
-        });
-        return worst;
-    };
+    const getCurrentItemFindings = useCallback(() => {
+        if (!currentModalItem || !currentSection) return [];
+        const unitVal = getCurrentItemUnit();
+        return propertyFindings.filter((f: any) =>
+            f.item === currentModalItem &&
+            f.area === currentSection &&
+            f.unit === unitVal &&
+            (f.building === urlBuilding || f.building === buildingName)
+        );
+    }, [propertyFindings, currentModalItem, currentSection, getCurrentItemUnit, urlBuilding, buildingName]);
 
-    const getDeficiencyDescription = (defs: DeficiencyDetail[]) =>
-        defs.flatMap(d => [currentModalItem, d.selected, d.criteria, d.detail]).filter(Boolean).join(' ');
+    const savedItemFindings = getCurrentItemFindings();
+    const deficiencyCount = savedItemFindings.length + (selectedDeficiency ? 1 : 0);
 
     // Update scoring dynamically when deficiency is selected/changed
     useEffect(() => {
@@ -263,7 +267,9 @@ export default function InspectionCategoryPage() {
             const categoryNumber = extractCategoryNumber(undefined, currentModalItem);
             // Include category name, selected deficiency name, detail, AND criteria fields for pattern matching
             const deficiencyDescription = [
-                getDeficiencyDescription(selectedDeficiencies),
+                currentModalItem,
+                selectedDeficiency?.selected,
+                selectedDeficiency?.criteria,
                 odForm.note,
             ].filter(Boolean).join(' ');
 
@@ -299,8 +305,8 @@ export default function InspectionCategoryPage() {
             const unitResult = calculateUnitInspectionScore({
                 totalSamples,
                 deficiencyCount,
-                severity: getWorstSeverity(selectedDeficiencies) || odForm.healthAndSafety || 'Moderate',
-                deficiencyPointsFormula: selectedDeficiencies[0]?.pointsFormula,
+                severity: selectedDeficiency?.healthAndSafety || odForm.healthAndSafety || 'Moderate',
+                deficiencyPointsFormula: selectedDeficiency?.pointsFormula,
             });
 
             setScoringResult({
@@ -328,7 +334,9 @@ export default function InspectionCategoryPage() {
             // Include category name, selected deficiency name, detail, AND criteria fields for pattern matching
             // The category name (e.g., "Chimney") is crucial for categories with fixed severity
             const deficiencyDescription = [
-                getDeficiencyDescription(selectedDeficiencies),
+                currentModalItem,
+                selectedDeficiency?.selected,
+                selectedDeficiency?.criteria,
                 odForm.note,
             ].filter(Boolean).join(' ');
 
@@ -361,7 +369,7 @@ export default function InspectionCategoryPage() {
             });
             setOutsideScoringResult(null);
         }
-    }, [selectedDeficiencies, deficiencyCount, totalSamples, odForm.healthAndSafety, odForm.note, currentSection, currentModalItem]);
+    }, [selectedDeficiency, deficiencyCount, totalSamples, odForm.healthAndSafety, odForm.note, currentSection, currentModalItem, savedItemFindings.length]);
 
     useEffect(() => {
         if (id) {
@@ -602,38 +610,28 @@ export default function InspectionCategoryPage() {
 
             // If this item was previously saved, pre-fill the form with saved data
             const savedKey = `${urlBuilding}:${section}:${itemName}`;
-            const previousData = savedODFormData[savedKey];
-            if (previousData) {
-                setOdForm({
-                    ...previousData.odForm,
-                    deficiencySelected: previousData.odForm.deficiencySelected || "",
-                    deficiencyDetail: previousData.odForm.deficiencyDetail || ""
-                });
-                setSelectedDeficiencies(
-                    previousData.selectedDeficiencies?.length
-                        ? previousData.selectedDeficiencies
-                        : previousData.selectedDeficiency
-                            ? [previousData.selectedDeficiency]
-                            : []
-                );
-                setPhotos(previousData.photos);
-                // Jump to step 2 (the form) so user can review/edit their previous entry
-                setModalStep(2);
-            } else {
-                setOdForm({
-                    category: cleanCategory,
-                    note: "",
-                    location: "Building Site S",
-                    healthAndSafety: "",
-                    repairBy: "",
-                    codeAndCompliance: "",
-                    deficiencySelected: "",
-                    deficiencyDetail: ""
-                });
-                setSelectedDeficiencies([]);
-                setPhotos([]);
-                setModalStep(1);
-            }
+            const unitVal = section === 'unit' ? (activeInspectionUnit || '-') : '-';
+            const existingFindings = propertyFindings.filter((f: any) =>
+                f.item === itemName &&
+                f.area === section &&
+                f.unit === unitVal &&
+                (f.building === urlBuilding || f.building === buildingName)
+            );
+
+            setOdForm({
+                category: cleanCategory,
+                note: "",
+                location: "Building Site S",
+                healthAndSafety: "",
+                repairBy: "",
+                codeAndCompliance: "",
+                deficiencySelected: "",
+                deficiencyDetail: ""
+            });
+            setSelectedDeficiency(null);
+            setPhotos([]);
+            setLastSavedFindingId(null);
+            setModalStep(existingFindings.length > 0 ? 4 : 1);
             setIsODModalOpen(true);
             return;
         }
@@ -648,7 +646,7 @@ export default function InspectionCategoryPage() {
             });
             // Also remove from state to keep summary in sync
             setPropertyFindings(prev => {
-                const unitVal = section === 'unit' ? (activeInspectionUnit || unitsString) : '-';
+                const unitVal = section === 'unit' ? (activeInspectionUnit || '-') : '-';
                 return prev.filter((f: any) =>
                     !(f.item === itemName && f.area === section && f.unit === unitVal && (f.building === urlBuilding || f.building === buildingName))
                 );
@@ -713,11 +711,93 @@ export default function InspectionCategoryPage() {
 
     const handleODModalClose = () => {
         setIsODModalOpen(false);
-        setSelectedDeficiencies([]);
+        setSelectedDeficiency(null);
         setDetailFilterName(null);
         setGuideDeficiency(null);
+        setLastSavedFindingId(null);
         setPhotos([]);
         setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
+    };
+
+    const resetFormForNewDeficiency = () => {
+        setSelectedDeficiency(null);
+        setDetailFilterName(null);
+        setPhotos([]);
+        setLastSavedFindingId(null);
+        setOdForm(prev => ({
+            ...prev,
+            deficiencySelected: "",
+            deficiencyDetail: "",
+            note: "",
+        }));
+        setModalStep(2);
+    };
+
+    const persistItemFindings = async (mergedFindings: any[], updatedStatuses: Record<string, ItemStatus>) => {
+        const type = currentSection === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (currentSection!.charAt(0).toUpperCase() + currentSection!.slice(1));
+        const isComplete = currentSection === 'outside'
+            ? outsideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
+            : currentSection === 'inside'
+                ? insideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
+                : currentSection === 'unit'
+                    ? unitItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
+                    : false;
+
+        setPropertyFindings(mergedFindings);
+
+        await inspectionsAPI.saveProgress({
+            property_id: property?._id || params.id,
+            unit_id: currentSection === 'unit' ? activeInspectionUnit : urlBuilding,
+            building_id: urlBuilding,
+            inspection_type: type,
+            responses: updatedStatuses,
+            inspectionData: {
+                findings: mergedFindings,
+                isComplete,
+                odFormSnapshots: savedODFormData,
+            }
+        });
+    };
+
+    const handleRemoveSavedFinding = async (findingId: string) => {
+        if (!confirm('Remove this saved deficiency from the report?')) return;
+
+        const updatedFindings = propertyFindings.filter((f: any) => f.id !== findingId);
+        const currentStatuses = currentSection === 'outside' ? outsideStatuses
+            : currentSection === 'inside' ? insideStatuses
+                : unitStatuses;
+
+        const itemFindingsLeft = updatedFindings.filter((f: any) =>
+            f.item === currentModalItem &&
+            f.area === currentSection &&
+            f.unit === getCurrentItemUnit() &&
+            (f.building === urlBuilding || f.building === buildingName)
+        );
+
+        let updatedStatuses = { ...currentStatuses } as Record<string, ItemStatus>;
+        if (itemFindingsLeft.length === 0 && currentModalItem) {
+            updatedStatuses[currentModalItem] = null;
+            const savedKey = `${urlBuilding}:${currentSection}:${currentModalItem}`;
+            setSavedODItems(prev => {
+                const next = new Set(prev);
+                next.delete(savedKey);
+                return next;
+            });
+        }
+
+        if (currentSection === 'outside') setOutsideStatuses(updatedStatuses);
+        else if (currentSection === 'inside') setInsideStatuses(updatedStatuses);
+        else setUnitStatuses(updatedStatuses);
+
+        try {
+            await persistItemFindings(updatedFindings, updatedStatuses);
+            toast.success('Deficiency removed', { position: 'top-right' });
+            if (itemFindingsLeft.length === 0) {
+                setModalStep(1);
+            }
+        } catch (error: any) {
+            toast.error(error.message || 'Failed to remove deficiency');
+        }
     };
 
     const handleGeneralModalClose = () => {
@@ -774,7 +854,7 @@ export default function InspectionCategoryPage() {
         setModalStep(3);
     };
 
-    const toggleDeficiencySelection = (def: DeficiencyDetail) => {
+    const handleDeficiencySelect = (def: DeficiencyDetail) => {
         const allDefs = getFilteredDeficiencies();
         const normalizedSelected = def.selected.trim().toLowerCase();
         const matchingDetails = allDefs.filter(d => d.selected.trim().toLowerCase() === normalizedSelected);
@@ -785,23 +865,25 @@ export default function InspectionCategoryPage() {
             return;
         }
 
-        setSelectedDeficiencies(prev => {
-            const exists = prev.some(d => d.id === def.id);
-            if (exists) return prev.filter(d => d.id !== def.id);
-            return [...prev, def];
-        });
-    };
-
-    const removeSelectedDeficiency = (defId: string) => {
-        setSelectedDeficiencies(prev => prev.filter(d => d.id !== defId));
+        setSelectedDeficiency(def);
+        setOdForm(prev => ({
+            ...prev,
+            deficiencySelected: def.selected.trim(),
+            deficiencyDetail: def.detail,
+            healthAndSafety: def.healthAndSafety,
+            repairBy: def.repairBy,
+            codeAndCompliance: def.codeAndCompliance,
+            location: def.location || prev.location
+        }));
+        setModalStep(2);
     };
 
     const [reportUrl, setReportUrl] = useState<string | null>(null);
     const [analysisResult, setAnalysisResult] = useState<any>(null);
 
     const handleProceed = async () => {
-        if (selectedDeficiencies.length === 0) {
-            toast.error("Please select at least one deficiency");
+        if (!selectedDeficiency) {
+            toast.error("Please select a deficiency");
             return;
         }
         if (photos.length === 0) {
@@ -831,7 +913,7 @@ export default function InspectionCategoryPage() {
                         healthAndSafety: odForm.healthAndSafety,
                         repairBy: odForm.repairBy,
                         codeAndCompliance: odForm.codeAndCompliance,
-                        selectedDeficiencies: selectedDeficiencies
+                        selectedDeficiency: selectedDeficiency
                     }
                 }),
             });
@@ -845,31 +927,12 @@ export default function InspectionCategoryPage() {
                 const resultData = data.data || data;
                 const analysisResult = resultData.deficiency || data.analysis;
 
-                // Update the outline item status to 'No OD' (green) to show it's been inspected and completed
-                // This marks the item as green to indicate inspection is done
-                if (currentModalItem) {
-                    if (currentSection === 'outside') {
-                        setOutsideStatuses(prev => ({
-                            ...prev,
-                            [currentModalItem]: 'No OD'
-                        }));
-                    } else if (currentSection === 'inside') {
-                        setInsideStatuses(prev => ({
-                            ...prev,
-                            [currentModalItem]: 'No OD'
-                        }));
-                    } else {
-                        setUnitStatuses(prev => ({
-                            ...prev,
-                            [currentModalItem]: 'No OD'
-                        }));
-                    }
-                }
-
-                const unitVal = currentSection === 'unit' ? (activeInspectionUnit || unitsString) : '-';
-                const newFindings = selectedDeficiencies.map((def, idx) => ({
-                    id: `DEF-${Date.now()}-${idx}`,
-                    imageUri: photos[idx % photos.length] || photos[0],
+                const unitVal = getCurrentItemUnit();
+                const def = selectedDeficiency;
+                const newFindingId = `DEF-${Date.now()}`;
+                const newFinding = {
+                    id: newFindingId,
+                    imageUri: photos[0],
                     title: def.selected || analysisResult?.defect || odForm.category,
                     description: def.detail || analysisResult?.description || analysisResult?.comment || 'Deficiency detected by AI inspection',
                     category: odForm.category,
@@ -886,34 +949,12 @@ export default function InspectionCategoryPage() {
                     timestamp: new Date().toISOString(),
                     area: currentSection,
                     item: currentModalItem
-                }));
-
-                // Save inspection data for summary page
-                const inspectionDataForSummary = {
-                    inspectionId: params.id,
-                    propertyId: property?._id,
-                    propertyName: property?.name,
-                    address: property?.address,
-                    inspectorId: user?.id || user?._id,
-                    inspectorName: user?.fullName,
-                    building: buildingName,
-                    buildingColumnHeader: columnHeaderName,
-                    currentUnit: currentSection === 'unit' ? activeInspectionUnit : '',
-                    unitNames: Object.keys(unitNames).length > 0 ? unitNames : undefined,
-                    findings: newFindings,
-                    reportUrl: resultData.reportUrl,
-                    complianceScore: analysisResult?.complianceScore || 85,
-                    notes: odForm.note,
-                    startDate: new Date().toLocaleDateString(),
-                    startTime: new Date().toLocaleTimeString()
                 };
-                // Save finding to backend progress instead of just redirecting
-                const type = currentSection === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (currentSection.charAt(0).toUpperCase() + currentSection.slice(1));
+
                 const currentStatuses = currentSection === 'outside' ? outsideStatuses
                     : currentSection === 'inside' ? insideStatuses
                         : unitStatuses;
 
-                // Ensure the item is marked as OD
                 const updatedStatuses = {
                     ...currentStatuses,
                     [currentModalItem as string]: 'OD'
@@ -923,75 +964,22 @@ export default function InspectionCategoryPage() {
                 else if (currentSection === 'inside') setInsideStatuses(updatedStatuses as Record<string, ItemStatus>);
                 else setUnitStatuses(updatedStatuses as Record<string, ItemStatus>);
 
-                const isComplete = currentSection === 'outside'
-                    ? outsideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
-                    : currentSection === 'inside'
-                        ? insideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
-                        : currentSection === 'unit'
-                            ? unitItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
-                            : false;
+                const mergedFindings = [...propertyFindings, newFinding];
+                await persistItemFindings(mergedFindings, updatedStatuses as Record<string, ItemStatus>);
 
-                const matchesCurrentItem = (f: any) =>
-                    f.item === currentModalItem &&
-                    f.area === currentSection &&
-                    f.unit === unitVal &&
-                    (f.building === urlBuilding || f.building === buildingName);
+                toast.success('Deficiency saved. Add another or continue inspection.', { position: 'top-right' });
 
-                const preservedFindings = propertyFindings.filter((f: any) => !matchesCurrentItem(f));
-                const mergedFindings = [...preservedFindings, ...newFindings];
-
-                // Update local state immediately
-                setPropertyFindings(mergedFindings);
-
-                await inspectionsAPI.saveProgress({
-                    property_id: property?._id || params.id,
-                    unit_id: currentSection === 'unit' ? activeInspectionUnit : urlBuilding,
-                    building_id: urlBuilding,
-                    inspection_type: type,
-                    responses: updatedStatuses,
-                    inspectionData: {
-                        findings: mergedFindings,
-                        isComplete,
-                        // Persist OD form snapshots so pre-fill survives page refresh
-                        odFormSnapshots: {
-                            ...(savedODFormData),
-                            [`${urlBuilding}:${currentSection}:${currentModalItem}`]: {
-                                odForm: { ...odForm },
-                                selectedDeficiencies: [...selectedDeficiencies],
-                                selectedDeficiency: selectedDeficiencies[0] || null,
-                                photos: [...photos],
-                                modalStep: 2
-                            }
-                        }
-                    }
-                });
-
-                // NO LONGER USING localStorage FOR FINDINGS
-                // The summary page and other views will fetch directly from the backend.
-
-                toast.info("Item saved. You can continue with other items or view summary.", { position: "top-right" });
-
-                // Update state to show the Analysis Complete screen (modalStep 4)
                 setAnalysisResult(analysisResult);
+                setLastSavedFindingId(newFindingId);
                 if (resultData.reportUrl) {
                     setReportUrl(resultData.reportUrl);
                 }
-                // Mark this item as having a saved OD finding so Select All can't overwrite it
                 if (currentSection && currentModalItem) {
                     const savedKey = `${urlBuilding}:${currentSection}:${currentModalItem}`;
                     setSavedODItems(prev => new Set(prev).add(savedKey));
-                    // Snapshot the current form data so it can be pre-filled on re-open
-                    setSavedODFormData(prev => ({
-                        ...prev,
-                        [savedKey]: {
-                            odForm: { ...odForm },
-                            selectedDeficiencies: [...selectedDeficiencies],
-                            selectedDeficiency: selectedDeficiencies[0] || null,
-                            photos: [...photos],
-                            modalStep: 2
-                        }
-                    }));
                 }
+                setSelectedDeficiency(null);
+                setPhotos([]);
                 setModalStep(4);
 
             } else {
@@ -1024,7 +1012,7 @@ export default function InspectionCategoryPage() {
             const data = await response.json();
 
             if (data.success) {
-                setPhotos([...photos, data.data.url]);
+                setPhotos([data.data.url]);
                 toast.update(toastId, { render: "Image uploaded! Damage detected.", type: "success", isLoading: false, autoClose: 3000 });
                 // Simulate analysis effect
                 setIsAnalyzing(true);
@@ -1827,62 +1815,66 @@ export default function InspectionCategoryPage() {
 
                             {modalStep === 2 && (
                                 <div className="space-y-6 animate-in fade-in duration-300 pb-6">
-                                    {/* 1. OBSERVED DEFICIENCIES - multi-select list */}
-                                    <div>
-                                        <div className="flex items-center justify-between mb-2">
-                                            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                                Observed Deficiencies ({selectedDeficiencies.length})
+                                    {savedItemFindings.length > 0 && (
+                                        <div>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">
+                                                Already Saved ({savedItemFindings.length})
                                             </label>
-                                            <button
-                                                type="button"
-                                                onClick={() => handleOpenSelection('selected')}
-                                                className="text-[10px] font-black uppercase tracking-widest text-[#0E7490] hover:text-[#006795]"
-                                            >
-                                                + Add Deficiency
-                                            </button>
-                                        </div>
-                                        {selectedDeficiencies.length > 0 ? (
                                             <div className="space-y-2">
-                                                {selectedDeficiencies.map((def) => (
-                                                    <div key={def.id} className="flex items-start justify-between gap-3 p-3 bg-white border border-[#0E7490]/20 rounded-2xl">
+                                                {savedItemFindings.map((finding: any) => (
+                                                    <div key={finding.id} className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-2xl">
+                                                        {finding.imageUri && (
+                                                            <img src={finding.imageUri} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0 border border-white shadow-sm" />
+                                                        )}
                                                         <div className="min-w-0 flex-1">
-                                                            <p className="text-xs font-bold text-gray-900">{def.selected}</p>
-                                                            <p className="text-[10px] text-gray-500 mt-1 leading-relaxed">{def.detail}</p>
-                                                            <button
-                                                                type="button"
-                                                                onClick={() => { setGuideDeficiency(def); setIsHowToInspectOpen(true); }}
-                                                                className="text-[10px] font-bold text-[#0E7490] mt-2 hover:underline"
-                                                            >
-                                                                View Inspect Guide
-                                                            </button>
+                                                            <p className="text-xs font-bold text-gray-900 truncate">{finding.title}</p>
+                                                            <p className="text-[10px] text-gray-500 truncate">{finding.description}</p>
                                                         </div>
                                                         <button
                                                             type="button"
-                                                            onClick={() => removeSelectedDeficiency(def.id)}
-                                                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-full shrink-0"
-                                                            title="Remove deficiency"
+                                                            onClick={() => handleRemoveSavedFinding(finding.id)}
+                                                            className="px-2 py-1 text-[10px] font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg shrink-0"
                                                         >
-                                                            <X className="w-4 h-4" />
+                                                            Remove
                                                         </button>
                                                     </div>
                                                 ))}
                                             </div>
-                                        ) : (
-                                            <button
-                                                type="button"
-                                                onClick={() => handleOpenSelection('selected')}
-                                                className="w-full bg-gray-50 border border-dashed border-gray-200 rounded-2xl p-4 text-xs font-bold text-gray-400 hover:border-[#0E7490] hover:text-[#0E7490] transition-all"
-                                            >
-                                                Select one or more deficiencies you observed
+                                        </div>
+                                    )}
+
+                                    {/* 1. DEFICIENCY SELECTED */}
+                                    <div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Selected</label>
+                                        <div onClick={() => handleOpenSelection('selected')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold cursor-pointer hover:bg-white hover:border-blue-400 transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
+                                            <span className={(odForm.deficiencySelected || selectedDeficiency) ? "text-gray-900" : "text-gray-400"}>
+                                                {odForm.deficiencySelected || (selectedDeficiency ? selectedDeficiency.selected : "--Select--")}
+                                            </span>
+                                            <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />
+                                        </div>
+                                        {selectedDeficiency && (
+                                            <button onClick={() => setSelectedDeficiency(null)} className="flex items-center gap-1 mt-2 text-xs font-medium text-red-500 hover:text-red-600">
+                                                <X className="w-3 h-3" /> Clear Selection
                                             </button>
                                         )}
                                     </div>
 
-                                    {/* 2. INSPECT */}
+                                    {/* 2. DEFICIENCY DETAIL */}
+                                    <div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Detail</label>
+                                        <div onClick={() => selectedDeficiency && handleOpenSelection('detail')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold ${selectedDeficiency ? 'cursor-pointer hover:bg-white hover:border-blue-400' : 'cursor-not-allowed opacity-70'} transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
+                                            <span className={(odForm.deficiencyDetail || selectedDeficiency) ? "text-gray-900" : "text-gray-400"}>
+                                                {odForm.deficiencyDetail || (selectedDeficiency ? selectedDeficiency.detail : "-- Select deficiency first --")}
+                                            </span>
+                                            {selectedDeficiency && <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />}
+                                        </div>
+                                    </div>
+
+                                    {/* 3. INSPECT */}
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Inspect IRU, BRU, Local</label>
                                         {(() => {
-                                            if (selectedDeficiencies.length === 0) {
+                                            if (!selectedDeficiency) {
                                                 return (
                                                     <button
                                                         type="button"
@@ -1896,7 +1888,7 @@ export default function InspectionCategoryPage() {
                                             return (
                                                 <button
                                                     type="button"
-                                                    onClick={() => { setGuideDeficiency(selectedDeficiencies[0]); setIsHowToInspectOpen(true); }}
+                                                    onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                     className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
                                                 >
                                                     Open Inspect IRU, BRU, Local
@@ -1905,9 +1897,9 @@ export default function InspectionCategoryPage() {
                                         })()}
                                     </div>
 
-                                    {/* 3. PIC - Photo section with Take Photo and Choose from Gallery */}
+                                    {/* 4. PIC - one photo per deficiency */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Pic</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Pic (one photo for this deficiency)</label>
 
                                         {/* Image Grid */}
                                         {photos.length > 0 && (
@@ -2093,101 +2085,82 @@ export default function InspectionCategoryPage() {
                                         </button>
                                         <div>
                                             <label className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Step 3 of 3</label>
-                                            <h4 className="text-sm font-black text-gray-900 truncate">
-                                                {selectionType === 'detail' ? 'Select Detail' : 'Select Deficiencies'} ({selectedDeficiencies.length} selected)
-                                            </h4>
+                                            <h4 className="text-sm font-black text-gray-900 truncate">Select {selectionType === 'selected' ? 'Deficiency' : selectionType}</h4>
                                         </div>
                                     </div>
-                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                        Tap to add or remove — select as many as you observed
-                                    </p>
                                     <div className="space-y-3">
-                                        {getDisplayDeficiencies().length > 0 ? getDisplayDeficiencies().map((def: DeficiencyDetail) => {
-                                            const isSelected = selectedDeficiencies.some(d => d.id === def.id);
-                                            return (
+                                        {getDisplayDeficiencies().length > 0 ? getDisplayDeficiencies().map((def: DeficiencyDetail) => (
                                             <button
                                                 key={def.id}
-                                                onClick={() => toggleDeficiencySelection(def)}
-                                                className={`w-full p-5 text-left border rounded-2xl transition-all text-[11px] font-bold leading-relaxed flex items-center justify-between group shadow-sm ${isSelected ? 'border-blue-500 bg-blue-50/50 text-blue-700' : 'border-gray-50 hover:border-blue-200 hover:bg-gray-50 text-gray-700'}`}
+                                                onClick={() => handleDeficiencySelect(def)}
+                                                className={`w-full p-5 text-left border rounded-2xl transition-all text-[11px] font-bold leading-relaxed flex items-center justify-between group shadow-sm ${selectedDeficiency?.id === def.id ? 'border-blue-500 bg-blue-50/50 text-blue-700' : 'border-gray-50 hover:border-blue-200 hover:bg-gray-50 text-gray-700'}`}
                                             >
                                                 <span className="flex-1 pr-4">{selectionType === 'selected' ? def.selected : selectionType === 'detail' ? def.detail : def.criteria}</span>
-                                                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 ${isSelected ? 'bg-blue-600 border-blue-600' : 'border-gray-300 bg-white'}`}>
-                                                    {isSelected && <Check className="w-3 h-3 text-white" strokeWidth={4} />}
-                                                </div>
+                                                <ChevronDown className="w-4 h-4 opacity-0 group-hover:opacity-100 -rotate-90 transition-all text-blue-500" />
                                             </button>
-                                        )}) : (
+                                        )) : (
                                             <div className="py-20 text-center">
                                                 <p className="text-sm font-bold text-gray-300 italic">No options found.</p>
                                             </div>
                                         )}
                                     </div>
-                                    <Button
-                                        onClick={() => setModalStep(2)}
-                                        className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-12 rounded-xl uppercase text-[10px] tracking-widest"
-                                    >
-                                        Done ({selectedDeficiencies.length} selected)
-                                    </Button>
                                 </div>
                             )}
                         </div>
 
                         {modalStep === 4 && (
-                            <div className="flex-1 overflow-y-auto flex flex-col items-center justify-start p-8 text-center space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 min-h-0">
-                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-2">
-                                    <CheckCircle2 className="w-10 h-10 text-green-600" />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <h3 className="text-2xl font-black text-gray-900">Analysis Complete</h3>
-                                    <p className="text-gray-500 text-sm">
-                                        {selectedDeficiencies.length} {selectedDeficiencies.length === 1 ? 'deficiency' : 'deficiencies'} saved for this item and added to the summary report.
+                            <div className="flex-1 overflow-y-auto flex flex-col p-6 md:p-8 space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500 min-h-0">
+                                <div className="text-center">
+                                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                                    </div>
+                                    <h3 className="text-xl font-black text-gray-900">Saved for Summary Report</h3>
+                                    <p className="text-gray-500 text-xs mt-1">
+                                        {savedItemFindings.length} {savedItemFindings.length === 1 ? 'deficiency' : 'deficiencies'} on this item
                                     </p>
                                 </div>
 
-                                <div className="w-full bg-gray-50 rounded-2xl p-6 border border-gray-100 text-left space-y-4">
-                                    <div className="flex justify-between items-start">
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Detected Defect</p>
-                                            <p className="font-bold text-gray-800">{analysisResult?.description || analysisResult?.defect || "Deficiency Detected"}</p>
+                                <div className="space-y-2">
+                                    {savedItemFindings.map((finding: any) => (
+                                        <div key={finding.id} className={`flex items-center gap-3 p-3 rounded-2xl border ${finding.id === lastSavedFindingId ? 'bg-green-50 border-green-300' : 'bg-white border-gray-100'}`}>
+                                            {finding.imageUri ? (
+                                                <img src={finding.imageUri} alt="" className="w-16 h-16 rounded-xl object-cover shrink-0 border shadow-sm" />
+                                            ) : (
+                                                <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+                                                    <ImageIcon className="w-6 h-6 text-gray-300" />
+                                                </div>
+                                            )}
+                                            <div className="min-w-0 flex-1 text-left">
+                                                <p className="text-xs font-bold text-gray-900">{finding.title}</p>
+                                                <p className="text-[10px] text-gray-500 mt-0.5 line-clamp-2">{finding.description}</p>
+                                                <p className="text-[10px] font-bold text-[#0E7490] mt-1">{finding.severity}</p>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveSavedFinding(finding.id)}
+                                                className="px-2.5 py-1.5 text-[10px] font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg shrink-0"
+                                            >
+                                                Remove
+                                            </button>
                                         </div>
-                                        <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${(analysisResult?.severity || "").toLowerCase().includes('life') ? 'bg-red-100 text-red-600' :
-                                            (analysisResult?.severity || "").toLowerCase().includes('severe') ? 'bg-orange-100 text-orange-600' :
-                                                'bg-blue-100 text-blue-600'
-                                            }`}>
-                                            {analysisResult?.severity || "Moderate"}
-                                        </span>
-                                    </div>
+                                    ))}
                                 </div>
 
-                                {/* Primary Action: Continue Inspection styled like View Summary */}
-                                <Button
-                                    onClick={() => {
-                                        // Reset modal and stay on inspection page
-                                        setModalStep(1);
-                                        setSelectedDeficiencies([]);
-                                        setDetailFilterName(null);
-                                        setPhotos([]);
-                                        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
-                                        setIsODModalOpen(false);
-                                    }}
-                                    className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-14 rounded-xl shadow-lg uppercase text-[10px] tracking-widest flex items-center justify-center gap-3"
-                                >
-                                    Continue Inspection
-                                </Button>
-
-                                {reportUrl && (
-                                    <a
-                                        href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}${reportUrl}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full"
+                                <div className="grid grid-cols-1 gap-3 pt-2">
+                                    <Button
+                                        onClick={resetFormForNewDeficiency}
+                                        className="w-full bg-[#006795] hover:bg-[#0a5670] text-white font-black h-12 rounded-xl uppercase text-[10px] tracking-widest flex items-center justify-center gap-2"
                                     >
-                                        <Button className="w-full bg-gray-900 hover:bg-black text-white font-black h-14 rounded-xl shadow-lg shadow-gray-200 uppercase text-[10px] tracking-widest flex items-center justify-center gap-3">
-                                            <FileText className="w-4 h-4" />
-                                            Download Official Report
-                                        </Button>
-                                    </a>
-                                )}
+                                        <Plus className="w-4 h-4" /> Add Deficiency
+                                    </Button>
+                                    <Button
+                                        variant="outline"
+                                        onClick={handleODModalClose}
+                                        className="w-full font-black h-12 rounded-xl border-2 uppercase text-[10px] tracking-widest"
+                                    >
+                                        Continue Inspection
+                                    </Button>
+                                </div>
                             </div>
                         )}
 
@@ -2197,7 +2170,7 @@ export default function InspectionCategoryPage() {
                                 <Button variant="outline" onClick={handleODModalClose} className="flex-1 font-black h-14 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-500 uppercase text-[10px] tracking-widest">Cancel</Button>
                                 <Button
                                     onClick={handleProceed}
-                                    disabled={isAnalyzing || photos.length === 0 || selectedDeficiencies.length === 0}
+                                    disabled={isAnalyzing || photos.length === 0 || !selectedDeficiency}
                                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-black h-14 rounded-xl shadow-lg shadow-blue-100 uppercase text-[10px] tracking-widest disabled:opacity-50 disabled:cursor-not-allowed group"
                                 >
                                     {isAnalyzing ? 'Analyzing...' : 'Proceed'}
@@ -2221,7 +2194,7 @@ export default function InspectionCategoryPage() {
                         </div>
                         <div className="p-6 md:p-8 overflow-y-auto space-y-2 custom-scrollbar">
                             {(() => {
-                                const activeGuide = guideDeficiency || selectedDeficiencies[0] || null;
+                                const activeGuide = guideDeficiency || selectedDeficiency || null;
                                 const guideText = activeGuide
                                     ? lookupCodeReference(currentSection, currentModalItem || '', activeGuide.selected)
                                     : ''
