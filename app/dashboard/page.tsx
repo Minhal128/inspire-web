@@ -361,25 +361,25 @@ export default function Dashboard() {
           </div>
 
           {/* Properties Table - Desktop */}
-          <div className="hidden md:block rounded-lg border border-gray-200 overflow-visible">
+          <div className="hidden md:block rounded-lg border border-gray-200 overflow-x-auto">
             {loading ? (
               <div className="p-8 text-center text-gray-500">Loading properties...</div>
             ) : properties.length === 0 ? (
               <div className="p-8 text-center text-gray-500">No properties found. Add your first property!</div>
             ) : (
-              <table className="w-full table-fixed">
+              <table className="w-full min-w-[1000px]">
                 <thead className="bg-gray-50">
                   <tr className="border-b border-gray-200">
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[14%]">Property ID</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[16%]">Property Name</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">Buildings</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[7%]">Units</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[14%]">Address</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">City</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">State</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[8%]">Zip Code</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[12%]">Progress</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider w-[17%]">Actions</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Property ID</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Property Name</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Address</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">State/Province</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">City/Area</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Postal Code</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Buildings</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Units</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Progress</th>
+                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -396,16 +396,16 @@ export default function Dashboard() {
                       <td className="py-3 px-3 text-center">
                         <span className="font-medium text-gray-900 text-sm truncate block">{property.name}</span>
                       </td>
-                      <td className="py-3 px-3 text-gray-900 font-medium text-sm text-center">{property.buildings}</td>
-                      <td className="py-3 px-3 text-gray-900 font-medium text-sm text-center">{property.units}</td>
                       <td className="py-3 px-3 text-gray-600 text-sm truncate text-center">{property.address}</td>
-                      <td className="py-3 px-3 text-gray-600 text-sm truncate text-center">{property.city}</td>
                       <td className="py-3 px-3 text-center">
                         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 truncate">
                           {property.state}
                         </span>
                       </td>
+                      <td className="py-3 px-3 text-gray-600 text-sm truncate text-center">{property.city}</td>
                       <td className="py-3 px-3 text-gray-600 font-mono text-xs text-center">{property.zipCode}</td>
+                      <td className="py-3 px-3 text-gray-900 font-medium text-sm text-center">{property.buildings}</td>
+                      <td className="py-3 px-3 text-gray-900 font-medium text-sm text-center">{property.units}</td>
                       <td className="py-3 px-3">
                         <div className="w-full bg-gray-100 rounded-full h-2 mb-1">
                           <div 
@@ -427,12 +427,10 @@ export default function Dashboard() {
                                 onClick={() => handleInitiate(property)}
                                 disabled={isLocked}
                                 title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
-                                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 ${
+                                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 whitespace-nowrap ${
                                   isLocked
-                                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                    : isActive
-                                      ? 'text-white bg-amber-500 hover:bg-amber-600'
-                                      : 'text-white bg-[#006795] hover:bg-[#0A5670]'
+                                    ? 'bg-[#F84B5F] text-white cursor-not-allowed'
+                                    : 'text-white bg-[#006795] hover:bg-[#0A5670]'
                                 }`}
                               >
                                 {isLocked ? (
@@ -491,10 +489,8 @@ export default function Dashboard() {
                           title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
                           className={`font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap ml-2 flex items-center gap-1 ${
                             isLocked
-                              ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                              : isActive
-                                ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-md'
-                                : 'bg-[#006795] hover:bg-[#00567a] text-white shadow-sm hover:shadow-md'
+                              ? 'bg-[#F84B5F] text-white cursor-not-allowed'
+                              : 'bg-[#006795] hover:bg-[#00567a] text-white shadow-sm hover:shadow-md'
                           }`}
                         >
                           {isLocked ? (
@@ -510,20 +506,24 @@ export default function Dashboard() {
 
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div className="bg-gray-50 p-2 rounded-lg">
+                      <span className="text-gray-500 text-xs block mb-1">State/Province</span>
+                      <p className="font-semibold text-gray-900 text-sm">{property.state}</p>
+                    </div>
+                    <div className="bg-gray-50 p-2 rounded-lg">
+                      <span className="text-gray-500 text-xs block mb-1">City/Area</span>
+                      <p className="font-semibold text-gray-900 text-sm">{property.city}</p>
+                    </div>
+                    <div className="bg-gray-50 p-2 rounded-lg">
+                      <span className="text-gray-500 text-xs block mb-1">Postal Code</span>
+                      <p className="font-semibold text-gray-900 text-base font-mono">{property.zipCode}</p>
+                    </div>
+                    <div className="bg-gray-50 p-2 rounded-lg">
                       <span className="text-gray-500 text-xs block mb-1">Buildings</span>
                       <p className="font-semibold text-gray-900 text-base">{property.buildings}</p>
                     </div>
                     <div className="bg-gray-50 p-2 rounded-lg">
                       <span className="text-gray-500 text-xs block mb-1">Units</span>
                       <p className="font-semibold text-gray-900 text-base">{property.units}</p>
-                    </div>
-                    <div className="bg-gray-50 p-2 rounded-lg">
-                      <span className="text-gray-500 text-xs block mb-1">City</span>
-                      <p className="font-semibold text-gray-900 text-base">{property.city}</p>
-                    </div>
-                    <div className="bg-gray-50 p-2 rounded-lg">
-                      <span className="text-gray-500 text-xs block mb-1">Zip Code</span>
-                      <p className="font-semibold text-gray-900 text-base font-mono">{property.zipCode}</p>
                     </div>
                     <div className="col-span-2 bg-gray-50 p-3 rounded-lg">
                       <div className="flex justify-between items-center mb-1">

@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
 import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock } from "lucide-react"
+import { toast } from "react-toastify"
 
 interface Property {
   _id: string
@@ -18,6 +19,7 @@ interface Property {
   units?: number
   createdAt: string
   buildingDetails?: any[]
+  status?: string // Add status field for hold/active state
 }
 
 interface Inspection {
@@ -99,16 +101,20 @@ export default function InspectionStatusPage() {
       const progressMap = await fetchProgress(allProperties)
       setPropertyProgress(progressMap)
 
-      // Map properties with their inspection status
+      // Map properties with their inspection status (preserve status field from API)
       const mappedProperties: PropertyWithInspection[] = allProperties.map(property => {
         const inspection = completedInspections.find(
-          insp => insp.property._id === property._id || insp.property._id.toString() === property._id.toString()
+          insp => {
+            // Safety check: ensure insp.property exists
+            if (!insp || !insp.property || !insp.property._id) return false
+            return insp.property._id === property._id || insp.property._id.toString() === property._id.toString()
+          }
         )
         
         const isComplete = progressMap[property._id] === 100
 
         return {
-          ...property,
+          ...property, // This includes the status field if it exists
           inspection,
           hasInspection: isComplete,
           isUnlocked: false
@@ -276,9 +282,32 @@ export default function InspectionStatusPage() {
     }
   }
 
-  const handleStartInspection = (propertyId: string) => {
-    router.push(`/dashboard/inspection-category/${propertyId}`)
+  const handleStartInspection = (property: PropertyWithInspection) => {
+    // Block only when another property is actively in progress (not on hold)
+    if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
+      const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
+      toast.error(
+        `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
+        { position: 'top-right', autoClose: 6000 }
+      )
+      return
+    }
+    router.push(`/dashboard/inspection-category/${property._id}`)
   }
+
+  // The property currently being actively inspected (progress > 0 and < 100, not on hold)
+  const activeInspectionPropertyId = useMemo(() => {
+    // Iterate through properties array to maintain consistent order
+    const activeProperty = properties.find(prop => {
+      const id = prop._id
+      // Check if property is on hold using status field
+      if (prop?.status === 'hold') return false
+      // Only consider properties with progress > 0 and < 100
+      const progress = propertyProgress[id] || 0
+      return progress > 0 && progress < 100
+    })
+    return activeProperty?._id || null
+  }, [propertyProgress, properties])
 
   const completedCount = properties.filter(p => p.hasInspection).length
   const pendingCount = properties.filter(p => !p.hasInspection).length
@@ -490,13 +519,35 @@ export default function InspectionStatusPage() {
                         </Button>
                       )
                     ) : (
-                      <Button
-                        onClick={() => handleStartInspection(property._id)}
-                        className="bg-[#006795] hover:bg-blue-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
-                      >
-                        <FileText className="w-4 h-4 flex-shrink-0" />
-                        Start Inspection
-                      </Button>
+                      (() => {
+                        const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
+                        const isActive = activeInspectionPropertyId === property._id
+                        return (
+                          <Button
+                            onClick={() => handleStartInspection(property)}
+                            disabled={isLocked}
+                            className={`flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap ${
+                              isLocked
+                                ? 'bg-[#F84B5F] hover:bg-[#F84B5F] text-white cursor-not-allowed'
+                                : 'bg-[#006795] hover:bg-blue-700 text-white'
+                            }`}
+                          >
+                            {isLocked ? (
+                              <>
+                                <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
+                                </svg>
+                                <span>Locked</span>
+                              </>
+                            ) : (
+                              <>
+                                <FileText className="w-4 h-4 flex-shrink-0" />
+                                <span>{isActive ? 'Continue Inspection' : 'Start Inspection'}</span>
+                              </>
+                            )}
+                          </Button>
+                        )
+                      })()
                     )}
                   </div>
                 </div>
