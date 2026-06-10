@@ -18,14 +18,14 @@ export default function AboutClient() {
             <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#F84B5F] rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
           </div>
-
+          
           <div className="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10 text-center">
             <p className="text-[#006795] font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">Empowering Property Decisions</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.1]">
-              About <span className="text-[#F84B5F] italic font-medium">NSPIREinspection.AI</span>
+              About <span className="text-[#F84B5F] italic font-medium">Inspire</span>
             </h1>
             <p className="max-w-4xl mx-auto text-lg md:text-xl text-white/90 leading-relaxed font-light">
-              NSPIREinspection.AI delivers specialized home inspection services across the USA designed to protect buyers, sellers, investors, and homeowners with precise reporting and insurance-ready documentation.
+              Our Qualified NSPIRE inspectors focus on identifying risks, structural issues, and safety hazards to ensure that every inspection provides clear insights that help you make informed decisions about your property.
             </p>
           </div>
         </section>
@@ -36,8 +36,8 @@ export default function AboutClient() {
             <div className="relative group">
               <div className="relative rounded-[40px] overflow-hidden aspect-[4/5] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
                 <Image
-                  src="/candid_house_people.png"
-                  alt="Professional Home Inspection"
+                  src="/multi_unit_housing.png"
+                  alt="Professional Housing Inspection"
                   fill
                   className="object-cover"
                   unoptimized
@@ -53,18 +53,12 @@ export default function AboutClient() {
             <div className="space-y-10">
               <div>
                 <p className="text-sm font-bold text-[#006795] uppercase tracking-widest mb-4">What We Do</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-black mb-6 leading-tight">Identifying Risks, <br /><span className="text-[#006795]">Securing Investments</span></h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-6 leading-tight">Identifying Risks, <br/><span className="text-[#006795]">Securing Investments</span></h2>
                 <div className="w-20 h-1.5 bg-[#F84B5F] rounded-full mb-8"></div>
-
+                
                 <div className="text-gray-600 space-y-6 text-lg leading-relaxed">
                   <p>
-                    Our certified home inspections focus on identifying risks, structural issues, and safety hazards to ensure that every home inspection provides clear insights that help you make informed decisions about your property.
-                  </p>
-                  <p>
-                    Whether you search for home inspection near me, want to understand the home inspection cost, or need guidance on what is looked for in a home inspection, NSPIREinspection.AI builds trust with detailed evaluation methods and industry-standard home inspection certification.
-                  </p>
-                  <p>
-                    From assessing roofing, electrical, plumbing, HVAC, and foundation conditions to identifying things that fail a home inspection, our goal is to secure your investment with a thorough and compliant inspection process.
+                    Our Qualified NSPIRE inspectors focus on identifying risks, structural issues, and safety hazards to ensure that every inspection provides clear insights that help you make informed decisions about your property.
                   </p>
                 </div>
               </div>
@@ -88,7 +82,7 @@ export default function AboutClient() {
           <div className="max-w-[1400px] mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">Setting the <span className="text-[#006795]">Benchmark</span></h2>
             <p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed mb-16">
-              With advanced tools, experienced inspectors, and reliable reporting, NSPIREinspection.AI sets the benchmark for home inspection services, home inspection companies, and certified home inspections throughout the nation.
+              Our Qualified NSPIRE inspectors focus on identifying risks, structural issues, and safety hazards to ensure that every inspection provides clear insights that help you make informed decisions about your property.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -127,20 +121,20 @@ export default function AboutClient() {
         <section className="bg-black py-20 md:py-32 px-4 md:px-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#006795] rounded-full blur-[160px] opacity-20 translate-x-1/2 -translate-y-1/2"></div>
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">Ready to <span className="text-[#F84B5F]">NSPIRE</span> Confidence?</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">Ready to <span className="text-[#F84B5F]">Inspire</span> Confidence?</h2>
             <p className="text-xl text-gray-400 mb-12 font-light leading-relaxed">
-              Join thousands of satisfied clients who have trusted NSPIREinspection.AI with their property inspections.
+              Join thousands of satisfied clients who have trusted Nspire with their property inspections.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button
-                onClick={() => router.push("/contact")}
-                className="bg-[#F84B5F] hover:bg-[#EE3646] text-white rounded-full px-12 py-8 text-lg font-bold shadow-2xl transition-all hover:scale-105"
+              <Button 
+                  onClick={() => router.push("/contact")}
+                  className="bg-[#F84B5F] hover:bg-[#EE3646] text-white rounded-full px-12 py-8 text-lg font-bold shadow-2xl transition-all hover:scale-105"
               >
                 Contact Us Now
               </Button>
-              <Button
-                variant="outline"
-                className="bg-transparent border-2 border-white/20 text-white hover:bg-white hover:text-black rounded-full px-12 py-8 text-lg font-bold transition-all hover:scale-105"
+              <Button 
+                  variant="outline" 
+                  className="bg-transparent border-2 border-white/20 text-white hover:bg-white hover:text-black rounded-full px-12 py-8 text-lg font-bold transition-all hover:scale-105"
               >
                 Learn More
               </Button>
