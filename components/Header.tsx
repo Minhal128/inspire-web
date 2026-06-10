@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="bg-white/95 border-b border-slate-200 px-4 md:px-6 py-2 md:py-3 sticky top-0 z-50 backdrop-blur-xl shadow-sm">
+      <nav className="bg-white/95 border-b border-slate-200 px-4 md:px-6 py-2 md:py-3 sticky top-0 z-[100] backdrop-blur-xl shadow-sm">
         <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between gap-3 md:gap-6">
           {/* Logo - Left Aligned */}
           <div className="flex-shrink-0 ml-2 md:ml-6">
@@ -44,7 +44,7 @@ export default function Header() {
           {/* Hamburger Menu Button - Mobile Only */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden flex flex-col gap-1.5 p-2 z-[110]"
             aria-label="Toggle menu"
           >
             <span
@@ -61,7 +61,7 @@ export default function Header() {
           {/* Desktop Menu - Centered */}
           <div className="hidden md:flex flex-1 items-center justify-center gap-4 lg:gap-6">
             <Link href="/" className="flex flex-col group items-center">
-                  <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
+              <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
                 HOME
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">
@@ -254,202 +254,121 @@ export default function Header() {
             </Button>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Menu Overlay */}
-        {mobileMenuOpen && (
-          <div
-            className="md:hidden fixed inset-0 bg-black/50 z-30"
-            onClick={() => setMobileMenuOpen(false)}
-          ></div>
-        )}
-
-        {/* Mobile Menu Content */}
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
         <div
-          className={`md:hidden fixed top-0 left-0 h-full w-64 bg-[#E8F4F8] z-40 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
-        >
-          <div className="flex flex-col gap-6 p-8 pt-24">
+          className="md:hidden fixed inset-0 bg-black/50 z-[90]"
+          onClick={() => setMobileMenuOpen(false)}
+        ></div>
+      )}
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`md:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-[95] transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+      >
+        {/* Menu Items */}
+        <div className="flex flex-col overflow-y-auto h-full bg-white">
+          <div className="flex flex-col gap-1 p-4 pt-20">{/* Added pt-20 for spacing from top */}
             <Link
               href="/"
-              className="flex flex-col group"
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
-                HOME
-              </span>
-              <span className="text-[11px] text-gray-500 italic tracking-wider">
-                Welcome
-              </span>
+              <svg className="w-5 h-5 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors">HOME</span>
+                <span className="text-[10px] text-gray-500 italic">Welcome</span>
+              </div>
             </Link>
+
             <div>
               <button
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="flex flex-col group w-full text-left"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group w-full"
               >
-                <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight flex items-center gap-2">
-                  SERVICES{" "}
-                  <svg
-                    className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </span>
-                <span className="text-[11px] text-gray-500 italic tracking-wider">
-                  Professional Solutions
-                </span>
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <div className="flex flex-col flex-1 text-left">
+                  <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors flex items-center justify-between">
+                    SERVICES
+                    <svg className={`w-4 h-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                  <span className="text-[10px] text-gray-500 italic">Professional Solutions</span>
+                </div>
               </button>
               {mobileServicesOpen && (
-                <div className="pl-4 pt-3 space-y-3">
-                  <Link
-                    href="/service"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Service Details
-                  </Link>
-                  <Link
-                    href="/inspection-services/buyers"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Buyers Inspections
-                  </Link>
-                  <Link
-                    href="/inspection-services/owners"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Owners Inspections
-                  </Link>
-                  <Link
-                    href="/inspection-services/sellers"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Sellers Inspections
-                  </Link>
-                  <Link
-                    href="/inspection-services/specialized"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Specialized Services
-                  </Link>
-                  <Link
-                    href="/inspection-services/commercial"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Commercial Inspections
-                  </Link>
-                  <Link
-                    href="/inspection-services/public-housing"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Public Housing
-                  </Link>
-                  <Link
-                    href="/inspection-services/rental"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Rental Inspections
-                  </Link>
-                  <Link
-                    href="/inspection-services/insurance-risk"
-                    className="block text-sm font-medium text-gray-600 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Insurance Risk
-                  </Link>
+                <div className="pl-11 mt-1 space-y-1">
+                  {[
+                    { href: "/service", label: "All Services" },
+                    { href: "/inspection-services/buyers", label: "Buyers" },
+                    { href: "/inspection-services/owners", label: "Owners" },
+                    { href: "/inspection-services/sellers", label: "Sellers" },
+                    { href: "/inspection-services/rental", label: "Rental" },
+                    { href: "/inspection-services/specialized", label: "Specialized" },
+                    { href: "/inspection-services/commercial", label: "Commercial" },
+                    { href: "/inspection-services/public-housing", label: "Public Housing" },
+                    { href: "/inspection-services/insurance-risk", label: "Insurance Risk" },
+                  ].map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block text-sm text-gray-600 hover:text-primary p-2 rounded hover:bg-gray-50 transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
-            <Link
-              href="/about"
-              className="flex flex-col group"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
-                ABOUT
-              </span>
-              <span className="text-[11px] text-gray-500 italic tracking-wider">
-                Our Story
-              </span>
-            </Link>
-            <Link
-              href="/contact"
-              className="flex flex-col group"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
-                CONTACT
-              </span>
-              <span className="text-[11px] text-gray-500 italic tracking-wider">
-                Get in Touch
-              </span>
-            </Link>
-            <Link
-              href="/faq"
-              className="flex flex-col group"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
-                EDUCATION & TRAINING
-              </span>
-              <span className="text-[11px] text-gray-500 italic tracking-wider">
-                NSPIRE Videos
-              </span>
-            </Link>
-            <Link
-              href="/blog"
-              className="flex flex-col group"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
-                BLOGS
-              </span>
-              <span className="text-[11px] text-gray-500 italic tracking-wider">
-                AI-Driven Property Inspection
-              </span>
-            </Link>
 
-            {/* Mobile Login/Register Button */}
-            <div className="mt-4 pt-6 border-t border-gray-200">
+            {[
+              { href: "/about", icon: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z", label: "ABOUT", subtitle: "Our Story" },
+              { href: "/contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "CONTACT", subtitle: "Get in Touch" },
+              { href: "/faq", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253", label: "EDUCATION & TRAINING", subtitle: "NSPIRE Videos" },
+              { href: "/blog", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z", label: "BLOGS", subtitle: "AI-Driven Insights" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                </svg>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors">{item.label}</span>
+                  <span className="text-[10px] text-gray-500 italic">{item.subtitle}</span>
+                </div>
+              </Link>
+            ))}
+
+            {/* Login/Register Button */}
+            <div className="mt-4 pt-4 border-t border-gray-200">
               <Button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   router.push("/profile-selection");
                 }}
-                className="w-full bg-primary hover:bg-[#0A5670] text-primary-foreground rounded-xl py-4 text-base font-bold flex items-center justify-center gap-3 shadow-md transition-all cursor-pointer"
+                className="w-full bg-primary hover:bg-[#0A5670] text-white rounded-lg py-3 text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <span>Login / Register</span>
               </Button>
             </div>
           </div>
         </div>
-      </nav>
+      </div>
     </>
   );
 }
