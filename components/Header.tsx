@@ -33,10 +33,10 @@ export default function Header() {
               <Image
                 src="/logo.png"
                 alt="INSPIRE"
-                width={160}
-                height={44}
+                width={240}
+                height={66}
                 priority
-                className="h-10 md:h-12 w-auto"
+                className="h-14 md:h-16 w-auto"
               />
             </Link>
           </div>
@@ -268,9 +268,20 @@ export default function Header() {
       <div
         className={`md:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-[95] transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
+        {/* Logo in Drawer */}
+        <div className="p-6 border-b border-gray-200 bg-white">
+          <Image
+            src="/logo.png"
+            alt="INSPIRE"
+            width={220}
+            height={60}
+            className="h-16 w-auto"
+          />
+        </div>
+
         {/* Menu Items */}
-        <div className="flex flex-col overflow-y-auto h-full bg-white">
-          <div className="flex flex-col gap-1 p-4 pt-20">{/* Added pt-20 for spacing from top */}
+        <div className="flex flex-col overflow-y-auto h-[calc(100%-100px)] bg-white">
+          <div className="flex flex-col gap-1 p-4">
             <Link
               href="/"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 transition-colors group"
