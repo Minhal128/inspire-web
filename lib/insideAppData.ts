@@ -3205,37 +3205,32 @@ export const CABINET_STORAGE_PANTRY: UnitItemDeficiencies = {
             points: '2.20/n',
             code: 'CAB-STORAGE-01',
             codeReference: `🔍 1. Presence & Installation
-• Verify presence: Confirm that cabinets or storage units are installed and not missing.
-• Built-in vs. freestanding: Note whether units are wall-mounted, recessed, or movable.
-• NSPIRE Deficiency: Missing cabinets (with evidence of prior installation)
-
+• 	Verify presence: Confirm that cabinets or storage units are installed and not missing.
+• 	Built-in vs. freestanding: Note whether units are wall-mounted, recessed, or movable.
+• 	NSPIRE Deficiency: Missing cabinets (with evidence of prior installation) 
 🧩 2. Structural Integrity
-• Doors & drawers: Open and close each—check for sticking, misalignment, or detachment.
-• Hinges & slides: Inspect for rust, looseness, or broken components.
-• Mounting: Ensure wall-mounted units are securely fastened and not pulling away.
-• IRC Reference: Cabinets must be safely anchored and operable (IRC §R109.1.5, §R315)
-
+• 	Doors & drawers: Open and close each—check for sticking, misalignment, or detachment.
+• 	Hinges & slides: Inspect for rust, looseness, or broken components.
+• 	Mounting: Ensure wall-mounted units are securely fastened and not pulling away.
+• 	IRC Reference: Cabinets must be safely anchored and operable (IRC §R109.1.5, §R315)
 🧼 3. Surface Condition & Cleanability
-• Exterior finish: Look for peeling laminate, chipped paint, or exposed particle board.
-• Interior surfaces: Check for mold, grime, pest droppings, or water damage.
-
+• 	Exterior finish: Look for peeling laminate, chipped paint, or exposed particle board.
+• 	Interior surfaces: Check for mold, grime, pest droppings, or water damage.
 🔒 4. Functionality & Usability
-• Locks/latches: If present, confirm they operate properly and aren't jammed.
-• Shelving: Ensure shelves are level, secure, and not sagging or cracked.
-• Accessibility: Confirm handles and doors are reachable (ADA reach range: 15–48" AFF)
-• IBU Overlay: Some jurisdictions require lockable storage for cleaning supplies or sharps
-
+• 	Locks/latches: If present, confirm they operate properly and aren’t jammed.
+• 	Shelving: Ensure shelves are level, secure, and not sagging or cracked.
+• 	Accessibility: Confirm handles and doors are reachable (ADA reach range: 15–48" AFF)
+• 	IBC Chapter 12 requires that interior spaces meet minimum ventilation standards.
 🔥 5. Fire Safety & Clearance
-• Proximity to heat sources: Cabinets near stoves, heaters, or electrical panels must be fire-rated or shielded.
-• Ventilation: Storage areas must not obstruct mechanical or exhaust systems.
-• IRC Reference: Maintain clearance per IRC §M1505 and §R302.11
+• 	Proximity to heat sources: Cabinets near stoves, heaters, or electrical panels must be fire-rated or shielded.
+• 	Ventilation: Storage areas must not obstruct mechanical or exhaust systems.
+• 	IRC Reference: Maintain clearance per IRC §M1505 and §R302.11
 
 🧠 6. Accessibility & Labeling (IBU)
-• Reach range: Confirm accessibility-compliant access to frequently used compartments.
-• Labeling: If used for emergency supplies or chemicals, ensure clear signage.
-• IBU Local Codes: May require enhanced labeling or restricted access for certain storage types
-
-📸 7. Documentation & Reporting`
+• 	Reach range: Confirm accessibility -compliant access to frequently used compartments.
+• 	Labeling: If used for emergency supplies or chemicals, ensure clear signage.
+• 	IBU Local Codes: May require enhanced labeling or restricted access for certain storage types
+IBC Chapter 12 requires that interior spaces meet minimum ventilation standards.`
         }
     ]
 };
@@ -3262,35 +3257,31 @@ export const CALL_FOR_AID_SYSTEM: UnitItemDeficiencies = {
             points: '27.25/50',
             code: 'CALL-AID-01',
             codeReference: `🔍 1. Locate and Identify System Type
-• Wall-mounted pull cord: Most common in bathrooms, hallways, or bedrooms.
-• Button-based system: May be flush-mounted or raised.
-• Annunciator panel: Central panel showing active alerts (if present).
-• NSPIRE Note: Wireless personal devices (e.g., pendants) are excluded from inspection
-
-📏 2. Cord Placement and Accessibility (NSPIRE)
-• Height check: Pull cord must hang ≤6 inches from the floor
-• No knots or coils: Cord must be freely hanging and reachable.
-• Missing cord: If evidence of prior installation exists but the cord is gone, cite deficiency.
-• NSPIRE Severity: Cord too high or missing = Moderate deficiency
-
+• 	Wall-mounted pull cord: Most common in bathrooms, hallways, or bedrooms.
+• 	Button-based system: May be flush-mounted or raised.
+• 	Annunciator panel: Central panel showing active alerts (if present).
+• 	NSPIRE Note: Wireless personal devices (e.g., pendants) are excluded from inspection
+📏 2. Cord Placement and Accessibility (NSPIRE )
+• 	Height check: Pull cord must hang ≤6 inches from the floor
+• 	No knots or coils: Cord must be freely hanging and reachable.
+• 	Missing cord: If evidence of prior installation exists but the cord is gone, cite deficiency.
+• 	NSPIRE Severity: Cord too high or missing = Moderate deficiency
 🧪 3. Functionality Test
-• Activate system: Pull the cord or press the button to trigger the alert.
-• Verify response: Confirm visual/audible signal (e.g., hallway light, buzzer).
-• Annunciator panel: If present, confirm that the correct zone illuminates.
-
-🚫 4. Obstruction or Inaccessibility
-• Blocked access: Ensure no furniture, equipment, or clutter obstructs the call-for-aid device.
-• Tampering: Look for signs of disabled or covered components.
-
+• 	Activate system: Pull the cord or press the button to trigger the alert.
+• 	Verify response: Confirm visual/audible signal (e.g., hallway light, buzzer).
+• 	Annunciator panel: If present, confirm that the correct zone illuminates.
+🚫 4. Obstruction or Inaccessibility 
+• 	Blocked access: Ensure no furniture, equipment, or clutter obstructs the call-for-aid device.
+• 	Tampering: Look for signs of disabled or covered components.
 🔥 5. Fire & Life Safety Overlay (IRC §R314, NSPIRE Fire Safety)
-• Integration check: If the system is tied to fire alarm or emergency lighting, confirm operability.
-• Power source: Confirm hardwired or battery backup is intact.
-• NSPIRE Overlay: Emergency systems must be certified.
-
+• 	Integration check: If the system is tied to fire alarm or emergency lighting, confirm operability.
+• 	Power source: Confirm hardwired or battery backup is intact.
+• 	NSPIRE Overlay: Emergency systems must be certified.
 🧠 6. Accessibility & IBU Local Overlay
-• Reach range: Confirm compliant placement (typically 15–48" AFF for buttons).
-• Signage: Ensure clear labeling and usage instructions.
-• IBU Enforcement: Some jurisdictions require enhanced alerting (e.g., strobe lights, voice annunciation)`
+• 	Reach range: Confirm compliant placement (typically 15–48" AFF for buttons).
+• 	Signage: Ensure clear labeling and usage instructions.
+• 	IBC 1009.8  If your common area is not an Area of Refuge → no call‑for‑aid required.
+`
         },
         {
             id: 'call_aid_2',
@@ -3302,35 +3293,31 @@ export const CALL_FOR_AID_SYSTEM: UnitItemDeficiencies = {
             points: '13.40/50',
             code: 'CALL-AID-02',
             codeReference: `🔍 1. Locate and Identify System Type
-• Wall-mounted pull cord: Most common in bathrooms, hallways, or bedrooms.
-• Button-based system: May be flush-mounted or raised.
-• Annunciator panel: Central panel showing active alerts (if present).
-• NSPIRE Note: Wireless personal devices (e.g., pendants) are excluded from inspection
-
-📏 2. Cord Placement and Accessibility (NSPIRE)
-• Height check: Pull cord must hang ≤6 inches from the floor
-• No knots or coils: Cord must be freely hanging and reachable.
-• Missing cord: If evidence of prior installation exists but the cord is gone, cite deficiency.
-• NSPIRE Severity: Cord too high or missing = Moderate deficiency
-
+• 	Wall-mounted pull cord: Most common in bathrooms, hallways, or bedrooms.
+• 	Button-based system: May be flush-mounted or raised.
+• 	Annunciator panel: Central panel showing active alerts (if present).
+• 	NSPIRE Note: Wireless personal devices (e.g., pendants) are excluded from inspection
+📏 2. Cord Placement and Accessibility (NSPIRE )
+• 	Height check: Pull cord must hang ≤6 inches from the floor
+• 	No knots or coils: Cord must be freely hanging and reachable.
+• 	Missing cord: If evidence of prior installation exists but the cord is gone, cite deficiency.
+• 	NSPIRE Severity: Cord too high or missing = Moderate deficiency
 🧪 3. Functionality Test
-• Activate system: Pull the cord or press the button to trigger the alert.
-• Verify response: Confirm visual/audible signal (e.g., hallway light, buzzer).
-• Annunciator panel: If present, confirm that the correct zone illuminates.
-
-🚫 4. Obstruction or Inaccessibility
-• Blocked access: Ensure no furniture, equipment, or clutter obstructs the call-for-aid device.
-• Tampering: Look for signs of disabled or covered components.
-
+• 	Activate system: Pull the cord or press the button to trigger the alert.
+• 	Verify response: Confirm visual/audible signal (e.g., hallway light, buzzer).
+• 	Annunciator panel: If present, confirm that the correct zone illuminates.
+🚫 4. Obstruction or Inaccessibility 
+• 	Blocked access: Ensure no furniture, equipment, or clutter obstructs the call-for-aid device.
+• 	Tampering: Look for signs of disabled or covered components.
 🔥 5. Fire & Life Safety Overlay (IRC §R314, NSPIRE Fire Safety)
-• Integration check: If the system is tied to fire alarm or emergency lighting, confirm operability.
-• Power source: Confirm hardwired or battery backup is intact.
-• NSPIRE Overlay: Emergency systems must be certified.
-
+• 	Integration check: If the system is tied to fire alarm or emergency lighting, confirm operability.
+• 	Power source: Confirm hardwired or battery backup is intact.
+• 	NSPIRE Overlay: Emergency systems must be certified.
 🧠 6. Accessibility & IBU Local Overlay
-• Reach range: Confirm compliant placement (typically 15–48" AFF for buttons).
-• Signage: Ensure clear labeling and usage instructions.
-• IBU Enforcement: Some jurisdictions require enhanced alerting (e.g., strobe lights, voice annunciation)`
+• 	Reach range: Confirm compliant placement (typically 15–48" AFF for buttons).
+• 	Signage: Ensure clear labeling and usage instructions.
+• 	IBC 1009.8  If your common area is not an Area of Refuge → no call‑for‑aid required.
+`
         }
     ]
 };
@@ -3358,34 +3345,29 @@ export const CARBON_MONOXIDE_ALARM: UnitItemDeficiencies = {
             code: 'CO-ALARM-01',
             codeReference: `🧭 Step 1: Identify Where CO Alarms Are Required
 Inspect common areas that contain or are adjacent to potential CO sources.
-
 🔍 Step 2: Visual Condition Assessment
 CO alarm missing or not installed, CO alarm obstructed
-
-🧪 Step 3: Functional Testing
-• Test Button Activation:
-• Press the test button to confirm audible and/or visual alert
-• Power Source Check:
-• Confirm hardwired connection with battery backup (IRC M1502.4.1)
-• Battery-only alarms permitted if the code at time of construction allowed it
-• Location Verification:
-• Ensure alarms are installed:
-• Outside each sleeping area
-• In bedrooms with fuel-burning appliances
-• In mechanical rooms or near shared combustion sources
-• Near the duct register if served by a remote furnace
-
+🧪 Step 3: Functional Testin                                                                                                                                                       • 	Test Button Activation:
+• 	Press the test button to confirm audible and/or visual alert
+• 	Power Source Check:
+• 	Confirm hardwired connection with battery backup (IRC M1502.4.1)
+• 	Battery-only alarms permitted if the  at time of construction allowed it
+• 	Location Verification:
+• 	Ensure alarms are installed:
+• 	Outside each sleeping area
+• 	In bedrooms with fuel-burning appliances
+• 	In mechanical rooms or near shared combustion sources
+• 	Near the t duct register if served by a remote furnace
 📏 Step 4: Accessibility Compliance (IBU)
-• Reach Range: Test/reset buttons must be within 15"–48" AFF
-• Operability: Must be usable with one hand, no tight grasping or twisting
-• Visual Alerts: Required in common areas serving residents with hearing impairments
-• Clear Floor Space: Minimum 30"x48" in front of alarm for access
-
+• 	Reach Range: Test/reset buttons must be within 15"–48" AFF
+• 	Operability: Must be usable with one hand, no tight grasping or twisting
+• 	Visual Alerts: Required in common areas serving residents with hearing impairments
+• 	Clear Floor Space: Minimum 30"x48" in front of alarm for access
 ⚒️ Step 5: IRC Installation Requirements
-• IRC R315.2: CO alarms required in dwelling units with fuel-burning appliances or attached garages
-• IRC R315.3: Must be installed outside each separate sleeping area
-• IRC R315.4: Alarms must be hardwired with battery backup unless exempted
-• IRC R315.5: Alarms must be listed per UL 2034`
+• 	IRC R315.2: CO alarms required in dwelling units with fuel-burning appliances or attached garages
+• 	IRC R315.3:Must be installed outside each separate sleeping area
+• 	IRC R315.4:Alarms must be hardwired with battery backup unless exempted
+• 	IRC R315.5:Alarms must be listed per UL 2034`
         },
         {
             id: 'co_alarm_2',
@@ -3398,34 +3380,29 @@ CO alarm missing or not installed, CO alarm obstructed
             code: 'CO-ALARM-02',
             codeReference: `🧭 Step 1: Identify Where CO Alarms Are Required
 Inspect common areas that contain or are adjacent to potential CO sources.
-
 🔍 Step 2: Visual Condition Assessment
 CO alarm missing or not installed, CO alarm obstructed
-
-🧪 Step 3: Functional Testing
-• Test Button Activation:
-• Press the test button to confirm audible and/or visual alert
-• Power Source Check:
-• Confirm hardwired connection with battery backup (IRC M1502.4.1)
-• Battery-only alarms permitted if the code at time of construction allowed it
-• Location Verification:
-• Ensure alarms are installed:
-• Outside each sleeping area
-• In bedrooms with fuel-burning appliances
-• In mechanical rooms or near shared combustion sources
-• Near the duct register if served by a remote furnace
-
+🧪 Step 3: Functional Testin                                                                                                                                                       • 	Test Button Activation:
+• 	Press the test button to confirm audible and/or visual alert
+• 	Power Source Check:
+• 	Confirm hardwired connection with battery backup (IRC M1502.4.1)
+• 	Battery-only alarms permitted if the  at time of construction allowed it
+• 	Location Verification:
+• 	Ensure alarms are installed:
+• 	Outside each sleeping area
+• 	In bedrooms with fuel-burning appliances
+• 	In mechanical rooms or near shared combustion sources
+• 	Near the t duct register if served by a remote furnace
 📏 Step 4: Accessibility Compliance (IBU)
-• Reach Range: Test/reset buttons must be within 15"–48" AFF
-• Operability: Must be usable with one hand, no tight grasping or twisting
-• Visual Alerts: Required in common areas serving residents with hearing impairments
-• Clear Floor Space: Minimum 30"x48" in front of alarm for access
-
+• 	Reach Range: Test/reset buttons must be within 15"–48" AFF
+• 	Operability: Must be usable with one hand, no tight grasping or twisting
+• 	Visual Alerts: Required in common areas serving residents with hearing impairments
+• 	Clear Floor Space: Minimum 30"x48" in front of alarm for access
 ⚒️ Step 5: IRC Installation Requirements
-• IRC R315.2: CO alarms required in dwelling units with fuel-burning appliances or attached garages
-• IRC R315.3: Must be installed outside each separate sleeping area
-• IRC R315.4: Alarms must be hardwired with battery backup unless exempted
-• IRC R315.5: Alarms must be listed per UL 2034`
+• 	IRC R315.2: CO alarms required in dwelling units with fuel-burning appliances or attached garages
+• 	IRC R315.3:Must be installed outside each separate sleeping area
+• 	IRC R315.4:Alarms must be hardwired with battery backup unless exempted
+• 	IRC R315.5:Alarms must be listed per UL 2034`
         },
         {
             id: 'co_alarm_3',
@@ -3438,34 +3415,29 @@ CO alarm missing or not installed, CO alarm obstructed
             code: 'CO-ALARM-03',
             codeReference: `🧭 Step 1: Identify Where CO Alarms Are Required
 Inspect common areas that contain or are adjacent to potential CO sources.
-
 🔍 Step 2: Visual Condition Assessment
 CO alarm missing or not installed, CO alarm obstructed
-
-🧪 Step 3: Functional Testing
-• Test Button Activation:
-• Press the test button to confirm audible and/or visual alert
-• Power Source Check:
-• Confirm hardwired connection with battery backup (IRC M1502.4.1)
-• Battery-only alarms permitted if the code at time of construction allowed it
-• Location Verification:
-• Ensure alarms are installed:
-• Outside each sleeping area
-• In bedrooms with fuel-burning appliances
-• In mechanical rooms or near shared combustion sources
-• Near the duct register if served by a remote furnace
-
+🧪 Step 3: Functional Testin                                                                                                                                                       • 	Test Button Activation:
+• 	Press the test button to confirm audible and/or visual alert
+• 	Power Source Check:
+• 	Confirm hardwired connection with battery backup (IRC M1502.4.1)
+• 	Battery-only alarms permitted if the  at time of construction allowed it
+• 	Location Verification:
+• 	Ensure alarms are installed:
+• 	Outside each sleeping area
+• 	In bedrooms with fuel-burning appliances
+• 	In mechanical rooms or near shared combustion sources
+• 	Near the t duct register if served by a remote furnace
 📏 Step 4: Accessibility Compliance (IBU)
-• Reach Range: Test/reset buttons must be within 15"–48" AFF
-• Operability: Must be usable with one hand, no tight grasping or twisting
-• Visual Alerts: Required in common areas serving residents with hearing impairments
-• Clear Floor Space: Minimum 30"x48" in front of alarm for access
-
+• 	Reach Range: Test/reset buttons must be within 15"–48" AFF
+• 	Operability: Must be usable with one hand, no tight grasping or twisting
+• 	Visual Alerts: Required in common areas serving residents with hearing impairments
+• 	Clear Floor Space: Minimum 30"x48" in front of alarm for access
 ⚒️ Step 5: IRC Installation Requirements
-• IRC R315.2: CO alarms required in dwelling units with fuel-burning appliances or attached garages
-• IRC R315.3: Must be installed outside each separate sleeping area
-• IRC R315.4: Alarms must be hardwired with battery backup unless exempted
-• IRC R315.5: Alarms must be listed per UL 2034`
+• 	IRC R315.2: CO alarms required in dwelling units with fuel-burning appliances or attached garages
+• 	IRC R315.3:Must be installed outside each separate sleeping area
+• 	IRC R315.4:Alarms must be hardwired with battery backup unless exempted
+• 	IRC R315.5:Alarms must be listed per UL 2034`
         }
     ]
 };
@@ -3492,32 +3464,33 @@ export const CEILING: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'CEILING-01',
             codeReference: `🔍 1. Visual Condition Assessment
-• Scan entire surface: Look for sagging, bubbling, cracks, or loose panels.
-• Material separation: Identify nail pops, joint tape failure, or plasterboard pulling away.
-
+• 	Scan entire surface: Look for sagging, bubbling, cracks, or loose panels.
+• 	Material separation: Identify nail pops, joint tape failure, or plasterboard pulling away.
 🕳️ 2. Damage & Penetrations
-• Holes or gaps: Any size hole that compromises the enclosure or fire separation must be documented.
-• Water stains: Brown or yellow discoloration may indicate active or past leaks.
-• IRC Reference: Ceiling must maintain fire separation and structural integrity (IRC §R302.6)
-
+• 	Holes or gaps: Any size hole that compromises the enclosure or fire separation must be documented.
+• 	Water stains: Brown or yellow discoloration may indicate active or past leaks.
+• 	IRC Reference: Ceiling must maintain fire separation and structural integrity (IRC §R302.6)
 💧 3. Moisture & Mold Indicators
-• Discoloration: Look for streaks, rings, or bubbling paint.
-• Odor: Musty smells may suggest hidden mold.
-
+• 	Discoloration: Look for streaks, rings, or bubbling paint.
+• 	Odor: Musty smells may suggest hidden mold.
 🔥 4. Fire Safety Integration
-• Sprinkler heads: Confirm they are unobstructed and properly mounted.
-• Smoke detectors: If ceiling-mounted, verify presence and operability.
-• Penetrations: Ensure any ceiling penetrations are sealed with fire-rated materials.
-• IRC Reference: Fire-rated assemblies must be intact (IRC §R302.11)
-
+• 	Sprinkler heads: Confirm they are unobstructed and properly mounted.
+• 	Smoke detectors: If ceiling-mounted, verify presence and operability.
+• 	Penetrations: Ensure any ceiling penetrations are sealed with fire-rated materials.
+• 	IRC Reference: Fire-rated assemblies must be intact (IRC §R302.11)
 💡 5. Lighting & Electrical
-• Ceiling fixtures: Check for secure mounting, exposed wiring, or flickering lights.
-• Recessed lighting: Inspect trim rings and insulation contact rating.
-
+• 	Ceiling fixtures: Check for secure mounting, exposed wiring, or flickering lights.
+• 	Recessed lighting: Inspect trim rings and insulation contact rating.
 🧠 6. Accessibility & IBU Overlay
-• Clearance: Ensure ceiling height meets minimum IRC requirement (IRC §R305.1: ≥7 feet)
-• Labeling: If the ceiling contains access panels (e.g., attic), confirm labeling and unobstructed access.
-• IBU Local Codes: May require enhanced fireproofing or acoustic treatment in shared spaces`
+• 	Clearance: Ensure ceiling height meets minimum IRC requirement (IRC §R305.1: ≥7 feet)
+• 	Labeling: If the ceiling contains access panels (e.g., attic), confirm labeling and unobstructed access.
+• 	Minimum Ceiling Height — IBC 1208.2 & 1003.2
+Common areas (corridors, lobbies, community rooms, laundry rooms, mailrooms) must meet:
+Habitable/common rooms
+7 ft 6 in minimum ceiling height (IBC 1208.2)
+Corridors/egress paths
+7 ft 6 in minimum (IBC 1003.2)
+Projections (lights, ducts, sprinklers) allowed down to 6 ft 8 in`
         },
         {
             id: 'ceiling_2',
@@ -3529,32 +3502,33 @@ export const CEILING: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'CEILING-02',
             codeReference: `🔍 1. Visual Condition Assessment
-• Scan entire surface: Look for sagging, bubbling, cracks, or loose panels.
-• Material separation: Identify nail pops, joint tape failure, or plasterboard pulling away.
-
+• 	Scan entire surface: Look for sagging, bubbling, cracks, or loose panels.
+• 	Material separation: Identify nail pops, joint tape failure, or plasterboard pulling away.
 🕳️ 2. Damage & Penetrations
-• Holes or gaps: Any size hole that compromises the enclosure or fire separation must be documented.
-• Water stains: Brown or yellow discoloration may indicate active or past leaks.
-• IRC Reference: Ceiling must maintain fire separation and structural integrity (IRC §R302.6)
-
+• 	Holes or gaps: Any size hole that compromises the enclosure or fire separation must be documented.
+• 	Water stains: Brown or yellow discoloration may indicate active or past leaks.
+• 	IRC Reference: Ceiling must maintain fire separation and structural integrity (IRC §R302.6)
 💧 3. Moisture & Mold Indicators
-• Discoloration: Look for streaks, rings, or bubbling paint.
-• Odor: Musty smells may suggest hidden mold.
-
+• 	Discoloration: Look for streaks, rings, or bubbling paint.
+• 	Odor: Musty smells may suggest hidden mold.
 🔥 4. Fire Safety Integration
-• Sprinkler heads: Confirm they are unobstructed and properly mounted.
-• Smoke detectors: If ceiling-mounted, verify presence and operability.
-• Penetrations: Ensure any ceiling penetrations are sealed with fire-rated materials.
-• IRC Reference: Fire-rated assemblies must be intact (IRC §R302.11)
-
+• 	Sprinkler heads: Confirm they are unobstructed and properly mounted.
+• 	Smoke detectors: If ceiling-mounted, verify presence and operability.
+• 	Penetrations: Ensure any ceiling penetrations are sealed with fire-rated materials.
+• 	IRC Reference: Fire-rated assemblies must be intact (IRC §R302.11)
 💡 5. Lighting & Electrical
-• Ceiling fixtures: Check for secure mounting, exposed wiring, or flickering lights.
-• Recessed lighting: Inspect trim rings and insulation contact rating.
-
+• 	Ceiling fixtures: Check for secure mounting, exposed wiring, or flickering lights.
+• 	Recessed lighting: Inspect trim rings and insulation contact rating.
 🧠 6. Accessibility & IBU Overlay
-• Clearance: Ensure ceiling height meets minimum IRC requirement (IRC §R305.1: ≥7 feet)
-• Labeling: If the ceiling contains access panels (e.g., attic), confirm labeling and unobstructed access.
-• IBU Local Codes: May require enhanced fireproofing or acoustic treatment in shared spaces`
+• 	Clearance: Ensure ceiling height meets minimum IRC requirement (IRC §R305.1: ≥7 feet)
+• 	Labeling: If the ceiling contains access panels (e.g., attic), confirm labeling and unobstructed access.
+• 	Minimum Ceiling Height — IBC 1208.2 & 1003.2
+Common areas (corridors, lobbies, community rooms, laundry rooms, mailrooms) must meet:
+Habitable/common rooms
+7 ft 6 in minimum ceiling height (IBC 1208.2)
+Corridors/egress paths
+7 ft 6 in minimum (IBC 1003.2)
+Projections (lights, ducts, sprinklers) allowed down to 6 ft 8 in`
         },
         {
             id: 'ceiling_3',
@@ -3566,32 +3540,33 @@ export const CEILING: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'CEILING-03',
             codeReference: `🔍 1. Visual Condition Assessment
-• Scan entire surface: Look for sagging, bubbling, cracks, or loose panels.
-• Material separation: Identify nail pops, joint tape failure, or plasterboard pulling away.
-
+• 	Scan entire surface: Look for sagging, bubbling, cracks, or loose panels.
+• 	Material separation: Identify nail pops, joint tape failure, or plasterboard pulling away.
 🕳️ 2. Damage & Penetrations
-• Holes or gaps: Any size hole that compromises the enclosure or fire separation must be documented.
-• Water stains: Brown or yellow discoloration may indicate active or past leaks.
-• IRC Reference: Ceiling must maintain fire separation and structural integrity (IRC §R302.6)
-
+• 	Holes or gaps: Any size hole that compromises the enclosure or fire separation must be documented.
+• 	Water stains: Brown or yellow discoloration may indicate active or past leaks.
+• 	IRC Reference: Ceiling must maintain fire separation and structural integrity (IRC §R302.6)
 💧 3. Moisture & Mold Indicators
-• Discoloration: Look for streaks, rings, or bubbling paint.
-• Odor: Musty smells may suggest hidden mold.
-
+• 	Discoloration: Look for streaks, rings, or bubbling paint.
+• 	Odor: Musty smells may suggest hidden mold.
 🔥 4. Fire Safety Integration
-• Sprinkler heads: Confirm they are unobstructed and properly mounted.
-• Smoke detectors: If ceiling-mounted, verify presence and operability.
-• Penetrations: Ensure any ceiling penetrations are sealed with fire-rated materials.
-• IRC Reference: Fire-rated assemblies must be intact (IRC §R302.11)
-
+• 	Sprinkler heads: Confirm they are unobstructed and properly mounted.
+• 	Smoke detectors: If ceiling-mounted, verify presence and operability.
+• 	Penetrations: Ensure any ceiling penetrations are sealed with fire-rated materials.
+• 	IRC Reference: Fire-rated assemblies must be intact (IRC §R302.11)
 💡 5. Lighting & Electrical
-• Ceiling fixtures: Check for secure mounting, exposed wiring, or flickering lights.
-• Recessed lighting: Inspect trim rings and insulation contact rating.
-
+• 	Ceiling fixtures: Check for secure mounting, exposed wiring, or flickering lights.
+• 	Recessed lighting: Inspect trim rings and insulation contact rating.
 🧠 6. Accessibility & IBU Overlay
-• Clearance: Ensure ceiling height meets minimum IRC requirement (IRC §R305.1: ≥7 feet)
-• Labeling: If the ceiling contains access panels (e.g., attic), confirm labeling and unobstructed access.
-• IBU Local Codes: May require enhanced fireproofing or acoustic treatment in shared spaces`
+• 	Clearance: Ensure ceiling height meets minimum IRC requirement (IRC §R305.1: ≥7 feet)
+• 	Labeling: If the ceiling contains access panels (e.g., attic), confirm labeling and unobstructed access.
+• 	Minimum Ceiling Height — IBC 1208.2 & 1003.2
+Common areas (corridors, lobbies, community rooms, laundry rooms, mailrooms) must meet:
+Habitable/common rooms
+7 ft 6 in minimum ceiling height (IBC 1208.2)
+Corridors/egress paths
+7 ft 6 in minimum (IBC 1003.2)
+Projections (lights, ducts, sprinklers) allowed down to 6 ft 8 in`
         }
     ]
 };
@@ -3618,34 +3593,31 @@ export const CHIMNEY: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'CHIMNEY-01',
             codeReference: `🔍 1. Visual Identification
-• Locate chimney: Identify visible chimney stack, flue, or firebox connected to a fireplace or wood-burning appliance.
-• Type: Note whether it's masonry, metal, or factory-built.
-• Ventless units: Exclude from chimney inspection per NSPIRE protocol
-
-🧱 2. Structural Integrity
-• Exterior signs: Look for leaning, separation from the building, or cracked masonry.
-• Brick/block condition: Check for missing, spalling, or loose units.
-• Flue alignment: Confirm chimney is vertically aligned and not collapsing.
-
-🔥 3. Containment & Venting
-• Flue condition: Inspect for cracks, holes, or missing lining.
-• Creosote stains: Look for seepage through masonry—indicates failed lining.
-• Firebox connection: Confirm a secure and complete connection between the firebox and the flue.
-
+• 	Locate chimney: Identify visible chimney stack, flue, or firebox connected to a fireplace or wood-burning appliance.
+• 	Type: Note whether it’s masonry, metal, or factory-built.
+• 	Ventless units: Exclude from chimney inspection per NSPIRE protocol
+🧱 2. Structural Integrity 
+• 	Exterior signs: Look for leaning, separation from the building, or cracked masonry.
+• 	Brick/block condition: Check for missing, spalling, or loose units.
+• 	Flue alignment: Confirm chimney is vertically aligned and not collapsing.
+🔥 3. Containment & Venting 
+• 	Flue condition: Inspect for cracks, holes, or missing lining.
+• 	Creosote stains: Look for seepage through masonry—indicates failed lining.
+• 	Firebox connection: Confirm a secure and complete connection between the firebox and the flue.
 🧯 4. Clearances & Fire Safety (IRC §R1001.11, §R1003.18)
-• Roof clearance: Chimney must extend ≥3 feet above roof and ≥2 feet above any point within 10 feet.
-• Combustible materials: Check for improper contact with wood framing or trim.
-• Anchorage: Confirm seismic straps or bracing if required by IBU overlay.
-
+• 	Roof clearance: Chimney must extend ≥3 feet above roof and ≥2 feet above any point within 10 feet.
+• 	Combustible materials: Check for improper contact with wood framing or trim.
+• 	Anchorage: Confirm seismic straps or bracing if required by IBU overlay.
 🧪 5. Functional Components
-• Cap & spark arrestor: Ensure chimney cap is present and intact.
-• Cleanout door: If accessible, inspect for secure closure and signs of blockage.
-• Damper: If visible, verify operability and seal.
-
+• 	Cap & spark arrestor: Ensure chimney cap is present and intact.
+• 	Cleanout door: If accessible, inspect for secure closure and signs of blockage.
+• 	Damper: If visible, verify operability and seal.
 🧠 6. Accessibility & IBU Overlay
-• Inspection access: Confirm that chimney components are visually accessible without tools or disassembly.
-• Labeling: If the chimney serves multiple units or systems, ensure proper identification.
-• IBU Local Codes: May require enhanced seismic anchoring, fireproofing, or maintenance logs`
+• 	Inspection access: Confirm that chimney components are visually accessible without tools or disassembly.
+• 	Labeling: If the chimney serves multiple units or systems, ensure proper identification.
+• 	IBC 2113.19   Minimum clearances:                                                                                                                                                                         2 inches (51 mm) from combustibles for interior masonry chimneys
+1 inch (25 mm) for chimneys entirely outside the exterior wall
+Clearance cannot be filled except where fire blocking is permitted (IBC 2113.20)`
         }
     ]
 };
@@ -3672,35 +3644,36 @@ export const CLOTHES_DRYER_EXHAUST: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'DRYER-01',
             codeReference: `🔍 1. Locate and Identify System Type
-• Dryer type: Electric or gas (gas requires combustion venting)
-• Vent type: Rigid metal duct, flexible aluminum, or transition duct
-• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
-
-🧩 2. Transition Duct Inspection
-• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
-• Material: Must be UL-listed metal or aluminum—no plastic or foil
-• Secure connection: Check clamps or fasteners at both ends
-
-💨 3. Airflow & Obstruction Check
-• Visual scan: Look for lint buildup around the duct or the floor
-• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
-• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
-
+• 	Dryer type: Electric or gas (gas requires combustion venting)
+• 	Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• 	Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+🧩 2. Transition Duct Inspection 
+• 	Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• 	Material: Must be UL-listed metal or aluminum—no plastic or foil
+• 	Secure connection: Check clamps or fasteners at both ends
+💨 3. Airflow & Obstruction Check 
+• 	Visual scan: Look for lint buildup around the duct or the floor
+• 	Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• 	Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
 🧱 4. Exterior Vent Termination (IRC §M1502.3)
-• Location: Must be ≥3 feet from windows, doors, or other openings
-• Cover condition: Check for missing cap, broken louvers, or pest intrusion
-• No screens allowed: IRC prohibits screens that trap lint
-
+• 	Location: Must be ≥3 feet from windows, doors, or other openings
+• 	Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• 	No screens allowed: IRC prohibits screens that trap lint
 🔥 5. Fire Safety & IRC Compliance
-• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
-• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
-• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
-• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
-
+• 	Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• 	Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• 	No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• 	IBU Overlay: May require enhanced fireproofing or annual cleaning logs
 🧠 6. Accessibility & Labeling
-• Reachability: Ensure duct and vent are visually accessible without tools
-• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
-• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
+IBC → IMC 504 governs dryer exhaust systems
+IBC 2901.1 and 1203 send all dryer ventilation requirements to the International Mechanical Code (IMC).
+Independent exhaust duct (no combining with bathrooms or other dryers unless listed manifold system)
+Exhaust to the outdoors only
+Smooth metal duct, min 0.016" thick
+Maximum duct length 35 ft (before reductions for elbows)
+No screens at termination
+Backdraft damper required
+Transition duct max 8 ft, listed and labeled`
         },
         {
             id: 'dryer_2',
@@ -3712,35 +3685,36 @@ export const CLOTHES_DRYER_EXHAUST: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'DRYER-02',
             codeReference: `🔍 1. Locate and Identify System Type
-• Dryer type: Electric or gas (gas requires combustion venting)
-• Vent type: Rigid metal duct, flexible aluminum, or transition duct
-• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
-
-🧩 2. Transition Duct Inspection
-• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
-• Material: Must be UL-listed metal or aluminum—no plastic or foil
-• Secure connection: Check clamps or fasteners at both ends
-
-💨 3. Airflow & Obstruction Check
-• Visual scan: Look for lint buildup around the duct or the floor
-• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
-• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
-
+• 	Dryer type: Electric or gas (gas requires combustion venting)
+• 	Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• 	Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+🧩 2. Transition Duct Inspection 
+• 	Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• 	Material: Must be UL-listed metal or aluminum—no plastic or foil
+• 	Secure connection: Check clamps or fasteners at both ends
+💨 3. Airflow & Obstruction Check 
+• 	Visual scan: Look for lint buildup around the duct or the floor
+• 	Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• 	Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
 🧱 4. Exterior Vent Termination (IRC §M1502.3)
-• Location: Must be ≥3 feet from windows, doors, or other openings
-• Cover condition: Check for missing cap, broken louvers, or pest intrusion
-• No screens allowed: IRC prohibits screens that trap lint
-
+• 	Location: Must be ≥3 feet from windows, doors, or other openings
+• 	Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• 	No screens allowed: IRC prohibits screens that trap lint
 🔥 5. Fire Safety & IRC Compliance
-• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
-• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
-• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
-• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
-
+• 	Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• 	Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• 	No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• 	IBU Overlay: May require enhanced fireproofing or annual cleaning logs
 🧠 6. Accessibility & Labeling
-• Reachability: Ensure duct and vent are visually accessible without tools
-• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
-• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
+IBC → IMC 504 governs dryer exhaust systems
+IBC 2901.1 and 1203 send all dryer ventilation requirements to the International Mechanical Code (IMC).
+Independent exhaust duct (no combining with bathrooms or other dryers unless listed manifold system)
+Exhaust to the outdoors only
+Smooth metal duct, min 0.016" thick
+Maximum duct length 35 ft (before reductions for elbows)
+No screens at termination
+Backdraft damper required
+Transition duct max 8 ft, listed and labeled`
         },
         {
             id: 'dryer_3',
@@ -3752,35 +3726,36 @@ export const CLOTHES_DRYER_EXHAUST: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'DRYER-03',
             codeReference: `🔍 1. Locate and Identify System Type
-• Dryer type: Electric or gas (gas requires combustion venting)
-• Vent type: Rigid metal duct, flexible aluminum, or transition duct
-• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
-
-🧩 2. Transition Duct Inspection
-• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
-• Material: Must be UL-listed metal or aluminum—no plastic or foil
-• Secure connection: Check clamps or fasteners at both ends
-
-💨 3. Airflow & Obstruction Check
-• Visual scan: Look for lint buildup around the duct or the floor
-• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
-• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
-
+• 	Dryer type: Electric or gas (gas requires combustion venting)
+• 	Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• 	Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+🧩 2. Transition Duct Inspection 
+• 	Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• 	Material: Must be UL-listed metal or aluminum—no plastic or foil
+• 	Secure connection: Check clamps or fasteners at both ends
+💨 3. Airflow & Obstruction Check 
+• 	Visual scan: Look for lint buildup around the duct or the floor
+• 	Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• 	Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
 🧱 4. Exterior Vent Termination (IRC §M1502.3)
-• Location: Must be ≥3 feet from windows, doors, or other openings
-• Cover condition: Check for missing cap, broken louvers, or pest intrusion
-• No screens allowed: IRC prohibits screens that trap lint
-
+• 	Location: Must be ≥3 feet from windows, doors, or other openings
+• 	Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• 	No screens allowed: IRC prohibits screens that trap lint
 🔥 5. Fire Safety & IRC Compliance
-• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
-• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
-• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
-• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
-
+• 	Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• 	Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• 	No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• 	IBU Overlay: May require enhanced fireproofing or annual cleaning logs
 🧠 6. Accessibility & Labeling
-• Reachability: Ensure duct and vent are visually accessible without tools
-• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
-• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
+IBC → IMC 504 governs dryer exhaust systems
+IBC 2901.1 and 1203 send all dryer ventilation requirements to the International Mechanical Code (IMC).
+Independent exhaust duct (no combining with bathrooms or other dryers unless listed manifold system)
+Exhaust to the outdoors only
+Smooth metal duct, min 0.016" thick
+Maximum duct length 35 ft (before reductions for elbows)
+No screens at termination
+Backdraft damper required
+Transition duct max 8 ft, listed and labeled`
         },
         {
             id: 'dryer_4',
@@ -3792,35 +3767,36 @@ export const CLOTHES_DRYER_EXHAUST: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'DRYER-04',
             codeReference: `🔍 1. Locate and Identify System Type
-• Dryer type: Electric or gas (gas requires combustion venting)
-• Vent type: Rigid metal duct, flexible aluminum, or transition duct
-• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
-
-🧩 2. Transition Duct Inspection
-• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
-• Material: Must be UL-listed metal or aluminum—no plastic or foil
-• Secure connection: Check clamps or fasteners at both ends
-
-💨 3. Airflow & Obstruction Check
-• Visual scan: Look for lint buildup around the duct or the floor
-• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
-• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
-
+• 	Dryer type: Electric or gas (gas requires combustion venting)
+• 	Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• 	Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+🧩 2. Transition Duct Inspection 
+• 	Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• 	Material: Must be UL-listed metal or aluminum—no plastic or foil
+• 	Secure connection: Check clamps or fasteners at both ends
+💨 3. Airflow & Obstruction Check 
+• 	Visual scan: Look for lint buildup around the duct or the floor
+• 	Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• 	Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
 🧱 4. Exterior Vent Termination (IRC §M1502.3)
-• Location: Must be ≥3 feet from windows, doors, or other openings
-• Cover condition: Check for missing cap, broken louvers, or pest intrusion
-• No screens allowed: IRC prohibits screens that trap lint
-
+• 	Location: Must be ≥3 feet from windows, doors, or other openings
+• 	Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• 	No screens allowed: IRC prohibits screens that trap lint
 🔥 5. Fire Safety & IRC Compliance
-• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
-• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
-• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
-• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
-
+• 	Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• 	Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• 	No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• 	IBU Overlay: May require enhanced fireproofing or annual cleaning logs
 🧠 6. Accessibility & Labeling
-• Reachability: Ensure duct and vent are visually accessible without tools
-• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
-• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
+IBC → IMC 504 governs dryer exhaust systems
+IBC 2901.1 and 1203 send all dryer ventilation requirements to the International Mechanical Code (IMC).
+Independent exhaust duct (no combining with bathrooms or other dryers unless listed manifold system)
+Exhaust to the outdoors only
+Smooth metal duct, min 0.016" thick
+Maximum duct length 35 ft (before reductions for elbows)
+No screens at termination
+Backdraft damper required
+Transition duct max 8 ft, listed and labeled`
         },
         {
             id: 'dryer_5',
@@ -3832,35 +3808,36 @@ export const CLOTHES_DRYER_EXHAUST: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'DRYER-05',
             codeReference: `🔍 1. Locate and Identify System Type
-• Dryer type: Electric or gas (gas requires combustion venting)
-• Vent type: Rigid metal duct, flexible aluminum, or transition duct
-• Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
-
-🧩 2. Transition Duct Inspection
-• Presence: Confirm duct is attached from dryer to wall/floor exhaust port
-• Material: Must be UL-listed metal or aluminum—no plastic or foil
-• Secure connection: Check clamps or fasteners at both ends
-
-💨 3. Airflow & Obstruction Check
-• Visual scan: Look for lint buildup around the duct or the floor
-• Airflow test: Run the dryer briefly and feel for exhaust at the termination point
-• Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
-
+• 	Dryer type: Electric or gas (gas requires combustion venting)
+• 	Vent type: Rigid metal duct, flexible aluminum, or transition duct
+• 	Termination point: Exterior wall or roof vent (must discharge outdoors per IRC §M1501.1)
+🧩 2. Transition Duct Inspection 
+• 	Presence: Confirm duct is attached from dryer to wall/floor exhaust port
+• 	Material: Must be UL-listed metal or aluminum—no plastic or foil
+• 	Secure connection: Check clamps or fasteners at both ends
+💨 3. Airflow & Obstruction Check 
+• 	Visual scan: Look for lint buildup around the duct or the floor
+• 	Airflow test: Run the dryer briefly and feel for exhaust at the termination point
+• 	Backdraft damper: Confirm presence at exterior vent (IRC §M1502.3)
 🧱 4. Exterior Vent Termination (IRC §M1502.3)
-• Location: Must be ≥3 feet from windows, doors, or other openings
-• Cover condition: Check for missing cap, broken louvers, or pest intrusion
-• No screens allowed: IRC prohibits screens that trap lint
-
+• 	Location: Must be ≥3 feet from windows, doors, or other openings
+• 	Cover condition: Check for missing cap, broken louvers, or pest intrusion
+• 	No screens allowed: IRC prohibits screens that trap lint
 🔥 5. Fire Safety & IRC Compliance
-• Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
-• Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
-• No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
-• IBU Overlay: May require enhanced fireproofing or annual cleaning logs
-
+• 	Duct length: Max 35 feet (IRC §M1502.4.6), reduced for bends
+• 	Joints: Must be mechanically fastened and airflow-directional (IRC §M1502.4.2)
+• 	No shared systems: Dryer exhaust must be independent (IRC §M1502.2)
+• 	IBU Overlay: May require enhanced fireproofing or annual cleaning logs
 🧠 6. Accessibility & Labeling
-• Reachability: Ensure duct and vent are visually accessible without tools
-• Signage: If the vent serves multiple dryers, confirm labeling or zone identification
-• IBU Local Codes: May require inspection access panels or fire-rated enclosure`
+IBC → IMC 504 governs dryer exhaust systems
+IBC 2901.1 and 1203 send all dryer ventilation requirements to the International Mechanical Code (IMC).
+Independent exhaust duct (no combining with bathrooms or other dryers unless listed manifold system)
+Exhaust to the outdoors only
+Smooth metal duct, min 0.016" thick
+Maximum duct length 35 ft (before reductions for elbows)
+No screens at termination
+Backdraft damper required
+Transition duct max 8 ft, listed and labeled`
         }
     ]
 };
@@ -3889,32 +3866,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '13.40/n',
             code: 'DOOR-ENTRY-01',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_2',
@@ -3925,32 +3897,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '60 Day',
             points: '2.20/n',
             code: 'DOOR-ENTRY-02',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_3',
@@ -3961,32 +3928,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-03',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_4',
@@ -3997,32 +3959,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '24 Hrs.',
             points: '13.40/n',
             code: 'DOOR-ENTRY-04',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_5',
@@ -4033,32 +3990,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-05',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_6',
@@ -4069,32 +4021,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-06',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_7',
@@ -4105,32 +4052,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-07',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_8',
@@ -4141,32 +4083,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '24 Hrs.',
             points: '13.40/n',
             code: 'DOOR-ENTRY-08',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_9',
@@ -4177,32 +4114,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-09',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         },
         {
             id: 'door_entry_10',
@@ -4213,32 +4145,27 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-10',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         }
     ]
 };
@@ -4256,30 +4183,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'DOOR-FIRE-01',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_2',
@@ -4291,30 +4215,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'DOOR-FIRE-02',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_3',
@@ -4326,30 +4247,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'DOOR-FIRE-03',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_4',
@@ -4361,30 +4279,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'DOOR-FIRE-04',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_5',
@@ -4396,30 +4311,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'DOOR-FIRE-05',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_6',
@@ -4431,30 +4343,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'DOOR-FIRE-06',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_7',
@@ -4466,30 +4375,27 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'DOOR-FIRE-07',
             codeReference: `🔍 1. Door Identification
-• Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
-• If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
-• NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
-
+• 	Label location: Look for a metal fire label or plug on the door edge (between hinges) or frame.
+• 	If label is missing: Treat as fire-rated if connected to a rated corridor, stairwell, or mechanical room.
+• 	NSPIRE Note: Label absence does not exempt inspection—evaluate based on location and function.
 🚪 2. Operability
-• Open test: Door must open fully without obstruction or excessive force.
-• Close test: Door must close completely and latch securely.
-
-🔒 3. Self-Closing Hardware
-• Presence: Required if evidence of prior installation (e.g., mounting holes).
-• Functionality: Door must self-close and latch without manual assistance.
-
-🧱 4. Surface & Structural Integrity
-• Holes or damage: Any hole or structural damage that compromises fire containment.
-• Rust: ≥25% surface rust is a Severe deficiency.
-• Broken glass: If the vision panel is cracked or missing, cite as Severe.
-
-🧼 5. Seal & Gasket Condition
-• Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
-• Light test: Shine flashlight around edges—light leakage may indicate seal failure.
-
-🚫 6. Obstructions & Improper Use
-• Held open: Door propped with wedge, trash can, or kick-down stop.
-• Blocked path: Furniture or objects preventing full swing or closure.`
+• 	Open test: Door must open fully without obstruction or excessive force.
+• 	Close test: Door must close completely and latch securely.
+🔒 3. Self-Closing Hardware 
+• 	Presence: Required if evidence of prior installation (e.g., mounting holes).
+• 	Functionality: Door must self-close and latch without manual assistance.
+🧱 4. Surface & Structural Integrity 
+• 	Holes or damage: Any hole or structural damage that compromises fire containment.
+• 	Rust: ≥25% surface rust is a Severe deficiency.
+• 	Broken glass: If the vision panel is cracked or missing, cite as Severe.
+🧼 5. Seal & Gasket Condition 
+• 	Inspect perimeter: Look for missing, torn, or compressed fire-rated seals.
+• 	Light test: Shine flashlight around edges—light leakage may indicate seal failure.
+• 	IBC Chapter  7                                                                                                                     A common‑area entry door must be fire‑rated if it is part of a required fire‑resistance‑rated assembly.                                                                                              Typical cases where a rating is required:
+Door from a corridor that is rated
+Door into a stair enclosure (1‑ or 2‑hour)
+Door into a shaft enclosure
+Door into a fire‑rated lobby (high‑rise).`
         }
     ]
 };
@@ -4508,30 +4414,33 @@ export const DOOR_GENERAL: UnitItemDeficiencies = {
             code: 'DOOR-GEN-01',
             codeReference: `🧭 Step 1: Identify Doors to Inspect
 Focus on non-fire-rated, non-entry doors in common areas such as:
-NSPIRE defines "general doors" as any door not classified as entry, fire-labeled, or emergency exit.
-
-🔍 Step 2: Operability
-• IRC (2021) – §R311, §R312, §R302.5
-• IBU overlays – Local fire, egress, and accessibility code
-
+NSPIRE defines “general doors” as any door not classified as entry, fire-labeled, or emergency exit.
+🔍 Step 2:Operability 
+• 	IRC (2021) – §R311, §R312, §R302.5
+• 	IBU overlays – Local fire, egress, and accessibility code
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without excessive force
-• Lock Test: Engage and disengage lock to verify security
-• Seal Check: Inspect for daylight, drafts, or water intrusion around edges
-• Surface Inspection: Look for cracks, holes, or peeling finish
-• Frame Stability: Check for loose hinges, warped jambs, or misaligned thresholds
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Clear width: ≥32" clear opening per IRC §R311.2 and ADA standards.
-• Operable parts: Must be usable with one hand, no tight grasping.
-• IBU Overlay: May require panic hardware, visual signage, or audible alerts
-
+• 	Open/Close Test:	Confirm smooth operation without excessive force
+• 	Lock Test: Engage and disengage lock to verify security
+• 	Seal Check: Inspect for daylight, drafts, or water intrusion around edges
+• 	Surface Inspection: Look for cracks, holes, or peeling finish
+• 	Frame Stability: Check for loose hinges, warped jambs, or misaligned thresholds
+📏 Step 4: Accessibility Accessibility Requirements — IBC Chapter 11
+All common‑area doors must be fully accessible:
+32" clear width
+Maneuvering clearances on push/pull sides
+Accessible hardware
+Threshold ≤ ½ inch (beveled)
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R311.2–R311.3:
-• Doors must permit safe egress and be operable from inside without a key
-• IRC R703.4: Flashing is required to prevent water intrusion at door openings
-• IRC R612.3: Exterior doors must be tested and labeled for structural performance
-• IRC R317.1: Moisture-prone doors must use decay-resistant materials`
+• 	IRC R311.2–R311.3:
+• 	Doors must permit safe egress and be operable from inside without a key
+• 	IRC R703.4: Flashing is required to prevent water intrusion at door openings
+• 	IBC Chapter 10 performance
+A general door in a common area of an R‑2 building must be:
+32" × 80" minimum clear opening
+Accessible (hardware, clearances, thresholds)
+Fire‑rated and self‑closing only if in a rated wall
+Out‑swinging if serving 50+ occupants
+Openable without keys/tools`
         },
         {
             id: 'door_general_2',
@@ -4544,30 +4453,33 @@ NSPIRE defines "general doors" as any door not classified as entry, fire-labeled
             code: 'DOOR-GEN-02',
             codeReference: `🧭 Step 1: Identify Doors to Inspect
 Focus on non-fire-rated, non-entry doors in common areas such as:
-NSPIRE defines "general doors" as any door not classified as entry, fire-labeled, or emergency exit.
-
-🔍 Step 2: Operability
-• IRC (2021) – §R311, §R312, §R302.5
-• IBU overlays – Local fire, egress, and accessibility code
-
+NSPIRE defines “general doors” as any door not classified as entry, fire-labeled, or emergency exit.
+🔍 Step 2:Operability 
+• 	IRC (2021) – §R311, §R312, §R302.5
+• 	IBU overlays – Local fire, egress, and accessibility code
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without excessive force
-• Lock Test: Engage and disengage lock to verify security
-• Seal Check: Inspect for daylight, drafts, or water intrusion around edges
-• Surface Inspection: Look for cracks, holes, or peeling finish
-• Frame Stability: Check for loose hinges, warped jambs, or misaligned thresholds
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Clear width: ≥32" clear opening per IRC §R311.2 and ADA standards.
-• Operable parts: Must be usable with one hand, no tight grasping.
-• IBU Overlay: May require panic hardware, visual signage, or audible alerts
-
+• 	Open/Close Test:	Confirm smooth operation without excessive force
+• 	Lock Test: Engage and disengage lock to verify security
+• 	Seal Check: Inspect for daylight, drafts, or water intrusion around edges
+• 	Surface Inspection: Look for cracks, holes, or peeling finish
+• 	Frame Stability: Check for loose hinges, warped jambs, or misaligned thresholds
+📏 Step 4: Accessibility Accessibility Requirements — IBC Chapter 11
+All common‑area doors must be fully accessible:
+32" clear width
+Maneuvering clearances on push/pull sides
+Accessible hardware
+Threshold ≤ ½ inch (beveled)
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R311.2–R311.3:
-• Doors must permit safe egress and be operable from inside without a key
-• IRC R703.4: Flashing is required to prevent water intrusion at door openings
-• IRC R612.3: Exterior doors must be tested and labeled for structural performance
-• IRC R317.1: Moisture-prone doors must use decay-resistant materials`
+• 	IRC R311.2–R311.3:
+• 	Doors must permit safe egress and be operable from inside without a key
+• 	IRC R703.4: Flashing is required to prevent water intrusion at door openings
+• 	IBC Chapter 10 performance
+A general door in a common area of an R‑2 building must be:
+32" × 80" minimum clear opening
+Accessible (hardware, clearances, thresholds)
+Fire‑rated and self‑closing only if in a rated wall
+Out‑swinging if serving 50+ occupants
+Openable without keys/tools`
         },
         {
             id: 'door_general_3',
@@ -4580,30 +4492,33 @@ NSPIRE defines "general doors" as any door not classified as entry, fire-labeled
             code: 'DOOR-GEN-03',
             codeReference: `🧭 Step 1: Identify Doors to Inspect
 Focus on non-fire-rated, non-entry doors in common areas such as:
-NSPIRE defines "general doors" as any door not classified as entry, fire-labeled, or emergency exit.
-
-🔍 Step 2: Operability
-• IRC (2021) – §R311, §R312, §R302.5
-• IBU overlays – Local fire, egress, and accessibility code
-
+NSPIRE defines “general doors” as any door not classified as entry, fire-labeled, or emergency exit.
+🔍 Step 2:Operability 
+• 	IRC (2021) – §R311, §R312, §R302.5
+• 	IBU overlays – Local fire, egress, and accessibility code
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without excessive force
-• Lock Test: Engage and disengage lock to verify security
-• Seal Check: Inspect for daylight, drafts, or water intrusion around edges
-• Surface Inspection: Look for cracks, holes, or peeling finish
-• Frame Stability: Check for loose hinges, warped jambs, or misaligned thresholds
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Clear width: ≥32" clear opening per IRC §R311.2 and ADA standards.
-• Operable parts: Must be usable with one hand, no tight grasping.
-• IBU Overlay: May require panic hardware, visual signage, or audible alerts
-
+• 	Open/Close Test:	Confirm smooth operation without excessive force
+• 	Lock Test: Engage and disengage lock to verify security
+• 	Seal Check: Inspect for daylight, drafts, or water intrusion around edges
+• 	Surface Inspection: Look for cracks, holes, or peeling finish
+• 	Frame Stability: Check for loose hinges, warped jambs, or misaligned thresholds
+📏 Step 4: Accessibility Accessibility Requirements — IBC Chapter 11
+All common‑area doors must be fully accessible:
+32" clear width
+Maneuvering clearances on push/pull sides
+Accessible hardware
+Threshold ≤ ½ inch (beveled)
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R311.2–R311.3:
-• Doors must permit safe egress and be operable from inside without a key
-• IRC R703.4: Flashing is required to prevent water intrusion at door openings
-• IRC R612.3: Exterior doors must be tested and labeled for structural performance
-• IRC R317.1: Moisture-prone doors must use decay-resistant materials`
+• 	IRC R311.2–R311.3:
+• 	Doors must permit safe egress and be operable from inside without a key
+• 	IRC R703.4: Flashing is required to prevent water intrusion at door openings
+• 	IBC Chapter 10 performance
+A general door in a common area of an R‑2 building must be:
+32" × 80" minimum clear opening
+Accessible (hardware, clearances, thresholds)
+Fire‑rated and self‑closing only if in a rated wall
+Out‑swinging if serving 50+ occupants
+Openable without keys/tools`
         }
     ]
 };
@@ -4623,29 +4538,30 @@ export const DOOR_GARAGE: UnitItemDeficiencies = {
             codeReference: `🧭 Step 1: Identify Garage Door Type and Location
 Inspect all permanently installed garage doors in common areas such as:
 NSPIRE applies to both manual and motorized garage doors serving residential buildings or shared-use areas.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines a garage door as deficient if it cannot reliably open, close, or protect the interior from outside elements.
-
 🧪 Step 3: Functional Testing
-• Manual Operation Test: Lift or lower the door to confirm smooth movement and balance
-• Motorized Test: Use the wall switch or remote to activate the door (if applicable)
-• Latch & Lock Check: Confirm the door can be secured when closed
-• Panel & Track Inspection: Look for misalignment, rust, or missing rollers
-• Weather Seal Check: Inspect bottom and side seals for gaps or deterioration
+• 	Manual Operation Test: Lift or lower the door to confirm smooth movement and balance
+• 	Motorized Test: Use the wall switch or remote to activate the door (if applicable)
+• 	Latch & Lock Check: Confirm the door can be secured when closed
+• 	Panel & Track Inspection: Look for misalignment, rust, or missing rollers
+• 	Weather Seal Check: Inspect bottom and side seals for gaps or deterioration
 If the motor is present, it must function as intended—even if manual operation is possible.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Manual override: Confirm that motorized doors have accessible manual release.
-• Signage: Emergency exit signage may be required in shared garages.
-• IBU Local Codes: May require seismic bracing, panic hardware, or inspection access panels
-
+📏 Step 4: Accessibility (IBC Chapter 11)
+If the garage door leads to a common‑use area, the personnel door must be:
+Accessible
+Have compliant hardware
+Have maneuvering clearances
+Threshold ≤ ½ inch
+Vehicular overhead doors are not required to be accessible.
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R309.4: Garage doors must be equipped with automatic reversal if motorized
-• IRC R302.5.1: Doors between the garage and the dwelling must be fire-rated and self-closing
-• IRC M1307.3: Mechanical equipment must not interfere with door operation
-• IRC R703.4: Flashing is required to prevent water intrusion at door openings
-IRC ensures garage doors are safe, secure, and compliant with fire and mechanical codes`
+• 	IRC R309.4: Garage doors must be equipped with automatic reversal if motorized
+• 	IRC R302.5.1: Doors between the garage and the dwelling must be fire-rated and self-closing
+• 	IRC M1307.3: Mechanical equipment must not interfere with door operation
+• 	IRC R703.4: Flashing is required to prevent water intrusion at door openings
+IRC ensures garage doors are safe, secure, and compliant with fire and mechanical codes
+
+`
         },
         {
             id: 'door_garage_2',
@@ -4659,29 +4575,30 @@ IRC ensures garage doors are safe, secure, and compliant with fire and mechanica
             codeReference: `🧭 Step 1: Identify Garage Door Type and Location
 Inspect all permanently installed garage doors in common areas such as:
 NSPIRE applies to both manual and motorized garage doors serving residential buildings or shared-use areas.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines a garage door as deficient if it cannot reliably open, close, or protect the interior from outside elements.
-
 🧪 Step 3: Functional Testing
-• Manual Operation Test: Lift or lower the door to confirm smooth movement and balance
-• Motorized Test: Use the wall switch or remote to activate the door (if applicable)
-• Latch & Lock Check: Confirm the door can be secured when closed
-• Panel & Track Inspection: Look for misalignment, rust, or missing rollers
-• Weather Seal Check: Inspect bottom and side seals for gaps or deterioration
+• 	Manual Operation Test: Lift or lower the door to confirm smooth movement and balance
+• 	Motorized Test: Use the wall switch or remote to activate the door (if applicable)
+• 	Latch & Lock Check: Confirm the door can be secured when closed
+• 	Panel & Track Inspection: Look for misalignment, rust, or missing rollers
+• 	Weather Seal Check: Inspect bottom and side seals for gaps or deterioration
 If the motor is present, it must function as intended—even if manual operation is possible.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Manual override: Confirm that motorized doors have accessible manual release.
-• Signage: Emergency exit signage may be required in shared garages.
-• IBU Local Codes: May require seismic bracing, panic hardware, or inspection access panels
-
+📏 Step 4: Accessibility (IBC Chapter 11)
+If the garage door leads to a common‑use area, the personnel door must be:
+Accessible
+Have compliant hardware
+Have maneuvering clearances
+Threshold ≤ ½ inch
+Vehicular overhead doors are not required to be accessible.
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R309.4: Garage doors must be equipped with automatic reversal if motorized
-• IRC R302.5.1: Doors between the garage and the dwelling must be fire-rated and self-closing
-• IRC M1307.3: Mechanical equipment must not interfere with door operation
-• IRC R703.4: Flashing is required to prevent water intrusion at door openings
-IRC ensures garage doors are safe, secure, and compliant with fire and mechanical codes`
+• 	IRC R309.4: Garage doors must be equipped with automatic reversal if motorized
+• 	IRC R302.5.1: Doors between the garage and the dwelling must be fire-rated and self-closing
+• 	IRC M1307.3: Mechanical equipment must not interfere with door operation
+• 	IRC R703.4: Flashing is required to prevent water intrusion at door openings
+IRC ensures garage doors are safe, secure, and compliant with fire and mechanical codes
+
+`
         },
 
 
@@ -4701,32 +4618,27 @@ export const DOOR_ENTRY_CANNOT_BE_SECURED: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '13.40/n',
             code: 'DOOR-ENTRY-SEC-01',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         }
     ]
 };
@@ -4743,32 +4655,27 @@ export const DOOR_ENTRY_COMPONENT_DAMAGED: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '2.20/n',
             code: 'DOOR-ENTRY-COMP-01',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         }
     ]
 };
@@ -4785,32 +4692,27 @@ export const DOOR_ENTRY_FRAME_DAMAGED: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DOOR-ENTRY-FRAME-01',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         }
     ]
 };
@@ -4827,32 +4729,27 @@ export const DOOR_ENTRY_MISSING: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '13.40/n',
             code: 'DOOR-ENTRY-MISS-01',
-            codeReference: `🔍 1. Door Functionality
-• Open test: Confirm the door opens fully without sticking or obstruction.
-• Close test: Release the door—must close completely and latch securely.
-
-🔒 2. Security & Hardware
-• Lock operability: Check that the door can be locked and unlocked without excessive force.
-• Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
-
-🧱 3. Physical Condition
-• Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
-• Delamination: Check for peeling veneer or separated layers ≥2 inches.
-• Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
-
-🌬️ 4. Weatherproofing & Seal Integrity
-• Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
-• Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
-
+            codeReference: `🔍 1. Door Functionality 
+• 	Open test: Confirm the door opens fully without sticking or obstruction.
+• 	Close test: Release the door—must close completely and latch securely.
+🔒 2. Security & Hardware 
+• 	Lock operability: Check that the door can be locked and unlocked without excessive force.
+• 	Self-closing mechanism: Required for fire-rated doors—verify it functions properly.
+🧱 3. Physical Condition 
+• 	Surface damage: Look for holes, splits, or cracks that penetrate the door slab.
+• 	Delamination: Check for peeling veneer or separated layers ≥2 inches.
+• 	Frame & threshold: Inspect for missing trim, loose sill plates, or warped jambs.
+🌬️ 4. Weatherproofing & Seal Integrity 
+• 	Gasket/seal: Inspect for gaps >¼", light penetration, or water intrusion.
+• 	Sweep/threshold: Confirm the bottom seal is intact and not allowing drafts or pests.
 🔥 5. Fire-Rated Assembly (IRC §R302.5, NSPIRE Fire Overlay)
-• Label check: Look for a fire-rating label on the door edge or frame.
-• Integrity: Ensure no penetrations, warping, or missing components.
-• Self-closing: Mandatory for fire-rated doors—must latch automatically.
-
+• 	Label check: Look for a fire-rating label on the door edge or frame.
+• 	Integrity: Ensure no penetrations, warping, or missing components.
+• 	Self-closing: Mandatory for fire-rated doors—must latch automatically.
 🧠 6. Accessibility & IBU Overlay
-• Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
-• Handle height: 34–48" AFF, operable with one hand, no tight grasping
-• IBU Local Codes: May require panic hardware, visual signage, or audible alerts`
+• 	Clear width: Minimum 32" clear opening per ADA and IRC §R311.2
+• 	Handle height: 34–48" AFF, operable with one hand, no tight grasping
+                                                                                                                                                                               `
         }
     ]
 };
@@ -4887,27 +4784,27 @@ export const DRAINAGE: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'DRAIN-01',
-            codeReference: `🧭 Step 1: Identify Drainage Components
-Inspect all drainage systems serving the unit or common area:
-• Floor drains, sink drains, shower/tub drains, and exterior area drains
-• Confirm drainage is connected and intended to carry water away from the unit
-
+            codeReference: `🧭 Step 1: Identify Floor Drain Locations
+• 	Floor drain: Typically found in laundry rooms, mechanical closets, or bathrooms.
+• 	Fixture drain: Under sinks, tubs, or utility basins.
 🔍 Step 2: Visual Condition Assessment
-• Look for standing water, slow drainage, or signs of backup
-• Check for water stains, mold, or damage near drainage points
+• 	Cover presence: Drain must have a secure, intact cover or grate.
+• 	Damage: Look for cracks, corrosion, or missing components.
+🧪 Step 3: Functional Testing (Non-Invasive)
+• 	Water test: Pour a small amount of water to check for proper drainage.
+• 	Standing water: Indicates blockage or poor slope.
+• 	Backflow signs: Look for residue, staining, or odor around the drain
+📏 Step 4:  Accessibility & Labeling
+• 	Reachability: Drain must be visually accessible without tools or disassembly.
+• 	Signage: If the drain serves an emergency or mechanical function, confirm labeling.
+• 	IBC 2901.1 – All drains must comply with the IPC
+⚒️ Step 5:  Code Compliance (IRC §P3005.1, IBU Overlay)
+• 	Trap configuration: Confirm presence of P-trap or approved alternative.
+• 	Vent connection: Drain must be vented per IRC to prevent siphoning.
+• 	Cleanout access: If required, verify location and accessibility.
+• 	IBU Local Codes: May require enhanced trap primers or backwater valves in flood-prone zones
 
-🧪 Step 3: Functional Testing
-• Water flow test: Pour water near the drain and confirm it flows freely
-• Standing water check: Look for pooling that indicates blockage or poor slope
-• Obstruction check: Confirm drain openings are free of debris or buildup
-
-📏 Step 4: Accessibility & IBU Considerations
-• Drain covers must be flush and secured to prevent trip hazards
-• Drains must not obstruct accessible routes
-
-⚒️ Step 5: IRC Requirements
-• IRC P3005: Drainage systems must be properly sloped and connected
-• IRC P3201: Floor drains must be properly trapped and vented`
+`
         }
     ]
 };
@@ -4934,28 +4831,25 @@ export const EGRESS: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'EGRESS-01',
             codeReference: `🧭 Step 1: Identify Egress Components
-• Primary elements: Exit doors, corridors, stairwells, ramps, fire escapes, and discharge paths to the public way
-• Egress path: Must be continuous, unobstructed, and lead to a safe exterior location
-
+• 	Primary elements: Exit doors, corridors, stairwells, ramps, fire escapes, and discharge paths to the public way
+• 	Egress path: Must be continuous, unobstructed, and lead to a safe exterior location
 🔍 Step 2: Visual Condition Assessment
 Any obstruction that prevents a resident from exiting quickly and safely is considered a critical safety violation
-
 🧪 Step 3: Functional Testing
-• Exit Door Operation: Open the door from inside without a key, a tool, or special knowledge
-• Pathway Clearance: Walk the whole route from interior to public way; confirm no obstructions
-• Signage Visibility: Check that exit signs are illuminated and visible from all approach angles
-• Lighting Test: Confirm emergency lights activate (if test switch is available)
-• Fire Escape Access: Ensure ladder or stairs are reachable and structurally sound
-• IBU overlays – Local fire, accessibility, and emergency exit code
-
+• 	Exit Door Operation: Open the door from inside without a key, a tool, or special knowledge
+• 	Pathway Clearance: Walk the whole route from interior to public way; confirm no obstructions
+• 	Signage Visibility: Check that exit signs are illuminated and visible from all approach angles
+• 	Lighting Test: Confirm emergency lights activate (if test switch is available)
+• 	Fire Escape Access: Ensure ladder or stairs are reachable and structurally sound
+• 	(IBC §1031.2)EEROs must open directly to a public way, or a yard/court that leads to a public way.
 📏 Step 4: Accessibility & IBU Local Requirements
-• Clear width: Minimum 36" for corridors, 32" for doors (IRC §R311.2)
-• Thresholds: ≤½" for accessible routes
-• IBU Overlay: May require audible exit alerts, tactile signage, or seismic bracing
+• 	Clear width: Minimum 36" for corridors, 32" for doors (IRC §R311.2)
+• 	Thresholds: ≤½" for accessible routes
+• 	IBU Overlay: May require audible exit alerts, tactile signage, or seismic bracing                                          ⚒️ Step 5: IRC Egress Requirements
+• 	IRC (2021) §R311.1–R311.4 – Means of egress.
+ IRC ensures that egress systems are structurally sound, code-compliant, and safe for emergency
 
-⚒️ Step 5: IRC Egress Requirements
-• IRC (2021) §R311.1–R311.4 – Means of egress.
-IRC ensures that egress systems are structurally sound, code-compliant, and safe for emergencies.`
+`
         }
     ]
 };
@@ -4984,27 +4878,23 @@ export const ELECTRICAL_CONDUCTOR: UnitItemDeficiencies = {
             codeReference: `🧭 Step 1: Identify Electrical Components to Inspect
 Inspect all visible and accessible electrical systems in common areas, including:
 NSPIRE requires inspection of high-voltage electrical components. Low-voltage systems (e.g., phone, cable) are excluded.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines any exposed or improperly enclosed conductor as a critical hazard, regardless of location.
-
 🧪 Step 3: Functional Testing
-• Outlets: Use a UL-listed outlet tester to verify:
-• Proper wiring
-• Grounding
-• Polarity
-• Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
-• Conductor Inspection: Look for visible wires outside of conduit or junction boxes
-• Confirm wire nuts or caps are present on terminated conductors
-Inoperable outlets or switches without visible damage are still cited under NSPIRE's electrical standards.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
-• Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
-• IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
-
-⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE)
-• Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
+• 	Outlets: Use a UL-listed outlet tester to verify:
+• 	Proper wiring
+• 	Grounding
+• 	Polarity
+• 	Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
+• 	Conductor Inspection: Look for visible wires outside of conduit or junction boxes
+• 	Confirm wire nuts or caps are present on terminated conductors
+Inoperable outlets or switches without visible damage are still cited under NSPIRE’s electrical standards.
+📏 Step 4: Accessibility & (IBC Chapter 11)
+• 	Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
+• 	Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
+• 	IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
+⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE )
+• 	Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected..`
         },
         {
             id: 'elec_conductor_2',
@@ -5018,27 +4908,23 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
             codeReference: `🧭 Step 1: Identify Electrical Components to Inspect
 Inspect all visible and accessible electrical systems in common areas, including:
 NSPIRE requires inspection of high-voltage electrical components. Low-voltage systems (e.g., phone, cable) are excluded.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines any exposed or improperly enclosed conductor as a critical hazard, regardless of location.
-
 🧪 Step 3: Functional Testing
-• Outlets: Use a UL-listed outlet tester to verify:
-• Proper wiring
-• Grounding
-• Polarity
-• Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
-• Conductor Inspection: Look for visible wires outside of conduit or junction boxes
-• Confirm wire nuts or caps are present on terminated conductors
-Inoperable outlets or switches without visible damage are still cited under NSPIRE's electrical standards.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
-• Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
-• IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
-
-⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE)
-• Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
+• 	Outlets: Use a UL-listed outlet tester to verify:
+• 	Proper wiring
+• 	Grounding
+• 	Polarity
+• 	Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
+• 	Conductor Inspection: Look for visible wires outside of conduit or junction boxes
+• 	Confirm wire nuts or caps are present on terminated conductors
+Inoperable outlets or switches without visible damage are still cited under NSPIRE’s electrical standards.
+📏 Step 4: Accessibility & (IBC Chapter 11)
+• 	Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
+• 	Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
+• 	IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
+⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE )
+• 	Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
         },
         {
             id: 'elec_conductor_3',
@@ -5052,27 +4938,23 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
             codeReference: `🧭 Step 1: Identify Electrical Components to Inspect
 Inspect all visible and accessible electrical systems in common areas, including:
 NSPIRE requires inspection of high-voltage electrical components. Low-voltage systems (e.g., phone, cable) are excluded.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines any exposed or improperly enclosed conductor as a critical hazard, regardless of location.
-
 🧪 Step 3: Functional Testing
-• Outlets: Use a UL-listed outlet tester to verify:
-• Proper wiring
-• Grounding
-• Polarity
-• Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
-• Conductor Inspection: Look for visible wires outside of conduit or junction boxes
-• Confirm wire nuts or caps are present on terminated conductors
-Inoperable outlets or switches without visible damage are still cited under NSPIRE's electrical standards.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
-• Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
-• IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
-
-⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE)
-• Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
+• 	Outlets: Use a UL-listed outlet tester to verify:
+• 	Proper wiring
+• 	Grounding
+• 	Polarity
+• 	Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
+• 	Conductor Inspection: Look for visible wires outside of conduit or junction boxes
+• 	Confirm wire nuts or caps are present on terminated conductors
+Inoperable outlets or switches without visible damage are still cited under NSPIRE’s electrical standards.
+📏 Step 4: Accessibility & (IBC Chapter 11)
+• 	Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
+• 	Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
+• 	IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
+⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE )
+• 	Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
         },
         {
             id: 'elec_conductor_4',
@@ -5086,27 +4968,23 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
             codeReference: `🧭 Step 1: Identify Electrical Components to Inspect
 Inspect all visible and accessible electrical systems in common areas, including:
 NSPIRE requires inspection of high-voltage electrical components. Low-voltage systems (e.g., phone, cable) are excluded.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines any exposed or improperly enclosed conductor as a critical hazard, regardless of location.
-
 🧪 Step 3: Functional Testing
-• Outlets: Use a UL-listed outlet tester to verify:
-• Proper wiring
-• Grounding
-• Polarity
-• Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
-• Conductor Inspection: Look for visible wires outside of conduit or junction boxes
-• Confirm wire nuts or caps are present on terminated conductors
-Inoperable outlets or switches without visible damage are still cited under NSPIRE's electrical standards.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
-• Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
-• IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
-
-⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE)
-• Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
+• 	Outlets: Use a UL-listed outlet tester to verify:
+• 	Proper wiring
+• 	Grounding
+• 	Polarity
+• 	Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
+• 	Conductor Inspection: Look for visible wires outside of conduit or junction boxes
+• 	Confirm wire nuts or caps are present on terminated conductors
+Inoperable outlets or switches without visible damage are still cited under NSPIRE’s electrical standards.
+📏 Step 4: Accessibility & (IBC Chapter 11)
+• 	Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
+• 	Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
+• 	IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
+⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE )
+• 	Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
         },
         {
             id: 'elec_conductor_5',
@@ -5120,27 +4998,23 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
             codeReference: `🧭 Step 1: Identify Electrical Components to Inspect
 Inspect all visible and accessible electrical systems in common areas, including:
 NSPIRE requires inspection of high-voltage electrical components. Low-voltage systems (e.g., phone, cable) are excluded.
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE defines any exposed or improperly enclosed conductor as a critical hazard, regardless of location.
-
 🧪 Step 3: Functional Testing
-• Outlets: Use a UL-listed outlet tester to verify:
-• Proper wiring
-• Grounding
-• Polarity
-• Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
-• Conductor Inspection: Look for visible wires outside of conduit or junction boxes
-• Confirm wire nuts or caps are present on terminated conductors
-Inoperable outlets or switches without visible damage are still cited under NSPIRE's electrical standards.
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
-• Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
-• IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
-
-⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE)
-• Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
+• 	Outlets: Use a UL-listed outlet tester to verify:
+• 	Proper wiring
+• 	Grounding
+• 	Polarity
+• 	Switch Test: Toggle each switch to confirm it controls the intended fixture or outlet
+• 	Conductor Inspection: Look for visible wires outside of conduit or junction boxes
+• 	Confirm wire nuts or caps are present on terminated conductors
+Inoperable outlets or switches without visible damage are still cited under NSPIRE’s electrical standards.
+📏 Step 4: Accessibility & (IBC Chapter 11)
+• 	Height compliance: Switches and outlets should be within ADA reach range (typically 15–48" AFF).
+• 	Tamper-resistant outlets: Required in child-accessible areas per IRC §E4002.14.
+• 	IBU Overlay: May require labeling, surge protection, or enhanced grounding in shared-use zones
+⚒️ Step 5: IRC Electrical Requirements Proximity to Water Sources (IRC §E3902.6, NSPIRE )
+• 	Wet zones: Outlets within 6 feet of sinks, tubs, or laundry equipment must be GFCI-protected.`
         }
     ]
 };
@@ -5158,35 +5032,33 @@ export const ELECTRICAL_GFCI: UnitItemDeficiencies = {
             points: '13.40/n',
             code: 'ELEC-GFCI-01',
             codeReference: `🧭 Step 1: Identify Applicable Locations
-• IBU overlays – Local fire, shock hazard, and accessibility code
-GFCI protects against electrical shock; AFCI protects against fire caused by arc faults. Both are required in specific zones per IRC and NSPIRE
-
+• 	IBU overlays – Local fire, shock hazard, and accessibility code GFCI protects against electrical shock; AFCI protects against fire caused by arc faults. Both are required in specific zones per IRC and NSPIRE
 🔍 Step 2: Visual Condition & Safety
-• Faceplate: Check for cracks, missing covers, or exposed wiring.
-• Burn marks: Look for discoloration or melted plastic.
-• Loose mounting: Outlet or switch should not wiggle or shift.
-
+• 	Faceplate: Check for cracks, missing covers, or exposed wiring.
+• 	Burn marks: Look for discoloration or melted plastic.
+• 	Loose mounting: Outlet or switch should not wiggle or shift.
 🧪 Step 3: Functional Testing
-• GFCI Outlet Test:
-• Press the "Test" button → outlet should trip and stop power
-• Press "Reset" → outlet should restore power
-• Use a UL-listed outlet tester if buttons are inaccessible
-• GFCI Breaker Test: If authorized, press the test button on the breaker. → circuit should trip
-• Reset breaker to restore power
-• AFCI Breaker Test: If authorized, press the test button → breaker should trip
-• Reset to confirm functionality
-If the outlet or breaker does not respond, it's cited as Severe under NSPIRE.
-
+• 	GFCI Outlet Test:
+• 	Press the “Test” button → outlet should trip and stop power
+• 	Press “Reset” → outlet should restore power
+• 	Use a UL-listed outlet tester if buttons are inaccessible
+• 	GFCI Breaker Test: If authorized, press the test button on the breaker. → circuit should trip
+• 	Reset breaker to restore power
+• 	AFCI Breaker Test: If authorized, press the test button → breaker should trip
+• 	Reset to confirm functionality
+If the outlet or breaker does not respond, it’s cited as Severe under NSPIRE.
 📏 Step 4: Accessibility & Local Requirement
-• Reach range: Devices must be within ADA-compliant height (15–48" AFF).
-• Tamper-resistant: Required in child-accessible areas (IRC §E4002.14).
-• IBU Local Codes: May require inspection logs, signage, or seismic bracing.
-
+• 	Reach range: Devices must be within ADA-compliant height (15–48" AFF).
+• 	Tamper-resistant: Required in child-accessible areas (IRC §E4002.14).
+• 	IBC to NEC: In modern NEC cycles, almost every receptacle in a dwelling unit is GFCI‑protected except bedroom general outlets.                                       
 ⚒️ Step 5: IRC Electrical Requirements
-• IRC E3902.1–E3902.11: GFCI required in wet/damp locations, including laundry, bathrooms, and outdoors
-• IRC E3902.12–E3902.16: AFCI required in habitable rooms, including lounges and corridors
-• IRC E4002.14: GFCI outlets must be readily accessible and labeled
-• IRC E3906.8: Conductors must be enclosed and protected`
+• 	IRC E3902.1–E3902.11: GFCI required in wet/damp locations, including laundry, bathrooms, and outdoors
+• 	IRC E3902.12–E3902.16: AFCI required in habitable rooms, including lounges and corridors
+• 	IRC E4002.14: GFCI outlets must be readily accessible and labeled
+• 	IRC E3906.8: Conductors must be enclosed and protected
+
+
+`
         },
         {
             id: 'elec_gfci_2',
@@ -5198,35 +5070,33 @@ If the outlet or breaker does not respond, it's cited as Severe under NSPIRE.
             points: '13.40/n',
             code: 'ELEC-GFCI-02',
             codeReference: `🧭 Step 1: Identify Applicable Locations
-• IBU overlays – Local fire, shock hazard, and accessibility code
-GFCI protects against electrical shock; AFCI protects against fire caused by arc faults. Both are required in specific zones per IRC and NSPIRE
-
+• 	IBU overlays – Local fire, shock hazard, and accessibility code GFCI protects against electrical shock; AFCI protects against fire caused by arc faults. Both are required in specific zones per IRC and NSPIRE
 🔍 Step 2: Visual Condition & Safety
-• Faceplate: Check for cracks, missing covers, or exposed wiring.
-• Burn marks: Look for discoloration or melted plastic.
-• Loose mounting: Outlet or switch should not wiggle or shift.
-
+• 	Faceplate: Check for cracks, missing covers, or exposed wiring.
+• 	Burn marks: Look for discoloration or melted plastic.
+• 	Loose mounting: Outlet or switch should not wiggle or shift.
 🧪 Step 3: Functional Testing
-• GFCI Outlet Test:
-• Press the "Test" button → outlet should trip and stop power
-• Press "Reset" → outlet should restore power
-• Use a UL-listed outlet tester if buttons are inaccessible
-• GFCI Breaker Test: If authorized, press the test button on the breaker. → circuit should trip
-• Reset breaker to restore power
-• AFCI Breaker Test: If authorized, press the test button → breaker should trip
-• Reset to confirm functionality
-If the outlet or breaker does not respond, it's cited as Severe under NSPIRE.
-
+• 	GFCI Outlet Test:
+• 	Press the “Test” button → outlet should trip and stop power
+• 	Press “Reset” → outlet should restore power
+• 	Use a UL-listed outlet tester if buttons are inaccessible
+• 	GFCI Breaker Test: If authorized, press the test button on the breaker. → circuit should trip
+• 	Reset breaker to restore power
+• 	AFCI Breaker Test: If authorized, press the test button → breaker should trip
+• 	Reset to confirm functionality
+If the outlet or breaker does not respond, it’s cited as Severe under NSPIRE.
 📏 Step 4: Accessibility & Local Requirement
-• Reach range: Devices must be within ADA-compliant height (15–48" AFF).
-• Tamper-resistant: Required in child-accessible areas (IRC §E4002.14).
-• IBU Local Codes: May require inspection logs, signage, or seismic bracing.
-
+• 	Reach range: Devices must be within ADA-compliant height (15–48" AFF).
+• 	Tamper-resistant: Required in child-accessible areas (IRC §E4002.14).
+• 	IBC to NEC: In modern NEC cycles, almost every receptacle in a dwelling unit is GFCI‑protected except bedroom general outlets.                                       
 ⚒️ Step 5: IRC Electrical Requirements
-• IRC E3902.1–E3902.11: GFCI required in wet/damp locations, including laundry, bathrooms, and outdoors
-• IRC E3902.12–E3902.16: AFCI required in habitable rooms, including lounges and corridors
-• IRC E4002.14: GFCI outlets must be readily accessible and labeled
-• IRC E3906.8: Conductors must be enclosed and protected`
+• 	IRC E3902.1–E3902.11: GFCI required in wet/damp locations, including laundry, bathrooms, and outdoors
+• 	IRC E3902.12–E3902.16: AFCI required in habitable rooms, including lounges and corridors
+• 	IRC E4002.14: GFCI outlets must be readily accessible and labeled
+• 	IRC E3906.8: Conductors must be enclosed and protected
+
+
+`
         },
         {
             id: 'elec_gfci_3',
@@ -5238,35 +5108,33 @@ If the outlet or breaker does not respond, it's cited as Severe under NSPIRE.
             points: '13.40/n',
             code: 'ELEC-GFCI-03',
             codeReference: `🧭 Step 1: Identify Applicable Locations
-• IBU overlays – Local fire, shock hazard, and accessibility code
-GFCI protects against electrical shock; AFCI protects against fire caused by arc faults. Both are required in specific zones per IRC and NSPIRE
-
+• 	IBU overlays – Local fire, shock hazard, and accessibility code GFCI protects against electrical shock; AFCI protects against fire caused by arc faults. Both are required in specific zones per IRC and NSPIRE
 🔍 Step 2: Visual Condition & Safety
-• Faceplate: Check for cracks, missing covers, or exposed wiring.
-• Burn marks: Look for discoloration or melted plastic.
-• Loose mounting: Outlet or switch should not wiggle or shift.
-
+• 	Faceplate: Check for cracks, missing covers, or exposed wiring.
+• 	Burn marks: Look for discoloration or melted plastic.
+• 	Loose mounting: Outlet or switch should not wiggle or shift.
 🧪 Step 3: Functional Testing
-• GFCI Outlet Test:
-• Press the "Test" button → outlet should trip and stop power
-• Press "Reset" → outlet should restore power
-• Use a UL-listed outlet tester if buttons are inaccessible
-• GFCI Breaker Test: If authorized, press the test button on the breaker. → circuit should trip
-• Reset breaker to restore power
-• AFCI Breaker Test: If authorized, press the test button → breaker should trip
-• Reset to confirm functionality
-If the outlet or breaker does not respond, it's cited as Severe under NSPIRE.
-
+• 	GFCI Outlet Test:
+• 	Press the “Test” button → outlet should trip and stop power
+• 	Press “Reset” → outlet should restore power
+• 	Use a UL-listed outlet tester if buttons are inaccessible
+• 	GFCI Breaker Test: If authorized, press the test button on the breaker. → circuit should trip
+• 	Reset breaker to restore power
+• 	AFCI Breaker Test: If authorized, press the test button → breaker should trip
+• 	Reset to confirm functionality
+If the outlet or breaker does not respond, it’s cited as Severe under NSPIRE.
 📏 Step 4: Accessibility & Local Requirement
-• Reach range: Devices must be within ADA-compliant height (15–48" AFF).
-• Tamper-resistant: Required in child-accessible areas (IRC §E4002.14).
-• IBU Local Codes: May require inspection logs, signage, or seismic bracing.
-
+• 	Reach range: Devices must be within ADA-compliant height (15–48" AFF).
+• 	Tamper-resistant: Required in child-accessible areas (IRC §E4002.14).
+• 	IBC to NEC: In modern NEC cycles, almost every receptacle in a dwelling unit is GFCI‑protected except bedroom general outlets.                                       
 ⚒️ Step 5: IRC Electrical Requirements
-• IRC E3902.1–E3902.11: GFCI required in wet/damp locations, including laundry, bathrooms, and outdoors
-• IRC E3902.12–E3902.16: AFCI required in habitable rooms, including lounges and corridors
-• IRC E4002.14: GFCI outlets must be readily accessible and labeled
-• IRC E3906.8: Conductors must be enclosed and protected`
+• 	IRC E3902.1–E3902.11: GFCI required in wet/damp locations, including laundry, bathrooms, and outdoors
+• 	IRC E3902.12–E3902.16: AFCI required in habitable rooms, including lounges and corridors
+• 	IRC E4002.14: GFCI outlets must be readily accessible and labeled
+• 	IRC E3906.8: Conductors must be enclosed and protected
+
+
+`
         }
     ]
 };
@@ -5284,26 +5152,31 @@ export const ELECTRICAL_SERVICE_PANEL: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'ELEC-PANEL-01',
             codeReference: `🧭 Step 1: Identify Electrical Service Panel Locations
-Inspect all main and sub-panels in shared-use areas. Panel must be reachable without moving furniture, appliances, or fixtures
+Inspect all main and sub-panels in shared-use areas.                                                                                                     Panel must be reachable without moving furniture, appliances, or fixtures
 🔍 Step 2: Cover & Enclosure Integrity
 • 	Dead front cover: Must be securely fastened and undamaged
 • 	Door function: Opens fully (≥90°) and closes without obstruction
 • 	Gaps or missing knockouts: Must be sealed to prevent foreign object intrusion
 🧪 Step 3: Functional Testing (Visual Only)
-• 	Access Check: Confirm the panel can be opened without tools or moving heavy objects
-• 	Cover & Labeling: Ensure a dead-front cover is present and breakers are labeled
-• 	Breaker Condition: Look for signs of overheating, discoloration, or physical damage
-• 	Moisture or Contamination: Inspect for rust, water stains, or mold inside the panel
-• 	Conductor Safety: Confirm no exposed wires or missing knockouts
+• Access Check: Confirm the panel can be opened without tools or moving heavy objects
+• Cover & Labeling: Ensure a dead-front cover is present and breakers are labeled
+• Breaker Condition: Look for signs of overheating, discoloration, or physical damage
+• Moisture or Contamination: Inspect for rust, water stains, or mold inside the panel
+• Conductor Safety: Confirm no exposed wires or missing knockouts
 Do not operate breakers or remove covers unless qualified and authorized.
 📏 Step 4: Accessibility & Local Requirements
 • 	Height: Panel must be mounted ≤6'7" AFF to top breaker handle (IRC §E3405.3)
 • 	Labeling: Circuit directory must be legible and accurate
-• 	IBU Local Codes: May require seismic bracing, lockable covers, or inspection logs
+• 	IBU Local Codes: Location & Access (IBC 1023, 1001, 1003)                            Service panels cannot be installed in:
+Exit enclosures (stairwells)
+Exit passageways
+Fire‑rated egress corridors (unless allowed by local amendments)s
 ⚒️ Step 5: IRC Electrical Requirements
 Codes Referenced:
 • 	IRC (2021) §E3401–E3405, §E3705–E3706 – Panelboards, overcurrent protection, conductor terminations
-• 	IBU overlays – Local fire, shock hazard, and accessibility code`
+• 	IBU overlays – Local fire, shock hazard, and accessibility code
+
+`
         },
         {
             id: 'elec_panel_2',
@@ -5315,26 +5188,31 @@ Codes Referenced:
             points: '13.40/n',
             code: 'ELEC-PANEL-02',
             codeReference: `🧭 Step 1: Identify Electrical Service Panel Locations
-Inspect all main and sub-panels in shared-use areas. Panel must be reachable without moving furniture, appliances, or fixtures
+Inspect all main and sub-panels in shared-use areas.                                                                                                     Panel must be reachable without moving furniture, appliances, or fixtures
 🔍 Step 2: Cover & Enclosure Integrity
 • 	Dead front cover: Must be securely fastened and undamaged
 • 	Door function: Opens fully (≥90°) and closes without obstruction
 • 	Gaps or missing knockouts: Must be sealed to prevent foreign object intrusion
 🧪 Step 3: Functional Testing (Visual Only)
-• 	Access Check: Confirm the panel can be opened without tools or moving heavy objects
-• 	Cover & Labeling: Ensure a dead-front cover is present and breakers are labeled
-• 	Breaker Condition: Look for signs of overheating, discoloration, or physical damage
-• 	Moisture or Contamination: Inspect for rust, water stains, or mold inside the panel
-• 	Conductor Safety: Confirm no exposed wires or missing knockouts
+• Access Check: Confirm the panel can be opened without tools or moving heavy objects
+• Cover & Labeling: Ensure a dead-front cover is present and breakers are labeled
+• Breaker Condition: Look for signs of overheating, discoloration, or physical damage
+• Moisture or Contamination: Inspect for rust, water stains, or mold inside the panel
+• Conductor Safety: Confirm no exposed wires or missing knockouts
 Do not operate breakers or remove covers unless qualified and authorized.
 📏 Step 4: Accessibility & Local Requirements
 • 	Height: Panel must be mounted ≤6'7" AFF to top breaker handle (IRC §E3405.3)
 • 	Labeling: Circuit directory must be legible and accurate
-• 	IBU Local Codes: May require seismic bracing, lockable covers, or inspection logs
+• 	IBU Local Codes: Location & Access (IBC 1023, 1001, 1003)                            Service panels cannot be installed in:
+Exit enclosures (stairwells)
+Exit passageways
+Fire‑rated egress corridors (unless allowed by local amendments)s
 ⚒️ Step 5: IRC Electrical Requirements
 Codes Referenced:
 • 	IRC (2021) §E3401–E3405, §E3705–E3706 – Panelboards, overcurrent protection, conductor terminations
-• 	IBU overlays – Local fire, shock hazard, and accessibility code`
+• 	IBU overlays – Local fire, shock hazard, and accessibility code
+
+`
         },
         {
             id: 'elec_panel_3',
@@ -5346,26 +5224,31 @@ Codes Referenced:
             points: '27.25/n',
             code: 'ELEC-PANEL-03',
             codeReference: `🧭 Step 1: Identify Electrical Service Panel Locations
-Inspect all main and sub-panels in shared-use areas. Panel must be reachable without moving furniture, appliances, or fixtures
+Inspect all main and sub-panels in shared-use areas.                                                                                                     Panel must be reachable without moving furniture, appliances, or fixtures
 🔍 Step 2: Cover & Enclosure Integrity
 • 	Dead front cover: Must be securely fastened and undamaged
 • 	Door function: Opens fully (≥90°) and closes without obstruction
 • 	Gaps or missing knockouts: Must be sealed to prevent foreign object intrusion
 🧪 Step 3: Functional Testing (Visual Only)
-• 	Access Check: Confirm the panel can be opened without tools or moving heavy objects
-• 	Cover & Labeling: Ensure a dead-front cover is present and breakers are labeled
-• 	Breaker Condition: Look for signs of overheating, discoloration, or physical damage
-• 	Moisture or Contamination: Inspect for rust, water stains, or mold inside the panel
-• 	Conductor Safety: Confirm no exposed wires or missing knockouts
+• Access Check: Confirm the panel can be opened without tools or moving heavy objects
+• Cover & Labeling: Ensure a dead-front cover is present and breakers are labeled
+• Breaker Condition: Look for signs of overheating, discoloration, or physical damage
+• Moisture or Contamination: Inspect for rust, water stains, or mold inside the panel
+• Conductor Safety: Confirm no exposed wires or missing knockouts
 Do not operate breakers or remove covers unless qualified and authorized.
 📏 Step 4: Accessibility & Local Requirements
 • 	Height: Panel must be mounted ≤6'7" AFF to top breaker handle (IRC §E3405.3)
 • 	Labeling: Circuit directory must be legible and accurate
-• 	IBU Local Codes: May require seismic bracing, lockable covers, or inspection logs
+• 	IBU Local Codes: Location & Access (IBC 1023, 1001, 1003)                            Service panels cannot be installed in:
+Exit enclosures (stairwells)
+Exit passageways
+Fire‑rated egress corridors (unless allowed by local amendments)s
 ⚒️ Step 5: IRC Electrical Requirements
 Codes Referenced:
 • 	IRC (2021) §E3401–E3405, §E3705–E3706 – Panelboards, overcurrent protection, conductor terminations
-• 	IBU overlays – Local fire, shock hazard, and accessibility code`
+• 	IBU overlays – Local fire, shock hazard, and accessibility code
+
+`
         }
     ]
 };
@@ -5391,34 +5274,37 @@ export const ELEVATOR: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'ELEVATOR-01',
-            codeReference: `🧭 Step 1: Identify Elevator Type and Location
+            codeReference: `
+🧭 Step 1: Identify Elevator Type and Location
 Inspect all permanently installed vertical transport systems, including: Passenger elevator, Freight/service elevator, Hydraulic or traction systems.
 NSPIRE defines an elevator as a vertical transport vehicle powered by electric motors or hydraulic systems
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE requires elevators to be fully functional, safe, and accessible at all times.
-
 🧪 Step 3: Functional Testing
-• Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
-• Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
-• Door Operation Test: Observe door opening/closing speed and full clearance
-• Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
-• Lighting & Signage Check: Confirm interior lights and floor indicators are working
+• 	Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
+• 	Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
+• 	Door Operation Test: Observe door opening/closing speed and full clearance
+• 	Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
+• 	Lighting & Signage Check: 	Confirm interior lights and floor indicators are working
 If the elevator is out of service, NSPIRE allows documentation from a certified technician to verify repair status.
-
 📏 Step 4: Accessibility Compliance (IBU)
-• Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
-• Braille/tactile controls: Required per IRC §R321.3
-• Audible floor announcements: If present, verify clarity and volume
-• Signage: Elevator must be clearly labeled with floor and emergency info
-• IBU Overlay: May require visual indicators or multilingual signage
-
+• 	Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
+ Accessibility & Labeling
+• 	Braille/tactile controls: Required per IRC §R321.3
+• 	Audible floor announcements: If present, verify clarity and volume
+• 	Signage: Elevator must be clearly labeled with floor and emergency info
+• 	IBU Overlay: May require visual indicators or multilingual signage
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R321.1: Elevators must comply with ASME A17.1 safety code
-• IRC E3701.1: Electrical systems must be grounded and protected
-• IRC R311.4: Egress routes must include accessible vertical transport if required
-• IRC R314 & R315: Smoke and CO alarms must not interfere with elevator operation
-IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems`
+• 	IRC R321.1:
+• 	Elevators must comply with ASME A17.1 safety code
+• 	IRC E3701.1:
+• 	Electrical systems must be grounded and protected
+• 	IRC R311.4:
+• 	Egress routes must include accessible vertical transport if required
+• 	IRC R314 & R315:
+• 	Smoke and CO alarms must not interfere with elevator operation
+IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems
+`
         },
         {
             id: 'elevator_2',
@@ -5429,34 +5315,37 @@ IRC ensures elevators are structurally sound, electrically safe, and integrated 
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'ELEVATOR-02',
-            codeReference: `🧭 Step 1: Identify Elevator Type and Location
+            codeReference: `
+🧭 Step 1: Identify Elevator Type and Location
 Inspect all permanently installed vertical transport systems, including: Passenger elevator, Freight/service elevator, Hydraulic or traction systems.
 NSPIRE defines an elevator as a vertical transport vehicle powered by electric motors or hydraulic systems
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE requires elevators to be fully functional, safe, and accessible at all times.
-
 🧪 Step 3: Functional Testing
-• Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
-• Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
-• Door Operation Test: Observe door opening/closing speed and full clearance
-• Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
-• Lighting & Signage Check: Confirm interior lights and floor indicators are working
+• 	Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
+• 	Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
+• 	Door Operation Test: Observe door opening/closing speed and full clearance
+• 	Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
+• 	Lighting & Signage Check: 	Confirm interior lights and floor indicators are working
 If the elevator is out of service, NSPIRE allows documentation from a certified technician to verify repair status.
-
 📏 Step 4: Accessibility Compliance (IBU)
-• Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
-• Braille/tactile controls: Required per IRC §R321.3
-• Audible floor announcements: If present, verify clarity and volume
-• Signage: Elevator must be clearly labeled with floor and emergency info
-• IBU Overlay: May require visual indicators or multilingual signage
-
+• 	Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
+ Accessibility & Labeling
+• 	Braille/tactile controls: Required per IRC §R321.3
+• 	Audible floor announcements: If present, verify clarity and volume
+• 	Signage: Elevator must be clearly labeled with floor and emergency info
+• 	IBU Overlay: May require visual indicators or multilingual signage
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R321.1: Elevators must comply with ASME A17.1 safety code
-• IRC E3701.1: Electrical systems must be grounded and protected
-• IRC R311.4: Egress routes must include accessible vertical transport if required
-• IRC R314 & R315: Smoke and CO alarms must not interfere with elevator operation
-IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems`
+• 	IRC R321.1:
+• 	Elevators must comply with ASME A17.1 safety code
+• 	IRC E3701.1:
+• 	Electrical systems must be grounded and protected
+• 	IRC R311.4:
+• 	Egress routes must include accessible vertical transport if required
+• 	IRC R314 & R315:
+• 	Smoke and CO alarms must not interfere with elevator operation
+IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems
+`
         },
         {
             id: 'elevator_3',
@@ -5467,34 +5356,37 @@ IRC ensures elevators are structurally sound, electrically safe, and integrated 
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'ELEVATOR-03',
-            codeReference: `🧭 Step 1: Identify Elevator Type and Location
+            codeReference: `
+🧭 Step 1: Identify Elevator Type and Location
 Inspect all permanently installed vertical transport systems, including: Passenger elevator, Freight/service elevator, Hydraulic or traction systems.
 NSPIRE defines an elevator as a vertical transport vehicle powered by electric motors or hydraulic systems
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE requires elevators to be fully functional, safe, and accessible at all times.
-
 🧪 Step 3: Functional Testing
-• Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
-• Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
-• Door Operation Test: Observe door opening/closing speed and full clearance
-• Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
-• Lighting & Signage Check: Confirm interior lights and floor indicators are working
+• 	Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
+• 	Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
+• 	Door Operation Test: Observe door opening/closing speed and full clearance
+• 	Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
+• 	Lighting & Signage Check: 	Confirm interior lights and floor indicators are working
 If the elevator is out of service, NSPIRE allows documentation from a certified technician to verify repair status.
-
 📏 Step 4: Accessibility Compliance (IBU)
-• Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
-• Braille/tactile controls: Required per IRC §R321.3
-• Audible floor announcements: If present, verify clarity and volume
-• Signage: Elevator must be clearly labeled with floor and emergency info
-• IBU Overlay: May require visual indicators or multilingual signage
-
+• 	Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
+ Accessibility & Labeling
+• 	Braille/tactile controls: Required per IRC §R321.3
+• 	Audible floor announcements: If present, verify clarity and volume
+• 	Signage: Elevator must be clearly labeled with floor and emergency info
+• 	IBU Overlay: May require visual indicators or multilingual signage
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R321.1: Elevators must comply with ASME A17.1 safety code
-• IRC E3701.1: Electrical systems must be grounded and protected
-• IRC R311.4: Egress routes must include accessible vertical transport if required
-• IRC R314 & R315: Smoke and CO alarms must not interfere with elevator operation
-IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems`
+• 	IRC R321.1:
+• 	Elevators must comply with ASME A17.1 safety code
+• 	IRC E3701.1:
+• 	Electrical systems must be grounded and protected
+• 	IRC R311.4:
+• 	Egress routes must include accessible vertical transport if required
+• 	IRC R314 & R315:
+• 	Smoke and CO alarms must not interfere with elevator operation
+IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems
+`
         },
         {
             id: 'elevator_4',
@@ -5505,34 +5397,37 @@ IRC ensures elevators are structurally sound, electrically safe, and integrated 
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'ELEVATOR-04',
-            codeReference: `🧭 Step 1: Identify Elevator Type and Location
+            codeReference: `
+🧭 Step 1: Identify Elevator Type and Location
 Inspect all permanently installed vertical transport systems, including: Passenger elevator, Freight/service elevator, Hydraulic or traction systems.
 NSPIRE defines an elevator as a vertical transport vehicle powered by electric motors or hydraulic systems
-
 🔍 Step 2: Visual Condition Assessment
 NSPIRE requires elevators to be fully functional, safe, and accessible at all times.
-
 🧪 Step 3: Functional Testing
-• Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
-• Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
-• Door Operation Test: Observe door opening/closing speed and full clearance
-• Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
-• Lighting & Signage Check: Confirm interior lights and floor indicators are working
+• 	Call Button Test: Press the call button on each floor; confirm the elevator arrives and the doors open
+• 	Cab Movement Test: Ride the elevator between floors; confirm smooth travel and accurate stopping
+• 	Door Operation Test: Observe door opening/closing speed and full clearance
+• 	Emergency System Test: Check emergency phone, alarm button, and intercom (if present)
+• 	Lighting & Signage Check: 	Confirm interior lights and floor indicators are working
 If the elevator is out of service, NSPIRE allows documentation from a certified technician to verify repair status.
-
 📏 Step 4: Accessibility Compliance (IBU)
-• Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
-• Braille/tactile controls: Required per IRC §R321.3
-• Audible floor announcements: If present, verify clarity and volume
-• Signage: Elevator must be clearly labeled with floor and emergency info
-• IBU Overlay: May require visual indicators or multilingual signage
-
+• 	Cab Dimensions: Minimum 51" deep × 68" wide for side-entry wheelchair access
+ Accessibility & Labeling
+• 	Braille/tactile controls: Required per IRC §R321.3
+• 	Audible floor announcements: If present, verify clarity and volume
+• 	Signage: Elevator must be clearly labeled with floor and emergency info
+• 	IBU Overlay: May require visual indicators or multilingual signage
 ⚒️ Step 5: IRC Structural & Safety Requirements
-• IRC R321.1: Elevators must comply with ASME A17.1 safety code
-• IRC E3701.1: Electrical systems must be grounded and protected
-• IRC R311.4: Egress routes must include accessible vertical transport if required
-• IRC R314 & R315: Smoke and CO alarms must not interfere with elevator operation
-IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems`
+• 	IRC R321.1:
+• 	Elevators must comply with ASME A17.1 safety code
+• 	IRC E3701.1:
+• 	Electrical systems must be grounded and protected
+• 	IRC R311.4:
+• 	Egress routes must include accessible vertical transport if required
+• 	IRC R314 & R315:
+• 	Smoke and CO alarms must not interfere with elevator operation
+IRC ensures elevators are structurally sound, electrically safe, and integrated into emergency egress systems
+`
         }
     ]
 };
@@ -5561,29 +5456,27 @@ export const FIRE_SAFETY_EXIT_SIGN: UnitItemDeficiencies = {
             codeReference: `🧭 Step 1: Identify Exit Sign Locations
 Inspect all permanently installed exit signs that mark emergency egress routes.
 NSPIRE does not require exit signs in every building, but if one is present or evidence of prior installation exists, it must be inspected.
-
 🔍 Step 2: Visual Condition Assessment
-• Legibility: The word "EXIT" must be clearly visible from all approach angles.
-• Obstruction: Ensure no furniture, signage, or decorations block the sign.
-• Contrast: Letters must contrast with the background (typically red or green on white).
-
+• 	Legibility: The word “EXIT” must be clearly visible from all approach angles.
+• 	Obstruction: Ensure no furniture, signage, or decorations block the sign.
+• 	Contrast: Letters must contrast with the background (typically red or green on white).
 🧪 Step 3: Functional Testing
-• Visibility Check: Confirm the sign is clearly visible from all approach angles
-• Illumination Test: If the sign is powered, press the test button (if present) to verify battery backup
-• If no button, confirm the sign is lit via AC power or photoluminescence
-• Mounting Check: Ensure the sign is securely affixed to the wall or ceiling
-• Obstruction Scan: Look for any objects blocking the sign or its visibility
+• 	Visibility Check: Confirm the sign is clearly visible from all approach angles
+• 	Illumination Test: If the sign is powered, press the test button (if present) to verify battery backup
+• 	If no button, confirm the sign is lit via AC power or photoluminescence
+• 	Mounting Check:
+• 	Ensure the sign is securely affixed to the wall or ceiling
+• 	Obstruction Scan: Look for any objects blocking the sign or its visibility
 Combination units (exit sign + emergency light) must be inspected as two separate items.
-
-📏 Step 4: Accessibility/Code Compliance & IBU Overlay
-• Height & Placement: Signs must be mounted high enough to be visible but not obstructive
-• Visual Clarity: Letters must be ≥6" high with a stroke width ≥¾"
-• Contrast & Illumination: Must be readable by residents with low vision
-• Directional Arrows: Required if the exit path is not straight ahead
-
+📏 Step 4: Accessibility /Code Compliance & IBU Overlay
+• 	Height & Placement: Signs must be mounted high enough to be visible but not obstructive
+• 	Visual Clarity: Letters must be ≥6" high with a stroke width ≥¾"
+• 	Contrast & Illumination: Must be readable by residents with low vision
+• 	Directional Arrows: Required if the exit path is not straight ahead
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC (2021) §R311.4, §R315 – Means of egress and emergency escape
-• Fire separation walls must not block exit signage or access`
+• 	• 	IRC (2021) §R311.4, §R315 – Means of egress and emergency escape
+• 	Fire separation walls must not block exit signage or access
+`
         }
     ]
 };
@@ -5602,29 +5495,29 @@ export const FIRE_SAFETY_EXTINGUISHER: UnitItemDeficiencies = {
             code: 'FIRE-EXT-01',
             codeReference: `🧭 Step 1: Identify Fire Extinguisher Locations
 Inspect all property-owned extinguishers.
-
 🔍 Step 2: Visual Condition Assessment
-All deficiencies must be corrected within 24 hours under NSPIRE's life-threatening category.
-
+All deficiencies must be corrected within 24 hours under NSPIRE’s life-threatening category.
 🧪 Step 3: Functional & Compliance Checks
-• Pressure Gauge Check: Confirm needle is in the green zone
-• Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
-• Mounting Check: Ensure extinguisher is securely mounted in bracket or cabinet
-• Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
-• Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
+• 	Pressure Gauge Check: Confirm needle is in the green zone
+• 	Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
+• 	Mounting Check: 	Ensure extinguisher is securely mounted in bracket or cabinet
+• 	Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
+• 	Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
 Disposable extinguishers must be replaced if older than 12 years from the manufacture date.
-
 📏 Step 4: Accessibility Compliance (IBU/ADA)
-• Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs; ≤42" if >40 lbs
-• Reachability: Must be reachable without tight grasping or bending
-• Clear Floor Space: Minimum 30"x48" in front of extinguisher
-• Label Visibility: Operating instructions must be readable
-
+• 	Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs.; ≤42" if >40 lbs.
+• 	Reachability: Must be reachable without tight grasping or bending
+• 	Clear Floor Space: Minimum 30"x48" in front of extinguisher
+• 	Label Visibility: Operating instructions must be readable
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC Section R313.1: Fire extinguishers must be accessible and maintained in working order
-• NFPA 10 Reference: Extinguishers must be inspected monthly and serviced annually
-• IRC R315.2: Extinguishers must not obstruct egress or emergency equipment
-IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility`
+• 	IRC Section R313.1:
+• 	Fire extinguishers must be accessible and maintained in working order
+• 	NFPA 10 Reference:
+• 	Extinguishers must be inspected monthly and serviced annually
+• 	IRC R315.2:
+• 	Extinguishers must not obstruct egress or emergency equipment
+IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility
+`
         },
         {
             id: 'fire_ext_2',
@@ -5637,29 +5530,29 @@ IRC aligns with NFPA standards for extinguisher placement, maintenance, and visi
             code: 'FIRE-EXT-02',
             codeReference: `🧭 Step 1: Identify Fire Extinguisher Locations
 Inspect all property-owned extinguishers.
-
 🔍 Step 2: Visual Condition Assessment
-All deficiencies must be corrected within 24 hours under NSPIRE's life-threatening category.
-
+All deficiencies must be corrected within 24 hours under NSPIRE’s life-threatening category.
 🧪 Step 3: Functional & Compliance Checks
-• Pressure Gauge Check: Confirm needle is in the green zone
-• Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
-• Mounting Check: Ensure extinguisher is securely mounted in bracket or cabinet
-• Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
-• Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
+• 	Pressure Gauge Check: Confirm needle is in the green zone
+• 	Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
+• 	Mounting Check: 	Ensure extinguisher is securely mounted in bracket or cabinet
+• 	Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
+• 	Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
 Disposable extinguishers must be replaced if older than 12 years from the manufacture date.
-
 📏 Step 4: Accessibility Compliance (IBU/ADA)
-• Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs; ≤42" if >40 lbs
-• Reachability: Must be reachable without tight grasping or bending
-• Clear Floor Space: Minimum 30"x48" in front of extinguisher
-• Label Visibility: Operating instructions must be readable
-
+• 	Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs.; ≤42" if >40 lbs.
+• 	Reachability: Must be reachable without tight grasping or bending
+• 	Clear Floor Space: Minimum 30"x48" in front of extinguisher
+• 	Label Visibility: Operating instructions must be readable
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC Section R313.1: Fire extinguishers must be accessible and maintained in working order
-• NFPA 10 Reference: Extinguishers must be inspected monthly and serviced annually
-• IRC R315.2: Extinguishers must not obstruct egress or emergency equipment
-IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility`
+• 	IRC Section R313.1:
+• 	Fire extinguishers must be accessible and maintained in working order
+• 	NFPA 10 Reference:
+• 	Extinguishers must be inspected monthly and serviced annually
+• 	IRC R315.2:
+• 	Extinguishers must not obstruct egress or emergency equipment
+IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility
+`
         },
         {
             id: 'fire_ext_3',
@@ -5672,29 +5565,29 @@ IRC aligns with NFPA standards for extinguisher placement, maintenance, and visi
             code: 'FIRE-EXT-03',
             codeReference: `🧭 Step 1: Identify Fire Extinguisher Locations
 Inspect all property-owned extinguishers.
-
 🔍 Step 2: Visual Condition Assessment
-All deficiencies must be corrected within 24 hours under NSPIRE's life-threatening category.
-
+All deficiencies must be corrected within 24 hours under NSPIRE’s life-threatening category.
 🧪 Step 3: Functional & Compliance Checks
-• Pressure Gauge Check: Confirm needle is in the green zone
-• Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
-• Mounting Check: Ensure extinguisher is securely mounted in bracket or cabinet
-• Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
-• Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
+• 	Pressure Gauge Check: Confirm needle is in the green zone
+• 	Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
+• 	Mounting Check: 	Ensure extinguisher is securely mounted in bracket or cabinet
+• 	Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
+• 	Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
 Disposable extinguishers must be replaced if older than 12 years from the manufacture date.
-
 📏 Step 4: Accessibility Compliance (IBU/ADA)
-• Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs; ≤42" if >40 lbs
-• Reachability: Must be reachable without tight grasping or bending
-• Clear Floor Space: Minimum 30"x48" in front of extinguisher
-• Label Visibility: Operating instructions must be readable
-
+• 	Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs.; ≤42" if >40 lbs.
+• 	Reachability: Must be reachable without tight grasping or bending
+• 	Clear Floor Space: Minimum 30"x48" in front of extinguisher
+• 	Label Visibility: Operating instructions must be readable
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC Section R313.1: Fire extinguishers must be accessible and maintained in working order
-• NFPA 10 Reference: Extinguishers must be inspected monthly and serviced annually
-• IRC R315.2: Extinguishers must not obstruct egress or emergency equipment
-IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility`
+• 	IRC Section R313.1:
+• 	Fire extinguishers must be accessible and maintained in working order
+• 	NFPA 10 Reference:
+• 	Extinguishers must be inspected monthly and serviced annually
+• 	IRC R315.2:
+• 	Extinguishers must not obstruct egress or emergency equipment
+IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility
+`
         }
     ]
 };
@@ -5713,25 +5606,22 @@ export const FIRE_SAFETY_FLAMMABLE: UnitItemDeficiencies = {
             code: 'FIRE-FLAM-01',
             codeReference: `🧭 Step 1: Identify Inspectable Locations
 Inspect all shared-use areas where flammable or combustible materials may be stored or used.
-
 🔍 Step 2: Visual Condition Assessment
-• Look for: Paints, solvents, gasoline, propane, kerosene, butane, nail polish remover, charcoal lighter fluid, oxygen tanks, cleaning chemicals
-• Packaging: Must be original, sealed, and intact
-
+• 	Look for: Paints, solvents, gasoline, propane, kerosene, butane, nail polish remover, charcoal lighter fluid, oxygen tanks, cleaning chemicals
+• 	Packaging: Must be original, sealed, and intact
 🧪 Step 3: Inspection Technique
-• Proximity Check: Measure or estimate distance between flammable items and ignition sources (must be ≥3 feet)
-• Container Check: Confirm chemicals are in original, sealed containers and stored safely
-• Label Review: Look for flammable or combustible warnings on spray cans, solvents, or fuels
-• Ventilation & Access: Ensure storage areas are ventilated and not obstructing egress or equipment
-
-📏 Step 4: Accessibility & IBU Local Requirement
-• Access height: Typically ≤5 feet AFF for unobstructed reach.
-• Signage: Required in some jurisdictions—check for label or directional arrow.
-• IBU Local Codes: May require annual servicing logs, seismic bracing, or multilingual signage
-
+• 	Proximity Check: 	Measure or estimate distance between flammable items and ignition sources (must be ≥3 feet)
+• 	Container Check: Confirm chemicals are in original, sealed containers and stored safely
+• 	Label Review: Look for flammable or combustible warnings on spray cans, solvents, or fuels
+• 	Ventilation & Access: Ensure storage areas are ventilated and not obstructing egress or equipment
+📏 Step 4:  Accessibility & IBU Local Requirement
+• 	Access height: Typically ≤5 feet AFF for unobstructed reach.
+• 	Signage: Required in some jurisdictions—check for label or directional arrow.
+• 	IBU Local Codes: May require annual servicing logs, seismic bracing, or multilingual signage
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC (2021) §R302.1–R302.5 – Fire-resistant construction and ignition separation
-• IBU overlays – Local fire code, hazardous materials storage, and emergency response protocols`
+• • 	IRC (2021) §R302.1–R302.5 – Fire-resistant construction and ignition separation
+• 	IBU overlays – Local fire code, hazardous materials storage, and emergency response protocols
+`
         }
     ]
 };
@@ -5749,32 +5639,32 @@ export const FIRE_SAFETY_SMOKE_ALARM: UnitItemDeficiencies = {
             points: '0.000',
             code: 'FIRE-SMOKE-01',
             codeReference: `🧭 Step 1: Identify Smoke Alarm Locations
-• Verify presence: A smoke alarm must be installed on every level of the building, including common areas.
-
-🔍 Step 2: Visual Condition Assessment
-• Painted surface
-• Stickers or decorations
-• Obstructions (e.g., dust, cobwebs, furniture)
-
-🧪 Step 3: Functional Testing
-The central alarm system must be certified annually.
-• Test Button Activation: Press the test button to confirm audible and/or visual alert
-• Battery Check: If accessible, confirm battery is present and properly seated
-• Sealed Battery Verification: For battery-only units, confirm it's a sealed, 10-year, tamper-resistant model
-• Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
-If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours.
-
+• 	Verify presence: A smoke alarm must be installed on every level of the building, including common areas.       🔍 Step 2: Visual Condition Assessment
+• 	Painted surface
+• 	Stickers or decorations, • 	Obstructions (e.g., dust, cobwebs, furniture)
+🧪 Step 3: Functional Testing, the central alarm system must be certified annually.
+• 	Test Button Activation: Press the test button to confirm audible and/or visual alert
+• 	Battery Check: If accessible, confirm battery is present and properly seated
+• 	Sealed Battery Verification: For battery-only units, confirm it’s a sealed, 10-year, tamper-resistant model 
+• 	Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
+If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours. If no certificate is available
 📏 Step 4: Placement & Accessibility Compliance (IBU)
-• Ceiling Mount: ≥4 inches from wall
-• Wall Mount: Between 4–12 inches from the ceiling
-• Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
-• Distance from Cooking Appliances: ≥10 feet away
-• Reachability: Test button must be reachable without tools or unsafe climbing
-• IBU Local Codes may require multilingual signage, inspection logs, or enhanced visual alarms for hearing-impaired residents
-
+• 	Ceiling Mount: ≥4 inches from wall
+• 	Wall Mount: Between 4–12 inches from the ceiling
+• 	Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
+• 	Distance from Cooking Appliances: ≥10 feet away
+• 	Reachability: Test button must be reachable without tools or unsafe climbing
+• 	IBC + NFPA 72 Interaction
+IBC tells you where detection is required.
+NFPA 72 tells you how to install it.
+Examples: Spacing, Sensitivity, Placement near HVAC
+ visual alarms for hearing-impaired residents
 ⚒️ Step 5: IRC Installation Requirements
-• IRC (2021) §R314 – Smoke alarm installation and performance
-• Alarms must be powered by permanent wiring or a sealed battery`
+•- IRC (2021) §R314 – Smoke alarm installation and performance
+• 	Alarms must be powered by permanent wiring or a sealed battery
+
+
+`
         },
         {
             id: 'fire_smoke_2',
@@ -5786,32 +5676,32 @@ If the alarm does not activate or is silent, it must be cited as inoperable and 
             points: '0.000',
             code: 'FIRE-SMOKE-02',
             codeReference: `🧭 Step 1: Identify Smoke Alarm Locations
-• Verify presence: A smoke alarm must be installed on every level of the building, including common areas.
-
-🔍 Step 2: Visual Condition Assessment
-• Painted surface
-• Stickers or decorations
-• Obstructions (e.g., dust, cobwebs, furniture)
-
-🧪 Step 3: Functional Testing
-The central alarm system must be certified annually.
-• Test Button Activation: Press the test button to confirm audible and/or visual alert
-• Battery Check: If accessible, confirm battery is present and properly seated
-• Sealed Battery Verification: For battery-only units, confirm it's a sealed, 10-year, tamper-resistant model
-• Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
-If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours.
-
+• 	Verify presence: A smoke alarm must be installed on every level of the building, including common areas.       🔍 Step 2: Visual Condition Assessment
+• 	Painted surface
+• 	Stickers or decorations, • 	Obstructions (e.g., dust, cobwebs, furniture)
+🧪 Step 3: Functional Testing, the central alarm system must be certified annually.
+• 	Test Button Activation: Press the test button to confirm audible and/or visual alert
+• 	Battery Check: If accessible, confirm battery is present and properly seated
+• 	Sealed Battery Verification: For battery-only units, confirm it’s a sealed, 10-year, tamper-resistant model 
+• 	Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
+If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours. If no certificate is available
 📏 Step 4: Placement & Accessibility Compliance (IBU)
-• Ceiling Mount: ≥4 inches from wall
-• Wall Mount: Between 4–12 inches from the ceiling
-• Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
-• Distance from Cooking Appliances: ≥10 feet away
-• Reachability: Test button must be reachable without tools or unsafe climbing
-• IBU Local Codes may require multilingual signage, inspection logs, or enhanced visual alarms for hearing-impaired residents
-
+• 	Ceiling Mount: ≥4 inches from wall
+• 	Wall Mount: Between 4–12 inches from the ceiling
+• 	Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
+• 	Distance from Cooking Appliances: ≥10 feet away
+• 	Reachability: Test button must be reachable without tools or unsafe climbing
+• 	IBC + NFPA 72 Interaction
+IBC tells you where detection is required.
+NFPA 72 tells you how to install it.
+Examples: Spacing, Sensitivity, Placement near HVAC
+ visual alarms for hearing-impaired residents
 ⚒️ Step 5: IRC Installation Requirements
-• IRC (2021) §R314 – Smoke alarm installation and performance
-• Alarms must be powered by permanent wiring or a sealed battery`
+•- IRC (2021) §R314 – Smoke alarm installation and performance
+• 	Alarms must be powered by permanent wiring or a sealed battery
+
+
+`
         },
         {
             id: 'fire_smoke_3',
@@ -5823,32 +5713,32 @@ If the alarm does not activate or is silent, it must be cited as inoperable and 
             points: '0.000',
             code: 'FIRE-SMOKE-03',
             codeReference: `🧭 Step 1: Identify Smoke Alarm Locations
-• Verify presence: A smoke alarm must be installed on every level of the building, including common areas.
-
-🔍 Step 2: Visual Condition Assessment
-• Painted surface
-• Stickers or decorations
-• Obstructions (e.g., dust, cobwebs, furniture)
-
-🧪 Step 3: Functional Testing
-The central alarm system must be certified annually.
-• Test Button Activation: Press the test button to confirm audible and/or visual alert
-• Battery Check: If accessible, confirm battery is present and properly seated
-• Sealed Battery Verification: For battery-only units, confirm it's a sealed, 10-year, tamper-resistant model
-• Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
-If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours.
-
+• 	Verify presence: A smoke alarm must be installed on every level of the building, including common areas.       🔍 Step 2: Visual Condition Assessment
+• 	Painted surface
+• 	Stickers or decorations, • 	Obstructions (e.g., dust, cobwebs, furniture)
+🧪 Step 3: Functional Testing, the central alarm system must be certified annually.
+• 	Test Button Activation: Press the test button to confirm audible and/or visual alert
+• 	Battery Check: If accessible, confirm battery is present and properly seated
+• 	Sealed Battery Verification: For battery-only units, confirm it’s a sealed, 10-year, tamper-resistant model 
+• 	Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
+If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours. If no certificate is available
 📏 Step 4: Placement & Accessibility Compliance (IBU)
-• Ceiling Mount: ≥4 inches from wall
-• Wall Mount: Between 4–12 inches from the ceiling
-• Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
-• Distance from Cooking Appliances: ≥10 feet away
-• Reachability: Test button must be reachable without tools or unsafe climbing
-• IBU Local Codes may require multilingual signage, inspection logs, or enhanced visual alarms for hearing-impaired residents
-
+• 	Ceiling Mount: ≥4 inches from wall
+• 	Wall Mount: Between 4–12 inches from the ceiling
+• 	Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
+• 	Distance from Cooking Appliances: ≥10 feet away
+• 	Reachability: Test button must be reachable without tools or unsafe climbing
+• 	IBC + NFPA 72 Interaction
+IBC tells you where detection is required.
+NFPA 72 tells you how to install it.
+Examples: Spacing, Sensitivity, Placement near HVAC
+ visual alarms for hearing-impaired residents
 ⚒️ Step 5: IRC Installation Requirements
-• IRC (2021) §R314 – Smoke alarm installation and performance
-• Alarms must be powered by permanent wiring or a sealed battery`
+•- IRC (2021) §R314 – Smoke alarm installation and performance
+• 	Alarms must be powered by permanent wiring or a sealed battery
+
+
+`
         },
         {
             id: 'fire_smoke_4',
@@ -5860,32 +5750,32 @@ If the alarm does not activate or is silent, it must be cited as inoperable and 
             points: '0.000',
             code: 'FIRE-SMOKE-04',
             codeReference: `🧭 Step 1: Identify Smoke Alarm Locations
-• Verify presence: A smoke alarm must be installed on every level of the building, including common areas.
-
-🔍 Step 2: Visual Condition Assessment
-• Painted surface
-• Stickers or decorations
-• Obstructions (e.g., dust, cobwebs, furniture)
-
-🧪 Step 3: Functional Testing
-The central alarm system must be certified annually.
-• Test Button Activation: Press the test button to confirm audible and/or visual alert
-• Battery Check: If accessible, confirm battery is present and properly seated
-• Sealed Battery Verification: For battery-only units, confirm it's a sealed, 10-year, tamper-resistant model
-• Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
-If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours.
-
+• 	Verify presence: A smoke alarm must be installed on every level of the building, including common areas.       🔍 Step 2: Visual Condition Assessment
+• 	Painted surface
+• 	Stickers or decorations, • 	Obstructions (e.g., dust, cobwebs, furniture)
+🧪 Step 3: Functional Testing, the central alarm system must be certified annually.
+• 	Test Button Activation: Press the test button to confirm audible and/or visual alert
+• 	Battery Check: If accessible, confirm battery is present and properly seated
+• 	Sealed Battery Verification: For battery-only units, confirm it’s a sealed, 10-year, tamper-resistant model 
+• 	Response Confirmation: Ensure the alarm sounds clearly and immediately when tested
+If the alarm does not activate or is silent, it must be cited as inoperable and corrected within 24 hours. If no certificate is available
 📏 Step 4: Placement & Accessibility Compliance (IBU)
-• Ceiling Mount: ≥4 inches from wall
-• Wall Mount: Between 4–12 inches from the ceiling
-• Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
-• Distance from Cooking Appliances: ≥10 feet away
-• Reachability: Test button must be reachable without tools or unsafe climbing
-• IBU Local Codes may require multilingual signage, inspection logs, or enhanced visual alarms for hearing-impaired residents
-
+• 	Ceiling Mount: ≥4 inches from wall
+• 	Wall Mount: Between 4–12 inches from the ceiling
+• 	Distance from Drafts: ≥3 feet from fans, ducts, windows, or exterior doors
+• 	Distance from Cooking Appliances: ≥10 feet away
+• 	Reachability: Test button must be reachable without tools or unsafe climbing
+• 	IBC + NFPA 72 Interaction
+IBC tells you where detection is required.
+NFPA 72 tells you how to install it.
+Examples: Spacing, Sensitivity, Placement near HVAC
+ visual alarms for hearing-impaired residents
 ⚒️ Step 5: IRC Installation Requirements
-• IRC (2021) §R314 – Smoke alarm installation and performance
-• Alarms must be powered by permanent wiring or a sealed battery`
+•- IRC (2021) §R314 – Smoke alarm installation and performance
+• 	Alarms must be powered by permanent wiring or a sealed battery
+
+
+`
         }
     ]
 };
@@ -5903,28 +5793,24 @@ export const FIRE_SAFETY_SPRINKLER: UnitItemDeficiencies = {
             points: '27.25/n',
             code: 'FIRE-SPRINKLER-01',
             codeReference: `🧭 Step 1: Identify Sprinkler Assembly Components
-• Verify system presence: Sprinkler assemblies are only inspected if installed
-
+• 	Verify system presence: Sprinkler assemblies are only inspected if installed
 🔍 Step 2: Visual Condition Assessment
-Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering >75% of head or bulb, and evidence of corrosion on sprinkler components
-
+Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering>75% of head or bulb, and evidence of corrosion on sprinkler components
 🧪 Step 3: Inspection Technique
-• Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
-• Surface Scan: Look for paint, rust, or debris on the head and escutcheon
-• Mounting Check: Confirm escutcheon rings are flush and intact
-• Cover Plate Test: Ensure concealed plates are not glued, painted, or sealed
-• Corrosion Check: Inspect for rust on functional components (not just trim)
+• 	Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
+• 	Surface Scan: Look for paint, rust, or debris on the head and escutcheon
+• 	Mounting Check: Confirm escutcheon rings are flush and intact
+• 	Cover Plate Test: 	Ensure concealed plates are not glued, painted, or sealed
+• 	Corrosion Check: 	Inspect for rust on functional components (not just trim)
 Use a flashlight and measuring tape for an accurate assessment. Do not touch or test the sprinkler head directly.
-
-📏 Step 4: Accessibility & Visibility
-• Height: Typically mounted ≥80" AFF for visibility and reach
-• Labeling: If part of a monitored system, confirm zone ID and panel integration
-• IBU Overlay: May require multilingual signage or maintenance records. Sprinkler heads must be visible and not disguised
-
+📏 Step 4:  Accessibility & Visibility
+- Height: Typically mounted ≥80" AFF for visibility and reach
+- Labeling: If part of a monitored system, confirm zone ID and panel integration
+- Sprinkler assemblies must be installed and maintained per IBC + IFC + NFPA 13/13R.
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
-• IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
-• IBU overlays – Local fire, seismic, and life-safety code`
+• 	IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
+• 	IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
+All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         },
         {
             id: 'fire_sprinkler_2',
@@ -5936,28 +5822,24 @@ Use a flashlight and measuring tape for an accurate assessment. Do not touch or 
             points: '27.25/n',
             code: 'FIRE-SPRINKLER-02',
             codeReference: `🧭 Step 1: Identify Sprinkler Assembly Components
-• Verify system presence: Sprinkler assemblies are only inspected if installed
-
+• 	Verify system presence: Sprinkler assemblies are only inspected if installed
 🔍 Step 2: Visual Condition Assessment
-Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering >75% of head or bulb, and evidence of corrosion on sprinkler components
-
+Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering>75% of head or bulb, and evidence of corrosion on sprinkler components
 🧪 Step 3: Inspection Technique
-• Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
-• Surface Scan: Look for paint, rust, or debris on the head and escutcheon
-• Mounting Check: Confirm escutcheon rings are flush and intact
-• Cover Plate Test: Ensure concealed plates are not glued, painted, or sealed
-• Corrosion Check: Inspect for rust on functional components (not just trim)
+• 	Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
+• 	Surface Scan: Look for paint, rust, or debris on the head and escutcheon
+• 	Mounting Check: Confirm escutcheon rings are flush and intact
+• 	Cover Plate Test: 	Ensure concealed plates are not glued, painted, or sealed
+• 	Corrosion Check: 	Inspect for rust on functional components (not just trim)
 Use a flashlight and measuring tape for an accurate assessment. Do not touch or test the sprinkler head directly.
-
-📏 Step 4: Accessibility & Visibility
-• Height: Typically mounted ≥80" AFF for visibility and reach
-• Labeling: If part of a monitored system, confirm zone ID and panel integration
-• IBU Overlay: May require multilingual signage or maintenance records. Sprinkler heads must be visible and not disguised
-
+📏 Step 4:  Accessibility & Visibility
+- Height: Typically mounted ≥80" AFF for visibility and reach
+- Labeling: If part of a monitored system, confirm zone ID and panel integration
+- Sprinkler assemblies must be installed and maintained per IBC + IFC + NFPA 13/13R.
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
-• IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
-• IBU overlays – Local fire, seismic, and life-safety code`
+• 	IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
+• 	IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
+All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         },
         {
             id: 'fire_sprinkler_3',
@@ -5969,28 +5851,24 @@ Use a flashlight and measuring tape for an accurate assessment. Do not touch or 
             points: '27.25/n',
             code: 'FIRE-SPRINKLER-03',
             codeReference: `🧭 Step 1: Identify Sprinkler Assembly Components
-• Verify system presence: Sprinkler assemblies are only inspected if installed
-
+• 	Verify system presence: Sprinkler assemblies are only inspected if installed
 🔍 Step 2: Visual Condition Assessment
-Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering >75% of head or bulb, and evidence of corrosion on sprinkler components
-
+Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering>75% of head or bulb, and evidence of corrosion on sprinkler components
 🧪 Step 3: Inspection Technique
-• Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
-• Surface Scan: Look for paint, rust, or debris on the head and escutcheon
-• Mounting Check: Confirm escutcheon rings are flush and intact
-• Cover Plate Test: Ensure concealed plates are not glued, painted, or sealed
-• Corrosion Check: Inspect for rust on functional components (not just trim)
+• 	Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
+• 	Surface Scan: Look for paint, rust, or debris on the head and escutcheon
+• 	Mounting Check: Confirm escutcheon rings are flush and intact
+• 	Cover Plate Test: 	Ensure concealed plates are not glued, painted, or sealed
+• 	Corrosion Check: 	Inspect for rust on functional components (not just trim)
 Use a flashlight and measuring tape for an accurate assessment. Do not touch or test the sprinkler head directly.
-
-📏 Step 4: Accessibility & Visibility
-• Height: Typically mounted ≥80" AFF for visibility and reach
-• Labeling: If part of a monitored system, confirm zone ID and panel integration
-• IBU Overlay: May require multilingual signage or maintenance records. Sprinkler heads must be visible and not disguised
-
+📏 Step 4:  Accessibility & Visibility
+- Height: Typically mounted ≥80" AFF for visibility and reach
+- Labeling: If part of a monitored system, confirm zone ID and panel integration
+- Sprinkler assemblies must be installed and maintained per IBC + IFC + NFPA 13/13R.
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
-• IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
-• IBU overlays – Local fire, seismic, and life-safety code`
+• 	IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
+• 	IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
+All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         },
         {
             id: 'fire_sprinkler_4',
@@ -6002,28 +5880,24 @@ Use a flashlight and measuring tape for an accurate assessment. Do not touch or 
             points: '27.25/n',
             code: 'FIRE-SPRINKLER-04',
             codeReference: `🧭 Step 1: Identify Sprinkler Assembly Components
-• Verify system presence: Sprinkler assemblies are only inspected if installed
-
+• 	Verify system presence: Sprinkler assemblies are only inspected if installed
 🔍 Step 2: Visual Condition Assessment
-Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering >75% of head or bulb, and evidence of corrosion on sprinkler components
-
+Obstruction within 18" of sprinkler head, Sprinkler head encased or covered, missing or damaged escutcheon ring, concealed cover plate glued or sealed, foreign material covering>75% of head or bulb, and evidence of corrosion on sprinkler components
 🧪 Step 3: Inspection Technique
-• Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
-• Surface Scan: Look for paint, rust, or debris on the head and escutcheon
-• Mounting Check: Confirm escutcheon rings are flush and intact
-• Cover Plate Test: Ensure concealed plates are not glued, painted, or sealed
-• Corrosion Check: Inspect for rust on functional components (not just trim)
+• 	Distance Check: Measure clearance around sprinkler heads (≥18 inches required)
+• 	Surface Scan: Look for paint, rust, or debris on the head and escutcheon
+• 	Mounting Check: Confirm escutcheon rings are flush and intact
+• 	Cover Plate Test: 	Ensure concealed plates are not glued, painted, or sealed
+• 	Corrosion Check: 	Inspect for rust on functional components (not just trim)
 Use a flashlight and measuring tape for an accurate assessment. Do not touch or test the sprinkler head directly.
-
-📏 Step 4: Accessibility & Visibility
-• Height: Typically mounted ≥80" AFF for visibility and reach
-• Labeling: If part of a monitored system, confirm zone ID and panel integration
-• IBU Overlay: May require multilingual signage or maintenance records. Sprinkler heads must be visible and not disguised
-
+📏 Step 4:  Accessibility & Visibility
+- Height: Typically mounted ≥80" AFF for visibility and reach
+- Labeling: If part of a monitored system, confirm zone ID and panel integration
+- Sprinkler assemblies must be installed and maintained per IBC + IFC + NFPA 13/13R.
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
-• IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
-• IBU overlays – Local fire, seismic, and life-safety code`
+• 	IRC P2904.1–P2904.6: Sprinkler systems must meet NFPA 13D standards for residential buildings
+• 	IRC R315.2: Sprinklers must not interfere with smoke or CO alarms
+All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         }
     ]
 };
@@ -6050,29 +5924,26 @@ export const FLOOR: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'FLOOR-01',
             codeReference: `🧭 Step 1: Identify Floor Types and Locations
-Materials: Identify type—carpet, tile, vinyl, wood, concrete, rubber, etc.
-
+ Materials: Identify type—carpet, tile, vinyl, wood, concrete, rubber, etc.
 🔍 Step 2: Visual Condition Assessment
-• Surface condition: Look for curling, buckling, bulging, tears, or separation.
-
+• 	Surface condition: Look for curling, buckling, bulging, tears, or separation.
 🧪 Step 3: Functional Testing
-• Walk Test: Walk across the floor to detect soft spots, deflection, or uneven transitions
-• Edge Check: Inspect transitions between materials (e.g., tile to carpet) for height differences
-• Substrate Exposure: Measure exposed areas; if ≥10% of the room's floor is bare, cite as a deficiency
-• Moisture Scan: Look for signs of water intrusion, mold, or rot
+• 	Walk Test: Walk across the floor to detect soft spots, deflection, or uneven transitions
+• 	Edge Check: Inspect transitions between materials (e.g., tile to carpet) for height differences
+• 	Substrate Exposure: Measure exposed areas; if ≥10% of the room’s floor is bare, cite as a deficiency
+• 	Moisture Scan: Look for signs of water intrusion, mold, or rot
 No invasive testing required.
-
-📏 Step 4: Fire Egress & Accessibility (IRC §R311.3, IBU Overlay)
-• Egress path: Flooring must not obstruct or impede emergency exit routes.
-• Slip resistance: Especially in wet zones (e.g., laundry, entryways)
-• IBU Local Codes: May require non-slip finishes, fire-rated underlayment.
-• Surface Stability: No loose tiles, torn carpet, or uneven surfaces
-• IBU Overlay: May require tactile indicators or color contrast for visually impaired residents
-
+📏 Step 4:  Fire Egress & Accessibility (IRC §R311.3, IBU Overlay)
+• 	Egress path: Flooring must not obstruct or impede emergency exit routes.
+• 	Slip resistance: Especially in wet zones (e.g., laundry, entryways)
+• 	IBU Local Codes: May require non-slip finishes, fire-rated underlayment.                                                                                                                   • 	Surface Stability: No loose tiles, torn carpet, or uneven surfaces
+• 	IBU Overlay: May require tactile indicators or color contrast for visually impaired residents
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R301.1–R301.5: Floors must support live loads and be structurally sound
-• IRC R317.1: Moisture-prone areas must use decay-resistant materials
-• IRC R703.4: Flashing required to prevent water intrusion at floor-level transitions`
+• 	IRC R301.1–R301.5: Floors must support live loads and be structurally sound
+• 	Floor Finishes in Common Areas (IBC 804)
+IBC regulates finish materials, not the structural floor.
+• 	IRC R703.4: Flashing required to prevent water intrusion at floor-level transitions
+`
         },
         {
             id: 'floor_2',
@@ -6084,29 +5955,26 @@ No invasive testing required.
             points: '5.0/n',
             code: 'FLOOR-02',
             codeReference: `🧭 Step 1: Identify Floor Types and Locations
-Materials: Identify type—carpet, tile, vinyl, wood, concrete, rubber, etc.
-
+ Materials: Identify type—carpet, tile, vinyl, wood, concrete, rubber, etc.
 🔍 Step 2: Visual Condition Assessment
-• Surface condition: Look for curling, buckling, bulging, tears, or separation.
-
+• 	Surface condition: Look for curling, buckling, bulging, tears, or separation.
 🧪 Step 3: Functional Testing
-• Walk Test: Walk across the floor to detect soft spots, deflection, or uneven transitions
-• Edge Check: Inspect transitions between materials (e.g., tile to carpet) for height differences
-• Substrate Exposure: Measure exposed areas; if ≥10% of the room's floor is bare, cite as a deficiency
-• Moisture Scan: Look for signs of water intrusion, mold, or rot
+• 	Walk Test: Walk across the floor to detect soft spots, deflection, or uneven transitions
+• 	Edge Check: Inspect transitions between materials (e.g., tile to carpet) for height differences
+• 	Substrate Exposure: Measure exposed areas; if ≥10% of the room’s floor is bare, cite as a deficiency
+• 	Moisture Scan: Look for signs of water intrusion, mold, or rot
 No invasive testing required.
-
-📏 Step 4: Fire Egress & Accessibility (IRC §R311.3, IBU Overlay)
-• Egress path: Flooring must not obstruct or impede emergency exit routes.
-• Slip resistance: Especially in wet zones (e.g., laundry, entryways)
-• IBU Local Codes: May require non-slip finishes, fire-rated underlayment.
-• Surface Stability: No loose tiles, torn carpet, or uneven surfaces
-• IBU Overlay: May require tactile indicators or color contrast for visually impaired residents
-
+📏 Step 4:  Fire Egress & Accessibility (IRC §R311.3, IBU Overlay)
+• 	Egress path: Flooring must not obstruct or impede emergency exit routes.
+• 	Slip resistance: Especially in wet zones (e.g., laundry, entryways)
+• 	IBU Local Codes: May require non-slip finishes, fire-rated underlayment.                                                                                                                   • 	Surface Stability: No loose tiles, torn carpet, or uneven surfaces
+• 	IBU Overlay: May require tactile indicators or color contrast for visually impaired residents
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R301.1–R301.5: Floors must support live loads and be structurally sound
-• IRC R317.1: Moisture-prone areas must use decay-resistant materials
-• IRC R703.4: Flashing required to prevent water intrusion at floor-level transitions`
+• 	IRC R301.1–R301.5: Floors must support live loads and be structurally sound
+• 	Floor Finishes in Common Areas (IBC 804)
+IBC regulates finish materials, not the structural floor.
+• 	IRC R703.4: Flashing required to prevent water intrusion at floor-level transitions
+`
         }
     ]
 };
@@ -6133,30 +6001,29 @@ export const FOUNDATION: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'FOUNDATION-01',
             codeReference: `🧭 Step 1: Identify Foundation Areas to Inspect
-• Common types: Concrete slab, stem wall, crawlspace, or basement wall
-
+• 	Common types: Concrete slab, stem wall, crawlspace, or basement wall
 🔍 Step 2: Visual Condition Assessment
-• Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
-
+• 	Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
 🧪 Step 3: Inspection Technique
-• Spalling: Surface flaking or crumbling of concrete
-• Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
-• Level Check: Observe floor transitions and door alignment for signs of settlement
-• Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
-• Exposed rebar: Indicates loss of cover and potential corrosion
-• Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
-
-📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay)
-• Termite tubes: Mud tunnels along foundation walls
-• Rodent entry points: Gaps, holes, or chewed insulation
-• Wood contact: No untreated wood should touch concrete or soil
-• IBU Local Codes: May require pest barriers, treated lumber, or inspection logs
-
+• 	Spalling: Surface flaking or crumbling of concrete
+• 	Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
+• 	Level Check: Observe floor transitions and door alignment for signs of settlement
+• 	Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
+• 	Ventilation & Access:
+• 	Exposed rebar: Indicates loss of cover and potential corrosion
+• 	Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
+📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay
+• 	Termite tubes: Mud tunnels along foundation walls
+• 	Rodent entry points: Gaps, holes, or chewed insulation
+• 	Wood contact: No untreated wood should touch concrete or soil
+• 	Foundation Walls (IBC 1807)(e.g., around stairwells or lobbies) must be dampproofed at minimum.
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R401–R404: Foundations must support loads and resist movement
-• IRC R405.1: Drainage systems required to prevent water accumulation
-• IRC R406.1: Foundation walls must be damp-proofed
-• IRC R403.1.6: Anchor bolts required to secure framing to the foundation`
+• 	IRC R401–R404:
+• 	Foundations must support loads and resist movement
+• 	IRC R405.1: Drainage systems required to prevent water accumulation
+• 	IRC R406.1: Foundation walls must be damp-proofed
+• 	IRC R403.1.6: Anchor bolts required to secure framing to the foundation
+`
         },
         {
             id: 'foundation_2',
@@ -6168,30 +6035,29 @@ export const FOUNDATION: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'FOUNDATION-02',
             codeReference: `🧭 Step 1: Identify Foundation Areas to Inspect
-• Common types: Concrete slab, stem wall, crawlspace, or basement wall
-
+• 	Common types: Concrete slab, stem wall, crawlspace, or basement wall
 🔍 Step 2: Visual Condition Assessment
-• Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
-
+• 	Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
 🧪 Step 3: Inspection Technique
-• Spalling: Surface flaking or crumbling of concrete
-• Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
-• Level Check: Observe floor transitions and door alignment for signs of settlement
-• Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
-• Exposed rebar: Indicates loss of cover and potential corrosion
-• Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
-
-📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay)
-• Termite tubes: Mud tunnels along foundation walls
-• Rodent entry points: Gaps, holes, or chewed insulation
-• Wood contact: No untreated wood should touch concrete or soil
-• IBU Local Codes: May require pest barriers, treated lumber, or inspection logs
-
+• 	Spalling: Surface flaking or crumbling of concrete
+• 	Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
+• 	Level Check: Observe floor transitions and door alignment for signs of settlement
+• 	Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
+• 	Ventilation & Access:
+• 	Exposed rebar: Indicates loss of cover and potential corrosion
+• 	Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
+📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay
+• 	Termite tubes: Mud tunnels along foundation walls
+• 	Rodent entry points: Gaps, holes, or chewed insulation
+• 	Wood contact: No untreated wood should touch concrete or soil
+• 	Foundation Walls (IBC 1807)(e.g., around stairwells or lobbies) must be dampproofed at minimum.
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R401–R404: Foundations must support loads and resist movement
-• IRC R405.1: Drainage systems required to prevent water accumulation
-• IRC R406.1: Foundation walls must be damp-proofed
-• IRC R403.1.6: Anchor bolts required to secure framing to the foundation`
+• 	IRC R401–R404:
+• 	Foundations must support loads and resist movement
+• 	IRC R405.1: Drainage systems required to prevent water accumulation
+• 	IRC R406.1: Foundation walls must be damp-proofed
+• 	IRC R403.1.6: Anchor bolts required to secure framing to the foundation
+`
         },
         {
             id: 'foundation_3',
@@ -6203,30 +6069,29 @@ export const FOUNDATION: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'FOUNDATION-03',
             codeReference: `🧭 Step 1: Identify Foundation Areas to Inspect
-• Common types: Concrete slab, stem wall, crawlspace, or basement wall
-
+• 	Common types: Concrete slab, stem wall, crawlspace, or basement wall
 🔍 Step 2: Visual Condition Assessment
-• Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
-
+• 	Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
 🧪 Step 3: Inspection Technique
-• Spalling: Surface flaking or crumbling of concrete
-• Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
-• Level Check: Observe floor transitions and door alignment for signs of settlement
-• Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
-• Exposed rebar: Indicates loss of cover and potential corrosion
-• Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
-
-📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay)
-• Termite tubes: Mud tunnels along foundation walls
-• Rodent entry points: Gaps, holes, or chewed insulation
-• Wood contact: No untreated wood should touch concrete or soil
-• IBU Local Codes: May require pest barriers, treated lumber, or inspection logs
-
+• 	Spalling: Surface flaking or crumbling of concrete
+• 	Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
+• 	Level Check: Observe floor transitions and door alignment for signs of settlement
+• 	Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
+• 	Ventilation & Access:
+• 	Exposed rebar: Indicates loss of cover and potential corrosion
+• 	Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
+📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay
+• 	Termite tubes: Mud tunnels along foundation walls
+• 	Rodent entry points: Gaps, holes, or chewed insulation
+• 	Wood contact: No untreated wood should touch concrete or soil
+• 	Foundation Walls (IBC 1807)(e.g., around stairwells or lobbies) must be dampproofed at minimum.
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R401–R404: Foundations must support loads and resist movement
-• IRC R405.1: Drainage systems required to prevent water accumulation
-• IRC R406.1: Foundation walls must be damp-proofed
-• IRC R403.1.6: Anchor bolts required to secure framing to the foundation`
+• 	IRC R401–R404:
+• 	Foundations must support loads and resist movement
+• 	IRC R405.1: Drainage systems required to prevent water accumulation
+• 	IRC R406.1: Foundation walls must be damp-proofed
+• 	IRC R403.1.6: Anchor bolts required to secure framing to the foundation
+`
         },
         {
             id: 'foundation_4',
@@ -6238,30 +6103,29 @@ export const FOUNDATION: UnitItemDeficiencies = {
             points: '5.0/n',
             code: 'FOUNDATION-04',
             codeReference: `🧭 Step 1: Identify Foundation Areas to Inspect
-• Common types: Concrete slab, stem wall, crawlspace, or basement wall
-
+• 	Common types: Concrete slab, stem wall, crawlspace, or basement wall
 🔍 Step 2: Visual Condition Assessment
-• Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
-
+• 	Visible zones: Look for exposed foundation in utility rooms, stairwells, exterior walls, or mechanical closets
 🧪 Step 3: Inspection Technique
-• Spalling: Surface flaking or crumbling of concrete
-• Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
-• Level Check: Observe floor transitions and door alignment for signs of settlement
-• Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
-• Exposed rebar: Indicates loss of cover and potential corrosion
-• Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
-
-📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay)
-• Termite tubes: Mud tunnels along foundation walls
-• Rodent entry points: Gaps, holes, or chewed insulation
-• Wood contact: No untreated wood should touch concrete or soil
-• IBU Local Codes: May require pest barriers, treated lumber, or inspection logs
-
+• 	Spalling: Surface flaking or crumbling of concrete
+• 	Moisture Scan: Look for water stains, mold-like growth, or dampness near the base
+• 	Level Check: Observe floor transitions and door alignment for signs of settlement
+• 	Material Integrity: Tap concrete lightly to detect hollow or crumbling areas
+• 	Ventilation & Access:
+• 	Exposed rebar: Indicates loss of cover and potential corrosion
+• 	Drainage slope: Exterior grade must fall ≥6" within the first 10 feet from the foundation.
+📏 Step 4: Pest Damage & Decay (IRC §R317.1, IBU Overlay
+• 	Termite tubes: Mud tunnels along foundation walls
+• 	Rodent entry points: Gaps, holes, or chewed insulation
+• 	Wood contact: No untreated wood should touch concrete or soil
+• 	Foundation Walls (IBC 1807)(e.g., around stairwells or lobbies) must be dampproofed at minimum.
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R401–R404: Foundations must support loads and resist movement
-• IRC R405.1: Drainage systems required to prevent water accumulation
-• IRC R406.1: Foundation walls must be damp-proofed
-• IRC R403.1.6: Anchor bolts required to secure framing to the foundation`
+• 	IRC R401–R404:
+• 	Foundations must support loads and resist movement
+• 	IRC R405.1: Drainage systems required to prevent water accumulation
+• 	IRC R406.1: Foundation walls must be damp-proofed
+• 	IRC R403.1.6: Anchor bolts required to secure framing to the foundation
+`
         }
     ]
 };
@@ -6287,31 +6151,36 @@ export const GRAB_BAR: UnitItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.0/n',
             code: 'GRAB-BAR-01',
-            codeReference: `🧭 Step 1: Presence & Location
-• Verify presence: NSPIRE only inspects grab bars if installed—there's no requirement to provide them.
-• Mounting zone: Typically adjacent to toilets, inside showers, or near tubs in bathrooms.
-
+            codeReference: `🧭 Step 1. Presence & Location
+• 	Verify presence: NSPIRE only inspects grab bars if installed—there’s no requirement to provide them.
+• 	Mounting zone: Typically adjacent to toilets, inside showers, or near tubs in bathrooms.
 🔍 Step 2: Visual Condition Assessment
-• Material: Stainless steel, coated metal, or compliant plastic
-• Cleanliness: Must be free of grime, mold, or residue
-
+• 	Material: Stainless steel, coated metal, or compliant plastic
+• 	Cleanliness: Must be free of grime, mold, or residue, 
 🧪 Step 3: Functional Testing
-• Stability Test: Grasp the center of the bar and apply a moderate force back and forth
-• If any movement is detected, cite it as a deficiency
-• Mounting Check: Confirm the grab bar is securely anchored to wall studs or blocking
-• Surface Inspection: Look for rust, cracks, or sharp edges
-
+• 	Stability Test: Grasp the center of the bar and apply a moderate force back and forth
+• 	If any movement is detected, cite it as a deficiency
+• 	Mounting Check: Confirm the grab bar is securely anchored to wall studs or blocking
+• 	Surface Inspection: Look for rust, cracks, or sharp edges
 📏 Step 4: Accessibility Compliance (IBU)
-• Height: Horizontal bars must be mounted 33"–36" AFF
-• Length: Toilet-side bars must be at least 42" long
-• Clearance: Minimum 1½" between wall and bar
-• Grip Surface: Must be slip-resistant and free of obstructions
-• Reachability: Must be within reach of seated users
-• IBU Overlay: May require reinforced backing or ADA-compliant mounting height (typically 33–36" AFF)
-
+• 	Height: Horizontal bars must be mounted 33"–36" AFF
+• 	Length: Toilet-side bars must be at least 42" long
+• 	Clearance: Minimum 1½" between wall and bar
+• 	Grip Surface: Must be slip-resistant and free of obstructions
+• 	Reachability: Must be within reach of seated users
+• 	IBU Overlay: May require reinforced backing or ADA-compliant mounting height (typically 33–36" AFF)
 ⚒️ Step 5: IRC Structural Requirements
-• IRC §R307.1 – Universal design and accessibility provisions
-• IBU overlays – Local safety and usability codes`
+• 	IRC  §R307.1 – Universal design and accessibility provisions
+• 	IBC sends you to ICC A117.1, which contains the actual dimensions.
+A. Side Wall Grab Bar (Toilet)
+42" minimum length
+Mounted 12" max from rear wall
+Height: 33"–36" AFF
+B. Rear Wall Grab Bar
+36" minimum length
+Extends 12" minimum from centerline on one side and 24" minimum on the other
+Height: 33"–36" AFF
+`
         }
     ]
 };
@@ -6340,26 +6209,22 @@ export const HAZARD_INFESTATION: UnitItemDeficiencies = {
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_2',
@@ -6373,26 +6238,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_3',
@@ -6406,26 +6267,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_4',
@@ -6439,26 +6296,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_5',
@@ -6472,26 +6325,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_6',
@@ -6505,26 +6354,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_7',
@@ -6538,26 +6383,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         },
         {
             id: 'hazard_infest_8',
@@ -6571,26 +6412,21 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.`
         },
         {
             id: 'hazard_infest_9',
@@ -6604,26 +6440,22 @@ When it cites infestation as a moderate health and safety deficiency, it require
             codeReference: `🧭 Step 1: Identify Areas Prone to Infestation
 Inspect all shared-use spaces where pests may be present.
 NSPIRE includes insects, rodents, reptiles, and birds as potential sources of infestation
-
 🔍 Step 2: Visual Condition Assessment
 When it cites infestation as a moderate health and safety deficiency, it requires actions.
-
 🧪 Step 3: Inspection Technique
-• Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
-• Dropping Identification:
-• Rodent droppings: rice-sized, pointed ends
-• Cockroach droppings: tiny black specks or smears
-• Bedbug signs: rust-colored stains, eggs, or blood trails
-• Trap Review: Record only traps with pests present; empty traps are not cited
-
-📏 Step 4: Accessibility & IBU Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing.
-• Signage: Pest control logs or warning signs may be required in utility rooms.
-• IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
-
+• 	Flashlight Scan: Use a flashlight to inspect dark corners, under appliances, and behind furniture
+• 	Dropping Identification: Rodent droppings: rice-sized, pointed ends
+• 	Cockroach droppings: tiny black specks or smears
+• 	Bedbug signs: rust-colored stains, eggs, or blood trails
+• 	Trap Review:  	Record only traps with pests present; empty traps are not cited
+📏 Step 4: Accessibility &  IBU Local Requirements
+• 	Inspection access: Must be visual—no disassembly or invasive probing.
+• 	Signage: Pest control logs or warning signs may be required in utility rooms.
+• 	IBU Overlay: May mandate integrated pest management (IPM), sealed entry points, or quarterly inspections
 ⚒️ Step 5: IRC Sanitation & Pest Prevention Requirements
-• IRC R306.1: Buildings must have sanitary drainage and waste disposal
-• IRC R408.3: R302.1, §R306.2 – Sanitation and fire separation`
+• 	IRC R306.1: Buildings must have sanitary drainage and waste disposal
+• 	Infestation is considered a sanitation hazard under the IBC/IFC framework.
+`
         }
     ]
 };
@@ -6643,25 +6475,23 @@ export const HAZARD_LITTER: UnitItemDeficiencies = {
             codeReference: `🧭 Step 1: Identify Areas Where Litter May Accumulate
 Inspect all shared-use spaces where trash or discarded items may appear.
 Target zones: Corridors, stairwells, laundry rooms, trash enclosures, lobbies, and mechanical closets
-
 🔍 Step 2: Visual Condition Assessment
-• Common items: Food wrappers, paper, bottles, cans, cigarette butts, packaging, clothing, and small debris
-• Large items: Furniture, mattresses, appliances, or bulk trash
-
+• 	Common items: Food wrappers, paper, bottles, cans, cigarette butts, packaging, clothing, and small debris
+• 	Large items: Furniture, mattresses, appliances, or bulk trash
 🧪 Step 3: Inspection Technique
-• Area Scan: Visually inspect each 10 ft × 10 ft section of the common area
-• Item Count: Count small litter items; if ≥10 in one section, cite as a deficiency
-• Size Check: Identify any large discarded items regardless of quantity
-
+• 	Area Scan: Visually inspect each 10 ft × 10 ft section of the common area
+• 	Item Count: Count small litter items; if ≥10 in one section, cite as a deficiency
+• 	Size Check: Identify any large discarded items regardless of quantity
 📏 Step 4: Accessibility & Local Requirements
-• Blocked access: Litter must not obstruct exit routes or emergency equipment
-• Signage: Some jurisdictions require "No Dumping" or "Clean Zone" signage in shared areas
-• IBU Local Codes: May mandate daily janitorial logs or pest control coordination
-• IRC R306.1: Buildings must have sanitary waste disposal systems
+• 	Blocked access: Litter must not obstruct exit routes or emergency equipment
+• 	Signage: Some jurisdictions require “No Dumping” or “Clean Zone” signage in shared areas
+• 	IBU Local Codes: May mandate daily janitorial logs or pest control coordination• 	IRC R306.1:
+• 	Buildings must have sanitary waste disposal systems
+⚒️ Step 5: • 	Litter & Discarded Items Inspection – Common Area (No Prep / No Access Protocol)
+• 	IRC-R306.2 – Sanitation and cleanliness
+• 	IRC R703.8: Exterior walls must be sealed to prevent pest intrusion from litter
 
-⚒️ Step 5: Litter & Discarded Items Inspection
-• IRC-R306.2 – Sanitation and cleanliness
-• IRC R703.8: Exterior walls must be sealed to prevent pest intrusion from litter`
+`
         }
     ]
 };
@@ -6680,26 +6510,24 @@ export const HAZARD_SHARP_EDGES: UnitItemDeficiencies = {
             code: 'HAZARD-SHARP-01',
             codeReference: `🧭 Step 1: Identify Areas Where Sharp Edges May Be Present
 Inspect all shared-use spaces where residents may come into contact with built components.
-
 🔍 Step 2: Visual Condition Assessment
-• Rusted or bent metal, Splintered wood, Chipped ceramic or stone
-• Protruding nails, screws, staples
-
+• 	Rusted or bent metal,  Splintered wood, 	Chipped ceramic or stone
+• 	Protruding nails, screws, staples
 🧪 Step 3: Inspection Technique
-• Visual Scan: Walk through common areas and inspect all surfaces within reach (typically 0–6 feet)
-• Touch-Free Assessment: Do not touch the edge; visually determine if it could puncture or lacerate skin
-• Material Identification: Note whether the edge is metal, glass, tile, wood, or plastic
+• 	Visual Scan: Walk through common areas and inspect all surfaces within reach (typically 0–6 feet)
+• 	Touch-Free Assessment: Do not touch the edge; visually determine if it could puncture or lacerate skin
+• 	Material Identification: Note whether the edge is metal, glass, tile, wood, or plastic
 If the edge is damaged and located in a typical path of travel, it must be cited—even if no injury has occurred.
-
 📏 Step 4: Obstruction & Accessibility Overlay
-• Clear Floor Space: Sharp edges must not protrude into accessible routes
-• Egress paths: Hazards near exits or stairs elevate severity
-• IBU Local Codes: May require protective guards, rounded edges, or signage in high-traffic zones
-
+• 	Clear Floor Space: Sharp edges must not protrude into accessible routes
+• 	Egress paths: Hazards near exits or stairs elevate severity
+• 	IBU Local Codes: May require protective guards, rounded edges, or signage in high-traffic zones 
 ⚒️ Step 5: IRC Structural & Finish Requirements
-• IRC R302.1 – Protection against physical hazards
-• IRC R312.1: Guardrails and handrails must be smooth and free of sharp projections
-• IRC R302.1: Fire-resistant construction must not include exposed sharp metal or glass`
+• 	IRC R302.1 – Protection against physical hazards
+• 	IRC R312.1: Guardrails and handrails must be smooth and free of sharp projections
+• 	IRC R302.1: Fire-resistant construction must not include exposed sharp metal or glass
+
+`
         }
     ]
 };
@@ -6718,27 +6546,25 @@ export const HAZARD_TRIP: UnitItemDeficiencies = {
             code: 'HAZARD-TRIP-01',
             codeReference: `🧭 Step 1: Identify Walking Surfaces to Inspect
 Target zones: Corridors, stairwells, laundry rooms, lobbies, trash enclosures, and mechanical closets
-
 🔍 Step 2: Visual Condition Assessment
-• Common materials: Carpet, tile, concrete, vinyl, wood, metal, extension cords, rugs.
-
+• 	Common materials: Carpet, tile, concrete, vinyl, wood, metal, extension cords, rugs.
 🧪 Step 3: Inspection Technique
-• Walk Test: Traverse all common paths and note any unevenness or instability
-• Measurement Check: Use a ruler or gauge to confirm: Vertical rise ≥¾ inch. Horizontal gap ≥2 inches
-• Touch-Free Scan: Visually inspect flooring for buckling, loose edges, or unsecured items
+• 	Walk Test: Traverse all common paths and note any unevenness or instability
+• 	Measurement Check: Use a ruler or gauge to confirm: Vertical rise ≥¾ inch. Horizontal gap ≥2 inches                                  
+• 	Touch-Free Scan: Visually inspect flooring for buckling, loose edges, or unsecured items
 Non-invasive observation. No lifting or moving of flooring required.
-
-📏 Step 4: Accessibility, Egress & Accessibility Overlay
-• Surface Continuity: Walking surfaces must be stable, firm, and slip-resistant
-• Thresholds: ≤½ inch beveled or ≤¼ inch vertical allowed at transitions
-• Clear Floor Space: No protrusions or loose coverings in accessible paths
-• Visual Safety: Hazards must not impair visibility or signage
-• IBU Local Codes: May require tactile warnings, beveled transitions, or signage in high-traffic zones
-
+📏 Step 4: Accessibility. Egress & Accessibility Overlay
+• 	Surface Continuity: Walking surfaces must be stable, firm, and slip-resistant
+• 	Thresholds: ≤½ inch beveled or ≤¼ inch vertical allowed at transitions
+• 	Clear Floor Space: No protrusions or loose coverings in accessible paths
+• 	Visual Safety: Hazards must not impair visibility or signage
+• 	IBU Local Codes: May require tactile warnings, beveled transitions, or signage in high-traffic zones 
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R311.3–R311.7: Means of egress, flooring transitions, and stair safety
-• Floors, landings, and stairs must be uniform and free of abrupt changes
-• IRC R312.1: Guardrails and handrails must be smooth and continuous`
+• 	IRC R311.3–R311.7: Means of egress, flooring transitions, and stair safety
+• 	Floors, landings, and stairs must be uniform and free of abrupt changes
+• 	IRC R312.1: Guardrails and handrails must be smooth and continuous
+
+`
         },
         {
             id: 'hazard_trip_2',
@@ -6751,27 +6577,25 @@ Non-invasive observation. No lifting or moving of flooring required.
             code: 'HAZARD-TRIP-02',
             codeReference: `🧭 Step 1: Identify Walking Surfaces to Inspect
 Target zones: Corridors, stairwells, laundry rooms, lobbies, trash enclosures, and mechanical closets
-
 🔍 Step 2: Visual Condition Assessment
-• Common materials: Carpet, tile, concrete, vinyl, wood, metal, extension cords, rugs.
-
+• 	Common materials: Carpet, tile, concrete, vinyl, wood, metal, extension cords, rugs.
 🧪 Step 3: Inspection Technique
-• Walk Test: Traverse all common paths and note any unevenness or instability
-• Measurement Check: Use a ruler or gauge to confirm: Vertical rise ≥¾ inch. Horizontal gap ≥2 inches
-• Touch-Free Scan: Visually inspect flooring for buckling, loose edges, or unsecured items
+• 	Walk Test: Traverse all common paths and note any unevenness or instability
+• 	Measurement Check: Use a ruler or gauge to confirm: Vertical rise ≥¾ inch. Horizontal gap ≥2 inches                                  
+• 	Touch-Free Scan: Visually inspect flooring for buckling, loose edges, or unsecured items
 Non-invasive observation. No lifting or moving of flooring required.
-
-📏 Step 4: Accessibility, Egress & Accessibility Overlay
-• Surface Continuity: Walking surfaces must be stable, firm, and slip-resistant
-• Thresholds: ≤½ inch beveled or ≤¼ inch vertical allowed at transitions
-• Clear Floor Space: No protrusions or loose coverings in accessible paths
-• Visual Safety: Hazards must not impair visibility or signage
-• IBU Local Codes: May require tactile warnings, beveled transitions, or signage in high-traffic zones
-
+📏 Step 4: Accessibility. Egress & Accessibility Overlay
+• 	Surface Continuity: Walking surfaces must be stable, firm, and slip-resistant
+• 	Thresholds: ≤½ inch beveled or ≤¼ inch vertical allowed at transitions
+• 	Clear Floor Space: No protrusions or loose coverings in accessible paths
+• 	Visual Safety: Hazards must not impair visibility or signage
+• 	IBU Local Codes: May require tactile warnings, beveled transitions, or signage in high-traffic zones 
 ⚒️ Step 5: IRC Structural Requirements
-• IRC R311.3–R311.7: Means of egress, flooring transitions, and stair safety
-• Floors, landings, and stairs must be uniform and free of abrupt changes
-• IRC R312.1: Guardrails and handrails must be smooth and continuous`
+• 	IRC R311.3–R311.7: Means of egress, flooring transitions, and stair safety
+• 	Floors, landings, and stairs must be uniform and free of abrupt changes
+• 	IRC R312.1: Guardrails and handrails must be smooth and continuous
+
+`
         }
     ]
 };
@@ -6799,28 +6623,25 @@ export const HVAC: UnitItemDeficiencies = {
             code: 'HVAC-01',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         },
         {
             id: 'hvac_2',
@@ -6833,28 +6654,25 @@ Do not open sealed panels or test gas appliances unless qualified and authorized
             code: 'HVAC-02',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         },
         {
             id: 'hvac_3',
@@ -6867,28 +6685,25 @@ Do not open sealed panels or test gas appliances unless qualified and authorized
             code: 'HVAC-03',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         },
         {
             id: 'hvac_4',
@@ -6901,28 +6716,25 @@ Do not open sealed panels or test gas appliances unless qualified and authorized
             code: 'HVAC-04',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         },
         {
             id: 'hvac_5',
@@ -6935,28 +6747,25 @@ Do not open sealed panels or test gas appliances unless qualified and authorized
             code: 'HVAC-05',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         },
         {
             id: 'hvac_6',
@@ -6969,28 +6778,25 @@ Do not open sealed panels or test gas appliances unless qualified and authorized
             code: 'HVAC-06',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         },
         {
             id: 'hvac_7',
@@ -7003,28 +6809,25 @@ Do not open sealed panels or test gas appliances unless qualified and authorized
             code: 'HVAC-07',
             codeReference: `🧭 Step 1: Identify HVAC Components to Inspect
 Focus on permanently installed heating, ventilation, and air conditioning systems in shared-use areas
-• Type: Central air, split system, PTAC, wall unit, radiant, or forced air
-
+• 	Type: Central air, split system, PTAC, wall unit, radiant, or forced air
 🔍 Step 2: Visual Condition Assessment
-• Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
-
+• 	Components: Thermostat, air handler, furnace, condenser, supply/return registers, exhaust fans
 🧪 Step 3: Functional Testing
-• Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
-• Airflow Check: Confirm air is flowing from supply vents and returning through returns
-• Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
-• Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
-• Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
+• 	Thermostat Test: Adjust settings and confirm system responds (heat or cool activates)
+• 	Airflow Check: Confirm air is flowing from supply vents and returning through returns
+• 	Exhaust Vent Inspection: Ensure combustion appliance vents are correctly connected and unobstructed
+• 	Visual Scan: Look for rust, soot, burn marks, or exposed wires on HVAC units
+• 	Noise & Vibration: Listen for abnormal sounds indicating mechanical failure
 Do not open sealed panels or test gas appliances unless qualified and authorized.
-
 📏 Step 4: Accessibility & IBU Local Requirements
-• Service access: Units must be reachable without disassembly or unsafe maneuvering
-• Labeling: Equipment should be labeled with unit ID and service info
-• IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
-
+• 	Service access: Units must be reachable without disassembly or unsafe maneuvering
+• 	Labeling: Equipment should be labeled with unit ID and service info
+• 	IBU Overlay: May require seismic bracing, carbon monoxide detectors, or annual service logs
 ⚒️ Step 5: IRC HVAC Requirements
-• IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
-• IRC M1307.3: Equipment must be accessible and protected from damage
-• IBU overlays – Local fire, combustion safety, ventilation, and accessibility code`
+• 	IRC M1401–M1507: HVAC systems must be properly installed, vented, and maintained
+• 	IRC M1307.3: Equipment must be accessible and protected from damage
+• IBC governs where HVAC is allowed and how it interacts with fire‑safety and ventilation, while the IMC governs the technical installation.
+`
         }
     ]
 };
