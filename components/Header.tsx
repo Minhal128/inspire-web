@@ -29,14 +29,14 @@ export default function Header() {
         <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between gap-3 md:gap-6">
           {/* Logo - Left Aligned */}
           <div className="flex-shrink-0 ml-2 md:ml-6">
-            <Link href="/">
+            <Link href="/" className="block">
               <Image
                 src="/logo.png"
                 alt="INSPIRE"
-                width={240}
-                height={66}
+                width={280}
+                height={77}
                 priority
-                className="h-14 md:h-16 w-auto"
+                className="!h-[56px] !w-auto max-w-none"
               />
             </Link>
           </div>

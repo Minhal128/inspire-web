@@ -117,6 +117,94 @@ export default function AboutClient() {
           </div>
         </section>
 
+        {/* AI-Driven Inspections Section */}
+        <section className="bg-white py-20 md:py-32 px-4 md:px-6">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-sm font-bold text-[#006795] uppercase tracking-widest mb-4">The Future Is Here</p>
+              <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">
+                Say Goodbye to the <span className="text-[#006795]">Clipboard</span> and <span className="text-[#F84B5F]">Slow Apps</span>
+              </h2>
+              <div className="w-20 h-1.5 bg-[#F84B5F] rounded-full mx-auto mb-8"></div>
+              <p className="max-w-4xl mx-auto text-lg text-gray-600 leading-relaxed">
+                How AI-Driven NSPIRE Property Inspections Are Changing the Game
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto space-y-10 text-gray-700 leading-relaxed">
+              <p className="text-lg">
+                If you've ever conducted a property self-inspection, you know the pain: spending hours on-site with a clipboard, taking hundreds of photos, and then returning to the office to spend even more time typing up repetitive reports and matching images to rooms.
+              </p>
+              
+              <p className="text-lg">
+                In an industry where every hour counts, manual inspections have long been a major administrative bottleneck. Fortunately, that is changing. The rise of NSPIRE inspection AI-powered inspection software is completely reshaping how inspections and self-inspections are performed.
+              </p>
+
+              <p className="text-lg">
+                Here is a look at how artificial intelligence streamlines property management, benefiting both property teams and tenants.
+              </p>
+
+              {/* AI Features Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
+                <div className="bg-gradient-to-br from-[#E8F4F8] to-white p-8 rounded-[32px] shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div className="w-16 h-16 bg-[#006795] rounded-2xl flex items-center justify-center text-white mb-6">
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-[#006795]">1. Instant Photo Analysis & Anomaly Detection</h3>
+                  <p className="text-gray-600">
+                    One of the most powerful applications of AI is Vision AI. Instead of manually labeling images, property inspectors can simply take photos of a deficiency. The AI automatically analyzes images to focus on the defect and flag common issues such as water stains, cracks, mold, and structural wear and tear. It can even spot minor issues that the human eye might miss.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-[#FEF2F2] to-white p-8 rounded-[32px] shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div className="w-16 h-16 bg-[#F84B5F] rounded-2xl flex items-center justify-center text-white mb-6">
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-[#F84B5F]">2. Hours of Report Writing, Done in Minutes</h3>
+                  <p className="text-gray-600">
+                    Tired of typing out near-identical descriptions for dozens of rooms? AI-driven tools can now prepopulate standard comments and instantly generate highly professional descriptions. Systems equipped with voice-to-text and Natural Language Processing (NLP) allow you to speak your findings, instantly converting them into neatly formatted, on-brand text.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-[#F0FDF4] to-white p-8 rounded-[32px] shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div className="w-16 h-16 bg-[#22C55E] rounded-2xl flex items-center justify-center text-white mb-6">
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-[#22C55E]">3. Predictive Maintenance</h3>
+                  <p className="text-gray-600">
+                    Rather than reacting to emergency repairs after they happen, AI algorithms can analyze trends across your portfolio and recommend proactive fixes. By comparing current conditions with historical data, AI helps you catch small problems before they turn into costly breakdowns.
+                  </p>
+                </div>
+              </div>
+
+              {/* Human Touch Section */}
+              <div className="bg-gradient-to-r from-[#006795] to-[#004A6B] p-12 rounded-[40px] text-white mt-12">
+                <h3 className="text-3xl font-bold mb-6">The Human Touch Remains Crucial</h3>
+                <p className="text-lg text-white/90 leading-relaxed">
+                  While AI is handling the heavy lifting of data analysis and routine report generation, human judgment remains irreplaceable. AI is an incredibly powerful digital assistant that augments your expertise, allowing you to focus on strategic maintenance and tenant relations rather than tedious paperwork.
+                </p>
+              </div>
+
+              {/* Ready to Upgrade Section */}
+              <div className="text-center pt-8">
+                <h3 className="text-3xl md:text-4xl font-bold text-black mb-6">
+                  Ready to <span className="text-[#006795]">Upgrade</span> Your Walkthroughs?
+                </h3>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                  Are you ready to cut hours out of your routine and scale your operations? AI-powered inspections are no longer just an idea of the future; they are here to help you inspect smarter, not harder.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="bg-black py-20 md:py-32 px-4 md:px-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#006795] rounded-full blur-[160px] opacity-20 translate-x-1/2 -translate-y-1/2"></div>
