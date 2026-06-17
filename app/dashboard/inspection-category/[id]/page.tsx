@@ -2187,7 +2187,7 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">Inspect IRU, BRU, Local</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How To Inspect ? ✅</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>
