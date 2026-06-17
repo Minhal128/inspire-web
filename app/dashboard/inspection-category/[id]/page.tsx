@@ -1891,7 +1891,7 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                     className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
                                                 >
-                                                    Open Inspect IRU, BRU, Local
+                                                    How To Inspect ? ✅
                                                 </button>
                                             )
                                         })()}
