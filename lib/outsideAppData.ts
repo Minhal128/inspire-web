@@ -2379,34 +2379,31 @@ IRC / IBC Requirements:
       repairBy: '24 Hrs',
       points: '24.8/n',
       code: 'FIRE-OUT-03',
-      codeReference: `🧭 Step 1:  Exterior Fire Escape & Ladder Inspection Protocol
-Applies to: Multifamily buildings >4 stories
-Codes Referenced: IRC, IBC/IBU , NSPIRE 
-Focus: Life safety, structural integrity, egress functionality
-🔍 Step 2:  Structural Component Checklist
-Inspect each element for damage, deterioration, or absence:
-Stairs/Ladders, Platforms, Guardrails, Handrails, Anchors/Supports
-🛠 NSPIRE defines any missing or damaged fire escape component as a life-threatening deficiency 
-🧪 Step 3: Fire Escape Location & Access (IBC 1032.2.1)
-Fire escapes must:
-Be accessible from a door or window
-Have an opening minimum 29" × 33."
-Does not require climbing over obstructions
-Not be located over hazardous areas (trash enclosures, gas meters, etc.)
-📏 Step 4: Code Compliance Highlights
-IRC / IBC Requirements:
-• 	IBC 1009.3: Fire escapes permitted only for existing buildings.
-• 	IBC 1011.5.2: Tread depth ≥ 11", riser height ≤ 7".
-• 	IBC 1011.11: Handrails required on both sides if >4 risers.
-• 	IBC 1015.2: Guardrails ≥ 42" height, openings <4".
-
-🔍 For buildings over 4 stories, IBC/IBU takes precedence over IRC for fire escape design and retrofit standards.
-
-⚒️ Step 5:  Material & Weathering Assessment
-• 	Metal: Inspect for rust, flaking paint, metal fatigue.
-• 	Wood (if present): Check for rot, splintering, termite damage.
-• 	Fasteners: Look for missing bolts, loose welds, or compromised joints.
-• 	Counterbalanced or drop ladders: Confirm smooth operation and locking mechanisms.
+      codeReference: `🧭 Step 1: Identify Fire Extinguisher Locations
+Inspect all property-owned extinguishers.
+🔍 Step 2: Visual Condition Assessment
+All deficiencies must be corrected within 24 hours under NSPIRE’s life-threatening category.
+🧪 Step 3: Functional & Compliance Checks
+• 	Pressure Gauge Check: Confirm needle is in the green zone
+• 	Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
+• 	Mounting Check: Ensure extinguisher is securely mounted in bracket or cabinet
+• 	Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
+• 	Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
+Disposable extinguishers must be replaced if older than 12 years from the manufacture date.
+📏 Step 4: Accessibility Compliance (IBU/ADA)
+• 	Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs.; ≤42" if >40 lbs.
+• 	Reachability: Must be reachable without tight grasping or bending
+• 	Clear Floor Space: Minimum 30"x48" in front of extinguisher
+• 	Label Visibility: Operating instructions must be readable
+⚒️ Step 5: IBC Signage Requirements (IFC 906.6)
+Exterior extinguishers must have:
+Visible signage
+Mounted above the extinguisher
+Visible from 25–50 ft away
+Marked with FIRE EXTINGUISHER or approved symbol
+• 	IRC R315.2:
+• 	Extinguishers must not obstruct egress or emergency equipment
+IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility
 `
     },
     {
@@ -2418,34 +2415,31 @@ IRC / IBC Requirements:
       repairBy: '24 Hrs',
       points: '24.8/n',
       code: 'FIRE-OUT-04',
-      codeReference: `🧭 Step 1:  Exterior Fire Escape & Ladder Inspection Protocol
-Applies to: Multifamily buildings >4 stories
-Codes Referenced: IRC, IBC/IBU , NSPIRE 
-Focus: Life safety, structural integrity, egress functionality
-🔍 Step 2:  Structural Component Checklist
-Inspect each element for damage, deterioration, or absence:
-Stairs/Ladders, Platforms, Guardrails, Handrails, Anchors/Supports
-🛠 NSPIRE defines any missing or damaged fire escape component as a life-threatening deficiency 
-🧪 Step 3: Fire Escape Location & Access (IBC 1032.2.1)
-Fire escapes must:
-Be accessible from a door or window
-Have an opening minimum 29" × 33."
-Does not require climbing over obstructions
-Not be located over hazardous areas (trash enclosures, gas meters, etc.)
-📏 Step 4: Code Compliance Highlights
-IRC / IBC Requirements:
-• 	IBC 1009.3: Fire escapes permitted only for existing buildings.
-• 	IBC 1011.5.2: Tread depth ≥ 11", riser height ≤ 7".
-• 	IBC 1011.11: Handrails required on both sides if >4 risers.
-• 	IBC 1015.2: Guardrails ≥ 42" height, openings <4".
-
-🔍 For buildings over 4 stories, IBC/IBU takes precedence over IRC for fire escape design and retrofit standards.
-
-⚒️ Step 5:  Material & Weathering Assessment
-• 	Metal: Inspect for rust, flaking paint, metal fatigue.
-• 	Wood (if present): Check for rot, splintering, termite damage.
-• 	Fasteners: Look for missing bolts, loose welds, or compromised joints.
-• 	Counterbalanced or drop ladders: Confirm smooth operation and locking mechanisms.
+      codeReference: `🧭 Step 1: Identify Fire Extinguisher Locations
+Inspect all property-owned extinguishers.
+🔍 Step 2: Visual Condition Assessment
+All deficiencies must be corrected within 24 hours under NSPIRE’s life-threatening category.
+🧪 Step 3: Functional & Compliance Checks
+• 	Pressure Gauge Check: Confirm needle is in the green zone
+• 	Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
+• 	Mounting Check: Ensure extinguisher is securely mounted in bracket or cabinet
+• 	Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
+• 	Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
+Disposable extinguishers must be replaced if older than 12 years from the manufacture date.
+📏 Step 4: Accessibility Compliance (IBU/ADA)
+• 	Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs.; ≤42" if >40 lbs.
+• 	Reachability: Must be reachable without tight grasping or bending
+• 	Clear Floor Space: Minimum 30"x48" in front of extinguisher
+• 	Label Visibility: Operating instructions must be readable
+⚒️ Step 5: IBC Signage Requirements (IFC 906.6)
+Exterior extinguishers must have:
+Visible signage
+Mounted above the extinguisher
+Visible from 25–50 ft away
+Marked with FIRE EXTINGUISHER or approved symbol
+• 	IRC R315.2:
+• 	Extinguishers must not obstruct egress or emergency equipment
+IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility
 `
     },
     {
@@ -2457,34 +2451,31 @@ IRC / IBC Requirements:
       repairBy: '24 Hrs',
       points: '24.8/n',
       code: 'FIRE-OUT-05',
-      codeReference: `🧭 Step 1:  Exterior Fire Escape & Ladder Inspection Protocol
-Applies to: Multifamily buildings >4 stories
-Codes Referenced: IRC, IBC/IBU , NSPIRE 
-Focus: Life safety, structural integrity, egress functionality
-🔍 Step 2:  Structural Component Checklist
-Inspect each element for damage, deterioration, or absence:
-Stairs/Ladders, Platforms, Guardrails, Handrails, Anchors/Supports
-🛠 NSPIRE defines any missing or damaged fire escape component as a life-threatening deficiency 
-🧪 Step 3: Fire Escape Location & Access (IBC 1032.2.1)
-Fire escapes must:
-Be accessible from a door or window
-Have an opening minimum 29" × 33."
-Does not require climbing over obstructions
-Not be located over hazardous areas (trash enclosures, gas meters, etc.)
-📏 Step 4: Code Compliance Highlights
-IRC / IBC Requirements:
-• 	IBC 1009.3: Fire escapes permitted only for existing buildings.
-• 	IBC 1011.5.2: Tread depth ≥ 11", riser height ≤ 7".
-• 	IBC 1011.11: Handrails required on both sides if >4 risers.
-• 	IBC 1015.2: Guardrails ≥ 42" height, openings <4".
-
-🔍 For buildings over 4 stories, IBC/IBU takes precedence over IRC for fire escape design and retrofit standards.
-
-⚒️ Step 5:  Material & Weathering Assessment
-• 	Metal: Inspect for rust, flaking paint, metal fatigue.
-• 	Wood (if present): Check for rot, splintering, termite damage.
-• 	Fasteners: Look for missing bolts, loose welds, or compromised joints.
-• 	Counterbalanced or drop ladders: Confirm smooth operation and locking mechanisms.
+      codeReference: `🧭 Step 1: Identify Fire Extinguisher Locations
+Inspect all property-owned extinguishers.
+🔍 Step 2: Visual Condition Assessment
+All deficiencies must be corrected within 24 hours under NSPIRE’s life-threatening category.
+🧪 Step 3: Functional & Compliance Checks
+• 	Pressure Gauge Check: Confirm needle is in the green zone
+• 	Inspection Tag Review: Verify tag is present, legible, and dated within the last 12 months
+• 	Mounting Check: Ensure extinguisher is securely mounted in bracket or cabinet
+• 	Physical Condition Scan: Look for rust, dents, broken hoses, or missing pins
+• 	Accessibility Check: Confirm extinguisher is visible, reachable, and not blocked
+Disposable extinguishers must be replaced if older than 12 years from the manufacture date.
+📏 Step 4: Accessibility Compliance (IBU/ADA)
+• 	Mounting Height: Top of extinguisher ≤48" AFF if <40 lbs.; ≤42" if >40 lbs.
+• 	Reachability: Must be reachable without tight grasping or bending
+• 	Clear Floor Space: Minimum 30"x48" in front of extinguisher
+• 	Label Visibility: Operating instructions must be readable
+⚒️ Step 5: IBC Signage Requirements (IFC 906.6)
+Exterior extinguishers must have:
+Visible signage
+Mounted above the extinguisher
+Visible from 25–50 ft away
+Marked with FIRE EXTINGUISHER or approved symbol
+• 	IRC R315.2:
+• 	Extinguishers must not obstruct egress or emergency equipment
+IRC aligns with NFPA standards for extinguisher placement, maintenance, and visibility
 `
     },
     {

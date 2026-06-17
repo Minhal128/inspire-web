@@ -3983,7 +3983,7 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
         },
         {
             id: 'door_entry_5',
-            name: 'Entry door seal, gasket, or stripping is damaged, inoperable or missing.',
+            name: 'Door - Entry',
             detail: 'Entry door seal, gasket, or stripping is damaged, inoperable or missing.',
             criteria: 'Seal, gasket, or stripping is damaged, inoperable, or missing, and there is either a gap of ¼ inch or more that allows light through or evidence of water penetration such as damage or dry rot around or under the door.',
             severity: 'Moderate',
@@ -4014,7 +4014,7 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
         },
         {
             id: 'door_entry_6',
-            name: 'The self-closing mechanism is deficient if it is damaged, missing, or fails to fully close the door and engage the latch.',
+            name: 'Door - Entry',
             detail: 'The self-closing mechanism is deficient if it is damaged, missing, or fails to fully close the door and engage the latch.',
             criteria: 'The self-closing mechanism is damaged. Or the self-closing mechanism does not pull the door closed and engage the latch. Or The self-closing mechanism is missing.',
             severity: 'Moderate',
@@ -4045,7 +4045,7 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
         },
         {
             id: 'door_entry_7',
-            name: 'There is delamination or separation of the door surface 2 inches wide or greater. Or There is delamination or separation that affects the integrity of the door.',
+            name: 'Door - Entry',
             detail: 'There is delamination or separation of the door surface 2 inches wide or greater. Or There is delamination or separation that affects the integrity of the door.',
             criteria: 'There is delamination or separation of the door surface 2 inches wide or greater. Or There is delamination or separation that affects the integrity of the door.',
             severity: 'Moderate',
@@ -4076,7 +4076,7 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
         },
         {
             id: 'door_entry_8',
-            name: 'Entry door does not close (i.e., door seats in frame).',
+            name: 'Door - Entry',
             detail: 'Entry door does not close (i.e., door seats in frame).',
             criteria: 'Entry door does not close (i.e., door seats in frame).',
             severity: 'Severe',
@@ -4107,7 +4107,7 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
         },
         {
             id: 'door_entry_9',
-            name: 'Entry door will not open.',
+            name: 'Door - Entry',
             detail: 'Entry door will not open.',
             criteria: 'Entry door does not open.',
             severity: 'Moderate',
@@ -4138,7 +4138,7 @@ export const DOOR_ENTRY: UnitItemDeficiencies = {
         },
         {
             id: 'door_entry_10',
-            name: 'Crack, split, separation, or hole 1/4 inch or greater in diameter penetrating through the door or door sides.',
+            name: 'Door - Entry',
             detail: 'Crack, split, separation, or hole 1/4 inch or greater in diameter penetrating through the door or door sides.',
             criteria: 'Crack, split, separation, or hole 1/4 inch or greater in diameter penetrating through the door or door sides.',
             severity: 'Moderate',
@@ -4175,7 +4175,7 @@ export const DOOR_FIRE_LABELED: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'door_fire_1',
-            name: 'An object is present that may prevent the fire-labeled door from closing and latching or self-closing and latching.',
+            name: 'Door – Fire Labeled',
             detail: 'An object is present that may prevent the fire-labeled door from closing and latching or self-closing and latching.',
             criteria: 'An object is present that may prevent the fire-labeled door from closing and latching. Or An object is present that may prevent the fire-labeled door from self-closing and latching.',
             severity: 'Severe',
@@ -4207,7 +4207,7 @@ Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_2',
-            name: 'A fire-labeled door assembly has a hole of any size. Or A fire-labeled door assembly is damaged such that its integrity may be compromised.',
+            name: 'Door – Fire Labeled',
             detail: 'A fire-labeled door assembly has a hole of any size. Or A fire-labeled door assembly is damaged (i.e., visibly defective; impacts functionality) such that its integrity may be compromised.',
             criteria: 'A fire-labeled door assembly has a hole of any size. Or A fire-labeled door assembly is damaged such that its integrity may be compromised.',
             severity: 'Severe',
@@ -4239,7 +4239,7 @@ Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_3',
-            name: 'Fire-labeled door that serves as an entry door cannot be secured by at least one installed lock.',
+            name: 'Door – Fire Labeled ',
             detail: 'Fire-labeled door that serves as an entry door (i.e., a door that provides a means of access to the unit from the inside or outside) cannot be secured (i.e., access controlled) by at least one installed lock.',
             criteria: 'Fire-labeled door that serves as an entry door cannot be secured by at least one installed lock.',
             severity: 'Severe',
@@ -4271,7 +4271,7 @@ Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_4',
-            name: 'Fire-labeled door does not close and latch. OR is damaged or missing such that the door does not self-close and latch.',
+            name: 'Door – Fire Labeled',
             detail: 'Fire-labeled door does not close and latch. OR fire-labeled door self-closing hardware is damaged or missing such that the door does not self-close and latch.',
             criteria: 'Fire-labeled door does not close and latch. OR fire-labeled door self-closing hardware is damaged or missing such that the door does not self-close and latch.',
             severity: 'Severe',
@@ -4303,7 +4303,7 @@ Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_5',
-            name: 'Fire-labeled door does not open, which that it may limit access between spaces.',
+            name: 'Door – Fire Labeled',
             detail: 'Fire-labeled door does not open, which that it may limit access between spaces.',
             criteria: 'Fire-labeled door does not open such that it may limit access between spaces.',
             severity: 'Severe',
@@ -4335,7 +4335,7 @@ Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_6',
-            name: 'Fire-labeled door is missing.',
+            name: 'Door – Fire Labeled',
             detail: 'Fire-labeled door is missing. (i.e., Evidence of prior installation, but now not present or is incomplete).',
             criteria: 'Fire-labeled door is missing (i.e., evidence of prior installation, but now not present or is incomplete).',
             severity: 'Life-Threatening',
@@ -4367,7 +4367,7 @@ Door into a fire‑rated lobby (high‑rise)`
         },
         {
             id: 'door_fire_7',
-            name: 'Fire - labeled door seal or gasket is damaged, impacts functionality. Or fire labeled door seal or gasket is missing.',
+            name: 'Door – Fire Labeled',
             detail: 'Fire - labeled door seal or gasket is damaged, impacts functionality. Or fire labeled door seal or gasket is missing (i.e. evidence of prior installation, but now not present or is incomplete).',
             criteria: 'Fire-labeled door seal or gasket is damaged, impacts functionality. Or fire labeled door seal or gasket is missing.',
             severity: 'Severe',
@@ -4405,7 +4405,7 @@ export const DOOR_GENERAL: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'door_general_1',
-            name: 'Passage door component is damaged, inoperable, or missing, and the door is not functionally adequate.',
+            name: 'Door-General',
             detail: 'Passage door component is damaged, inoperable, or missing, and the door is not functionally adequate.',
             criteria: 'A passage door is deficient if a component is damaged, inoperable, or missing, and the door cannot adequately provide privacy, room separation, or control the physical atmosphere.',
             severity: 'Low',
@@ -4444,7 +4444,7 @@ Openable without keys/tools`
         },
         {
             id: 'door_general_2',
-            name: 'A passage door (door into utility room, storage or closet room, or laundry room) does not open.',
+            name: 'Door-General',
             detail: 'A passage door (door into utility room, storage or closet room, or laundry room) does not open. A passage door does not open, which may limit access when needed.',
             criteria: 'A passage door does not open such that it may limit access when needed.',
             severity: 'Moderate',
@@ -4483,7 +4483,7 @@ Openable without keys/tools`
         },
         {
             id: 'door_general_3',
-            name: 'A passage door, which is not intended to permit access between rooms, has a damaged component, inoperable or missing, or damaged components.',
+            name: 'Door-General',
             detail: 'A passage door, which is not intended to permit access between rooms, has a damaged component, inoperable or missing, or damaged components.',
             criteria: 'A non-access passage door is damaged, inoperable, or missing a component—affecting its intended function.',
             severity: 'Low',
@@ -4528,7 +4528,7 @@ export const DOOR_GARAGE: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'door_garage_1',
-            name: 'Garage door does not open, close, or remains closed.',
+            name: 'Garage Door',
             detail: 'Garage door does not open, close, or remains closed.',
             criteria: 'Door will not open and remain open, does not function adequately.',
             severity: 'Moderate',
@@ -4565,7 +4565,7 @@ IRC ensures garage doors are safe, secure, and compliant with fire and mechanica
         },
         {
             id: 'door_garage_2',
-            name: 'The garage door has a hole (broken panel or window).',
+            name: 'Garage Door',
             detail: 'The garage door has a hole (broken panel or window).',
             criteria: 'Garage door has a hole of any size that penetrates through to the interior.',
             severity: 'Moderate',
@@ -4868,7 +4868,7 @@ export const ELECTRICAL_CONDUCTOR: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'elec_conductor_1',
-            name: 'The electrical conductor is not enclosed or properly insulated.',
+            name: 'Conductor-Outlet, and Switch',
             detail: 'The electrical conductor is not enclosed or properly insulated (e.g., damaged or missing sheathing that exposes the insulated wiring or conductor, an open port, a missing knockout, a missing outlet or switch cover, or a missing breaker or fuse). OR An opening or gap is present and measures greater than 1/2".',
             criteria: 'Electrical conductors must be enclosed and insulated, with no exposed wiring, open ports, missing covers, or gaps over 1/2"; missing light bulbs are evaluated under interior or exterior lighting.',
             severity: 'Life-Threatening',
@@ -4898,7 +4898,7 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
         },
         {
             id: 'elec_conductor_2',
-            name: 'The outlet (reasonably accessible) shows no visible damage, and testing indicates it is not energized.',
+            name: 'Conductor-Outlet, and Switch',
             detail: 'The outlet (reasonably accessible) shows no visible damage, and testing indicates it is not energized.',
             criteria: 'An outlet that is reasonably accessible does not have visible damage and testing indicates that it is not energized.',
             severity: 'Severe',
@@ -4928,7 +4928,7 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
         },
         {
             id: 'elec_conductor_3',
-            name: 'The outlet or switch is damaged.',
+            name: 'Conductor-Outlet, and Switch',
             detail: 'The outlet or switch is damaged. (i.e., visibly defective; impacts functionality) such that it may not safely carry or control electrical current at the outlet or switch.',
             criteria: 'Any portion of a visually accessible outlet or switch is damaged such that it may not safely carry or control electrical current at the outlet or switch.',
             severity: 'Life-Threatening',
@@ -4958,7 +4958,7 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
         },
         {
             id: 'elec_conductor_4',
-            name: 'Testing of a three-pronged outlet indicates that it is not wired correctly or grounded.',
+            name: 'Conductor-Outlet, and Switch',
             detail: 'Testing of a three-pronged outlet indicates that it is not wired correctly or grounded.',
             criteria: 'Testing of a three-pronged outlet that is reasonably accessible indicates that it is not properly wired or grounded.',
             severity: 'Severe',
@@ -4988,7 +4988,7 @@ Inoperable outlets or switches without visible damage are still cited under NSPI
         },
         {
             id: 'elec_conductor_5',
-            name: 'Water is currently in contact with an electrical conductor.',
+            name: 'Conductor-Outlet, and Switch',
             detail: 'Water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).',
             criteria: 'Water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).',
             severity: 'Life-Threatening',
@@ -5024,7 +5024,7 @@ export const ELECTRICAL_GFCI: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'elec_gfci_1',
-            name: 'AFCI outlet or AFCI breaker does not have visible damage and the test or reset button is inoperable.',
+            name: 'Electrical-(GFCI) Or (AFCI)-Outlet or Breaker',
             detail: 'AFCI outlet or AFCI breaker does not have visible damage and the test or reset button is inoperable.',
             criteria: 'AFCI outlet or AFCI breaker does not have visible damage and the test or reset button is inoperable.',
             severity: 'Severe',
@@ -5062,7 +5062,7 @@ If the outlet or breaker does not respond, it’s cited as Severe under NSPIRE.
         },
         {
             id: 'elec_gfci_2',
-            name: 'An unprotected outlet is present within six feet of a water source.',
+            name: 'Electrical-(GFCI) Or (AFCI)-Outlet or Breaker',
             detail: 'An unprotected outlet is present within six feet of a water source. An outlet designed for major appliances, when in use, is not evaluated under this category.',
             criteria: 'An outlet, not GFCI-protected, is present within six feet of a water source located in the same room. An outlet deigned for major appliances, when in use, is not evaluated under this category.',
             severity: 'Severe',
@@ -5100,7 +5100,7 @@ If the outlet or breaker does not respond, it’s cited as Severe under NSPIRE.
         },
         {
             id: 'elec_gfci_3',
-            name: 'GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable',
+            name: 'Electrical-(GFCI) Or (AFCI)-Outlet or Breaker',
             detail: 'GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable',
             criteria: 'GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable.',
             severity: 'Severe',
@@ -5144,7 +5144,7 @@ export const ELECTRICAL_SERVICE_PANEL: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'elec_panel_1',
-            name: 'Electrical service panel is not reasonably accessible.',
+            name: 'Electrical Service Panel',
             detail: 'Electrical service panel is not reasonably accessible.',
             criteria: 'The electrical service panel is not reasonably accessible. Or it is locked or in locked location, no key to access.',
             severity: 'Moderate',
@@ -5180,7 +5180,7 @@ Codes Referenced:
         },
         {
             id: 'elec_panel_2',
-            name: 'The overcurrent protection device is contaminated.',
+            name: 'Electrical Service Panel',
             detail: 'The overcurrent protection device is contaminated. (e.g., water, rust, corrosion, infestation, or foreign materials, paint).',
             criteria: 'The overcurrent protection device is contaminated (e.g., water, rust, corrosion, infestation, or foreign materials).',
             severity: 'Severe',
@@ -5216,7 +5216,7 @@ Codes Referenced:
         },
         {
             id: 'elec_panel_3',
-            name: 'The overcurrent protection device is damaged.',
+            name: 'Electrical Service Panel',
             detail: 'The overcurrent protection device (i.e., fuse or breaker) is damaged, impacts functionality of the circuit during an overcurrent (i.e., paint, or other foreign materials).',
             criteria: 'The overcurrent protection device is damaged such that it may not interrupt the circuit during an over current condition.',
             severity: 'Life-Threatening',
@@ -5446,7 +5446,7 @@ export const FIRE_SAFETY_EXIT_SIGN: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'fire_exit_1',
-            name: 'An exit sign is deficient if it\'s damaged, missing, obstructed so "EXIT" isn\'t clearly visible, or not adequately illuminated.',
+            name: 'Exit Sign',
             detail: 'An exit sign is deficient if it\'s damaged, missing, obstructed so "EXIT" isn\'t clearly visible, or not adequately illuminated.',
             criteria: 'An exit sign is deficient if it\'s damaged, missing, obstructed so "EXIT" isn\'t clearly visible, or not adequately illuminated.',
             severity: 'Life-Threatening',
@@ -5486,7 +5486,7 @@ export const FIRE_SAFETY_EXTINGUISHER: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'fire_ext_1',
-            name: 'A fire extinguisher is damaged or missing.',
+            name: 'Fire Extinguisher',
             detail: 'A fire extinguisher is damaged or missing (i.e., evidence of prior installation, but now not present or is incomplete).',
             criteria: 'A fire extinguisher is damaged or missing.',
             severity: 'Life-Threatening',
@@ -5521,7 +5521,7 @@ IRC aligns with NFPA standards for extinguisher placement, maintenance, and visi
         },
         {
             id: 'fire_ext_2',
-            name: 'The fire extinguisher pressure gauge reads over or undercharged.',
+            name: 'Fire Extinguisher',
             detail: 'The fire extinguisher pressure gauge reads over or undercharged.',
             criteria: 'Pressure gauge indicates that the fire extinguisher is over or under charged.',
             severity: 'Life-Threatening',
@@ -5556,7 +5556,7 @@ IRC aligns with NFPA standards for extinguisher placement, maintenance, and visi
         },
         {
             id: 'fire_ext_3',
-            name: 'The fire extinguisher tag is missing or illegible or expired.',
+            name: 'Fire Extinguisher',
             detail: 'The fire extinguisher tag is missing or illegible or expired.',
             criteria: 'The date on the service tag of any fire extinguisher has exceeded one year. OR The fire extinguisher tag is missing or illegible. OR A non-chargeable or disposable fire extinguisher is more than 12 years old (based on manufacture date).',
             severity: 'Life-Threatening',
@@ -5597,7 +5597,7 @@ export const FIRE_SAFETY_FLAMMABLE: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'fire_flam_1',
-            name: 'The flammable or combustible material is on or within 3 feet of an appliance that provides heat for thermal comfort or fuel-burning water heater. Or improperly stored chemical.',
+            name: 'Flammable and Combustible Item',
             detail: 'The flammable or combustible material is on or within 3 feet of an appliance that provides heat for thermal comfort or fuel-burning water heater. Or improperly stored chemical.',
             criteria: 'Excluding heating oil in a heating oil tank, propane, gasoline, kerosene should never be stored in the Unit. Combustible item in its original container and stored in a safe place is not a deficiency.',
             severity: 'Life-Threatening',
@@ -5631,7 +5631,7 @@ export const FIRE_SAFETY_SMOKE_ALARM: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'fire_smoke_1',
-            name: 'A required smoke alarm does not produce an audio or visual alarm when tested.',
+            name: 'Smoke Alarm',
             detail: 'A required smoke alarm does not produce an audio or visual alarm when tested.',
             criteria: 'A required smoke alarm does not emit visual or audio alarm or the alarm does not cease after testing.',
             severity: 'Life-Threatening',
@@ -5668,7 +5668,7 @@ Examples: Spacing, Sensitivity, Placement near HVAC
         },
         {
             id: 'fire_smoke_2',
-            name: 'Smoke alarm not installed where required.',
+            name: 'Smoke Alarm',
             detail: 'Smoke alarm not installed where required. Smoke alarm not installed within a hallway in the vicinity of multiple units or classrooms on each level.',
             criteria: 'Smoke alarm not installed within a hallway in the vicinity of multiple units or classrooms on each level.',
             severity: 'Life-Threatening',
@@ -5705,7 +5705,7 @@ Examples: Spacing, Sensitivity, Placement near HVAC
         },
         {
             id: 'fire_smoke_3',
-            name: 'Smoke alarm is obstructed by a foreign object.',
+            name: 'Smoke Alarm',
             detail: 'Smoke alarm is obstructed by a foreign object (e.g., plastic bag, shower cap, zip tie, paint, tape, decorative stickers).',
             criteria: 'Smoke alarm is covered by a foreign object.',
             severity: 'Life-Threatening',
@@ -5742,7 +5742,7 @@ Examples: Spacing, Sensitivity, Placement near HVAC
         },
         {
             id: 'fire_smoke_4',
-            name: 'A required smoke alarm is not hardwired or a 10-year non-rechargeable, sealed, tamper-resistant, battery-powered smoke alarm device.',
+            name: 'Smoke Alarm',
             detail: 'A required smoke alarm is not hardwired or a 10-year non-rechargeable, sealed, tamper-resistant, battery-powered smoke alarm device.',
             criteria: 'If unable to determine if a required smoke alarm meets the requirement of this standard, consider the condition a deficiency.',
             severity: 'Life-Threatening',
@@ -5785,7 +5785,7 @@ export const FIRE_SAFETY_SPRINKLER: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'fire_sprinkler_1',
-            name: 'The sprinkler assembly component is damaged, inoperable, or missing, and it is detrimental to performance.',
+            name: 'Sprinkler Assembly',
             detail: 'The sprinkler assembly component is damaged, inoperable, or missing, and it is detrimental to performance.',
             criteria: 'The sprinkler assembly component is damaged, inoperable or missing.',
             severity: 'Life-Threatening',
@@ -5814,7 +5814,7 @@ All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         },
         {
             id: 'fire_sprinkler_2',
-            name: 'Sprinkler head assembly has evidence of corrosion.',
+            name: 'Sprinkler Assembly',
             detail: 'Sprinkler head assembly has evidence of corrosion.',
             criteria: 'Sprinkler head assembly has evidence of corrosion.',
             severity: 'Life-Threatening',
@@ -5843,7 +5843,7 @@ All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         },
         {
             id: 'fire_sprinkler_3',
-            name: 'Foreign material covers 50% or more of the sprinkler assembly or 50% or more of the glass bulb on the sprinkler assembly.',
+            name: 'Sprinkler Assembly',
             detail: 'Foreign material covers 50% or more of the sprinkler assembly or 50% or more of the glass bulb on the sprinkler assembly.',
             criteria: 'Foreign material covers 50% or more of the sprinkler assembly or 50% or more of the glass bulb on the sprinkler assembly.',
             severity: 'Life-Threatening',
@@ -5872,7 +5872,7 @@ All systems must be tested, supervised, and maintained (IBC 901.5–901.6)`
         },
         {
             id: 'fire_sprinkler_4',
-            name: 'Sprinkler head assembly is obstructed by any item, object, or encasement within 18 inches of the head, and the reduced clearance is not due to a built‑in feature.',
+            name: 'Sprinkler Assembly',
             detail: 'Sprinkler head assembly is obstructed by any item, object, or encasement within 18 inches of the head, and the reduced clearance is not due to a built‑in feature (e.g., closet or utility enclosure).',
             criteria: '18 inches clearance is not due to feature within built (e.g. closet, utility closet).',
             severity: 'Life-Threatening',
@@ -6199,7 +6199,7 @@ export const HAZARD_INFESTATION: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'hazard_infest_1',
-            name: 'Evidence of bedbugs.',
+            name: 'Infestation',
             detail: 'Evidence of bedbugs is found (i.e., live or dead bedbugs, feces, eggs, or blood trail).',
             criteria: 'Evidence of bedbugs is found (i.e., live or dead bedbugs, feces, eggs, or blood trail).',
             severity: 'Moderate',
@@ -6228,7 +6228,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_2',
-            name: 'Evidence of cockroaches.',
+            name: 'Infestation',
             detail: 'Evidence of cockroaches is found (i.e., dead or live cockroaches, shed skins, droppings (tiny black specks or smears), and egg cases).',
             criteria: 'Evidence of cockroaches is found (i.e., dead or live cockroaches, shed skins, droppings (tiny black specks or smears), and egg cases).',
             severity: 'Moderate',
@@ -6257,7 +6257,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_3',
-            name: 'Evidence of mice.',
+            name: 'Infestation',
             detail: 'Evidence of mice is found (i.e., a live or dead mouse or mice, droppings, chewed holes, or urine trails).',
             criteria: 'Evidence of mice is found (i.e., a live or dead mouse or mice, droppings, chewed holes, or urine trails).',
             severity: 'Moderate',
@@ -6286,7 +6286,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_4',
-            name: 'Evidence of other pests.',
+            name: 'Infestation',
             detail: 'Evidence of other pest infestation—such as ants, wasps, squirrels, birds, or bats—is present in interior areas, posing potential health and safety risks to residents.',
             criteria: 'Evidence is present of other pest infestations, including but not limited to a trail of ants, wasps/beehives, squirrels, birds, and bats in an interior area.',
             severity: 'Moderate',
@@ -6315,7 +6315,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_5',
-            name: 'Evidence of rats.',
+            name: 'Infestation',
             detail: 'Evidence of rats is found (i.e., a live or dead rat or droppings, chewed holes).',
             criteria: 'Evidence of rats is found (i.e., a live or dead rat or droppings, chewed holes).',
             severity: 'Moderate',
@@ -6344,7 +6344,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_6',
-            name: 'Extensive bedbugs infestation.',
+            name: 'Infestation',
             detail: 'Extensive bedbugs infestation. Sighting of at least one live bedbug in two or more areas',
             criteria: 'Sighting of at least one live bedbug in two or more units or two rooms of the same unit during the daytime through visual assessment.',
             severity: 'Moderate',
@@ -6373,7 +6373,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_7',
-            name: 'Extensive cockroach infestation (live).',
+            name: 'Infestation',
             detail: 'Extensive cockroach infestation (live). Sighting of one or more live cockroaches in two or more area observed simultaneously during visual assessment on the inspection day.',
             criteria: 'Sighting of one or more live cockroaches in two or more area observed simultaneously during visual assessment on the inspection day.',
             severity: 'Severe',
@@ -6402,7 +6402,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_8',
-            name: 'Extensive mouse infestation.',
+            name: 'Infestation',
             detail: 'Extensive mouse infestation. Sighting of at least one live mouse in during the daytime surface visual assessment.',
             criteria: 'Sighting of at least one live mouse in two or more, units or two rooms of the same unit during the daytime surface visual assessment.',
             severity: 'Moderate',
@@ -6430,7 +6430,7 @@ When it cites infestation as a moderate health and safety deficiency, it require
         },
         {
             id: 'hazard_infest_9',
-            name: 'Extensive rat infestation.',
+            name: 'Infestation',
             detail: 'Extensive rat infestation. A live rat is seen in the common area.',
             criteria: 'A live rat is seen in the unit.',
             severity: 'Moderate',
@@ -6465,7 +6465,7 @@ export const HAZARD_LITTER: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'hazard_litter_1',
-            name: 'Litter is accumulated in an unassigned area.',
+            name: 'LITTER',
             detail: 'Litter is accumulated in an unassigned area. 10 or more small items or any large discarded items are found in a 10×10 ft area not designated for garbage.',
             criteria: 'Litter is considered deficient if 10 or more small items or any large discarded items are found in a 10×10 ft area not designated for garbage.',
             severity: 'Moderate',
@@ -6501,7 +6501,7 @@ export const HAZARD_SHARP_EDGES: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'hazard_sharp_1',
-            name: 'A sharp edge that can result in a cut or puncture hazard that is likely to require emergency care is present.',
+            name: 'Sharp edges',
             detail: 'A sharp edge that can result in a cut or puncture hazard that is likely to require emergency care (e.g., stitches) is present within the built environment (i.e., human-made structures, features, and facilities).',
             criteria: 'A sharp edge that can result in a cut or puncture hazard that is likely to require emergency care is present within the built environment.',
             severity: 'Severe',
@@ -6537,7 +6537,7 @@ export const HAZARD_TRIP: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'hazard_trip_1',
-            name: 'Walking surfaces have an abrupt change: a vertical gap ≥¾ inch across the path of travel.',
+            name: 'Trip hazard',
             detail: 'Walking surfaces have an abrupt change: a vertical gap ≥¾ inch across the path of travel.',
             criteria: 'There is an abrupt change in vertical elevation on any walking surface along the normal path of travel, consisting of an unintended ¾ inch or greater vertical difference.',
             severity: 'Moderate',
@@ -6568,7 +6568,7 @@ Non-invasive observation. No lifting or moving of flooring required.
         },
         {
             id: 'hazard_trip_2',
-            name: 'Walking surfaces have an abrupt change: a horizontal separation ≥2 inches across the path of travel.',
+            name: 'Trip hazard',
             detail: 'Walking surfaces have an abrupt change: a horizontal separation ≥2 inches across the path of travel.',
             criteria: 'An unintended 2-inch horizontal separation perpendicular to the path of travel.',
             severity: 'Moderate',
@@ -6846,7 +6846,7 @@ export const KITCHEN_CABINET: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_cab_1',
-            name: 'Food storage component or kitchen cabinet doors, drawers, or shelves are missing.',
+            name: 'Cabinet and Storage',
             detail: 'Food storage component or kitchen cabinet doors, drawers, or shelves are missing. Visibly defective; impacts the functionality or does not meet the functionality or serve the purpose.',
             criteria: 'Some of the kitchen cabinet doors, drawers, or shelves are missing. Visibly defective; impacts the functionality or does not meet the functionality or serve the purpose.',
             severity: 'Moderate',
@@ -6881,7 +6881,7 @@ export const KITCHEN_COOKING: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_cook_1',
-            name: 'A burner does not produce heat, but at least one other burner is present on the cooking range or cooktop and does produce heat.',
+            name: 'Cooking Appliance',
             detail: 'A burner does not produce heat, but at least one other burner is present on the cooking range or cooktop and does produce heat.',
             criteria: 'A burner does not produce heat, but at least one other burner is present on the cooking range or cooktop and does produce heat.',
             severity: 'Moderate',
@@ -6912,7 +6912,7 @@ Inspectors should not light pilot lights or operate appliances directly unless t
         },
         {
             id: 'kitchen_cook_2',
-            name: 'A cooking range, cooktop, or oven component, including the oven door seal is damaged or missing, making the device unsafe.',
+            name: 'Cooking Appliance',
             detail: 'A cooking range, cooktop, or oven component, including the oven door seal is damaged or missing, making the device unsafe.',
             criteria: 'Cooking range, cooktop, or oven component is missing such that the device is unsafe for use.',
             severity: 'Moderate',
@@ -6943,7 +6943,7 @@ Inspectors should not light pilot lights or operate appliances directly unless t
         },
         {
             id: 'kitchen_cook_3',
-            name: 'Cooking range, cooktop, or oven does not ignite or produce heat.',
+            name: 'Cooking Appliance',
             detail: 'Cooking range, cooktop, or oven does not ignite or produce heat.',
             criteria: 'No burner on the cooking range or cooktop produces heat. OR The oven does not produce heat temperature.',
             severity: 'Severe',
@@ -6980,7 +6980,7 @@ export const KITCHEN_FOOD_PREP: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_food_1',
-            name: 'A kitchen countertop or food prep area is deficient if 10% or more of the surface is exposed substrate or if the space does not reasonably support adequate food preparation.',
+            name: 'Food preparation Area',
             detail: 'A kitchen countertop or food prep area is deficient if 10% or more of the surface is exposed substrate or if the space does not reasonably support adequate food preparation.',
             criteria: 'A kitchen countertop or food prep area is deficient if 10% or more of the surface is exposed substrate or if the space does not reasonably support adequate food preparation.',
             severity: 'Moderate',
@@ -7012,7 +7012,7 @@ No invasive testing required. visual and tactile observation.
         },
         {
             id: 'kitchen_food_2',
-            name: 'Countertop is missing from the kitchen or food preparation space.',
+            name: 'Food preparation Area',
             detail: 'Countertop is missing (i.e., evidence of prior installation, but now not present or is incomplete) from the kitchen or food preparation space.',
             criteria: 'Countertop is missing from the kitchen or food preparation space.',
             severity: 'Moderate',
@@ -7050,7 +7050,7 @@ export const KITCHEN_MOLD: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_mold_1',
-            name: 'Elevated moisture level.',
+            name: 'MOLD-LIKE SUBSTANCE',
             detail: 'Elevated moisture level. (e.g., peeling paint or wallpaper, a wall that is warped or stained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).',
             criteria: 'Elevated moisture level (e.g., peeling paint or wallpaper, a wall that is warped or stained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).',
             severity: 'Moderate',
@@ -7078,7 +7078,7 @@ Requires interior spaces to maintain conditions that do not create hazards.
         },
         {
             id: 'kitchen_mold_2',
-            name: 'More than 9\'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.',
+            name: 'MOLD-LIKE SUBSTANCE',
             detail: 'More than 9\'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.',
             criteria: 'Cumulative area of patches is more than 9 square foot in a room.',
             severity: 'Life-Threatening',
@@ -7106,7 +7106,7 @@ Requires interior spaces to maintain conditions that do not create hazards.
         },
         {
             id: 'kitchen_mold_3',
-            name: '1\' to 9\' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.',
+            name: 'MOLD-LIKE SUBSTANCE',
             detail: '1\' to 9\' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.',
             criteria: 'Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room.',
             severity: 'Severe',
@@ -7134,7 +7134,7 @@ Requires interior spaces to maintain conditions that do not create hazards.
         },
         {
             id: 'kitchen_mold_4',
-            name: '4" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.',
+            name: 'MOLD-LIKE SUBSTANCE',
             detail: '4" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.',
             criteria: 'Cumulative area of patches is more than 4 square inches and less than 1 square foot in a room.',
             severity: 'Moderate',
@@ -7168,7 +7168,7 @@ export const KITCHEN_REFRIGERATOR: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_fridge_1',
-            name: 'Refrigerator component is damaged such that it impacts functionality.',
+            name: 'Refrigerator',
             detail: 'Refrigerator component is damaged such that it impacts functionality.',
             criteria: 'Refrigerator component is damaged such that it impacts functionality.',
             severity: 'Moderate',
@@ -7203,7 +7203,7 @@ export const KITCHEN_REFRIGERATOR: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_fridge_2',
-            name: 'Refrigerator is inoperable such that it may be unable to safely and adequately store food.',
+            name: 'Refrigerator',
             detail: 'Refrigerator is inoperable such that it may be unable to safely and adequately store food.',
             criteria: 'Refrigerator is inoperable such that it may be unable to safely and adequately store food.',
             severity: 'Moderate',
@@ -7239,7 +7239,7 @@ export const KITCHEN_SINK: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_sink_1',
-            name: 'Hot and cold water cannot be activated or deactivated.',
+            name: 'Sink',
             detail: 'Hot and cold water cannot be activated or deactivated.',
             criteria: 'Control knobs do not activate or deactivate hot and cold water.',
             severity: 'Moderate',
@@ -7273,7 +7273,7 @@ export const KITCHEN_SINK: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_sink_2',
-            name: 'Sink component is damaged or missing, and the sink is not functionally adequate.',
+            name: 'Sink',
             detail: 'Sink component is damaged or missing, and the sink is not functionally adequate.',
             criteria: 'Sink component is missing.',
             severity: 'Moderate',
@@ -7307,7 +7307,7 @@ export const KITCHEN_SINK: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_sink_3',
-            name: 'Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.',
+            name: 'Sink',
             detail: 'Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.',
             criteria: 'Signs of separation at the seams of a sink or vanity is pulling away from the wall.',
             severity: 'Moderate',
@@ -7341,7 +7341,7 @@ export const KITCHEN_SINK: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_sink_4',
-            name: 'The sink is not draining, not functioning adequately.',
+            name: 'Sink',
             detail: 'The sink is not draining, not functioning adequately.',
             criteria: 'Water is not draining from the basin of the sink. slow or clogged drain.',
             severity: 'Moderate',
@@ -7375,7 +7375,7 @@ export const KITCHEN_SINK: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_sink_5',
-            name: 'Sink component is damaged or missing, and the sink is functionally adequate.',
+            name: 'Sink',
             detail: 'Sink component is damaged or missing, and the sink is functionally adequate.',
             criteria: 'Sink component is damaged or missing, and the sink is functionally adequate.',
             severity: 'Low',
@@ -7409,7 +7409,7 @@ export const KITCHEN_SINK: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_sink_6',
-            name: 'Water pressure, direction (outside the basin).',
+            name: 'Sink',
             detail: 'Water pressure, direction (outside the basin). The water pressure direction is not functioning properly.',
             criteria: 'Water pressure, direction is not adequately functional.',
             severity: 'Low',
@@ -7449,7 +7449,7 @@ export const KITCHEN_VENTILATION: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'kitchen_vent_1',
-            name: 'Ventilation (with or without a fan).',
+            name: 'Ventilation',
             detail: 'An exhaust fan, window, or adequate means of ventilation is not present and operable.',
             criteria: 'An exhaust fan, window, or adequate means of ventilation is not present and operable.',
             severity: 'Moderate',
@@ -7479,7 +7479,7 @@ export const KITCHEN_VENTILATION: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_vent_2',
-            name: 'Ventilation (with or without a fan).',
+            name: 'Ventilation',
             detail: 'Exhaust system component is damaged (i.e., visibly defective; impacts functionality). Or an exhaust system component is missing.',
             criteria: 'Exhaust system component is damaged. OR Exhaust system component is missing.',
             severity: 'Moderate',
@@ -7509,7 +7509,7 @@ export const KITCHEN_VENTILATION: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_vent_3',
-            name: 'Ventilation (with or without a fan).',
+            name: 'Ventilation',
             detail: 'Exhaust system does not respond to the control switch.',
             criteria: 'Exhaust vent inoperable.',
             severity: 'Moderate',
@@ -7539,7 +7539,7 @@ export const KITCHEN_VENTILATION: UnitItemDeficiencies = {
         },
         {
             id: 'kitchen_vent_4',
-            name: 'Ventilation (with or without a fan).',
+            name: 'Ventilation',
             detail: 'Exhaust system has restricted air flow.',
             criteria: 'Exhaust system is blocked such that airflow may be restricted.',
             severity: 'Moderate',
@@ -7890,7 +7890,7 @@ export const LIGHTING_AUXILIARY: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'lighting_aux_1',
-            name: 'Auxiliary lighting is not present or not installed. Missing or fails to illuminate when tested.',
+            name: 'Lighting - Auxiliary',
             detail: 'Auxiliary lighting is not present or not installed. Missing or fails to illuminate when tested.',
             criteria: 'Auxiliary lighting is not present or not installed. Missing or fails to illuminate when tested.',
             severity: 'Severe',
@@ -7932,7 +7932,7 @@ export const LIGHTING_INTERIOR: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'lighting_int_1',
-            name: 'A permanently installed light fixture is inoperable.',
+            name: 'Lighting - Interior',
             detail: 'A permanently installed light fixture is inoperable (i.e., the overall system or component thereof is not meeting function or purpose; with or without visible damage).',
             criteria: 'A permanently installed light fixture is inoperable.',
             severity: 'Moderate',
@@ -7964,7 +7964,7 @@ All bulbs in multi-bulb fixtures must illuminate during testing.
         },
         {
             id: 'lighting_int_2',
-            name: 'A permanently installed light fixture is not secure.',
+            name: 'Lighting - Interior',
             detail: 'A permanently installed light fixture is not secure to the designed attachment point or the attachment point is not stable.',
             criteria: 'A permanently installed light fixture is not secure to the designed attachment point or the attachment point is not stable.',
             severity: 'Moderate',
@@ -7996,7 +7996,7 @@ All bulbs in multi-bulb fixtures must illuminate during testing.
         },
         {
             id: 'lighting_int_3',
-            name: 'At least one (1) permanently installed light fixture is not present in the kitchen or restroom.',
+            name: 'Lighting - Interior',
             detail: 'At least one (1) permanently installed light fixture is not present in the kitchen or restroom. Permanent lighting fixtures are missing or not functioning.',
             criteria: 'Permanent lighting fixtures are missing or not functioning.',
             severity: 'Moderate',
@@ -8043,7 +8043,7 @@ export const MOLD: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'mold_1',
-            name: 'Elevated moisture level.',
+            name: 'Mold - Like Substance',
             detail: 'Elevated moisture level. (e.g., peeling paint or wallpaper, a wall that is warped or stained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).',
             criteria: 'Elevated moisture level (e.g., peeling paint or wallpaper, a wall that is warped or stained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).',
             severity: 'Moderate',
@@ -8074,7 +8074,7 @@ NSPIRE defines mold-like substance as visible discoloration or growth that may a
         },
         {
             id: 'mold_2',
-            name: 'More than 9\'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.',
+            name: 'Mold - Like Substance',
             detail: 'More than 9\'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.',
             criteria: 'Cumulative area of patches is more than 9 square foot in a room.',
             severity: 'Life-Threatening',
@@ -8105,7 +8105,7 @@ NSPIRE defines mold-like substance as visible discoloration or growth that may a
         },
         {
             id: 'mold_3',
-            name: '1\' to 9\' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.',
+            name: 'Mold - Like Substance',
             detail: '1\' to 9\' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.',
             criteria: 'Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room.',
             severity: 'Severe',
@@ -8136,7 +8136,7 @@ NSPIRE defines mold-like substance as visible discoloration or growth that may a
         },
         {
             id: 'mold_4',
-            name: '4" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.',
+            name: 'Mold - Like Substance',
             detail: '4" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.',
             criteria: 'Cumulative area of patches is more than 4 square inches and less than 1 square foot in a room.',
             severity: 'Moderate',
@@ -8257,7 +8257,7 @@ export const RAILINGS_GUARDRAIL: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'railing_guard_1',
-            name: 'The guardrail is missing or not installed along a walking surface that is more than 30 inches above the floor or grade below.',
+            name: 'Guardrail',
             detail: 'The guardrail is missing or not installed (i.e., never installed, but should have been) along a walking surface that is more than 30 inches above the floor or grade below.',
             criteria: 'The guardrail is missing or not installed along a walking surface that is more than 30 inches above the floor or grade below.',
             severity: 'Life-Threatening',
@@ -8291,7 +8291,7 @@ Return to a wall, guard, or walking surface
         },
         {
             id: 'railing_guard_2',
-            name: 'Guard rail component, missing, visibly damaged, under 30 inches in height, or not securely attached to reasonably prevent fall hazards.',
+            name: 'Guardrail',
             detail: 'Guard rail component, missing, visibly damaged, under 30 inches in height, or not securely attached to reasonably prevent fall hazards.',
             criteria: 'A guardrail is deficient if it’s missing critical components, visibly damaged, under 30 inches in height, or not securely attached to effectively prevent fall hazards.',
             severity: 'Life-Threatening',
@@ -8331,7 +8331,7 @@ export const RAILINGS_HANDRAIL: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'railing_hand_1',
-            name: 'A handrail is deficient if it cannot be reasonably grasped for support, is not continuous along the full stair flight, or is outside the required height range of 28 to 42 inches',
+            name: 'Handrail',
             detail: 'A handrail is deficient if it cannot be reasonably grasped for support, is not continuous along the full stair flight, or is outside the required height range of 28 to 42 inches',
             criteria: 'A handrail is deficient if it cannot be reasonably grasped for support, is not continuous along the full stair flight, or is outside the required height range of 28 to 42 inches.',
             severity: 'Moderate',
@@ -8365,7 +8365,7 @@ Return to a wall, guard, or walking surface
         },
         {
             id: 'railing_hand_2',
-            name: 'Handrail is not functionally adequate. Or Handrail is not continuous for the full length of each flight of stairs. or Handrail is not between 28 inches and 42 inches in height.',
+            name: 'Handrail',
             detail: 'Handrail is not functionally adequate. Or Handrail is not continuous for the full length of each flight of stairs. or Handrail is not between 28 inches and 42 inches in height.',
             criteria: 'A handrail is deficient if it cant be reasonably grasped for support, isnt continuous along the full stair flight, or falls outside the required height range of 28 to 42 inches.',
             severity: 'Moderate',
@@ -8399,7 +8399,7 @@ Return to a wall, guard, or walking surface
         },
         {
             id: 'railing_hand_3',
-            name: '4 or more stair risers are present, and a handrail is not installed. Or a ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches and a handrail is not installed on both sides.',
+            name: 'Handrail',
             detail: '4 or more stair risers are present, and a handrail is not installed. Or a ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches and a handrail is not installed on both sides.',
             criteria: '4 or more stair risers are present, and a handrail is not installed. OR A ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches and a handrail is not installed on both sides.',
             severity: 'Severe',
@@ -8433,7 +8433,7 @@ Return to a wall, guard, or walking surface
         },
         {
             id: 'railing_hand_4',
-            name: 'Handrail is not secured.',
+            name: 'Handrail',
             detail: 'Handrail is not secured. There is movement in the anchors of the handrail.',
             criteria: 'There is movement in the anchors of the handrail.',
             severity: 'Moderate',
@@ -8482,7 +8482,7 @@ export const RESTROOM_BATHTUB_SHOWER: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'restroom_bath_1',
-            name: 'Common area bathtub or shower is present, and it is inoperable, or standing water is present such that water is unable to drain.',
+            name: 'Bathtub and Shower',
             detail: 'Common area bathtub or shower is present, and it is inoperable (not meeting function or purpose, with or without visible damage), or standing water is present such that water is unable to drain.',
             criteria: 'Common area bathtub or shower is present, and it is inoperable, or standing water is present such that water is unable to drain.',
             severity: 'Low',
@@ -8514,7 +8514,7 @@ Components damaged or missing
         },
         {
             id: 'restroom_bath_2',
-            name: 'Common area bathtub or shower water fixture is damaged or inoperable, not meeting function or purpose, such that it may not limit the resident’s ability to maintain personal hygiene.',
+            name: 'Bathtub and Shower',
             detail: 'Common area bathtub or shower water fixture is damaged or inoperable, not meeting function or purpose, such that it may not limit the resident’s ability to maintain personal hygiene.',
             criteria: 'Bathtub or shower component is missing or damaged.',
             severity: 'Low',
@@ -8546,7 +8546,7 @@ Components damaged or missing
         },
         {
             id: 'restroom_bath_3',
-            name: 'A bathtub or shower is deficient if any component is damaged, inoperable, or missing in a way that limits the resident’s ability to maintain personal hygiene.',
+            name: 'Bathtub and Shower',
             detail: 'A bathtub or shower is deficient if any component is damaged, inoperable, or missing in a way that limits the resident’s ability to maintain personal hygiene.',
             criteria: 'A bathtub or shower is deficient if any component is damaged, inoperable, or missing in a way that limits the resident’s ability to maintain personal hygiene.',
             severity: 'Low',
@@ -8578,7 +8578,7 @@ Components damaged or missing
         },
         {
             id: 'restroom_bath_4',
-            name: 'Bathtub or shower cannot be used in private (no privacy).',
+            name: 'Bathtub and Shower',
             detail: 'Bathtub or shower cannot be used in private (no privacy).',
             criteria: 'Hole in the door and damaged hardware, missing door. The resident should be able to use the bathtub or shower without being observed from an adjacent area or exterior space.',
             severity: 'Moderate',
@@ -8616,7 +8616,7 @@ export const RESTROOM_CABINET: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'restroom_cab_1',
-            name: 'Some of the restroom cabinet doors, drawers, or shelves are missing or incomplete.',
+            name: 'Cabinet and Storage',
             detail: 'Some of the restroom cabinet doors, drawers, or shelves are missing or incomplete. Visibly defective; impacts the functionality or does not meet the functionality or serve the purpose.',
             criteria: 'Restroom cabinet doors, drawers, or shelves are missing or damaged.',
             severity: 'Moderate',
@@ -8653,7 +8653,7 @@ export const RESTROOM_GRAB_BAR: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'restroom_grab_1',
-            name: 'Grab bar is not secure.',
+            name: 'Grab Bar',
             detail: 'Grab bar is not secure. Any movement whatever is detected in the grab bar.',
             criteria: 'Any movement detected in the grab bar.',
             severity: 'Moderate',
@@ -8693,7 +8693,7 @@ export const RESTROOM_MOLD: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'restroom_mold_1',
-            name: 'Elevated moisture level.',
+            name: 'Mold -Like Substance',
             detail: 'Elevated moisture level. (e.g., peeling paint or wallpaper, a wall that is warped or stained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).',
             criteria: 'Visual observation of mold-like substance or signs of elevated moisture levels.',
             severity: 'Moderate',
@@ -8727,7 +8727,7 @@ NSPIRE defines mold-like substance as visible discoloration or growth that may a
         },
         {
             id: 'restroom_mold_2',
-            name: 'More than 9\'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.',
+            name: 'Mold -Like Substance',
             detail: 'More than 9\'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.',
             criteria: 'Cumulative area of patches is more than 9 square foot in a room.',
             severity: 'Life-Threatening',
@@ -8761,7 +8761,7 @@ NSPIRE defines mold-like substance as visible discoloration or growth that may a
         },
         {
             id: 'restroom_mold_3',
-            name: '1\' to 9\' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.',
+            name: 'Mold -Like Substance',
             detail: '1\' to 9\' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.',
             criteria: 'Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room.',
             severity: 'Severe',
@@ -8795,7 +8795,7 @@ NSPIRE defines mold-like substance as visible discoloration or growth that may a
         },
         {
             id: 'restroom_mold_4',
-            name: '4" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.',
+            name: 'Mold -Like Substance',
             detail: '4" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.',
             criteria: 'Cumulative area of patches is more than 4 square inches and less than 1 square foot in a room.',
             severity: 'Moderate',
@@ -8866,7 +8866,7 @@ NSPIRE defines a sink as functionally adequate only if it can dispense and hold 
         },
         {
             id: 'restroom_sink_2',
-            name: 'Sink component is damaged or missing, and the sink is not functionally adequate',
+            name: 'Sink',
             detail: 'Sink component is damaged or missing, and the sink is not functionally adequate',
             criteria: 'Sink component is missing.',
             severity: 'Moderate',
@@ -8897,7 +8897,7 @@ NSPIRE defines a sink as functionally adequate only if it can dispense and hold 
         },
         {
             id: 'restroom_sink_3',
-            name: 'Sink or vanity is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.',
+            name: 'Sink',
             detail: 'Sink or vanity is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.',
             criteria: 'Signs of separation at the seams of a sink or vanity is pulling away from the wall.',
             severity: 'Moderate',
@@ -8928,7 +8928,7 @@ NSPIRE defines a sink as functionally adequate only if it can dispense and hold 
         },
         {
             id: 'restroom_sink_4',
-            name: 'Sink is not draining.',
+            name: 'Sink',
             detail: 'Sink is not draining.',
             criteria: 'Water is not draining from the basin of the sink. slow or clogged drain.',
             severity: 'Moderate',
@@ -8959,7 +8959,7 @@ NSPIRE defines a sink as functionally adequate only if it can dispense and hold 
         },
         {
             id: 'restroom_sink_5',
-            name: 'Sink component is damaged or missing, and the sink is functionally adequate.',
+            name: 'Sink',
             detail: 'Sink component is damaged or missing, and the sink is functionally adequate.',
             criteria: 'Sink component is damaged or missing, and the sink is functionally adequate.',
             severity: 'Moderate',
@@ -8990,7 +8990,7 @@ NSPIRE defines a sink as functionally adequate only if it can dispense and hold 
         },
         {
             id: 'restroom_sink_6',
-            name: 'Water is directed outside of the basin when in use.',
+            name: 'Sink',
             detail: 'Water is directed outside of the basin when in use.',
             criteria: 'Water pressure, direction is not adequately functional.',
             severity: 'Low',
@@ -9027,7 +9027,7 @@ export const RESTROOM_TOILET: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'restroom_toilet_1',
-            name: 'A toilet is damaged or inoperable and at least 1 toilet is installed elsewhere that is operational.',
+            name: 'Toilet',
             detail: 'A toilet is damaged or inoperable and at least 1 toilet is installed elsewhere that is operational.',
             criteria: 'A toilet is deficient if it\'s damaged or inoperable, as long as another operational toilet exists elsewhere in the building.',
             severity: 'Moderate',
@@ -9060,7 +9060,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_2',
-            name: 'A toilet is missing and at least 1 toilet is installed elsewhere that is operational.',
+            name: 'Toilet',
             detail: 'A toilet is missing and at least 1 toilet is installed elsewhere that is operational.',
             criteria: 'A toilet is missing and at least 1 toilet is installed elsewhere within the Unit that is operational.',
             severity: 'Moderate',
@@ -9093,7 +9093,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_3',
-            name: 'Only 1 toilet was installed, and it is damaged or inoperable.',
+            name: 'Toilet',
             detail: 'Only 1 toilet was installed, and it is damaged or inoperable.',
             criteria: 'A single installed toilet is deficient if it\'s damaged or inoperable, affecting its ability to function properly.',
             severity: 'Moderate',
@@ -9126,7 +9126,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_4',
-            name: 'Only 1 toilet was installed, and it is missing.',
+            name: 'Toilet',
             detail: 'Only 1 toilet was installed, and it is missing.',
             criteria: 'Only 1 toilet was installed, and it is missing.',
             severity: 'Moderate',
@@ -9159,7 +9159,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_5',
-            name: 'Toilet can not be used in private. (no privacy)',
+            name: 'Toilet',
             detail: 'Toilet can not be used in private. (no privacy)',
             criteria: 'Hole in the door and damaged hardware, missing door. The resident should be able to use the toilet without being observed from an adjacent area or exterior space.',
             severity: 'Moderate',
@@ -9192,7 +9192,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_6',
-            name: 'Toilet component is damaged, inoperable, or missing such that it may limit the resident\'s ability to safely discharge human waste.',
+            name: 'Toilet',
             detail: 'Toilet component is damaged, inoperable, or missing such that it may limit the resident\'s ability to safely discharge human waste.',
             criteria: 'A toilet is deficient if any component is damaged, inoperable, or missing in a way that limits the resident\'s ability to discharge human waste safely.',
             severity: 'Moderate',
@@ -9225,7 +9225,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_7',
-            name: 'Toilet component is damaged, inoperable, or missing and it does not limit the resident\'s ability to discharge human waste.',
+            name: 'Toilet',
             detail: 'Toilet component is damaged, inoperable, or missing and it does not limit the resident\'s ability to discharge human waste.',
             criteria: 'A toilet component is deficient if it\'s damaged, inoperable, or missing, even if it does not limit the resident\'s ability to discharge human waste safely.',
             severity: 'Moderate',
@@ -9258,7 +9258,7 @@ Moisture-prone areas must use decay-resistant materials
         },
         {
             id: 'restroom_toilet_8',
-            name: 'Toilet is not secured at the base.',
+            name: 'Toilet',
             detail: 'Toilet is not secured at the base.',
             criteria: 'Toilet is not secured at the base.',
             severity: 'Moderate',
@@ -9297,7 +9297,7 @@ export const RESTROOM_VENTILATION: UnitItemDeficiencies = {
     deficiencies: [
         {
             id: 'restroom_vent_1',
-            name: 'The restroom does not have ventilation, not present and operable.',
+            name: 'Ventilation',
             detail: 'The restroom does not have ventilation, not present and operable.',
             criteria: 'Exhaust fan system failure, missing components, or blocked airflow.',
             severity: 'Moderate',
@@ -9332,7 +9332,7 @@ Mechanical ventilation per the International Mechanical Code (IMC)`
         },
         {
             id: 'restroom_vent_2',
-            name: 'The exhaust system component is missing or damaged, affecting the function adequately.',
+            name: 'Ventilation',
             detail: 'The exhaust system component is missing or damaged, affecting the function adequately.',
             criteria: 'Exhaust system component is damaged or missing.',
             severity: 'Moderate',
@@ -9367,7 +9367,7 @@ Mechanical ventilation per the International Mechanical Code (IMC)
         },
         {
             id: 'restroom_vent_3',
-            name: 'Exhaust system does not respond to the control switch.',
+            name: 'Ventilation',
             detail: 'Exhaust system does not respond to the control switch.',
             criteria: 'Exhaust fan, inoperable.',
             severity: 'Moderate',
@@ -9402,7 +9402,7 @@ Mechanical ventilation per the International Mechanical Code (IMC)
         },
         {
             id: 'restroom_vent_4',
-            name: 'Exhaust system has restricted air flow.',
+            name: 'Ventilation',
             detail: 'Exhaust system has restricted air flow.',
             criteria: 'Exhaust system is blocked such that airflow may be restricted.',
             severity: 'Moderate',
