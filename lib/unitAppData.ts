@@ -40,26 +40,26 @@ export const BATHROOM_BATHTUB_SHOWER: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TUB-01',
             codeReference: `🧭 Step 1: Identify the Fixture Type
-• Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).
-• Exclude: Freestanding tubs or portable showers unless permanently installed
+• 	Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).                                                                                                                                                                                                                                                                  • 	Must extend ≥ 72 inches (1829 mm) above the drain inlet.
 🔍 Step 2: Cleanability & Sanitation
-• Surface condition: Must be free of mold, mildew, soap scum, or biohazards.
+• 	Surface condition: Must be free of mold, mildew, soap scum, and smooth, nonabsorbent.
 🧪 Step 3: Functional Testing
-• Engage Faucet: Turn on hot and cold water for 30–45 seconds
-• Check Diverter: Switch between tub and shower modes
-• Observe Drainage: Confirm water drains fully within 60 seconds
-• Test Stopper: Fill basin partially, confirm stopper holds water, then release
+• 	Engage Faucet: Turn on hot and cold water for 30–45 seconds
+• 	Check Diverter: Switch between tub and shower modes
+• 	Observe Drainage: Confirm water drains fully within 60 seconds
+• 	Test Stopper: Fill basin partially, confirm stopper holds water, then release
 📏 Step 4: Accessibility & IBU Local Requirements
-• Grab Bars: Required in accessible units; must be secure and properly placed
-• Controls: Operable with one hand, no tight grasping or twisting
-• Shower Seat: Required in roll-in showers
-• Clear Floor Space: Minimum 30"x48" in front of tub or shower
-• Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
+• 	Grab Bars: Required in accessible units; must be secure and properly placed
+• 	Controls: Operable with one hand, no tight grasping or twisting
+• 	Shower Seat: Required in roll-in showers
+• 	Clear Floor Space: Minimum 30"x48" in front of tub or shower
+• 	Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm hot and cold water availability (IRC P2708)
-• Drainage: Must connect to approved sanitary system (IRC P2711)
-• Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
-• Anti-scald Protection: Check for mixing valve or temperature control (IRC P2708.4)`
+• 	Water Supply: Confirm hot and cold water availability (IRC P2708)
+• 	Drainage: Must connect to approved sanitary system (IRC P2711)
+• 	Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
+• 	 International Building Code (IBC) / Chapter 12 / [P] 1210.2 / [P] 1210.2.4
+`
         },
         {
             id: 'bath_tub_2',
@@ -71,26 +71,26 @@ export const BATHROOM_BATHTUB_SHOWER: InsideSubcategory = {
             points: '2.40/n',
             code: 'BATH-TUB-02',
             codeReference: `🧭 Step 1: Identify the Fixture Type
-• Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).
-• Exclude: Freestanding tubs or portable showers unless permanently installed
+• 	Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).                                                                                                                                                                                                                                                                  • 	Must extend ≥ 72 inches (1829 mm) above the drain inlet.
 🔍 Step 2: Cleanability & Sanitation
-• Surface condition: Must be free of mold, mildew, soap scum, or biohazards.
+• 	Surface condition: Must be free of mold, mildew, soap scum, and smooth, nonabsorbent.
 🧪 Step 3: Functional Testing
-• Engage Faucet: Turn on hot and cold water for 30–45 seconds
-• Check Diverter: Switch between tub and shower modes
-• Observe Drainage: Confirm water drains fully within 60 seconds
-• Test Stopper: Fill basin partially, confirm stopper holds water, then release
+• 	Engage Faucet: Turn on hot and cold water for 30–45 seconds
+• 	Check Diverter: Switch between tub and shower modes
+• 	Observe Drainage: Confirm water drains fully within 60 seconds
+• 	Test Stopper: Fill basin partially, confirm stopper holds water, then release
 📏 Step 4: Accessibility & IBU Local Requirements
-• Grab Bars: Required in accessible units; must be secure and properly placed
-• Controls: Operable with one hand, no tight grasping or twisting
-• Shower Seat: Required in roll-in showers
-• Clear Floor Space: Minimum 30"x48" in front of tub or shower
-• Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
+• 	Grab Bars: Required in accessible units; must be secure and properly placed
+• 	Controls: Operable with one hand, no tight grasping or twisting
+• 	Shower Seat: Required in roll-in showers
+• 	Clear Floor Space: Minimum 30"x48" in front of tub or shower
+• 	Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm hot and cold water availability (IRC P2708)
-• Drainage: Must connect to approved sanitary system (IRC P2711)
-• Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
-• Anti-scald Protection: Check for mixing valve or temperature control (IRC P2708.4)`
+• 	Water Supply: Confirm hot and cold water availability (IRC P2708)
+• 	Drainage: Must connect to approved sanitary system (IRC P2711)
+• 	Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
+• 	 International Building Code (IBC) / Chapter 12 / [P] 1210.2 / [P] 1210.2.4
+`
         },
         {
             id: 'bath_tub_3',
@@ -102,26 +102,26 @@ export const BATHROOM_BATHTUB_SHOWER: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TUB-03',
             codeReference: `🧭 Step 1: Identify the Fixture Type
-• Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).
-• Exclude: Freestanding tubs or portable showers unless permanently installed
+• 	Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).                                                                                                                                                                                                                                                                  • 	Must extend ≥ 72 inches (1829 mm) above the drain inlet.
 🔍 Step 2: Cleanability & Sanitation
-• Surface condition: Must be free of mold, mildew, soap scum, or biohazards.
+• 	Surface condition: Must be free of mold, mildew, soap scum, and smooth, nonabsorbent.
 🧪 Step 3: Functional Testing
-• Engage Faucet: Turn on hot and cold water for 30–45 seconds
-• Check Diverter: Switch between tub and shower modes
-• Observe Drainage: Confirm water drains fully within 60 seconds
-• Test Stopper: Fill basin partially, confirm stopper holds water, then release
+• 	Engage Faucet: Turn on hot and cold water for 30–45 seconds
+• 	Check Diverter: Switch between tub and shower modes
+• 	Observe Drainage: Confirm water drains fully within 60 seconds
+• 	Test Stopper: Fill basin partially, confirm stopper holds water, then release
 📏 Step 4: Accessibility & IBU Local Requirements
-• Grab Bars: Required in accessible units; must be secure and properly placed
-• Controls: Operable with one hand, no tight grasping or twisting
-• Shower Seat: Required in roll-in showers
-• Clear Floor Space: Minimum 30"x48" in front of tub or shower
-• Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
+• 	Grab Bars: Required in accessible units; must be secure and properly placed
+• 	Controls: Operable with one hand, no tight grasping or twisting
+• 	Shower Seat: Required in roll-in showers
+• 	Clear Floor Space: Minimum 30"x48" in front of tub or shower
+• 	Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm hot and cold water availability (IRC P2708)
-• Drainage: Must connect to approved sanitary system (IRC P2711)
-• Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
-• Anti-scald Protection: Check for mixing valve or temperature control (IRC P2708.4)`
+• 	Water Supply: Confirm hot and cold water availability (IRC P2708)
+• 	Drainage: Must connect to approved sanitary system (IRC P2711)
+• 	Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
+• 	 International Building Code (IBC) / Chapter 12 / [P] 1210.2 / [P] 1210.2.4
+`
         },
         {
             id: 'bath_tub_4',
@@ -133,26 +133,26 @@ export const BATHROOM_BATHTUB_SHOWER: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TUB-04',
             codeReference: `🧭 Step 1: Identify the Fixture Type
-• Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).
-• Exclude: Freestanding tubs or portable showers unless permanently installed
+• 	Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).                                                                                                                                                                                                                                                                  • 	Must extend ≥ 72 inches (1829 mm) above the drain inlet.
 🔍 Step 2: Cleanability & Sanitation
-• Surface condition: Must be free of mold, mildew, soap scum, or biohazards.
+• 	Surface condition: Must be free of mold, mildew, soap scum, and smooth, nonabsorbent.
 🧪 Step 3: Functional Testing
-• Engage Faucet: Turn on hot and cold water for 30–45 seconds
-• Check Diverter: Switch between tub and shower modes
-• Observe Drainage: Confirm water drains fully within 60 seconds
-• Test Stopper: Fill basin partially, confirm stopper holds water, then release
+• 	Engage Faucet: Turn on hot and cold water for 30–45 seconds
+• 	Check Diverter: Switch between tub and shower modes
+• 	Observe Drainage: Confirm water drains fully within 60 seconds
+• 	Test Stopper: Fill basin partially, confirm stopper holds water, then release
 📏 Step 4: Accessibility & IBU Local Requirements
-• Grab Bars: Required in accessible units; must be secure and properly placed
-• Controls: Operable with one hand, no tight grasping or twisting
-• Shower Seat: Required in roll-in showers
-• Clear Floor Space: Minimum 30"x48" in front of tub or shower
-• Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
+• 	Grab Bars: Required in accessible units; must be secure and properly placed
+• 	Controls: Operable with one hand, no tight grasping or twisting
+• 	Shower Seat: Required in roll-in showers
+• 	Clear Floor Space: Minimum 30"x48" in front of tub or shower
+• 	Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm hot and cold water availability (IRC P2708)
-• Drainage: Must connect to approved sanitary system (IRC P2711)
-• Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
-• Anti-scald Protection: Check for mixing valve or temperature control (IRC P2708.4)`
+• 	Water Supply: Confirm hot and cold water availability (IRC P2708)
+• 	Drainage: Must connect to approved sanitary system (IRC P2711)
+• 	Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
+• 	 International Building Code (IBC) / Chapter 12 / [P] 1210.2 / [P] 1210.2.4
+`
         },
         {
             id: 'bath_tub_5',
@@ -164,26 +164,26 @@ export const BATHROOM_BATHTUB_SHOWER: InsideSubcategory = {
             points: '14.8/n',
             code: 'BATH-TUB-05',
             codeReference: `🧭 Step 1: Identify the Fixture Type
-• Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).
-• Exclude: Freestanding tubs or portable showers unless permanently installed
+• 	Required: Every residential unit must have at least one operable bathtub or shower unless exempted (e.g., Single Room Occupancy Units with shared facilities).                                                                                                                                                                                                                                                                  • 	Must extend ≥ 72 inches (1829 mm) above the drain inlet.
 🔍 Step 2: Cleanability & Sanitation
-• Surface condition: Must be free of mold, mildew, soap scum, or biohazards.
+• 	Surface condition: Must be free of mold, mildew, soap scum, and smooth, nonabsorbent.
 🧪 Step 3: Functional Testing
-• Engage Faucet: Turn on hot and cold water for 30–45 seconds
-• Check Diverter: Switch between tub and shower modes
-• Observe Drainage: Confirm water drains fully within 60 seconds
-• Test Stopper: Fill basin partially, confirm stopper holds water, then release
+• 	Engage Faucet: Turn on hot and cold water for 30–45 seconds
+• 	Check Diverter: Switch between tub and shower modes
+• 	Observe Drainage: Confirm water drains fully within 60 seconds
+• 	Test Stopper: Fill basin partially, confirm stopper holds water, then release
 📏 Step 4: Accessibility & IBU Local Requirements
-• Grab Bars: Required in accessible units; must be secure and properly placed
-• Controls: Operable with one hand, no tight grasping or twisting
-• Shower Seat: Required in roll-in showers
-• Clear Floor Space: Minimum 30"x48" in front of tub or shower
-• Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
+• 	Grab Bars: Required in accessible units; must be secure and properly placed
+• 	Controls: Operable with one hand, no tight grasping or twisting
+• 	Shower Seat: Required in roll-in showers
+• 	Clear Floor Space: Minimum 30"x48" in front of tub or shower
+• 	Thresholds: ≤½" for roll-in showers; ≤¾" for transfer-type
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm hot and cold water availability (IRC P2708)
-• Drainage: Must connect to approved sanitary system (IRC P2711)
-• Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
-• Anti-scald Protection: Check for mixing valve or temperature control (IRC P2708.4)`
+• 	Water Supply: Confirm hot and cold water availability (IRC P2708)
+• 	Drainage: Must connect to approved sanitary system (IRC P2711)
+• 	Ventilation: Ensure operable window or exhaust fan (IRC R303.3)
+• 	 International Building Code (IBC) / Chapter 12 / [P] 1210.2 / [P] 1210.2.4
+`
         }
     ]
 };
@@ -201,25 +201,26 @@ export const BATHROOM_CABINET_STORAGE: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-CAB-01',
             codeReference: `🧭 Step 1: Identify Storage Areas to Inspect
-• NSPIRE does not require bathroom cabinets to be present. However, if installed, they must be functional and safe.
-• IBU overlays – Local habitability, accessibility, and sanitation codes
-• Exclude: Freestanding furniture or resident-owned storage unless permanently installed
+• 	NSPIRE does not require bathroom cabinets to be present. However, if installed, they must be functional and safe.
+• 	IBU overlays – Local habitability, accessibility, and sanitation codes 
+• 	Exclude: Freestanding furniture or resident-owned storage unless permanently installed
 🔍 Step 2: Cleanability & Sanitation
-• Interior: Must be free of grime, mold, pest droppings, or biohazards.
-• Odor check: Foul smells may indicate hidden moisture or pest activity.
+• 	Interior: Must be free of grime, mold, pest droppings, or biohazards.
+• 	Odor check: Foul smells may indicate hidden moisture or pest activity.
 🧪 Step 3: Functional Testing
-• Open/Close All Doors and Drawers: Confirm smooth operation and alignment
-• Check Shelving Stability: Apply light pressure to test for sagging or detachment
-• Inspect for Moisture or Infestation: Especially under sinks and near laundry plumbing
-• Pantry Useability: Ensure shelves are clean, secure, and accessible
+• 	Open/Close All Doors and Drawers: Confirm smooth operation and alignment
+• 	Check Shelving Stability: Apply light pressure to test for sagging or detachment
+• 	Inspect for Moisture or Infestation: Especially under sinks and near laundry plumbing
+• 	Pantry Useability: Ensure shelves are clean, secure, and accessible
 📏 Step 4: Accessibility & Local Requirements
-• Reach range: Shelves and handles should be within accessibility-compliant height (typically 15–48" AFF)
-• Clearance: Doors and drawers must not obstruct egress or accessible paths
-• IBU Overlay: May require rounded edges, soft-close hardware, or tactile indicators in elderly housing
+• 	Reach range: Shelves and handles should be within accessibility-compliant height (typically 15–48" AFF)
+• 	Clearance: Doors and drawers must not obstruct egress or accessible paths
+• 	International Building Code (IBC) / Chapter 3 / Section 311 / 311.3
 ⚒️ Step 5: Installation & Safety (IRC)
-• Secure Mounting: Cabinets must be anchored to wall studs (IRC R602.3)
-• No Sharp Edges: Corners should be finished and safe
-• No Electrical Obstruction: Cabinets must not block outlets, switches, or ventilation`
+• 	Secure Mounting: Cabinets must be anchored to wall studs (IRC R602.3)
+• 	No Sharp Edges: Corners should be finished and safe
+• 	No Electrical Obstruction: Cabinets must not block outlets, switches, or ventilation
+`
         }
     ]
 };
@@ -237,24 +238,25 @@ export const BATHROOM_GRAB_BAR: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-GRAB-01',
             codeReference: `🧭 Step 1: Identify Grab Bar Location
-• Valid locations: Inside bathrooms—adjacent to toilets, tubs, or showers.
-• Invalid locations: Living rooms, bedrooms, or hallways
-🔍 Visual Inspection
-• Material: Stainless steel, coated metal, compliant plastic
-• Cleanliness: Must be free of grime, mold, or residue
+• 	Valid locations: Inside bathrooms—adjacent to toilets, tubs, or showers.
+• 	Invalid locations: Living rooms, bedrooms, or hallways 
+🔍  Visual Inspection
+• 	Material: Stainless steel, coated metal, compliant plastic
+• 	Cleanliness: Must be free of grime, mold, or residue
 🧪 Step 3: Stability Test
-• Grip the Bar in the Middle
-• Apply Moderate Force: Push and pull back and forth
-• Deficiency Criteria: Any movement whatsoever is considered a moderate deficiency under NSPIRE
+• 	Grip the Bar in the Middle
+• 	Apply Moderate Force: Push and pull back and forth
+• 	Deficiency Criteria: Any movement whatsoever is considered a moderate deficiency under NSPIRE
 📏 Step 4: Accessibility & Local Requirements
-• Height: Typically 33–36" AFF (above finished floor) for side wall bars
-• Length: ≥36" for side wall, ≥42" for rear wall in showers
-• Clearance: Minimum 1½" between bar and wall
-• IBU Overlay: May require dual bars, textured grip, visual contrast, or tactile indicators for low-vision users
+• 	Height: Typically 33–36" AFF (above finished floor) for side wall bars
+• 	Length: ≥36" for side wall, ≥42" for rear wall in showers
+• 	Clearance: Minimum 1½" between bar and wall
+• 	 IBC points to ICC A117.1 for accessibility technical criteria. tactile indicators for low-vision users
 ⚒️ Step 5: Structural Safety (IRC)
-• Anchoring: Must be secured to wall studs or blocking (IRC R307.2)
-• No Drywall-Only Mounting: Anchors must support 250 lbs minimum
-• No Electrical Conflict: Ensure the grab bar does not interfere with switches or outlets`
+• 	Anchoring: Must be secured to wall studs or blocking (IRC R307.2)
+• 	No Drywall-Only Mounting: Anchors must support 250 lbs. minimum
+• 	No Electrical Conflict: Ensure the grab bar does not interfere with switches or outlets.
+`
         }
     ]
 };
@@ -272,24 +274,27 @@ export const BATHROOM_MOLD: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-MOLD-01',
             codeReference: `🧭 Step 1: Prepare for Inspection
-• Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
+•	Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
 🔍 Step 2: Visual Identification
 Mold-like substances include irregular patches or spots that may be white, green, yellow, gray, brown, or black. They may appear fuzzy, cottony, slimy, or dusty.
 📏 Step 3: Measure Affected Area
 NSPIRE evaluates total cumulative area across the room, not just isolated patches
 🧪 Step 4: Moisture Source Check
-• Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
-• Check ventilation: Confirm exhaust fan is functional (IRC R303.3)
-• If no fan, ensure an operable window is present
-• Condensation: Look for moisture buildup on mirrors, walls, or ceilings
-♿ Step 5: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing
-• Labeling: Some jurisdictions require mold hazard signage or maintenance logs
-• IBU Local Codes: May mandate quarterly inspections, moisture sensors, or integrated ventilation systems
-⚒️ Step 6: IRC Compliance
-• Ventilation: Required in all bathrooms (IRC R303.3)
-• Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
-• Caulking & Grout: Must be intact to prevent water intrusion`
+•	Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
+•	Check ventilation:
+o	Confirm exhaust fan is functional (IRC R303.3)
+o	If no fan, ensure an operable window is present
+• 	Condensation: Look for moisture buildup on mirrors, walls, or ceilings
+♿ Step 5: Sanitation-IBC Chapter 29
+Proper plumbing
+Proper drainage
+No unsanitary conditions
+Mold caused by plumbing leaks is cited under sanitation failures (Plumbing), not mold.                   ⚒️ Step 6: IRC Compliance
+•	Ventilation: Required in all bathrooms (IRC R303.3)
+•	Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
+•	Caulking & Grout: Must be intact to prevent water intrusion
+
+`
         },
         {
             id: 'bath_mold_2',
@@ -301,24 +306,27 @@ NSPIRE evaluates total cumulative area across the room, not just isolated patche
             points: '60/n',
             code: 'BATH-MOLD-02',
             codeReference: `🧭 Step 1: Prepare for Inspection
-• Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
+•	Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
 🔍 Step 2: Visual Identification
 Mold-like substances include irregular patches or spots that may be white, green, yellow, gray, brown, or black. They may appear fuzzy, cottony, slimy, or dusty.
 📏 Step 3: Measure Affected Area
 NSPIRE evaluates total cumulative area across the room, not just isolated patches
 🧪 Step 4: Moisture Source Check
-• Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
-• Check ventilation: Confirm exhaust fan is functional (IRC R303.3)
-• If no fan, ensure an operable window is present
-• Condensation: Look for moisture buildup on mirrors, walls, or ceilings
-♿ Step 5: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing
-• Labeling: Some jurisdictions require mold hazard signage or maintenance logs
-• IBU Local Codes: May mandate quarterly inspections, moisture sensors, or integrated ventilation systems
-⚒️ Step 6: IRC Compliance
-• Ventilation: Required in all bathrooms (IRC R303.3)
-• Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
-• Caulking & Grout: Must be intact to prevent water intrusion`
+•	Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
+•	Check ventilation:
+o	Confirm exhaust fan is functional (IRC R303.3)
+o	If no fan, ensure an operable window is present
+• 	Condensation: Look for moisture buildup on mirrors, walls, or ceilings
+♿ Step 5: Sanitation-IBC Chapter 29
+Proper plumbing
+Proper drainage
+No unsanitary conditions
+Mold caused by plumbing leaks is cited under sanitation failures (Plumbing), not mold.                   ⚒️ Step 6: IRC Compliance
+•	Ventilation: Required in all bathrooms (IRC R303.3)
+•	Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
+•	Caulking & Grout: Must be intact to prevent water intrusion
+
+`
         },
         {
             id: 'bath_mold_3',
@@ -330,24 +338,27 @@ NSPIRE evaluates total cumulative area across the room, not just isolated patche
             points: '14.8/n',
             code: 'BATH-MOLD-03',
             codeReference: `🧭 Step 1: Prepare for Inspection
-• Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
+•	Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
 🔍 Step 2: Visual Identification
 Mold-like substances include irregular patches or spots that may be white, green, yellow, gray, brown, or black. They may appear fuzzy, cottony, slimy, or dusty.
 📏 Step 3: Measure Affected Area
 NSPIRE evaluates total cumulative area across the room, not just isolated patches
 🧪 Step 4: Moisture Source Check
-• Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
-• Check ventilation: Confirm exhaust fan is functional (IRC R303.3)
-• If no fan, ensure an operable window is present
-• Condensation: Look for moisture buildup on mirrors, walls, or ceilings
-♿ Step 5: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing
-• Labeling: Some jurisdictions require mold hazard signage or maintenance logs
-• IBU Local Codes: May mandate quarterly inspections, moisture sensors, or integrated ventilation systems
-⚒️ Step 6: IRC Compliance
-• Ventilation: Required in all bathrooms (IRC R303.3)
-• Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
-• Caulking & Grout: Must be intact to prevent water intrusion`
+•	Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
+•	Check ventilation:
+o	Confirm exhaust fan is functional (IRC R303.3)
+o	If no fan, ensure an operable window is present
+• 	Condensation: Look for moisture buildup on mirrors, walls, or ceilings
+♿ Step 5: Sanitation-IBC Chapter 29
+Proper plumbing
+Proper drainage
+No unsanitary conditions
+Mold caused by plumbing leaks is cited under sanitation failures (Plumbing), not mold.                   ⚒️ Step 6: IRC Compliance
+•	Ventilation: Required in all bathrooms (IRC R303.3)
+•	Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
+•	Caulking & Grout: Must be intact to prevent water intrusion
+
+`
         },
         {
             id: 'bath_mold_4',
@@ -359,24 +370,26 @@ NSPIRE evaluates total cumulative area across the room, not just isolated patche
             points: '5.5/n',
             code: 'BATH-MOLD-04',
             codeReference: `🧭 Step 1: Prepare for Inspection
-• Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
+•	Focus Areas: Walls, ceilings, grout lines, caulking, under sinks, behind toilets, and around tubs/showers
 🔍 Step 2: Visual Identification
 Mold-like substances include irregular patches or spots that may be white, green, yellow, gray, brown, or black. They may appear fuzzy, cottony, slimy, or dusty.
 📏 Step 3: Measure Affected Area
 NSPIRE evaluates total cumulative area across the room, not just isolated patches
 🧪 Step 4: Moisture Source Check
-• Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
-• Check ventilation: Confirm exhaust fan is functional (IRC R303.3)
-• If no fan, ensure an operable window is present
-• Condensation: Look for moisture buildup on mirrors, walls, or ceilings
-♿ Step 5: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or invasive probing
-• Labeling: Some jurisdictions require mold hazard signage or maintenance logs
-• IBU Local Codes: May mandate quarterly inspections, moisture sensors, or integrated ventilation systems
-⚒️ Step 6: IRC Compliance
-• Ventilation: Required in all bathrooms (IRC R303.3)
-• Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
-• Caulking & Grout: Must be intact to prevent water intrusion`
+•	Inspect for leaks: Around faucets, showerheads, toilet bases, and under sinks
+•	Check ventilation:
+o	Confirm exhaust fan is functional (IRC R303.3)
+o	If no fan, ensure an operable window is present
+• 	Condensation: Look for moisture buildup on mirrors, walls, or ceilings
+♿ Step 5: Sanitation-IBC Chapter 29
+Proper plumbing
+Proper drainage
+No unsanitary conditions
+Mold caused by plumbing leaks is cited under sanitation failures (Plumbing), not mold.                   ⚒️ Step 6: IRC Compliance
+•	Ventilation: Required in all bathrooms (IRC R303.3)
+•	Moisture Protection: Bathtub/shower walls must be moisture-resistant (IRC R702.4.2)
+•	Caulking & Grout: Must be intact to prevent water intrusion
+`
         }
     ]
 };
@@ -394,26 +407,26 @@ export const BATHROOM_SINK: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-SINK-01',
             codeReference: `🧭 Step 1: Identify Sink Type & Location
-• Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
-• Components: Faucet, handles, drain, stopper, supply lines, overflow
-• Required: Every residential unit bathroom must contain at least one operable sink.
+• 	Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
+• 	Components: Faucet, handles, drain, stopper, supply lines, overflow
+• 	Required: Every residential unit bathroom must contain at least one operable sink.
 🔍 Step 2: Visual Condition, Cleanability & Sanitation
-• Surface condition: Must be free of mold, grime, or pest attractants.
-• Odor check: Foul smells may indicate hidden moisture or drainage issues.
+• 	Surface condition: Must be free of mold, grime, or pest attractants.
+• 	Odor check: Foul smells may indicate hidden moisture or drainage issues.
 🧪 Step 3: Functional Testing
-• Run Hot & Cold Water: Confirm activation and temperature control
-• Fill Basin: Engage stopper and observe water retention
-• Drain Test: Release stopper and confirm full drainage within 60 seconds
-• Leak Check: Inspect under sink for dripping or pooling water
-📏 Step 4: Accessibility & Local Requirement
-• Clear Floor Space: Minimum 30"x48" in front of sink
-• Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
-• Reach Range: Controls must be within 15"–48" AFF
+• 	Run Hot & Cold Water: Confirm activation and temperature control
+• 	Fill Basin: Engage stopper and observe water retention
+• 	Drain Test: Release stopper and confirm full drainage within 60 seconds
+• 	Leak Check: Inspect under sink for dripping or pooling water
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Clear Floor Space: Minimum 30"x48" in front of sink
+• 	Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
+• 	Reach Range: Controls must be within 15"–48" AFF
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm connection to approved potable source (IRC P2902)
-• Drainage: Must connect to sanitary system (IRC P2711)
-• Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
-• IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination`
+• 	Water Supply: Confirm connection to approved potable source (IRC P2902)
+• 	Drainage: Must connect to sanitary system (IRC P2711)
+• 	Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
+• 	IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination                                                                `
         },
         {
             id: 'bath_sink_2',
@@ -425,26 +438,26 @@ export const BATHROOM_SINK: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-SINK-02',
             codeReference: `🧭 Step 1: Identify Sink Type & Location
-• Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
-• Components: Faucet, handles, drain, stopper, supply lines, overflow
-• Required: Every residential unit bathroom must contain at least one operable sink.
+• 	Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
+• 	Components: Faucet, handles, drain, stopper, supply lines, overflow
+• 	Required: Every residential unit bathroom must contain at least one operable sink.
 🔍 Step 2: Visual Condition, Cleanability & Sanitation
-• Surface condition: Must be free of mold, grime, or pest attractants.
-• Odor check: Foul smells may indicate hidden moisture or drainage issues.
+• 	Surface condition: Must be free of mold, grime, or pest attractants.
+• 	Odor check: Foul smells may indicate hidden moisture or drainage issues.
 🧪 Step 3: Functional Testing
-• Run Hot & Cold Water: Confirm activation and temperature control
-• Fill Basin: Engage stopper and observe water retention
-• Drain Test: Release stopper and confirm full drainage within 60 seconds
-• Leak Check: Inspect under sink for dripping or pooling water
-📏 Step 4: Accessibility & Local Requirement
-• Clear Floor Space: Minimum 30"x48" in front of sink
-• Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
-• Reach Range: Controls must be within 15"–48" AFF
+• 	Run Hot & Cold Water: Confirm activation and temperature control
+• 	Fill Basin: Engage stopper and observe water retention
+• 	Drain Test: Release stopper and confirm full drainage within 60 seconds
+• 	Leak Check: Inspect under sink for dripping or pooling water
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Clear Floor Space: Minimum 30"x48" in front of sink
+• 	Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
+• 	Reach Range: Controls must be within 15"–48" AFF
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm connection to approved potable source (IRC P2902)
-• Drainage: Must connect to sanitary system (IRC P2711)
-• Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
-• IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination`
+• 	Water Supply: Confirm connection to approved potable source (IRC P2902)
+• 	Drainage: Must connect to sanitary system (IRC P2711)
+• 	Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
+• 	IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination                                                                `
         },
         {
             id: 'bath_sink_3',
@@ -456,26 +469,26 @@ export const BATHROOM_SINK: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-SINK-03',
             codeReference: `🧭 Step 1: Identify Sink Type & Location
-• Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
-• Components: Faucet, handles, drain, stopper, supply lines, overflow
-• Required: Every residential unit bathroom must contain at least one operable sink.
+• 	Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
+• 	Components: Faucet, handles, drain, stopper, supply lines, overflow
+• 	Required: Every residential unit bathroom must contain at least one operable sink.
 🔍 Step 2: Visual Condition, Cleanability & Sanitation
-• Surface condition: Must be free of mold, grime, or pest attractants.
-• Odor check: Foul smells may indicate hidden moisture or drainage issues.
+• 	Surface condition: Must be free of mold, grime, or pest attractants.
+• 	Odor check: Foul smells may indicate hidden moisture or drainage issues.
 🧪 Step 3: Functional Testing
-• Run Hot & Cold Water: Confirm activation and temperature control
-• Fill Basin: Engage stopper and observe water retention
-• Drain Test: Release stopper and confirm full drainage within 60 seconds
-• Leak Check: Inspect under sink for dripping or pooling water
-📏 Step 4: Accessibility & Local Requirement
-• Clear Floor Space: Minimum 30"x48" in front of sink
-• Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
-• Reach Range: Controls must be within 15"–48" AFF
+• 	Run Hot & Cold Water: Confirm activation and temperature control
+• 	Fill Basin: Engage stopper and observe water retention
+• 	Drain Test: Release stopper and confirm full drainage within 60 seconds
+• 	Leak Check: Inspect under sink for dripping or pooling water
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Clear Floor Space: Minimum 30"x48" in front of sink
+• 	Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
+• 	Reach Range: Controls must be within 15"–48" AFF
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm connection to approved potable source (IRC P2902)
-• Drainage: Must connect to sanitary system (IRC P2711)
-• Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
-• IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination`
+• 	Water Supply: Confirm connection to approved potable source (IRC P2902)
+• 	Drainage: Must connect to sanitary system (IRC P2711)
+• 	Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
+• 	IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination                                                                `
         },
         {
             id: 'bath_sink_4',
@@ -487,26 +500,26 @@ export const BATHROOM_SINK: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-SINK-04',
             codeReference: `🧭 Step 1: Identify Sink Type & Location
-• Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
-• Components: Faucet, handles, drain, stopper, supply lines, overflow
-• Required: Every residential unit bathroom must contain at least one operable sink.
+• 	Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
+• 	Components: Faucet, handles, drain, stopper, supply lines, overflow
+• 	Required: Every residential unit bathroom must contain at least one operable sink.
 🔍 Step 2: Visual Condition, Cleanability & Sanitation
-• Surface condition: Must be free of mold, grime, or pest attractants.
-• Odor check: Foul smells may indicate hidden moisture or drainage issues.
+• 	Surface condition: Must be free of mold, grime, or pest attractants.
+• 	Odor check: Foul smells may indicate hidden moisture or drainage issues.
 🧪 Step 3: Functional Testing
-• Run Hot & Cold Water: Confirm activation and temperature control
-• Fill Basin: Engage stopper and observe water retention
-• Drain Test: Release stopper and confirm full drainage within 60 seconds
-• Leak Check: Inspect under sink for dripping or pooling water
-📏 Step 4: Accessibility & Local Requirement
-• Clear Floor Space: Minimum 30"x48" in front of sink
-• Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
-• Reach Range: Controls must be within 15"–48" AFF
+• 	Run Hot & Cold Water: Confirm activation and temperature control
+• 	Fill Basin: Engage stopper and observe water retention
+• 	Drain Test: Release stopper and confirm full drainage within 60 seconds
+• 	Leak Check: Inspect under sink for dripping or pooling water
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Clear Floor Space: Minimum 30"x48" in front of sink
+• 	Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
+• 	Reach Range: Controls must be within 15"–48" AFF
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm connection to approved potable source (IRC P2902)
-• Drainage: Must connect to sanitary system (IRC P2711)
-• Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
-• IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination`
+• 	Water Supply: Confirm connection to approved potable source (IRC P2902)
+• 	Drainage: Must connect to sanitary system (IRC P2711)
+• 	Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
+• 	IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination                                                                `
         },
         {
             id: 'bath_sink_5',
@@ -518,26 +531,26 @@ export const BATHROOM_SINK: InsideSubcategory = {
             points: '2.40/n',
             code: 'BATH-SINK-05',
             codeReference: `🧭 Step 1: Identify Sink Type & Location
-• Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
-• Components: Faucet, handles, drain, stopper, supply lines, overflow
-• Required: Every residential unit bathroom must contain at least one operable sink.
+• 	Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
+• 	Components: Faucet, handles, drain, stopper, supply lines, overflow
+• 	Required: Every residential unit bathroom must contain at least one operable sink.
 🔍 Step 2: Visual Condition, Cleanability & Sanitation
-• Surface condition: Must be free of mold, grime, or pest attractants.
-• Odor check: Foul smells may indicate hidden moisture or drainage issues.
+• 	Surface condition: Must be free of mold, grime, or pest attractants.
+• 	Odor check: Foul smells may indicate hidden moisture or drainage issues.
 🧪 Step 3: Functional Testing
-• Run Hot & Cold Water: Confirm activation and temperature control
-• Fill Basin: Engage stopper and observe water retention
-• Drain Test: Release stopper and confirm full drainage within 60 seconds
-• Leak Check: Inspect under sink for dripping or pooling water
-📏 Step 4: Accessibility & Local Requirement
-• Clear Floor Space: Minimum 30"x48" in front of sink
-• Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
-• Reach Range: Controls must be within 15"–48" AFF
+• 	Run Hot & Cold Water: Confirm activation and temperature control
+• 	Fill Basin: Engage stopper and observe water retention
+• 	Drain Test: Release stopper and confirm full drainage within 60 seconds
+• 	Leak Check: Inspect under sink for dripping or pooling water
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Clear Floor Space: Minimum 30"x48" in front of sink
+• 	Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
+• 	Reach Range: Controls must be within 15"–48" AFF
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm connection to approved potable source (IRC P2902)
-• Drainage: Must connect to sanitary system (IRC P2711)
-• Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
-• IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination`
+• 	Water Supply: Confirm connection to approved potable source (IRC P2902)
+• 	Drainage: Must connect to sanitary system (IRC P2711)
+• 	Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
+• 	IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination                                                                `
         },
         {
             id: 'bath_sink_6',
@@ -549,26 +562,26 @@ export const BATHROOM_SINK: InsideSubcategory = {
             points: '2.40/n',
             code: 'BATH-SINK-06',
             codeReference: `🧭 Step 1: Identify Sink Type & Location
-• Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
-• Components: Faucet, handles, drain, stopper, supply lines, overflow
-• Required: Every residential unit bathroom must contain at least one operable sink.
+• 	Fixed Basin: Wall-mounted, pedestal, or vanity-integrated
+• 	Components: Faucet, handles, drain, stopper, supply lines, overflow
+• 	Required: Every residential unit bathroom must contain at least one operable sink.
 🔍 Step 2: Visual Condition, Cleanability & Sanitation
-• Surface condition: Must be free of mold, grime, or pest attractants.
-• Odor check: Foul smells may indicate hidden moisture or drainage issues.
+• 	Surface condition: Must be free of mold, grime, or pest attractants.
+• 	Odor check: Foul smells may indicate hidden moisture or drainage issues.
 🧪 Step 3: Functional Testing
-• Run Hot & Cold Water: Confirm activation and temperature control
-• Fill Basin: Engage stopper and observe water retention
-• Drain Test: Release stopper and confirm full drainage within 60 seconds
-• Leak Check: Inspect under sink for dripping or pooling water
-📏 Step 4: Accessibility & Local Requirement
-• Clear Floor Space: Minimum 30"x48" in front of sink
-• Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
-• Reach Range: Controls must be within 15"–48" AFF
+• 	Run Hot & Cold Water: Confirm activation and temperature control
+• 	Fill Basin: Engage stopper and observe water retention
+• 	Drain Test: Release stopper and confirm full drainage within 60 seconds
+• 	Leak Check: Inspect under sink for dripping or pooling water
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Clear Floor Space: Minimum 30"x48" in front of sink
+• 	Knee Clearance: Required under sink for wheelchair users (IBU 606.2)
+• 	Reach Range: Controls must be within 15"–48" AFF
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Confirm connection to approved potable source (IRC P2902)
-• Drainage: Must connect to sanitary system (IRC P2711)
-• Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
-• IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination`
+• 	Water Supply: Confirm connection to approved potable source (IRC P2902)
+• 	Drainage: Must connect to sanitary system (IRC P2711)
+• 	Ventilation: Ensure proper venting to prevent sewer gas (IRC P3101)
+• 	IBU Overlay: May require sealed surfaces, mold-resistant materials, or pest control coordination                                                                `
         }
     ]
 };
@@ -586,24 +599,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TOILET-01',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_2',
@@ -615,24 +630,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TOILET-02',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_3',
@@ -644,24 +661,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '14.8/n',
             code: 'BATH-TOILET-03',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_4',
@@ -673,24 +692,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '30/n',
             code: 'BATH-TOILET-04',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_5',
@@ -702,24 +723,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TOILET-05',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_6',
@@ -731,24 +754,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '2.40/n',
             code: 'BATH-TOILET-06',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_7',
@@ -760,24 +785,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TOILET-07',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         },
         {
             id: 'bath_toilet_8',
@@ -789,24 +816,26 @@ export const BATHROOM_TOILET: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-TOILET-08',
             codeReference: `🧭 Step 1: Identify Toilet Type & Location
-• Location: Bathroom or restroom inside the unit
-• Exclude: Portable toilets or resident-owned bidets unless permanently installed
+• 	Location: Bathroom or restroom inside the unit
+• 	Exclude: Portable toilets or resident-owned bidets unless permanently installed
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have at least one operable toilet.
-• Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
+• 	Required: Every residential unit must have at least one operable toilet.
+• 	Standard Components: Bowl, tank, seat, flush handle, supply line, shut-off valve
 🧪 Step 3: Functional Testing
-• Flush Test: Open the lid and seat; Flush and observe water flow, refill, and shut off
-• Stability Check: Apply gentle pressure to the bowl (e.g., with knee); Confirm it does not move or rock
-• Leak Check: Inspect base and supply line for water pooling or dripping
-📏 Step 4: Accessibility & Local Requirements
-• Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
-• Grab bars: Required in accessible units—must be securely mounted and within reach
-• IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
+• 	Flush Test: • 	Open the lid and seat
+• 	Flush and observe water flow, refill, and shut off
+• 	Stability Check: Apply gentle pressure to the bowl (e.g., with knee)
+• 	Confirm it does not move or rock
+• 	Leak Check: Inspect base and supply line for water pooling or dripping
+📏 Step 4:IBC Chapter 11 – Accessibility (Type A & Type B Units)
+• 	Height: ADA-compliant toilets typically 17–19" AFF (above finished floor)
+• 	Grab bars: Required in accessible units—must be securely mounted and within reach
+• 	IBU Overlay: May require lever-style flush controls, rear clearance, or transfer spacing
 ⚒️ Step 5: IRC Plumbing & Safety Checks
-• Water Supply: Must connect to potable source (IRC P2902)
-• Drainage: Must discharge to approved sanitary system (IRC P3005)
-• Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
-• Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
+• 	Water Supply: Must connect to potable source (IRC P2902)
+• 	Drainage: Must discharge to approved sanitary system (IRC P3005)
+• 	Ventilation: Bathroom must have operable window or exhaust fan (IRC R303.3)
+• 	Seal & Mounting: Toilet must be sealed with wax ring and bolted securely (IRC P2705.1)`
         }
     ]
 };
@@ -824,23 +853,28 @@ export const BATHROOM_VENTILATION: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-VENT-01',
             codeReference: `🧭 Step 1: Identify Ventilation Type
-• Mechanical Ventilation: Exhaust fan ducted to the exterior
-• Natural Ventilation: Operable window
-• Central Ventilation: Passive or motorized system (standard in high-rise buildings)
+• 	Mechanical Ventilation: Exhaust fan ducted to the exterior
+• 	Natural Ventilation: Operable window
+• 	Central Ventilation: Passive or motorized system (standard in high-rise buildings)
 🔍 Step 2: Visual Inspection
-• Check for dust, grease, or debris blocking the grill
+• 	Check for dust, grease, or debris blocking the grill
 🧪 Step 3: Functional Testing
-• Fan Activation: Turn on the switch and listen for the motor; Use tissue test: hold paper near grill to confirm suction
-• Window Test: Open and close the window fully; Confirm it stays open without external support
+• 	Fan Activation:
+• 	Turn on the switch and listen for the motor
+• 	Use tissue test: hold paper near grill to confirm suction
+• 	Window Test:
+• 	Open and close the window fully
+• 	Confirm it stays open without external support
 📏 Step 4: Accessibility & Local Requirement
-• Switch Height: Must be within 15"–48" AFF for accessible units
-• Window Operation: Must be operable with one hand, no tight grasping or twisting
-• Reach Range: Controls must be reachable from a seated position if required
-• IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
+• 	Switch Height: Must be within 15"–48" AFF for accessible units
+• 	Window Operation: Must be operable with one hand, no tight grasping or twisting
+• 	Reach Range: Controls must be reachable from a seated position if required
+• 	IBC Chapter 12 – Interior Environment
 ⚒️ Step 5: IRC Compliance
-• IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or An operable window
-• Fan Ducting: Must terminate outside the building—not into attic or crawlspace
-• Moisture Control: Ventilation must prevent excess humidity and mold risk`
+• 	IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or
+• 	An operable window
+• 	Fan Ducting: Must terminate outside the building—not into attic or crawlspace
+• 	Moisture Control: Ventilation must prevent excess humidity and mold risk`
         },
         {
             id: 'bath_vent_2',
@@ -852,23 +886,28 @@ export const BATHROOM_VENTILATION: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-VENT-02',
             codeReference: `🧭 Step 1: Identify Ventilation Type
-• Mechanical Ventilation: Exhaust fan ducted to the exterior
-• Natural Ventilation: Operable window
-• Central Ventilation: Passive or motorized system (standard in high-rise buildings)
+• 	Mechanical Ventilation: Exhaust fan ducted to the exterior
+• 	Natural Ventilation: Operable window
+• 	Central Ventilation: Passive or motorized system (standard in high-rise buildings)
 🔍 Step 2: Visual Inspection
-• Check for dust, grease, or debris blocking the grill
+• 	Check for dust, grease, or debris blocking the grill
 🧪 Step 3: Functional Testing
-• Fan Activation: Turn on the switch and listen for the motor; Use tissue test: hold paper near grill to confirm suction
-• Window Test: Open and close the window fully; Confirm it stays open without external support
+• 	Fan Activation:
+• 	Turn on the switch and listen for the motor
+• 	Use tissue test: hold paper near grill to confirm suction
+• 	Window Test:
+• 	Open and close the window fully
+• 	Confirm it stays open without external support
 📏 Step 4: Accessibility & Local Requirement
-• Switch Height: Must be within 15"–48" AFF for accessible units
-• Window Operation: Must be operable with one hand, no tight grasping or twisting
-• Reach Range: Controls must be reachable from a seated position if required
-• IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
+• 	Switch Height: Must be within 15"–48" AFF for accessible units
+• 	Window Operation: Must be operable with one hand, no tight grasping or twisting
+• 	Reach Range: Controls must be reachable from a seated position if required
+• 	IBC Chapter 12 – Interior Environment
 ⚒️ Step 5: IRC Compliance
-• IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or An operable window
-• Fan Ducting: Must terminate outside the building—not into attic or crawlspace
-• Moisture Control: Ventilation must prevent excess humidity and mold risk`
+• 	IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or
+• 	An operable window
+• 	Fan Ducting: Must terminate outside the building—not into attic or crawlspace
+• 	Moisture Control: Ventilation must prevent excess humidity and mold risk`
         },
         {
             id: 'bath_vent_3',
@@ -880,23 +919,28 @@ export const BATHROOM_VENTILATION: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-VENT-03',
             codeReference: `🧭 Step 1: Identify Ventilation Type
-• Mechanical Ventilation: Exhaust fan ducted to the exterior
-• Natural Ventilation: Operable window
-• Central Ventilation: Passive or motorized system (standard in high-rise buildings)
+• 	Mechanical Ventilation: Exhaust fan ducted to the exterior
+• 	Natural Ventilation: Operable window
+• 	Central Ventilation: Passive or motorized system (standard in high-rise buildings)
 🔍 Step 2: Visual Inspection
-• Check for dust, grease, or debris blocking the grill
+• 	Check for dust, grease, or debris blocking the grill
 🧪 Step 3: Functional Testing
-• Fan Activation: Turn on the switch and listen for the motor; Use tissue test: hold paper near grill to confirm suction
-• Window Test: Open and close the window fully; Confirm it stays open without external support
+• 	Fan Activation:
+• 	Turn on the switch and listen for the motor
+• 	Use tissue test: hold paper near grill to confirm suction
+• 	Window Test:
+• 	Open and close the window fully
+• 	Confirm it stays open without external support
 📏 Step 4: Accessibility & Local Requirement
-• Switch Height: Must be within 15"–48" AFF for accessible units
-• Window Operation: Must be operable with one hand, no tight grasping or twisting
-• Reach Range: Controls must be reachable from a seated position if required
-• IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
+• 	Switch Height: Must be within 15"–48" AFF for accessible units
+• 	Window Operation: Must be operable with one hand, no tight grasping or twisting
+• 	Reach Range: Controls must be reachable from a seated position if required
+• 	IBC Chapter 12 – Interior Environment
 ⚒️ Step 5: IRC Compliance
-• IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or An operable window
-• Fan Ducting: Must terminate outside the building—not into attic or crawlspace
-• Moisture Control: Ventilation must prevent excess humidity and mold risk`
+• 	IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or
+• 	An operable window
+• 	Fan Ducting: Must terminate outside the building—not into attic or crawlspace
+• 	Moisture Control: Ventilation must prevent excess humidity and mold risk`
         },
         {
             id: 'bath_vent_4',
@@ -908,23 +952,28 @@ export const BATHROOM_VENTILATION: InsideSubcategory = {
             points: '5.5/n',
             code: 'BATH-VENT-04',
             codeReference: `🧭 Step 1: Identify Ventilation Type
-• Mechanical Ventilation: Exhaust fan ducted to the exterior
-• Natural Ventilation: Operable window
-• Central Ventilation: Passive or motorized system (standard in high-rise buildings)
+• 	Mechanical Ventilation: Exhaust fan ducted to the exterior
+• 	Natural Ventilation: Operable window
+• 	Central Ventilation: Passive or motorized system (standard in high-rise buildings)
 🔍 Step 2: Visual Inspection
-• Check for dust, grease, or debris blocking the grill
+• 	Check for dust, grease, or debris blocking the grill
 🧪 Step 3: Functional Testing
-• Fan Activation: Turn on the switch and listen for the motor; Use tissue test: hold paper near grill to confirm suction
-• Window Test: Open and close the window fully; Confirm it stays open without external support
+• 	Fan Activation:
+• 	Turn on the switch and listen for the motor
+• 	Use tissue test: hold paper near grill to confirm suction
+• 	Window Test:
+• 	Open and close the window fully
+• 	Confirm it stays open without external support
 📏 Step 4: Accessibility & Local Requirement
-• Switch Height: Must be within 15"–48" AFF for accessible units
-• Window Operation: Must be operable with one hand, no tight grasping or twisting
-• Reach Range: Controls must be reachable from a seated position if required
-• IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
+• 	Switch Height: Must be within 15"–48" AFF for accessible units
+• 	Window Operation: Must be operable with one hand, no tight grasping or twisting
+• 	Reach Range: Controls must be reachable from a seated position if required
+• 	IBC Chapter 12 – Interior Environment
 ⚒️ Step 5: IRC Compliance
-• IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or An operable window
-• Fan Ducting: Must terminate outside the building—not into attic or crawlspace
-• Moisture Control: Ventilation must prevent excess humidity and mold risk`
+• 	IRC R303.3: Bathrooms must have either: A mechanical exhaust fan vented to the outdoors, or
+• 	An operable window
+• 	Fan Ducting: Must terminate outside the building—not into attic or crawlspace
+• 	Moisture Control: Ventilation must prevent excess humidity and mold risk`
         }
     ]
 };
@@ -958,26 +1007,26 @@ export const CABINETS_STORAGE_DEFICIENCIES: InsideItemDeficiencies = {
             points: '5.5/n',
             code: 'CAB-01',
             codeReference: `🧭 Step 1: Identify Storage Areas to Inspect
-• Kitchen Cabinets: Wall-mounted and base units
-• Pantry: Built-in or closet-style food storage
-• Laundry Cabinets: Overhead or base cabinets near washer/dryer
-• Exclude: Freestanding furniture or resident-owned storage unless permanently installed
-🔍 Step 2: Presence & Identification
-• Required if: The space is designated for kitchen or bathroom use.
-• Cabinet types: Wall-mounted, base cabinets, vanities, pantry units, and under-sink storage.
-🧪 Step 3: Functionality Test
-• Open and close all doors and drawers—confirm smooth operation and full extension.
-• Check shelves for sagging, missing supports, or instability.
-• Hardware: Inspect knobs, handles, hinges, and drawer slides for looseness or failure.
+• 	Kitchen Cabinets: Wall-mounted and base units
+• 	Pantry: Built-in or closet-style food storage
+• 	Laundry Cabinets: Overhead or base cabinets near washer/dryer
+• 	Exclude: Freestanding furniture or resident-owned storage unless permanently installed
+🔍 Step 2:Presence & Identification
+• 	Required if: The space is designated for kitchen or bathroom use.
+• 	Cabinet types: Wall-mounted, base cabinets, vanities, pantry units, and under-sink storage.
+🧪 Step 3:  Functionality Test
+• 	Open and close all doors and drawers—confirm smooth operation and full extension.
+• 	Check shelves for sagging, missing supports, or instability.
+• 	Hardware: Inspect knobs, handles, hinges, and drawer slides for looseness or failure.
 📏 Step 4: Accessibility & Local Requirements
-• Reach range: Shelves and handles should be within ADA-compliant height (typically 15–48" AFF)
-• Clearance: Doors and drawers must not obstruct egress or accessible paths
-• IBU Overlay: May require rounded edges, soft-close hardware, or tactile indicators in elderly housing
+• 	Reach range: Shelves and handles should be within ADA-compliant height (typically 15–48" AFF)
+• 	Clearance: Doors and drawers must not obstruct egress or accessible paths
+• 	IBC Chapter 11 – Accessibility (Only when applicable)
 ⚒️ Step 5: Installation & Safety (IRC)
-• Secure Mounting: Cabinets must be anchored to wall studs (IRC R602.3)
-• NSPIRE Cabinet Standard v3.0 – NSPIRE Protocol Guide
-• IBU overlays – Local habitability, accessibility, and sanitation codes
-• No Electrical Obstruction: Cabinets must not block outlets, switches, or ventilation`
+• 	Secure Mounting: Cabinets must be anchored to wall studs (IRC R602.3)
+• 	IBC 1103.14 – Storage Facilities
+• 	When storage facilities are provided,
+• 	No Electrical Obstruction: Cabinets must not block outlets, switches, or ventilation`
         },
         {
             id: 'cab_2',
@@ -989,26 +1038,26 @@ export const CABINETS_STORAGE_DEFICIENCIES: InsideItemDeficiencies = {
             points: '5.5/n',
             code: 'CAB-02',
             codeReference: `🧭 Step 1: Identify Storage Areas to Inspect
-• Kitchen Cabinets: Wall-mounted and base units
-• Pantry: Built-in or closet-style food storage
-• Laundry Cabinets: Overhead or base cabinets near washer/dryer
-• Exclude: Freestanding furniture or resident-owned storage unless permanently installed
-🔍 Step 2: Presence & Identification
-• Required if: The space is designated for kitchen or bathroom use.
-• Cabinet types: Wall-mounted, base cabinets, vanities, pantry units, and under-sink storage.
-🧪 Step 3: Functionality Test
-• Open and close all doors and drawers—confirm smooth operation and full extension.
-• Check shelves for sagging, missing supports, or instability.
-• Hardware: Inspect knobs, handles, hinges, and drawer slides for looseness or failure.
+• 	Kitchen Cabinets: Wall-mounted and base units
+• 	Pantry: Built-in or closet-style food storage
+• 	Laundry Cabinets: Overhead or base cabinets near washer/dryer
+• 	Exclude: Freestanding furniture or resident-owned storage unless permanently installed
+🔍 Step 2:Presence & Identification
+• 	Required if: The space is designated for kitchen or bathroom use.
+• 	Cabinet types: Wall-mounted, base cabinets, vanities, pantry units, and under-sink storage.
+🧪 Step 3:  Functionality Test
+• 	Open and close all doors and drawers—confirm smooth operation and full extension.
+• 	Check shelves for sagging, missing supports, or instability.
+• 	Hardware: Inspect knobs, handles, hinges, and drawer slides for looseness or failure.
 📏 Step 4: Accessibility & Local Requirements
-• Reach range: Shelves and handles should be within ADA-compliant height (typically 15–48" AFF)
-• Clearance: Doors and drawers must not obstruct egress or accessible paths
-• IBU Overlay: May require rounded edges, soft-close hardware, or tactile indicators in elderly housing
+• 	Reach range: Shelves and handles should be within ADA-compliant height (typically 15–48" AFF)
+• 	Clearance: Doors and drawers must not obstruct egress or accessible paths
+• 	IBC Chapter 11 – Accessibility (Only when applicable)
 ⚒️ Step 5: Installation & Safety (IRC)
-• Secure Mounting: Cabinets must be anchored to wall studs (IRC R602.3)
-• NSPIRE Cabinet Standard v3.0 – NSPIRE Protocol Guide
-• IBU overlays – Local habitability, accessibility, and sanitation codes
-• No Electrical Obstruction: Cabinets must not block outlets, switches, or ventilation`
+• 	Secure Mounting: Cabinets must be anchored to wall studs (IRC R602.3)
+• 	IBC 1103.14 – Storage Facilities
+• 	When storage facilities are provided,
+• 	No Electrical Obstruction: Cabinets must not block outlets, switches, or ventilation`
         }
     ]
 };
@@ -1029,25 +1078,25 @@ export const CALL_FOR_AID_DEFICIENCIES: InsideItemDeficiencies = {
             points: '60/50xn',
             code: 'CFA-01',
             codeReference: `🧭 Step 1: Presence & Identification
-• NSPIRE does not mandate Call-For-Aid systems, but if present, they must be functional and accessible.
-• Valid locations: Bathrooms, bedrooms, and hallways.
-• System types: Pull cords, wall-mounted buttons, annunciator panels, audible alarms, and visual indicators.
-• Exclusions: Personal wearable devices
+• 	 NSPIRE does not mandate Call-For-Aid systems, but if present, they must be functional and accessible.
+• 	Valid locations: Bathrooms, bedrooms, and hallways.
+• 	System types: Pull cords, wall-mounted buttons, annunciator panels, audible alarms, and visual indicators.
+• 	Exclusions: Personal wearable devices 
 🔍 Step 2: Visual Accessibility
-• Pull cord, Wall-mounted button, Annunciator panel, Audible alarm or flashing light
+• 	Pull cord, Wall-mounted button, Annunciator panel, Audible alarm or flashing light
 🧪 Step 3: Operability Test
-• Activation: Gently pull the cord or press the button—confirm the system triggers an audible and/or visual alert.
-• Response check: Verify that the signal reaches the annunciator panel or designated alert system.
-• NSPIRE Deficiency: System does not function properly = Life-threatening
-• IBU Overlay: May require integration with on-site staff alert systems or third-party monitoring
+• 	Activation: Gently pull the cord or press the button—confirm the system triggers an audible and/or visual alert.
+• 	Response check: Verify that the signal reaches the annunciator panel or designated alert system.
+• 	NSPIRE Deficiency: System does not function properly = Life-threatening
+• 	When Call‑for‑Aid IS Required (IBC Scoping)IBC 420.7 – Group I‑1 Condition 2, 24‑hour monitoring
 📏 Step 4: Accessibility & Mounting Height
-• Pull cord height: The end of the cord must be ≤6 inches above the finished floor.
-• NSPIRE Deficiency 1: If the cord is missing or mounted too high = Moderate
-• IBU Overlay: May require dual-height activation points for seated and standing users
+• 	Pull cord height: The end of the cord must be ≤6 inches above the finished floor.
+• 	NSPIRE Deficiency 1: If the cord is missing or mounted too high = Moderate
+• 	IBU Overlay: May require dual-height activation points for seated and standing users
 ⚡ Step 5: IRC Electrical Safety
-• Wiring: Must be enclosed and compliant with IRC Chapter E3900
-• Power Source: Confirm backup power or battery if system is hardwired
-• No exposed conductors: Any exposed wiring is a code violation`
+• 	Wiring: Must be enclosed and compliant with IRC Chapter E3900
+• 	Power Source: Confirm backup power or battery if system is hardwired
+• 	No exposed conductors: Any exposed wiring is a code violation`
         },
         {
             id: 'cfa_2',
@@ -1059,25 +1108,25 @@ export const CALL_FOR_AID_DEFICIENCIES: InsideItemDeficiencies = {
             points: '14.8/50xn',
             code: 'CFA-02',
             codeReference: `🧭 Step 1: Presence & Identification
-• NSPIRE does not mandate Call-For-Aid systems, but if present, they must be functional and accessible.
-• Valid locations: Bathrooms, bedrooms, and hallways.
-• System types: Pull cords, wall-mounted buttons, annunciator panels, audible alarms, and visual indicators.
-• Exclusions: Personal wearable devices
+• 	 NSPIRE does not mandate Call-For-Aid systems, but if present, they must be functional and accessible.
+• 	Valid locations: Bathrooms, bedrooms, and hallways.
+• 	System types: Pull cords, wall-mounted buttons, annunciator panels, audible alarms, and visual indicators.
+• 	Exclusions: Personal wearable devices 
 🔍 Step 2: Visual Accessibility
-• Pull cord, Wall-mounted button, Annunciator panel, Audible alarm or flashing light
+• 	Pull cord, Wall-mounted button, Annunciator panel, Audible alarm or flashing light
 🧪 Step 3: Operability Test
-• Activation: Gently pull the cord or press the button—confirm the system triggers an audible and/or visual alert.
-• Response check: Verify that the signal reaches the annunciator panel or designated alert system.
-• NSPIRE Deficiency: System does not function properly = Life-threatening
-• IBU Overlay: May require integration with on-site staff alert systems or third-party monitoring
+• 	Activation: Gently pull the cord or press the button—confirm the system triggers an audible and/or visual alert.
+• 	Response check: Verify that the signal reaches the annunciator panel or designated alert system.
+• 	NSPIRE Deficiency: System does not function properly = Life-threatening
+• 	When Call‑for‑Aid IS Required (IBC Scoping)IBC 420.7 – Group I‑1 Condition 2, 24‑hour monitoring
 📏 Step 4: Accessibility & Mounting Height
-• Pull cord height: The end of the cord must be ≤6 inches above the finished floor.
-• NSPIRE Deficiency 1: If the cord is missing or mounted too high = Moderate
-• IBU Overlay: May require dual-height activation points for seated and standing users
+• 	Pull cord height: The end of the cord must be ≤6 inches above the finished floor.
+• 	NSPIRE Deficiency 1: If the cord is missing or mounted too high = Moderate
+• 	IBU Overlay: May require dual-height activation points for seated and standing users
 ⚡ Step 5: IRC Electrical Safety
-• Wiring: Must be enclosed and compliant with IRC Chapter E3900
-• Power Source: Confirm backup power or battery if system is hardwired
-• No exposed conductors: Any exposed wiring is a code violation`
+• 	Wiring: Must be enclosed and compliant with IRC Chapter E3900
+• 	Power Source: Confirm backup power or battery if system is hardwired
+• 	No exposed conductors: Any exposed wiring is a code violation`
         }
     ]
 };
@@ -1098,26 +1147,28 @@ export const CARBON_MONOXIDE_DEFICIENCIES: InsideItemDeficiencies = {
             points: '0.000',
             code: 'CO-01',
             codeReference: `🧭 Step 1: Location Requirements
-• IRC and NSPIRE require alarms to be installed outside each sleeping area and on each level of the unit
-• In the immediate vicinity of each sleeping area
-• Inside each bedroom if it contains or is adjacent to a fuel-burning source
-• In the room with the first duct register if served by a remote furnace
-• On the ceiling of any room containing a fuel-burning appliance
-• IBU Overlay: May require CO alarms in hallways, near garages, or in mechanical rooms
-🔍 Step 2: Obstruction & Visibility
-• Mounting height: Typically 5–6 feet AFF (above finished floor) unless manufacturer specifies otherwise
-• Obstruction check: Alarm must not be blocked by furniture, drapes, or fixtures, etc.
-Step 3: Functional Testing
-- Press Test Button: Confirm audible alarm sounds; If a visual alarm is required (e.g., for hearing-impaired residents), confirm strobe or display activates
-- Battery Check: If battery-powered, confirm battery is present and not expired
+• 	IRC and NSPIRE require alarms to be installed outside each sleeping area and on each level of the unit
+• 	In the immediate vicinity of each sleeping area
+• 	Inside each bedroom if it contains or is adjacent to a fuel-burning source
+• 	In the room with the first duct register if served by a remote furnace
+• 	On the ceiling of any room containing a fuel-burning appliance
+• 	IBC 915.2 – Location Requirements
+ unit.🔍 Step 2:Obstruction & Visibility
+• 	Mounting height: Typically 5–6 feet AFF (above finished floor) unless manufacturer specifies otherwise
+• 	Obstruction check: Alarm must not be blocked by furniture, drapes, or fixtures, etc. 
+ Step 3: Functional Testing
+- Press Test Button:
+- Confirm audible alarm sounds
+- If a visual alarm is required (e.g., for hearing-impaired residents), confirm strobe or display activates
+- Battery Check:  If battery-powered, confirm battery is present and not expired
 - Hardwired Units: Confirm backup battery is installed and functional
 NSPIRE cites non-functional alarms as a life-threatening deficiency requiring correction within 24 hours
 📏 Step 4: Accessibility & Local Requirement
 - Mounting Height: Typically 5–6 feet AFF (above finished floor) for visibility and access
 - Reach Range: Must be operable within 15"–48" AFF in accessible units
-- IBU Overlay: May require UL 2034 compliance, multilingual signage, or integration with building-wide alert systems
-⚒️ Step 5: IRC Installation & Safety
-- IRC Section R315: CO alarms must be listed to UL 2034`
+-IBU Overlay: May require UL 2034 compliance, multilingual signage, or integration with building-wide alert systems ⚒️ Step 5: IRC Installation & Safety
+- IRC Section R315:  CO alarms must be listed to UL 2034
+`
         },
         {
             id: 'co_2',
@@ -1129,26 +1180,28 @@ NSPIRE cites non-functional alarms as a life-threatening deficiency requiring co
             points: '0.000',
             code: 'CO-02',
             codeReference: `🧭 Step 1: Location Requirements
-• IRC and NSPIRE require alarms to be installed outside each sleeping area and on each level of the unit
-• In the immediate vicinity of each sleeping area
-• Inside each bedroom if it contains or is adjacent to a fuel-burning source
-• In the room with the first duct register if served by a remote furnace
-• On the ceiling of any room containing a fuel-burning appliance
-• IBU Overlay: May require CO alarms in hallways, near garages, or in mechanical rooms
-🔍 Step 2: Obstruction & Visibility
-• Mounting height: Typically 5–6 feet AFF (above finished floor) unless manufacturer specifies otherwise
-• Obstruction check: Alarm must not be blocked by furniture, drapes, or fixtures, etc.
-Step 3: Functional Testing
-- Press Test Button: Confirm audible alarm sounds; If a visual alarm is required (e.g., for hearing-impaired residents), confirm strobe or display activates
-- Battery Check: If battery-powered, confirm battery is present and not expired
+• 	IRC and NSPIRE require alarms to be installed outside each sleeping area and on each level of the unit
+• 	In the immediate vicinity of each sleeping area
+• 	Inside each bedroom if it contains or is adjacent to a fuel-burning source
+• 	In the room with the first duct register if served by a remote furnace
+• 	On the ceiling of any room containing a fuel-burning appliance
+• 	IBC 915.2 – Location Requirements
+ unit.🔍 Step 2:Obstruction & Visibility
+• 	Mounting height: Typically 5–6 feet AFF (above finished floor) unless manufacturer specifies otherwise
+• 	Obstruction check: Alarm must not be blocked by furniture, drapes, or fixtures, etc. 
+ Step 3: Functional Testing
+- Press Test Button:
+- Confirm audible alarm sounds
+- If a visual alarm is required (e.g., for hearing-impaired residents), confirm strobe or display activates
+- Battery Check:  If battery-powered, confirm battery is present and not expired
 - Hardwired Units: Confirm backup battery is installed and functional
 NSPIRE cites non-functional alarms as a life-threatening deficiency requiring correction within 24 hours
 📏 Step 4: Accessibility & Local Requirement
 - Mounting Height: Typically 5–6 feet AFF (above finished floor) for visibility and access
 - Reach Range: Must be operable within 15"–48" AFF in accessible units
-- IBU Overlay: May require UL 2034 compliance, multilingual signage, or integration with building-wide alert systems
-⚒️ Step 5: IRC Installation & Safety
-- IRC Section R315: CO alarms must be listed to UL 2034`
+-IBU Overlay: May require UL 2034 compliance, multilingual signage, or integration with building-wide alert systems ⚒️ Step 5: IRC Installation & Safety
+- IRC Section R315:  CO alarms must be listed to UL 2034
+`
         },
         {
             id: 'co_3',
@@ -1160,26 +1213,28 @@ NSPIRE cites non-functional alarms as a life-threatening deficiency requiring co
             points: '0.000',
             code: 'CO-03',
             codeReference: `🧭 Step 1: Location Requirements
-• IRC and NSPIRE require alarms to be installed outside each sleeping area and on each level of the unit
-• In the immediate vicinity of each sleeping area
-• Inside each bedroom if it contains or is adjacent to a fuel-burning source
-• In the room with the first duct register if served by a remote furnace
-• On the ceiling of any room containing a fuel-burning appliance
-• IBU Overlay: May require CO alarms in hallways, near garages, or in mechanical rooms
-🔍 Step 2: Obstruction & Visibility
-• Mounting height: Typically 5–6 feet AFF (above finished floor) unless manufacturer specifies otherwise
-• Obstruction check: Alarm must not be blocked by furniture, drapes, or fixtures, etc.
-Step 3: Functional Testing
-- Press Test Button: Confirm audible alarm sounds; If a visual alarm is required (e.g., for hearing-impaired residents), confirm strobe or display activates
-- Battery Check: If battery-powered, confirm battery is present and not expired
+• 	IRC and NSPIRE require alarms to be installed outside each sleeping area and on each level of the unit
+• 	In the immediate vicinity of each sleeping area
+• 	Inside each bedroom if it contains or is adjacent to a fuel-burning source
+• 	In the room with the first duct register if served by a remote furnace
+• 	On the ceiling of any room containing a fuel-burning appliance
+• 	IBC 915.2 – Location Requirements
+ unit.🔍 Step 2:Obstruction & Visibility
+• 	Mounting height: Typically 5–6 feet AFF (above finished floor) unless manufacturer specifies otherwise
+• 	Obstruction check: Alarm must not be blocked by furniture, drapes, or fixtures, etc. 
+ Step 3: Functional Testing
+- Press Test Button:
+- Confirm audible alarm sounds
+- If a visual alarm is required (e.g., for hearing-impaired residents), confirm strobe or display activates
+- Battery Check:  If battery-powered, confirm battery is present and not expired
 - Hardwired Units: Confirm backup battery is installed and functional
 NSPIRE cites non-functional alarms as a life-threatening deficiency requiring correction within 24 hours
 📏 Step 4: Accessibility & Local Requirement
 - Mounting Height: Typically 5–6 feet AFF (above finished floor) for visibility and access
 - Reach Range: Must be operable within 15"–48" AFF in accessible units
-- IBU Overlay: May require UL 2034 compliance, multilingual signage, or integration with building-wide alert systems
-⚒️ Step 5: IRC Installation & Safety
-- IRC Section R315: CO alarms must be listed to UL 2034`
+-IBU Overlay: May require UL 2034 compliance, multilingual signage, or integration with building-wide alert systems ⚒️ Step 5: IRC Installation & Safety
+- IRC Section R315:  CO alarms must be listed to UL 2034
+`
         }
     ]
 };
@@ -1200,55 +1255,26 @@ export const CEILING_DEFICIENCIES: InsideItemDeficiencies = {
             points: '14.8/n',
             code: 'CEIL-01',
             codeReference: `🧭 Step 1: Identify Ceiling Type & Location
-• Ceiling type: Drywall, plaster, acoustic tile, concrete, or drop ceiling
-• Areas to Inspect: All rooms, especially bathrooms, kitchens, and utility spaces
-• Include: Lofted ceilings, drop ceilings, and soffits
-• Exclude: Decorative elements unless they affect safety or function
+• 	Ceiling type: Drywall, plaster, acoustic tile, concrete, or drop ceiling
+• 	Areas to Inspect: All rooms, especially bathrooms, kitchens, and utility spaces
+• 	Include: Lofted ceilings, drop ceilings, and soffits
+• 	Exclude: Decorative elements unless they affect safety or function
 🔍 Step 2: Visual Identification & Coverage
-• Scan entire ceiling in living areas, bedrooms, bathrooms, and kitchens
-• Minimum height: IRC requires ≥7′ for habitable spaces (≥6′8″ for bathrooms and hallways)
+• 	Scan entire ceiling in living areas, bedrooms, bathrooms, and kitchens
+• 	Minimum height: IRC requires ≥7′ for habitable spaces (≥6′8″ for bathrooms and hallways)
 🧪 Step 3: Functional Testing (if applicable)
-• Touch Test: Gently press on sagging areas to check for movement or softness
-• Ventilation Check: Ensure ceiling-mounted exhaust fans are functional (especially in bathrooms)
+• 	Touch Test: Gently press on sagging areas to check for movement or softness
+• 	Ventilation Check: Ensure ceiling-mounted exhaust fans are functional (especially in bathrooms)
 📏 Step 4: Accessibility & Local Requirement
-• Ceiling-Mounted Devices (e.g., alarms, fans, lights): Must be operable via accessible controls (15"–48" AFF)
-• IBU Overlay: May require seismic bracing, compliant lighting controls, or visual contrast for low-vision residents
-• Clear Headroom: Minimum 80 inches required in accessible paths
+• 	Ceiling-Mounted Devices (e.g., alarms, fans, lights):
+• 	Must be operable via accessible controls (15"–48" AFF)
+• 	IBU Overlay: May require seismic bracing, compliant lighting controls, or visual contrast for low-vision residents
+• 	Clear Headroom: Minimum 80 inches required in accessible paths
 ⚒️ Step 5: IRC Structural & Safety Checks
-• IRC R702.3: Ceilings must be covered with approved materials (e.g., gypsum board)
-• IRC R703.3: Moisture-resistant materials required in wet areas
-• IRC R302.6: Fire-resistance required between dwelling units and garages
-• IRC P2601: Leaks from above must be repaired and properly drained`
-        },
-        {
-            id: 'ceil_2',
-            name: 'Ceiling has a hole (opens to outside or ≥2 inches diameter)',
-            detail: 'Hole is present that opens directly to the outside environment. OR Hole is present that is 2 inches or greater in diameter.',
-            criteria: 'Opens directly to the outside light regardless of the size or the ceiling has a damaged opening>2".',
-            severity: 'Moderate',
-            repairBy: '30 Day',
-            points: '5.5/n',
-            code: 'CEIL-02',
-            codeReference: `🧭 Step 1: Identify Ceiling Type & Location
-• Ceiling type: Drywall, plaster, acoustic tile, concrete, or drop ceiling
-• Areas to Inspect: All rooms, especially bathrooms, kitchens, and utility spaces
-• Include: Lofted ceilings, drop ceilings, and soffits
-• Exclude: Decorative elements unless they affect safety or function
-🔍 Step 2: Visual Identification & Coverage
-• Scan entire ceiling in living areas, bedrooms, bathrooms, and kitchens
-• Minimum height: IRC requires ≥7′ for habitable spaces (≥6′8″ for bathrooms and hallways)
-🧪 Step 3: Functional Testing (if applicable)
-• Touch Test: Gently press on sagging areas to check for movement or softness
-• Ventilation Check: Ensure ceiling-mounted exhaust fans are functional (especially in bathrooms)
-📏 Step 4: Accessibility & Local Requirement
-• Ceiling-Mounted Devices (e.g., alarms, fans, lights): Must be operable via accessible controls (15"–48" AFF)
-• IBU Overlay: May require seismic bracing, compliant lighting controls, or visual contrast for low-vision residents
-• Clear Headroom: Minimum 80 inches required in accessible paths
-⚒️ Step 5: IRC Structural & Safety Checks
-• IRC R702.3: Ceilings must be covered with approved materials (e.g., gypsum board)
-• IRC R703.3: Moisture-resistant materials required in wet areas
-• IRC R302.6: Fire-resistance required between dwelling units and garages
-• IRC P2601: Leaks from above must be repaired and properly drained`
+• IBC 311.3 (S‑2 Storage), but ceilings in dwelling units are governed by IBC Chapters 12, 8, 7, and 6 
+• 	IRC R703.3: Moisture-resistant materials required in wet areas
+• 	IRC R302.6: Fire-resistance required between dwelling units and garages
+• 	IRC P2601: Leaks from above must be repaired and properly drained`
         },
         {
             id: 'ceil_3',
@@ -1260,25 +1286,26 @@ export const CEILING_DEFICIENCIES: InsideItemDeficiencies = {
             points: '5.5/n',
             code: 'CEIL-03',
             codeReference: `🧭 Step 1: Identify Ceiling Type & Location
-• Ceiling type: Drywall, plaster, acoustic tile, concrete, or drop ceiling
-• Areas to Inspect: All rooms, especially bathrooms, kitchens, and utility spaces
-• Include: Lofted ceilings, drop ceilings, and soffits
-• Exclude: Decorative elements unless they affect safety or function
+• 	Ceiling type: Drywall, plaster, acoustic tile, concrete, or drop ceiling
+• 	Areas to Inspect: All rooms, especially bathrooms, kitchens, and utility spaces
+• 	Include: Lofted ceilings, drop ceilings, and soffits
+• 	Exclude: Decorative elements unless they affect safety or function
 🔍 Step 2: Visual Identification & Coverage
-• Scan entire ceiling in living areas, bedrooms, bathrooms, and kitchens
-• Minimum height: IRC requires ≥7′ for habitable spaces (≥6′8″ for bathrooms and hallways)
+• 	Scan entire ceiling in living areas, bedrooms, bathrooms, and kitchens
+• 	Minimum height: IRC requires ≥7′ for habitable spaces (≥6′8″ for bathrooms and hallways)
 🧪 Step 3: Functional Testing (if applicable)
-• Touch Test: Gently press on sagging areas to check for movement or softness
-• Ventilation Check: Ensure ceiling-mounted exhaust fans are functional (especially in bathrooms)
+• 	Touch Test: Gently press on sagging areas to check for movement or softness
+• 	Ventilation Check: Ensure ceiling-mounted exhaust fans are functional (especially in bathrooms)
 📏 Step 4: Accessibility & Local Requirement
-• Ceiling-Mounted Devices (e.g., alarms, fans, lights): Must be operable via accessible controls (15"–48" AFF)
-• IBU Overlay: May require seismic bracing, compliant lighting controls, or visual contrast for low-vision residents
-• Clear Headroom: Minimum 80 inches required in accessible paths
+• 	Ceiling-Mounted Devices (e.g., alarms, fans, lights):
+• 	Must be operable via accessible controls (15"–48" AFF)
+• 	IBU Overlay: May require seismic bracing, compliant lighting controls, or visual contrast for low-vision residents
+• 	Clear Headroom: Minimum 80 inches required in accessible paths
 ⚒️ Step 5: IRC Structural & Safety Checks
-• IRC R702.3: Ceilings must be covered with approved materials (e.g., gypsum board)
-• IRC R703.3: Moisture-resistant materials required in wet areas
-• IRC R302.6: Fire-resistance required between dwelling units and garages
-• IRC P2601: Leaks from above must be repaired and properly drained`
+• IBC 311.3 (S‑2 Storage), but ceilings in dwelling units are governed by IBC Chapters 12, 8, 7, and 6 
+• 	IRC R703.3: Moisture-resistant materials required in wet areas
+• 	IRC R302.6: Fire-resistance required between dwelling units and garages
+• 	IRC P2601: Leaks from above must be repaired and properly drained`
         }
     ]
 };
@@ -1299,25 +1326,25 @@ export const CHIMNEY_DEFICIENCIES: InsideItemDeficiencies = {
             points: '30/n',
             code: 'CHIM-01',
             codeReference: `🧭 Step 1: Identify Chimney Type & Location
-• Appliance Connection: Confirm chimney is connected to a fireplace, wood-burning stove, or gas appliance
-• Interior Components: Firebox, Flue, Damper, Hearth
-• Exclude: Ventless fireplaces (not scored under NSPIRE)
+• 	Appliance Connection: Confirm chimney is connected to a fireplace, wood-burning stove, or gas appliance
+• 	Interior Components: Firebox, Flue, Damper, Hearth
+• 	Exclude: Ventless fireplaces (not scored under NSPIRE)
 🔍 Step 2: Visual Condition Assessment
-• Check for unsealed penetrations: Around light fixtures, smoke alarms, or HVAC vents
+• 	Check for unsealed penetrations: Around light fixtures, smoke alarms, or HVAC vents
 🧪 Step 3: Functional Testing (if safe and permitted)
-• Damper Operation: Open and close to confirm movement
-• Visual Flue Check: Shine flashlight up flue to check for blockage or daylight
-• Smoke Test: Only performed by certified professionals—NSPIRE does not require this
+• 	Damper Operation: Open and close to confirm movement
+• 	Visual Flue Check: Shine flashlight up flue to check for blockage or daylight
+• 	Smoke Test: Only performed by certified professionals—NSPIRE does not require this
 📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or rooftop access required
-• Labeling: Chimney systems should be clearly marked if serving multiple units
-• IBU Overlay: May require signage, emergency shutoff access, or integration with fire suppression systems
+• 	Inspection access: Must be visual—no disassembly or rooftop access required
+• 	Labeling: Chimney systems should be clearly marked if serving multiple units
+• 	IBU Overlay: May require signage, emergency shutoff access, or integration with fire suppression systems
 ⚒️ Step 5: IRC Structural & Fire Safety Checks
-• IRC R1001–R1005: Chimney must be constructed of approved masonry or metal
-• Flue must be continuous and properly sized
-• Clearance from combustibles must meet code (typically 2 inches)
-• Hearth extension must be noncombustible and appropriately sized
-• IBU overlays – Local fire safety, seismic, and ventilation codes`
+• 	IRC R1001–R1005: Chimney must be constructed of approved masonry or metal
+• 	Flue must be continuous and properly sized
+• 	Clearance from combustibles must meet code (typically 2 inches)
+• 	Hearth extension must be noncombustible and appropriately sized
+• 	IBC Chapter 21 (Masonry), Chapter 18 (Fireplaces), Chapter 14 (Exterior Walls), and the Mechanical Code (IMC).`
         }
     ]
 };
@@ -1342,21 +1369,22 @@ export const CLOTHES_DRYER_DEFICIENCIES: InsideItemDeficiencies = {
 - Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
 - Location: Typically in laundry rooms, closets, or utility spaces
 🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
+• 	Required if: A dryer is installed and positioned for use
 NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
 🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
+- Visual Airflow Check:  Run dryer briefly (if permitted) and observe airflow at exterior vent
+- Lint Inspection:  Check behind the dryer and inside the duct for lint accumulation
+- Secure Connections:  Confirm transition duct is tightly clamped to both dryer and wall outlet
 📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
+• 	Inspection access: Must be visual—no disassembly or appliance movement required
+• 	Labeling: Duct and termination should be identifiable and traceable
+• 	 IBC’s way of saying: Dryers and dryer exhaust systems comply with the International Mechanical Code (IMC)
+
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+• 	IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
+• 	IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
+• 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
+• 	IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
         },
         {
             id: 'dryer_2',
@@ -1372,21 +1400,22 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
 - Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
 - Location: Typically in laundry rooms, closets, or utility spaces
 🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
+• 	Required if: A dryer is installed and positioned for use
 NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
 🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
+- Visual Airflow Check:  Run dryer briefly (if permitted) and observe airflow at exterior vent
+- Lint Inspection:  Check behind the dryer and inside the duct for lint accumulation
+- Secure Connections:  Confirm transition duct is tightly clamped to both dryer and wall outlet
 📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
+• 	Inspection access: Must be visual—no disassembly or appliance movement required
+• 	Labeling: Duct and termination should be identifiable and traceable
+• 	 IBC’s way of saying: Dryers and dryer exhaust systems comply with the International Mechanical Code (IMC)
+
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+• 	IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
+• 	IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
+• 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
+• 	IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
         },
         {
             id: 'dryer_3',
@@ -1402,21 +1431,22 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
 - Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
 - Location: Typically in laundry rooms, closets, or utility spaces
 🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
+• 	Required if: A dryer is installed and positioned for use
 NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
 🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
+- Visual Airflow Check:  Run dryer briefly (if permitted) and observe airflow at exterior vent
+- Lint Inspection:  Check behind the dryer and inside the duct for lint accumulation
+- Secure Connections:  Confirm transition duct is tightly clamped to both dryer and wall outlet
 📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
+• 	Inspection access: Must be visual—no disassembly or appliance movement required
+• 	Labeling: Duct and termination should be identifiable and traceable
+• 	 IBC’s way of saying: Dryers and dryer exhaust systems comply with the International Mechanical Code (IMC)
+
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+• 	IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
+• 	IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
+• 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
+• 	IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
         },
         {
             id: 'dryer_4',
@@ -1432,21 +1462,22 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
 - Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
 - Location: Typically in laundry rooms, closets, or utility spaces
 🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
+• 	Required if: A dryer is installed and positioned for use
 NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
 🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
+- Visual Airflow Check:  Run dryer briefly (if permitted) and observe airflow at exterior vent
+- Lint Inspection:  Check behind the dryer and inside the duct for lint accumulation
+- Secure Connections:  Confirm transition duct is tightly clamped to both dryer and wall outlet
 📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
+• 	Inspection access: Must be visual—no disassembly or appliance movement required
+• 	Labeling: Duct and termination should be identifiable and traceable
+• 	 IBC’s way of saying: Dryers and dryer exhaust systems comply with the International Mechanical Code (IMC)
+
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+• 	IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
+• 	IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
+• 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
+• 	IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
         },
         {
             id: 'dryer_5',
@@ -1462,21 +1493,22 @@ NSPIRE flags restricted airflow or improper materials as high-risk due to fire a
 - Ventilation System: Includes transition duct, rigid ductwork, and exterior vent
 - Location: Typically in laundry rooms, closets, or utility spaces
 🔍 Step 2: Presence & Applicability
-• Required if: A dryer is installed and positioned for use
+• 	Required if: A dryer is installed and positioned for use
 NSPIRE flags restricted airflow or improper materials as high-risk due to fire and carbon monoxide hazards
 🧪 Step 3: Functional Testing
-- Visual Airflow Check: Run dryer briefly (if permitted) and observe airflow at exterior vent
-- Lint Inspection: Check behind the dryer and inside the duct for lint accumulation
-- Secure Connections: Confirm transition duct is tightly clamped to both dryer and wall outlet
+- Visual Airflow Check:  Run dryer briefly (if permitted) and observe airflow at exterior vent
+- Lint Inspection:  Check behind the dryer and inside the duct for lint accumulation
+- Secure Connections:  Confirm transition duct is tightly clamped to both dryer and wall outlet
 📏 Step 4: Accessibility & Local Requirements
-• Inspection access: Must be visual—no disassembly or appliance movement required
-• Labeling: Duct and termination should be identifiable and traceable
-• IBU Overlay: May require compliant controls, multilingual signage, or tamper-resistant covers
+• 	Inspection access: Must be visual—no disassembly or appliance movement required
+• 	Labeling: Duct and termination should be identifiable and traceable
+• 	 IBC’s way of saying: Dryers and dryer exhaust systems comply with the International Mechanical Code (IMC)
+
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
-• IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
-• IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
+• 	IRC M1502.4.1: Exhaust ducts must be metal and smooth-walled
+• 	IRC M1502.3: Ducts must terminate outdoors, not into the attic or crawlspace
+• 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
+• 	IRC M1502.6: Maximum duct length and bends must comply with manufacturer specs`
         }
     ]
 };
@@ -1497,26 +1529,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '30/n',
             code: 'DOOR-ENTRY-01',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_2',
@@ -1528,26 +1560,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '2.40/n',
             code: 'DOOR-ENTRY-02',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_3',
@@ -1559,26 +1591,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-ENTRY-03',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_4',
@@ -1590,26 +1622,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '30/n',
             code: 'DOOR-ENTRY-04',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_5',
@@ -1621,26 +1653,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-ENTRY-05',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_6',
@@ -1652,26 +1684,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-ENTRY-06',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_7',
@@ -1683,26 +1715,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-ENTRY-07',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_8',
@@ -1714,26 +1746,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '14.8/n',
             code: 'DOOR-ENTRY-08',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_9',
@@ -1745,26 +1777,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-ENTRY-09',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         },
         {
             id: 'door_entry_10',
@@ -1776,26 +1808,26 @@ export const DOOR_ENTRY: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-ENTRY-10',
             codeReference: `🧭 Step 1: Sanitation & Weather Protection
-• Inspect for gaps around door edges that allow moisture, drafts, or pests.
-• Check for signs of water intrusion, mold, or rust near the threshold and frame.
-• IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
+• 	Inspect for gaps around door edges that allow moisture, drafts, or pests.
+• 	Check for signs of water intrusion, mold, or rust near the threshold and frame.
+• 	IBU Overlay: May require weather stripping, pest barriers, and sealed thresholds in coastal or high-humidity zones
 🔍 Step 2: Presence & Identification
-• Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
+• 	Required: Every residential unit must have a functional entry door providing access from the exterior or common corridor.
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Lock Test: Engage and disengage locks from both sides (if accessible)
-• Latch Test: Ensure door latches securely when closed
-• Weather Seal Check: Inspect for light gaps or air drafts around edges
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Lock Test: Engage and disengage locks from both sides (if accessible)
+• 	Latch Test: Ensure door latches securely when closed
+• 	Weather Seal Check: Inspect for light gaps or air drafts around edges
 📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or automatic door closers in accessible units
+• 	Clear Width: Minimum 32 inches clear opening when door is open 90°
+• 	Thresholds: ≤½" for accessible routes 
+• 	Hardware: Operable with one hand, no tight grasping or twisting 
+• 	IBC 1010.1.1 – Size of Doors-min width: 32 inches, min height: 80 inches 
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Entry doors must provide safe egress
-• No double-keyed deadbolts on required egress doors
-• IRC R612.3: Exterior doors must be weather-resistant and properly flashed
-• IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
+• 	IRC R311.2–R311.4: Entry doors must provide safe egress
+• 	No double-keyed deadbolts on required egress doors
+• 	IRC R612.3: Exterior doors must be weather-resistant and properly flashed
+• 	IRC R302.5.1: Fire-rated doors required between the garage and dwelling`
         }
     ]
 };
@@ -1812,26 +1844,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'DOOR-FIRE-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         },
         {
             id: 'door_fire_2',
@@ -1842,26 +1878,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'DOOR-FIRE-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         },
         {
             id: 'door_fire_3',
@@ -1872,26 +1912,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'DOOR-FIRE-03',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         },
         {
             id: 'door_fire_4',
@@ -1902,26 +1946,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'DOOR-FIRE-04',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         },
         {
             id: 'door_fire_5',
@@ -1932,26 +1980,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'DOOR-FIRE-05',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         },
         {
             id: 'door_fire_6',
@@ -1962,26 +2014,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '14.8/n',
             code: 'DOOR-FIRE-06',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         },
         {
             id: 'door_fire_7',
@@ -1992,26 +2048,30 @@ export const DOOR_FIRE_LABELED: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'DOOR-FIRE-07',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Required if: Door is part of a passive fire protection system (e.g., between unit and corridor, garage, or stairwell).
-• Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
-🔍 Step 2: Visual Label Location
-• Metal tag or embossed stamp on door edge (near top hinge or top of door)
-• If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
+            codeReference: `🧭 Step 1: 1. Identification & Applicability
+• 	 IBC 716 and NFPA 80: Door is part of a passive fire protection system must 20 minutes fire rated, self closing and self latching between unit and corridor, garage, or stairwell).
+• 	Label location: Fire label or plug typically found on the hinge edge of the door slab or frame.
+🔍 Step 2: Visual Label Location:
+• 	Metal tag or embossed stamp on door edge (near top hinge or top of door)
+• 	If the label is missing but the door appears fire-rated, inspect using NSPIRE fire door standards
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm door opens freely and closes fully
-• Latch Test: Ensure door latches automatically when released
-• Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
-• Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
+• 	Open/Close Test: Confirm door opens freely and closes fully
+• 	Latch Test: Ensure door latches automatically when released
+• 	Self-Closing Test: Open the door halfway and release; it should close and latch without assistance
+• 	Seal Check: Inspect perimeter for intact fire/smoke seals or gaskets
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress
-• Threshold height: doors must have a ≤½″ beveled threshold
-• Handle type: Lever-style preferred for accessibility
-• IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
+• 	Clear width: IRC requires ≥32″ clear opening for egress
+• 	Threshold height: doors must have a ≤½″ beveled threshold
+• 	Handle type: Lever-style preferred for accessibility
+• 	IBU Overlay: May require tactile signage, visual contrast, or audible indicators in accessible units
 ⚒️ Step 5: IRC Fire Safety Requirements
-• IRC R302.5.1: Door between garage and dwelling must be: Solid wood ≥1⅜" thick; Steel door ≥1⅜" thick; Fire-rated for ≥20 minutes
-• IRC R311.2–R311.4: Must allow safe egress
-• No double-keyed deadbolts on egress doors`
+• 	IRC R302.5.1: Door between garage and dwelling must be:
+• 	Solid wood ≥1⅜" thick
+• 	Steel door ≥1⅜" thick
+• 	Fire-rated for ≥20 minutes
+• 	IRC R311.2–R311.4: Must allow safe egress
+• 	No double-keyed deadbolts on egress doors
+`
         }
     ]
 };
@@ -2029,25 +2089,22 @@ export const DOOR_GENERAL: InsideSubcategory = {
             points: '2.40/n',
             code: 'DOOR-GEN-01',
             codeReference: `🧭 Step 1: Identify Door Type & Location
-• General Doors Include:
-• Interior passage doors (bedroom, bathroom, closet, utility)
-• Exterior doors not used as primary entry (e.g., patio, mechanical room)
+• 	General Doors Include:
+• 	Interior passage doors (bedroom, bathroom, closet, utility)
+• 	Exterior doors not used as primary entry (e.g., patio, mechanical room)
 🔍 Step 2: Sanitation & Environmental Control
-• Check for water damage near bathroom or kitchen doors
-• IBU Overlay: May require sealed surfaces, pest barriers, or mold-resistant finishes in high-humidity zones
+• 	Check for water damage near bathroom or kitchen doors
+• 	IBU Overlay: May require sealed surfaces, pest barriers, or mold-resistant finishes in high-humidity zones
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Latch Test: Ensure door latches securely when closed
-• Privacy Check: For bathroom/bedroom doors, confirm locking mechanism works (if present)
-• Swing Clearance: Ensure the door opens fully without obstruction
-📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or soft-close hardware in elderly housing
-⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Doors must allow safe movement between rooms
-• IRC R302.5.1: Doors between garage and dwelling must meet fire separation requirements (if applicable)`
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Latch Test: Ensure door latches securely when closed
+• 	Privacy Check: For bathroom/bedroom doors, confirm locking mechanism works (if present)
+• 	Swing Clearance: Ensure the door opens fully without obstruction
+📏 Step 4: Accessibility, Minimum Door Size (IBC 1010.1.1)
+ 32" clear width (typically 36" leaf)
+80" minimum height                                                                                                                                                  ⚒️ Step 5: IRC Safety & Structural Checks
+• 	IRC R311.2–R311.4: Doors must allow safe movement between rooms
+• 	IRC R302.5.1: Doors between garage and dwelling must meet fire separation requirements (if applicable)`
         },
         {
             id: 'door_gen_2',
@@ -2059,25 +2116,22 @@ export const DOOR_GENERAL: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-GEN-02',
             codeReference: `🧭 Step 1: Identify Door Type & Location
-• General Doors Include:
-• Interior passage doors (bedroom, bathroom, closet, utility)
-• Exterior doors not used as primary entry (e.g., patio, mechanical room)
+• 	General Doors Include:
+• 	Interior passage doors (bedroom, bathroom, closet, utility)
+• 	Exterior doors not used as primary entry (e.g., patio, mechanical room)
 🔍 Step 2: Sanitation & Environmental Control
-• Check for water damage near bathroom or kitchen doors
-• IBU Overlay: May require sealed surfaces, pest barriers, or mold-resistant finishes in high-humidity zones
+• 	Check for water damage near bathroom or kitchen doors
+• 	IBU Overlay: May require sealed surfaces, pest barriers, or mold-resistant finishes in high-humidity zones
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Latch Test: Ensure door latches securely when closed
-• Privacy Check: For bathroom/bedroom doors, confirm locking mechanism works (if present)
-• Swing Clearance: Ensure the door opens fully without obstruction
-📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or soft-close hardware in elderly housing
-⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Doors must allow safe movement between rooms
-• IRC R302.5.1: Doors between garage and dwelling must meet fire separation requirements (if applicable)`
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Latch Test: Ensure door latches securely when closed
+• 	Privacy Check: For bathroom/bedroom doors, confirm locking mechanism works (if present)
+• 	Swing Clearance: Ensure the door opens fully without obstruction
+📏 Step 4: Accessibility, Minimum Door Size (IBC 1010.1.1)
+ 32" clear width (typically 36" leaf)
+80" minimum height                                                                                                                                                  ⚒️ Step 5: IRC Safety & Structural Checks
+• 	IRC R311.2–R311.4: Doors must allow safe movement between rooms
+• 	IRC R302.5.1: Doors between garage and dwelling must meet fire separation requirements (if applicable)`
         },
         {
             id: 'door_gen_3',
@@ -2089,25 +2143,22 @@ export const DOOR_GENERAL: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-GEN-03',
             codeReference: `🧭 Step 1: Identify Door Type & Location
-• General Doors Include:
-• Interior passage doors (bedroom, bathroom, closet, utility)
-• Exterior doors not used as primary entry (e.g., patio, mechanical room)
+• 	General Doors Include:
+• 	Interior passage doors (bedroom, bathroom, closet, utility)
+• 	Exterior doors not used as primary entry (e.g., patio, mechanical room)
 🔍 Step 2: Sanitation & Environmental Control
-• Check for water damage near bathroom or kitchen doors
-• IBU Overlay: May require sealed surfaces, pest barriers, or mold-resistant finishes in high-humidity zones
+• 	Check for water damage near bathroom or kitchen doors
+• 	IBU Overlay: May require sealed surfaces, pest barriers, or mold-resistant finishes in high-humidity zones
 🧪 Step 3: Functional Testing
-• Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
-• Latch Test: Ensure door latches securely when closed
-• Privacy Check: For bathroom/bedroom doors, confirm locking mechanism works (if present)
-• Swing Clearance: Ensure the door opens fully without obstruction
-📏 Step 4: Accessibility & Local Requirements
-• Clear Width: Minimum 32 inches clear opening when door is open 90°
-• Thresholds: ≤½" for accessible routes
-• Hardware: Operable with one hand, no tight grasping or twisting
-• IBU Overlay: May require tactile signage, visual contrast, or soft-close hardware in elderly housing
-⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R311.2–R311.4: Doors must allow safe movement between rooms
-• IRC R302.5.1: Doors between garage and dwelling must meet fire separation requirements (if applicable)`
+• 	Open/Close Test: Confirm smooth operation without sticking, dragging, or excessive force
+• 	Latch Test: Ensure door latches securely when closed
+• 	Privacy Check: For bathroom/bedroom doors, confirm locking mechanism works (if present)
+• 	Swing Clearance: Ensure the door opens fully without obstruction
+📏 Step 4: Accessibility, Minimum Door Size (IBC 1010.1.1)
+ 32" clear width (typically 36" leaf)
+80" minimum height                                                                                                                                                  ⚒️ Step 5: IRC Safety & Structural Checks
+• 	IRC R311.2–R311.4: Doors must allow safe movement between rooms
+• 	IRC R302.5.1: Doors between garage and dwelling must meet fire separation requirements (if applicable)`
         }
     ]
 };
@@ -2125,22 +2176,23 @@ export const DOOR_GARAGE: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-GARAGE-01',
             codeReference: `🧭 Step 1: Identify Garage Door Type
-• Manual or Motorized: Overhead sectional, tilt-up, roll-up, or swing-out
-• Location: Attached garage serving the residential unit
+• 	Manual or Motorized: Overhead sectional, tilt-up, roll-up, or swing-out
+• 	Location: Attached garage serving the residential unit
 🔍 Step 2: Presence & Applicability
-• Required if: The unit includes a garage space with a door intended for vehicle or occupant access.
+• 	Required if: The unit includes a garage space with a door intended for vehicle or occupant access.
 🧪 Step 3: Functional Testing
-• Manual test: Open and close the door fully—confirm smooth movement and secure closure.
-• Motorized test (if present): Activate using wall switch or remote—door must respond and fully cycle.
-• Latch check: Door must remain closed and latched when not in use.
-• Confirm auto-reverse activates (IRC M1307.3.1)
+• 	Manual test: Open and close the door fully—confirm smooth movement and secure closure.
+• 	Motorized test (if present): Activate using wall switch or remote—door must respond and fully cycle.
+• 	Latch check: Door must remain closed and latched when not in use.
+• 	Confirm auto-reverse activates (IRC M1307.3.1)
 📏 Step 4: Accessibility & Local Requirements
-• Control height: Wall-mounted switches must be within ADA reach range (typically 15–48″ AFF)
-• Emergency release: Must be accessible and clearly labeled
-• IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
+• 	Control height: Wall-mounted switches must be within ADA reach range (typically 15–48″ AFF)
+• 	Emergency release: Must be accessible and clearly labeled
+• 	IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R302.5.1: Garage doors must maintain fire separation from dwelling; No openings into sleeping rooms
-• IRC R609.1: Doors must be weather-resistant and securely mounted`
+• 	IRC R302.5.1: Garage doors must maintain fire separation from dwelling
+• 	No openings into sleeping rooms
+• 	IRC R609.1: Doors must be weather-resistant and securely mounted`
         },
         {
             id: 'door_garage_2',
@@ -2152,22 +2204,23 @@ export const DOOR_GARAGE: InsideSubcategory = {
             points: '5.5/n',
             code: 'DOOR-GARAGE-02',
             codeReference: `🧭 Step 1: Identify Garage Door Type
-• Manual or Motorized: Overhead sectional, tilt-up, roll-up, or swing-out
-• Location: Attached garage serving the residential unit
+• 	Manual or Motorized: Overhead sectional, tilt-up, roll-up, or swing-out
+• 	Location: Attached garage serving the residential unit
 🔍 Step 2: Presence & Applicability
-• Required if: The unit includes a garage space with a door intended for vehicle or occupant access.
+• 	Required if: The unit includes a garage space with a door intended for vehicle or occupant access.
 🧪 Step 3: Functional Testing
-• Manual test: Open and close the door fully—confirm smooth movement and secure closure.
-• Motorized test (if present): Activate using wall switch or remote—door must respond and fully cycle.
-• Latch check: Door must remain closed and latched when not in use.
-• Confirm auto-reverse activates (IRC M1307.3.1)
+• 	Manual test: Open and close the door fully—confirm smooth movement and secure closure.
+• 	Motorized test (if present): Activate using wall switch or remote—door must respond and fully cycle.
+• 	Latch check: Door must remain closed and latched when not in use.
+• 	Confirm auto-reverse activates (IRC M1307.3.1)
 📏 Step 4: Accessibility & Local Requirements
-• Control height: Wall-mounted switches must be within ADA reach range (typically 15–48″ AFF)
-• Emergency release: Must be accessible and clearly labeled
-• IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
+• 	Control height: Wall-mounted switches must be within ADA reach range (typically 15–48″ AFF)
+• 	Emergency release: Must be accessible and clearly labeled
+• 	IBU Overlay: May require tactile controls, multilingual signage, or audible indicators in accessible units
 ⚒️ Step 5: IRC Safety & Structural Checks
-• IRC R302.5.1: Garage doors must maintain fire separation from dwelling; No openings into sleeping rooms
-• IRC R609.1: Doors must be weather-resistant and securely mounted`
+• 	IRC R302.5.1: Garage doors must maintain fire separation from dwelling
+• 	No openings into sleeping rooms
+• 	IRC R609.1: Doors must be weather-resistant and securely mounted`
         }
     ]
 };
@@ -2198,25 +2251,24 @@ export const DRAINAGE_DEFICIENCIES: InsideItemDeficiencies = {
             points: '5.5/n',
             code: 'DRAIN-01',
             codeReference: `🧭 Step 1: Identification & Applicability
-• Required in: All wet areas—bathrooms, kitchens, laundry rooms, utility closets
-• Drain types: Floor drains, sink drains, shower/tub drains, appliance drains
-• NSPIRE Scope: Focuses on operability, sanitation, and safety of visible drain components
+• 	Required in: All wet areas—bathrooms, kitchens, laundry rooms, utility closets
+• 	Drain types: Floor drains, sink drains, shower/tub drains, appliance drains
+• 	NSPIRE Scope: Focuses on operability, sanitation, and safety of visible drain components
 🔍 Step 2: Visual Condition Assessment
-• Odor check: Musty or sewer-like smells may indicate dry trap or venting failure
-• Visual inspection: Look for mold, mildew, biofilm, or pest attractant
-🧪 Step 3: Sanitation & Odor Control
-• NSPIRE Overlay: Unsanitary drain conditions = Moderate
-• IBU Overlay: May require trap primers, sealed penetrations, or pest-proof grates
-📏 Step 4: Accessibility & Local Requirements
-• Reachability: Drain access must not be obstructed by fixed cabinetry or appliances
-• Clearance: Floor drains must be unobstructed and accessible for cleaning
-• IBU Overlay: May require tactile indicators, visual contrast
-⚒️ Step 5: IRC Plumbing & Safety Checks
-• IRC Chapter 30 – Sanitary Drainage:
-• Drain must connect to an approved DWV (Drainage, Waste, Vent) system
-• Trap seal must be maintained to prevent sewer gas infiltration
-• Drainage piping must be protected from freezing (IRC P3001.2)
-• Flood-Resistant: In flood-prone areas, the drain must prevent backflow or infiltration (IRC P3001.3)`
+• 	Odor check: Musty or sewer-like smells may indicate dry trap or venting failure
+• 	Visual inspection: Look for mold, mildew, biofilm, or pest attractant
+🧪 Step 3:  Sanitation & Odor Control
+• 	NSPIRE Overlay: Unsanitary drain conditions = Moderate
+• 	IBU Overlay: May require trap primers, sealed penetrations, or pest-proof grates 
+📏 Step 4:  Accessibility & Local Requirements
+• 	Reachability: Drain access must not be obstructed by fixed cabinetry or appliances
+• 	Clearance: Floor drains must be unobstructed and accessible for cleaning
+• 	IBU Overlay: May require tactile indicators, visual contrast                                                                                                                                                                                     ⚒️ Step 5: IRC Plumbing & Safety Checks
+• 	IRC Chapter 30 – Sanitary Drainage:
+• 	Drain must connect to an approved DWV (Drainage, Waste, Vent) system
+• 	All drain design, materials, sizing, slope, venting, and installation rules come from the IPC, not the IBC.
+• 	Drainage piping must be protected from freezing (IRC P3001.2)
+• 	Flood-Resistant  In flood-prone areas, the drain must prevent backflow or infiltration (IRC P3001.3)`
         }
     ]
 };
@@ -2236,27 +2288,27 @@ export const EGRESS_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'EGRESS-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Egress definition: A safe, continuous, and unobstructed path from any point in the unit to a public way
+            codeReference: `🧭 Step 1:  Identification & Applicability
+• 	Egress definition: A safe, continuous, and unobstructed path from any point in the unit to a public way
 🔍 Step 2: Visual Obstruction & Clearance
-• Pathway check: Ensure hallways, doors, and windows are free of furniture, boxes, or debris
-• Security bars: Must have quick-release mechanisms from the inside
-• Locks: No double-keyed deadbolts or keyed window locks on egress routes
-• NSPIRE Deficiency: Obstructed or locked egress = Life-Threatening
+• 	Pathway check: Ensure hallways, doors, and windows are free of furniture, boxes, or debris
+• 	Security bars: Must have quick-release mechanisms from the inside
+• 	Locks: No double-keyed deadbolts or keyed window locks on egress routes
+• 	NSPIRE Deficiency: Obstructed or locked egress = Life-Threatening
 🧪 Step 3: Functional Testing
-• Open All Exit Doors: Confirm they open easily from the inside without tools or keys
-• Test Bedroom Windows: Open fully without excessive force
+• 	Open All Exit Doors: Confirm they open easily from the inside without tools or keys
+• 	Test Bedroom Windows: Open fully without excessive force
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress doors
-• Window sill height: Emergency escape windows must be ≤44″ AFF (IRC §R310.2.2)
-• Operation: Egress components must be operable without tools, keys, or special knowledge
-• IBU Overlay: May require tactile signage, lever-style handles, Thresholds: ≤½" for accessible routes
+• 	Clear width: IRC requires ≥32″ clear opening for egress doors
+• 	Window sill height: Emergency escape windows must be ≤44″ AFF (IRC §R310.2.2)
+• 	Operation: Egress components must be operable without tools, keys, or special knowledge
+• 	IBC Overlay: Minimum Means of Egress – IBC 1001 & 1006s
 ⚒️ Step 5: IRC Egress Requirements
-• IRC R311.1–R311.4: Every dwelling unit must have at least one egress door to the exterior
-• Egress doors must be side-hinged, with a minimum 32" clear width
-• IRC R310.1: Every sleeping room must have at least one emergency escape/rescue opening
-• Minimum opening area: 5.7 sq ft (or 5.0 sq ft for ground floor)
-• Max sill height: 44 inches above finished floor`
+• 	IRC R311.1–R311.4: Every dwelling unit must have at least one egress door to the exterior
+• 	Egress doors must be side-hinged, with a minimum 32" clear width
+• 	IRC R310.1: Every sleeping room must have at least one emergency escape/rescue opening
+• 	Minimum opening area: 5.7 sq ft (or 5.0 sq ft for ground floor)
+• 	Max sill height: 44 inches above finished floor`
         },
         {
             id: 'egress_2',
@@ -2267,27 +2319,27 @@ export const EGRESS_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'EGRESS-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Egress definition: A safe, continuous, and unobstructed path from any point in the unit to a public way
+            codeReference: `🧭 Step 1:  Identification & Applicability
+• 	Egress definition: A safe, continuous, and unobstructed path from any point in the unit to a public way
 🔍 Step 2: Visual Obstruction & Clearance
-• Pathway check: Ensure hallways, doors, and windows are free of furniture, boxes, or debris
-• Security bars: Must have quick-release mechanisms from the inside
-• Locks: No double-keyed deadbolts or keyed window locks on egress routes
-• NSPIRE Deficiency: Obstructed or locked egress = Life-Threatening
+• 	Pathway check: Ensure hallways, doors, and windows are free of furniture, boxes, or debris
+• 	Security bars: Must have quick-release mechanisms from the inside
+• 	Locks: No double-keyed deadbolts or keyed window locks on egress routes
+• 	NSPIRE Deficiency: Obstructed or locked egress = Life-Threatening
 🧪 Step 3: Functional Testing
-• Open All Exit Doors: Confirm they open easily from the inside without tools or keys
-• Test Bedroom Windows: Open fully without excessive force
+• 	Open All Exit Doors: Confirm they open easily from the inside without tools or keys
+• 	Test Bedroom Windows: Open fully without excessive force
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress doors
-• Window sill height: Emergency escape windows must be ≤44″ AFF (IRC §R310.2.2)
-• Operation: Egress components must be operable without tools, keys, or special knowledge
-• IBU Overlay: May require tactile signage, lever-style handles, Thresholds: ≤½" for accessible routes
+• 	Clear width: IRC requires ≥32″ clear opening for egress doors
+• 	Window sill height: Emergency escape windows must be ≤44″ AFF (IRC §R310.2.2)
+• 	Operation: Egress components must be operable without tools, keys, or special knowledge
+• 	IBC Overlay: Minimum Means of Egress – IBC 1001 & 1006s
 ⚒️ Step 5: IRC Egress Requirements
-• IRC R311.1–R311.4: Every dwelling unit must have at least one egress door to the exterior
-• Egress doors must be side-hinged, with a minimum 32" clear width
-• IRC R310.1: Every sleeping room must have at least one emergency escape/rescue opening
-• Minimum opening area: 5.7 sq ft (or 5.0 sq ft for ground floor)
-• Max sill height: 44 inches above finished floor`
+• 	IRC R311.1–R311.4: Every dwelling unit must have at least one egress door to the exterior
+• 	Egress doors must be side-hinged, with a minimum 32" clear width
+• 	IRC R310.1: Every sleeping room must have at least one emergency escape/rescue opening
+• 	Minimum opening area: 5.7 sq ft (or 5.0 sq ft for ground floor)
+• 	Max sill height: 44 inches above finished floor`
         },
         {
             id: 'egress_3',
@@ -2298,27 +2350,27 @@ export const EGRESS_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'EGRESS-03',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• Egress definition: A safe, continuous, and unobstructed path from any point in the unit to a public way
+            codeReference: `🧭 Step 1:  Identification & Applicability
+• 	Egress definition: A safe, continuous, and unobstructed path from any point in the unit to a public way
 🔍 Step 2: Visual Obstruction & Clearance
-• Pathway check: Ensure hallways, doors, and windows are free of furniture, boxes, or debris
-• Security bars: Must have quick-release mechanisms from the inside
-• Locks: No double-keyed deadbolts or keyed window locks on egress routes
-• NSPIRE Deficiency: Obstructed or locked egress = Life-Threatening
+• 	Pathway check: Ensure hallways, doors, and windows are free of furniture, boxes, or debris
+• 	Security bars: Must have quick-release mechanisms from the inside
+• 	Locks: No double-keyed deadbolts or keyed window locks on egress routes
+• 	NSPIRE Deficiency: Obstructed or locked egress = Life-Threatening
 🧪 Step 3: Functional Testing
-• Open All Exit Doors: Confirm they open easily from the inside without tools or keys
-• Test Bedroom Windows: Open fully without excessive force
+• 	Open All Exit Doors: Confirm they open easily from the inside without tools or keys
+• 	Test Bedroom Windows: Open fully without excessive force
 📏 Step 4: Accessibility & Local Requirements
-• Clear width: IRC requires ≥32″ clear opening for egress doors
-• Window sill height: Emergency escape windows must be ≤44″ AFF (IRC §R310.2.2)
-• Operation: Egress components must be operable without tools, keys, or special knowledge
-• IBU Overlay: May require tactile signage, lever-style handles, Thresholds: ≤½" for accessible routes
+• 	Clear width: IRC requires ≥32″ clear opening for egress doors
+• 	Window sill height: Emergency escape windows must be ≤44″ AFF (IRC §R310.2.2)
+• 	Operation: Egress components must be operable without tools, keys, or special knowledge
+• 	IBC Overlay: Minimum Means of Egress – IBC 1001 & 1006s
 ⚒️ Step 5: IRC Egress Requirements
-• IRC R311.1–R311.4: Every dwelling unit must have at least one egress door to the exterior
-• Egress doors must be side-hinged, with a minimum 32" clear width
-• IRC R310.1: Every sleeping room must have at least one emergency escape/rescue opening
-• Minimum opening area: 5.7 sq ft (or 5.0 sq ft for ground floor)
-• Max sill height: 44 inches above finished floor`
+• 	IRC R311.1–R311.4: Every dwelling unit must have at least one egress door to the exterior
+• 	Egress doors must be side-hinged, with a minimum 32" clear width
+• 	IRC R310.1: Every sleeping room must have at least one emergency escape/rescue opening
+• 	Minimum opening area: 5.7 sq ft (or 5.0 sq ft for ground floor)
+• 	Max sill height: 44 inches above finished floor`
         }
     ]
 };
@@ -2342,23 +2394,26 @@ export const ELECTRICAL_CONDUCTOR: InsideSubcategory = {
 - Electrical Outlets: Standard, GFCI, AFCI, and specialty outlets
 - Switches: Light switches, fan controls, appliance switches
 - Conductors: Visible wiring, junction boxes, flexible cords (if exposed)
-NSPIRE requires inspection of all accessible electrical components connected to the unit's power supply
-🔍 Step 2: Visual Identification & Coverage
+NSPIRE requires inspection of all accessible electrical components connected to the unit’s power supply
+🔍 Step 2: . Visual Identification & Coverage
 • 	Inspect all visible outlets, switches, and conductors in living areas, bedrooms, kitchens, bathrooms, and utility spaces
 • 	Include: Standard outlets, GFCI outlets, light switches, junction boxes, and exposed wiring
 🧪 Step 3: Functional Testing
-- Outlet Test: Use UL-approved outlet tester
+- Outlet Test: - Use UL-approved outlet tester
 - Confirm correct wiring, grounding, and polarity
 - For GFCI outlets: press TEST, verify trip, then RESET
-- Switch Test: Toggle each switch to confirm it activates the connected fixture
-- Conductors: Inspect visible wiring for secure termination and enclosure
+- Switch Test:  Toggle each switch to confirm it activates the connected fixture
+- Conductors:  Inspect visible wiring for secure termination and enclosure
 - Confirm no flexible cords are used as permanent wiring
-📏 Step 4: Accessibility, Sanitation & Environmental Safety
-• 	Check for burn marks, soot, or melted plastic—indicates overheating or arcing
-• 	IBU Overlay: May require tamper-resistant outlets, sealed faceplates, or moisture-rated components in high-humidity zones
+📏 Step 4: Accessibility Requirements (IBC Chapter 11)
+• 	Be openable from the egress side without keys, tools, or special knowledge
+Use accessible hardware (no tight grasping, pinching, twisting)
+Have hardware mounted 34–48 inches above the floor
+Require ≤ 30 lbs. to start opening and ≤ 15 lbs. to continue opening      
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 ⚒️ Step 5: IRC Electrical Safety Checks
-- IRC E3901–E3902: Outlets required in all habitable rooms, spaced ≤12 feet apart
-- IRC E3905: All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
+- IRC E3901–E3902:  Outlets required in all habitable rooms, spaced ≤12 feet apart
+- IRC E3905:  All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
         },
         {
             id: 'elec_cond_2',
@@ -2373,23 +2428,26 @@ NSPIRE requires inspection of all accessible electrical components connected to 
 - Electrical Outlets: Standard, GFCI, AFCI, and specialty outlets
 - Switches: Light switches, fan controls, appliance switches
 - Conductors: Visible wiring, junction boxes, flexible cords (if exposed)
-NSPIRE requires inspection of all accessible electrical components connected to the unit's power supply
-🔍 Step 2: Visual Identification & Coverage
+NSPIRE requires inspection of all accessible electrical components connected to the unit’s power supply
+🔍 Step 2: . Visual Identification & Coverage
 • 	Inspect all visible outlets, switches, and conductors in living areas, bedrooms, kitchens, bathrooms, and utility spaces
 • 	Include: Standard outlets, GFCI outlets, light switches, junction boxes, and exposed wiring
 🧪 Step 3: Functional Testing
-- Outlet Test: Use UL-approved outlet tester
+- Outlet Test: - Use UL-approved outlet tester
 - Confirm correct wiring, grounding, and polarity
 - For GFCI outlets: press TEST, verify trip, then RESET
-- Switch Test: Toggle each switch to confirm it activates the connected fixture
-- Conductors: Inspect visible wiring for secure termination and enclosure
+- Switch Test:  Toggle each switch to confirm it activates the connected fixture
+- Conductors:  Inspect visible wiring for secure termination and enclosure
 - Confirm no flexible cords are used as permanent wiring
-📏 Step 4: Accessibility, Sanitation & Environmental Safety
-• 	Check for burn marks, soot, or melted plastic—indicates overheating or arcing
-• 	IBU Overlay: May require tamper-resistant outlets, sealed faceplates, or moisture-rated components in high-humidity zones
+📏 Step 4: Accessibility Requirements (IBC Chapter 11)
+• 	Be openable from the egress side without keys, tools, or special knowledge
+Use accessible hardware (no tight grasping, pinching, twisting)
+Have hardware mounted 34–48 inches above the floor
+Require ≤ 30 lbs. to start opening and ≤ 15 lbs. to continue opening      
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 ⚒️ Step 5: IRC Electrical Safety Checks
-- IRC E3901–E3902: Outlets required in all habitable rooms, spaced ≤12 feet apart
-- IRC E3905: All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
+- IRC E3901–E3902:  Outlets required in all habitable rooms, spaced ≤12 feet apart
+- IRC E3905:  All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
         },
         {
             id: 'elec_cond_3',
@@ -2404,23 +2462,26 @@ NSPIRE requires inspection of all accessible electrical components connected to 
 - Electrical Outlets: Standard, GFCI, AFCI, and specialty outlets
 - Switches: Light switches, fan controls, appliance switches
 - Conductors: Visible wiring, junction boxes, flexible cords (if exposed)
-NSPIRE requires inspection of all accessible electrical components connected to the unit's power supply
-🔍 Step 2: Visual Identification & Coverage
+NSPIRE requires inspection of all accessible electrical components connected to the unit’s power supply
+🔍 Step 2: . Visual Identification & Coverage
 • 	Inspect all visible outlets, switches, and conductors in living areas, bedrooms, kitchens, bathrooms, and utility spaces
 • 	Include: Standard outlets, GFCI outlets, light switches, junction boxes, and exposed wiring
 🧪 Step 3: Functional Testing
-- Outlet Test: Use UL-approved outlet tester
+- Outlet Test: - Use UL-approved outlet tester
 - Confirm correct wiring, grounding, and polarity
 - For GFCI outlets: press TEST, verify trip, then RESET
-- Switch Test: Toggle each switch to confirm it activates the connected fixture
-- Conductors: Inspect visible wiring for secure termination and enclosure
+- Switch Test:  Toggle each switch to confirm it activates the connected fixture
+- Conductors:  Inspect visible wiring for secure termination and enclosure
 - Confirm no flexible cords are used as permanent wiring
-📏 Step 4: Accessibility, Sanitation & Environmental Safety
-• 	Check for burn marks, soot, or melted plastic—indicates overheating or arcing
-• 	IBU Overlay: May require tamper-resistant outlets, sealed faceplates, or moisture-rated components in high-humidity zones
+📏 Step 4: Accessibility Requirements (IBC Chapter 11)
+• 	Be openable from the egress side without keys, tools, or special knowledge
+Use accessible hardware (no tight grasping, pinching, twisting)
+Have hardware mounted 34–48 inches above the floor
+Require ≤ 30 lbs. to start opening and ≤ 15 lbs. to continue opening      
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 ⚒️ Step 5: IRC Electrical Safety Checks
-- IRC E3901–E3902: Outlets required in all habitable rooms, spaced ≤12 feet apart
-- IRC E3905: All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
+- IRC E3901–E3902:  Outlets required in all habitable rooms, spaced ≤12 feet apart
+- IRC E3905:  All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
         },
         {
             id: 'elec_cond_4',
@@ -2435,23 +2496,26 @@ NSPIRE requires inspection of all accessible electrical components connected to 
 - Electrical Outlets: Standard, GFCI, AFCI, and specialty outlets
 - Switches: Light switches, fan controls, appliance switches
 - Conductors: Visible wiring, junction boxes, flexible cords (if exposed)
-NSPIRE requires inspection of all accessible electrical components connected to the unit's power supply
-🔍 Step 2: Visual Identification & Coverage
+NSPIRE requires inspection of all accessible electrical components connected to the unit’s power supply
+🔍 Step 2: . Visual Identification & Coverage
 • 	Inspect all visible outlets, switches, and conductors in living areas, bedrooms, kitchens, bathrooms, and utility spaces
 • 	Include: Standard outlets, GFCI outlets, light switches, junction boxes, and exposed wiring
 🧪 Step 3: Functional Testing
-- Outlet Test: Use UL-approved outlet tester
+- Outlet Test: - Use UL-approved outlet tester
 - Confirm correct wiring, grounding, and polarity
 - For GFCI outlets: press TEST, verify trip, then RESET
-- Switch Test: Toggle each switch to confirm it activates the connected fixture
-- Conductors: Inspect visible wiring for secure termination and enclosure
+- Switch Test:  Toggle each switch to confirm it activates the connected fixture
+- Conductors:  Inspect visible wiring for secure termination and enclosure
 - Confirm no flexible cords are used as permanent wiring
-📏 Step 4: Accessibility, Sanitation & Environmental Safety
-• 	Check for burn marks, soot, or melted plastic—indicates overheating or arcing
-• 	IBU Overlay: May require tamper-resistant outlets, sealed faceplates, or moisture-rated components in high-humidity zones
+📏 Step 4: Accessibility Requirements (IBC Chapter 11)
+• 	Be openable from the egress side without keys, tools, or special knowledge
+Use accessible hardware (no tight grasping, pinching, twisting)
+Have hardware mounted 34–48 inches above the floor
+Require ≤ 30 lbs. to start opening and ≤ 15 lbs. to continue opening      
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 ⚒️ Step 5: IRC Electrical Safety Checks
-- IRC E3901–E3902: Outlets required in all habitable rooms, spaced ≤12 feet apart
-- IRC E3905: All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
+- IRC E3901–E3902:  Outlets required in all habitable rooms, spaced ≤12 feet apart
+- IRC E3905:  All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
         },
         {
             id: 'elec_cond_5',
@@ -2466,23 +2530,26 @@ NSPIRE requires inspection of all accessible electrical components connected to 
 - Electrical Outlets: Standard, GFCI, AFCI, and specialty outlets
 - Switches: Light switches, fan controls, appliance switches
 - Conductors: Visible wiring, junction boxes, flexible cords (if exposed)
-NSPIRE requires inspection of all accessible electrical components connected to the unit's power supply
-🔍 Step 2: Visual Identification & Coverage
+NSPIRE requires inspection of all accessible electrical components connected to the unit’s power supply
+🔍 Step 2: . Visual Identification & Coverage
 • 	Inspect all visible outlets, switches, and conductors in living areas, bedrooms, kitchens, bathrooms, and utility spaces
 • 	Include: Standard outlets, GFCI outlets, light switches, junction boxes, and exposed wiring
 🧪 Step 3: Functional Testing
-- Outlet Test: Use UL-approved outlet tester
+- Outlet Test: - Use UL-approved outlet tester
 - Confirm correct wiring, grounding, and polarity
 - For GFCI outlets: press TEST, verify trip, then RESET
-- Switch Test: Toggle each switch to confirm it activates the connected fixture
-- Conductors: Inspect visible wiring for secure termination and enclosure
+- Switch Test:  Toggle each switch to confirm it activates the connected fixture
+- Conductors:  Inspect visible wiring for secure termination and enclosure
 - Confirm no flexible cords are used as permanent wiring
-📏 Step 4: Accessibility, Sanitation & Environmental Safety
-• 	Check for burn marks, soot, or melted plastic—indicates overheating or arcing
-• 	IBU Overlay: May require tamper-resistant outlets, sealed faceplates, or moisture-rated components in high-humidity zones
+📏 Step 4: Accessibility Requirements (IBC Chapter 11)
+• 	Be openable from the egress side without keys, tools, or special knowledge
+Use accessible hardware (no tight grasping, pinching, twisting)
+Have hardware mounted 34–48 inches above the floor
+Require ≤ 30 lbs. to start opening and ≤ 15 lbs. to continue opening      
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 ⚒️ Step 5: IRC Electrical Safety Checks
-- IRC E3901–E3902: Outlets required in all habitable rooms, spaced ≤12 feet apart
-- IRC E3905: All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
+- IRC E3901–E3902:  Outlets required in all habitable rooms, spaced ≤12 feet apart
+- IRC E3905:  All wiring must be enclosed in approved boxes, No exposed conductors or open splices allowed`
         }
     ]
 };
@@ -2499,25 +2566,7 @@ export const ELECTRICAL_GFCI_AFCI: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'ELEC-GFCI-01',
-            codeReference: `🧭 Step 1: Identify GFCI-Protected Locations
-• 	Labeling: GFCI/AFCI devices should be clearly marked
-• 	IBU Overlay: May require tactile indicators, audible feedback, or visual contrast in accessible units
-🔍 Step 2: Identification & Applicability
-• 	GFCI required: Within 6 feet of water sources (sinks, tubs, showers, laundry hookups)
-• 	In kitchens, bathrooms, garages, crawlspaces, and exterior outlets
-• 	AFCI required: In living rooms, bedrooms, hallways, and other habitable spaces
-🧪 Step 3: Operability Test
-• 	GFCI outlets: Press TEST button—outlet should trip and stop supplying power
-• 	Press RESET button—outlet should restore power
-• 	AFCI breakers: Press TEST button on breaker—should trip and disable circuit
-• 	Reset breaker to restore power
-📏 Step 4: Sanitation & Environmental Safety
-• 	Inspect for moisture intrusion around GFCI outlets near sinks or tubs
-• 	Check for mold, rust, or corrosion on outlet face or box
-• 	IBU Overlay: May require moisture-rated covers, sealed boxes, or tamper-resistant GFCIs in high-humidity zones
-⚒️ Step 5: IRC Electrical Safety Requirements
-• 	IRC E3902.1–E3902.12:
-• 	GFCI protection required in all wet or damp locations`
+            codeReference: `water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).`
         },
         {
             id: 'elec_gfci_2',
@@ -2528,25 +2577,7 @@ export const ELECTRICAL_GFCI_AFCI: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'ELEC-GFCI-02',
-            codeReference: `🧭 Step 1: Identify GFCI-Protected Locations
-• 	Labeling: GFCI/AFCI devices should be clearly marked
-• 	IBU Overlay: May require tactile indicators, audible feedback, or visual contrast in accessible units
-🔍 Step 2: Identification & Applicability
-• 	GFCI required: Within 6 feet of water sources (sinks, tubs, showers, laundry hookups)
-• 	In kitchens, bathrooms, garages, crawlspaces, and exterior outlets
-• 	AFCI required: In living rooms, bedrooms, hallways, and other habitable spaces
-🧪 Step 3: Operability Test
-• 	GFCI outlets: Press TEST button—outlet should trip and stop supplying power
-• 	Press RESET button—outlet should restore power
-• 	AFCI breakers: Press TEST button on breaker—should trip and disable circuit
-• 	Reset breaker to restore power
-📏 Step 4: Sanitation & Environmental Safety
-• 	Inspect for moisture intrusion around GFCI outlets near sinks or tubs
-• 	Check for mold, rust, or corrosion on outlet face or box
-• 	IBU Overlay: May require moisture-rated covers, sealed boxes, or tamper-resistant GFCIs in high-humidity zones
-⚒️ Step 5: IRC Electrical Safety Requirements
-• 	IRC E3902.1–E3902.12:
-• 	GFCI protection required in all wet or damp locations`
+            codeReference: `water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).`
         },
         {
             id: 'elec_gfci_3',
@@ -2557,25 +2588,7 @@ export const ELECTRICAL_GFCI_AFCI: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'ELEC-GFCI-03',
-            codeReference: `🧭 Step 1: Identify GFCI-Protected Locations
-• 	Labeling: GFCI/AFCI devices should be clearly marked
-• 	IBU Overlay: May require tactile indicators, audible feedback, or visual contrast in accessible units
-🔍 Step 2: Identification & Applicability
-• 	GFCI required: Within 6 feet of water sources (sinks, tubs, showers, laundry hookups)
-• 	In kitchens, bathrooms, garages, crawlspaces, and exterior outlets
-• 	AFCI required: In living rooms, bedrooms, hallways, and other habitable spaces
-🧪 Step 3: Operability Test
-• 	GFCI outlets: Press TEST button—outlet should trip and stop supplying power
-• 	Press RESET button—outlet should restore power
-• 	AFCI breakers: Press TEST button on breaker—should trip and disable circuit
-• 	Reset breaker to restore power
-📏 Step 4: Sanitation & Environmental Safety
-• 	Inspect for moisture intrusion around GFCI outlets near sinks or tubs
-• 	Check for mold, rust, or corrosion on outlet face or box
-• 	IBU Overlay: May require moisture-rated covers, sealed boxes, or tamper-resistant GFCIs in high-humidity zones
-⚒️ Step 5: IRC Electrical Safety Requirements
-• 	IRC E3902.1–E3902.12:
-• 	GFCI protection required in all wet or damp locations`
+            codeReference: `water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).`
         }
     ]
 };
@@ -2595,24 +2608,23 @@ export const ELECTRICAL_SERVICE_PANEL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Locate the Service Panel
 • 	Common Locations: Closet, hallway, garage, utility room, or exterior wall
 • 	Panel Types: Breaker box, fuse box, disconnect box
-• 	Accessibility Check: Panel must be readily accessible without moving furniture or using tools
-• 	If blocked or hidden, it's a moderate deficiency under NSPIRE
-🔍 Step 2: Visual Condition Assessment
-• 	Accessibility Check: Panel must be readily accessible without moving furniture or using tools
-• 	If blocked or hidden, it's a moderate deficiency under NSPIRE
+• 	Accessibility Check: 	Panel must be readily accessible without moving furniture or using tools
+🔍 Step 2: Visual Condition Assessment                                                                                                                                                                                                             • 	Accessibility Check: 	Panel must be readily accessible without moving furniture or using tools
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 🧪 Step 3: Functional Testing (Visual Only)
 • 	Breaker test: Visually confirm breakers are seated and not tripped (do not reset tripped breakers)
 • 	Inspect Breaker Alignment: All breakers should be seated properly
 • 	Dead Front Cover: Must be present to prevent contact with energized parts
 • 	Check for Gaps: No open slots or missing knockouts exposing live components
-📏 Step 4: Sanitation, Contamination & Environmental Control
+📏 Step 4:Sanitation, Contamination & Environmental Control
 • 	Inspect for pest intrusion: Look for droppings, nesting, or chewed insulation
 • 	Moisture check: Signs of water entry, rust, or mold around the panel
 • 	Ventilation: Panel must not be located in damp or high-humidity zones without protection
 • 	IBU Overlay: May require sealed penetrations, moisture-rated enclosures, or pest-proof gaskets
 ⚒️ Step 5: IRC Electrical Safety Requirements
-• 	IRC E3405–E3606:
-• 	Overcurrent protection devices must be listed and properly rated`
+• 	IRC E3405–E3606:  IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
+• 	Overcurrent protection devices must be listed and properly rated
+`
         },
         {
             id: 'elec_panel_2',
@@ -2626,24 +2638,23 @@ export const ELECTRICAL_SERVICE_PANEL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Locate the Service Panel
 • 	Common Locations: Closet, hallway, garage, utility room, or exterior wall
 • 	Panel Types: Breaker box, fuse box, disconnect box
-• 	Accessibility Check: Panel must be readily accessible without moving furniture or using tools
-• 	If blocked or hidden, it's a moderate deficiency under NSPIRE
-🔍 Step 2: Visual Condition Assessment
-• 	Accessibility Check: Panel must be readily accessible without moving furniture or using tools
-• 	If blocked or hidden, it's a moderate deficiency under NSPIRE
+• 	Accessibility Check: 	Panel must be readily accessible without moving furniture or using tools
+🔍 Step 2: Visual Condition Assessment                                                                                                                                                                                                             • 	Accessibility Check: 	Panel must be readily accessible without moving furniture or using tools
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 🧪 Step 3: Functional Testing (Visual Only)
 • 	Breaker test: Visually confirm breakers are seated and not tripped (do not reset tripped breakers)
 • 	Inspect Breaker Alignment: All breakers should be seated properly
 • 	Dead Front Cover: Must be present to prevent contact with energized parts
 • 	Check for Gaps: No open slots or missing knockouts exposing live components
-📏 Step 4: Sanitation, Contamination & Environmental Control
+📏 Step 4:Sanitation, Contamination & Environmental Control
 • 	Inspect for pest intrusion: Look for droppings, nesting, or chewed insulation
 • 	Moisture check: Signs of water entry, rust, or mold around the panel
 • 	Ventilation: Panel must not be located in damp or high-humidity zones without protection
 • 	IBU Overlay: May require sealed penetrations, moisture-rated enclosures, or pest-proof gaskets
 ⚒️ Step 5: IRC Electrical Safety Requirements
-• 	IRC E3405–E3606:
-• 	Overcurrent protection devices must be listed and properly rated`
+• 	IRC E3405–E3606:  IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
+• 	Overcurrent protection devices must be listed and properly rated
+`
         },
         {
             id: 'elec_panel_3',
@@ -2657,24 +2668,23 @@ export const ELECTRICAL_SERVICE_PANEL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Locate the Service Panel
 • 	Common Locations: Closet, hallway, garage, utility room, or exterior wall
 • 	Panel Types: Breaker box, fuse box, disconnect box
-• 	Accessibility Check: Panel must be readily accessible without moving furniture or using tools
-• 	If blocked or hidden, it's a moderate deficiency under NSPIRE
-🔍 Step 2: Visual Condition Assessment
-• 	Accessibility Check: Panel must be readily accessible without moving furniture or using tools
-• 	If blocked or hidden, it's a moderate deficiency under NSPIRE
+• 	Accessibility Check: 	Panel must be readily accessible without moving furniture or using tools
+🔍 Step 2: Visual Condition Assessment                                                                                                                                                                                                             • 	Accessibility Check: 	Panel must be readily accessible without moving furniture or using tools
+• 	IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
 🧪 Step 3: Functional Testing (Visual Only)
 • 	Breaker test: Visually confirm breakers are seated and not tripped (do not reset tripped breakers)
 • 	Inspect Breaker Alignment: All breakers should be seated properly
 • 	Dead Front Cover: Must be present to prevent contact with energized parts
 • 	Check for Gaps: No open slots or missing knockouts exposing live components
-📏 Step 4: Sanitation, Contamination & Environmental Control
+📏 Step 4:Sanitation, Contamination & Environmental Control
 • 	Inspect for pest intrusion: Look for droppings, nesting, or chewed insulation
 • 	Moisture check: Signs of water entry, rust, or mold around the panel
 • 	Ventilation: Panel must not be located in damp or high-humidity zones without protection
 • 	IBU Overlay: May require sealed penetrations, moisture-rated enclosures, or pest-proof gaskets
 ⚒️ Step 5: IRC Electrical Safety Requirements
-• 	IRC E3405–E3606:
-• 	Overcurrent protection devices must be listed and properly rated`
+• 	IRC E3405–E3606:  IBC itself does not specify conductor sizes, outlet spacing, GFCI/AFCI rules, or switch requirements — NEC does.
+• 	Overcurrent protection devices must be listed and properly rated
+`
         }
     ]
 };
@@ -2697,17 +2707,18 @@ NSPIRE defines habitable rooms as those used for living, sleeping, eating, or co
 🔍 Step 2: Outlet & Fixture Presence
 • 	Visual check: Confirm outlet and fixture presence in each habitable room
 🧪 Step 3: Functional Testing
-- Outlet Test: Use UL-listed outlet tester to confirm power, polarity, and grounding
-- Light Fixture Test: Turn on switch and confirm fixture illuminates
+- Outlet Test:  Use a UL-listed outlet tester to confirm power, polarity, and grounding
+- Light Fixture Test: Turn on the switch and confirm the fixture illuminates
 - Replace bulb if needed to verify fixture functionality
-- Check Mounting: Ensure fixture is securely attached to the wall or ceiling
+- Check Mounting:  Ensure fixture is securely attached to the wall or ceiling
 📏 Step 4: Accessibility & Local Requirements
 • 	Height: Outlets ≥15″ AFF; switches ≤48″ AFF for ADA compliance
 • 	Reachability: Must be unobstructed by furniture or fixed cabinetry
 • 	Labeling: Multi-gang switches should be clearly marked
-• 	IBU Overlay: May require tactile indicators, visual contrast, or audible feedback in accessible units
+• 	IBC 2701.1:Minimum Electrical Requirements (IBC → NEC)
 ⚒️ Step 5: IRC Electrical Requirements
-- IRC §E3901.1–E3901.12 – Receptacle outlet requirements: Outlets required in all habitable rooms, spaced ≤12 feet apart`
+- IRC §E3901.1–E3901.12 – Receptacle outlet requirements: Outlets required in all habitable rooms, spaced ≤12 feet apart
+`
         }
     ]
 };
@@ -2737,11 +2748,10 @@ export const FIRE_EXTINGUISHER: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '60/n',
             code: 'FIRE-EXT-01',
-            codeReference: `🧭 Step 1: Determine Applicability
-• 	IRC §R313.1–R313.2 – Fire protection systems (note: IRC does not mandate extinguishers in individual units)
-• 	IRC: Recommends extinguishers in kitchens, garages, and near fuel-burning appliances
+            codeReference: `🧭 Step 1: Determine Applicability• 	
+IRC §R313.1–R313.2 – Fire protection systems (note: IRC does not mandate extinguishers in individual units)                                                                                    • 	IRC: Recommends extinguishers in kitchens, garages, and near fuel-burning appliances
 • 	IBU: Applies if the extinguisher is in an accessible unit or common area
-🔍 Step 2: Visual Condition Assessment & Pressure Check
+🔍 Step 2: Visual Condition Assessment &Pressure Check
 • 	Gauge inspection: Confirm needle is in the green zone
 • 	Inspection tag: Must be present, legible, and dated within the last 12 months
 🧪 Step 3: Functional Readiness Check
@@ -2756,7 +2766,7 @@ export const FIRE_EXTINGUISHER: InsideSubcategory = {
 ⚒️ Step 5: IRC Sanitation & Environmental Safety
 • 	Surface condition: Must be free of grease, dust, mold, or pest droppings
 • 	Accessibility: Extinguisher must be visible and reachable—no obstructions
-• 	IBU Overlay: May require sealed cabinets, tamper indicators, or multilingual signage`
+• 	IBC 906.1 – Portable Fire Extinguishers Required in R‑2 Occupancies`
         },
         {
             id: 'fire_ext_2',
@@ -2767,11 +2777,10 @@ export const FIRE_EXTINGUISHER: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'FIRE-EXT-02',
-            codeReference: `🧭 Step 1: Determine Applicability
-• 	IRC §R313.1–R313.2 – Fire protection systems (note: IRC does not mandate extinguishers in individual units)
-• 	IRC: Recommends extinguishers in kitchens, garages, and near fuel-burning appliances
+            codeReference: `🧭 Step 1: Determine Applicability• 	
+IRC §R313.1–R313.2 – Fire protection systems (note: IRC does not mandate extinguishers in individual units)                                                                                    • 	IRC: Recommends extinguishers in kitchens, garages, and near fuel-burning appliances
 • 	IBU: Applies if the extinguisher is in an accessible unit or common area
-🔍 Step 2: Visual Condition Assessment & Pressure Check
+🔍 Step 2: Visual Condition Assessment &Pressure Check
 • 	Gauge inspection: Confirm needle is in the green zone
 • 	Inspection tag: Must be present, legible, and dated within the last 12 months
 🧪 Step 3: Functional Readiness Check
@@ -2786,7 +2795,7 @@ export const FIRE_EXTINGUISHER: InsideSubcategory = {
 ⚒️ Step 5: IRC Sanitation & Environmental Safety
 • 	Surface condition: Must be free of grease, dust, mold, or pest droppings
 • 	Accessibility: Extinguisher must be visible and reachable—no obstructions
-• 	IBU Overlay: May require sealed cabinets, tamper indicators, or multilingual signage`
+• 	IBC 906.1 – Portable Fire Extinguishers Required in R‑2 Occupancies`
         },
         {
             id: 'fire_ext_3',
@@ -2797,11 +2806,10 @@ export const FIRE_EXTINGUISHER: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'FIRE-EXT-03',
-            codeReference: `🧭 Step 1: Determine Applicability
-• 	IRC §R313.1–R313.2 – Fire protection systems (note: IRC does not mandate extinguishers in individual units)
-• 	IRC: Recommends extinguishers in kitchens, garages, and near fuel-burning appliances
+            codeReference: `🧭 Step 1: Determine Applicability• 	
+IRC §R313.1–R313.2 – Fire protection systems (note: IRC does not mandate extinguishers in individual units)                                                                                    • 	IRC: Recommends extinguishers in kitchens, garages, and near fuel-burning appliances
 • 	IBU: Applies if the extinguisher is in an accessible unit or common area
-🔍 Step 2: Visual Condition Assessment & Pressure Check
+🔍 Step 2: Visual Condition Assessment &Pressure Check
 • 	Gauge inspection: Confirm needle is in the green zone
 • 	Inspection tag: Must be present, legible, and dated within the last 12 months
 🧪 Step 3: Functional Readiness Check
@@ -2816,7 +2824,7 @@ export const FIRE_EXTINGUISHER: InsideSubcategory = {
 ⚒️ Step 5: IRC Sanitation & Environmental Safety
 • 	Surface condition: Must be free of grease, dust, mold, or pest droppings
 • 	Accessibility: Extinguisher must be visible and reachable—no obstructions
-• 	IBU Overlay: May require sealed cabinets, tamper indicators, or multilingual signage`
+• 	IBC 906.1 – Portable Fire Extinguishers Required in R‑2 Occupancies`
         }
     ]
 };
@@ -2835,21 +2843,23 @@ export const FLAMMABLE_COMBUSTIBLE: InsideSubcategory = {
             code: 'FLAM-01',
             codeReference: `🧭 Step 1: Identify Inspection Zones
 Focus on areas where ignition sources and flammable materials may coexist
-🔍 Step 2: Visual Condition
+🔍 Step 2: Visual Condition 
 • 	Improper storage: Items stored loosely, stacked near heat, or leaking = Severe
 • 	IBU Overlay: May require fire-rated cabinets or ventilated enclosures for volatile chemicals
 🧪 Step 3: Proximity & Safety Check
 • 	Measure Distance: Confirm flammable items are at least 3 feet away from:
 • 	Fuel-burning water heaters, Furnaces, Stoves, and ovens, Fireplaces
-• 	Inspect Containers: Must be original, sealed, and labeled, No leaking, rusted, or bulging containers
+• 	Inspect Containers: 	Must be original, sealed, and labeled, No leaking, rusted, or bulging containers
 • 	Check for Ignition Sources: Open flames, pilot lights, heating elements, or electrical sparks
 📏 Step 4: Prohibited Items & Locations
 • 	Petroleum products (gasoline, kerosene, propane) must not be stored inside units
 • 	Gas-powered equipment (e.g., lawnmowers, generators) must be stored outside or in exterior-access storage
-• 	IBU Overlay: May prohibit indoor storage of oxygen tanks or require signage and ventilation
+• 	IBC does NOT regulate everyday household flammable items inside a dwelling unit (cleaners, aerosols, cooking oils, etc.).
+Instead, the IBC regulates hazardous quantities of flammable or combustible materials.
 ⚒️ Step 5: IRC Fire Safety Requirements
-• 	IRC Section R302 & R315: Fuel-burning appliances must have clearances from combustibles
-• 	No flammable storage in mechanical closets or near ignition sources`
+• 	IRC Section R302 & R315: 	Fuel-burning appliances must have clearances from combustibles
+• 	No flammable storage in mechanical closets or near ignition sources
+`
         }
     ]
 };
@@ -2871,7 +2881,7 @@ Smoke alarms must be installed in the following locations:
 • 	Inside each sleeping room
 • 	Outside each sleeping room (e.g., hallway)
 • 	On every level of the unit, including basements
-🔍 Step 2: Visual Condition
+🔍 Step 2: Visual Condition 
 • 	Not within 10 feet of cooking appliances
 • 	Not within 3 feet of ceiling fans, ducts, windows, or exterior doors
 🧪 Step 3: Functional Testing
@@ -2881,10 +2891,9 @@ NSPIRE will require sealed, tamper-proof batteries in all battery-only units
 📏 Step 4: Accessibility & Local Requirements
 • 	Mounting Height: Typically 4"–12" from ceiling if wall-mounted; ceiling-mounted alarms must be >4" from wall
 • 	Labeling: Must include manufacturer info and expiration date
-• 	IBU Overlay: May require visual strobe alarms, tactile indicators, or audible alerts ≥75 dB for accessible units
-⚒️ Step 5: IRC Fire Safety Requirements
+• 	IBC 907.2.11.2: Groups R‑2, R‑3, R‑4, I‑1                                                                                                        ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC R314: Smoke alarms required in all sleeping areas, outside sleeping areas, and on each level
-• 	Must be interconnected in new construction, Must be listed to UL 217
+• 	Must be interconnected in new construction, 	Must be listed to UL 217
 • 	IRC R315: CO alarms required if fuel-burning appliances or attached garages are present`
         },
         {
@@ -2901,7 +2910,7 @@ Smoke alarms must be installed in the following locations:
 • 	Inside each sleeping room
 • 	Outside each sleeping room (e.g., hallway)
 • 	On every level of the unit, including basements
-🔍 Step 2: Visual Condition
+🔍 Step 2: Visual Condition 
 • 	Not within 10 feet of cooking appliances
 • 	Not within 3 feet of ceiling fans, ducts, windows, or exterior doors
 🧪 Step 3: Functional Testing
@@ -2911,10 +2920,9 @@ NSPIRE will require sealed, tamper-proof batteries in all battery-only units
 📏 Step 4: Accessibility & Local Requirements
 • 	Mounting Height: Typically 4"–12" from ceiling if wall-mounted; ceiling-mounted alarms must be >4" from wall
 • 	Labeling: Must include manufacturer info and expiration date
-• 	IBU Overlay: May require visual strobe alarms, tactile indicators, or audible alerts ≥75 dB for accessible units
-⚒️ Step 5: IRC Fire Safety Requirements
+• 	IBC 907.2.11.2: Groups R‑2, R‑3, R‑4, I‑1                                                                                                        ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC R314: Smoke alarms required in all sleeping areas, outside sleeping areas, and on each level
-• 	Must be interconnected in new construction, Must be listed to UL 217
+• 	Must be interconnected in new construction, 	Must be listed to UL 217
 • 	IRC R315: CO alarms required if fuel-burning appliances or attached garages are present`
         },
         {
@@ -2931,7 +2939,7 @@ Smoke alarms must be installed in the following locations:
 • 	Inside each sleeping room
 • 	Outside each sleeping room (e.g., hallway)
 • 	On every level of the unit, including basements
-🔍 Step 2: Visual Condition
+🔍 Step 2: Visual Condition 
 • 	Not within 10 feet of cooking appliances
 • 	Not within 3 feet of ceiling fans, ducts, windows, or exterior doors
 🧪 Step 3: Functional Testing
@@ -2941,10 +2949,9 @@ NSPIRE will require sealed, tamper-proof batteries in all battery-only units
 📏 Step 4: Accessibility & Local Requirements
 • 	Mounting Height: Typically 4"–12" from ceiling if wall-mounted; ceiling-mounted alarms must be >4" from wall
 • 	Labeling: Must include manufacturer info and expiration date
-• 	IBU Overlay: May require visual strobe alarms, tactile indicators, or audible alerts ≥75 dB for accessible units
-⚒️ Step 5: IRC Fire Safety Requirements
+• 	IBC 907.2.11.2: Groups R‑2, R‑3, R‑4, I‑1                                                                                                        ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC R314: Smoke alarms required in all sleeping areas, outside sleeping areas, and on each level
-• 	Must be interconnected in new construction, Must be listed to UL 217
+• 	Must be interconnected in new construction, 	Must be listed to UL 217
 • 	IRC R315: CO alarms required if fuel-burning appliances or attached garages are present`
         },
         {
@@ -2961,7 +2968,7 @@ Smoke alarms must be installed in the following locations:
 • 	Inside each sleeping room
 • 	Outside each sleeping room (e.g., hallway)
 • 	On every level of the unit, including basements
-🔍 Step 2: Visual Condition
+🔍 Step 2: Visual Condition 
 • 	Not within 10 feet of cooking appliances
 • 	Not within 3 feet of ceiling fans, ducts, windows, or exterior doors
 🧪 Step 3: Functional Testing
@@ -2971,10 +2978,9 @@ NSPIRE will require sealed, tamper-proof batteries in all battery-only units
 📏 Step 4: Accessibility & Local Requirements
 • 	Mounting Height: Typically 4"–12" from ceiling if wall-mounted; ceiling-mounted alarms must be >4" from wall
 • 	Labeling: Must include manufacturer info and expiration date
-• 	IBU Overlay: May require visual strobe alarms, tactile indicators, or audible alerts ≥75 dB for accessible units
-⚒️ Step 5: IRC Fire Safety Requirements
+• 	IBC 907.2.11.2: Groups R‑2, R‑3, R‑4, I‑1                                                                                                        ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC R314: Smoke alarms required in all sleeping areas, outside sleeping areas, and on each level
-• 	Must be interconnected in new construction, Must be listed to UL 217
+• 	Must be interconnected in new construction, 	Must be listed to UL 217
 • 	IRC R315: CO alarms required if fuel-burning appliances or attached garages are present`
         }
     ]
@@ -3000,11 +3006,12 @@ export const SPRINKLER_ASSEMBLY: InsideSubcategory = {
 🧪 Step 3: Sanitation & Environmental Safety
 • 	Inspect for foreign material: Paint, dust, grease, rust, or mold on sprinkler head or escutcheon
 • 	NSPIRE Deficiency 4: ≥75% of head or bulb covered by foreign material = Life-Threatening
-• 	IBU Overlay: May require corrosion-resistant heads, sealed penetrations, or pest-proof escutcheons
-📏 Step 4: Accessibility & Local Requirements
+• 	IBC Chapter 9 – Fire Protection and Life Safety Systems, specifically Section 903 – Automatic Sprinkler Systems.
+📏 Step 4:Accessibility & Local Requirements
 • 	Inspection access: Must be visual—no disassembly or activation
 • 	Labeling: Sprinkler heads should be identifiable by type and rating
-• 	IBU Overlay: May require signage, multilingual instructions, or compliant reach zones in accessible units
+• 	IBC 903.2.8::“Group R fire areas shall be equipped throughout with an automatic sprinkler system.”  
+
 ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC Section P2904: Sprinkler systems must be listed and installed per manufacturer specs
 • 	Minimum coverage and spacing must be maintained
@@ -3028,11 +3035,12 @@ export const SPRINKLER_ASSEMBLY: InsideSubcategory = {
 🧪 Step 3: Sanitation & Environmental Safety
 • 	Inspect for foreign material: Paint, dust, grease, rust, or mold on sprinkler head or escutcheon
 • 	NSPIRE Deficiency 4: ≥75% of head or bulb covered by foreign material = Life-Threatening
-• 	IBU Overlay: May require corrosion-resistant heads, sealed penetrations, or pest-proof escutcheons
-📏 Step 4: Accessibility & Local Requirements
+• 	IBC Chapter 9 – Fire Protection and Life Safety Systems, specifically Section 903 – Automatic Sprinkler Systems.
+📏 Step 4:Accessibility & Local Requirements
 • 	Inspection access: Must be visual—no disassembly or activation
 • 	Labeling: Sprinkler heads should be identifiable by type and rating
-• 	IBU Overlay: May require signage, multilingual instructions, or compliant reach zones in accessible units
+• 	IBC 903.2.8::“Group R fire areas shall be equipped throughout with an automatic sprinkler system.”  
+
 ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC Section P2904: Sprinkler systems must be listed and installed per manufacturer specs
 • 	Minimum coverage and spacing must be maintained
@@ -3056,11 +3064,12 @@ export const SPRINKLER_ASSEMBLY: InsideSubcategory = {
 🧪 Step 3: Sanitation & Environmental Safety
 • 	Inspect for foreign material: Paint, dust, grease, rust, or mold on sprinkler head or escutcheon
 • 	NSPIRE Deficiency 4: ≥75% of head or bulb covered by foreign material = Life-Threatening
-• 	IBU Overlay: May require corrosion-resistant heads, sealed penetrations, or pest-proof escutcheons
-📏 Step 4: Accessibility & Local Requirements
+• 	IBC Chapter 9 – Fire Protection and Life Safety Systems, specifically Section 903 – Automatic Sprinkler Systems.
+📏 Step 4:Accessibility & Local Requirements
 • 	Inspection access: Must be visual—no disassembly or activation
 • 	Labeling: Sprinkler heads should be identifiable by type and rating
-• 	IBU Overlay: May require signage, multilingual instructions, or compliant reach zones in accessible units
+• 	IBC 903.2.8::“Group R fire areas shall be equipped throughout with an automatic sprinkler system.”  
+
 ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC Section P2904: Sprinkler systems must be listed and installed per manufacturer specs
 • 	Minimum coverage and spacing must be maintained
@@ -3084,11 +3093,12 @@ export const SPRINKLER_ASSEMBLY: InsideSubcategory = {
 🧪 Step 3: Sanitation & Environmental Safety
 • 	Inspect for foreign material: Paint, dust, grease, rust, or mold on sprinkler head or escutcheon
 • 	NSPIRE Deficiency 4: ≥75% of head or bulb covered by foreign material = Life-Threatening
-• 	IBU Overlay: May require corrosion-resistant heads, sealed penetrations, or pest-proof escutcheons
-📏 Step 4: Accessibility & Local Requirements
+• 	IBC Chapter 9 – Fire Protection and Life Safety Systems, specifically Section 903 – Automatic Sprinkler Systems.
+📏 Step 4:Accessibility & Local Requirements
 • 	Inspection access: Must be visual—no disassembly or activation
 • 	Labeling: Sprinkler heads should be identifiable by type and rating
-• 	IBU Overlay: May require signage, multilingual instructions, or compliant reach zones in accessible units
+• 	IBC 903.2.8::“Group R fire areas shall be equipped throughout with an automatic sprinkler system.”  
+
 ⚒️ Step 5: IRC Fire Safety Requirements
 • 	IRC Section P2904: Sprinkler systems must be listed and installed per manufacturer specs
 • 	Minimum coverage and spacing must be maintained
@@ -3135,10 +3145,11 @@ export const FLOOR_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Surface firmness: Must be stable, firm, and slip-resistant (CBC §11B-302)
 • 	Clear floor space: Required in accessible units for maneuverability
-• 	IBU Overlay: May require low-pile carpet, non-slip finishes, or visual contrast for low-vision residents
+• 	dead + live loads per IBC Table 1607.1 (e.g., 40 psf minimum live load for residential floors).
 ⚒️ Step 5: IRC Structural & Safety Requirements
 • 	IRC R301.1 & R502: Subfloor must support live loads and be fastened appropriately
-• 	IRC R317.1: Moisture-prone areas must use decay-resistant materials`
+• 	IRC R317.1:	Moisture-prone areas must use decay-resistant materials
+`
         },
         {
             id: 'floor_2',
@@ -3161,10 +3172,11 @@ export const FLOOR_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Surface firmness: Must be stable, firm, and slip-resistant (CBC §11B-302)
 • 	Clear floor space: Required in accessible units for maneuverability
-• 	IBU Overlay: May require low-pile carpet, non-slip finishes, or visual contrast for low-vision residents
+• 	dead + live loads per IBC Table 1607.1 (e.g., 40 psf minimum live load for residential floors).
 ⚒️ Step 5: IRC Structural & Safety Requirements
 • 	IRC R301.1 & R502: Subfloor must support live loads and be fastened appropriately
-• 	IRC R317.1: Moisture-prone areas must use decay-resistant materials`
+• 	IRC R317.1:	Moisture-prone areas must use decay-resistant materials
+`
         }
     ]
 };
@@ -3186,18 +3198,18 @@ export const FOUNDATION_DEFICIENCIES: InsideItemDeficiencies = {
             code: 'FOUND-01',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: Visible portions of the foundation system accessible from inside the unit (e.g., slab edges, crawlspace access, basement walls, utility closets)
-🔍 Step 2: Sanitation & Pest Control
+🔍 Step 2:  Sanitation & Pest Control
 • 	Check for pest droppings, nests, or burrowing near foundation edges
 • 	IBU Overlay: May require sealed penetrations, pest-proof vents, or exclusion mesh
 🧪 Step 3: Moisture Intrusion & Drainage
 • 	Inspect for water stains, efflorescence, or mold on foundation surfaces
 • 	Look for rusted fasteners or corroded rebar near exposed concrete
-• 	IBU Overlay: May require vapor barriers, sump pumps, or perimeter drainage systems
+• 	Masonry Foundation Requirements (IBC Chapter 21)
 📏 Step 4: Accessibility & Local Requirements
 • 	Crawlspace access: Must be ≥18″ high and ≥24″ wide (IRC §R408.4)
 • 	Basement egress: Must meet IRC §R310 for emergency escape and rescue
 • 	Clearance: No obstructions blocking access to foundation inspection points
-• 	IBU Overlay: May require tactile signage, compliant access panels, or visual contrast for low-vision inspectors
+• 	IBC Section 1807 – Foundation Walls inspectors, Waterproofing/damp‑proofing required where moisture is present.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R403–R407: Footings must be frost-protected and properly sized
 • 	IRC R318: Moisture control required in crawlspaces and basements`
@@ -3213,18 +3225,18 @@ export const FOUNDATION_DEFICIENCIES: InsideItemDeficiencies = {
             code: 'FOUND-02',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: Visible portions of the foundation system accessible from inside the unit (e.g., slab edges, crawlspace access, basement walls, utility closets)
-🔍 Step 2: Sanitation & Pest Control
+🔍 Step 2:  Sanitation & Pest Control
 • 	Check for pest droppings, nests, or burrowing near foundation edges
 • 	IBU Overlay: May require sealed penetrations, pest-proof vents, or exclusion mesh
 🧪 Step 3: Moisture Intrusion & Drainage
 • 	Inspect for water stains, efflorescence, or mold on foundation surfaces
 • 	Look for rusted fasteners or corroded rebar near exposed concrete
-• 	IBU Overlay: May require vapor barriers, sump pumps, or perimeter drainage systems
+• 	Masonry Foundation Requirements (IBC Chapter 21)
 📏 Step 4: Accessibility & Local Requirements
 • 	Crawlspace access: Must be ≥18″ high and ≥24″ wide (IRC §R408.4)
 • 	Basement egress: Must meet IRC §R310 for emergency escape and rescue
 • 	Clearance: No obstructions blocking access to foundation inspection points
-• 	IBU Overlay: May require tactile signage, compliant access panels, or visual contrast for low-vision inspectors
+• 	IBC Section 1807 – Foundation Walls inspectors, Waterproofing/damp‑proofing required where moisture is present.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R403–R407: Footings must be frost-protected and properly sized
 • 	IRC R318: Moisture control required in crawlspaces and basements`
@@ -3240,18 +3252,18 @@ export const FOUNDATION_DEFICIENCIES: InsideItemDeficiencies = {
             code: 'FOUND-03',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: Visible portions of the foundation system accessible from inside the unit (e.g., slab edges, crawlspace access, basement walls, utility closets)
-🔍 Step 2: Sanitation & Pest Control
+🔍 Step 2:  Sanitation & Pest Control
 • 	Check for pest droppings, nests, or burrowing near foundation edges
 • 	IBU Overlay: May require sealed penetrations, pest-proof vents, or exclusion mesh
 🧪 Step 3: Moisture Intrusion & Drainage
 • 	Inspect for water stains, efflorescence, or mold on foundation surfaces
 • 	Look for rusted fasteners or corroded rebar near exposed concrete
-• 	IBU Overlay: May require vapor barriers, sump pumps, or perimeter drainage systems
+• 	Masonry Foundation Requirements (IBC Chapter 21)
 📏 Step 4: Accessibility & Local Requirements
 • 	Crawlspace access: Must be ≥18″ high and ≥24″ wide (IRC §R408.4)
 • 	Basement egress: Must meet IRC §R310 for emergency escape and rescue
 • 	Clearance: No obstructions blocking access to foundation inspection points
-• 	IBU Overlay: May require tactile signage, compliant access panels, or visual contrast for low-vision inspectors
+• 	IBC Section 1807 – Foundation Walls inspectors, Waterproofing/damp‑proofing required where moisture is present.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R403–R407: Footings must be frost-protected and properly sized
 • 	IRC R318: Moisture control required in crawlspaces and basements`
@@ -3267,18 +3279,18 @@ export const FOUNDATION_DEFICIENCIES: InsideItemDeficiencies = {
             code: 'FOUND-04',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: Visible portions of the foundation system accessible from inside the unit (e.g., slab edges, crawlspace access, basement walls, utility closets)
-🔍 Step 2: Sanitation & Pest Control
+🔍 Step 2:  Sanitation & Pest Control
 • 	Check for pest droppings, nests, or burrowing near foundation edges
 • 	IBU Overlay: May require sealed penetrations, pest-proof vents, or exclusion mesh
 🧪 Step 3: Moisture Intrusion & Drainage
 • 	Inspect for water stains, efflorescence, or mold on foundation surfaces
 • 	Look for rusted fasteners or corroded rebar near exposed concrete
-• 	IBU Overlay: May require vapor barriers, sump pumps, or perimeter drainage systems
+• 	Masonry Foundation Requirements (IBC Chapter 21)
 📏 Step 4: Accessibility & Local Requirements
 • 	Crawlspace access: Must be ≥18″ high and ≥24″ wide (IRC §R408.4)
 • 	Basement egress: Must meet IRC §R310 for emergency escape and rescue
 • 	Clearance: No obstructions blocking access to foundation inspection points
-• 	IBU Overlay: May require tactile signage, compliant access panels, or visual contrast for low-vision inspectors
+• 	IBC Section 1807 – Foundation Walls inspectors, Waterproofing/damp‑proofing required where moisture is present.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R403–R407: Footings must be frost-protected and properly sized
 • 	IRC R318: Moisture control required in crawlspaces and basements`
@@ -3294,18 +3306,18 @@ export const FOUNDATION_DEFICIENCIES: InsideItemDeficiencies = {
             code: 'FOUND-05',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: Visible portions of the foundation system accessible from inside the unit (e.g., slab edges, crawlspace access, basement walls, utility closets)
-🔍 Step 2: Sanitation & Pest Control
+🔍 Step 2:  Sanitation & Pest Control
 • 	Check for pest droppings, nests, or burrowing near foundation edges
 • 	IBU Overlay: May require sealed penetrations, pest-proof vents, or exclusion mesh
 🧪 Step 3: Moisture Intrusion & Drainage
 • 	Inspect for water stains, efflorescence, or mold on foundation surfaces
 • 	Look for rusted fasteners or corroded rebar near exposed concrete
-• 	IBU Overlay: May require vapor barriers, sump pumps, or perimeter drainage systems
+• 	Masonry Foundation Requirements (IBC Chapter 21)
 📏 Step 4: Accessibility & Local Requirements
 • 	Crawlspace access: Must be ≥18″ high and ≥24″ wide (IRC §R408.4)
 • 	Basement egress: Must meet IRC §R310 for emergency escape and rescue
 • 	Clearance: No obstructions blocking access to foundation inspection points
-• 	IBU Overlay: May require tactile signage, compliant access panels, or visual contrast for low-vision inspectors
+• 	IBC Section 1807 – Foundation Walls inspectors, Waterproofing/damp‑proofing required where moisture is present.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R403–R407: Footings must be frost-protected and properly sized
 • 	IRC R318: Moisture control required in crawlspaces and basements`
@@ -3329,18 +3341,18 @@ export const HAZARD_INFESTATION: InsideSubcategory = {
             points: '5.5/n',
             code: 'HAZ-INF-01',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3356,18 +3368,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '5.5/n',
             code: 'HAZ-INF-02',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3383,18 +3395,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '5.5/n',
             code: 'HAZ-INF-03',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3410,18 +3422,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '5.5/n',
             code: 'HAZ-INF-04',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3437,18 +3449,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '5.5/n',
             code: 'HAZ-INF-05',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3464,18 +3476,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '14.8/n',
             code: 'HAZ-INF-06',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3491,18 +3503,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '14.8/n',
             code: 'HAZ-INF-07',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3518,18 +3530,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '14.8/n',
             code: 'HAZ-INF-08',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3545,18 +3557,18 @@ Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closet
             points: '14.8/n',
             code: 'HAZ-INF-09',
             codeReference: `🧭 Step 1: Identify Target Areas for Inspection
-Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
+	Applies to: All interior spaces, including kitchens, bathrooms, bedrooms, closets, utility rooms, crawlspaces, and attics
 • 	NSPIRE Scope: Pest hazards are scored regardless of resident behavior or existing extermination contracts
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Includes: Insects (cockroaches, ants, bedbugs, termites), rodents (mice, rats), birds, bats, and reptiles (e.g., snakes)
 🧪 Step 3: Sanitation & Attractants
 • 	Inspect for food residue, trash buildup, or standing water
 • 	Check under sinks, behind appliances, and inside cabinets
 • 	IBU Overlay: May require sealed cabinetry, pest-proof trash containers, or moisture control
-📏 Step 4: Obstruction & Accessibility
+📏 Step 4:Obstruction & Accessibility
 • 	Ensure inspection access to baseboards, closets, and behind appliances
 • 	Do not disturb resident belongings, but inspect visible areas thoroughly
-• 	IBU Overlay: May require compliant inspection access or pest control coordination in elderly housing
+• 	   IBC does not have a single “hazards” chapter. Instead, hazards are regulated across multiple chapters covering fire, smoke, structural, environmental, egress, mechanical, electrical,
 ⚒️ Step 5: IRC Sanitation & Structural Requirements
 • 	IRC Section R306 & R322:
 • 	Units must be free from unsanitary conditions and pest entry points
@@ -3579,7 +3591,7 @@ export const HAZARD_SHARP_EDGES: InsideSubcategory = {
             code: 'HAZ-SHARP-01',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: All interior and exterior components within the unit, especially along normal paths of travel
-🔍 Step 2: Common examples:
+🔍 Step 2: • 	Common examples:
 • 	Broken glass (windows, mirrors, furniture), Damaged tile or countertop edges, Exposed metal (HVAC grilles, cabinet hardware, bent fixtures)
 🧪 Step 3: Repair & Mitigation Guidance
 • 	Temporary mitigation: Tape, padding, or signage may be used until permanent repair
@@ -3588,7 +3600,7 @@ export const HAZARD_SHARP_EDGES: InsideSubcategory = {
 📏 Step 4: Accessibility & Path of Travel
 • 	Location check: Sharp edges within 36″ of floor level or along walking paths pose a higher risk
 • 	Rounded or beveled edges preferred in accessible units
-• 	IBU Overlay: May require tactile warnings, visual contrast, or protective guards in elderly housing
+• 	IBC does not contain a dedicated section titled “sharp edges.” Instead, sharp‑edge hazards are regulated indirectly through general safety, injury‑prevention, and material/finish 
 ⚒️ Step 5: IRC Safety Requirements
 • 	IRC R311.7.8 & R312: Handrails and guards must be smooth and free of sharp projections
 • 	IRC §R302.1 – Protection against physical hazards and injury`
@@ -3618,14 +3630,17 @@ export const HAZARD_TRIP: InsideSubcategory = {
 • 	Vertical Hazard: Use a ruler or measuring tool to confirm elevation change ≥ ¾ inch
 • 	Horizontal Hazard: Measure gap perpendicular to path; cite if ≥ 2 inches
 • 	Walk Test: Walk the area naturally to detect unevenness or instability
-📏 Step 4: Accessibility & Local Requirements
-• 	Clear width: Minimum 36″ for accessible routes
+📏 Step 4:Accessibility & Local Requirements
+• 	Clear width: Minimum 36″ for accessible routes 
 • 	Threshold height: ≤½″ beveled or ≤¼″ vertical
 • 	Surface firmness: Must be stable, firm, and slip-resistant
 • 	IBU Overlay: May require visual contrast, tactile warnings, or low-pile flooring in accessible units
 ⚒️ Step 5: IRC Safety Requirements
 • 	IRC R311.7.8 & R312: Walking surfaces must be continuous and safe
-• 	IRC §R302.1 – Protection against physical injury and unsafe walking surfaces`
+• 	IBC (via its coordination with accessibility and egress standards) limits changes in level:
+¼ inch to ½ inch — must be beveled
+> ½ inch — requires a ramp (slope ≤ 1:12)
+These thresholds are consistent with the accessibility and egress provisions referenced in Chapter 10. `
         }
     ]
 };
@@ -3655,8 +3670,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '5.5/n',
             code: 'HVAC-01',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3668,9 +3682,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3684,8 +3698,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '30/n',
             code: 'HVAC-02',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3697,9 +3710,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3713,8 +3726,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '30/n',
             code: 'HVAC-03',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3726,9 +3738,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3742,8 +3754,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '14.8/n',
             code: 'HVAC-04',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3755,9 +3766,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3771,8 +3782,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '5.5/n',
             code: 'HVAC-05',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3784,9 +3794,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3800,8 +3810,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '30/n',
             code: 'HVAC-06',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3813,9 +3822,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3829,8 +3838,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '13.8/n',
             code: 'HVAC-07',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3842,9 +3850,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         },
@@ -3858,8 +3866,7 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
             points: '30/n',
             code: 'HVAC-08',
             codeReference: `🧭 Step 1: Identify HVAC Components
-• 	Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork
-🔍 Step 2: Identification & Applicability
+• 	 Scope: Includes heating units, cooling systems, exhaust fans, thermostats, and ductwork                                                                                                        🔍 Step 2: Identification & Applicability
 • 	Required: Every habitable space must have a functional heat source during the heating season (typically Oct–Apr)
 • 	Cooling systems: Required only if originally designed or provided
 🧪 Step 3: Functional Testing
@@ -3871,9 +3878,9 @@ export const HVAC_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Reach Range: Thermostats and controls must be within 15"–48" AFF
 • 	Ventilation controls: Must be labeled and operable by residents
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
-⚒️ Step 5: IRC HVAC Safety Requirements
-• 	IRC M1401–M1507: Heating systems must be safely installed and vented
+• 	IBC 1202 – Ventilation
+Buildings must have natural ventilation per IBC 1202.5                                                                                     ⚒️ Step 5: IRC HVAC Safety Requirements
+• 	IRC ,IBC -M1401–M1507: Heating systems must be safely installed and vented
 • 	Combustion appliances must have proper clearances and exhaust
 • 	No fuel-burning appliances allowed in sleeping rooms unless sealed combustion`
         }
@@ -3897,19 +3904,20 @@ export const KITCHEN_CABINET: InsideSubcategory = {
             code: 'KIT-CAB-01',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Required: Every unit with a designated kitchen must have permanent cabinetry for food and dish storage
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Check under sink cabinets for leaks, rot, or odor
 🧪 Step 3: Operability Test
 • 	Open and close every door and drawer
 • 	Check for full extension and smooth operation
 • 	Verify alignment and secure latching
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Reach range: Shelves and drawers must be usable by residents with limited mobility
 • 	Handle type: Lever or loop-style preferred for accessibility
 • 	IBU Overlay: May require adjustable shelving, tactile labels, or visual contrast in accessible units
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R306.2: Kitchens must include space for food preparation and storage
-• 	IRC R602.3: Cabinets must be securely fastened to structural framing`
+• 	IRC R602.3: Cabinets must be securely fastened to structural framing
+`
         },
         {
             id: 'kit_cab_2',
@@ -3922,19 +3930,20 @@ export const KITCHEN_CABINET: InsideSubcategory = {
             code: 'KIT-CAB-02',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Required: Every unit with a designated kitchen must have permanent cabinetry for food and dish storage
-🔍 Step 2: Visual Condition Assessment
+🔍 Step 2: Visual Condition Assessment 
 • 	Check under sink cabinets for leaks, rot, or odor
 🧪 Step 3: Operability Test
 • 	Open and close every door and drawer
 • 	Check for full extension and smooth operation
 • 	Verify alignment and secure latching
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Reach range: Shelves and drawers must be usable by residents with limited mobility
 • 	Handle type: Lever or loop-style preferred for accessibility
 • 	IBU Overlay: May require adjustable shelving, tactile labels, or visual contrast in accessible units
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R306.2: Kitchens must include space for food preparation and storage
-• 	IRC R602.3: Cabinets must be securely fastened to structural framing`
+• 	IRC R602.3: Cabinets must be securely fastened to structural framing
+`
         }
     ]
 };
@@ -3952,8 +3961,7 @@ export const KITCHEN_COOKING: InsideSubcategory = {
             points: '5.5/n',
             code: 'KIT-COOK-01',
             codeReference: `🧭 Step 1: Identify Cooking Appliance Type
-• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)
-🔍 Step 2: Identification & Applicability
+• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)                                                                                                             🔍 Step 2: Identification & Applicability
 • 	Required: Every unit must have a primary cooking appliance unless exempt (e.g., SRO with shared kitchen)
 🧪 Step 3: Functional Testing
 • 	Burner Test: Gas: Observe flame pattern (even, blue flame)
@@ -3961,14 +3969,17 @@ export const KITCHEN_COOKING: InsideSubcategory = {
 • 	Oven Test: Turn on and confirm heating (use thermometer if available)
 • 	Microwave Test (if primary): Run for 30 seconds with a cup of water; confirm heating
 • 	Control Check: Ensure knobs, buttons, and digital displays respond properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Handle type: Lever or loop-style preferred
 • 	Clear floor space: ≥30″ x 48″ in front of appliance for wheelchair access
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+IBC requires a kitchen and cooking appliance in every unit.
+IBC requires proper ventilation (natural or mechanical).
+IBC requires fire separation, smoke alarm spacing, and CO alarms.
 ⚒️ Step 5: IRC Installation & Safety Requirements
 • 	IRC G2406.2: No fuel-burning appliances allowed in sleeping rooms unless sealed combustion
-• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances`
+• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances
+`
         },
         {
             id: 'kit_cook_2',
@@ -3980,8 +3991,7 @@ export const KITCHEN_COOKING: InsideSubcategory = {
             points: '14.8/n',
             code: 'KIT-COOK-02',
             codeReference: `🧭 Step 1: Identify Cooking Appliance Type
-• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)
-🔍 Step 2: Identification & Applicability
+• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)                                                                                                             🔍 Step 2: Identification & Applicability
 • 	Required: Every unit must have a primary cooking appliance unless exempt (e.g., SRO with shared kitchen)
 🧪 Step 3: Functional Testing
 • 	Burner Test: Gas: Observe flame pattern (even, blue flame)
@@ -3989,14 +3999,17 @@ export const KITCHEN_COOKING: InsideSubcategory = {
 • 	Oven Test: Turn on and confirm heating (use thermometer if available)
 • 	Microwave Test (if primary): Run for 30 seconds with a cup of water; confirm heating
 • 	Control Check: Ensure knobs, buttons, and digital displays respond properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Handle type: Lever or loop-style preferred
 • 	Clear floor space: ≥30″ x 48″ in front of appliance for wheelchair access
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+IBC requires a kitchen and cooking appliance in every unit.
+IBC requires proper ventilation (natural or mechanical).
+IBC requires fire separation, smoke alarm spacing, and CO alarms.
 ⚒️ Step 5: IRC Installation & Safety Requirements
 • 	IRC G2406.2: No fuel-burning appliances allowed in sleeping rooms unless sealed combustion
-• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances`
+• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances
+`
         },
         {
             id: 'kit_cook_3',
@@ -4008,8 +4021,7 @@ export const KITCHEN_COOKING: InsideSubcategory = {
             points: '5.5/n',
             code: 'KIT-COOK-03',
             codeReference: `🧭 Step 1: Identify Cooking Appliance Type
-• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)
-🔍 Step 2: Identification & Applicability
+• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)                                                                                                             🔍 Step 2: Identification & Applicability
 • 	Required: Every unit must have a primary cooking appliance unless exempt (e.g., SRO with shared kitchen)
 🧪 Step 3: Functional Testing
 • 	Burner Test: Gas: Observe flame pattern (even, blue flame)
@@ -4017,14 +4029,17 @@ export const KITCHEN_COOKING: InsideSubcategory = {
 • 	Oven Test: Turn on and confirm heating (use thermometer if available)
 • 	Microwave Test (if primary): Run for 30 seconds with a cup of water; confirm heating
 • 	Control Check: Ensure knobs, buttons, and digital displays respond properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Handle type: Lever or loop-style preferred
 • 	Clear floor space: ≥30″ x 48″ in front of appliance for wheelchair access
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+IBC requires a kitchen and cooking appliance in every unit.
+IBC requires proper ventilation (natural or mechanical).
+IBC requires fire separation, smoke alarm spacing, and CO alarms.
 ⚒️ Step 5: IRC Installation & Safety Requirements
 • 	IRC G2406.2: No fuel-burning appliances allowed in sleeping rooms unless sealed combustion
-• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances`
+• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances
+`
         },
         {
             id: 'kit_cook_4',
@@ -4036,8 +4051,7 @@ export const KITCHEN_COOKING: InsideSubcategory = {
             points: '14.8/n',
             code: 'KIT-COOK-04',
             codeReference: `🧭 Step 1: Identify Cooking Appliance Type
-• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)
-🔍 Step 2: Identification & Applicability
+• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)                                                                                                             🔍 Step 2: Identification & Applicability
 • 	Required: Every unit must have a primary cooking appliance unless exempt (e.g., SRO with shared kitchen)
 🧪 Step 3: Functional Testing
 • 	Burner Test: Gas: Observe flame pattern (even, blue flame)
@@ -4045,14 +4059,17 @@ export const KITCHEN_COOKING: InsideSubcategory = {
 • 	Oven Test: Turn on and confirm heating (use thermometer if available)
 • 	Microwave Test (if primary): Run for 30 seconds with a cup of water; confirm heating
 • 	Control Check: Ensure knobs, buttons, and digital displays respond properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Handle type: Lever or loop-style preferred
 • 	Clear floor space: ≥30″ x 48″ in front of appliance for wheelchair access
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+IBC requires a kitchen and cooking appliance in every unit.
+IBC requires proper ventilation (natural or mechanical).
+IBC requires fire separation, smoke alarm spacing, and CO alarms.
 ⚒️ Step 5: IRC Installation & Safety Requirements
 • 	IRC G2406.2: No fuel-burning appliances allowed in sleeping rooms unless sealed combustion
-• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances`
+• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances
+`
         },
         {
             id: 'kit_cook_5',
@@ -4064,8 +4081,7 @@ export const KITCHEN_COOKING: InsideSubcategory = {
             points: '14.8/n',
             code: 'KIT-COOK-05',
             codeReference: `🧭 Step 1: Identify Cooking Appliance Type
-• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)
-🔍 Step 2: Identification & Applicability
+• 	Appliance types: Gas or electric range, cooktop, oven, or microwave (if primary)                                                                                                             🔍 Step 2: Identification & Applicability
 • 	Required: Every unit must have a primary cooking appliance unless exempt (e.g., SRO with shared kitchen)
 🧪 Step 3: Functional Testing
 • 	Burner Test: Gas: Observe flame pattern (even, blue flame)
@@ -4073,14 +4089,17 @@ export const KITCHEN_COOKING: InsideSubcategory = {
 • 	Oven Test: Turn on and confirm heating (use thermometer if available)
 • 	Microwave Test (if primary): Run for 30 seconds with a cup of water; confirm heating
 • 	Control Check: Ensure knobs, buttons, and digital displays respond properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Handle type: Lever or loop-style preferred
 • 	Clear floor space: ≥30″ x 48″ in front of appliance for wheelchair access
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+IBC requires a kitchen and cooking appliance in every unit.
+IBC requires proper ventilation (natural or mechanical).
+IBC requires fire separation, smoke alarm spacing, and CO alarms.
 ⚒️ Step 5: IRC Installation & Safety Requirements
 • 	IRC G2406.2: No fuel-burning appliances allowed in sleeping rooms unless sealed combustion
-• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances`
+• 	IRC E3901.5: Electrical outlets must be safely positioned and grounded near appliances
+`
         }
     ]
 };
@@ -4097,7 +4116,7 @@ export const KITCHEN_FOOD_PREP: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-FOOD-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:Identification & Applicability
 • 	Required: Every unit must have a designated food preparation area unless exempt (e.g., SRO with shared kitchen)
 • 	Made of cleanable material (e.g., laminate, stainless steel, sealed stone)
 🔍 Step 2: Sanitation & Environmental Safety
@@ -4107,8 +4126,8 @@ export const KITCHEN_FOOD_PREP: InsideSubcategory = {
 • 	Surface Check: Run hand across surface to detect roughness, instability, or exposed substrate
 • 	Cleanability Test: Confirm surface is sealed and nonporous (e.g., no raw wood or crumbling laminate)
 • 	Stability Check: Ensure countertop is securely mounted and does not shift or sag
-📏 Step 4: Accessibility & Local Requirements
-• 	Counter height: ≤34″ AFF for accessible units
+📏 Step 4:  Accessibility & Local Requirements
+• 	Counter height: ≤34″ AFF for accessible units 
 • 	Sink clearance: Knee space required under sink for wheelchair access
 • 	IBU Overlay: May require tactile controls, visual contrast, or lever-style hardware
 ⚒️ Step 5: IRC Kitchen Requirements
@@ -4124,7 +4143,7 @@ export const KITCHEN_FOOD_PREP: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-FOOD-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:Identification & Applicability
 • 	Required: Every unit must have a designated food preparation area unless exempt (e.g., SRO with shared kitchen)
 • 	Made of cleanable material (e.g., laminate, stainless steel, sealed stone)
 🔍 Step 2: Sanitation & Environmental Safety
@@ -4134,8 +4153,8 @@ export const KITCHEN_FOOD_PREP: InsideSubcategory = {
 • 	Surface Check: Run hand across surface to detect roughness, instability, or exposed substrate
 • 	Cleanability Test: Confirm surface is sealed and nonporous (e.g., no raw wood or crumbling laminate)
 • 	Stability Check: Ensure countertop is securely mounted and does not shift or sag
-📏 Step 4: Accessibility & Local Requirements
-• 	Counter height: ≤34″ AFF for accessible units
+📏 Step 4:  Accessibility & Local Requirements
+• 	Counter height: ≤34″ AFF for accessible units 
 • 	Sink clearance: Knee space required under sink for wheelchair access
 • 	IBU Overlay: May require tactile controls, visual contrast, or lever-style hardware
 ⚒️ Step 5: IRC Kitchen Requirements
@@ -4157,19 +4176,24 @@ export const KITCHEN_MOLD: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-MOLD-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• 	Applies to: All kitchen surfaces—walls, ceilings, cabinetry, countertops, flooring, and behind/under appliances
-🔍 Step 2: Sanitation & Environmental Safety
-• 	Visual inspection: Look for mold-like patches ≥4 square inches cumulatively
-🧪 Step 3: Inspection Technique
-• 	Visual Scan: Estimate Area: Measure or approximate total surface area affected
-• 	Check for Moisture Source: Look for active leaks, condensation, or plumbing failures
-📏 Step 4: Accessibility & Local Requirements
-• 	Reachability: Mold must be inspected in accessible areas only—no disassembly required
-• 	Surface contrast: Mold-like substance must be distinguishable from surface color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion`
+            codeReference: `🧭 Step 1: Identify the Refrigerator Type
+Inspect only permanently installed refrigerators provided by the property
+🔍 Step 2: Identification & Applicability
+• 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
+• 	Includes: Integrated freezer compartment, shelving, seals, and controls
+🧪 Step 3: Functional Testing
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
+• 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
+• 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
+• 	Light & Controls: Confirm interior light and temperature controls function properly
+📏 Step 4:Accessibility & Local Requirements
+• 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
+• 	Control labeling: Must be legible and operable without fine motor skills
+• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+⚒️ Step 5: IRC Installation & Safety Requirements
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
+• 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         },
         {
             id: 'kit_mold_2',
@@ -4180,19 +4204,24 @@ export const KITCHEN_MOLD: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'KIT-MOLD-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• 	Applies to: All kitchen surfaces—walls, ceilings, cabinetry, countertops, flooring, and behind/under appliances
-🔍 Step 2: Sanitation & Environmental Safety
-• 	Visual inspection: Look for mold-like patches ≥4 square inches cumulatively
-🧪 Step 3: Inspection Technique
-• 	Visual Scan: Estimate Area: Measure or approximate total surface area affected
-• 	Check for Moisture Source: Look for active leaks, condensation, or plumbing failures
-📏 Step 4: Accessibility & Local Requirements
-• 	Reachability: Mold must be inspected in accessible areas only—no disassembly required
-• 	Surface contrast: Mold-like substance must be distinguishable from surface color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion`
+            codeReference: `🧭 Step 1: Identify the Refrigerator Type
+Inspect only permanently installed refrigerators provided by the property
+🔍 Step 2: Identification & Applicability
+• 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
+• 	Includes: Integrated freezer compartment, shelving, seals, and controls
+🧪 Step 3: Functional Testing
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
+• 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
+• 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
+• 	Light & Controls: Confirm interior light and temperature controls function properly
+📏 Step 4:Accessibility & Local Requirements
+• 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
+• 	Control labeling: Must be legible and operable without fine motor skills
+• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+⚒️ Step 5: IRC Installation & Safety Requirements
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
+• 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         },
         {
             id: 'kit_mold_3',
@@ -4203,19 +4232,24 @@ export const KITCHEN_MOLD: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'KIT-MOLD-03',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• 	Applies to: All kitchen surfaces—walls, ceilings, cabinetry, countertops, flooring, and behind/under appliances
-🔍 Step 2: Sanitation & Environmental Safety
-• 	Visual inspection: Look for mold-like patches ≥4 square inches cumulatively
-🧪 Step 3: Inspection Technique
-• 	Visual Scan: Estimate Area: Measure or approximate total surface area affected
-• 	Check for Moisture Source: Look for active leaks, condensation, or plumbing failures
-📏 Step 4: Accessibility & Local Requirements
-• 	Reachability: Mold must be inspected in accessible areas only—no disassembly required
-• 	Surface contrast: Mold-like substance must be distinguishable from surface color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion`
+            codeReference: `🧭 Step 1: Identify the Refrigerator Type
+Inspect only permanently installed refrigerators provided by the property
+🔍 Step 2: Identification & Applicability
+• 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
+• 	Includes: Integrated freezer compartment, shelving, seals, and controls
+🧪 Step 3: Functional Testing
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
+• 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
+• 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
+• 	Light & Controls: Confirm interior light and temperature controls function properly
+📏 Step 4:Accessibility & Local Requirements
+• 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
+• 	Control labeling: Must be legible and operable without fine motor skills
+• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+⚒️ Step 5: IRC Installation & Safety Requirements
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
+• 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         },
         {
             id: 'kit_mold_4',
@@ -4226,19 +4260,24 @@ export const KITCHEN_MOLD: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-MOLD-04',
-            codeReference: `🧭 Step 1: Identification & Applicability
-• 	Applies to: All kitchen surfaces—walls, ceilings, cabinetry, countertops, flooring, and behind/under appliances
-🔍 Step 2: Sanitation & Environmental Safety
-• 	Visual inspection: Look for mold-like patches ≥4 square inches cumulatively
-🧪 Step 3: Inspection Technique
-• 	Visual Scan: Estimate Area: Measure or approximate total surface area affected
-• 	Check for Moisture Source: Look for active leaks, condensation, or plumbing failures
-📏 Step 4: Accessibility & Local Requirements
-• 	Reachability: Mold must be inspected in accessible areas only—no disassembly required
-• 	Surface contrast: Mold-like substance must be distinguishable from surface color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion`
+            codeReference: `🧭 Step 1: Identify the Refrigerator Type
+Inspect only permanently installed refrigerators provided by the property
+🔍 Step 2: Identification & Applicability
+• 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
+• 	Includes: Integrated freezer compartment, shelving, seals, and controls
+🧪 Step 3: Functional Testing
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
+• 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
+• 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
+• 	Light & Controls: Confirm interior light and temperature controls function properly
+📏 Step 4:Accessibility & Local Requirements
+• 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
+• 	Control labeling: Must be legible and operable without fine motor skills
+• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+⚒️ Step 5: IRC Installation & Safety Requirements
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
+• 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         }
     ]
 };
@@ -4261,16 +4300,17 @@ Inspect only permanently installed refrigerators provided by the property
 • 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
 • 	Includes: Integrated freezer compartment, shelving, seals, and controls
 🧪 Step 3: Functional Testing
-• 	Cooling Test: Use thermometer to confirm: Refrigerator: 32–40°F and Freezer ≤32°F
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
 • 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
 • 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
 • 	Light & Controls: Confirm interior light and temperature controls function properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
 • 	Control labeling: Must be legible and operable without fine motor skills
 • 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC E3901.5: Electrical outlets must be grounded and safely positioned
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
 • 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         },
         {
@@ -4288,16 +4328,17 @@ Inspect only permanently installed refrigerators provided by the property
 • 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
 • 	Includes: Integrated freezer compartment, shelving, seals, and controls
 🧪 Step 3: Functional Testing
-• 	Cooling Test: Use thermometer to confirm: Refrigerator: 32–40°F and Freezer ≤32°F
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
 • 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
 • 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
 • 	Light & Controls: Confirm interior light and temperature controls function properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
 • 	Control labeling: Must be legible and operable without fine motor skills
 • 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC E3901.5: Electrical outlets must be grounded and safely positioned
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
 • 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         },
         {
@@ -4315,16 +4356,17 @@ Inspect only permanently installed refrigerators provided by the property
 • 	Required: Every unit must have a functional refrigerator unless exempt (e.g., shared kitchen arrangement)
 • 	Includes: Integrated freezer compartment, shelving, seals, and controls
 🧪 Step 3: Functional Testing
-• 	Cooling Test: Use thermometer to confirm: Refrigerator: 32–40°F and Freezer ≤32°F
+• 	Cooling Test: 	Use thermometer to confirm:
+• 	Refrigerator: 32–40°F and 	Freezer ≤32°F
 • 	Door Seal Check: Close door on a piece of paper; it should resist easy removal
 • 	Interior Inspection: Open all drawers and shelves; check for cracks or missing parts
 • 	Light & Controls: Confirm interior light and temperature controls function properly
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Clear floor space: ≥30″ x 48″ in front of refrigerator for wheelchair access
 • 	Control labeling: Must be legible and operable without fine motor skills
 • 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC E3901.5: Electrical outlets must be grounded and safely positioned
+• 	IRC E3901.5: 	Electrical outlets must be grounded and safely positioned
 • 	IRC R306.2: Kitchens must include a sink, cooking appliance, and food storage (refrigerator)`
         }
     ]
@@ -4342,7 +4384,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-SINK-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4353,13 +4395,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         },
         {
             id: 'kit_sink_2',
@@ -4370,7 +4413,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-SINK-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4381,13 +4424,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         },
         {
             id: 'kit_sink_3',
@@ -4398,7 +4442,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-SINK-03',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4409,13 +4453,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         },
         {
             id: 'kit_sink_4',
@@ -4426,7 +4471,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-SINK-04',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4437,13 +4482,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         },
         {
             id: 'kit_sink_5',
@@ -4454,7 +4500,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'KIT-SINK-05',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4465,13 +4511,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         },
         {
             id: 'kit_sink_6',
@@ -4482,7 +4529,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '60 Day',
             points: '2.40/n',
             code: 'KIT-SINK-06',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4493,13 +4540,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         },
         {
             id: 'kit_sink_7',
@@ -4510,7 +4558,7 @@ export const KITCHEN_SINK: InsideSubcategory = {
             repairBy: '60 Day',
             points: '2.40/n',
             code: 'KIT-SINK-07',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:  Identification & Applicability
 • 	Required: Every unit must have a kitchen sink permanently installed and functionally adequate
 • 	NSPIRE Definition: A basin with hardware designed to dispense and hold clean water and discharge wastewater
 • 	Includes: Basin, faucet, handles, drain, supply lines, valves, splash guard, and overflow
@@ -4521,13 +4569,14 @@ export const KITCHEN_SINK: InsideSubcategory = {
 • 	Water test: Activate hot and cold water—verify flow, temperature, and shutoff
 • 	Drain test: Fill basin and observe drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4Accessibility & Local Requirements
 • 	Knee clearance: Required under sink in accessible units
 • 	Handle type: Lever-style preferred for residents with limited dexterity
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback
+• 	IBC  does NOT regulate sink installation directly.
 ⚒️ Step 5: IRC Plumbing & Installation Requirements
 • 	IRC P3201–P3202: Sink must have a trap and vent to prevent sewer gas
-• 	IRC P2706.1: Drainage must be smooth and leak-free`
+• 	IRC P2706.1: Drainage must be smooth and leak-free
+• `
         }
     ]
 };
@@ -4553,15 +4602,17 @@ export const KITCHEN_VENTILATION: InsideSubcategory = {
 • 	Switch test: Activate fan via wall switch or hood control
 • 	Audible check: Confirm motor engages and airflow is present
 • 	Airflow test: Use tissue or smoke to verify suction at intake
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC 1203 – Moisture Control
+This is the closest thing to a mold section in the IBC. accessible units
 ⚒️ Step 5: IRC Mechanical Requirements
 • 	IRC M1503.3: Kitchen exhaust systems must discharge outdoors
 • 	IRC M1502.4: Ducts must be smooth, securely fastened, and terminate outside
-• 	IRC M1505.1`
+• 	IRC M1505.1:
+`
         },
         {
             id: 'kit_vent_2',
@@ -4581,15 +4632,17 @@ export const KITCHEN_VENTILATION: InsideSubcategory = {
 • 	Switch test: Activate fan via wall switch or hood control
 • 	Audible check: Confirm motor engages and airflow is present
 • 	Airflow test: Use tissue or smoke to verify suction at intake
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC 1203 – Moisture Control
+This is the closest thing to a mold section in the IBC. accessible units
 ⚒️ Step 5: IRC Mechanical Requirements
 • 	IRC M1503.3: Kitchen exhaust systems must discharge outdoors
 • 	IRC M1502.4: Ducts must be smooth, securely fastened, and terminate outside
-• 	IRC M1505.1`
+• 	IRC M1505.1:
+`
         },
         {
             id: 'kit_vent_3',
@@ -4609,15 +4662,17 @@ export const KITCHEN_VENTILATION: InsideSubcategory = {
 • 	Switch test: Activate fan via wall switch or hood control
 • 	Audible check: Confirm motor engages and airflow is present
 • 	Airflow test: Use tissue or smoke to verify suction at intake
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC 1203 – Moisture Control
+This is the closest thing to a mold section in the IBC. accessible units
 ⚒️ Step 5: IRC Mechanical Requirements
 • 	IRC M1503.3: Kitchen exhaust systems must discharge outdoors
 • 	IRC M1502.4: Ducts must be smooth, securely fastened, and terminate outside
-• 	IRC M1505.1`
+• 	IRC M1505.1:
+`
         },
         {
             id: 'kit_vent_4',
@@ -4637,15 +4692,17 @@ export const KITCHEN_VENTILATION: InsideSubcategory = {
 • 	Switch test: Activate fan via wall switch or hood control
 • 	Audible check: Confirm motor engages and airflow is present
 • 	Airflow test: Use tissue or smoke to verify suction at intake
-📏 Step 4: Accessibility & Local Requirements
+📏 Step 4:Accessibility & Local Requirements
 • 	Control height: ≤48″ AFF for ADA compliance
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC 1203 – Moisture Control
+This is the closest thing to a mold section in the IBC. accessible units
 ⚒️ Step 5: IRC Mechanical Requirements
 • 	IRC M1503.3: Kitchen exhaust systems must discharge outdoors
 • 	IRC M1502.4: Ducts must be smooth, securely fastened, and terminate outside
-• 	IRC M1505.1`
+• 	IRC M1505.1:
+`
         }
     ]
 };
@@ -4687,18 +4744,19 @@ export const LEAK_GAS_OIL_DEFICIENCIES: InsideItemDeficiencies = {
 • 	Inspect for soot or burn marks indicating incomplete combustion
 • 	Ventilation: Ensure fuel-burning appliances have proper exhaust and air intake
 • 	IBU Overlay: May require sealed penetrations, carbon monoxide alarms, or fire-rated enclosures
-🧪 Step 3: Leak Detection Procedure
+🧪 Step 3:Leak Detection Procedure
 • 	Visual inspection: Look for staining, corrosion, or residue near joints and valves
 • 	Odor check: Smell for sulfur/rotten egg scent (mercaptan additive in natural gas)
 • 	Touch-Free Confirmation: Do not touch or manipulate fuel lines or valves
 📏 Step 4: Accessibility & Local Requirements
 • 	Shutoff valve access: Must be reachable without tools or obstruction
 • 	Labeling: Fuel lines and shutoffs must be clearly marked
-• 	IBU Overlay: May require tactile indicators, visual contrast, or audible alerts in accessible units
-• 	Mobility Hazards: Oil spills may create slip risks in accessible paths
+• 	IBC does NOT contain a section titled “gas leak” or “oil leak.”  
+But a gas/propane/oil leak is fully enforceable under the IBC through:
+Fire safety
+Fuel‑burning appliance safety
 ⚒️ Step 5: IRC Fuel System Requirements
-• 	IRC (2021) §G2412–G2417 – Fuel gas piping, leak testing, and appliance connections
-• 	IRC G2420.5: Shutoff valves required within 6 feet of each appliance
+• 	IRC (2021) §G2412–G2417 – Fuel gas piping, leak testing, and appliance connections                                                                                                     • 	IRC G2420.5: Shutoff valves required within 6 feet of each appliance
 • 	IRC P2801.6: Oil tanks must be protected from impact and corrosion`
         }
     ]
@@ -4734,10 +4792,10 @@ export const LEAK_SEWAGE_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Cleanout access: Must be unobstructed and reachable without tools
 • 	Labeling: Cleanouts and pump covers should be clearly marked
-• 	IBU Overlay: May require compliant access panels, tactile indicators, or visual contrast in accessible units
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)
 ⚒️ Step 5: IRC Plumbing & Drainage Requirements
-• 	IRC P3001–P3005: Drainage systems must be leak-free, properly vented, and connected to an approved sewer
-• 	IRC P2601.2: All plumbing systems must be maintained in a sanitary condition`
+• 	IRC P3001–P3005:  	Drainage systems must be leak-free, properly vented, and connected to an approved sewer
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)`
         },
         {
             id: 'leak_sew_2',
@@ -4763,10 +4821,10 @@ export const LEAK_SEWAGE_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Cleanout access: Must be unobstructed and reachable without tools
 • 	Labeling: Cleanouts and pump covers should be clearly marked
-• 	IBU Overlay: May require compliant access panels, tactile indicators, or visual contrast in accessible units
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)
 ⚒️ Step 5: IRC Plumbing & Drainage Requirements
-• 	IRC P3001–P3005: Drainage systems must be leak-free, properly vented, and connected to an approved sewer
-• 	IRC P2601.2: All plumbing systems must be maintained in a sanitary condition`
+• 	IRC P3001–P3005:  	Drainage systems must be leak-free, properly vented, and connected to an approved sewer
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)`
         },
         {
             id: 'leak_sew_3',
@@ -4792,10 +4850,10 @@ export const LEAK_SEWAGE_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Cleanout access: Must be unobstructed and reachable without tools
 • 	Labeling: Cleanouts and pump covers should be clearly marked
-• 	IBU Overlay: May require compliant access panels, tactile indicators, or visual contrast in accessible units
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)
 ⚒️ Step 5: IRC Plumbing & Drainage Requirements
-• 	IRC P3001–P3005: Drainage systems must be leak-free, properly vented, and connected to an approved sewer
-• 	IRC P2601.2: All plumbing systems must be maintained in a sanitary condition`
+• 	IRC P3001–P3005:  	Drainage systems must be leak-free, properly vented, and connected to an approved sewer
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)`
         },
         {
             id: 'leak_sew_4',
@@ -4821,10 +4879,10 @@ export const LEAK_SEWAGE_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Cleanout access: Must be unobstructed and reachable without tools
 • 	Labeling: Cleanouts and pump covers should be clearly marked
-• 	IBU Overlay: May require compliant access panels, tactile indicators, or visual contrast in accessible units
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)
 ⚒️ Step 5: IRC Plumbing & Drainage Requirements
-• 	IRC P3001–P3005: Drainage systems must be leak-free, properly vented, and connected to an approved sewer
-• 	IRC P2601.2: All plumbing systems must be maintained in a sanitary condition`
+• 	IRC P3001–P3005:  	Drainage systems must be leak-free, properly vented, and connected to an approved sewer
+• 	IBC 102.4 – Referenced Codes (Critical Enforcement Path)`
         }
     ]
 };
@@ -4843,21 +4901,14 @@ export const LEAK_WATER_DEFICIENCIES: InsideItemDeficiencies = {
             severity: 'Moderate',
             repairBy: '30 Day',
             points: '5.5/n',
-            code: 'LEAK-WATER-01'
-        },
-        {
-            id: 'leak_water_2',
-            name: 'Fluid leaking from sprinkler assembly',
-            detail: 'Fluid leaking from sprinkler assembly',
-            criteria: 'Fluid is leaking from the sprinkler assembly.',
-            severity: 'Moderate',
-            repairBy: '30 Day',
-            points: '5.5/n',
-            code: 'LEAK-WATER-02',
+            code: 'LEAK-WATER-01',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: All water-bearing systems and surfaces inside the unit
 • 	Includes: Supply lines, drainpipes, fixtures, appliances, ceilings, walls, floors, and sprinkler assemblies
-• 	Leak types: Environmental intrusion, Plumbing leaks, Sprinkler system leaks
+• 	Leak types:
+• 	Environmental intrusion (e.g., rainwater through windows or walls)
+• 	Plumbing leaks (e.g., from pipes, valves, or appliances)
+• 	Sprinkler system leaks
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest activity around leak sites
 • 	Check for biohazard exposure if the leak involves wastewater or cross-contamination
@@ -4871,7 +4922,43 @@ export const LEAK_WATER_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Leak location: Must be reachable for inspection without disassembly
 • 	Cleanout access: Required for plumbing leaks
-• 	IBU Overlay: May require ADA-compliant access panels, tactile indicators, or visual contrast in accessible units
+• 	IBC 2901.1 – Plumbing Systems, A plumbing leak makes the fixture non‑functional or unsanitary, violating this section.
+Fuel‑burning appliance safety
+⚒️ Step 5: IRC Plumbing & Moisture Control Requirements
+• 	IRC P2601.2: Plumbing systems must be maintained in a sanitary condition
+• 	IRC R703.1: Exterior walls must prevent water intrusion`
+        },
+        {
+            id: 'leak_water_2',
+            name: 'Fluid leaking from sprinkler assembly',
+            detail: 'Fluid leaking from sprinkler assembly',
+            criteria: 'Fluid is leaking from the sprinkler assembly.',
+            severity: 'Moderate',
+            repairBy: '30 Day',
+            points: '5.5/n',
+            code: 'LEAK-WATER-02',
+            codeReference: `🧭 Step 1: Identification & Applicability
+• 	Applies to: All water-bearing systems and surfaces inside the unit
+• 	Includes: Supply lines, drainpipes, fixtures, appliances, ceilings, walls, floors, and sprinkler assemblies
+• 	Leak types:
+• 	Environmental intrusion (e.g., rainwater through windows or walls)
+• 	Plumbing leaks (e.g., from pipes, valves, or appliances)
+• 	Sprinkler system leaks
+🔍 Step 2: Sanitation & Environmental Safety
+• 	Inspect for mold, mildew, or pest activity around leak sites
+• 	Check for biohazard exposure if the leak involves wastewater or cross-contamination
+• 	IBU Overlay: May require antimicrobial treatments, sealed finishes, or pest-proof repairs
+🧪 Step 3: Leak Detection Procedure
+• 	Visual inspection: Look for discoloration, pooling, or warped surfaces
+• 	Touch test: Feel for moisture around suspect areas (walls, under sinks, behind appliances)
+• 	Odor check: Musty smells may indicate hidden leaks or mold
+• 	Resident inquiry: Ask if the leak was previously active or repaired
+• 	Confirm if leaks have occurred recently, even if dry during inspection
+📏 Step 4: Accessibility & Local Requirements
+• 	Leak location: Must be reachable for inspection without disassembly
+• 	Cleanout access: Required for plumbing leaks
+• 	IBC 2901.1 – Plumbing Systems, A plumbing leak makes the fixture non‑functional or unsanitary, violating this section.
+Fuel‑burning appliance safety
 ⚒️ Step 5: IRC Plumbing & Moisture Control Requirements
 • 	IRC P2601.2: Plumbing systems must be maintained in a sanitary condition
 • 	IRC R703.1: Exterior walls must prevent water intrusion`
@@ -4888,7 +4975,10 @@ export const LEAK_WATER_DEFICIENCIES: InsideItemDeficiencies = {
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Applies to: All water-bearing systems and surfaces inside the unit
 • 	Includes: Supply lines, drainpipes, fixtures, appliances, ceilings, walls, floors, and sprinkler assemblies
-• 	Leak types: Environmental intrusion, Plumbing leaks, Sprinkler system leaks
+• 	Leak types:
+• 	Environmental intrusion (e.g., rainwater through windows or walls)
+• 	Plumbing leaks (e.g., from pipes, valves, or appliances)
+• 	Sprinkler system leaks
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest activity around leak sites
 • 	Check for biohazard exposure if the leak involves wastewater or cross-contamination
@@ -4902,7 +4992,8 @@ export const LEAK_WATER_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Leak location: Must be reachable for inspection without disassembly
 • 	Cleanout access: Required for plumbing leaks
-• 	IBU Overlay: May require ADA-compliant access panels, tactile indicators, or visual contrast in accessible units
+• 	IBC 2901.1 – Plumbing Systems, A plumbing leak makes the fixture non‑functional or unsanitary, violating this section.
+Fuel‑burning appliance safety
 ⚒️ Step 5: IRC Plumbing & Moisture Control Requirements
 • 	IRC P2601.2: Plumbing systems must be maintained in a sanitary condition
 • 	IRC R703.1: Exterior walls must prevent water intrusion`
@@ -4927,21 +5018,19 @@ export const LIGHTING_INTERIOR: InsideSubcategory = {
             code: 'LIGHT-INT-01',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Required: Permanently installed light fixtures must be present and functional in all habitable rooms, kitchens, and bathrooms
-🔍 Step 2: Visual Inspection
+🔍 Step 2: Visual Inspection:
 • 	Look for missing covers, exposed wires, or damaged components
 🧪 Step 3: Functional Testing
 • 	Switch test: Activate each wall-mounted switch—confirm fixture responds
-• 	Bulb test: Verify all bulbs illuminate thoroughly and evenly
-• 	Stability Check: Check fixture mounting for looseness or detachment
-📏 Step 4: Accessibility & Local Requirements
+• 	Bulb test: Verify all bulbs illuminate thoroughly and evenly                                                                                                                                                  • 	Stability Check: Check fixture mounting for looseness or detachment
+• 	📏 Step 4: Accessibility & Local Requirements
 • 	Switch height: ≤48″ AFF for ADA compliance
 • 	Lighting level: Must support safe navigation and task performance
 • 	Control labeling: Switches must be clearly marked and operable without fine motor skills
 • 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Electrical & Lighting Requirements
-• 	IRC (2021) §R303.1–R303.3 – Natural and artificial lighting requirement
-• 	IRC E3905.8: Fixtures must be securely mounted and enclosed
-• 	IRC E3901.10: Lighting must be sufficient for safe use of the space`
+• 	IRC (2021) §R303.1–R303.3 – Natural and artificial lighting requirement                                                                                                                           • 	IRC E3905.8: Fixtures must be securely mounted and enclosed
+• 	IBC requires that interior spaces in multifamily dwelling units have adequate lighting—either natural light or artificial lighting—per Section 1204.  `
         },
         {
             id: 'light_int_2',
@@ -4954,21 +5043,19 @@ export const LIGHTING_INTERIOR: InsideSubcategory = {
             code: 'LIGHT-INT-02',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Required: Permanently installed light fixtures must be present and functional in all habitable rooms, kitchens, and bathrooms
-🔍 Step 2: Visual Inspection
+🔍 Step 2: Visual Inspection:
 • 	Look for missing covers, exposed wires, or damaged components
 🧪 Step 3: Functional Testing
 • 	Switch test: Activate each wall-mounted switch—confirm fixture responds
-• 	Bulb test: Verify all bulbs illuminate thoroughly and evenly
-• 	Stability Check: Check fixture mounting for looseness or detachment
-📏 Step 4: Accessibility & Local Requirements
+• 	Bulb test: Verify all bulbs illuminate thoroughly and evenly                                                                                                                                                  • 	Stability Check: Check fixture mounting for looseness or detachment
+• 	📏 Step 4: Accessibility & Local Requirements
 • 	Switch height: ≤48″ AFF for ADA compliance
 • 	Lighting level: Must support safe navigation and task performance
 • 	Control labeling: Switches must be clearly marked and operable without fine motor skills
 • 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Electrical & Lighting Requirements
-• 	IRC (2021) §R303.1–R303.3 – Natural and artificial lighting requirement
-• 	IRC E3905.8: Fixtures must be securely mounted and enclosed
-• 	IRC E3901.10: Lighting must be sufficient for safe use of the space`
+• 	IRC (2021) §R303.1–R303.3 – Natural and artificial lighting requirement                                                                                                                           • 	IRC E3905.8: Fixtures must be securely mounted and enclosed
+• 	IBC requires that interior spaces in multifamily dwelling units have adequate lighting—either natural light or artificial lighting—per Section 1204.  `
         },
         {
             id: 'light_int_3',
@@ -4981,21 +5068,19 @@ export const LIGHTING_INTERIOR: InsideSubcategory = {
             code: 'LIGHT-INT-03',
             codeReference: `🧭 Step 1: Identification & Applicability
 • 	Required: Permanently installed light fixtures must be present and functional in all habitable rooms, kitchens, and bathrooms
-🔍 Step 2: Visual Inspection
+🔍 Step 2: Visual Inspection:
 • 	Look for missing covers, exposed wires, or damaged components
 🧪 Step 3: Functional Testing
 • 	Switch test: Activate each wall-mounted switch—confirm fixture responds
-• 	Bulb test: Verify all bulbs illuminate thoroughly and evenly
-• 	Stability Check: Check fixture mounting for looseness or detachment
-📏 Step 4: Accessibility & Local Requirements
+• 	Bulb test: Verify all bulbs illuminate thoroughly and evenly                                                                                                                                                  • 	Stability Check: Check fixture mounting for looseness or detachment
+• 	📏 Step 4: Accessibility & Local Requirements
 • 	Switch height: ≤48″ AFF for ADA compliance
 • 	Lighting level: Must support safe navigation and task performance
 • 	Control labeling: Switches must be clearly marked and operable without fine motor skills
 • 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Electrical & Lighting Requirements
-• 	IRC (2021) §R303.1–R303.3 – Natural and artificial lighting requirement
-• 	IRC E3905.8: Fixtures must be securely mounted and enclosed
-• 	IRC E3901.10: Lighting must be sufficient for safe use of the space`
+• 	IRC (2021) §R303.1–R303.3 – Natural and artificial lighting requirement                                                                                                                           • 	IRC E3905.8: Fixtures must be securely mounted and enclosed
+• 	IBC requires that interior spaces in multifamily dwelling units have adequate lighting—either natural light or artificial lighting—per Section 1204.  `
         }
     ]
 };
@@ -5016,24 +5101,24 @@ export const LIGHTING_MINIMUM_ELECTRICAL: InsideSubcategory = {
 - Include: Living rooms, bedrooms, dining areas, kitchens
 - Exclude: Bathrooms, closets, hallways, storage, utility spaces
 NSPIRE defines habitable rooms as those used for living, sleeping, eating, or cooking
-🔍 Step 2: Sanitation & Environmental Safety
+🔍 Step 2:Sanitation & Environmental Safety
 • 	Inspect for soot, burn marks, or melted plastic on outlets or fixtures
 • 	Check for mold, rust, or pest activity around electrical boxes
 • 	IBU Overlay: May require sealed faceplates, moisture-rated fixtures, or pest-proof junction boxes
 🧪 Step 3: Functional Testing
-- Outlet Test: Use a UL-listed outlet tester to confirm power, polarity, and grounding
-- Light Fixture Test: Turn on the switch and confirm the fixture illuminates
+- Outlet Test:  Use a UL-listed outlet tester to confirm power, polarity, and grounding
+- Light Fixture Test:  Turn on the switch and confirm the fixture illuminates
 - Replace bulb if needed to verify fixture functionality
-- Check Mounting: Ensure fixture is securely attached to the wall or ceiling
-📏 Step 4: Accessibility & Local Requirements
+- Check Mounting:  Ensure fixture is securely attached to the wall or ceiling
+📏 Step 4:  Accessibility & Local Requirements
 • 	Height: Outlets ≥15″ AFF; switches ≤48″ AFF for ADA compliance
 • 	Reachability: Must be unobstructed by furniture or fixed cabinetry
 • 	Labeling: Multi-gang switches should be clearly marked
 • 	IBU Overlay: May require tactile indicators, visual contrast, or audible feedback in accessible units
 ⚒️ Step 5: IRC Electrical Requirements
 - IRC E3901.2.1: Outlets required in all habitable rooms, spaced ≤12 feet apart
-- IRC E3903.2: Lighting outlets required in kitchens, bathrooms, hallways, stairways, and utility rooms
-- IRC E3901.6: No outlets allowed within bathtubs or shower spaces`
+- IRC E3903.2:  Lighting outlets required in kitchens, bathrooms, hallways, stairways, and utility rooms
+- IBC Chapter 12 – Interior Environment, specifically Section 1204 – Lighting, which is the ONLY section of the IBC that governs minimum lighting levels in dwelling units.`
         }
     ]
 };
@@ -5061,22 +5146,25 @@ export const MOLD_LIKE_SUBSTANCE: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'MOLD-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
 • 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
-🔍 Step 2: Visual & Area-Based Assessment
-• 	Visual confirmation required: Odor alone is not sufficient
-• 	Visual Scan: Use a flashlight to inspect corners, ceilings, behind furniture, and inside cabinets
+Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
+If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
+🔍 Step 2: Visual Condition Assessment
+• 	Reachable surfaces: Focus on areas accessible to children and residents
 🧪 Step 3: Inspection Technique
-• 	Estimate Surface Area: Measure or approximate the total affected area per room
-• 	Moisture Source Check: Look for leaks, condensation, or poor ventilation
-• 	Resident Confirmation: If possible, ask if the mold-like substance has been cleaned recently or if leaks have occurred
-📏 Step 4: Accessibility & Local Requirements
-• 	Inspection access: Must be visual and reachable without disassembly
-• 	Surface contrast: Mold must be distinguishable from the background color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion
-• 	IRC R703.1: Exterior walls must prevent water intrusion`
+- Measure Affected Area:  Estimate or measure deteriorated paint per surface or component
+- Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
+NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
+📏 Step 4:Accessibility & Local Requirements
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
+• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
+- EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
+- IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         },
         {
             id: 'mold_2',
@@ -5087,22 +5175,25 @@ export const MOLD_LIKE_SUBSTANCE: InsideSubcategory = {
             repairBy: '24Hrs',
             points: '30/n',
             code: 'MOLD-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
 • 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
-🔍 Step 2: Visual & Area-Based Assessment
-• 	Visual confirmation required: Odor alone is not sufficient
-• 	Visual Scan: Use a flashlight to inspect corners, ceilings, behind furniture, and inside cabinets
+Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
+If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
+🔍 Step 2: Visual Condition Assessment
+• 	Reachable surfaces: Focus on areas accessible to children and residents
 🧪 Step 3: Inspection Technique
-• 	Estimate Surface Area: Measure or approximate the total affected area per room
-• 	Moisture Source Check: Look for leaks, condensation, or poor ventilation
-• 	Resident Confirmation: If possible, ask if the mold-like substance has been cleaned recently or if leaks have occurred
-📏 Step 4: Accessibility & Local Requirements
-• 	Inspection access: Must be visual and reachable without disassembly
-• 	Surface contrast: Mold must be distinguishable from the background color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion
-• 	IRC R703.1: Exterior walls must prevent water intrusion`
+- Measure Affected Area:  Estimate or measure deteriorated paint per surface or component
+- Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
+NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
+📏 Step 4:Accessibility & Local Requirements
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
+• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
+- EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
+- IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         },
         {
             id: 'mold_3',
@@ -5113,22 +5204,25 @@ export const MOLD_LIKE_SUBSTANCE: InsideSubcategory = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'MOLD-03',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
 • 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
-🔍 Step 2: Visual & Area-Based Assessment
-• 	Visual confirmation required: Odor alone is not sufficient
-• 	Visual Scan: Use a flashlight to inspect corners, ceilings, behind furniture, and inside cabinets
+Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
+If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
+🔍 Step 2: Visual Condition Assessment
+• 	Reachable surfaces: Focus on areas accessible to children and residents
 🧪 Step 3: Inspection Technique
-• 	Estimate Surface Area: Measure or approximate the total affected area per room
-• 	Moisture Source Check: Look for leaks, condensation, or poor ventilation
-• 	Resident Confirmation: If possible, ask if the mold-like substance has been cleaned recently or if leaks have occurred
-📏 Step 4: Accessibility & Local Requirements
-• 	Inspection access: Must be visual and reachable without disassembly
-• 	Surface contrast: Mold must be distinguishable from the background color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion
-• 	IRC R703.1: Exterior walls must prevent water intrusion`
+- Measure Affected Area:  Estimate or measure deteriorated paint per surface or component
+- Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
+NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
+📏 Step 4:Accessibility & Local Requirements
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
+• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
+- EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
+- IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         },
         {
             id: 'mold_4',
@@ -5139,22 +5233,25 @@ export const MOLD_LIKE_SUBSTANCE: InsideSubcategory = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'MOLD-04',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
 • 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
-🔍 Step 2: Visual & Area-Based Assessment
-• 	Visual confirmation required: Odor alone is not sufficient
-• 	Visual Scan: Use a flashlight to inspect corners, ceilings, behind furniture, and inside cabinets
+Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
+If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
+🔍 Step 2: Visual Condition Assessment
+• 	Reachable surfaces: Focus on areas accessible to children and residents
 🧪 Step 3: Inspection Technique
-• 	Estimate Surface Area: Measure or approximate the total affected area per room
-• 	Moisture Source Check: Look for leaks, condensation, or poor ventilation
-• 	Resident Confirmation: If possible, ask if the mold-like substance has been cleaned recently or if leaks have occurred
-📏 Step 4: Accessibility & Local Requirements
-• 	Inspection access: Must be visual and reachable without disassembly
-• 	Surface contrast: Mold must be distinguishable from the background color
-• 	IBU Overlay: May require visual contrast, tactile indicators, or multilingual signage in accessible units
-⚒️ Step 5: IRC Moisture & Sanitation Requirements
-• 	IRC R306 & R322: Units must be free from unsanitary conditions and moisture intrusion
-• 	IRC R703.1: Exterior walls must prevent water intrusion`
+- Measure Affected Area:  Estimate or measure deteriorated paint per surface or component
+- Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
+NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
+📏 Step 4:Accessibility & Local Requirements
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
+• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
+- EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
+- IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         }
     ]
 };
@@ -5181,7 +5278,8 @@ export const PAINT_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '60 Day',
             points: '2.40/n',
             code: 'PAINT-00',
-            codeReference: `🧭 Step 1: Determine Applicability
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
+• 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
 Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
 If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
 🔍 Step 2: Visual Condition Assessment
@@ -5191,11 +5289,14 @@ If no certified inspection or risk assessment is available, NSPIRE assumes all p
 - Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
 NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
 📏 Step 4:Accessibility & Local Requirements
-• 	Visual contrast: Deterioration must be distinguishable from surface color
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
 • 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
 - EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
 - IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
-IRC supports safe maintenance and renovation practices to prevent lead exposure`
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         },
         {
             id: 'paint_1',
@@ -5206,22 +5307,25 @@ IRC supports safe maintenance and renovation practices to prevent lead exposure`
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'PAINT-01',
-            codeReference: `🧭 Step 1: Determine Applicability
-Lead-based paint (LBP) inspections apply to: Units built before 1978 (presumed to contain LBP unless tested)
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
+• 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
+Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
 If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
 🔍 Step 2: Visual Condition Assessment
 • 	Reachable surfaces: Focus on areas accessible to children and residents
 🧪 Step 3: Inspection Technique
-- Measure Affected Area: Estimate or measure deteriorated paint per surface or component
-- Check Friction/Impact Zones: Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
+- Measure Affected Area:  Estimate or measure deteriorated paint per surface or component
+- Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
 NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
-📏 Step 4: Accessibility & Local Requirements
-• 	Visual contrast: Deterioration must be distinguishable from surface color
-• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices
-⚒️ Step 5: IRC Renovation & Safety Requirements
-- EPA RRP Rule (Referenced by IRC): Renovations disturbing LBP must follow lead-safe work practices by certified firms
-- IRC R703.1: Interior finishes must be securely bonded and free from hazardous deterioration
-IRC supports safe maintenance and renovation practices to prevent lead exposure`
+📏 Step 4:Accessibility & Local Requirements
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
+• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
+- EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
+- IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         },
         {
             id: 'paint_2',
@@ -5232,22 +5336,25 @@ IRC supports safe maintenance and renovation practices to prevent lead exposure`
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'PAINT-02',
-            codeReference: `🧭 Step 1: Determine Applicability
-Lead-based paint (LBP) inspections apply to: Units built before 1978 (presumed to contain LBP unless tested)
+            codeReference: `🧭 Step 1: Determine Applicability and Identification 
+• 	Applies to: All interior surfaces—walls, ceilings, floors, cabinetry, HVAC registers, closets, and behind appliances
+Lead-based paint (LBP) inspections apply to:  Units built before 1978 (presumed to contain LBP unless tested)
 If no certified inspection or risk assessment is available, NSPIRE assumes all painted surfaces in pre-1978 units may contain lead.
 🔍 Step 2: Visual Condition Assessment
 • 	Reachable surfaces: Focus on areas accessible to children and residents
 🧪 Step 3: Inspection Technique
-- Measure Affected Area: Estimate or measure deteriorated paint per surface or component
-- Check Friction/Impact Zones: Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
+- Measure Affected Area:  Estimate or measure deteriorated paint per surface or component
+- Check Friction/Impact Zones:  Inspect areas subject to rubbing or banging (e.g., door edges, window sashes)
 NSPIRE does not require chemical testing—visual assessment is sufficient unless documentation proves otherwise.
-📏 Step 4: Accessibility & Local Requirements
-• 	Visual contrast: Deterioration must be distinguishable from surface color
-• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices
-⚒️ Step 5: IRC Renovation & Safety Requirements
-- EPA RRP Rule (Referenced by IRC): Renovations disturbing LBP must follow lead-safe work practices by certified firms
-- IRC R703.1: Interior finishes must be securely bonded and free from hazardous deterioration
-IRC supports safe maintenance and renovation practices to prevent lead exposure`
+📏 Step 4:Accessibility & Local Requirements
+• 	Visual contrast: Deterioration must be distinguishable from surface colaor
+• 	IBU Overlay: May require tactile warnings, multilingual signage, or compliant hazard notices                                                                                                           ⚒️ Step 5: IRC Renovation & Safety Requirements
+- EPA RRP Rule (Referenced by IRC):  Renovations disturbing LBP must follow lead-safe work practices by certified firms
+- IRC R703.1:  Interior finishes must be securely bonded and free from hazardous deterioration
+IBC 3401 – Unsafe or Unsanitary Conditions, Peeling paint with mold or moisture damage = unsafe/unsanitary condition.
+
+
+`
         }
     ]
 };
@@ -5269,20 +5376,26 @@ export const RAILINGS_GUARDRAIL: InsideSubcategory = {
             code: 'RAILING-GUARD-01',
             codeReference: `🧭 Step 1: Identify Guardrail Locations
 NSPIRE Scope: Evaluates the presence, structural adequacy, and safety of guardrails in all resident-accessible areas
-🔍 Step 2: Identification & Applicability
+🔍 Step 2:Identification & Applicability
 • 	Required: Guardrails must be present on any walking surface ≥30 inches above grade or floor below
-• 	Applies to: Interior stairs, landings, lofts, and mezzanines, Balconies, decks, ramps, and elevated corridors
+• 	Applies to: • 	Interior stairs, landings, lofts, and mezzanines, Balconies, decks, ramps, and elevated corridors
 🧪 Step 3: Functional Adequacy
 • 	Height check: Measure from walking surface to top of rail—must be ≥36″ (IRC)
 • 	Spacing check: Openings between balusters must be ≤4″ to prevent child entrapment
 • 	Stability test: Apply light pressure—guardrail should not flex or shift
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Graspability: Rails must be easily grasped for support
+📏 Step 4: Accessibility & Local Requirement(IBU)
+• 	Gropability: Rails must be easily grasped for support
 • 	Clear Floor Space: No obstructions in accessible paths near guardrails
-• 	IBU Overlay: May require tactile warnings, compliant grip profiles, or extended rail ends
+• 	IBC 1607.8 – Loads on Handrails & Guardrails
+Railings must resist:
+200‑lb concentrated load applied in any direction
+50‑lb/ft uniform load along the top rail
+50‑lb/ft on intermediate rails/pickets
+This ensures railings are not loose, wobbly, or deteriorated.
 ⚒️ Step 5: IRC Structural Requirements
-• 	IRC R312.1: Guardrails required on open-sided walking surfaces >30″ above grade
-• 	IRC R312.1.2–1.3: Minimum height: 36″ and Maximum opening: 4″ between balusters`
+• 	IRC R312.1:  	Guardrails required on open-sided walking surfaces >30" above grade
+• 	IRC R312.1.2–1.3: Minimum height: 36" and • 	Maximum opening: 4" between balusters
+`
         },
         {
             id: 'rail_guard_2',
@@ -5295,20 +5408,26 @@ NSPIRE Scope: Evaluates the presence, structural adequacy, and safety of guardra
             code: 'RAILING-GUARD-02',
             codeReference: `🧭 Step 1: Identify Guardrail Locations
 NSPIRE Scope: Evaluates the presence, structural adequacy, and safety of guardrails in all resident-accessible areas
-🔍 Step 2: Identification & Applicability
+🔍 Step 2:Identification & Applicability
 • 	Required: Guardrails must be present on any walking surface ≥30 inches above grade or floor below
-• 	Applies to: Interior stairs, landings, lofts, and mezzanines, Balconies, decks, ramps, and elevated corridors
+• 	Applies to: • 	Interior stairs, landings, lofts, and mezzanines, Balconies, decks, ramps, and elevated corridors
 🧪 Step 3: Functional Adequacy
 • 	Height check: Measure from walking surface to top of rail—must be ≥36″ (IRC)
 • 	Spacing check: Openings between balusters must be ≤4″ to prevent child entrapment
 • 	Stability test: Apply light pressure—guardrail should not flex or shift
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Graspability: Rails must be easily grasped for support
+📏 Step 4: Accessibility & Local Requirement(IBU)
+• 	Gropability: Rails must be easily grasped for support
 • 	Clear Floor Space: No obstructions in accessible paths near guardrails
-• 	IBU Overlay: May require tactile warnings, compliant grip profiles, or extended rail ends
+• 	IBC 1607.8 – Loads on Handrails & Guardrails
+Railings must resist:
+200‑lb concentrated load applied in any direction
+50‑lb/ft uniform load along the top rail
+50‑lb/ft on intermediate rails/pickets
+This ensures railings are not loose, wobbly, or deteriorated.
 ⚒️ Step 5: IRC Structural Requirements
-• 	IRC R312.1: Guardrails required on open-sided walking surfaces >30″ above grade
-• 	IRC R312.1.2–1.3: Minimum height: 36″ and Maximum opening: 4″ between balusters`
+• 	IRC R312.1:  	Guardrails required on open-sided walking surfaces >30" above grade
+• 	IRC R312.1.2–1.3: Minimum height: 36" and • 	Maximum opening: 4" between balusters
+`
         }
     ]
 };
@@ -5328,20 +5447,27 @@ export const RAILINGS_HANDRAIL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Identify Locations Where Handrails Apply:
 • 	Interior stairs, ramps, and corridors
 🔍 Step 2: Identification & Applicability
-• 	Required: On stairways with 4 or more risers; On ramps with rise >6 inches or horizontal run >72 inches
+• 	Required:
+• 	On stairways with 4 or more risers
+• 	On ramps with rise >6 inches or horizontal run >72 inches
 🧪 Step 3: Functional Testing
 • 	Stability Check: Apply moderate force to confirm rail is firmly anchored
 • 	Length Check: Ensure rail runs continuously from first to last riser or ramp edge
-• 	Height Measurement: Measure from walking surface to top of rail (must be 28″–42″)
+• 	Height Measurement: Measure from walking surface to top of rail (must be 28"–42")
 • 	Graspability Test: Confirm rail shape allows full hand grip (e.g., round or oval profile)
 📏 Step 4: Accessibility & Local Requirements
 • 	Height compliance: 34–38″ AFF for ADA handrails (CBC §1014.2)
 • 	Visual contrast: Rail should be distinguishable from surroundings for low-vision residents
 • 	Grip profile: Circular or rounded preferred; 1¼″–2″ diameter
-• 	IBU Overlay: May require tactile indicators, extended rail ends, or dual handrails on ramps
+• 	IBC 1011.11 – Handrails Required. IBC 1014.7 – Clearances
+Minimum 1½ inch clearance between handrail and wall.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R311.7.8: Handrails required on one side of stairs with 4+ risers
-• 	IRC R311.7.8.1–8.3: Height: 34″–38″, Graspable shape required, Ends must return to the wall or terminate safely`
+• 	(IBC 1014.4)
+Handrails must:
+Be continuous for the full length of the stair or ramp
+Return to a wall, guard, or walking surface
+`
         },
         {
             id: 'rail_hand_2',
@@ -5355,20 +5481,27 @@ export const RAILINGS_HANDRAIL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Identify Locations Where Handrails Apply:
 • 	Interior stairs, ramps, and corridors
 🔍 Step 2: Identification & Applicability
-• 	Required: On stairways with 4 or more risers; On ramps with rise >6 inches or horizontal run >72 inches
+• 	Required:
+• 	On stairways with 4 or more risers
+• 	On ramps with rise >6 inches or horizontal run >72 inches
 🧪 Step 3: Functional Testing
 • 	Stability Check: Apply moderate force to confirm rail is firmly anchored
 • 	Length Check: Ensure rail runs continuously from first to last riser or ramp edge
-• 	Height Measurement: Measure from walking surface to top of rail (must be 28″–42″)
+• 	Height Measurement: Measure from walking surface to top of rail (must be 28"–42")
 • 	Graspability Test: Confirm rail shape allows full hand grip (e.g., round or oval profile)
 📏 Step 4: Accessibility & Local Requirements
 • 	Height compliance: 34–38″ AFF for ADA handrails (CBC §1014.2)
 • 	Visual contrast: Rail should be distinguishable from surroundings for low-vision residents
 • 	Grip profile: Circular or rounded preferred; 1¼″–2″ diameter
-• 	IBU Overlay: May require tactile indicators, extended rail ends, or dual handrails on ramps
+• 	IBC 1011.11 – Handrails Required. IBC 1014.7 – Clearances
+Minimum 1½ inch clearance between handrail and wall.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R311.7.8: Handrails required on one side of stairs with 4+ risers
-• 	IRC R311.7.8.1–8.3: Height: 34″–38″, Graspable shape required, Ends must return to the wall or terminate safely`
+• 	(IBC 1014.4)
+Handrails must:
+Be continuous for the full length of the stair or ramp
+Return to a wall, guard, or walking surface
+`
         },
         {
             id: 'rail_hand_3',
@@ -5382,20 +5515,27 @@ export const RAILINGS_HANDRAIL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Identify Locations Where Handrails Apply:
 • 	Interior stairs, ramps, and corridors
 🔍 Step 2: Identification & Applicability
-• 	Required: On stairways with 4 or more risers; On ramps with rise >6 inches or horizontal run >72 inches
+• 	Required:
+• 	On stairways with 4 or more risers
+• 	On ramps with rise >6 inches or horizontal run >72 inches
 🧪 Step 3: Functional Testing
 • 	Stability Check: Apply moderate force to confirm rail is firmly anchored
 • 	Length Check: Ensure rail runs continuously from first to last riser or ramp edge
-• 	Height Measurement: Measure from walking surface to top of rail (must be 28″–42″)
+• 	Height Measurement: Measure from walking surface to top of rail (must be 28"–42")
 • 	Graspability Test: Confirm rail shape allows full hand grip (e.g., round or oval profile)
 📏 Step 4: Accessibility & Local Requirements
 • 	Height compliance: 34–38″ AFF for ADA handrails (CBC §1014.2)
 • 	Visual contrast: Rail should be distinguishable from surroundings for low-vision residents
 • 	Grip profile: Circular or rounded preferred; 1¼″–2″ diameter
-• 	IBU Overlay: May require tactile indicators, extended rail ends, or dual handrails on ramps
+• 	IBC 1011.11 – Handrails Required. IBC 1014.7 – Clearances
+Minimum 1½ inch clearance between handrail and wall.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R311.7.8: Handrails required on one side of stairs with 4+ risers
-• 	IRC R311.7.8.1–8.3: Height: 34″–38″, Graspable shape required, Ends must return to the wall or terminate safely`
+• 	(IBC 1014.4)
+Handrails must:
+Be continuous for the full length of the stair or ramp
+Return to a wall, guard, or walking surface
+`
         },
         {
             id: 'rail_hand_4',
@@ -5409,20 +5549,27 @@ export const RAILINGS_HANDRAIL: InsideSubcategory = {
             codeReference: `🧭 Step 1: Identify Locations Where Handrails Apply:
 • 	Interior stairs, ramps, and corridors
 🔍 Step 2: Identification & Applicability
-• 	Required: On stairways with 4 or more risers; On ramps with rise >6 inches or horizontal run >72 inches
+• 	Required:
+• 	On stairways with 4 or more risers
+• 	On ramps with rise >6 inches or horizontal run >72 inches
 🧪 Step 3: Functional Testing
 • 	Stability Check: Apply moderate force to confirm rail is firmly anchored
 • 	Length Check: Ensure rail runs continuously from first to last riser or ramp edge
-• 	Height Measurement: Measure from walking surface to top of rail (must be 28″–42″)
+• 	Height Measurement: Measure from walking surface to top of rail (must be 28"–42")
 • 	Graspability Test: Confirm rail shape allows full hand grip (e.g., round or oval profile)
 📏 Step 4: Accessibility & Local Requirements
 • 	Height compliance: 34–38″ AFF for ADA handrails (CBC §1014.2)
 • 	Visual contrast: Rail should be distinguishable from surroundings for low-vision residents
 • 	Grip profile: Circular or rounded preferred; 1¼″–2″ diameter
-• 	IBU Overlay: May require tactile indicators, extended rail ends, or dual handrails on ramps
+• 	IBC 1011.11 – Handrails Required. IBC 1014.7 – Clearances
+Minimum 1½ inch clearance between handrail and wall.
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R311.7.8: Handrails required on one side of stairs with 4+ risers
-• 	IRC R311.7.8.1–8.3: Height: 34″–38″, Graspable shape required, Ends must return to the wall or terminate safely`
+• 	(IBC 1014.4)
+Handrails must:
+Be continuous for the full length of the stair or ramp
+Return to a wall, guard, or walking surface
+`
         }
     ]
 };
@@ -5457,12 +5604,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         },
         {
             id: 'sink_laundry_2',
@@ -5483,12 +5630,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         },
         {
             id: 'sink_laundry_3',
@@ -5509,12 +5656,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         },
         {
             id: 'sink_laundry_4',
@@ -5535,12 +5682,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         },
         {
             id: 'sink_laundry_5',
@@ -5561,12 +5708,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         },
         {
             id: 'sink_laundry_6',
@@ -5587,12 +5734,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         },
         {
             id: 'sink_laundry_7',
@@ -5613,12 +5760,12 @@ Auxiliary Sink Inspection – Laundry, Garage, or Patio
 • 	Drain test: Fill the basin and observe the drainage speed and seal integrity
 • 	Leak check: Inspect under sink for active leaks or water stains
 • 	Gently press sink edges to detect movement or gaps
-📏 Step 4: Accessibility & Local Requirement (IBU)
-• 	Reach Range: Controls must be within 15″–48″ AFF
-• 	Clear Floor Space: Minimum 30″x48″ in front of sink for wheelchair access
-• 	Knee Clearance: If required, ≥30″ wide × 27″ high × 19″ deep under sink
+📏 Step 4:Accessibility & Local Requirement (IBU)
+• 	Reach Range: Controls must be within 15"–48" AFF
+• 	Clear Floor Space: Minimum 30"x48" in front of sink for wheelchair access
+• 	Knee Clearance: If required, ≥30" wide × 27" high × 19" deep under sink
 ⚒️ Step 5: Auxiliary Sink Inspection – Laundry, Garage, or Patio
-Codes Referenced: IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
+Codes Referenced: IBC- IRC (2021) §P2701–P2706 – Plumbing fixture installation and drainage`
         }
     ]
 };
@@ -5651,9 +5798,15 @@ export const STEPS_STAIRS_DEFICIENCIES: InsideItemDeficiencies = {
 • 	Rise/run compliance: IRC max riser height = 7¾″; min tread depth = 10″
 • 	Visual contrast: Tread edges should be distinguishable for low-vision residents
 • 	Handrail integration: Required on stairs with ≥4 risers (see separate handrail guide)
-• 	IBU Overlay: May require tactile warnings, compliant dimensions, or extended landings
+• 	IBC 1011.5 – Stair Treads & Risers
+Riser Height
+Maximum: 7 inches
+Minimum: 4 inches
+Tread Depth
+Minimum: 11 inches
 ⚒️ Step 5: IRC Structural Requirements
-• 	IRC R311.7: Stairs must be structurally sound, with proper rise/run ratios`
+• 	IRC R311.7: Stairs must be structurally sound, with proper rise/run ratios
+`
         },
         {
             id: 'steps_2',
@@ -5677,9 +5830,15 @@ export const STEPS_STAIRS_DEFICIENCIES: InsideItemDeficiencies = {
 • 	Rise/run compliance: IRC max riser height = 7¾″; min tread depth = 10″
 • 	Visual contrast: Tread edges should be distinguishable for low-vision residents
 • 	Handrail integration: Required on stairs with ≥4 risers (see separate handrail guide)
-• 	IBU Overlay: May require tactile warnings, compliant dimensions, or extended landings
+• 	IBC 1011.5 – Stair Treads & Risers
+Riser Height
+Maximum: 7 inches
+Minimum: 4 inches
+Tread Depth
+Minimum: 11 inches
 ⚒️ Step 5: IRC Structural Requirements
-• 	IRC R311.7: Stairs must be structurally sound, with proper rise/run ratios`
+• 	IRC R311.7: Stairs must be structurally sound, with proper rise/run ratios
+`
         }
     ]
 };
@@ -5707,7 +5866,7 @@ export const STRUCTURAL_DEFICIENCIES: InsideItemDeficiencies = {
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Check for water stains, rust, or efflorescence indicating moisture intrusion
 • 	IBU Overlay: May require sealed penetrations, pest-proof framing, or mold-resistant materials
-🧪 Step 3: Functional Adequacy
+🧪 Step 3:Functional Adequacy
 • 	Level check: Use a ball or a level to detect slope or uneven flooring
 • 	Crack mapping: Document the location, length, and width of any cracks
 • 	Movement test: Apply light pressure to suspect walls or floors—note flexing or vibration
@@ -5717,7 +5876,8 @@ export const STRUCTURAL_DEFICIENCIES: InsideItemDeficiencies = {
 • 	Reach Zones: Structural hazards near switches, grab bars, or appliances may impair safe use
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R301.1: Structures must support all loads safely and resist collapse
-• 	IRC R403–R407: Footings, foundations, posts, and beams must be properly sized and anchored`
+• 	IRC R403–R407: Footings, foundations, posts, and beams must be properly sized and anchored
+IBC 1604 – General Structural Requirements`
         }
     ]
 };
@@ -5748,10 +5908,10 @@ export const VENTILATION_OTHER: InsideSubcategory = {
 • 	Airflow check: Use tissue or smoke to verify suction at intake
 • 	Window Check: Confirm operability of windows in rooms without mechanical ventilation
 📏 Step 4: Accessibility & Local Requirements
-• 	Control height: ≤48″ AFF
+• 	Control height: ≤48″ AFF 
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC Chapter 12 – Interior Environment, which is the ONLY chapter in the IBC that governs ventilation inside dwelling units.
 ⚒️ Step 5: IRC Ventilation Requirements
 • 	IRC (2021) §R303.3, §M1507 – Mechanical ventilation and natural airflow`
         },
@@ -5775,10 +5935,10 @@ export const VENTILATION_OTHER: InsideSubcategory = {
 • 	Airflow check: Use tissue or smoke to verify suction at intake
 • 	Window Check: Confirm operability of windows in rooms without mechanical ventilation
 📏 Step 4: Accessibility & Local Requirements
-• 	Control height: ≤48″ AFF
+• 	Control height: ≤48″ AFF 
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC Chapter 12 – Interior Environment, which is the ONLY chapter in the IBC that governs ventilation inside dwelling units.
 ⚒️ Step 5: IRC Ventilation Requirements
 • 	IRC (2021) §R303.3, §M1507 – Mechanical ventilation and natural airflow`
         },
@@ -5802,10 +5962,10 @@ export const VENTILATION_OTHER: InsideSubcategory = {
 • 	Airflow check: Use tissue or smoke to verify suction at intake
 • 	Window Check: Confirm operability of windows in rooms without mechanical ventilation
 📏 Step 4: Accessibility & Local Requirements
-• 	Control height: ≤48″ AFF
+• 	Control height: ≤48″ AFF 
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC Chapter 12 – Interior Environment, which is the ONLY chapter in the IBC that governs ventilation inside dwelling units.
 ⚒️ Step 5: IRC Ventilation Requirements
 • 	IRC (2021) §R303.3, §M1507 – Mechanical ventilation and natural airflow`
         },
@@ -5829,10 +5989,10 @@ export const VENTILATION_OTHER: InsideSubcategory = {
 • 	Airflow check: Use tissue or smoke to verify suction at intake
 • 	Window Check: Confirm operability of windows in rooms without mechanical ventilation
 📏 Step 4: Accessibility & Local Requirements
-• 	Control height: ≤48″ AFF
+• 	Control height: ≤48″ AFF 
 • 	Labeling: Fan controls must be clearly marked and operable without fine motor skills
 • 	Reachability: Filters and switches must be accessible for cleaning and use
-• 	IBU Overlay: May require tactile controls, visual contrast, or audible feedback in accessible units
+• 	IBC Chapter 12 – Interior Environment, which is the ONLY chapter in the IBC that governs ventilation inside dwelling units.
 ⚒️ Step 5: IRC Ventilation Requirements
 • 	IRC (2021) §R303.3, §M1507 – Mechanical ventilation and natural airflow`
         }
@@ -5875,7 +6035,7 @@ export const WALL_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Wall-mounted controls: Must be ≤48″ AFF and operable without tight grasping
 • 	Surface contrast: Walls should be distinguishable from adjacent surfaces for low-vision residents
-• 	IBU Overlay: May require tactile signage, compliant switch placement, or reinforced backing for grab bars
+• 	IBC Chapter 8 – Interior Finishes (Paint, Texture, Gypsum Board). Peeling paint, damaged drywall, or deteriorated finishes violate this chapter.
 ⚒️ Step 5: IRC Structural & Finish Requirements
 • 	IRC §R302.1 – Protection against structural failure and fire spread`
         },
@@ -5902,7 +6062,7 @@ export const WALL_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Wall-mounted controls: Must be ≤48″ AFF and operable without tight grasping
 • 	Surface contrast: Walls should be distinguishable from adjacent surfaces for low-vision residents
-• 	IBU Overlay: May require tactile signage, compliant switch placement, or reinforced backing for grab bars
+• 	IBC Chapter 8 – Interior Finishes (Paint, Texture, Gypsum Board). Peeling paint, damaged drywall, or deteriorated finishes violate this chapter.
 ⚒️ Step 5: IRC Structural & Finish Requirements
 • 	IRC §R302.1 – Protection against structural failure and fire spread`
         },
@@ -5929,7 +6089,7 @@ export const WALL_DEFICIENCIES: InsideItemDeficiencies = {
 📏 Step 4: Accessibility & Local Requirements
 • 	Wall-mounted controls: Must be ≤48″ AFF and operable without tight grasping
 • 	Surface contrast: Walls should be distinguishable from adjacent surfaces for low-vision residents
-• 	IBU Overlay: May require tactile signage, compliant switch placement, or reinforced backing for grab bars
+• 	IBC Chapter 8 – Interior Finishes (Paint, Texture, Gypsum Board). Peeling paint, damaged drywall, or deteriorated finishes violate this chapter.
 ⚒️ Step 5: IRC Structural & Finish Requirements
 • 	IRC §R302.1 – Protection against structural failure and fire spread`
         }
@@ -5952,7 +6112,8 @@ export const WATER_HEATER_DEFICIENCIES: InsideItemDeficiencies = {
             points: '60/n',
             code: 'WH-01',
             codeReference: `🧭 Step 1: Identify Water Heater Type and Location
-Inspect all permanently installed water heaters, including: Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
+Inspect all permanently installed water heaters, including:
+Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest droppings around base and plumbing penetrations
 • 	Check for water pooling or rust stains under the tank or near the discharge pipe
@@ -5968,10 +6129,15 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
 • 	Labeling: Emergency shutoff must be clearly marked
 • 	IBU Overlay: May require tactile indicators, visual contrast, or audible alerts in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC P2801–P2804: Water heaters must be installed per manufacturer specs
+• 	IRC P2801–P2804: 	Water heaters must be installed per manufacturer specs
 • 	TPR valve required and must discharge to a safe location
 • 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• 	IRC M1801.1: Flue gas exhaust must be vented outdoors with a proper slope`
+• 	IBC 2801.3 – Installation in Garages, must be elevated 18 inches above the floor (ignition source height)
+IBC 2801.2 – Water Heater Access
+Water heaters must be:
+Accessible for inspection, service, and replacement
+Not blocked by permanent construction
+Located to prevent unsafe conditions`
         },
         {
             id: 'wh_2',
@@ -5983,7 +6149,8 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
             points: '60/n',
             code: 'WH-02',
             codeReference: `🧭 Step 1: Identify Water Heater Type and Location
-Inspect all permanently installed water heaters, including: Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
+Inspect all permanently installed water heaters, including:
+Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest droppings around base and plumbing penetrations
 • 	Check for water pooling or rust stains under the tank or near the discharge pipe
@@ -5999,10 +6166,15 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
 • 	Labeling: Emergency shutoff must be clearly marked
 • 	IBU Overlay: May require tactile indicators, visual contrast, or audible alerts in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC P2801–P2804: Water heaters must be installed per manufacturer specs
+• 	IRC P2801–P2804: 	Water heaters must be installed per manufacturer specs
 • 	TPR valve required and must discharge to a safe location
 • 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• 	IRC M1801.1: Flue gas exhaust must be vented outdoors with a proper slope`
+• 	IBC 2801.3 – Installation in Garages, must be elevated 18 inches above the floor (ignition source height)
+IBC 2801.2 – Water Heater Access
+Water heaters must be:
+Accessible for inspection, service, and replacement
+Not blocked by permanent construction
+Located to prevent unsafe conditions`
         },
         {
             id: 'wh_3',
@@ -6014,7 +6186,8 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
             points: '14.8/n',
             code: 'WH-03',
             codeReference: `🧭 Step 1: Identify Water Heater Type and Location
-Inspect all permanently installed water heaters, including: Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
+Inspect all permanently installed water heaters, including:
+Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest droppings around base and plumbing penetrations
 • 	Check for water pooling or rust stains under the tank or near the discharge pipe
@@ -6030,10 +6203,15 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
 • 	Labeling: Emergency shutoff must be clearly marked
 • 	IBU Overlay: May require tactile indicators, visual contrast, or audible alerts in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC P2801–P2804: Water heaters must be installed per manufacturer specs
+• 	IRC P2801–P2804: 	Water heaters must be installed per manufacturer specs
 • 	TPR valve required and must discharge to a safe location
 • 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• 	IRC M1801.1: Flue gas exhaust must be vented outdoors with a proper slope`
+• 	IBC 2801.3 – Installation in Garages, must be elevated 18 inches above the floor (ignition source height)
+IBC 2801.2 – Water Heater Access
+Water heaters must be:
+Accessible for inspection, service, and replacement
+Not blocked by permanent construction
+Located to prevent unsafe conditions`
         },
         {
             id: 'wh_4',
@@ -6045,7 +6223,8 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
             points: '14.8/n',
             code: 'WH-04',
             codeReference: `🧭 Step 1: Identify Water Heater Type and Location
-Inspect all permanently installed water heaters, including: Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
+Inspect all permanently installed water heaters, including:
+Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest droppings around base and plumbing penetrations
 • 	Check for water pooling or rust stains under the tank or near the discharge pipe
@@ -6061,10 +6240,15 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
 • 	Labeling: Emergency shutoff must be clearly marked
 • 	IBU Overlay: May require tactile indicators, visual contrast, or audible alerts in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC P2801–P2804: Water heaters must be installed per manufacturer specs
+• 	IRC P2801–P2804: 	Water heaters must be installed per manufacturer specs
 • 	TPR valve required and must discharge to a safe location
 • 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• 	IRC M1801.1: Flue gas exhaust must be vented outdoors with a proper slope`
+• 	IBC 2801.3 – Installation in Garages, must be elevated 18 inches above the floor (ignition source height)
+IBC 2801.2 – Water Heater Access
+Water heaters must be:
+Accessible for inspection, service, and replacement
+Not blocked by permanent construction
+Located to prevent unsafe conditions`
         },
         {
             id: 'wh_5',
@@ -6076,7 +6260,8 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
             points: '5.5/n',
             code: 'WH-05',
             codeReference: `🧭 Step 1: Identify Water Heater Type and Location
-Inspect all permanently installed water heaters, including: Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
+Inspect all permanently installed water heaters, including:
+Tank-style (gas/electric), Tankless (on-demand), and Boiler systems
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Inspect for mold, mildew, or pest droppings around base and plumbing penetrations
 • 	Check for water pooling or rust stains under the tank or near the discharge pipe
@@ -6092,10 +6277,15 @@ Inspect all permanently installed water heaters, including: Tank-style (gas/elec
 • 	Labeling: Emergency shutoff must be clearly marked
 • 	IBU Overlay: May require tactile indicators, visual contrast, or audible alerts in accessible units
 ⚒️ Step 5: IRC Installation & Safety Requirements
-• 	IRC P2801–P2804: Water heaters must be installed per manufacturer specs
+• 	IRC P2801–P2804: 	Water heaters must be installed per manufacturer specs
 • 	TPR valve required and must discharge to a safe location
 • 	IRC G2420.5: Gas shutoff valve required within 6 feet of appliance
-• 	IRC M1801.1: Flue gas exhaust must be vented outdoors with a proper slope`
+• 	IBC 2801.3 – Installation in Garages, must be elevated 18 inches above the floor (ignition source height)
+IBC 2801.2 – Water Heater Access
+Water heaters must be:
+Accessible for inspection, service, and replacement
+Not blocked by permanent construction
+Located to prevent unsafe conditions`
         }
     ]
 };
@@ -6115,14 +6305,14 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'WINDOW-01',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:Identification & Applicability
 • 	Required: All habitable rooms must have windows for natural light and ventilation unless mechanical systems are provided
 • 	Includes: Fixed and operable windows
 • 	Window assemblies with screens, locks, weather stripping, and glazing
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Check for water intrusion: Staining, bubbling paint, or soft drywall near the window
 • 	IBU Overlay: May require sealed penetrations, pest-proof screens, or moisture-resistant finishes
-🧪 Step 3: Operability & Security
+🧪 Step 3Operability & Security
 • 	Open test: Unlock and open window fully—verify smooth operation
 • 	Stay-open test: Confirm window remains open without external support
 • 	Close & lock test: Ensure the window closes securely and the lock engages
@@ -6136,7 +6326,7 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R308.4: Safety glazing required near doors, stairs, and walkways
 • 	IRC R310.2: Emergency escape and rescue openings required in sleeping rooms
-• 	IRC R303.6: Natural light and ventilation must be provided via windows or mechanical systems`
+• 	IBC Chapter 10 – Egress (Emergency Escape Windows)Every bedroom must have an EERO unless: The building is fully sprinklered, AND The bedroom opens directly into a corridor leading to an exit`
         },
         {
             id: 'window_2',
@@ -6147,14 +6337,14 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'WINDOW-02',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:Identification & Applicability
 • 	Required: All habitable rooms must have windows for natural light and ventilation unless mechanical systems are provided
 • 	Includes: Fixed and operable windows
 • 	Window assemblies with screens, locks, weather stripping, and glazing
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Check for water intrusion: Staining, bubbling paint, or soft drywall near the window
 • 	IBU Overlay: May require sealed penetrations, pest-proof screens, or moisture-resistant finishes
-🧪 Step 3: Operability & Security
+🧪 Step 3Operability & Security
 • 	Open test: Unlock and open window fully—verify smooth operation
 • 	Stay-open test: Confirm window remains open without external support
 • 	Close & lock test: Ensure the window closes securely and the lock engages
@@ -6168,7 +6358,7 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R308.4: Safety glazing required near doors, stairs, and walkways
 • 	IRC R310.2: Emergency escape and rescue openings required in sleeping rooms
-• 	IRC R303.6: Natural light and ventilation must be provided via windows or mechanical systems`
+• 	IBC Chapter 10 – Egress (Emergency Escape Windows)Every bedroom must have an EERO unless: The building is fully sprinklered, AND The bedroom opens directly into a corridor leading to an exit`
         },
         {
             id: 'window_3',
@@ -6179,14 +6369,14 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '24 Hrs.',
             points: '14.8/n',
             code: 'WINDOW-03',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:Identification & Applicability
 • 	Required: All habitable rooms must have windows for natural light and ventilation unless mechanical systems are provided
 • 	Includes: Fixed and operable windows
 • 	Window assemblies with screens, locks, weather stripping, and glazing
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Check for water intrusion: Staining, bubbling paint, or soft drywall near the window
 • 	IBU Overlay: May require sealed penetrations, pest-proof screens, or moisture-resistant finishes
-🧪 Step 3: Operability & Security
+🧪 Step 3Operability & Security
 • 	Open test: Unlock and open window fully—verify smooth operation
 • 	Stay-open test: Confirm window remains open without external support
 • 	Close & lock test: Ensure the window closes securely and the lock engages
@@ -6200,7 +6390,7 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R308.4: Safety glazing required near doors, stairs, and walkways
 • 	IRC R310.2: Emergency escape and rescue openings required in sleeping rooms
-• 	IRC R303.6: Natural light and ventilation must be provided via windows or mechanical systems`
+• 	IBC Chapter 10 – Egress (Emergency Escape Windows)Every bedroom must have an EERO unless: The building is fully sprinklered, AND The bedroom opens directly into a corridor leading to an exit`
         },
         {
             id: 'window_4',
@@ -6211,14 +6401,14 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
             repairBy: '30 Day',
             points: '5.5/n',
             code: 'WINDOW-04',
-            codeReference: `🧭 Step 1: Identification & Applicability
+            codeReference: `🧭 Step 1:Identification & Applicability
 • 	Required: All habitable rooms must have windows for natural light and ventilation unless mechanical systems are provided
 • 	Includes: Fixed and operable windows
 • 	Window assemblies with screens, locks, weather stripping, and glazing
 🔍 Step 2: Sanitation & Environmental Safety
 • 	Check for water intrusion: Staining, bubbling paint, or soft drywall near the window
 • 	IBU Overlay: May require sealed penetrations, pest-proof screens, or moisture-resistant finishes
-🧪 Step 3: Operability & Security
+🧪 Step 3Operability & Security
 • 	Open test: Unlock and open window fully—verify smooth operation
 • 	Stay-open test: Confirm window remains open without external support
 • 	Close & lock test: Ensure the window closes securely and the lock engages
@@ -6232,7 +6422,7 @@ export const WINDOW_DEFICIENCIES: InsideItemDeficiencies = {
 ⚒️ Step 5: IRC Structural Requirements
 • 	IRC R308.4: Safety glazing required near doors, stairs, and walkways
 • 	IRC R310.2: Emergency escape and rescue openings required in sleeping rooms
-• 	IRC R303.6: Natural light and ventilation must be provided via windows or mechanical systems`
+• 	IBC Chapter 10 – Egress (Emergency Escape Windows)Every bedroom must have an EERO unless: The building is fully sprinklered, AND The bedroom opens directly into a corridor leading to an exit`
         }
     ]
 };
