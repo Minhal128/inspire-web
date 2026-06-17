@@ -8,12 +8,21 @@ import MainLayout from "@/components/MainLayout";
 export default function BlogIndex() {
   const blogs = [
     {
-      title: "Sewer Scope Inspection",
-      subtitle: "What It Is and Why It Matters for Homeowners Across the U.S.",
-      slug: "sewer-scope-inspection",
-      excerpt: "Buying or owning a home comes with responsibilities that go far beyond what you can see during a casual walkthrough.",
-      image: "/blog-sewer-scope.png",
-      date: "March 13, 2026",
+      title: "Where AI Is Saving Property Managers the Most Time",
+      subtitle: "Biggest impact—from inspections to maintenance and leasing workflows.",
+      slug: "where-ai-is-saving-property-managers-the-most-time",
+      excerpt: "AI time savings for property managers biggest impact—from inspections to maintenance and leasing workflows like Inspection Express 360AI.",
+      image: "/blog-ai-time.png",
+      date: "April 13, 2026",
+      category: "Inspection Services"
+    },
+    {
+      title: "Biggest Property Manager Time Wasters During Inspections",
+      subtitle: "Strategies to save hours, reduce admin, and improve efficiency.",
+      slug: "property-managers-time-wasters-during-inspections",
+      excerpt: "Property Manager Time Wasters affect your workflow and discover strategies to save hours, reduce admin, and improve efficiency.",
+      image: "/blog-time-wasters.png",
+      date: "March 18, 2026",
       category: "Inspection Services"
     },
     {
@@ -22,15 +31,6 @@ export default function BlogIndex() {
       slug: "professional-roof-inspections",
       excerpt: "One of the most critical yet overlooked aspects of property maintenance is the roof. Even small leaks can lead to significant damage.",
       image: "/blog-roof.png",
-      date: "March 13, 2026",
-      category: "Inspection Services"
-    },
-    {
-      title: "Sewer Scope Inspection Guide",
-      subtitle: "Everything You Need to Know About Underground Pipe Health",
-      slug: "what-is-sewer-scope-inspection",
-      excerpt: "Many homeowners don’t realize that one of the most important systems in their home is hidden underground: the sewer line.",
-      image: "/blog-sewer-scope.png",
       date: "March 13, 2026",
       category: "Inspection Services"
     },

@@ -1879,7 +1879,7 @@ export default function InspectionCategoryPage() {
                                                     <button
                                                         type="button"
                                                         disabled
-                                                        className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white opacity-60 text-left cursor-not-allowed"
+                                                        className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white opacity-60 text-center cursor-not-allowed"
                                                     >
                                                         Select deficiency first to open Inspect
                                                     </button>
@@ -1889,7 +1889,7 @@ export default function InspectionCategoryPage() {
                                                 <button
                                                     type="button"
                                                     onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
-                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-left shadow-md"
+                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
                                                 >
                                                     How To Inspect ? ✅
                                                 </button>
