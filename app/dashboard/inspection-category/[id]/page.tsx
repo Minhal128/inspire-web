@@ -1872,14 +1872,14 @@ export default function InspectionCategoryPage() {
 
                                     {/* 3. INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Inspect IRU, BRU, Local</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How To Inspect ? ✅</label>
                                         {(() => {
                                             if (!selectedDeficiency) {
                                                 return (
                                                     <button
                                                         type="button"
                                                         disabled
-                                                        className="w-full border-2 rounded-2xl p-4 text-xs font-bold leading-relaxed border-gray-100 bg-gray-50 text-gray-400 text-left cursor-not-allowed"
+                                                        className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white opacity-60 text-left cursor-not-allowed"
                                                     >
                                                         Select deficiency first to open Inspect
                                                     </button>
@@ -1889,7 +1889,7 @@ export default function InspectionCategoryPage() {
                                                 <button
                                                     type="button"
                                                     onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
-                                                    className="w-full border-2 border-[#0E7490] rounded-2xl p-4 text-xs font-bold leading-relaxed bg-white text-[#0E7490] hover:bg-cyan-50 transition-colors text-left"
+                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-left shadow-md"
                                                 >
                                                     How To Inspect ? ✅
                                                 </button>
