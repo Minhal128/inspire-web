@@ -191,7 +191,7 @@ function NSPIREInspectionSummaryContent() {
     const loadInspectionData = async () => {
       try {
         setLoading(true);
-        // IGNORE localStorage - fetch everything from server to ensure fresh data
+        // IGNORE localStorage
         let inspectionData = null;
         let propertyData = null;
 
@@ -221,73 +221,76 @@ function NSPIREInspectionSummaryContent() {
             let allFindings: any[] = [];
             let serverUnlocked = false;
 
-            // 1. Collect findings from all progress (draft) records
+            // To prevent duplicates, we only want ONE record per building+unit+type combo.
+            // Finalized inspections take priority. For drafts, we take the latest one.
+            const uniqueRecords = new Map<string, any>();
+
+            // 1. Collect findings from finalized (completed) inspections
+            if (inspectionsRes.success && inspectionsRes.inspections) {
+              inspectionsRes.inspections.forEach((insp: any) => {
+                const bldg = String(insp.building?.name || insp.buildingId || insp.building || '').toUpperCase().trim();
+                const unit = String(insp.unit?.name || insp.unitId || insp.unit || '').toUpperCase().trim();
+                const type = String(insp.inspectionType || '').toUpperCase().trim();
+                const key = `${bldg}|${unit}|${type}`;
+                
+                if (insp.isReportUnlocked) serverUnlocked = true;
+                
+                uniqueRecords.set(key, {
+                    findings: insp.findings || insp.deficiencies || [],
+                    building: bldg,
+                    unit: unit,
+                    area: insp.inspectionType || 'Final',
+                    isFinalized: true,
+                    updatedAt: new Date(insp.updatedAt || insp.createdAt || 0).getTime()
+                });
+              });
+            }
+
+            // 2. Collect findings from progress (draft) records
             if (progData.success && progData.progress) {
               const allProgress = progData.progress || [];
               allProgress.forEach((record: any) => {
-                const recordFindings = record.inspectionData?.findings || record.inspectionData?.deficiencies || [];
-                if (Array.isArray(recordFindings)) {
-                  const building = record.buildingId || record.inspectionData?.buildingId || '';
-                  const unit = record.unitId || record.inspectionData?.currentUnit || '-';
-                  const rawArea = record.inspectionType || (unit === 'Outside' ? 'Outside' : unit === 'Inside' ? 'Inside' : 'Unit');
-                  const area = rawArea.charAt(0).toUpperCase() + rawArea.slice(1).toLowerCase();
-
-                  recordFindings.forEach((f: any) => {
-                    allFindings.push({
-                      ...f,
-                      building: f.building || building,
-                      unit: f.unit || unit,
-                      area: f.area || area
+                const bldg = String(record.buildingId || record.inspectionData?.buildingId || '').toUpperCase().trim();
+                const unit = String(record.unitId || record.inspectionData?.currentUnit || '').toUpperCase().trim();
+                const rawArea = record.inspectionType || (unit === 'OUTSIDE' ? 'Outside' : unit === 'INSIDE' ? 'Inside' : 'Unit');
+                const type = String(record.inspectionType || rawArea).toUpperCase().trim();
+                const area = rawArea.charAt(0).toUpperCase() + rawArea.slice(1).toLowerCase();
+                const key = `${bldg}|${unit}|${type}`;
+                const recordTime = new Date(record.updatedAt || record.createdAt || 0).getTime();
+                
+                // Only add if not already finalized, or if this draft is somehow newer (though finalized should usually win)
+                // Let's just say finalized always wins, but for drafts we take the newest one
+                const existing = uniqueRecords.get(key);
+                if (!existing || (!existing.isFinalized && recordTime > existing.updatedAt)) {
+                    uniqueRecords.set(key, {
+                        findings: record.inspectionData?.findings || record.inspectionData?.deficiencies || [],
+                        building: bldg,
+                        unit: unit,
+                        area: area,
+                        isFinalized: false,
+                        updatedAt: recordTime
                     });
-                  });
                 }
               });
             }
 
-            // 2. Collect findings from finalized (completed) inspections
-            if (inspectionsRes.success && inspectionsRes.inspections) {
-              inspectionsRes.inspections.forEach((insp: any) => {
-                const inspFindings = insp.findings || insp.deficiencies || [];
-                if (insp.isReportUnlocked) serverUnlocked = true;
-
-                if (Array.isArray(inspFindings)) {
-                  inspFindings.forEach((f: any) => {
-                    allFindings.push({
-                      ...f,
-                      building: f.building || insp.building?.name || '',
-                      unit: f.unit || insp.unit?.name || insp.unit || '-',
-                      area: f.area || insp.inspectionType || 'Final',
-                      isFinalized: true
+            // 3. Flatten exactly the findings from our unique records, without touching the deficiencies themselves
+            uniqueRecords.forEach(record => {
+                if (Array.isArray(record.findings)) {
+                    record.findings.forEach((f: any) => {
+                        allFindings.push({
+                            ...f,
+                            building: f.building || record.building,
+                            unit: f.unit || record.unit,
+                            area: f.area || record.area,
+                            isFinalized: record.isFinalized
+                        });
                     });
-                  });
                 }
-              });
-            }
-
-            // 3. Smart aggregation: deduplicate findings by a unique key
-            const deduped = new Map<string, any>();
-            allFindings.forEach(f => {
-              // Normalize common identifiers to ensure matches
-              const normBuilding = String(f.building || '').replace(/^Building\s+/i, 'B').toUpperCase().trim();
-              const normUnit = String(f.unit || '').replace(/^Unit\s+/i, '').replace(/^-$/, '').toUpperCase().trim();
-              const normName = String(f.deficiencyName || f.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-
-              // Create a key that identifies the SAME physical deficiency across different states
-              const key = [normName, normBuilding, normUnit].filter(Boolean).join('|');
-
-              // If we have duplicates, prefer the one that came from a finalized inspection or has an image
-              const existing = deduped.get(key);
-              const isNewerOrBetter = !existing ||
-                (f.isFinalized && !existing.isFinalized) ||
-                (!existing.imageUri && f.imageUri);
-
-              if (isNewerOrBetter) {
-                deduped.set(key, f);
-              }
             });
 
-            const finalFindings = Array.from(deduped.values());
-            console.log(`Summary Aggregation: Raw=${allFindings.length}, Deduped=${finalFindings.length}`);
+            const finalFindings = allFindings;
+            console.log(`Summary Aggregation: Final unique deficiencies=${finalFindings.length}`);
 
             // Update local unlock state if server reports any inspection is unlocked
             if (serverUnlocked) setIsReportUnlocked(true);
@@ -314,13 +317,12 @@ function NSPIREInspectionSummaryContent() {
           // Convert to NSPIRE report format
           const nspireReport = convertToNSPIREReport(inspectionData, propertyData)
           setReport(nspireReport)
-        } else if (propertyId) {
-          // If we have an ID but no data, don't show demo data - show error
-          toast.error("Property data not found on server.", { position: "top-right" });
-          setReport(null);
         } else {
-          // Only show demo data if explicitly requested or no ID provided at all
-          setReport(getDemoReport())
+          // No data found — show empty state, never show hardcoded demo data
+          if (propertyId) {
+            toast.error("Property data not found on server.", { position: "top-right" });
+          }
+          setReport(null);
         }
       } catch (error: any) {
         console.error('Error loading inspection data:', error)
@@ -691,133 +693,60 @@ function NSPIREInspectionSummaryContent() {
 
       const token = localStorage.getItem('token')
 
-      // Prepare the payload matching backend expectations
-      let payloadData;
-      let mergedInspectionPayload: any = null;
+      // 1. Mark as completed in background (we don't need its return value for the PDF)
+      await markInspectionAsCompleted({
+        silentToast: true,
+        returnInspection: false,
+      });
 
-      const storedData = localStorage.getItem('currentInspectionData');
-      const storedProperty = localStorage.getItem('currentInspectionProperty');
-
-      // First persist/update the inspection in backend to obtain merged property-level data
-      // (prevents previous building details from being dropped when exporting after partial updates)
-      if (storedData && storedProperty) {
-        mergedInspectionPayload = await markInspectionAsCompleted({
-          silentToast: true,
-          returnInspection: true,
-        });
-      }
-
-      if (mergedInspectionPayload) {
-        const propertyData = storedProperty ? JSON.parse(storedProperty) : null;
-
-        // PHOTO FIX: Prefer `findings` (raw data with imageUri strings) over
-        // `deficiencies` (transformed objects where imageUri is nested inside photos[].url)
-        const rawItems = isPreview
-          ? (mergedInspectionPayload.findings || mergedInspectionPayload.deficiencies || []).slice(0, 2)
-          : (mergedInspectionPayload.findings || mergedInspectionPayload.deficiencies || []);
-
-        // Deep-scan helper: extract the first valid image URL from any field
-        const extractImageUrl = (d: any): string => {
-          // 1. Direct string fields
-          if (typeof d.imageUri === 'string' && d.imageUri.startsWith('http')) return d.imageUri;
-          if (typeof d.imageUrl === 'string' && d.imageUrl.startsWith('http')) return d.imageUrl;
-          if (typeof d.photo === 'string' && d.photo.startsWith('http')) return d.photo;
-          if (typeof d.image === 'string' && d.image.startsWith('http')) return d.image;
-          // 2. photos array (could be strings or {url} objects)
-          if (Array.isArray(d.photos) && d.photos.length > 0) {
-            const first = d.photos[0];
-            if (typeof first === 'string' && first.startsWith('http')) return first;
-            if (first?.url && typeof first.url === 'string' && first.url.startsWith('http')) return first.url;
+      // 2. Build PDF payload EXACTLY from our deduplicated `report` state
+      const exportDeficiencies = isPreview ? report.deficiencies.slice(0, 2) : report.deficiencies;
+      
+      const extractImageUrl = (d: any): string => {
+        if (typeof d.imageUri === 'string' && d.imageUri.startsWith('http')) return d.imageUri;
+        if (typeof d.imageUrl === 'string' && d.imageUrl.startsWith('http')) return d.imageUrl;
+        if (typeof d.photo === 'string' && d.photo.startsWith('http')) return d.photo;
+        if (typeof d.image === 'string' && d.image.startsWith('http')) return d.image;
+        if (Array.isArray(d.photos) && d.photos.length > 0) {
+          const first = d.photos[0];
+          if (typeof first === 'string' && first.startsWith('http')) return first;
+          if (first?.url && typeof first.url === 'string' && first.url.startsWith('http')) return first.url;
+        }
+        for (const key of Object.keys(d)) {
+          const val = d[key];
+          if (typeof val === 'string' && val.startsWith('http') && (val.includes('cloudinary') || val.includes('.jpg') || val.includes('.png') || val.includes('.jpeg') || val.includes('.webp'))) {
+            return val;
           }
-          // 3. Fallback: scan all keys for any http URL
-          for (const key of Object.keys(d)) {
-            const val = d[key];
-            if (typeof val === 'string' && val.startsWith('http') && (val.includes('cloudinary') || val.includes('.jpg') || val.includes('.png') || val.includes('.jpeg') || val.includes('.webp'))) {
-              return val;
-            }
-          }
-          return '';
-        };
-
-        // MAPPING FIX: Ensure photos are correctly formatted for the generator
-        const exportDeficiencies = rawItems.map((d: any) => {
-          const img = extractImageUrl(d);
-          return {
-            ...d,
-            title: d.deficiencyName || d.title,
-            description: d.deficiencyDetails || d.description,
-            notes: d.comments || d.notes,
-            category: d.area || d.category,
-            imageUri: img,
-            imageUrl: img,
-            photos: img ? [img] : []
-          };
-        });
-
-        payloadData = {
-          ...mergedInspectionPayload,
-          property: propertyData || mergedInspectionPayload.property,
-          findings: exportDeficiencies,
-          deficiencies: exportDeficiencies,
-          inspectionNo: mergedInspectionPayload.inspectionId || report.metadata.inspectionNo,
-          propertyName: propertyData?.name || report.metadata.propertyName,
-          propertyAddress: propertyData?.address || report.metadata.propertyAddress,
-        };
-      }
-
-      if (!payloadData && storedData) {
-        // Use raw data if available (best for metadata preservation)
-        const rawData = JSON.parse(storedData);
-        if (storedProperty) {
-          rawData.property = JSON.parse(storedProperty);
         }
+        return '';
+      };
 
-        // Limit deficiencies for preview export if locked
-        if (isPreview && Array.isArray(rawData.findings)) {
-          rawData.findings = rawData.findings.slice(0, 2);
-        }
-        if (isPreview && Array.isArray(rawData.deficiencies)) {
-          rawData.deficiencies = rawData.deficiencies.slice(0, 2);
-        }
-
-        payloadData = rawData;
-      } else if (!payloadData) {
-        // Fallback: Reconstruct compatible object from current report state
-        // The backend expects flat properties for metadata (e.g. propertyName)
-        // or a nested property object.
-        // Limit deficiencies for preview export if locked
-        const exportDeficiencies = isPreview ? report.deficiencies.slice(0, 2) : report.deficiencies;
-
-        payloadData = {
-          ...report.metadata, // Spread metadata (inspectionNo, propertyName, etc.) to root
-          deficiencies: exportDeficiencies.map(d => {
-            const img = d.imageUri || d.imageUrl || (Array.isArray(d.photos) && d.photos.length > 0 ? (typeof d.photos[0] === 'string' ? d.photos[0] : d.photos[0].url) : '') || '';
-            return {
-              ...d,
-              title: d.deficiencyName,
-              description: d.deficiencyDetails,
-              notes: d.comments,
-              category: d.area,
-              imageUri: img,
-              imageUrl: img,
-              photos: [img]
-            };
-          }),
-          findings: exportDeficiencies.map(d => {
-            const img = d.imageUri || d.imageUrl || (Array.isArray(d.photos) && d.photos.length > 0 ? (typeof d.photos[0] === 'string' ? d.photos[0] : d.photos[0].url) : '') || '';
-            return {
-              ...d,
-              imageUri: img,
-              imageUrl: img,
-              photos: [img]
-            };
-          })
+      const formattedDeficiencies = exportDeficiencies.map((d: any) => {
+        const img = extractImageUrl(d);
+        return {
+          ...d,
+          title: d.deficiencyName || d.title,
+          description: d.deficiencyDetails || d.description,
+          notes: d.comments || d.notes,
+          category: d.area || d.category,
+          imageUri: img,
+          imageUrl: img,
+          photos: img ? [img] : []
         };
+      });
 
-        const imageCount = payloadData.deficiencies.filter((d: any) => d.imageUri || (d.photos && d.photos.length > 0)).length;
-        console.log(`FINAL PDF PAYLOAD: ${payloadData.deficiencies.length} items, ${imageCount} have images.`);
-        console.log("PAYLOAD SAMPLE:", JSON.stringify(payloadData.deficiencies[0]).substring(0, 500));
-      }
+      const payloadData = {
+        ...report.metadata, // Spread metadata
+        inspectionNo: report.metadata.inspectionNo,
+        propertyName: report.metadata.propertyName,
+        propertyAddress: report.metadata.propertyAddress,
+        findings: formattedDeficiencies,
+        deficiencies: formattedDeficiencies
+      };
+
+      const imageCount = payloadData.deficiencies.filter((d: any) => d.imageUri || (d.photos && d.photos.length > 0)).length;
+      console.log(`FINAL PDF PAYLOAD: ${payloadData.deficiencies.length} items, ${imageCount} have images.`);
+      console.log("PAYLOAD SAMPLE:", JSON.stringify(payloadData.deficiencies[0] || {}).substring(0, 500));
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inspections/generate-pdf?includeImages=true`, {
         method: 'POST',
@@ -904,10 +833,7 @@ function NSPIREInspectionSummaryContent() {
 
       toast.success("PDF downloaded successfully", { position: "top-right" })
 
-      // If pre-update did not run/succeed, attempt completion now
-      if (!mergedInspectionPayload) {
-        await markInspectionAsCompleted();
-      }
+
 
     } catch (error: any) {
       console.error('PDF export error:', error)
@@ -971,16 +897,12 @@ function NSPIREInspectionSummaryContent() {
       }
 
       const token = localStorage.getItem('token')
-      const storedData = localStorage.getItem('currentInspectionData');
-      const storedProperty = localStorage.getItem('currentInspectionProperty');
+      const propertyId = searchParams.get('propertyId') || searchParams.get('id');
 
-      if (!storedData || !storedProperty) {
-        console.log('No inspection data to save');
+      if (!propertyId || !report) {
+        console.log('No property data or report to save');
         return null;
       }
-
-      const inspectionData = JSON.parse(storedData);
-      const propertyData = JSON.parse(storedProperty);
 
       // Update or create inspection record as completed
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/complete`, {
@@ -990,9 +912,9 @@ function NSPIREInspectionSummaryContent() {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          propertyId: propertyData._id,
+          propertyId: propertyId,
           inspectionData: {
-            ...inspectionData,
+            ...report,
             status: 'in-progress',
             completedAt: new Date().toISOString(),
             pdfExported: true

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "react-toastify"
 import { inspectionsAPI, propertiesAPI } from "@/lib/api"
-import { Country, State, City } from 'country-state-city'
 import * as XLSX from 'xlsx'
 import { useRouter } from "next/navigation"
 
@@ -213,8 +212,6 @@ interface PropertyFormData {
   propertyId?: string
   address: string
   propertyName: string
-  country: string
-  countryCode: string
   state: string
   stateCode: string
   buildings: string
@@ -227,8 +224,6 @@ const emptyPropertyForm: PropertyFormData = {
   propertyId: "",
   address: "",
   propertyName: "",
-  country: "",
-  countryCode: "",
   state: "",
   stateCode: "",
   buildings: "",
@@ -242,21 +237,6 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
   const [isDragging, setIsDragging] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
-
-  // Location data from country-state-city package
-  const [countries, setCountries] = useState<any[]>([])
-  const [states, setStates] = useState<any[]>([])
-  const [cities, setCities] = useState<any[]>([])
-
-  useEffect(() => {
-    // Load only specific countries
-    const allCountries = Country.getAllCountries()
-    const allowedCountries = ['United States', 'Canada', 'United Kingdom', 'Australia']
-    const filteredCountries = allCountries.filter(country =>
-      allowedCountries.includes(country.name)
-    )
-    setCountries(filteredCountries)
-  }, [])
 
   const updateProperty = (index: number, field: keyof PropertyFormData, value: string) => {
     const updated = [...properties]
@@ -379,7 +359,6 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
       'property nam': 'propertyName',
       'propertyname': 'propertyName',
       'name': 'propertyName',
-      'country': 'country',
       'state': 'state',
       'province': 'state',
       'city': 'city',
@@ -443,7 +422,6 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
     'property nam': 'propertyName',
     'propertyname': 'propertyName',
     'name': 'propertyName',
-    'country': 'country',
     'state': 'state',
     'province': 'state',
     'city': 'city',
@@ -509,29 +487,20 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
     return results
   }
 
-  const getStatesForCountry = (countryName: string): any[] => {
-    const country = countries.find(c => c.name === countryName)
-    if (country) {
-      return State.getStatesOfCountry(country.isoCode)
-    }
-    return []
-  }
-
-  const getCitiesForState = (countryName: string, stateName: string): any[] => {
-    const country = countries.find(c => c.name === countryName)
-    const state = states.find(s => s.name === stateName)
-    if (country && state) {
-      return City.getCitiesOfState(country.isoCode, state.isoCode)
-    }
-    return []
-  }
-
   const handleNext = () => {
     // Validate all properties
     for (let i = 0; i < properties.length; i++) {
       const prop = properties[i]
-      if (!prop.address || !prop.propertyName || !prop.state || !prop.city || !prop.zipCode) {
+      if (!prop.address || !prop.propertyName || !prop.state || !prop.city || !prop.zipCode || !prop.buildings || !prop.units) {
         toast.error(`Please fill in all required fields for Property ${i + 1}`, { position: "top-right" })
+        return
+      }
+      if (isNaN(parseInt(prop.buildings)) || parseInt(prop.buildings) <= 0) {
+        toast.error(`Buildings must be a valid number for Property ${i + 1}`, { position: "top-right" })
+        return
+      }
+      if (isNaN(parseInt(prop.units)) || parseInt(prop.units) <= 0) {
+        toast.error(`Units must be a valid number for Property ${i + 1}`, { position: "top-right" })
         return
       }
     }
