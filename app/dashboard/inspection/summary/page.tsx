@@ -195,7 +195,21 @@ function NSPIREInspectionSummaryContent() {
         let inspectionData = null;
         let propertyData = null;
 
-        const propertyId = searchParams.get('propertyId') || searchParams.get('id');
+        let urlPropertyId = searchParams.get('propertyId');
+        let paramId = searchParams.get('id') || searchParams.get('inspectionId');
+        
+        if (!urlPropertyId && paramId) {
+            try {
+                const inspRes = await inspectionsAPI.getById(paramId);
+                if (inspRes.success && inspRes.inspection) {
+                    urlPropertyId = inspRes.inspection.property?._id || inspRes.inspection.property || paramId;
+                }
+            } catch (e) {
+                console.error("Failed to fetch inspection details", e);
+            }
+        }
+
+        const propertyId = urlPropertyId || paramId;
         const token = localStorage.getItem('token');
 
         if (propertyId && token) {
@@ -289,8 +303,33 @@ function NSPIREInspectionSummaryContent() {
                 }
             });
 
-            const finalFindings = allFindings;
-            console.log(`Summary Aggregation: Final unique deficiencies=${finalFindings.length}`);
+            // Deduplicate findings to prevent duplicate ODs
+            const finalFindings: any[] = [];
+            const seenKeys = new Set<string>();
+            
+            allFindings.forEach((f: any) => {
+                const bldgStr = String(f.building || '').toLowerCase();
+                const unitStr = String(f.unit || '').toLowerCase();
+                const areaStr = String(f.area || f.subCategory || f.category || '').toLowerCase();
+                const titleStr = String(f.title || f.deficiencyName || f.name || '').toLowerCase();
+                const descStr = String(f.description || f.details || f.deficiencyDetails || '').toLowerCase();
+                
+                // Filter out empty "ghost" records that have no title and no description
+                if (!titleStr && !descStr) {
+                    return;
+                }
+
+                // To match the PDF generator perfectly, we must aggressively deduplicate purely by content.
+                // The database contains duplicate entries with different MongoDB _ids due to backend draft merging.
+                const dedupKey = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}`;
+                
+                if (!seenKeys.has(dedupKey)) {
+                    seenKeys.add(dedupKey);
+                    finalFindings.push(f);
+                }
+            });
+
+            console.log(`Summary Aggregation: Final unique deficiencies=${finalFindings.length} (from ${allFindings.length} total)`);
 
             // Update local unlock state if server reports any inspection is unlocked
             if (serverUnlocked) setIsReportUnlocked(true);

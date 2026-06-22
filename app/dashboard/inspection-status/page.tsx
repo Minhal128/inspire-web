@@ -505,9 +505,22 @@ export default function InspectionStatusPage() {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => {
+                          onClick={async () => {
                             if (property.inspection?._id) {
-                              router.push(`/dashboard/inspection/summary?id=${property.inspection._id}`)
+                              try {
+                                toast.info('Initiating payment...', { position: 'top-right' })
+                                const data = await paymentsAPI.createStripeCheckoutSession(property.inspection._id);
+                                if (data?.isReportUnlocked || data?.alreadyUnlocked) {
+                                  toast.success('Report is already unlocked.', { position: 'top-right' })
+                                  fetchData(true)
+                                  return
+                                }
+                                if (!data?.checkoutUrl) throw new Error('Stripe checkout URL is missing.')
+                                window.location.href = data.checkoutUrl
+                              } catch (error: any) {
+                                console.error('Stripe checkout start error:', error)
+                                toast.error(`Unable to start payment: ${error.message}`, { position: 'top-right' })
+                              }
                             } else {
                               toast.error("Inspection details not found")
                             }
