@@ -1154,7 +1154,7 @@ export default function InspectionCategoryPage() {
                                     onClick={() => handleStatusChange(section, item, 'OD')}
                                     className="w-full py-3 rounded text-[11px] font-bold bg-[#006795] hover:bg-[#0a5670] text-white shadow-sm transition-all uppercase tracking-wider"
                                 >
-                                    General Button
+                                    General Comment
                                 </button>
                             ) : (
                                 <div className="grid grid-cols-3 gap-2">
@@ -1248,7 +1248,7 @@ export default function InspectionCategoryPage() {
                                                 onClick={() => handleStatusChange(section, item, 'OD')}
                                                 className="w-full py-2.5 rounded text-[11px] font-bold bg-[#006795] hover:bg-[#0a5670] text-white shadow-sm transition-all uppercase tracking-wider"
                                             >
-                                                General Button
+                                                General Comment
                                             </button>
                                         </td>
                                     ) : (

@@ -1188,7 +1188,7 @@ function NSPIREInspectionSummaryContent() {
             </div>
 
             {/* Property Info */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="mb-6">
               <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
                 <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                   PROPERTY INFORMATION
@@ -1209,30 +1209,6 @@ function NSPIREInspectionSummaryContent() {
                   <div className="flex justify-between">
                     <span className="text-gray-600">Inspector</span>
                     <span className="font-semibold">{report.metadata.inspectorName}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
-                  OCCUPANCY INFORMATION
-                </h2>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-50 p-3 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-gray-800">{report.occupancyInfo.totalUnits}</p>
-                    <p className="text-xs text-gray-600">Total Units</p>
-                  </div>
-                  <div className="bg-green-50 p-3 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-green-600">{report.occupancyInfo.occupiedUnits}</p>
-                    <p className="text-xs text-green-600">Occupied</p>
-                  </div>
-                  <div className="bg-red-50 p-3 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-red-600">{report.occupancyInfo.vacantUnits}</p>
-                    <p className="text-xs text-red-600">Vacant</p>
-                  </div>
-                  <div className="bg-blue-50 p-3 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-blue-600">{report.occupancyInfo.occupancyRate.toFixed(0)}%</p>
-                    <p className="text-xs text-blue-600">Occupancy Rate</p>
                   </div>
                 </div>
               </div>
