@@ -319,8 +319,9 @@ function NSPIREInspectionSummaryContent() {
                     return;
                 }
 
-                // To match the PDF generator perfectly, we must aggressively deduplicate purely by content.
-                // The database contains duplicate entries with different MongoDB _ids due to backend draft merging.
+                // Content-based deduplication: the database stores many duplicate records
+                // from drafts/progress saves, each with a different _id. We must deduplicate
+                // purely by content to get the real count.
                 const dedupKey = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}`;
                 
                 if (!seenKeys.has(dedupKey)) {

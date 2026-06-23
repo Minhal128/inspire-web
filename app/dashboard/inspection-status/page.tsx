@@ -48,6 +48,27 @@ interface PropertyWithInspection extends Property {
   isUnlocked?: boolean
 }
 
+// Deduplicate findings by content to get the real count
+function getUniqueDeficiencyCount(findings: any[] | undefined): number {
+  if (!findings || findings.length === 0) return 0;
+  const seen = new Set<string>();
+  let count = 0;
+  findings.forEach((f: any) => {
+    const areaStr = String(f.area || f.subCategory || f.category || '').toLowerCase();
+    const titleStr = String(f.title || f.deficiencyName || f.name || '').toLowerCase();
+    const descStr = String(f.description || f.details || f.deficiencyDetails || '').toLowerCase();
+    const bldgStr = String(f.building || f.buildingName || '').toLowerCase();
+    const unitStr = String(f.unit || f.unitNumber || '').toLowerCase();
+    if (!titleStr && !descStr) return;
+    const key = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      count++;
+    }
+  });
+  return count;
+}
+
 export default function InspectionStatusPage() {
   const router = useRouter()
   const [properties, setProperties] = useState<PropertyWithInspection[]>([])
@@ -253,7 +274,16 @@ export default function InspectionStatusPage() {
               printWindow.print()
             }
           } else {
-            throw new Error("Popup blocked. Please allow popups to print the report.")
+            const htmlBlob = new Blob([data.html], { type: 'text/html' });
+            const htmlUrl = window.URL.createObjectURL(htmlBlob);
+            const htmlLink = document.createElement('a');
+            htmlLink.href = htmlUrl;
+            htmlLink.download = (data.filename || `NSPIRE_Report_${property.name.replace(/[^a-zA-Z0-9]/g, '_')}.html`).replace(/\.pdf$/i, '.html');
+            document.body.appendChild(htmlLink);
+            htmlLink.click();
+            document.body.removeChild(htmlLink);
+            window.URL.revokeObjectURL(htmlUrl);
+            toast.warning('Popup blocked. Downloaded HTML backup instead—open it and print to PDF.', { position: 'top-right' });
           }
           return
         }
@@ -470,10 +500,10 @@ export default function InspectionStatusPage() {
                             </>
                           )}
                         </div>
-                        {property.inspection && (property.inspection.findings?.length || property.inspection.deficiencies?.length) ? (
+                        {property.inspection && getUniqueDeficiencyCount(property.inspection.findings || property.inspection.deficiencies) > 0 ? (
                           <div className="mt-2">
                             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-800 whitespace-nowrap">
-                              {property.inspection.findings?.length || property.inspection.deficiencies?.length} Deficiencies
+                              {getUniqueDeficiencyCount(property.inspection.findings || property.inspection.deficiencies)} Deficiencies
                             </span>
                           </div>
                         ) : null}
