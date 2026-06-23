@@ -6,7 +6,7 @@ import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
-import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock } from "lucide-react"
+import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock, FileSpreadsheet } from "lucide-react"
 import { toast } from "react-toastify"
 
 interface Property {
@@ -312,6 +312,50 @@ export default function InspectionStatusPage() {
     }
   }
 
+  const handleDownloadExcel = async (property: PropertyWithInspection) => {
+    if (!property.inspection) {
+      toast.error("No inspection completed for this property")
+      return
+    }
+
+    setDownloadingId(property._id + '_excel')
+    try {
+      toast.info("Generating Excel report...", { position: "top-right" })
+
+      const token = localStorage.getItem('token')
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections/${property.inspection._id}/nspire-excel`,
+        {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Failed to generate Excel')
+      }
+
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `NSPIRE_Report_${property.name.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.xlsx`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+
+      toast.success("Excel downloaded successfully", { position: "top-right" })
+    } catch (error: any) {
+      console.error('Excel download error:', error)
+      toast.error(`Failed to download Excel: ${error.message}`, { position: "top-right" })
+    } finally {
+      setDownloadingId(null)
+    }
+  }
+
   const handleStartInspection = (property: PropertyWithInspection) => {
     // Block only when another property is actively in progress (not on hold)
     if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
@@ -514,25 +558,46 @@ export default function InspectionStatusPage() {
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0 flex-shrink-0">
                     {propertyProgress[property._id] === 100 ? (
                       property.isUnlocked ? (
-                        <Button
-                          onClick={() => handleDownloadPDF(property)}
-                          disabled={downloadingId === property._id}
-                          className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
-                        >
-                          {downloadingId === property._id ? (
-                            <>
-                              <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
-                              <span className="hidden sm:inline">Generating...</span>
-                              <span className="sm:hidden">Loading...</span>
-                            </>
-                          ) : (
-                            <>
-                              <Download className="w-4 h-4 flex-shrink-0" />
-                              <span className="hidden sm:inline">Download PDF</span>
-                              <span className="sm:hidden">Download</span>
-                            </>
-                          )}
-                        </Button>
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <Button
+                            onClick={() => handleDownloadPDF(property)}
+                            disabled={downloadingId === property._id || downloadingId === property._id + '_excel'}
+                            className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                          >
+                            {downloadingId === property._id ? (
+                              <>
+                                <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
+                                <span className="hidden sm:inline">Generating...</span>
+                                <span className="sm:hidden">Loading...</span>
+                              </>
+                            ) : (
+                              <>
+                                <Download className="w-4 h-4 flex-shrink-0" />
+                                <span className="hidden sm:inline">Download PDF</span>
+                                <span className="sm:hidden">PDF</span>
+                              </>
+                            )}
+                          </Button>
+                          <Button
+                            onClick={() => handleDownloadExcel(property)}
+                            disabled={downloadingId === property._id || downloadingId === property._id + '_excel'}
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                          >
+                            {downloadingId === property._id + '_excel' ? (
+                              <>
+                                <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
+                                <span className="hidden sm:inline">Generating...</span>
+                                <span className="sm:hidden">Loading...</span>
+                              </>
+                            ) : (
+                              <>
+                                <FileSpreadsheet className="w-4 h-4 flex-shrink-0" />
+                                <span className="hidden sm:inline">Download Excel</span>
+                                <span className="sm:hidden">Excel</span>
+                              </>
+                            )}
+                          </Button>
+                        </div>
                       ) : (
                         <Button
                           onClick={async () => {
