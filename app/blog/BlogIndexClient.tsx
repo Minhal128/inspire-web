@@ -52,15 +52,7 @@ export default function BlogIndex() {
       date: "March 13, 2026",
       category: "For Professionals"
     },
-    {
-      title: "10 Common Problems",
-      subtitle: "Issues Found During Home Inspections",
-      slug: "10-common-problems-found",
-      excerpt: "Even homes that appear well-maintained can have hidden problems. Understanding these common issues helps buyers make informed decisions.",
-      image: "/blog-problems.png",
-      date: "March 13, 2026",
-      category: "Expert Advice"
-    },
+
     {
       title: "Home Inspection Checklist",
       subtitle: "What to Look for Before Buying a Home",

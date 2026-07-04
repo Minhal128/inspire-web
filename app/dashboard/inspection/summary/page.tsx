@@ -63,6 +63,12 @@ const ChevronLeft = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const Mail = ({ className }: { className?: string }) => (
+  <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+)
+
 // Loading fallback component
 function LoadingFallback() {
   return (
@@ -98,6 +104,9 @@ function NSPIREInspectionSummaryContent() {
   const [isReportUnlocked, setIsReportUnlocked] = useState(false)
   const [purchasingUnlock, setPurchasingUnlock] = useState(false)
   const [activeTab, setActiveTab] = useState<'summary' | 'deficiencies' | 'preview'>('summary')
+  const [showShareModal, setShowShareModal] = useState(false)
+  const [shareEmail, setShareEmail] = useState("")
+  const [sharingPayment, setSharingPayment] = useState(false)
   // Custom column header from the building table (editable in property-details)
   const [buildingColumnHeader, setBuildingColumnHeader] = useState('Building')
 
@@ -717,6 +726,32 @@ function NSPIREInspectionSummaryContent() {
     }
   }
 
+  const handleSharePaymentLink = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!shareEmail.trim()) {
+      toast.error("Please enter a valid email address.", { position: "top-right" })
+      return
+    }
+
+    try {
+      setSharingPayment(true)
+      const data = await paymentsAPI.shareStripeCheckoutLink(inspectionIdentifier || '', shareEmail)
+      
+      if (data?.success) {
+        toast.success("Payment link sent to email successfully!", { position: "top-right" })
+        setShowShareModal(false)
+        setShareEmail("")
+      } else {
+        toast.error(data?.message || "Failed to send payment link.", { position: "top-right" })
+      }
+    } catch (error: any) {
+      console.error("Error sharing payment link:", error)
+      toast.error(error.message || "An error occurred while sharing the payment link.", { position: "top-right" })
+    } finally {
+      setSharingPayment(false)
+    }
+  }
+
   const handleExportPDF = async () => {
     if (!report) return
 
@@ -1070,14 +1105,24 @@ function NSPIREInspectionSummaryContent() {
                 {!checkingUnlock && !isReportUnlocked && (
                   <div className="flex flex-col gap-1.5 p-3 rounded-lg bg-amber-50 border border-amber-200">
                     <h3 className="text-sm font-black text-amber-900 uppercase tracking-tight">Unlock to Export PDF</h3>
-                    <Button
-                      onClick={handleUnlockWithStripe}
-                      disabled={purchasingUnlock}
-                      className="h-9 gap-1.5 bg-amber-500 px-4 text-xs font-bold text-white hover:bg-amber-600 shadow-sm"
-                    >
-                      <Lock className="w-4 h-4" />
-                      {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $49.00'}
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <Button
+                        onClick={handleUnlockWithStripe}
+                        disabled={purchasingUnlock}
+                        className="h-9 gap-1.5 bg-amber-500 px-4 text-xs font-bold text-white hover:bg-amber-600 shadow-sm flex-1"
+                      >
+                        <Lock className="w-4 h-4" />
+                        {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $49.00'}
+                      </Button>
+                      <Button
+                        onClick={() => setShowShareModal(true)}
+                        disabled={purchasingUnlock || sharingPayment}
+                        className="h-9 gap-1.5 bg-cyan-600 px-4 text-xs font-bold text-white hover:bg-cyan-700 shadow-sm flex-1"
+                      >
+                        <Mail className="w-4 h-4" />
+                        View Summary
+                      </Button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -1148,6 +1193,60 @@ function NSPIREInspectionSummaryContent() {
         {/* Summary Tab */}
         {activeTab === 'summary' && (
           <div className="space-y-6">
+            {/* Inspection Data Table */}
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
+              <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
+                INSPECTION DATA
+              </h2>
+
+              {/* Desktop Table */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-[#006795] text-white">
+                      <th className="text-left p-3 rounded-tl-lg">Type</th>
+                      <th className="text-center p-3">Property Total</th>
+                      <th className="text-center p-3">Sample Size</th>
+                      <th className="text-center p-3 rounded-tr-lg">Units Inspected</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {report.inspectionData.map((row, index) => (
+                      <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                        <td className="p-3 font-semibold">{row.type}</td>
+                        <td className="p-3 text-center">{row.propertyTotal}</td>
+                        <td className="p-3 text-center">{row.sampleSize}</td>
+                        <td className="p-3 text-center">{row.totalUnitsInspected}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Cards */}
+              <div className="sm:hidden space-y-3">
+                {report.inspectionData.map((row, index) => (
+                  <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                    <div className="font-bold text-[#006795] mb-2">{row.type}</div>
+                    <div className="grid grid-cols-3 gap-2 text-sm">
+                      <div>
+                        <div className="text-xs text-gray-500">Property Total</div>
+                        <div className="font-semibold">{row.propertyTotal}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">Sample Size</div>
+                        <div className="font-semibold">{row.sampleSize}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">Inspected</div>
+                        <div className="font-semibold">{row.totalUnitsInspected}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Deficiency Summary */}
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
@@ -1214,59 +1313,6 @@ function NSPIREInspectionSummaryContent() {
               </div>
             </div>
 
-            {/* Inspection Data Table */}
-            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
-              <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
-                INSPECTION DATA
-              </h2>
-
-              {/* Desktop Table */}
-              <div className="hidden sm:block overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-[#006795] text-white">
-                      <th className="text-left p-3 rounded-tl-lg">Type</th>
-                      <th className="text-center p-3">Property Total</th>
-                      <th className="text-center p-3">Sample Size</th>
-                      <th className="text-center p-3 rounded-tr-lg">Units Inspected</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {report.inspectionData.map((row, index) => (
-                      <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                        <td className="p-3 font-semibold">{row.type}</td>
-                        <td className="p-3 text-center">{row.propertyTotal}</td>
-                        <td className="p-3 text-center">{row.sampleSize}</td>
-                        <td className="p-3 text-center">{row.totalUnitsInspected}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Mobile Cards */}
-              <div className="sm:hidden space-y-3">
-                {report.inspectionData.map((row, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                    <div className="font-bold text-[#006795] mb-2">{row.type}</div>
-                    <div className="grid grid-cols-3 gap-2 text-sm">
-                      <div>
-                        <div className="text-xs text-gray-500">Property Total</div>
-                        <div className="font-semibold">{row.propertyTotal}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500">Sample Size</div>
-                        <div className="font-semibold">{row.sampleSize}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500">Inspected</div>
-                        <div className="font-semibold">{row.totalUnitsInspected}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         )}
 
@@ -1494,6 +1540,61 @@ function NSPIREInspectionSummaryContent() {
           </Button>
         </div>
       </div>
+
+      {showShareModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full shadow-2xl relative border border-gray-100">
+            <button
+              onClick={() => setShowShareModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <h3 className="text-lg font-bold text-[#006795] mb-2 flex items-center gap-2">
+              <Mail className="w-5 h-5" />
+              View Summary
+            </h3>
+            <p className="text-sm text-gray-600 mb-6">
+              Enter the client's email address below. We'll send them a secure Stripe payment link to pay and unlock the full report.
+            </p>
+
+            <form onSubmit={handleSharePaymentLink} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Recipient Email Address</label>
+                <input
+                  type="email"
+                  required
+                  placeholder="client@example.com"
+                  value={shareEmail}
+                  onChange={(e) => setShareEmail(e.target.value)}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm text-black focus:outline-none focus:border-[#006795] focus:bg-white transition-all"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-2">
+                <Button
+                  type="button"
+                  onClick={() => setShowShareModal(false)}
+                  variant="outline"
+                  className="px-4 py-2 text-sm font-semibold rounded-lg"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={sharingPayment}
+                  className="px-5 py-2 text-sm font-bold text-white bg-[#006795] hover:bg-[#0a5670] rounded-lg shadow-sm"
+                >
+                  {sharingPayment ? "Sending..." : "Send Payment Link"}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   )
 }

@@ -740,6 +740,20 @@ export const paymentsAPI = {
       sessionId: string;
     }>(`/api/payments/stripe-session-status/${encodeURIComponent(sessionId)}`);
   },
+
+  shareStripeCheckoutLink: async (inspectionId: string, email: string) => {
+    return apiRequest<{
+      success: boolean;
+      message: string;
+      checkoutUrl?: string;
+      sessionId?: string;
+      isReportUnlocked?: boolean;
+      alreadyUnlocked?: boolean;
+    }>('/api/payments/share-stripe-link', {
+      method: 'POST',
+      body: JSON.stringify({ inspectionId, email }),
+    });
+  },
 };
 
 export default {

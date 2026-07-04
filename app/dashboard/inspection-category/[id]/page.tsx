@@ -719,6 +719,19 @@ export default function InspectionCategoryPage() {
         setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
     };
 
+    const handleClearAndGoBack = () => {
+        // Reset all OD modal fields
+        setIsODModalOpen(false);
+        setSelectedDeficiency(null);
+        setDetailFilterName(null);
+        setGuideDeficiency(null);
+        setLastSavedFindingId(null);
+        setPhotos([]);
+        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
+        // Navigate back to the unit/inside/outside screen
+        router.back();
+    };
+
     const resetFormForNewDeficiency = () => {
         setSelectedDeficiency(null);
         setDetailFilterName(null);
@@ -1847,23 +1860,21 @@ export default function InspectionCategoryPage() {
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Selected</label>
                                         <div onClick={() => handleOpenSelection('selected')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold cursor-pointer hover:bg-white hover:border-blue-400 transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
-                                            <span className={(odForm.deficiencySelected || selectedDeficiency) ? "text-gray-900" : "text-gray-400"}>
+                                            <span className={(odForm.deficiencySelected || selectedDeficiency) ? "text-gray-900" : "text-red-500"}>
                                                 {odForm.deficiencySelected || (selectedDeficiency ? selectedDeficiency.selected : "--Select--")}
                                             </span>
                                             <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />
                                         </div>
-                                        {selectedDeficiency && (
-                                            <button onClick={() => setSelectedDeficiency(null)} className="flex items-center gap-1 mt-2 text-xs font-medium text-red-500 hover:text-red-600">
-                                                <X className="w-3 h-3" /> Clear Selection
-                                            </button>
-                                        )}
+                                        <button onClick={handleClearAndGoBack} className="flex items-center gap-1 mt-2 text-xs font-medium text-red-500 hover:text-red-600">
+                                            <ChevronLeft className="w-3 h-3" /> Back
+                                        </button>
                                     </div>
 
                                     {/* 2. DEFICIENCY DETAIL */}
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Deficiency Detail</label>
                                         <div onClick={() => selectedDeficiency && handleOpenSelection('detail')} className={`w-full bg-gray-50 border rounded-2xl p-4 text-xs font-bold ${selectedDeficiency ? 'cursor-pointer hover:bg-white hover:border-blue-400' : 'cursor-not-allowed opacity-70'} transition-all flex justify-between items-center group ${selectedDeficiency ? 'border-[#0E7490] border-2 bg-white' : 'border-gray-100'}`}>
-                                            <span className={(odForm.deficiencyDetail || selectedDeficiency) ? "text-gray-900" : "text-gray-400"}>
+                                            <span className={(odForm.deficiencyDetail || selectedDeficiency) ? "text-gray-900" : "text-red-500"}>
                                                 {odForm.deficiencyDetail || (selectedDeficiency ? selectedDeficiency.detail : "-- Select deficiency first --")}
                                             </span>
                                             {selectedDeficiency && <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />}

@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 import { useState, useEffect, useMemo } from "react"
 import { propertiesAPI } from "@/lib/api"
 import { UnitSelectionModal } from "@/components/UnitSelectionModal"
-import { ActionModal, EditPropertyModal } from "@/components/PropertyModals"
+import { ActionModal, EditPropertyModal, AddPropertyModal, BuildingDivisionModal } from "@/components/PropertyModals"
 import { Country, State, City } from 'country-state-city'
 
 export default function MyInspection() {
@@ -25,6 +25,9 @@ export default function MyInspection() {
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
 
+  const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
+  const [showBuildingDivisionModal, setShowBuildingDivisionModal] = useState(false)
+  const [newPropertyData, setNewPropertyData] = useState<any>(null)
 
   // Location data
   const [countries, setCountries] = useState<any[]>([])
@@ -160,6 +163,49 @@ export default function MyInspection() {
     fetchProperties()
   }
 
+  const handleAddPropertyNext = (data: any) => {
+    const propData = Array.isArray(data) ? data[0] : data
+    setNewPropertyData(propData)
+    setShowAddPropertyModal(false)
+    setShowBuildingDivisionModal(true)
+  }
+
+  const handleBuildingUpdate = async (data: any, buildings: { name: string; units: number }[]) => {
+    try {
+      const response = await propertiesAPI.create({
+        propertyId: data.propertyId,
+        name: data.propertyName || data.name,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        zipCode: data.zipCode,
+        buildings: buildings.length,
+        units: buildings.reduce((sum, b) => sum + b.units, 0),
+      })
+      if (response.success) {
+        toast.success("Data saved successfully", { position: "top-right" })
+
+        // Save custom building names to localStorage
+        const propId = response.property?._id || data.propertyId
+        if (propId) {
+          const namesMap: Record<string, string> = {}
+          buildings.forEach((b, i) => {
+            namesMap[`B${i + 1}`] = b.name
+          })
+          localStorage.setItem(`buildingNames_${propId}`, JSON.stringify(namesMap))
+        }
+
+        fetchProperties()
+        setNewPropertyData(response.property || data)
+        setShowBuildingDivisionModal(false)
+        setSelectedProperty(response.property || data)
+        setActionModalOpen(true)
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to add property", { position: "top-right" })
+    }
+  }
+
   const handleActionClick = (property: any) => {
     setSelectedProperty(property)
     setActionModalOpen(true)
@@ -233,8 +279,16 @@ export default function MyInspection() {
         <div className="max-w-7xl mx-auto">
           <Card className="bg-white rounded-lg shadow-sm overflow-hidden">
             <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-[#F8FAFC]">
-              <h3 className="text-lg font-bold text-gray-900">Your Properties</h3>
-              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{properties.length} properties</span>
+              <div className="flex items-center gap-4">
+                <h3 className="text-lg font-bold text-gray-900">Your Properties</h3>
+                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{properties.length} properties</span>
+              </div>
+              <Button
+                onClick={() => setShowAddPropertyModal(true)}
+                className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
+              >
+                Add New Property
+              </Button>
             </div>
             <div className="overflow-x-auto">
               {loading ? (
@@ -336,6 +390,19 @@ export default function MyInspection() {
         onClose={() => setEditModalOpen(false)}
         onSuccess={fetchProperties}
         propertyData={selectedProperty}
+      />
+
+      <AddPropertyModal
+        isOpen={showAddPropertyModal}
+        onClose={() => setShowAddPropertyModal(false)}
+        onNext={handleAddPropertyNext}
+      />
+
+      <BuildingDivisionModal
+        isOpen={showBuildingDivisionModal}
+        onClose={() => setShowBuildingDivisionModal(false)}
+        propertyData={newPropertyData}
+        onUpdate={handleBuildingUpdate}
       />
     </DashboardLayout>
   )
