@@ -1,50 +1,91 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import ManagementDashboardLayout from "@/components/ManagementDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "react-toastify"
+import { useState, useEffect, useMemo } from "react"
 import { propertiesAPI } from "@/lib/api"
-import { 
-  AddPropertyModal, 
-  ActionModal, 
-  EditPropertyModal 
-} from "@/components/PropertyModals"
+import { UnitSelectionModal } from "@/components/UnitSelectionModal"
+import { ActionModal, EditPropertyModal, AddPropertyModal, BuildingDivisionModal } from "@/components/PropertyModals"
+import { Country, State, City } from 'country-state-city'
 
-interface Property {
-  _id: string;
-  propertyId: string;
-  name: string;
-  buildings: any[];
-  units: any[];
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  status: string;
-}
-
-export default function MyProperties() {
+export default function MyInspection() {
   const router = useRouter()
-  const [selectedRows, setSelectedRows] = useState<string[]>([])
-  const [properties, setProperties] = useState<Property[]>([])
+  const [propertyName, setPropertyName] = useState("")
+  const [selectedCountry, setSelectedCountry] = useState("")
+  const [selectedState, setSelectedState] = useState("")
+  const [selectedCity, setSelectedCity] = useState("")
+  const [properties, setProperties] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [unitSelectionOpen, setUnitSelectionOpen] = useState(false)
+  const [selectedProperty, setSelectedProperty] = useState<any>(null)
+  const [actionModalOpen, setActionModalOpen] = useState(false)
+  const [editModalOpen, setEditModalOpen] = useState(false)
+  const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+
   const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
-  const [showActionModal, setShowActionModal] = useState(false)
-  const [showEditModal, setShowEditModal] = useState(false)
+  const [showBuildingDivisionModal, setShowBuildingDivisionModal] = useState(false)
   const [newPropertyData, setNewPropertyData] = useState<any>(null)
-  const [showUnitSelectionModal, setShowUnitSelectionModal] = useState(false)
-  const [selectedUnits, setSelectedUnits] = useState<string[]>([])
-  const [demoUnits] = useState([
-    "Unit 101", "Unit 102", "Unit 103", "Unit 104", "Unit 105",
-    "Unit 201", "Unit 202", "Unit 203", "Unit 204", "Unit 205",
-    "Unit 301", "Unit 302", "Unit 303", "Unit 304", "Unit 305",
-    "Unit 401", "Unit 402", "Unit 403", "Unit 404", "Unit 405"
-  ])
+
+  // Location data
+  const [countries, setCountries] = useState<any[]>([])
+  const [states, setStates] = useState<any[]>([])
+  const [cities, setCities] = useState<any[]>([])
+  const [loadingStates, setLoadingStates] = useState(false)
+  const [loadingCities, setLoadingCities] = useState(false)
+
+  // Initialize countries on component mount (only 4 allowed countries)
+  useEffect(() => {
+    const allowedCountries = ['US', 'CA', 'GB', 'AU']
+    const allCountries = Country.getAllCountries()
+    const filteredCountries = allCountries
+      .filter(country => allowedCountries.includes(country.isoCode))
+      .sort((a, b) => a.name.localeCompare(b.name))
+    setCountries(filteredCountries)
+  }, [])
+
+  // Load states when country changes
+  useEffect(() => {
+    if (selectedCountry) {
+      setLoadingStates(true)
+      setSelectedState('')
+      setSelectedCity('')
+      setCities([])
+
+      const countryStates = State.getStatesOfCountry(selectedCountry)
+      setStates(countryStates.sort((a, b) => a.name.localeCompare(b.name)))
+      setLoadingStates(false)
+    } else {
+      setStates([])
+      setCities([])
+    }
+  }, [selectedCountry])
+
+  // Load cities when state changes
+  useEffect(() => {
+    if (selectedCountry && selectedState) {
+      setLoadingCities(true)
+      setSelectedCity('')
+
+      const stateCities = City.getCitiesOfState(selectedCountry, selectedState)
+      setCities(stateCities.sort((a, b) => a.name.localeCompare(b.name)))
+      setLoadingCities(false)
+    } else {
+      setCities([])
+    }
+  }, [selectedCountry, selectedState])
+
+  const handleUnitSelectionContinue = (selectedUnits: string[]) => {
+    setUnitSelectionOpen(false)
+    localStorage.setItem('selectedUnits', JSON.stringify(selectedUnits))
+    toast.success(`${selectedUnits.length} units selected for inspection`, {
+      position: "top-right",
+      autoClose: 2000,
+    })
+    router.push('/management/management/dashboard/inspection/summary')
+  }
 
   useEffect(() => {
     fetchProperties()
@@ -53,375 +94,316 @@ export default function MyProperties() {
   const fetchProperties = async () => {
     try {
       setLoading(true)
-      const response = await propertiesAPI.getAll({ limit: 50 })
+      const response = await propertiesAPI.getAll({
+        search: propertyName || undefined,
+        state: selectedState || undefined,
+        city: selectedCity || undefined,
+      })
       if (response.success) {
-        setProperties(response.properties || [])
+        setProperties(response.properties)
+        fetchProgress(response.properties)
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching properties:', error)
-      toast.error('Failed to load properties', { position: "top-right" })
+      toast.error("Failed to load properties")
     } finally {
       setLoading(false)
     }
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status?.toLowerCase()) {
-      case 'active':
-        return 'text-green-600'
-      case 'hold':
-        return 'text-blue-600'
-      case 'pending':
-        return 'text-red-500'
-      default:
-        return 'text-gray-600'
-    }
-  }
-
-  const handleRowSelect = (id: string) => {
-    setSelectedRows(prev => 
-      prev.includes(id) ? prev.filter(rowId => rowId !== id) : [...prev, id]
-    )
-  }
-
-  const handleSelectAll = () => {
-    if (selectedRows.length === properties.length) {
-      setSelectedRows([])
-    } else {
-      setSelectedRows(properties.map(p => p._id))
-    }
-  }
-
-  const handleAddPropertyNext = async (data: any) => {
+  const fetchProgress = async (propertyList: any[]) => {
     try {
-      if (Array.isArray(data)) {
-        const response = await propertiesAPI.createBulk(
-          data.map((p: any) => ({
-            propertyId: p.propertyId,
-            name: p.propertyName,
-            address: p.address,
-            city: p.city,
-            state: p.state,
-            zipCode: p.zipCode,
-            buildings: parseInt(p.buildings) || 0,
-            units: parseInt(p.units) || 0,
-          }))
-        )
-        if (response.success) {
-          toast.success(`${response.properties?.length || data.length} properties added successfully!`, { position: "top-right" })
-          fetchProperties()
-          setNewPropertyData(response.properties?.[0] || data[0])
-          setShowAddPropertyModal(false)
-          setShowActionModal(true)
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+      const response = await fetch(`${API_URL}/api/inspections/progress`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
-      } else {
-        const response = await propertiesAPI.create({
-          propertyId: data.propertyId,
-          name: data.propertyName,
-          address: data.address,
-          city: data.city,
-          state: data.state,
-          zipCode: data.zipCode,
-          buildings: parseInt(data.buildings) || 0,
-          units: parseInt(data.units) || 0,
+      })
+      const data = await response.json()
+      if (data.success && Array.isArray(data.progress)) {
+        const progressMap: Record<string, number> = {}
+        
+        propertyList.forEach(prop => {
+            const propId = prop._id
+            const propProgress = data.progress.filter((p: any) => 
+                p.propertyId === propId || p.propertyId?._id === propId
+            )
+            
+            const uniqueTasks = new Set()
+            propProgress.forEach((p: any) => {
+                const type = String(p.inspectionType || '').toLowerCase()
+                const buildingId = p.buildingId || 'B1'
+                if (type.startsWith('unit_')) {
+                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
+                } else if (type === 'inside' || type === 'outside') {
+                    uniqueTasks.add(`${buildingId}_${type}`)
+                }
+            })
+            
+            const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
+                ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                : prop.units
+            
+            const totalTasks = (prop.buildings * 2) + actualUnitsForInspection
+            
+            if (totalTasks > 0) {
+                progressMap[propId] = Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100))
+            } else {
+                progressMap[propId] = 0
+            }
         })
-        if (response.success) {
-          toast.success("Property added successfully!", { position: "top-right" })
-          fetchProperties()
-          setNewPropertyData(response.property)
-          setShowAddPropertyModal(false)
-          setShowActionModal(true)
+        setPropertyProgress(progressMap)
+      }
+    } catch (e) {
+      console.error('Error fetching progress:', e)
+    }
+  }
+
+  const handleSearch = () => {
+    fetchProperties()
+  }
+
+  const handleAddPropertyNext = (data: any) => {
+    const propData = Array.isArray(data) ? data[0] : data
+    setNewPropertyData(propData)
+    setShowAddPropertyModal(false)
+    setShowBuildingDivisionModal(true)
+  }
+
+  const handleBuildingUpdate = async (data: any, buildings: { name: string; units: number }[]) => {
+    try {
+      const response = await propertiesAPI.create({
+        propertyId: data.propertyId,
+        name: data.propertyName || data.name,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        zipCode: data.zipCode,
+        buildings: buildings.length,
+        units: buildings.reduce((sum, b) => sum + b.units, 0),
+      })
+      if (response.success) {
+        toast.success("Data saved successfully", { position: "top-right" })
+
+        // Save custom building names to localStorage
+        const propId = response.property?._id || data.propertyId
+        if (propId) {
+          const namesMap: Record<string, string> = {}
+          buildings.forEach((b, i) => {
+            namesMap[`B${i + 1}`] = b.name
+          })
+          localStorage.setItem(`buildingNames_${propId}`, JSON.stringify(namesMap))
         }
+
+        fetchProperties()
+        setNewPropertyData(response.property || data)
+        setShowBuildingDivisionModal(false)
+        setSelectedProperty(response.property || data)
+        setActionModalOpen(true)
       }
     } catch (error: any) {
       toast.error(error.message || "Failed to add property", { position: "top-right" })
-      setNewPropertyData(Array.isArray(data) ? data[0] : data)
-      setShowAddPropertyModal(false)
-      setShowActionModal(true)
     }
   }
 
+  const handleActionClick = (property: any) => {
+    setSelectedProperty(property)
+    setActionModalOpen(true)
+  }
+
   const handleEditProperty = () => {
-    setShowActionModal(false)
-    setShowEditModal(true)
+    setActionModalOpen(false)
+    setEditModalOpen(true)
+  }
+
+  const handleHoldInspection = async () => {
+    if (!selectedProperty) return
+    try {
+      const response = await propertiesAPI.hold(selectedProperty._id)
+      if (response.success) {
+        toast.success(response.message, { position: "top-right" })
+        fetchProperties()
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to hold inspection")
+    } finally {
+      setActionModalOpen(false)
+    }
+  }
+
+  const handleRemoveProperty = async () => {
+    if (!selectedProperty) return
+    if (confirm(`Are you sure you want to remove ${selectedProperty.name}?`)) {
+      try {
+        const response = await propertiesAPI.delete(selectedProperty._id)
+        if (response.success) {
+          toast.success("Property removed successfully", { position: "top-right" })
+          fetchProperties()
+        }
+      } catch (error: any) {
+        toast.error(error.message || "Failed to remove property")
+      } finally {
+        setActionModalOpen(false)
+      }
+    }
+  }
+
+  // The property currently being actively inspected (progress > 0 and < 100, not on hold)
+  const activeInspectionPropertyId = useMemo(() => {
+    return Object.keys(propertyProgress).find(
+      id => {
+        const prop = properties.find(p => p._id === id)
+        if (prop?.status === 'hold') return false
+        return propertyProgress[id] > 0 && propertyProgress[id] < 100
+      }
+    ) || null
+  }, [propertyProgress, properties])
+
+  const handleInitiate = (property: any) => {
+    // Block only when another property is actively in progress (not on hold)
+    if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
+      const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
+      toast.error(
+        `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
+        { position: 'top-right', autoClose: 6000 }
+      )
+      return
+    }
+    setSelectedProperty(property)
+    setActionModalOpen(true)
   }
 
   return (
     <ManagementDashboardLayout>
-      <div className="p-4 md:p-6">
-        {/* Header */}
-<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">My Properties</h1>
-<div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
-                  <Button
-                    onClick={() => setShowUnitSelectionModal(true)}
-                    className="w-full sm:w-auto bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-6 py-3 rounded-lg"
-                  >
-                    Select Units for Inspection
-                  </Button>
-                <Button
-                  onClick={() => setShowAddPropertyModal(true)}
-                  className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg"
-                >
-                  Add Property
-                </Button>
+      <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 text-black">
+        <div className="max-w-7xl mx-auto">
+          <Card className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-[#F8FAFC]">
+              <div className="flex items-center gap-4">
+                <h3 className="text-lg font-bold text-gray-900">Your Properties</h3>
+                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{properties.length} properties</span>
               </div>
+              <Button
+                onClick={() => setShowAddPropertyModal(true)}
+                className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
+              >
+                Add New Property
+              </Button>
             </div>
-
-        {/* Desktop Table View */}
-        <Card className="hidden md:block bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="text-left py-4 px-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.length === properties.length && properties.length > 0}
-                      onChange={handleSelectAll}
-                      className="w-4 h-4 rounded border-gray-300"
-                    />
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">Property ID</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">Property Name</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">No of Building</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">No of Units</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">City</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">State</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">Zip Code</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">Status</th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={10} className="py-8 text-center text-gray-500">Loading properties...</td>
-                  </tr>
-                ) : properties.length === 0 ? (
-                  <tr>
-                    <td colSpan={10} className="py-8 text-center text-gray-500">No properties found.</td>
-                  </tr>
-                ) : (
-                properties.map((property) => (
-                  <tr key={property._id} className="border-t hover:bg-gray-50 transition-colors">
-                    <td className="py-4 px-4">
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(property._id)}
-                        onChange={() => handleRowSelect(property._id)}
-                        className="w-4 h-4 rounded border-gray-300"
-                      />
-                    </td>
-                    <td className="py-4 px-4">
-                      <button
-                        onClick={() => router.push(`/management/dashboard/unit-selection?property=${property.propertyId}`)}
-                        className="text-blue-600 hover:underline font-medium"
-                      >
-                        {property.propertyId}
-                      </button>
-                    </td>
-                    <td className="py-4 px-4 text-gray-900">{property.name}</td>
-                    <td className="py-4 px-4 text-gray-900">{property.buildings?.length || 0}</td>
-                    <td className="py-4 px-4 text-gray-900">{property.units?.length || 0}</td>
-                    <td className="py-4 px-4 text-gray-900">{property.city}</td>
-                    <td className="py-4 px-4 text-gray-900">{property.state}</td>
-                    <td className="py-4 px-4 text-gray-900">{property.zipCode}</td>
-                    <td className="py-4 px-4">
-                      <span className={`font-semibold text-sm ${getStatusColor(property.status)}`}>
-                        {property.status || 'Pending'}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4">
-                      <button
-                        onClick={() => toast.info("More options coming soon!", { position: "top-right" })}
-                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                      >
-                        <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-
-        {/* Mobile Card View */}
-        <div className="md:hidden space-y-4">
-          {loading ? (
-            <div className="p-8 text-center text-gray-500">Loading properties...</div>
-          ) : properties.length === 0 ? (
-            <div className="p-8 text-center text-gray-500">No properties found.</div>
-          ) : (
-          properties.map((property) => (
-            <Card key={property._id} className="bg-white rounded-lg shadow-sm p-4">
-              <div className="flex items-start gap-3 mb-3">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.includes(property._id)}
-                  onChange={() => handleRowSelect(property._id)}
-                  className="w-4 h-4 rounded border-gray-300 mt-1"
-                />
-                <div className="flex-1">
-                  <div className="flex justify-between items-start mb-2">
-                    <button
-                      onClick={() => router.push(`/management/dashboard/unit-selection?property=${property.propertyId}`)}
-                      className="text-blue-600 hover:underline font-semibold text-sm"
-                    >
-                      #{property.propertyId}
-                    </button>
-                    <span className={`font-semibold text-sm ${getStatusColor(property.status)}`}>
-                      {property.status || 'Pending'}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-base font-bold text-gray-900 mb-2">{property.name}</h3>
-                  
-                  <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                    <div>
-                      <span className="text-gray-500">Buildings:</span>
-                      <span className="ml-1 font-medium text-gray-900">{property.buildings?.length || 0}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Units:</span>
-                      <span className="ml-1 font-medium text-gray-900">{property.units?.length || 0}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">City:</span>
-                      <span className="ml-1 font-medium text-gray-900">{property.city}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Zip:</span>
-                      <span className="ml-1 font-medium text-gray-900">{property.zipCode}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-xs text-gray-600 mb-3">
-                    <span className="font-medium">State:</span> {property.state}
-                  </div>
-                  
-                  <Button
-                    onClick={() => router.push(`/management/dashboard/unit-selection?property=${property.propertyId}`)}
-                    className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-medium py-2 rounded-lg text-sm"
-                  >
-                    View Details
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))
-          )}
-          </div>
+            <div className="overflow-x-auto">
+              {loading ? (
+                <div className="p-8 text-center text-gray-500">Loading properties...</div>
+              ) : properties.length === 0 ? (
+                <div className="p-8 text-center text-gray-500">No properties found.</div>
+              ) : (
+                <table className="w-full">
+                  <thead className="bg-[#F8FAFC] border-b">
+                    <tr>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property ID</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property Name</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Address</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">State/Province</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">City/Area</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Postal Code</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Buildings</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Units</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-50">
+                    {properties.map((property) => (
+                      <tr key={property._id} className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-5 px-6 text-center">
+                          <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-xs shadow-sm border border-cyan-100/50 inline-block">
+                            {property.propertyId}
+                          </span>
+                        </td>
+                        <td className="py-5 px-6 font-bold text-sm text-gray-900 text-center">{property.name}</td>
+                        <td className="py-5 px-6 font-bold text-xs text-gray-500 max-w-[150px] truncate text-center">{property.address}</td>
+                        <td className="py-5 px-6 text-center">
+                          <span className="bg-green-50 text-green-700 px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-tight">
+                            {property.state}
+                          </span>
+                        </td>
+                        <td className="py-5 px-6 font-bold text-xs text-gray-900 text-center">{property.city}</td>
+                        <td className="py-5 px-6 font-bold text-xs text-gray-500 text-center">{property.zipCode}</td>
+                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.buildings || 1}</td>
+                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.units || 1}</td>
+                        <td className="py-5 px-6 text-center">
+                          {(() => {
+                            const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
+                            const isActive = activeInspectionPropertyId === property._id
+                            return (
+                              <button
+                                onClick={() => handleInitiate(property)}
+                                disabled={isLocked}
+                                title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
+                                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 mx-auto whitespace-nowrap ${
+                                  isLocked
+                                    ? 'bg-[#F84B5F] text-white cursor-not-allowed'
+                                    : 'text-white bg-[#006795] hover:bg-[#0A5670]'
+                                }`}
+                              >
+                                {isLocked ? (
+                                  <>
+                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                                    Locked
+                                  </>
+                                ) : isActive ? 'In Progress' : 'Initiate'}
+                              </button>
+                            )
+                          })()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </Card>
         </div>
+      </div>
 
-        <AddPropertyModal 
-          isOpen={showAddPropertyModal} 
-          onClose={() => setShowAddPropertyModal(false)}
-          onNext={handleAddPropertyNext}
-        />
-        <ActionModal 
-          isOpen={showActionModal} 
-          onClose={() => setShowActionModal(false)}
-          onEdit={handleEditProperty}
-          propertyData={newPropertyData}
-        />
-        <EditPropertyModal 
-          isOpen={showEditModal} 
-          onClose={() => setShowEditModal(false)}
-          onSuccess={fetchProperties}
-          propertyData={newPropertyData}
-        />
+      <ActionModal
+        isOpen={actionModalOpen}
+        onClose={() => setActionModalOpen(false)}
+        onEdit={handleEditProperty}
+        onStartInspection={() => {
+          setActionModalOpen(false)
+          router.push(`/management/management/dashboard/property-details/${selectedProperty?._id}`)
+        }}
+        onHoldInspection={handleHoldInspection}
+        onRemoveProperty={handleRemoveProperty}
+        propertyData={selectedProperty}
+        inspectionStarted={(propertyProgress[selectedProperty?._id] || 0) > 0}
+      />
 
-        {/* Unit Selection Modal */}
-        {showUnitSelectionModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-              <div className="p-6 relative">
-                <button
-                  onClick={() => {
-                    setShowUnitSelectionModal(false)
-                    setSelectedUnits([])
-                  }}
-                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+      <UnitSelectionModal
+        isOpen={unitSelectionOpen}
+        onClose={() => setUnitSelectionOpen(false)}
+        onContinue={handleUnitSelectionContinue}
+        totalUnits={selectedProperty?.units || 20}
+      />
 
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Select Units for Inspection</h2>
-                  <p className="text-gray-500">Choose the units you want to include in your inspection. You can select individual units or use random selection.</p>
-                </div>
+      <EditPropertyModal
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        onSuccess={fetchProperties}
+        propertyData={selectedProperty}
+      />
 
-                <div className="flex justify-center gap-3 mb-6">
-                  <Button
-                    onClick={() => setSelectedUnits([...demoUnits])}
-                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-6 py-2 rounded-lg"
-                  >
-                    Select All
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      const shuffled = [...demoUnits].sort(() => Math.random() - 0.5)
-                      setSelectedUnits(shuffled.slice(0, Math.floor(demoUnits.length * 0.3)))
-                    }}
-                    className="bg-[#F84B5F] hover:bg-[#E63946] text-white font-semibold px-6 py-2 rounded-lg"
-                  >
-                    Random Selection
-                  </Button>
-                </div>
+      <AddPropertyModal
+        isOpen={showAddPropertyModal}
+        onClose={() => setShowAddPropertyModal(false)}
+        onNext={handleAddPropertyNext}
+      />
 
-                <div className="text-center mb-4">
-                  <p className="text-gray-700 font-medium">Selected: {selectedUnits.length} of {demoUnits.length} units</p>
-                </div>
-
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6">
-                  {demoUnits.map((unit) => (
-                    <button
-                      key={unit}
-                      onClick={() => {
-                        setSelectedUnits(prev => 
-                          prev.includes(unit) 
-                            ? prev.filter(u => u !== unit) 
-                            : [...prev, unit]
-                        )
-                      }}
-                      className={`py-3 px-4 rounded-lg border-2 text-sm font-medium transition-all ${
-                        selectedUnits.includes(unit)
-                          ? 'bg-[#E8F4F8] border-[#006795] text-[#006795]'
-                          : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-300'
-                      }`}
-                    >
-                      {unit}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="flex justify-center">
-                  <Button
-                    onClick={() => {
-                      if (selectedUnits.length === 0) {
-                        toast.warning("Please select at least one unit", { position: "top-right" })
-                        return
-                      }
-                      toast.success(`${selectedUnits.length} units selected for inspection!`, { position: "top-right" })
-                      setShowUnitSelectionModal(false)
-                      setSelectedUnits([])
-                    }}
-                    className="bg-[#006795] hover:bg-[#0A5670] text-white font-semibold px-8 py-3 rounded-full min-w-[200px]"
-                  >
-                    Continue with {selectedUnits.length} Units
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </ManagementDashboardLayout>
-    )
-  }
+      <BuildingDivisionModal
+        isOpen={showBuildingDivisionModal}
+        onClose={() => setShowBuildingDivisionModal(false)}
+        propertyData={newPropertyData}
+        onUpdate={handleBuildingUpdate}
+      />
+    </ManagementDashboardLayout>
+  )
+}

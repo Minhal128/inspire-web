@@ -61,6 +61,15 @@ export default function BlogIndex() {
       image: "/blog-checklist.png",
       date: "March 13, 2026",
       category: "Buyer Guide"
+    },
+    {
+      title: "How to Turn Your 360AI Inspections Into a Business Development Tool",
+      subtitle: "Win landlords, attract tenants and support growth.",
+      slug: "how-to-turn-your-360ai-inspections-into-a-business-development-tool",
+      excerpt: "Learn how 360AI inspections, virtual tours and branded appraisal kits can help agencies win landlords, attract tenants and support growth.",
+      image: "/blog-360ai-business.png",
+      date: "March 11, 2026",
+      category: "Product Update"
     }
   ];
 

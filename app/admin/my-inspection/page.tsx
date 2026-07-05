@@ -1,330 +1,409 @@
 "use client"
 
-import { useState } from "react"
+import { useRouter } from "next/navigation"
 import AdminDashboardLayout from "@/components/AdminDashboardLayout"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
+import { useState, useEffect, useMemo } from "react"
+import { propertiesAPI } from "@/lib/api"
+import { UnitSelectionModal } from "@/components/UnitSelectionModal"
+import { ActionModal, EditPropertyModal, AddPropertyModal, BuildingDivisionModal } from "@/components/PropertyModals"
+import { Country, State, City } from 'country-state-city'
 
-// Mock inspection data
-const mockInspections = [
-  {
-    _id: "1",
-    inspectionId: "INS-2024-0001",
-    property: { name: "PROJECT INDEPENDENCE", propertyId: "800002257", city: "Granada Hills", state: "California", address: "10454 AMESTOY AVE" },
-    inspector: { fullName: "John Smith", email: "john.smith@example.com" },
-    status: "completed",
-    result: "pass",
-    score: 92,
-    scheduledDate: "2024-12-10",
-    completedDate: "2024-12-10"
-  },
-  {
-    _id: "2",
-    inspectionId: "INS-2024-0002",
-    property: { name: "GLENOAKS TOWNHOMES", propertyId: "800001568", city: "Sylmar", state: "California", address: "14300 FOOTHILL BLVD" },
-    inspector: { fullName: "Sarah Johnson", email: "sarah.j@example.com" },
-    status: "in-progress",
-    result: null,
-    score: null,
-    scheduledDate: "2024-12-14",
-    completedDate: null
-  },
-  {
-    _id: "3",
-    inspectionId: "INS-2024-0003",
-    property: { name: "SAN FERNANDO GARDENS", propertyId: "CA004000422", city: "Pacoima", state: "California", address: "LEHIGH" },
-    inspector: { fullName: "Mike Davis", email: "mike.d@example.com" },
-    status: "scheduled",
-    result: null,
-    score: null,
-    scheduledDate: "2024-12-20",
-    completedDate: null
-  },
-  {
-    _id: "4",
-    inspectionId: "INS-2024-0004",
-    property: { name: "PASADENA HEIGHTS", propertyId: "800003112", city: "Pasadena", state: "California", address: "1200 E COLORADO BLVD" },
-    inspector: { fullName: "John Smith", email: "john.smith@example.com" },
-    status: "completed",
-    result: "fail",
-    score: 65,
-    scheduledDate: "2024-12-08",
-    completedDate: "2024-12-08"
-  },
-  {
-    _id: "5",
-    inspectionId: "INS-2024-0005",
-    property: { name: "WESTWOOD APARTMENTS", propertyId: "800004521", city: "Los Angeles", state: "California", address: "10920 WILSHIRE BLVD" },
-    inspector: { fullName: "Emily Brown", email: "emily.b@example.com" },
-    status: "completed",
-    result: "pass",
-    score: 88,
-    scheduledDate: "2024-12-05",
-    completedDate: "2024-12-05"
-  },
-  {
-    _id: "6",
-    inspectionId: "INS-2024-0006",
-    property: { name: "VALLEY VILLAGE ESTATES", propertyId: "800005678", city: "Valley Village", state: "California", address: "5400 LAUREL CANYON BLVD" },
-    inspector: { fullName: "Sarah Johnson", email: "sarah.j@example.com" },
-    status: "scheduled",
-    result: null,
-    score: null,
-    scheduledDate: "2024-12-22",
-    completedDate: null
-  }
-]
+export default function MyInspection() {
+  const router = useRouter()
+  const [propertyName, setPropertyName] = useState("")
+  const [selectedCountry, setSelectedCountry] = useState("")
+  const [selectedState, setSelectedState] = useState("")
+  const [selectedCity, setSelectedCity] = useState("")
+  const [properties, setProperties] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [unitSelectionOpen, setUnitSelectionOpen] = useState(false)
+  const [selectedProperty, setSelectedProperty] = useState<any>(null)
+  const [actionModalOpen, setActionModalOpen] = useState(false)
+  const [editModalOpen, setEditModalOpen] = useState(false)
+  const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
 
-export default function AdminMyInspection() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState("")
-  const [inspectorFilter, setInspectorFilter] = useState("")
+  const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
+  const [showBuildingDivisionModal, setShowBuildingDivisionModal] = useState(false)
+  const [newPropertyData, setNewPropertyData] = useState<any>(null)
 
-  // Get unique inspectors for filter
-  const inspectors = [...new Set(mockInspections.map(i => i.inspector.fullName))]
+  // Location data
+  const [countries, setCountries] = useState<any[]>([])
+  const [states, setStates] = useState<any[]>([])
+  const [cities, setCities] = useState<any[]>([])
+  const [loadingStates, setLoadingStates] = useState(false)
+  const [loadingCities, setLoadingCities] = useState(false)
 
-  // Filter inspections
-  const filteredInspections = mockInspections.filter(inspection => {
-    const matchesSearch = searchTerm === "" || 
-      inspection.property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inspection.inspectionId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inspection.inspector.fullName.toLowerCase().includes(searchTerm.toLowerCase())
-    
-    const matchesStatus = statusFilter === "" || inspection.status === statusFilter
-    const matchesInspector = inspectorFilter === "" || inspection.inspector.fullName === inspectorFilter
+  // Initialize countries on component mount (only 4 allowed countries)
+  useEffect(() => {
+    const allowedCountries = ['US', 'CA', 'GB', 'AU']
+    const allCountries = Country.getAllCountries()
+    const filteredCountries = allCountries
+      .filter(country => allowedCountries.includes(country.isoCode))
+      .sort((a, b) => a.name.localeCompare(b.name))
+    setCountries(filteredCountries)
+  }, [])
 
-    return matchesSearch && matchesStatus && matchesInspector
-  })
+  // Load states when country changes
+  useEffect(() => {
+    if (selectedCountry) {
+      setLoadingStates(true)
+      setSelectedState('')
+      setSelectedCity('')
+      setCities([])
 
-  const getStatusBadge = (status: string) => {
-    const styles: Record<string, string> = {
-      'completed': 'bg-green-100 text-green-800',
-      'in-progress': 'bg-blue-100 text-blue-800',
-      'scheduled': 'bg-yellow-100 text-yellow-800',
-      'cancelled': 'bg-red-100 text-red-800'
+      const countryStates = State.getStatesOfCountry(selectedCountry)
+      setStates(countryStates.sort((a, b) => a.name.localeCompare(b.name)))
+      setLoadingStates(false)
+    } else {
+      setStates([])
+      setCities([])
     }
-    return styles[status] || 'bg-gray-100 text-gray-800'
-  }
+  }, [selectedCountry])
 
-  const getResultBadge = (result: string | null) => {
-    if (!result) return null
-    const styles: Record<string, string> = {
-      'pass': 'bg-green-500 text-white',
-      'fail': 'bg-red-500 text-white'
+  // Load cities when state changes
+  useEffect(() => {
+    if (selectedCountry && selectedState) {
+      setLoadingCities(true)
+      setSelectedCity('')
+
+      const stateCities = City.getCitiesOfState(selectedCountry, selectedState)
+      setCities(stateCities.sort((a, b) => a.name.localeCompare(b.name)))
+      setLoadingCities(false)
+    } else {
+      setCities([])
     }
-    return styles[result] || 'bg-gray-500 text-white'
+  }, [selectedCountry, selectedState])
+
+  const handleUnitSelectionContinue = (selectedUnits: string[]) => {
+    setUnitSelectionOpen(false)
+    localStorage.setItem('selectedUnits', JSON.stringify(selectedUnits))
+    toast.success(`${selectedUnits.length} units selected for inspection`, {
+      position: "top-right",
+      autoClose: 2000,
+    })
+    router.push('/admin/inspection/summary')
   }
 
-  const handleViewDetails = (id: string) => {
-    toast.info(`Viewing inspection details for ${id}`, { position: "top-right" })
+  useEffect(() => {
+    fetchProperties()
+  }, [])
+
+  const fetchProperties = async () => {
+    try {
+      setLoading(true)
+      const response = await propertiesAPI.getAll({
+        search: propertyName || undefined,
+        state: selectedState || undefined,
+        city: selectedCity || undefined,
+      })
+      if (response.success) {
+        setProperties(response.properties)
+        fetchProgress(response.properties)
+      }
+    } catch (error: any) {
+      console.error('Error fetching properties:', error)
+      toast.error("Failed to load properties")
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const handleExportReport = () => {
-    toast.success("Exporting inspections report...", { position: "top-right" })
+  const fetchProgress = async (propertyList: any[]) => {
+    try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+      const response = await fetch(`${API_URL}/api/inspections/progress`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      const data = await response.json()
+      if (data.success && Array.isArray(data.progress)) {
+        const progressMap: Record<string, number> = {}
+        
+        propertyList.forEach(prop => {
+            const propId = prop._id
+            const propProgress = data.progress.filter((p: any) => 
+                p.propertyId === propId || p.propertyId?._id === propId
+            )
+            
+            const uniqueTasks = new Set()
+            propProgress.forEach((p: any) => {
+                const type = String(p.inspectionType || '').toLowerCase()
+                const buildingId = p.buildingId || 'B1'
+                if (type.startsWith('unit_')) {
+                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
+                } else if (type === 'inside' || type === 'outside') {
+                    uniqueTasks.add(`${buildingId}_${type}`)
+                }
+            })
+            
+            const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
+                ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
+                : prop.units
+            
+            const totalTasks = (prop.buildings * 2) + actualUnitsForInspection
+            
+            if (totalTasks > 0) {
+                progressMap[propId] = Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100))
+            } else {
+                progressMap[propId] = 0
+            }
+        })
+        setPropertyProgress(progressMap)
+      }
+    } catch (e) {
+      console.error('Error fetching progress:', e)
+    }
+  }
+
+  const handleSearch = () => {
+    fetchProperties()
+  }
+
+  const handleAddPropertyNext = (data: any) => {
+    const propData = Array.isArray(data) ? data[0] : data
+    setNewPropertyData(propData)
+    setShowAddPropertyModal(false)
+    setShowBuildingDivisionModal(true)
+  }
+
+  const handleBuildingUpdate = async (data: any, buildings: { name: string; units: number }[]) => {
+    try {
+      const response = await propertiesAPI.create({
+        propertyId: data.propertyId,
+        name: data.propertyName || data.name,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        zipCode: data.zipCode,
+        buildings: buildings.length,
+        units: buildings.reduce((sum, b) => sum + b.units, 0),
+      })
+      if (response.success) {
+        toast.success("Data saved successfully", { position: "top-right" })
+
+        // Save custom building names to localStorage
+        const propId = response.property?._id || data.propertyId
+        if (propId) {
+          const namesMap: Record<string, string> = {}
+          buildings.forEach((b, i) => {
+            namesMap[`B${i + 1}`] = b.name
+          })
+          localStorage.setItem(`buildingNames_${propId}`, JSON.stringify(namesMap))
+        }
+
+        fetchProperties()
+        setNewPropertyData(response.property || data)
+        setShowBuildingDivisionModal(false)
+        setSelectedProperty(response.property || data)
+        setActionModalOpen(true)
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to add property", { position: "top-right" })
+    }
+  }
+
+  const handleActionClick = (property: any) => {
+    setSelectedProperty(property)
+    setActionModalOpen(true)
+  }
+
+  const handleEditProperty = () => {
+    setActionModalOpen(false)
+    setEditModalOpen(true)
+  }
+
+  const handleHoldInspection = async () => {
+    if (!selectedProperty) return
+    try {
+      const response = await propertiesAPI.hold(selectedProperty._id)
+      if (response.success) {
+        toast.success(response.message, { position: "top-right" })
+        fetchProperties()
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to hold inspection")
+    } finally {
+      setActionModalOpen(false)
+    }
+  }
+
+  const handleRemoveProperty = async () => {
+    if (!selectedProperty) return
+    if (confirm(`Are you sure you want to remove ${selectedProperty.name}?`)) {
+      try {
+        const response = await propertiesAPI.delete(selectedProperty._id)
+        if (response.success) {
+          toast.success("Property removed successfully", { position: "top-right" })
+          fetchProperties()
+        }
+      } catch (error: any) {
+        toast.error(error.message || "Failed to remove property")
+      } finally {
+        setActionModalOpen(false)
+      }
+    }
+  }
+
+  // The property currently being actively inspected (progress > 0 and < 100, not on hold)
+  const activeInspectionPropertyId = useMemo(() => {
+    return Object.keys(propertyProgress).find(
+      id => {
+        const prop = properties.find(p => p._id === id)
+        if (prop?.status === 'hold') return false
+        return propertyProgress[id] > 0 && propertyProgress[id] < 100
+      }
+    ) || null
+  }, [propertyProgress, properties])
+
+  const handleInitiate = (property: any) => {
+    // Block only when another property is actively in progress (not on hold)
+    if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
+      const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
+      toast.error(
+        `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
+        { position: 'top-right', autoClose: 6000 }
+      )
+      return
+    }
+    setSelectedProperty(property)
+    setActionModalOpen(true)
   }
 
   return (
     <AdminDashboardLayout>
-      <div className="min-h-screen bg-[#E8F4F8] p-4 md:p-6">
+      <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 text-black">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">All Inspections</h1>
-            <p className="text-gray-600 mt-1">View and manage all inspector inspections</p>
-          </div>
-
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <div className="text-3xl font-bold text-[#1E3A5F]">{mockInspections.length}</div>
-              <div className="text-sm text-gray-600">Total Inspections</div>
-            </div>
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <div className="text-3xl font-bold text-green-600">{mockInspections.filter(i => i.status === 'completed').length}</div>
-              <div className="text-sm text-gray-600">Completed</div>
-            </div>
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <div className="text-3xl font-bold text-blue-600">{mockInspections.filter(i => i.status === 'in-progress').length}</div>
-              <div className="text-sm text-gray-600">In Progress</div>
-            </div>
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <div className="text-3xl font-bold text-yellow-600">{mockInspections.filter(i => i.status === 'scheduled').length}</div>
-              <div className="text-sm text-gray-600">Scheduled</div>
-            </div>
-          </div>
-
-          {/* Filters */}
-          <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <input
-                type="text"
-                placeholder="Search by property, ID, or inspector..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm"
-              />
-              
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm bg-white"
-              >
-                <option value="">All Statuses</option>
-                <option value="scheduled">Scheduled</option>
-                <option value="in-progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </select>
-
-              <select
-                value={inspectorFilter}
-                onChange={(e) => setInspectorFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] text-sm bg-white"
-              >
-                <option value="">All Inspectors</option>
-                {inspectors.map(inspector => (
-                  <option key={inspector} value={inspector}>{inspector}</option>
-                ))}
-              </select>
-
-              <button
-                onClick={handleExportReport}
-                className="px-4 py-2 bg-[#1E3A5F] hover:bg-[#152A45] text-white font-semibold rounded-lg transition-colors text-sm"
-              >
-                Export Report
-              </button>
-            </div>
-          </div>
-
-          {/* Desktop Table View */}
-          <div className="hidden lg:block bg-white rounded-lg shadow-sm overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-[#1E3A5F] text-white">
-                <tr>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Inspection ID</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Property</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Inspector</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Result</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Score</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Scheduled Date</th>
-                  <th className="px-4 py-3 text-center text-sm font-semibold">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredInspections.map((inspection) => (
-                  <tr key={inspection._id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3 text-sm font-medium text-gray-900">{inspection.inspectionId}</td>
-                    <td className="px-4 py-3">
-                      <div className="text-sm font-medium text-gray-900">{inspection.property.name}</div>
-                      <div className="text-xs text-gray-500">{inspection.property.city}, {inspection.property.state}</div>
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="text-sm text-gray-900">{inspection.inspector.fullName}</div>
-                      <div className="text-xs text-gray-500">{inspection.inspector.email}</div>
-                    </td>
-                    <td className="px-4 py-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusBadge(inspection.status)}`}>
-                        {inspection.status.replace('-', ' ')}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3">
-                      {inspection.result ? (
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium uppercase ${getResultBadge(inspection.result)}`}>
-                          {inspection.result}
-                        </span>
-                      ) : (
-                        <span className="text-gray-400 text-sm">-</span>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-sm">
-                      {inspection.score !== null ? (
-                        <span className={`font-semibold ${inspection.score >= 70 ? 'text-green-600' : 'text-red-600'}`}>
-                          {inspection.score}%
-                        </span>
-                      ) : (
-                        <span className="text-gray-400">-</span>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600">
-                      {new Date(inspection.scheduledDate).toLocaleDateString()}
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <button
-                        onClick={() => handleViewDetails(inspection.inspectionId)}
-                        className="text-[#1E3A5F] hover:text-[#152A45] font-medium text-sm"
-                      >
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {filteredInspections.length === 0 && (
-              <div className="p-8 text-center text-gray-500">No inspections found matching your criteria.</div>
-            )}
-          </div>
-
-          {/* Mobile Card View */}
-          <div className="lg:hidden space-y-4">
-            {filteredInspections.map((inspection) => (
-              <div key={inspection._id} className="bg-white rounded-lg shadow-sm p-4">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <div className="font-semibold text-gray-900">{inspection.inspectionId}</div>
-                    <div className="text-sm text-gray-600">{inspection.property.name}</div>
-                  </div>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusBadge(inspection.status)}`}>
-                    {inspection.status.replace('-', ' ')}
-                  </span>
-                </div>
-                
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Inspector:</span>
-                    <span className="text-gray-900">{inspection.inspector.fullName}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Location:</span>
-                    <span className="text-gray-900">{inspection.property.city}, {inspection.property.state}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Scheduled:</span>
-                    <span className="text-gray-900">{new Date(inspection.scheduledDate).toLocaleDateString()}</span>
-                  </div>
-                  {inspection.result && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Result:</span>
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium uppercase ${getResultBadge(inspection.result)}`}>
-                        {inspection.result}
-                      </span>
-                    </div>
-                  )}
-                  {inspection.score !== null && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">Score:</span>
-                      <span className={`font-semibold ${inspection.score >= 70 ? 'text-green-600' : 'text-red-600'}`}>
-                        {inspection.score}%
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                <button
-                  onClick={() => handleViewDetails(inspection.inspectionId)}
-                  className="mt-4 w-full py-2 bg-[#1E3A5F] hover:bg-[#152A45] text-white font-medium rounded-lg transition-colors text-sm"
-                >
-                  View Details
-                </button>
+          <Card className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-[#F8FAFC]">
+              <div className="flex items-center gap-4">
+                <h3 className="text-lg font-bold text-gray-900">Your Properties</h3>
+                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{properties.length} properties</span>
               </div>
-            ))}
-            {filteredInspections.length === 0 && (
-              <div className="bg-white rounded-lg shadow-sm p-8 text-center text-gray-500">
-                No inspections found matching your criteria.
-              </div>
-            )}
-          </div>
+              <Button
+                onClick={() => setShowAddPropertyModal(true)}
+                className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
+              >
+                Add New Property
+              </Button>
+            </div>
+            <div className="overflow-x-auto">
+              {loading ? (
+                <div className="p-8 text-center text-gray-500">Loading properties...</div>
+              ) : properties.length === 0 ? (
+                <div className="p-8 text-center text-gray-500">No properties found.</div>
+              ) : (
+                <table className="w-full">
+                  <thead className="bg-[#F8FAFC] border-b">
+                    <tr>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property ID</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property Name</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Address</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">State/Province</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">City/Area</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Postal Code</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Buildings</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Units</th>
+                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-50">
+                    {properties.map((property) => (
+                      <tr key={property._id} className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-5 px-6 text-center">
+                          <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-xs shadow-sm border border-cyan-100/50 inline-block">
+                            {property.propertyId}
+                          </span>
+                        </td>
+                        <td className="py-5 px-6 font-bold text-sm text-gray-900 text-center">{property.name}</td>
+                        <td className="py-5 px-6 font-bold text-xs text-gray-500 max-w-[150px] truncate text-center">{property.address}</td>
+                        <td className="py-5 px-6 text-center">
+                          <span className="bg-green-50 text-green-700 px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-tight">
+                            {property.state}
+                          </span>
+                        </td>
+                        <td className="py-5 px-6 font-bold text-xs text-gray-900 text-center">{property.city}</td>
+                        <td className="py-5 px-6 font-bold text-xs text-gray-500 text-center">{property.zipCode}</td>
+                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.buildings || 1}</td>
+                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.units || 1}</td>
+                        <td className="py-5 px-6 text-center">
+                          {(() => {
+                            const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
+                            const isActive = activeInspectionPropertyId === property._id
+                            return (
+                              <button
+                                onClick={() => handleInitiate(property)}
+                                disabled={isLocked}
+                                title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
+                                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 mx-auto whitespace-nowrap ${
+                                  isLocked
+                                    ? 'bg-[#F84B5F] text-white cursor-not-allowed'
+                                    : 'text-white bg-[#006795] hover:bg-[#0A5670]'
+                                }`}
+                              >
+                                {isLocked ? (
+                                  <>
+                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                                    Locked
+                                  </>
+                                ) : isActive ? 'In Progress' : 'Initiate'}
+                              </button>
+                            )
+                          })()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </Card>
         </div>
       </div>
+
+      <ActionModal
+        isOpen={actionModalOpen}
+        onClose={() => setActionModalOpen(false)}
+        onEdit={handleEditProperty}
+        onStartInspection={() => {
+          setActionModalOpen(false)
+          router.push(`/admin/property-details/${selectedProperty?._id}`)
+        }}
+        onHoldInspection={handleHoldInspection}
+        onRemoveProperty={handleRemoveProperty}
+        propertyData={selectedProperty}
+        inspectionStarted={(propertyProgress[selectedProperty?._id] || 0) > 0}
+      />
+
+      <UnitSelectionModal
+        isOpen={unitSelectionOpen}
+        onClose={() => setUnitSelectionOpen(false)}
+        onContinue={handleUnitSelectionContinue}
+        totalUnits={selectedProperty?.units || 20}
+      />
+
+      <EditPropertyModal
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        onSuccess={fetchProperties}
+        propertyData={selectedProperty}
+      />
+
+      <AddPropertyModal
+        isOpen={showAddPropertyModal}
+        onClose={() => setShowAddPropertyModal(false)}
+        onNext={handleAddPropertyNext}
+      />
+
+      <BuildingDivisionModal
+        isOpen={showBuildingDivisionModal}
+        onClose={() => setShowBuildingDivisionModal(false)}
+        propertyData={newPropertyData}
+        onUpdate={handleBuildingUpdate}
+      />
     </AdminDashboardLayout>
   )
 }

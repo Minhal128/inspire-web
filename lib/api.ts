@@ -754,6 +754,18 @@ export const paymentsAPI = {
       body: JSON.stringify({ inspectionId, email }),
     });
   },
+
+  getPublicSessionStatus: async (sessionId: string) => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005';
+    const response = await fetch(`${API_URL}/api/payments/public-session-status/${encodeURIComponent(sessionId)}`);
+    return response.json() as Promise<{
+      success: boolean;
+      paymentStatus: string;
+      isReportUnlocked: boolean;
+      sessionId: string;
+      inspection?: { propertyName: string; inspectionReference: string };
+    }>;
+  },
 };
 
 export default {

@@ -121,7 +121,7 @@ export default function AITimeSavingsClient() {
           </p>
           <div className="relative h-[400px] md:h-[500px] w-full rounded-[40px] overflow-hidden shadow-2xl mb-12">
             <Image
-              src="/blog-ai-manager.png"
+              src="/whatsapp-1.jpeg"
               alt="Where AI Is Saving Property Managers the Most Time"
               fill
               className="object-cover"
@@ -141,11 +141,11 @@ export default function AITimeSavingsClient() {
             So, where exactly is AI saving the most time—and how does Inspection Express 360AI fit in?
           </p>
 
-          <h2 className="text-3xl font-bold text-[#333333] mt-12 mb-6">Inspections: From Hours to Minutes with 360AI</h2>
+          <h2 className="text-3xl font-bold text-[#333333] mt-12 mb-6">Inspections: From Hours to Minutes with NSPIREinspection.ai</h2>
           
           <div className="relative h-[300px] md:h-[400px] w-full rounded-3xl overflow-hidden shadow-lg my-8">
             <Image
-              src="/blog-ai-kitchen.png"
+              src="/whatsapp-2.jpeg"
               alt="Modern Kitchen Inspection with AI"
               fill
               className="object-cover"
@@ -156,7 +156,7 @@ export default function AITimeSavingsClient() {
             One of the biggest areas of AI time savings for property managers is inspections. Traditionally, completing a detailed inspection report could take two to four hours. This includes writing notes, organizing photos, and ensuring accuracy.
           </p>
           <p>
-            With <strong>Inspection Express 360AI</strong>, this process is dramatically faster.
+            With <strong>NSPIREinspection.ai</strong>, this process is dramatically faster.
           </p>
           <p>Instead of manually documenting every detail, property managers can:</p>
           <ul className="list-disc pl-6 space-y-2">
@@ -167,7 +167,7 @@ export default function AITimeSavingsClient() {
           <p>
             As a result, inspections that once took hours can now be completed in as little as 30–45 minutes.
           </p>
-          <p>Moreover, Inspection Express 360AI ensures:</p>
+          <p>Moreover, NSPIREinspection.ai ensures:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Consistent and standardized reports</li>
             <li>Reduced human error</li>
@@ -181,7 +181,7 @@ export default function AITimeSavingsClient() {
           
           <div className="relative h-[300px] md:h-[400px] w-full rounded-3xl overflow-hidden shadow-lg my-8">
             <Image
-              src="/blog-ai-dashboard.png"
+              src="/whatsapp-3.jpeg"
               alt="Property Management AI Dashboard Analytics"
               fill
               className="object-cover"
@@ -234,7 +234,16 @@ export default function AITimeSavingsClient() {
             As a result, AI time savings for property managers extends beyond operations and into daily admin work. Managers can make faster decisions without getting overwhelmed by paperwork.
           </p>
 
-          <h2 className="text-3xl font-bold text-[#333333] mt-12 mb-6">Smarter Workflows Across the Business</h2>
+          <h2 className="text-3xl font-bold text-[#333333] mt-12 mb-6">Smarter Workflows Across the Business: AI time savings for property managers</h2>
+          
+          <div className="relative h-[300px] md:h-[400px] w-full rounded-3xl overflow-hidden shadow-lg my-8">
+            <Image
+              src="/whatsapp-4.jpeg"
+              alt="Smarter Workflows Across the Business"
+              fill
+              className="object-cover"
+            />
+          </div>
           <p>
             To maximize AI time savings for property managers, it’s important to look at the business as a whole. Start by identifying key operational areas:
           </p>
@@ -268,7 +277,7 @@ export default function AITimeSavingsClient() {
           </p>
           <p>Consider this:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Saving 2–3 hours per inspection with Inspection Express 360AI</li>
+            <li>Saving 2–3 hours per inspection with NSPIREinspection.ai</li>
             <li>Reducing maintenance coordination time</li>
             <li>Automating repetitive admin tasks</li>
           </ul>
@@ -276,7 +285,7 @@ export default function AITimeSavingsClient() {
             These efficiencies quickly translate into real cost savings. Ultimately, it allows businesses to grow without increasing headcount.
           </p>
           <p>
-            AI is no longer optional—it’s becoming essential. From inspections powered by Inspection Express 360AI to smarter maintenance and leasing workflows, the benefits are clear.
+            AI is no longer optional—it’s becoming essential. From inspections powered by NSPIREinspection.ai to smarter maintenance and leasing workflows, the benefits are clear.
           </p>
           <p>
             By adopting AI strategically, property managers can save time, reduce stress, and focus on what truly matters. Most importantly, they can deliver better service while scaling their business efficiently.
@@ -286,7 +295,7 @@ export default function AITimeSavingsClient() {
             <h3 className="text-2xl font-bold text-[#006795] mb-4">🚀 Ready to Save Time with AI?</h3>
             <p className="font-bold text-[#333333] mb-4">Transform your inspections and workflows with smarter AI tools.</p>
             <p>
-              Discover how Inspection Express 360AI can help you complete inspections faster, reduce admin time, and boost productivity.
+              Discover how NSPIREinspection.ai can help you complete inspections faster, reduce admin time, and boost productivity.
             </p>
             <Button className="mt-6 bg-[#F84B5F] hover:bg-[#EE3646] text-white px-8 py-3 rounded-full font-bold shadow-lg transition-all">
               Get Started Today

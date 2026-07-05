@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
-import DashboardLayout from "@/components/DashboardLayout"
-import { CoverageSelectionModal } from "@/components/PropertyModals"
+import AdminDashboardLayout from "@/components/AdminDashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
@@ -135,12 +134,6 @@ export default function PropertyDetailsPage() {
     // Coverage params from query string
     const coverage = searchParams.get('coverage') || '100'
     const calculatedUnitsParam = parseInt(searchParams.get('calculatedUnits') || '0')
-    const [showCoverageModal, setShowCoverageModal] = useState(false)
-
-    const handleCoverageUpdate = (newCoverage: string, newCalculatedUnits: number) => {
-        setShowCoverageModal(false)
-        router.replace(`/dashboard/property-details/${id}?coverage=${newCoverage}&calculatedUnits=${newCalculatedUnits}`)
-    }
 
     // Load column header name from localStorage on mount
     useEffect(() => {
@@ -513,7 +506,7 @@ export default function PropertyDetailsPage() {
         const displayName = getBuildingDisplayName(building.buildingId)
         localStorage.setItem(`buildingDisplayName_${propId}_${building.buildingId}`, displayName)
         router.push(
-            `/dashboard/inspection-category/${propId}?building=${building.buildingId}&totalUnits=${building.unitsForInspection}&coverage=${coverage}`
+            `/admin/inspection-category/${propId}?building=${building.buildingId}&totalUnits=${building.unitsForInspection}&coverage=${coverage}`
         )
     }
 
@@ -600,7 +593,7 @@ export default function PropertyDetailsPage() {
         }))
 
         toast.success(`Starting inspection for ${buildingId} → ${unitName}`, { position: "top-right" })
-        router.push(`/dashboard/inspection-category/${property._id}?building=${buildingId}&unit=${encodeURIComponent(unitName)}&units=1`)
+        router.push(`/admin/inspection-category/${property._id}?building=${buildingId}&unit=${encodeURIComponent(unitName)}&units=1`)
     }
 
     const getCompletedCount = (buildingId: string) => {
@@ -945,7 +938,7 @@ export default function PropertyDetailsPage() {
                 autoClose: 1800,
             })
 
-            router.push(`/dashboard/inspection/summary?propertyId=${id}`)
+            router.push(`/admin/inspection/summary?propertyId=${id}`)
         } catch (error: any) {
             console.error('Export in-progress failed:', error)
             toast.error(`Failed to export in-progress report: ${error?.message || 'Unknown error'}`, {
@@ -958,24 +951,24 @@ export default function PropertyDetailsPage() {
 
     if (loading) {
         return (
-            <DashboardLayout>
+            <AdminDashboardLayout>
                 <div className="flex items-center justify-center min-h-[60vh]">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
                 </div>
-            </DashboardLayout>
+            </AdminDashboardLayout>
         )
     }
 
     if (!property) {
         return (
-            <DashboardLayout>
+            <AdminDashboardLayout>
                 <div className="p-8 text-center text-gray-500 font-bold">Property not found.</div>
-            </DashboardLayout>
+            </AdminDashboardLayout>
         )
     }
 
     return (
-        <DashboardLayout>
+        <AdminDashboardLayout>
             <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-8">
                     <button
@@ -1017,16 +1010,7 @@ export default function PropertyDetailsPage() {
                             <span className="text-sm text-gray-900 font-black">{property.buildings || 1}</span>
                             <div className="mt-1">
                                 <span className="text-sm font-black text-gray-900">Selection: </span>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm text-gray-600 font-bold">{getCoverageLabel()}</span>
-                                    <button 
-                                        onClick={() => setShowCoverageModal(true)}
-                                        className="text-[#006795] hover:bg-blue-50 rounded-full p-1 transition-colors"
-                                        title="Edit Selection"
-                                    >
-                                        <Pencil className="w-3.5 h-3.5" />
-                                    </button>
-                                </div>
+                                <span className="text-sm text-gray-600 font-bold">{getCoverageLabel()}</span>
                             </div>
                         </div>
 
@@ -1477,11 +1461,6 @@ export default function PropertyDetailsPage() {
                     </div>
                 </div>
             )}
-            <CoverageSelectionModal
-                isOpen={showCoverageModal}
-                onClose={() => setShowCoverageModal(false)}
-                onStartInspection={handleCoverageUpdate}
-            />
-        </DashboardLayout>
+        </AdminDashboardLayout>
     )
 }
