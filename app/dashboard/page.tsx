@@ -273,16 +273,48 @@ export default function Dashboard() {
     setShowEditModal(true)
   }
 
-  const handleActionStartInspection = () => {
-    // Close action modal, open coverage selection modal
-    setShowActionModal(false)
-    setShowCoverageModal(true)
+  const handleActionStartInspection = async () => {
+    // Check if coverage was already selected for this property
+    const prop = newPropertyData || selectedProperty
+    const propId = prop?._id || prop?.id
+    
+    // Check if coverage is already saved in the property
+    if (prop?.inspectionCoverage && prop?.calculatedUnits) {
+      // Coverage already selected, go directly to property details
+      setShowActionModal(false)
+      router.push(
+        `/dashboard/property-details/${propId}?coverage=${prop.inspectionCoverage}&calculatedUnits=${prop.calculatedUnits}`
+      )
+    } else {
+      // First time, show coverage selection modal
+      setShowActionModal(false)
+      setShowCoverageModal(true)
+    }
   }
 
   const handleCoverageStart = async (coverage: string, calculatedUnits: number) => {
     setShowCoverageModal(false)
     const prop = newPropertyData || selectedProperty
     const propId = prop?._id || prop?.id || 'new'
+
+    // Save coverage selection to backend database
+    if (propId !== 'new') {
+      try {
+        await propertiesAPI.update(propId, {
+          inspectionCoverage: coverage,
+          calculatedUnits: calculatedUnits
+        })
+        
+        // Update local state
+        setProperties(prev =>
+          prev.map(p => (p._id === propId ? { ...p, inspectionCoverage: coverage, calculatedUnits } : p))
+        )
+      } catch (error: any) {
+        console.error('Failed to save coverage:', error)
+        toast.error('Failed to save coverage selection')
+        return
+      }
+    }
 
     // Resume this property if it was on hold so it becomes the active inspection
     if (prop?.status === 'hold' && propId !== 'new') {

@@ -132,14 +132,37 @@ export default function PropertyDetailsPage() {
     const [tempBuildingName, setTempBuildingName] = useState('')
     const buildingNameInputRef = useRef<HTMLInputElement>(null)
 
-    // Coverage params from query string
+    // Coverage params from query string or backend property data
     const coverage = searchParams.get('coverage') || '100'
     const calculatedUnitsParam = parseInt(searchParams.get('calculatedUnits') || '0')
     const [showCoverageModal, setShowCoverageModal] = useState(false)
 
-    const handleCoverageUpdate = (newCoverage: string, newCalculatedUnits: number) => {
-        setShowCoverageModal(false)
-        router.replace(`/dashboard/property-details/${id}?coverage=${newCoverage}&calculatedUnits=${newCalculatedUnits}`)
+    // Load coverage from backend property data if not in URL
+    useEffect(() => {
+        if (id && property && !searchParams.get('coverage')) {
+            // Check if property already has coverage saved in backend
+            if (property.inspectionCoverage && property.calculatedUnits) {
+                router.replace(`/dashboard/property-details/${id}?coverage=${property.inspectionCoverage}&calculatedUnits=${property.calculatedUnits}`)
+            } else {
+                // No coverage selected yet, show modal
+                setShowCoverageModal(true)
+            }
+        }
+    }, [id, property, searchParams, router])
+
+    const handleCoverageUpdate = async (newCoverage: string, newCalculatedUnits: number) => {
+        // Save to backend database
+        try {
+            await propertiesAPI.update(id, {
+                inspectionCoverage: newCoverage,
+                calculatedUnits: newCalculatedUnits
+            })
+            setShowCoverageModal(false)
+            router.replace(`/dashboard/property-details/${id}?coverage=${newCoverage}&calculatedUnits=${newCalculatedUnits}`)
+        } catch (error) {
+            console.error('Failed to save coverage:', error)
+            toast.error('Failed to save coverage selection')
+        }
     }
 
     // Load column header name from localStorage on mount
@@ -1019,13 +1042,15 @@ export default function PropertyDetailsPage() {
                                 <span className="text-sm font-black text-gray-900">Selection: </span>
                                 <div className="flex items-center gap-2">
                                     <span className="text-sm text-gray-600 font-bold">{getCoverageLabel()}</span>
-                                    <button 
-                                        onClick={() => setShowCoverageModal(true)}
-                                        className="text-[#006795] hover:bg-blue-50 rounded-full p-1 transition-colors"
-                                        title="Edit Selection"
-                                    >
-                                        <Pencil className="w-3.5 h-3.5" />
-                                    </button>
+                                    {Object.keys(completedUnitsMap).length === 0 && (
+                                        <button 
+                                            onClick={() => setShowCoverageModal(true)}
+                                            className="text-[#006795] hover:bg-blue-50 rounded-full p-1 transition-colors"
+                                            title="Edit Selection"
+                                        >
+                                            <Pencil className="w-3.5 h-3.5" />
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

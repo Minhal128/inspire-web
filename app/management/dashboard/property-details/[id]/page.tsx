@@ -131,9 +131,19 @@ export default function PropertyDetailsPage() {
     const [tempBuildingName, setTempBuildingName] = useState('')
     const buildingNameInputRef = useRef<HTMLInputElement>(null)
 
-    // Coverage params from query string
+    // Coverage params from query string or backend property data
     const coverage = searchParams.get('coverage') || '100'
     const calculatedUnitsParam = parseInt(searchParams.get('calculatedUnits') || '0')
+
+    // Load coverage from backend property data if not in URL
+    useEffect(() => {
+        if (id && property && !searchParams.get('coverage')) {
+            // Check if property already has coverage saved in backend
+            if (property.inspectionCoverage && property.calculatedUnits) {
+                router.replace(`/management/dashboard/property-details/${id}?coverage=${property.inspectionCoverage}&calculatedUnits=${property.calculatedUnits}`)
+            }
+        }
+    }, [id, property, searchParams, router])
 
     // Load column header name from localStorage on mount
     useEffect(() => {
