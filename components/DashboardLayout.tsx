@@ -140,6 +140,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
           <button
             onClick={() => {
+              localStorage.removeItem('token')
+              localStorage.removeItem('user')
               toast.success("Logged out successfully!", { position: "top-right" })
               setTimeout(() => router.push('/'), 1500)
             }}

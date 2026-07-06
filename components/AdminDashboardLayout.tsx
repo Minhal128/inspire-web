@@ -102,6 +102,8 @@ export default function AdminDashboardLayout({ children }: AdminDashboardLayoutP
         <div className="p-4 border-t border-[#1E3A5F]">
           <button
             onClick={() => {
+              localStorage.removeItem('token')
+              localStorage.removeItem('user')
               toast.success("Logged out successfully!", { position: "top-right" })
               setTimeout(() => router.push('/'), 1500)
             }}
