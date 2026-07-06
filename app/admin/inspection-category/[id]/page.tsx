@@ -2272,6 +2272,6 @@ export default function InspectionCategoryPage() {
                     overflow: hidden !important;
                 }
             `}</style>
-        </DashboardLayout >
+        </AdminDashboardLayout>
     )
 }
