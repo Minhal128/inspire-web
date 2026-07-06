@@ -12,13 +12,58 @@ export default function Home() {
   const [unitSelectionOpen, setUnitSelectionOpen] = useState(false);
 
   const handleGetStarted = () => {
-    setUnitSelectionOpen(true);
+    const token = localStorage.getItem('token');
+    const userStr = localStorage.getItem('user');
+    
+    if (token && userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        const userRole = user.role;
+        
+        if (userRole === 'admin') {
+          router.push('/admin/dashboard');
+        } else if (userRole === 'management' || userRole === 'property-manager' || userRole === 'supervisor') {
+          router.push('/management/dashboard');
+        } else if (userRole === 'inspector') {
+          router.push('/dashboard');
+        } else {
+          router.push('/dashboard');
+        }
+      } catch (e) {
+        router.push('/login');
+      }
+    } else {
+      router.push('/login');
+    }
   };
 
   const handleUnitSelectionContinue = (selectedUnits: string[]) => {
     setUnitSelectionOpen(false);
     localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
-    router.push("/profile-selection");
+    
+    const token = localStorage.getItem('token');
+    const userStr = localStorage.getItem('user');
+    
+    if (token && userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        const userRole = user.role;
+        
+        if (userRole === 'admin') {
+          router.push('/admin/dashboard');
+        } else if (userRole === 'management' || userRole === 'property-manager' || userRole === 'supervisor') {
+          router.push('/management/dashboard');
+        } else if (userRole === 'inspector') {
+          router.push('/dashboard');
+        } else {
+          router.push('/dashboard');
+        }
+      } catch (e) {
+        router.push('/login');
+      }
+    } else {
+      router.push('/login');
+    }
   };
 
   return (

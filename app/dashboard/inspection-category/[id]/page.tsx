@@ -720,16 +720,13 @@ export default function InspectionCategoryPage() {
     };
 
     const handleClearAndGoBack = () => {
-        // Reset all OD modal fields
-        setIsODModalOpen(false);
+        // Just clear the deficiency selection without navigating away
         setSelectedDeficiency(null);
         setDetailFilterName(null);
         setGuideDeficiency(null);
         setLastSavedFindingId(null);
         setPhotos([]);
-        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
-        // Navigate back to the unit/inside/outside screen
-        router.back();
+        setOdForm(prev => ({ ...prev, deficiencySelected: "", deficiencyDetail: "", note: "" }));
     };
 
     const resetFormForNewDeficiency = () => {
@@ -1866,7 +1863,7 @@ export default function InspectionCategoryPage() {
                                             <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />
                                         </div>
                                         <button onClick={handleClearAndGoBack} className="flex items-center gap-1 mt-2 text-xs font-medium text-red-500 hover:text-red-600">
-                                            <ChevronLeft className="w-3 h-3" /> Back
+                                            <X className="w-3 h-3" /> Back
                                         </button>
                                     </div>
 

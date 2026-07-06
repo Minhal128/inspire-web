@@ -1081,59 +1081,6 @@ function NSPIREInspectionSummaryContent() {
                   {buildingColumnHeader}: {inspectionContext.buildingId} &rarr; {inspectionContext.unitName}
                 </p>
               )}
-              <div className="mt-3 flex flex-wrap items-center gap-2">
-                {checkingUnlock ? (
-                  <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
-                    <svg className="h-3 w-3 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                    </svg>
-                    Checking report access...
-                  </span>
-                ) : isReportUnlocked ? (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-                    <Unlock className="w-3.5 h-3.5" />
-                    Report unlocked
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
-                    <Lock className="w-3.5 h-3.5" />
-                    Report locked
-                  </span>
-                )}
-                {!checkingUnlock && !isReportUnlocked && (
-                  <div className="mt-2 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 shadow-sm">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                        <Lock className="w-3.5 h-3.5 text-amber-700" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
-                        <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      <Button
-                        onClick={handleUnlockWithStripe}
-                        disabled={purchasingUnlock}
-                        className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
-                      >
-                        <Lock className="w-3.5 h-3.5" />
-                        {purchasingUnlock ? 'Redirecting...' : 'Unlock Report  · $49'}
-                      </Button>
-                      <Button
-                        onClick={() => setShowShareModal(true)}
-                        disabled={purchasingUnlock || sharingPayment}
-                        variant="outline"
-                        className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
-                      >
-                        <Mail className="w-3.5 h-3.5" />
-                        View Summary
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button
@@ -1161,27 +1108,6 @@ function NSPIREInspectionSummaryContent() {
           </div>
         </div>
 
-        {/* Score Cards */}
-        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 mb-6 text-white">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
-              <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary Score</p>
-              <p className="text-3xl font-bold">{report.metadata.preliminaryScore}</p>
-            </div>
-            <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
-              <p className="text-xs opacity-80 uppercase tracking-wide">Calculated Score</p>
-              <p className="text-3xl font-bold">{report.metadata.calculatedScore}</p>
-            </div>
-            <div>
-              <p className="text-xs opacity-80 uppercase tracking-wide">Final Score</p>
-              <p className="text-3xl font-bold">{report.metadata.finalScore}</p>
-              <p className="text-xs opacity-80 mt-1">
-                {report.metadata.finalScore >= 60 ? '✓ Passing' : '✗ Below Threshold'}
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Tabs */}
         <div className="flex gap-1 mb-6 bg-gray-100 p-1 rounded-lg overflow-x-auto">
           {(['summary', 'deficiencies'] as const).map((tab) => (
@@ -1201,7 +1127,7 @@ function NSPIREInspectionSummaryContent() {
         {/* Summary Tab */}
         {activeTab === 'summary' && (
           <div className="space-y-6">
-            {/* Inspection Data Table */}
+            {/* 1. Inspection Data Table */}
             <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 INSPECTION DATA
@@ -1255,7 +1181,75 @@ function NSPIREInspectionSummaryContent() {
               </div>
             </div>
 
-            {/* Deficiency Summary */}
+            {/* 2. Unlock Card */}
+            {checkingUnlock ? (
+              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 flex items-center gap-3">
+                <svg className="h-4 w-4 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
+              </div>
+            ) : isReportUnlocked ? (
+              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200 flex items-center gap-3">
+                <Unlock className="w-5 h-5 text-green-700" />
+                <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                    <Lock className="w-4 h-4 text-amber-700" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
+                    <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Button
+                    onClick={handleUnlockWithStripe}
+                    disabled={purchasingUnlock}
+                    className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
+                  >
+                    <Lock className="w-3.5 h-3.5" />
+                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Report · $49'}
+                  </Button>
+                  <Button
+                    onClick={() => setShowShareModal(true)}
+                    disabled={purchasingUnlock || sharingPayment}
+                    variant="outline"
+                    className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    View Summary
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* 3. Score Cards */}
+            <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 text-white">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
+                  <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary Score</p>
+                  <p className="text-3xl font-bold">{report.metadata.preliminaryScore}</p>
+                </div>
+                <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
+                  <p className="text-xs opacity-80 uppercase tracking-wide">Calculated Score</p>
+                  <p className="text-3xl font-bold">{report.metadata.calculatedScore}</p>
+                </div>
+                <div>
+                  <p className="text-xs opacity-80 uppercase tracking-wide">Final Score</p>
+                  <p className="text-3xl font-bold">{report.metadata.finalScore}</p>
+                  <p className="text-xs opacity-80 mt-1">
+                    {report.metadata.finalScore >= 60 ? '✓ Passing' : '✗ Below Threshold'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Deficiency Summary */}
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 DEFICIENCY SUMMARY
@@ -1290,33 +1284,6 @@ function NSPIREInspectionSummaryContent() {
                 <div className="bg-blue-50 p-3 rounded-lg text-center">
                   <p className="text-2xl font-bold text-blue-700">{report.summary.newDeficiencies}</p>
                   <p className="text-xs font-semibold text-blue-700">New Deficiencies</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Property Info */}
-            <div className="mb-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
-                  PROPERTY INFORMATION
-                </h2>
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Property Name</span>
-                    <span className="font-semibold">{report.metadata.propertyName}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Address</span>
-                    <span className="font-semibold text-right max-w-[200px]">{report.metadata.propertyAddress}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Property ID</span>
-                    <span className="font-semibold">{report.metadata.propertyId}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Inspector</span>
-                    <span className="font-semibold">{report.metadata.inspectorName}</span>
-                  </div>
                 </div>
               </div>
             </div>
