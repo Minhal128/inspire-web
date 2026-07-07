@@ -755,7 +755,12 @@ function NSPIREInspectionSummaryContent() {
   const handleExportPDF = async () => {
     if (!report) return
 
-    // If not unlocked, we allow a "Preview" export with only 2 items
+    // Block export if report is not unlocked
+    if (!isReportUnlocked) {
+      toast.error('Please unlock the report to export PDF', { position: 'top-right' })
+      return
+    }
+
     const isPreview = !isReportUnlocked;
 
     if (isPreview) {
@@ -920,6 +925,12 @@ function NSPIREInspectionSummaryContent() {
 
   const handleExportExcel = async () => {
     if (!report) return
+
+    // Block export if report is not unlocked
+    if (!isReportUnlocked) {
+      toast.error('Please unlock the report to export Excel', { position: 'top-right' })
+      return
+    }
 
     if (!isReportUnlocked) {
       toast.info('This report is locked. Redirecting to unlock checkout...', { position: 'top-right' })
@@ -1127,7 +1138,54 @@ function NSPIREInspectionSummaryContent() {
         {/* Summary Tab */}
         {activeTab === 'summary' && (
           <div className="space-y-6">
-            {/* 1. Inspection Data Table */}
+            {/* 1. Unlock Card */}
+            {checkingUnlock ? (
+              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 flex items-center gap-3">
+                <svg className="h-4 w-4 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
+              </div>
+            ) : isReportUnlocked ? (
+              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200 flex items-center gap-3">
+                <Unlock className="w-5 h-5 text-green-700" />
+                <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                    <Lock className="w-4 h-4 text-amber-700" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
+                    <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Button
+                    onClick={handleUnlockWithStripe}
+                    disabled={purchasingUnlock}
+                    className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
+                  >
+                    <Lock className="w-3.5 h-3.5" />
+                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Report · $49'}
+                  </Button>
+                  <Button
+                    onClick={() => setShowShareModal(true)}
+                    disabled={purchasingUnlock || sharingPayment}
+                    variant="outline"
+                    className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    View Summary
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* 2. Inspection Data Table */}
             <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 INSPECTION DATA
@@ -1180,52 +1238,6 @@ function NSPIREInspectionSummaryContent() {
                 ))}
               </div>
             </div>
-
-            {/* 2. Unlock Card */}
-            {checkingUnlock ? (
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 flex items-center gap-3">
-                <svg className="h-4 w-4 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-                <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
-              </div>
-            ) : isReportUnlocked ? (
-              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200 flex items-center gap-3">
-                <Unlock className="w-5 h-5 text-green-700" />
-                <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
-              </div>
-            ) : (
-              <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <Lock className="w-4 h-4 text-amber-700" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
-                    <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <Button
-                    onClick={handleUnlockWithStripe}
-                    disabled={purchasingUnlock}
-                    className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg flex-1"
-                  >
-                    <Lock className="w-4 h-4" />
-                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Full Report - $49.00'}
-                  </Button>
-                  <Button
-                    onClick={() => setShowShareModal(true)}
-                    disabled={purchasingUnlock || sharingPayment}
-                    className="h-10 gap-2 bg-cyan-600 px-4 text-xs font-bold text-white hover:bg-cyan-700 shadow-sm flex-1"
-                  >
-                    <Mail className="w-4 h-4" />
-                    View Summary
-                  </Button>
-                </div>
-              </div>
-            )}
 
             {/* 3. Score Cards */}
             <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 text-white">

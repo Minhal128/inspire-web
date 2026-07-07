@@ -755,7 +755,12 @@ function NSPIREInspectionSummaryContent() {
   const handleExportPDF = async () => {
     if (!report) return
 
-    // If not unlocked, we allow a "Preview" export with only 2 items
+    // Block export if report is not unlocked
+    if (!isReportUnlocked) {
+      toast.error('Please unlock the report to export PDF', { position: 'top-right' })
+      return
+    }
+
     const isPreview = !isReportUnlocked;
 
     if (isPreview) {
@@ -921,6 +926,12 @@ function NSPIREInspectionSummaryContent() {
   const handleExportExcel = async () => {
     if (!report) return
 
+    // Block export if report is not unlocked
+    if (!isReportUnlocked) {
+      toast.error('Please unlock the report to export Excel', { position: 'top-right' })
+      return
+    }
+
     if (!isReportUnlocked) {
       toast.info('This report is locked. Redirecting to unlock checkout...', { position: 'top-right' })
       await handleUnlockWithStripe()
@@ -1051,7 +1062,7 @@ function NSPIREInspectionSummaryContent() {
       <DashboardLayout>
         <div className="flex flex-col items-center justify-center h-96">
           <p className="text-gray-600 mb-4">No inspection data found</p>
-          <Button onClick={() => router.push('/dashboard/my-inspection')}>
+          <Button onClick={() => router.push('/admin/my-inspection')}>
             Back to Inspections
           </Button>
         </div>
@@ -1109,7 +1120,59 @@ function NSPIREInspectionSummaryContent() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 mb-6 bg-gray-100 p-1 rounded-lg overflow-x-auto">
+        
+
+        {/* Summary Tab */}
+        {activeTab === 'summary' && (
+          <div className="space-y-6">
+            {/* 1. Unlock Card */}
+            {checkingUnlock ? (
+              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 flex items-center gap-3">
+                <svg className="h-4 w-4 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
+              </div>
+            ) : isReportUnlocked ? (
+              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200 flex items-center gap-3">
+                <Unlock className="w-5 h-5 text-green-700" />
+                <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                    <Lock className="w-4 h-4 text-amber-700" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
+                    <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Button
+                    onClick={handleUnlockWithStripe}
+                    disabled={purchasingUnlock}
+                    className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
+                  >
+                    <Lock className="w-3.5 h-3.5" />
+                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Report · $49'}
+                  </Button>
+                  <Button
+                    onClick={() => setShowShareModal(true)}
+                    disabled={purchasingUnlock || sharingPayment}
+                    variant="outline"
+                    className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    View Summary
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            <div className="flex gap-1 mb-6 bg-gray-100 p-1 rounded-lg overflow-x-auto">
           {(['summary', 'deficiencies'] as const).map((tab) => (
             <button
               key={tab}
@@ -1124,10 +1187,7 @@ function NSPIREInspectionSummaryContent() {
           ))}
         </div>
 
-        {/* Summary Tab */}
-        {activeTab === 'summary' && (
-          <div className="space-y-6">
-            {/* 1. Inspection Data Table */}
+            {/* 2. Inspection Data Table */}
             <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
                 INSPECTION DATA
@@ -1180,53 +1240,6 @@ function NSPIREInspectionSummaryContent() {
                 ))}
               </div>
             </div>
-
-            {/* 2. Unlock Card */}
-            {checkingUnlock ? (
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 flex items-center gap-3">
-                <svg className="h-4 w-4 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-                <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
-              </div>
-            ) : isReportUnlocked ? (
-              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200 flex items-center gap-3">
-                <Unlock className="w-5 h-5 text-green-700" />
-                <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
-              </div>
-            ) : (
-              <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <Lock className="w-4 h-4 text-amber-700" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
-                    <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <Button
-                    onClick={handleUnlockWithStripe}
-                    disabled={purchasingUnlock}
-                    className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
-                  >
-                    <Lock className="w-3.5 h-3.5" />
-                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Report · $49'}
-                  </Button>
-                  <Button
-                    onClick={() => setShowShareModal(true)}
-                    disabled={purchasingUnlock || sharingPayment}
-                    variant="outline"
-                    className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    View Summary
-                  </Button>
-                </div>
-              </div>
-            )}
 
             {/* 3. Score Cards */}
             <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 text-white">
@@ -1284,6 +1297,33 @@ function NSPIREInspectionSummaryContent() {
                 <div className="bg-blue-50 p-3 rounded-lg text-center">
                   <p className="text-2xl font-bold text-blue-700">{report.summary.newDeficiencies}</p>
                   <p className="text-xs font-semibold text-blue-700">New Deficiencies</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Property Info */}
+            <div className="mb-6">
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
+                  PROPERTY INFORMATION
+                </h2>
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Property Name</span>
+                    <span className="font-semibold">{report.metadata.propertyName}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Address</span>
+                    <span className="font-semibold text-right max-w-[200px]">{report.metadata.propertyAddress}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Property ID</span>
+                    <span className="font-semibold">{report.metadata.propertyId}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Inspector</span>
+                    <span className="font-semibold">{report.metadata.inspectorName}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1507,7 +1547,7 @@ function NSPIREInspectionSummaryContent() {
             BACK TO INSPECTION
           </Button>
           <Button
-            onClick={() => router.push('/dashboard/my-inspection')}
+            onClick={() => router.push('/admin/my-inspection')}
             variant="outline"
             className="px-10 h-14 w-full sm:w-auto font-black rounded-xl border-2 hover:bg-gray-50 text-gray-600"
           >
@@ -1517,87 +1557,56 @@ function NSPIREInspectionSummaryContent() {
       </div>
 
       {showShareModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl relative overflow-hidden">
-            {/* Modal Header */}
-            <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] px-6 py-5">
-              <button
-                onClick={() => setShowShareModal(false)}
-                className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-white">Send Payment Link</h3>
-                  <p className="text-xs text-white/70">Share a secure checkout link via email</p>
-                </div>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full shadow-2xl relative border border-gray-100">
+            <button
+              onClick={() => setShowShareModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <h3 className="text-lg font-bold text-[#006795] mb-2 flex items-center gap-2">
+              <Mail className="w-5 h-5" />
+              View Summary
+            </h3>
+            <p className="text-sm text-gray-600 mb-6">
+              Enter the client's email address below. We'll send them a secure Stripe payment link to pay and unlock the full report.
+            </p>
+
+            <form onSubmit={handleSharePaymentLink} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Recipient Email Address</label>
+                <input
+                  type="email"
+                  required
+                  placeholder="client@example.com"
+                  value={shareEmail}
+                  onChange={(e) => setShareEmail(e.target.value)}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm text-black focus:outline-none focus:border-[#006795] focus:bg-white transition-all"
+                />
               </div>
-            </div>
 
-            {/* Modal Body */}
-            <div className="px-6 py-5">
-              <p className="text-sm text-gray-600 mb-5 leading-relaxed">
-                Enter the client's email address. They will receive a professional email with a secure Stripe checkout link. Once they pay, the report is automatically unlocked in your panel.
-              </p>
-
-              <form onSubmit={handleSharePaymentLink} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Recipient Email</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="client@example.com"
-                    value={shareEmail}
-                    onChange={(e) => setShareEmail(e.target.value)}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#006795]/30 focus:border-[#006795] transition-all"
-                  />
-                </div>
-
-                <div className="bg-blue-50 rounded-xl p-3 text-xs text-blue-700 flex items-start gap-2">
-                  <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>The client will receive a branded email with a secure $49 checkout link. Once paid, the report unlocks automatically — no login required for them.</span>
-                </div>
-
-                <div className="flex gap-3 pt-1">
-                  <Button
-                    type="button"
-                    onClick={() => setShowShareModal(false)}
-                    variant="outline"
-                    className="flex-1 h-11 text-sm font-semibold rounded-xl border-gray-200 text-gray-600 hover:bg-gray-50"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={sharingPayment}
-                    className="flex-1 h-11 text-sm font-bold text-white bg-[#006795] hover:bg-[#0a5670] rounded-xl shadow-sm gap-2"
-                  >
-                    {sharingPayment ? (
-                      <>
-                        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Mail className="w-4 h-4" />
-                        Send Email Link
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </div>
+              <div className="flex justify-end gap-3 pt-2">
+                <Button
+                  type="button"
+                  onClick={() => setShowShareModal(false)}
+                  variant="outline"
+                  className="px-4 py-2 text-sm font-semibold rounded-lg"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={sharingPayment}
+                  className="px-5 py-2 text-sm font-bold text-white bg-[#006795] hover:bg-[#0a5670] rounded-lg shadow-sm"
+                >
+                  {sharingPayment ? "Sending..." : "Send Payment Link"}
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
       )}
