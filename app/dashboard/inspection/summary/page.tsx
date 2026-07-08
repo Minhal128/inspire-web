@@ -107,6 +107,7 @@ function NSPIREInspectionSummaryContent() {
   const [showShareModal, setShowShareModal] = useState(false)
   const [shareEmail, setShareEmail] = useState("")
   const [sharingPayment, setSharingPayment] = useState(false)
+  const [showSummaryModal, setShowSummaryModal] = useState(false)
   // Custom column header from the building table (editable in property-details)
   const [buildingColumnHeader, setBuildingColumnHeader] = useState('Building')
   // Deficiency preview modal
@@ -1162,7 +1163,7 @@ function NSPIREInspectionSummaryContent() {
                     {purchasingUnlock ? 'Redirecting...' : 'Unlock Report · $49'}
                   </Button>
                   <Button
-                    onClick={() => setShowShareModal(true)}
+                    onClick={() => setShowSummaryModal(true)}
                     disabled={purchasingUnlock || sharingPayment}
                     variant="outline"
                     className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
@@ -1738,6 +1739,145 @@ function NSPIREInspectionSummaryContent() {
                 >
                   Close Preview
                 </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Summary Modal with Email Input */}
+      {showSummaryModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="p-6 space-y-6">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b pb-4">
+                <h2 className="text-2xl font-bold text-[#006795]">Deficiency Summary</h2>
+                <button
+                  onClick={() => setShowSummaryModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Property Info */}
+              <div className="bg-gradient-to-r from-[#006795]/10 to-[#0891B2]/10 rounded-lg p-4 border border-[#006795]/20">
+                <h3 className="text-lg font-bold text-[#006795] mb-2">{report?.metadata.propertyName}</h3>
+                <p className="text-sm text-gray-600">{report?.metadata.propertyAddress}</p>
+                <p className="text-sm text-gray-500 mt-1">Inspection #{report?.metadata.inspectionNo}</p>
+              </div>
+
+              {/* Deficiency Summary Stats */}
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <h3 className="text-lg font-bold text-[#006795] mb-4">Deficiency Breakdown</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="bg-red-50 border-l-4 border-red-600 p-3 rounded-r-lg text-center">
+                    <p className="text-2xl font-bold text-red-600">{report?.summary.lifeThreatening}</p>
+                    <p className="text-xs font-semibold text-red-600 uppercase">Life-Threat</p>
+                  </div>
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded-r-lg text-center">
+                    <p className="text-2xl font-bold text-orange-500">{report?.summary.severe}</p>
+                    <p className="text-xs font-semibold text-orange-500 uppercase">Severe</p>
+                  </div>
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded-r-lg text-center">
+                    <p className="text-2xl font-bold text-blue-500">{report?.summary.moderate}</p>
+                    <p className="text-xs font-semibold text-blue-500 uppercase">Moderate</p>
+                  </div>
+                  <div className="bg-gray-50 border-l-4 border-gray-500 p-3 rounded-r-lg text-center">
+                    <p className="text-2xl font-bold text-gray-500">{report?.summary.low}</p>
+                    <p className="text-xs font-semibold text-gray-500 uppercase">Low</p>
+                  </div>
+                  <div className="bg-green-50 border-l-4 border-green-500 p-3 rounded-r-lg text-center col-span-2 sm:col-span-1">
+                    <p className="text-2xl font-bold text-green-600">{report?.summary.total}</p>
+                    <p className="text-xs font-semibold text-green-600 uppercase">Total</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  <div className="bg-amber-50 p-3 rounded-lg text-center">
+                    <p className="text-xl font-bold text-amber-700">{report?.summary.repeatDeficiencies}</p>
+                    <p className="text-xs font-semibold text-amber-700">Repeat</p>
+                  </div>
+                  <div className="bg-blue-50 p-3 rounded-lg text-center">
+                    <p className="text-xl font-bold text-blue-700">{report?.summary.newDeficiencies}</p>
+                    <p className="text-xs font-semibold text-blue-700">New</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Score Summary */}
+              <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 text-white">
+                <h3 className="text-lg font-bold mb-3">Inspection Score</h3>
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary</p>
+                    <p className="text-2xl font-bold">{report?.metadata.preliminaryScore}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs opacity-80 uppercase tracking-wide">Calculated</p>
+                    <p className="text-2xl font-bold">{report?.metadata.calculatedScore}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs opacity-80 uppercase tracking-wide">Final Score</p>
+                    <p className="text-2xl font-bold">{report?.metadata.finalScore}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Email Input Section */}
+              <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                <h3 className="text-base font-bold text-amber-900 mb-3 flex items-center gap-2">
+                  <Mail className="w-5 h-5" />
+                  Get Full Report via Email
+                </h3>
+                <p className="text-sm text-amber-800 mb-4">
+                  Enter your email to receive the complete inspection report with all deficiency details, photos, and recommendations.
+                </p>
+                <form onSubmit={handleSharePaymentLink} className="space-y-3">
+                  <input
+                    type="email"
+                    value={shareEmail}
+                    onChange={(e) => setShareEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-amber-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-gray-900"
+                  />
+                  <div className="flex gap-2">
+                    <Button
+                      type="submit"
+                      disabled={sharingPayment || !shareEmail.trim()}
+                      className="flex-1 h-11 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-lg"
+                    >
+                      {sharingPayment ? (
+                        <span className="flex items-center gap-2">
+                          <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                          </svg>
+                          Sending...
+                        </span>
+                      ) : (
+                        'Send Full Report Link'
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => setShowSummaryModal(false)}
+                      variant="outline"
+                      className="px-6 border-amber-300 text-amber-800 hover:bg-amber-100"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Additional Info */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <p className="text-sm text-blue-800">
+                  <span className="font-bold">💡 Note:</span> The full report includes detailed photos, inspector comments, repair timelines, and compliance codes for each deficiency.
+                </p>
               </div>
             </div>
           </div>
