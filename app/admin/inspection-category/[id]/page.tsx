@@ -2036,7 +2036,7 @@ export default function InspectionCategoryPage() {
                                                 <div>
                                                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Possible Score</p>
                                                     <div className="bg-gray-50 rounded-xl px-3 py-2 text-sm font-bold text-gray-800">
-                                                        {currentSection === 'outside' ? OUTSIDE_POSSIBLE_SCORE : INSIDE_POSSIBLE_SCORE}
+                                                        {currentSection === 'outside' ? OUTSIDE_POSSIBLE_SCORE : currentSection === 'unit' ? POSSIBLE_SCORE : INSIDE_POSSIBLE_SCORE}
                                                     </div>
                                                 </div>
                                             </div>
@@ -2052,7 +2052,7 @@ export default function InspectionCategoryPage() {
                                                 <div>
                                                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Score</p>
                                                     <div className="bg-cyan-50 border border-cyan-200 rounded-xl px-3 py-2 text-sm font-black text-[#0E7490]">
-                                                        {scoringResult?.score?.toFixed(2) || (currentSection === 'outside' ? OUTSIDE_POSSIBLE_SCORE.toFixed(2) : INSIDE_POSSIBLE_SCORE.toFixed(2))}
+                                                        {scoringResult?.score?.toFixed(2) || (currentSection === 'outside' ? OUTSIDE_POSSIBLE_SCORE.toFixed(2) : currentSection === 'unit' ? POSSIBLE_SCORE.toFixed(2) : INSIDE_POSSIBLE_SCORE.toFixed(2))}
                                                     </div>
                                                 </div>
                                             </div>

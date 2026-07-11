@@ -24,6 +24,7 @@ export default function MyInspection() {
   const [actionModalOpen, setActionModalOpen] = useState(false)
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+  const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
 
   const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
   const [showBuildingDivisionModal, setShowBuildingDivisionModal] = useState(false)
@@ -248,6 +249,46 @@ export default function MyInspection() {
     }
   }
 
+  const handleSelectAll = () => {
+    if (selectedProperties.size === properties.length) {
+      // Deselect all
+      setSelectedProperties(new Set())
+    } else {
+      // Select all
+      setSelectedProperties(new Set(properties.map(p => p._id)))
+    }
+  }
+
+  const handleSelectProperty = (propertyId: string) => {
+    const newSelected = new Set(selectedProperties)
+    if (newSelected.has(propertyId)) {
+      newSelected.delete(propertyId)
+    } else {
+      newSelected.add(propertyId)
+    }
+    setSelectedProperties(newSelected)
+  }
+
+  const handleBulkDelete = async () => {
+    if (selectedProperties.size === 0) {
+      toast.warning("Please select properties to delete", { position: "top-right" })
+      return
+    }
+
+    if (confirm(`Are you sure you want to remove ${selectedProperties.size} ${selectedProperties.size === 1 ? 'property' : 'properties'}?`)) {
+      try {
+        const response = await propertiesAPI.bulkDelete(Array.from(selectedProperties))
+        if (response.success) {
+          toast.success(response.message || `${selectedProperties.size} ${selectedProperties.size === 1 ? 'property' : 'properties'} removed successfully`, { position: "top-right" })
+          setSelectedProperties(new Set())
+          fetchProperties()
+        }
+      } catch (error: any) {
+        toast.error(error.message || "Failed to remove properties")
+      }
+    }
+  }
+
   // The property currently being actively inspected (progress > 0 and < 100, not on hold)
   const activeInspectionPropertyId = useMemo(() => {
     return Object.keys(propertyProgress).find(
@@ -283,12 +324,25 @@ export default function MyInspection() {
                 <h3 className="text-lg font-bold text-gray-900">Your Properties</h3>
                 <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{properties.length} properties</span>
               </div>
-              <Button
-                onClick={() => setShowAddPropertyModal(true)}
-                className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
-              >
-                Add New Property
-              </Button>
+              <div className="flex items-center gap-3">
+                {selectedProperties.size > 0 && (
+                  <Button
+                    onClick={handleBulkDelete}
+                    className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Delete Selected ({selectedProperties.size})
+                  </Button>
+                )}
+                <Button
+                  onClick={() => setShowAddPropertyModal(true)}
+                  className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
+                >
+                  Add New Property
+                </Button>
+              </div>
             </div>
             <div className="overflow-x-auto">
               {loading ? (
@@ -299,6 +353,14 @@ export default function MyInspection() {
                 <table className="w-full">
                   <thead className="bg-[#F8FAFC] border-b">
                     <tr>
+                      <th className="text-center py-4 px-4 w-12">
+                        <input
+                          type="checkbox"
+                          checked={properties.length > 0 && selectedProperties.size === properties.length}
+                          onChange={handleSelectAll}
+                          className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
+                        />
+                      </th>
                       <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property ID</th>
                       <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property Name</th>
                       <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Address</th>
@@ -313,6 +375,14 @@ export default function MyInspection() {
                   <tbody className="divide-y divide-gray-50">
                     {properties.map((property) => (
                       <tr key={property._id} className="hover:bg-gray-50/50 transition-colors">
+                        <td className="py-5 px-4 text-center">
+                          <input
+                            type="checkbox"
+                            checked={selectedProperties.has(property._id)}
+                            onChange={() => handleSelectProperty(property._id)}
+                            className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
+                          />
+                        </td>
                         <td className="py-5 px-6 text-center">
                           <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-xs shadow-sm border border-cyan-100/50 inline-block">
                             {property.propertyId}

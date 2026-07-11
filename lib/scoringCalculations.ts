@@ -26,7 +26,8 @@ export const LIFE_THREATENING_60_POINTS = 60.00;
 export const LIFE_THREATENING_30_POINTS = 30.00;
 export const LIFE_THREATENING_ZERO = 0.000;
 
-export const POSSIBLE_SCORE = 25; // Fixed 25-point base score per NSPIRE standards
+export const UNIT_POSSIBLE_SCORE = 50; // Fixed 50-point base score for Unit inspections per NSPIRE standards
+export const POSSIBLE_SCORE = UNIT_POSSIBLE_SCORE; // Alias for backward compatibility
 
 export interface ScoringInput {
     totalSamples: number;      // n - total number of inspected units/samples

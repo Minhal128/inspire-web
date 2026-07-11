@@ -36,6 +36,8 @@ export default function Dashboard() {
   const [properties, setProperties] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+  const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
+  const [showBulkDelete, setShowBulkDelete] = useState(false)
 
   // Location data from country-state-city package
   const [countries, setCountries] = useState<any[]>([])
@@ -220,6 +222,46 @@ export default function Dashboard() {
     }
   }
 
+  const handleSelectAll = () => {
+    if (selectedProperties.size === properties.length) {
+      // Deselect all
+      setSelectedProperties(new Set())
+    } else {
+      // Select all
+      setSelectedProperties(new Set(properties.map(p => p._id)))
+    }
+  }
+
+  const handleSelectProperty = (propertyId: string) => {
+    const newSelected = new Set(selectedProperties)
+    if (newSelected.has(propertyId)) {
+      newSelected.delete(propertyId)
+    } else {
+      newSelected.add(propertyId)
+    }
+    setSelectedProperties(newSelected)
+  }
+
+  const handleBulkDelete = async () => {
+    if (selectedProperties.size === 0) {
+      toast.warning("Please select properties to delete", { position: "top-right" })
+      return
+    }
+
+    if (confirm(`Are you sure you want to remove ${selectedProperties.size} ${selectedProperties.size === 1 ? 'property' : 'properties'}?`)) {
+      try {
+        const response = await propertiesAPI.bulkDelete(Array.from(selectedProperties))
+        if (response.success) {
+          toast.success(response.message || `${selectedProperties.size} ${selectedProperties.size === 1 ? 'property' : 'properties'} removed successfully`, { position: "top-right" })
+          setSelectedProperties(new Set())
+          fetchProperties()
+        }
+      } catch (error: any) {
+        toast.error(error.message || "Failed to remove properties")
+      }
+    }
+  }
+
   const handleAddPropertyNext = (data: any) => {
     // Store the property data and show the building division modal
     const propData = Array.isArray(data) ? data[0] : data
@@ -380,6 +422,17 @@ export default function Dashboard() {
           >
             Add New Property
           </Button>
+          {selectedProperties.size > 0 && (
+            <Button
+              onClick={handleBulkDelete}
+              className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              Delete Selected ({selectedProperties.size})
+            </Button>
+          )}
         </div>
 
 
@@ -402,6 +455,14 @@ export default function Dashboard() {
               <table className="w-full min-w-[1000px]">
                 <thead className="bg-gray-50">
                   <tr className="border-b border-gray-200">
+                    <th className="text-center py-3 px-3 w-12">
+                      <input
+                        type="checkbox"
+                        checked={properties.length > 0 && selectedProperties.size === properties.length}
+                        onChange={handleSelectAll}
+                        className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
+                      />
+                    </th>
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Property ID</th>
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Property Name</th>
                     <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Address</th>
@@ -420,6 +481,14 @@ export default function Dashboard() {
                       key={property._id || property.propertyId}
                       className="hover:bg-gray-50 transition-colors duration-150"
                     >
+                      <td className="py-3 px-3 text-center">
+                        <input
+                          type="checkbox"
+                          checked={selectedProperties.has(property._id)}
+                          onChange={() => handleSelectProperty(property._id)}
+                          className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
+                        />
+                      </td>
                       <td className="py-3 px-3 text-center">
                         <span className="text-blue-600 font-medium text-xs bg-blue-50 px-2 py-1 rounded truncate block mx-auto w-fit">
                           {property.propertyId}

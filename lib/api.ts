@@ -296,6 +296,13 @@ export const propertiesAPI = {
     });
   },
 
+  bulkDelete: async (propertyIds: string[]) => {
+    return apiRequest<{ success: boolean; message: string; deletedCount: number }>(`/api/properties/bulk-delete`, {
+      method: 'POST',
+      body: JSON.stringify({ propertyIds }),
+    });
+  },
+
   setReadyForInspection: async (id: string) => {
     return apiRequest<{ success: boolean; message: string; property: any }>(
       `/api/properties/${id}/ready`,
