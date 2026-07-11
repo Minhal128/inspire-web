@@ -941,6 +941,14 @@ export default function InspectionCategoryPage() {
                 const unitVal = getCurrentItemUnit();
                 const def = selectedDeficiency;
                 const newFindingId = `DEF-${Date.now()}`;
+                
+                // Get Standard and Inspection Protocol from JSON data
+                const standardProtocolData = getInspectionStandardAndProtocol(
+                    currentSection as 'outside' | 'inside' | 'unit',
+                    odForm.category,
+                    def.selected
+                );
+                
                 const newFinding = {
                     id: newFindingId,
                     imageUri: photos[0],
@@ -955,6 +963,8 @@ export default function InspectionCategoryPage() {
                     repairBy: def.repairBy || odForm.repairBy || '30 Days',
                     codeAndCompliance: def.codeAndCompliance || odForm.codeAndCompliance,
                     notes: odForm.note,
+                    standard: standardProtocolData?.standard || '',
+                    inspectionProtocol: standardProtocolData?.inspectionProtocol || '',
                     nspireCode: def.id || analysisResult?.nspireCode || 'HS-12',
                     status: 'Open',
                     timestamp: new Date().toISOString(),
@@ -1920,7 +1930,7 @@ export default function InspectionCategoryPage() {
                                                     }}
                                                     className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
                                                 >
-                                                    INSPECTION PROTOCOL (INTERNATIONAL) ✅
+                                                    INSPECTION PROTOCOL (INTERNATIONAL) 
                                                 </button>
                                             )
                                         })()}
