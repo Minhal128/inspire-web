@@ -27,7 +27,7 @@ import { getSamplingRequirements } from "@/lib/unitSamplingService"
 import { toast } from "react-toastify"
 import { Search, ChevronDown, ChevronUp, ChevronRight, Plus, Filter, ArrowUpDown, MoreHorizontal, Camera, X, ChevronLeft, CheckCircle2, FileText, User, Grid, Clock, Video, Monitor, Image as ImageIcon, Laptop, Tablet, Pencil, Check } from "lucide-react";
 
-import { OUTSIDE_ITEMS, INSIDE_ITEMS, UNIT_ITEMS } from "@/lib/inspectionData";
+import { OUTSIDE_ITEMS, INSIDE_ITEMS, UNIT_ITEMS, getInspectionStandardAndProtocol } from "@/lib/inspectionData";
 
 const outsideItemsList = OUTSIDE_ITEMS.map(item => `${item.id}. ${item.name}`);
 const insideItemsList = INSIDE_ITEMS.map(item => `${item.id}. ${item.name}`);
@@ -207,6 +207,7 @@ export default function InspectionCategoryPage() {
     const generalGalleryInputRef = useRef<HTMLInputElement>(null);
     const [modalStep, setModalStep] = useState(1); // 1: Add New, 2: Form, 3: Selection (Selected/Detail/Criteria)
     const [isHowToInspectOpen, setIsHowToInspectOpen] = useState(false);
+    const [inspectModalType, setInspectModalType] = useState<'standard' | 'protocol' | null>(null); // Track which modal is open
     const [currentModalItem, setCurrentModalItem] = useState<string | null>(null);
     const [selectionType, setSelectionType] = useState<'selected' | 'detail' | 'criteria'>('selected');
     const [detailFilterName, setDetailFilterName] = useState<string | null>(null);
@@ -1880,7 +1881,7 @@ export default function InspectionCategoryPage() {
 
                                     {/* 3. INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How To Inspect ? ✅</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">STANDARD ✅</label>
                                         {(() => {
                                             if (!selectedDeficiency) {
                                                 return (
@@ -1899,7 +1900,7 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                     className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
                                                 >
-                                                    How To Inspect ? ✅
+                                                    STANDARD ✅
                                                 </button>
                                             )
                                         })()}
@@ -2195,47 +2196,91 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How To Inspect ? ✅</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">STANDARD ✅</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
-                        <div className="p-6 md:p-8 overflow-y-auto space-y-2 custom-scrollbar">
+                        <div className="p-6 md:p-8 overflow-y-auto space-y-4 custom-scrollbar">
                             {(() => {
-                                const activeGuide = guideDeficiency || selectedDeficiency || null;
-                                const guideText = activeGuide
-                                    ? lookupCodeReference(currentSection, currentModalItem || '', activeGuide.selected)
-                                    : ''
-                                const fallbackText = activeGuide?.codeAndCompliance || 'No inspection guide available.'
-                                const content = guideText || fallbackText
+                                // Get Standard and Inspection Protocol from JSON data
+                                const standardData = currentModalItem && currentSection
+                                    ? getInspectionStandardAndProtocol(currentSection, currentModalItem, selectedDeficiency?.selected || undefined)
+                                    : null;
 
-                                return content.split('\n').map((line, i) => {
-                                    const trimmed = line.trim()
-                                    if (!trimmed) return <div key={i} className="h-1" />
-
-                                    const isHeader = /^[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}]/u.test(trimmed)
-                                    if (isHeader) {
-                                        return (
-                                            <p key={i} className="font-black text-[#0E7490] mt-3 first:mt-0 text-sm">
-                                                {trimmed}
-                                            </p>
-                                        )
-                                    }
-
-                                    if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
-                                        return (
-                                            <p key={i} className="text-gray-700 ml-3 font-medium text-sm">
-                                                {trimmed}
-                                            </p>
-                                        )
-                                    }
-
+                                if (!standardData || (!standardData.standard && !standardData.inspectionProtocol)) {
                                     return (
-                                        <p key={i} className="text-gray-600 font-normal text-sm">
-                                            {trimmed}
+                                        <p className="text-gray-500 text-sm italic">
+                                            No standard or inspection protocol available for this item.
                                         </p>
-                                    )
-                                })
+                                    );
+                                }
+
+                                return (
+                                    <>
+                                        {/* Standard Section */}
+                                        {standardData.standard && (
+                                            <div className="space-y-2">
+                                                <h4 className="font-black text-[#0E7490] text-base uppercase tracking-wide">
+                                                    📋 Standard
+                                                </h4>
+                                                <div className="bg-blue-50 border-l-4 border-[#0E7490] p-4 rounded-r-lg">
+                                                    {standardData.standard.split('\n').map((line, i) => {
+                                                        const trimmed = line.trim();
+                                                        if (!trimmed) return <div key={i} className="h-2" />;
+                                                        return (
+                                                            <p key={i} className="text-gray-700 text-sm leading-relaxed mb-2 last:mb-0">
+                                                                {trimmed}
+                                                            </p>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Inspection Protocol Section */}
+                                        {standardData.inspectionProtocol && (
+                                            <div className="space-y-2">
+                                                <h4 className="font-black text-[#F84B5F] text-base uppercase tracking-wide">
+                                                    ✅ Inspection Protocol
+                                                </h4>
+                                                <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                                                    {standardData.inspectionProtocol.split('\n').map((line, i) => {
+                                                        const trimmed = line.trim();
+                                                        if (!trimmed) return <div key={i} className="h-1" />;
+
+                                                        // Header detection (lines with emoji or numbered sections)
+                                                        const isHeader = /^[\d]+\./.test(trimmed) || /^[•\-]/.test(trimmed) || /^[A-Z][a-z]+:/.test(trimmed);
+                                                        
+                                                        if (isHeader) {
+                                                            return (
+                                                                <p key={i} className="font-bold text-gray-900 mt-3 first:mt-0 text-sm">
+                                                                    {trimmed}
+                                                                </p>
+                                                            );
+                                                        }
+
+                                                        // Bullet points
+                                                        if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
+                                                            return (
+                                                                <p key={i} className="text-gray-700 ml-4 text-sm leading-relaxed">
+                                                                    {trimmed}
+                                                                </p>
+                                                            );
+                                                        }
+
+                                                        // Regular text
+                                                        return (
+                                                            <p key={i} className="text-gray-600 text-sm leading-relaxed">
+                                                                {trimmed}
+                                                            </p>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </>
+                                );
                             })()}
                         </div>
                         <div className="p-4 border-t bg-gray-50">

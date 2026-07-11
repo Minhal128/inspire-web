@@ -27,7 +27,7 @@ import { getSamplingRequirements } from "@/lib/unitSamplingService"
 import { toast } from "react-toastify"
 import { Search, ChevronDown, ChevronUp, ChevronRight, Plus, Filter, ArrowUpDown, MoreHorizontal, Camera, X, ChevronLeft, CheckCircle2, FileText, User, Grid, Clock, Video, Monitor, Image as ImageIcon, Laptop, Tablet, Pencil, Check } from "lucide-react";
 
-import { OUTSIDE_ITEMS, INSIDE_ITEMS, UNIT_ITEMS } from "@/lib/inspectionData";
+import { OUTSIDE_ITEMS, INSIDE_ITEMS, UNIT_ITEMS, getInspectionStandardAndProtocol } from "@/lib/inspectionData";
 
 const outsideItemsList = OUTSIDE_ITEMS.map(item => `${item.id}. ${item.name}`);
 const insideItemsList = INSIDE_ITEMS.map(item => `${item.id}. ${item.name}`);
@@ -1883,7 +1883,7 @@ export default function InspectionCategoryPage() {
 
                                     {/* 3. INSPECT */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">How To Inspect ? ✅</label>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">STANDARD ✅</label>
                                         {(() => {
                                             if (!selectedDeficiency) {
                                                 return (
@@ -1902,7 +1902,7 @@ export default function InspectionCategoryPage() {
                                                     onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                     className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
                                                 >
-                                                    How To Inspect ? ✅
+                                                    STANDARD ✅
                                                 </button>
                                             )
                                         })()}
@@ -2198,7 +2198,7 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">How To Inspect ? ✅</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">STANDARD ✅</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>

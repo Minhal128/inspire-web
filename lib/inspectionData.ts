@@ -1,6 +1,7 @@
 // Inspection data for NSPIRE compliance
 import { ALL_UNIT_CATEGORIES } from './insideAppData';
 import { ALL_INSIDE_CATEGORIES } from './unitAppData';
+import inspectionDeficiencies from './inspectionDeficiencies.json';
 
 export const UNIT_LOCATIONS = [
   'Attic/Loft',
@@ -33,6 +34,8 @@ export const UNIT_LOCATIONS = [
 export interface InspectionItem {
   id: string;
   name: string;
+  standard?: string;
+  inspectionProtocol?: string;
   hasSelectAll?: boolean;
 }
 
@@ -102,4 +105,61 @@ export interface InspectionSession {
   };
   startedAt: number;
   completedAt?: number;
+}
+
+// Helper function to get Standard and Inspection Protocol for a deficiency
+export function getInspectionStandardAndProtocol(
+  section: 'outside' | 'inside' | 'unit',
+  categoryName: string,
+  deficiencyName?: string
+): { standard: string; inspectionProtocol: string } | null {
+  const data = inspectionDeficiencies[section];
+  if (!data) return null;
+  
+  // Clean category name for matching (remove number prefix like "1. ")
+  const cleanCategory = categoryName.replace(/^\d+\.\s*/, '').trim().toLowerCase();
+  
+  // If deficiency name is provided, try to match by deficiency first
+  if (deficiencyName) {
+    const cleanDeficiency = deficiencyName.trim().toLowerCase();
+    
+    // Try exact match on deficiencySelected
+    let match = data.find((item: any) => {
+      const itemCleanCategory = item.category.replace(/^\d+\.\s*/, '').trim().toLowerCase();
+      const itemCleanDeficiency = item.deficiencySelected.trim().toLowerCase();
+      return itemCleanCategory === cleanCategory && itemCleanDeficiency === cleanDeficiency;
+    });
+    
+    // If no exact match, try partial match
+    if (!match) {
+      match = data.find((item: any) => {
+        const itemCleanCategory = item.category.replace(/^\d+\.\s*/, '').trim().toLowerCase();
+        const itemCleanDeficiency = item.deficiencySelected.trim().toLowerCase();
+        return (itemCleanCategory === cleanCategory || itemCleanCategory.includes(cleanCategory) || cleanCategory.includes(itemCleanCategory)) 
+          && (itemCleanDeficiency.includes(cleanDeficiency) || cleanDeficiency.includes(itemCleanDeficiency));
+      });
+    }
+    
+    if (match) {
+      return {
+        standard: match.standard || '',
+        inspectionProtocol: match.inspectionProtocol || ''
+      };
+    }
+  }
+  
+  // Fallback: match by category only and return first deficiency in that category
+  const match = data.find((item: any) => {
+    const itemCleanCategory = item.category.replace(/^\d+\.\s*/, '').trim().toLowerCase();
+    return itemCleanCategory === cleanCategory || itemCleanCategory.includes(cleanCategory) || cleanCategory.includes(itemCleanCategory);
+  });
+  
+  if (match) {
+    return {
+      standard: match.standard || '',
+      inspectionProtocol: match.inspectionProtocol || ''
+    };
+  }
+  
+  return null;
 }
