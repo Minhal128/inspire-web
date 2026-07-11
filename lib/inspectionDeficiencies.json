@@ -57,6 +57,13 @@
       "inspectionProtocol": ""
     },
     {
+      "category": "4. Door",
+      "deficiencySelected": "The garage door has a hole",
+      "deficiencyDetail": "The garage door has a hole. Garage door has a hole of any size that penetrates through to the interior.",
+      "standard": "DEFICIENCY CRITERIA: Garage door has a hole of any size that penetrates through to the interior.",
+      "inspectionProtocol": ""
+    },
+    {
       "category": "5. Drain",
       "deficiencySelected": "Drain",
       "deficiencyDetail": "The drain is fully clogged. Standing water is present over the floor drain.",
@@ -68,6 +75,20 @@
       "deficiencySelected": "Site Drainage",
       "deficiencyDetail": "Erosion is present. Or exposed the footer, or, when more than 2 feet from the built environment, is deep enough to potentially undermine supporting soil as determined by the inspector.",
       "standard": "DEFICIENCY CRITERIA: Erosion is present, and the footer is exposed. OR Erosion is more than 2 feet away from the built environment and its depth is equal to or greater than its measured distance from the built environment, and the inspector believes it may undermine the supporting soil.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "5. Drain",
+      "deficiencySelected": "Grate is not secure or does not cover the site's drainage systems at the collection point",
+      "deficiencyDetail": "Grate is not secure or does not cover the site's drainage systems at the collection point.",
+      "standard": "DEFICIENCY CRITERIA: Grate is not secure or does not cover the site drainage system’s collection point.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "5. Drain",
+      "deficiencySelected": "Water runoff is unable to flow through the site drainage system",
+      "deficiencyDetail": "Water runoff is unable to flow through the site drainage system.",
+      "standard": "DEFICIENCY CRITERIA: Standing water is present above the outflow pipe entrance. OR Drainage is blocked such that the inspector believes water is unable to drain in the event of precipitation.",
       "inspectionProtocol": ""
     },
     {
@@ -83,6 +104,20 @@
       "deficiencyDetail": "Electrical systems are deficient if conductors lack proper insulation or enclosure—such as exposed wiring, open ports, or missing covers—or if there’s an opening or gap larger than 1/2 inch.",
       "standard": "DEFICIENCY CRITERIA: Electrical conductor is not enclosed or properly insulated (e.g., damaged sheathing, open port, missing knockout, missing outlet or switch cover, missing breaker or fuse).  OR. An opening or gap is present and measures greater than ½”",
       "inspectionProtocol": "International (ICC) Protocol – Exterior Electrical Inspection\n2. Exposed Conductors & Wiring (NEC 300)\nInspect:\n•\tNo exposed live conductors\n•\tNo damaged insulation (cracked, melted, frayed)\n•\tNo open junction boxes\n•\tNo loose or hanging wiring\n•\tNo wiring contacting water or soil\n•\tConduit intact (no breaks, rust, missing sections)\n•\tNo makeshift wiring (extension cords used as permanent wiring)\nHazard Severity:\n•\tExposed live wiring → Immediate Hazard\n•\tWater + electrical → Immediate Hazard\n•\tDamaged insulation → Severe\n3. Exterior Outlets (Receptacles) (NEC 406.9)\nInspect:\n•\tWeather resistant (WR) receptacles installed\n•\tIn use (bubble) covers present and intact\n•\tNo broken or missing covers\n•\tNo burn marks or discoloration\n•\tOutlet firmly mounted\n•\tNo exposed wiring behind outlet\n•\tGFCI protection present where required (all exterior outlets)\nHazard Severity:\n•\tMissing in use cover → Immediate Hazard\n•\tMissing required GFCI → Immediate Hazard\n•\tBurn marks indicating overheating → Immediate Hazard\n4. GFCI Protection (NEC 210.8)\ndo not reset tripped breakers\nInspect:\n•\tGFCI present at all exterior outlets\n•\tTEST button trips power\n•\tRESET restores power\n•\tNo downstream outlets without protection\n•\tNo damaged or missing GFCI buttons\n•\tNo moisture intrusion inside GFCI housing\nHazard Severity:\n•\tFailed GFCI test → Immediate Hazard\n•\tMissing required GFCI → Immediate Hazard\n5. Exterior Switches & Controls (NEC 404)\nInspect:\n•\tWeatherproof covers present\n•\tNo cracked or missing cover plates\n•\tNo buzzing, arcing, or delay\n•\tNo exposed wiring\n•\tSwitch controls correct fixture\n•\tNo moisture inside switch housing\nHazard Severity:\n•\tSwitch arcing → Immediate Hazard\n•\tMissing cover plate → Immediate Hazard\n6. Exterior Service Panel / Disconnect (NEC 110 / 230)\nInspect:\n•\tPanel cover present and secure\n•\tNo open knockouts\n•\tBreakers labeled\n•\tNo double tapped breakers (unless rated)\n•\tNo scorch marks or overheating\n•\tNo water intrusion\n•\tWorking clearance maintained (30\" wide, 36\" deep)\n•\tNo rust compromising enclosure integrity\n•\tNo vegetation obstructing access\nHazard Severity:\n•\tMissing panel cover → Immediate Hazard\n•\tOpen energized components → Immediate Hazard\n•\tWater intrusion → Immediate Hazard"
+    },
+    {
+      "category": "7. Electrical",
+      "deficiencySelected": "The AFCI outlet or AFCI breaker does not reset, and if damaged, it is considered as exposed conducto",
+      "deficiencyDetail": "The AFCI outlet or AFCI breaker does not reset, and if damaged, it is considered as exposed conductor.(i.e., overall system or component thereof is not meeting function or purpose).",
+      "standard": "DEFICIENCY CRITERIA: An outlet that is reasonably accessible (i.e., can be reached without moving obstructions, dismantling, destructive measures, or actions that may pose a risk to persons or property) does not have visible damage and testing indicates that it is not energized.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Electrical",
+      "deficiencySelected": "Electrical service panel is not reasonably accessible",
+      "deficiencyDetail": "Electrical service panel is not reasonably accessible.(i.e., it cannot be reached and opened without moving obstructions, dismantling, destructive measures, or actions that may pose a risk to persons or their personal property).",
+      "standard": "DEFICIENCY CRITERIA: Any portion of a visually accessible (i.e., can be reasonably accessed and observed) outlet or switch is damaged (i.e., visibly defective; impacts functionality) such that it may not safely carry or control electrical current at the outlet or switch.",
+      "inspectionProtocol": ""
     },
     {
       "category": "7. Electrical",
@@ -113,11 +148,39 @@
       "inspectionProtocol": ""
     },
     {
+      "category": "7. Electrical",
+      "deficiencySelected": "The overcurrent protection device is contaminated by infestation, paint, or other foreign materials",
+      "deficiencyDetail": "The overcurrent protection device is contaminated by infestation, paint, or other foreign materials.",
+      "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is contaminated (e.g., water, rust, corrosion)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Electrical",
+      "deficiencySelected": "The overcurrent protection device is damaged",
+      "deficiencyDetail": "The overcurrent protection device is damaged.",
+      "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is damaged (i.e., visibly defective; impacts functionality) such that it may not interrupt the circuit during an overcurrent condition.",
+      "inspectionProtocol": ""
+    },
+    {
       "category": "8. Fencing/Gate",
       "deficiencySelected": "Fence and Gate",
       "deficiencyDetail": "Fence components are missing. such as pickets, posts, or panels—create a hole covering 10% or more of a single section’s area.",
       "standard": "DEFICIENCY CRITERIA: Fence components are missing. (i.e., evidence of prior installation, but now not present or is incomplete). resulting in a hole that is approximatley 20% or greater of the area of a single section of fence.",
       "inspectionProtocol": "International (ICC) Protocol – Exterior Fence & Gate Inspection \n1. Scope & Applicability (IPMC §302 / §304)\nInspection applies to:\n•\tPerimeter fences\n•\tPrivacy fences\n•\tSecurity fences\n•\tPool barrier fences\n•\tCourtyard fences\n•\tPedestrian gates\n•\tVehicle access gates\n•\tFire department access gates\nIf no exterior fencing or gates exist → Not Applicable.\n2. Fence Structural Condition\nInspect:\n•\tNo leaning, sagging, or unstable sections\n•\tNo broken, cracked, or missing boards/panels\n•\tNo rust, corrosion, or rot\n•\tNo loose posts or footings\n•\tNo separation from ground or foundation\n•\tNo sharp edges or protruding nails/screws\nHazard Severity:\n•\tLeaning or unstable fence → Immediate Hazard\n•\tSharp edges → Immediate Hazard\n3. Fence Material Condition\nInspect:\n•\tWood: no rot, termite damage, splintering\n•\tMetal: no rust compromising strength\n•\tVinyl: no cracks, holes, or warping\n•\tMasonry: no loose blocks, cracks, or spalling\nHazard Severity:\n•\tStructural deterioration affecting stability → Severe\n4. Gate Operation & Safety\nInspect:\n•\tGate opens/closes smoothly\n•\tNo binding, sticking, or obstruction\n•\tHinges intact and secure\n•\tLatch functional (if required)\n•\tNo excessive force needed\n•\tNo sagging gate causing ground drag\nHazard Severity:\n•\tGate that cannot open (blocking access) → Immediate Hazard\n•\tLoose or falling gate → Immediate Hazard\n5. Security & Access Control\nInspect:\n•\tLocks present and operable (if required)\n•\tNo missing or broken latch hardware\n•\tNo gaps allowing unauthorized access\n•\tNo damaged chain link mesh\n•\tNo cut or removed fence sections\nHazard Severity:\n•\tSecurity breach (missing lock/latch) → Severe\n6. Pool Barrier Fences (IBC §3109 / Local Code)\nInspect:\n•\tMinimum height (typically 48\" or local requirement)\n•\tNo gaps >4 inches\n•\tSelf closing, self latching gate\n•\tLatch height compliant (typically 54\" above grade)\n•\tNo climbable elements within 45\" radius\nHazard Severity:\n•\tNon compliant pool barrier → Immediate Hazard\n7. Vehicle Access Gates\nInspect:\n•\tGate track intact (no bends, obstructions)\n•\tRollers functional\n•\tMotor housing intact (if powered)\n•\tAuto reverse safety functional\n•\tNo exposed wiring\n•\tNo pinch points accessible to public\nHazard Severity:\n•\tAuto reverse failure → Immediate Hazard\n•\tExposed wiring → Immediate Hazard\n8. Fire Department Access Gates (IFC §503–505)\nInspect:\n•\tFire access gate operable without delay\n•\tKnox box or fire department override present (if required)\n•\tNo locked gates blocking emergency access\n•\tNo vegetation obstructing fire lane or gate\nHazard Severity:\n•\tLocked emergency gate → Immediate Hazard\n9. Vegetation & Surrounding Conditions\nInspect:\n•\tNo vegetation growing through fence\n•\tNo tree roots lifting fence posts\n•\tNo vines compromising structure\n•\tNo debris or trash against fence\n•\tNo erosion undermining posts\nHazard Severity:\n•\tVegetation compromising structural stability → Severe"
+    },
+    {
+      "category": "8. Fencing/Gate",
+      "deficiencySelected": "Fence demonstrates signs of collapse",
+      "deficiencyDetail": "Fence demonstrates signs of collapse.",
+      "standard": "DEFICIENCY CRITERIA: Fence demonstrates signs of collapse.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Fencing/Gate",
+      "deficiencySelected": "The gate does not open, close, latch, or lock",
+      "deficiencyDetail": "The gate does not open, close, latch, or lock.",
+      "standard": "DEFICIENCY CRITERIA: The gate does not open, close, catch, or lock. OR\nThe gate will not close",
+      "inspectionProtocol": ""
     },
     {
       "category": "9. Fire Safety",
@@ -142,6 +205,20 @@
     },
     {
       "category": "9. Fire Safety",
+      "deficiencySelected": "The fire extinguisher pressure gauge reads over or undercharged",
+      "deficiencyDetail": "The fire extinguisher pressure gauge reads over or undercharged.",
+      "standard": "DEFICIENCY CRITERIA: Pressure gauge indicates that the fire extinguisher is over or under charged.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "9. Fire Safety",
+      "deficiencySelected": "The fire extinguisher tag is missing or illegible or expired",
+      "deficiencyDetail": "The fire extinguisher tag is missing or illegible or expired.",
+      "standard": "DEFICIENCY CRITERIA: The date on the service tag of any fire extinguisher has exceeded one year.\nOR\nThe fire extinguisher tag is missing or illegible.\nOR\nA non-chargeable or disposable fire extinguisher is more than 12 years old (based on manufacture date).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "9. Fire Safety",
       "deficiencySelected": "Flammable and Combustible Item",
       "deficiencyDetail": "The flammable or combustible material is on or within 3 feet of an ignition source.",
       "standard": "DEFICIENCY CRITERIA: Flammable or combustible material is on or near an ignition source.\nOR\nImproperly stored chemicals.",
@@ -152,6 +229,27 @@
       "deficiencySelected": "Sprinkler Assembly",
       "deficiencyDetail": "The sprinkler assembly component is damaged, inoperable, or missing, and it is detrimental to performance.",
       "standard": "DEFICIENCY CRITERIA: Sprinkler assembly component is damaged (i.e., visibly defective; impacts functionality), inoperable (i.e., overall system or component thereof not meeting function or purpose; with or without visible damage), or missing (i.e., evidence of prior installation, but now not present or is incomplete) and it is detrimental to performance.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "9. Fire Safety",
+      "deficiencySelected": "Sprinkler head assembly has evidence of corrosion",
+      "deficiencyDetail": "Sprinkler head assembly has evidence of corrosion.",
+      "standard": "DEFICIENCY CRITERIA: Sprinkler assembly has evidence of corrosion",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "9. Fire Safety",
+      "deficiencySelected": "Sprinkler assembly has evidence of debris, paint, or foreign material that covers 50% or more of the",
+      "deficiencyDetail": "Sprinkler assembly has evidence of debris, paint, or foreign material that covers 50% or more of the sprinkler assembly or 50% or more of the glass bulb on the sprinkler assembly.",
+      "standard": "DEFICIENCY CRITERIA: Foreign material covers 75% or more of the sprinkler assembly.\n OR\n Foreign material covers 75% or more of the glass bulb",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "9. Fire Safety",
+      "deficiencySelected": "Sprinkler head assembly is obstructed by an item, object, or encasement within 18 inches of the spri",
+      "deficiencyDetail": "Sprinkler head assembly is obstructed by an item, object, or encasement within 18 inches of the sprinkler head.",
+      "standard": "DEFICIENCY CRITERIA: Sprinkler head assembly is obstructed by item, object, or encasement within 18 inches of the sprinkler head.",
       "inspectionProtocol": ""
     },
     {
@@ -289,9 +387,23 @@
     },
     {
       "category": "17. Parking lots, Driveways, Roads",
+      "deficiencySelected": "More than 3 inches of water have accumulated in the parking lot, and 5% or more of the area is unusa",
+      "deficiencyDetail": "More than 3 inches of water have accumulated in the parking lot, and 5% or more of the area is unusable.",
+      "standard": "DEFICIENCY CRITERIA: More than 3 inches of water have accumulated in a parking lot, and 5% or more is unusable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Parking lots, Driveways, Roads",
       "deficiencySelected": "Private Roads and Driveways",
       "deficiencyDetail": "Road or driveway access to the property is blocked or impassable for vehicles.",
       "standard": "DEFICIENCY CRITERIA: Road or driveway access to the property is blocked or impassable for vehicles.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Parking lots, Driveways, Roads",
+      "deficiencySelected": "Any one pothole is at least 4 inches deep and covers an area of 1 square foot or greater",
+      "deficiencyDetail": "Any one pothole is at least 4 inches deep and covers an area of 1 square foot or greater. The driveway is not functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Any one pothole is 4 inches deep and 1 square foot or greater",
       "inspectionProtocol": ""
     },
     {
@@ -302,13 +414,6 @@
       "inspectionProtocol": "International (ICC) Protocol – Outside Exterior Paint + Lead Based Hazard Inspection\n1. Exterior Paint Condition (IPMC §304.2)\nInspect:\n•\tNo peeling, flaking, chipping, blistering\n•\tNo bare wood or exposed substrate\n•\tNo chalking or powdering\n•\tNo rust on metal components\n•\tNo paint loss from moisture intrusion\nHazard Severity:\n•\tPeeling/chipping paint → Severe\n•\tBare wood → Severe\n•\tPaint loss exposing structural deterioration → Immediate Hazard\n3. Lead Based Paint Risk Indicators (EPA / HUD LSHR)\nInspect:\n•\tDeteriorated paint on pre 1978 structures\n•\tPaint debris on ground\n•\tPaint chips in soil or landscaping\n•\tFriction surfaces (doors, windows) with paint wear\n•\tImpact surfaces (rails, stairs) with paint damage\n•\tSoil within 3 feet of building for paint chips\nHazard Severity:\n•\tDeteriorated paint on pre 1978 building → Immediate Hazard\n•\tPaint chips in soil → Immediate Hazard\n4. Moisture & Weather Exposure (IPMC §304.1)\nInspect:\n•\tNo water intrusion causing paint failure\n•\tNo damaged caulking or sealants\n•\tNo rot or deterioration under paint\n•\tNo mold like substance on painted surfaces\nHazard Severity:\n•\tMoisture damaged paint exposing substrate → Immediate Hazard"
     },
     {
-      "category": "18.  Paint - Potential Lead-Based Paint Hazards – Visual Assessment",
-      "deficiencySelected": "Paint outside on a target property is deteriorated, above the level required for lead-safe work practices by a lead-certified firm, and passing clearance.",
-      "deficiencyDetail": "Paint is deteriorated. (e.g., peeling, chipping, chalking,or detached from the substrate)For large surface areas in the Unit, deteriorated paint is less than 20 square feet (“de minimis”).",
-      "standard": "DEFICIENCY CRITERIA: Paint is deteriorated (e.g., peeling, chipping, chalking, cracking, or detached from the substrate). Deteriorated paint is less than or equal to 20 square feet (“de minimis”).",
-      "inspectionProtocol": ""
-    },
-    {
       "category": "19. Railings",
       "deficiencySelected": "Guardrail",
       "deficiencyDetail": "A guardrail is deficient if it’s missing or not installed along a walking surface over 30 inches above the floor or grade in areas accessible to residents. Limiting its safe use",
@@ -317,9 +422,37 @@
     },
     {
       "category": "19. Railings",
+      "deficiencySelected": "A guardrail is deficient if it’s missing critical components, visibly damaged, under 30 inches in he",
+      "deficiencyDetail": "A guardrail is deficient if it’s missing critical components, visibly damaged, under 30 inches in height, or not securely attached enough to prevent fall hazards. The guardrail is functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Guardrail is missing functional component(s) (i.e., a component that is critical to the guardrail protecting from fall hazards). \nOR Guardrail is damaged (i.e., visibly defective; impacts functionality).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "19. Railings",
       "deficiencySelected": "Hanrail",
       "deficiencyDetail": "Handrail is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
       "standard": "DEFICIENCY CRITERIA: Handrail is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "19. Railings",
+      "deficiencySelected": "Handrail is not functionally adequate",
+      "deficiencyDetail": "Handrail is not functionally adequate. The handrail is deficient if it cannot be reasonably grasped for support, is not continuous along the full flight of stairs, or is installed at a height outside the 28–42 inch range.",
+      "standard": "DEFICIENCY CRITERIA: Handrail is not functionally adequate (i.e., it cannot reasonably be grasped by hand to provide stability or support when ascending or descending stairways).\n OR\n The handrail is not continuous for the full length of each stair flight.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "19. Railings",
+      "deficiencySelected": "Handrail is not installed where required",
+      "deficiencyDetail": "Handrail is not installed where required.",
+      "standard": "DEFICIENCY CRITERIA: 4 or more stair risers are present, and a handrail is not installed.  Or a ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches, and a handrail is not installed on both sides.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "19. Railings",
+      "deficiencySelected": "Handrail is not secured",
+      "deficiencyDetail": "Handrail is not secured. There is movement in the anchors of the handrail.",
+      "standard": "DEFICIENCY CRITERIA: There is movement in the anchors of the handrail.",
       "inspectionProtocol": ""
     },
     {
@@ -415,9 +548,30 @@
     },
     {
       "category": "24. WALL",
+      "deficiencySelected": "Retaining wall is partially or completely collapsed",
+      "deficiencyDetail": "Retaining wall is partially or completely collapsed.",
+      "standard": "DEFICIENCY CRITERIA: The Retaining wall is wholly or partially collapsed.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. WALL",
       "deficiencySelected": "Wall - Exterior",
       "deficiencyDetail": "Exterior wall component(s) is not functionally adequate (i.e., impacts the integrity of the wall assembly or building envelope, or does not allow exterior wall to separate the accommodation inside from that outside).",
       "standard": "DEFICIENCY CRITERIA: Exterior wall component(s) is not functionally adequate (i.e., impacts the integrity of the wall assembly or building envelope, or does not allow the exterior wall to separate the accommodation inside from that outside)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. WALL",
+      "deficiencySelected": "Cumulatively, 1 square foot or more of an exterior wall covering is missing (i",
+      "deficiencyDetail": "Cumulatively, 1 square foot or more of an exterior wall covering is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
+      "standard": "DEFICIENCY CRITERIA: Cumulatively, 1 square foot or more of an exterior wall covering is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. WALL",
+      "deficiencySelected": "Cumulatively, there is 10 square feet or more of peeling paint on an exterior wall",
+      "deficiencyDetail": "Cumulatively, there is 10 square feet or more of peeling paint on an exterior wall",
+      "standard": "DEFICIENCY CRITERIA: Cumulatively, there is 10 square feet or more of peeling paint on an exterior wall built after 1978.",
       "inspectionProtocol": ""
     },
     {
@@ -564,9 +718,114 @@
     },
     {
       "category": "7. Door",
+      "deficiencySelected": "Entry door component is damage inoperable or missing and it does not limit the door’s ability to pro",
+      "deficiencyDetail": "Entry door component is damage inoperable or missing and it does not limit the door’s ability to provide privacy or protection from weather or infestation.",
+      "standard": "DEFICIENCY CRITERIA: Entry door component is damaged (i.e., visibly defective; impacts functionality) and it does not limit the door’s ability to provide privacy or protection from weather or infestation.\n OR \nEntry door component is inoperable (i.e., component is not meeting function or purpose, with or without visible damage), and it does not limit the door’s ability to provide privacy or protection from weather or infestation. \nOR\n Entry door component is missing (i.e., evidence of prior installation, but it is now not present or is incomplete) and it does not limit the door’s ability to provide privacy or protection from weather or infestation",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "The entry door frame, threshold, or trim is damaged",
+      "deficiencyDetail": "The entry door frame, threshold, or trim is damaged.",
+      "standard": "DEFICIENCY CRITERIA: The entry door frame, threshold, or trim is damaged (i.e. visibly defective; impacts functionality).\nOR\nThe entry door frame, threshold, or trim is missing (i.e. evidence of prior installation, but now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Entry door is missing",
+      "deficiencyDetail": "Entry door is missing",
+      "standard": "DEFICIENCY CRITERIA: The entry door is missing.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Entry door seal, gasket, or stripping is damaged, inoperable or missing",
+      "deficiencyDetail": "Entry door seal, gasket, or stripping is damaged, inoperable or missing.",
+      "standard": "DEFICIENCY I: ENTRY DOOR SEAL, GASKET, OR STRIPPING IS DAMAGED, INOPERABLE, OR MISSING\nDEFICIENCY CRITERIA: The entry door seal, gasket, or stripping is:\n- damaged (i.e. visibly defective; impacts functionality);\n- inoperable (i.e. overall system or component thereof not meeting function / purpose; with or without visible damage); or\n- missing (i.e. evidence of prior installation, but now not present or is incomplete).\nAND ONE OF THE FOLLOWING CONDITIONS:\nCondition 1:\n- General door type: Results in a gap of ¼ inch wide or greater between the door slab and the stop molding on the jamb, or the jamb itself, or between the bottom of the door and the threshold or floor AND permits light around the closed door.\n- Special door type: Results in a gap of ¼ inch wide or greater around or under the door or where the doors meet AND permits light around the closed door or where the doors meet.\nCondition 2:\n- General door type: There is evidence of water penetrating (e.g. water damage or dry rot) around or under the door.\n- Special door type: There is evidence of water penetrating (e.g. water damage or dry rot) around or under the door or where the doors meet.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "The self-closing mechanism is deficient if it is damaged, missing, or fails to fully close the door ",
+      "deficiencyDetail": "The self-closing mechanism is deficient if it is damaged, missing, or fails to fully close the door and engage the latch.",
+      "standard": "DEFICIENCY CRITERIA: The self-closing mechanism is damaged (i.e., visibly defective; impacts functionality).\nOR\nThe self-closing mechanism does not pull the door closed and engage the latch.\nOR\nThe self-closing mechanism is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Door surface delaminated or separated",
+      "deficiencyDetail": "Door surface delaminated or separated.",
+      "standard": "There is delamination or separation of the door surface 2 inches wide or greater. Or There is delamination or separation that affects the integrity of the door.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Entry door will not close (does not function adequately)",
+      "deficiencyDetail": "Entry door will not close (does not function adequately)",
+      "standard": "DEFICIENCY CRITERIA: Entry door does not close (i.e., door seats in frame).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Entry door will not open",
+      "deficiencyDetail": "Entry door will not open.(does not function adequately)",
+      "standard": "DEFICIENCY CRITERIA: Entry door does not open.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Hole , crack, split, separation, or hole1/4 inch or greater in diameter penetrating through the door",
+      "deficiencyDetail": "Hole , crack, split, separation, or hole1/4 inch or greater in diameter penetrating through the door or door sides.",
+      "standard": "DEFICIENCY CRITERIA: A hole 1/4\" or greater in diameter that penetrates all the way through the door.\nOR\nA split or crack 1/4\" or greater in width that penetrates all the way through the door.\nOR\nA hole or a crack with separation is present, or the glass is missing within the door, side lites, or transom.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
       "deficiencySelected": "Door – Fire Labeled",
       "deficiencyDetail": "An object is present that may prevent the fire-labeled door from closing  and latching or self-closing and latching.",
       "standard": "DEFICIENCY CRITERIA: An object is present that may prevent the fire labeled door from closing (i.e., door seats in frame) and latching. \nOR\n An object is present that may prevent the fire labeled door from self-closing (i.e., door seats in frame) and latching\nHEALTH AND",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "A fire-labeled door assembly has a hole of any size",
+      "deficiencyDetail": "A fire-labeled door assembly has a hole of any size. Or assembly is damaged such that its integrity may be compromised.",
+      "standard": "DEFICIENCY CRITERIA: A fire labeled door assembly has a hole of any size.\n OR\n A fire labeled door assembly is damaged (i.e., visibly defective; impacts functionality) such that its integrity may be compromised",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Fire-labeled door can not be secured",
+      "deficiencyDetail": "Fire-labeled door can not be secured. door cannot be secured (i.e., access controlled) by at least one installed lock.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door cannot be secured (i.e., access controlled) by at least 1 installed lock.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Fire labeled door does not close and latch",
+      "deficiencyDetail": "Fire labeled door does not close and latch. OR is damaged or missing such that the door does not self-close ) and latch.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door does not close (i.e., door seats in frame) and latch. OR Fire labeled door self-closing hardware is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but is now not present or is incomplete) such that the door does not self-close (i.e., door seats in frame) and latch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Fire-labeled door does not open",
+      "deficiencyDetail": "Fire-labeled door does not open.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door does not open such that it may limit access between spaces.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Fire-labeled door is missing",
+      "deficiencyDetail": "Fire-labeled door is missing.(i.e., evidence of prior installation, but now not present or is incomplete.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door is missing (i.e., evidence of prior installation, but is now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "Fire-labeled door seal or gasket is damaged",
+      "deficiencyDetail": "Fire-labeled door seal or gasket is damaged.The fire-labeled door seal or gasket is damaged or missing, affecting proper function.",
+      "standard": "DEFICIENCY CRITERIA: fire labeled door seal or gasket is damaged (i.e. visibly defective; impacts functionality).\nOR\nA fire labeled door seal or gasket is missing (i.e. evidence of prior installation, but now not present or is incomplete).",
       "inspectionProtocol": ""
     },
     {
@@ -578,9 +837,23 @@
     },
     {
       "category": "7. Door",
+      "deficiencySelected": "A passage door does not open such that it may limit the resident’s ability to move freely between ro",
+      "deficiencyDetail": "A passage door does not open such that it may limit the resident’s ability to move freely between rooms.",
+      "standard": "DEFICIENCY CRITERIA: A passage door does not open such that it may limit the resident’s ability to move freely between rooms.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
       "deficiencySelected": "Garage Door",
       "deficiencyDetail": "Garage door  does not open, close, or remains closed.",
       "standard": "DEFICIENCY CRITERIA: Door will not open and remain open.\nOR\nDoor will not close and remain closed.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "7. Door",
+      "deficiencySelected": "The garage door has a hole (broken panel or window)",
+      "deficiencyDetail": "The garage door has a hole (broken panel or window).",
+      "standard": "DEFICIENCY CRITERIA: Garage door has a hole of any size that penetrates through to the interior.",
       "inspectionProtocol": ""
     },
     {
@@ -606,6 +879,34 @@
     },
     {
       "category": "10. Electrical",
+      "deficiencySelected": "The outlet does not have visible damage, and testing indicates that it is not energized",
+      "deficiencyDetail": "The outlet does not have visible damage, and testing indicates that it is not energized.",
+      "standard": "DEFICIENCY CRITERIA: An outlet that is reasonably accessible (i.e., can be reached without moving obstructions, dismantling, destructive measures, or actions that may pose a risk to persons or property) does not have visible damage and testing indicates that it is not energized.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
+      "deficiencySelected": "The outlet or switch is damaged",
+      "deficiencyDetail": "The outlet or switch is damaged.",
+      "standard": "DEFICIENCY CRITERIA: Any portion of a visually accessible (i.e., can be reasonably accessed and observed) outlet or switch is damaged (i.e., visibly defective; impacts functionality) such that it may not safely carry or control electrical current at the outlet or switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
+      "deficiencySelected": "Testing of a three-pronged outlet indicates that it is not wired correctly or grounded",
+      "deficiencyDetail": "Testing of a three-pronged outlet indicates that it is not wired correctly or grounded.",
+      "standard": "DEFICIENCY CRITERIA: Testing of a three-pronged outlet that is reasonably accessible (i.e., can be reached without moving obstructions, dismantling, destructive measures, or actions that may pose a risk to persons or property) indicates that it is not properly wired or grounded.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
+      "deficiencySelected": "water is currently in contact with an electrical conductor",
+      "deficiencyDetail": "water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).",
+      "standard": "DEFICIENCY CRITERIA: Water is currently in contact with an electrical conductor.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
       "deficiencySelected": "Electrical-(GFCI) Or (AFCI)-Outlet or Breaker",
       "deficiencyDetail": "The AFCI outlet or AFCI breaker is not visibly damaged, and the test reset button is inoperable",
       "standard": "DEFICIENCY CRITERIA: AFCI outlet or AFCI breaker does not have visible damage and the test or reset button is inoperable (i.e., overall system or component thereof is not meeting function or purpose)",
@@ -613,8 +914,36 @@
     },
     {
       "category": "10. Electrical",
+      "deficiencySelected": "An unprotected outlet is present within six feet of a water source",
+      "deficiencyDetail": "An unprotected outlet is present within six feet of a water source.",
+      "standard": "DEFICIENCY CRITERIA: Outlet is present within six feet of a water source (i.e., sink, bathtub, shower, water faucet, toilet) that is located in the same room. And Outlet is not GFCI protected.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
+      "deficiencySelected": "GFCI outlet or GFCI breaker does not have visible damage, and the test or reset button is inoperable",
+      "deficiencyDetail": "GFCI outlet or GFCI breaker does not have visible damage, and the test or reset button is inoperable.",
+      "standard": "DEFICIENCY CRITERIA: GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable (i.e., overall system or component thereof is not meeting function or purpose).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
       "deficiencySelected": "Electrical Service Panel",
       "deficiencyDetail": "Electrical service panel is not reasonably accessible.",
+      "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is damaged (i.e., visibly defective; impacts functionality) such that it may not interrupt the circuit during an overcurrent condition.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
+      "deficiencySelected": "The overcurrent protection device is contaminated",
+      "deficiencyDetail": "The overcurrent protection device is contaminated .",
+      "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is contaminated (e.g., water, rust, corrosion)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Electrical",
+      "deficiencySelected": "The overcurrent protection device is damaged",
+      "deficiencyDetail": "The overcurrent protection device is damaged.",
       "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is damaged (i.e., visibly defective; impacts functionality) such that it may not interrupt the circuit during an overcurrent condition.",
       "inspectionProtocol": ""
     },
@@ -662,6 +991,20 @@
     },
     {
       "category": "12. Fire Safety",
+      "deficiencySelected": "The fire extinguisher pressure gauge reads over or undercharged",
+      "deficiencyDetail": "The fire extinguisher pressure gauge reads over or undercharged.",
+      "standard": "DEFICIENCY CRITERIA: Pressure gauge indicates that the fire extinguisher is over or under charged.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "The fire extinguisher tag is missing or illegible or expired",
+      "deficiencyDetail": "The fire extinguisher tag is missing or illegible or expired.",
+      "standard": "DEFICIENCY CRITERIA: The date on the service tag of any fire extinguisher has exceeded one year.\nOR\nThe fire extinguisher tag is missing or illegible.\nOR\nA non-chargeable or disposable fire extinguisher is more than 12 years old (based on manufacture date).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
       "deficiencySelected": "Flammable and Combustible Item",
       "deficiencyDetail": "The flammable or combustible material is on or within 3 feet of an appliance that provides heat for thermal comfort or fuel-burning water heater. Or improperly stored chemical.",
       "standard": "DEFICIENCY CRITERIA: Flammable or combustible material is on or near an ignition source.\nOR\nImproperly stored chemicals.",
@@ -676,9 +1019,51 @@
     },
     {
       "category": "12. Fire Safety",
+      "deficiencySelected": "Smoke alarm is not installed where required",
+      "deficiencyDetail": "Smoke alarm is not installed where required.",
+      "standard": "Smoke alarm not installed where required.Smoke alarm not installed within a hallway in the vicinity of multiple units or classrooms on each level.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "A required smoke alarm is obstructed",
+      "deficiencyDetail": "A required smoke alarm is obstructed.",
+      "standard": "Smoke alarm is obstructed by a foreign object (e.g., plastic bag, shower cap, zip tie, paint, tape, decorative stickers).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "A required smoke alarm is not hardwired or a 10-year non-rechargeable, sealed, tamper-resistant, bat",
+      "deficiencyDetail": "A required smoke alarm is not hardwired or a 10-year non-rechargeable, sealed, tamper-resistant, battery-powered smoke alarm device.",
+      "standard": "If unable to determine if a required smoke alarm meets the requirments of the standard, consider the condition a deficiancy.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
       "deficiencySelected": "Sprinkler Assembly",
       "deficiencyDetail": "The sprinkler assembly component is damaged, inoperable, or missing, and it is detrimental to performance.",
       "standard": "DEFICIENCY CRITERIA: Sprinkler assembly component is damaged (i.e., visibly defective; impacts functionality), inoperable (i.e., overall system or component thereof not meeting function or purpose; with or without visible damage), or missing (i.e., evidence of prior installation, but now not present or is incomplete) and it is detrimental to performance.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Sprinkler head assembly has evidence of corrosion",
+      "deficiencyDetail": "Sprinkler head assembly has evidence of corrosion.",
+      "standard": "DEFICIENCY CRITERIA: Sprinkler assembly has evidence of corrosion",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Foreign material covers 75% or more of the sprinkler assembly or 75% or more of the glass bulb on th",
+      "deficiencyDetail": "Foreign material covers 75% or more of the sprinkler assembly or 75% or more of the glass bulb on the sprinkler assembly. that is detrimental to performance.",
+      "standard": "DEFICIENCY CRITERIA: Foreign material covers 75% or more of the sprinkler assembly.\n OR\n Foreign material covers 75% or more of the glass bulb",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Sprinkler head assembly is obstructed by any item, object, or encasement within 18 inches of the hea",
+      "deficiencyDetail": "Sprinkler head assembly is obstructed by any item, object, or encasement within 18 inches of the head, and the reduced clearance is not due to a built‑in feature (e.g., closet or utility enclosure).",
+      "standard": "DEFICIENCY CRITERIA: Sprinkler head assembly is obstructed by item, object, or encasement within 18 inches of the sprinkler head.",
       "inspectionProtocol": ""
     },
     {
@@ -736,6 +1121,62 @@
       "deficiencyDetail": "Evidence of bedbugs (i.e., live or dead bedbugs, feces, eggs, or blood trails).",
       "standard": "Evidence of bedbugs.(i.e., (i.e.,   live or dead bedbugs, feces, eggs, or blood trail).",
       "inspectionProtocol": "International (ICC) Protocol – Hazard Inspection (Infestation + Sharp Edges + Trip Hazards)\n1. Infestation (IPMC §309 – Pest Management)\nInspect for:\n•\tInsects: roaches, ants, bedbugs, fleas, termites\n•\tRodents: droppings, gnaw marks, nests, odors\n•\tEntry points: gaps at baseboards, holes in walls, pipe penetrations\n•\tFood sources: trash accumulation, food debris, dirty appliances\n•\tMoisture sources: leaks, damp areas, mold like substance\nSeverity Guidance:\n•\tActive infestation = Severe\n•\tTermite structural damage = Severe\n•\tPest entry due to structural gaps = Moderate\n2. Sharp Edges (IPMC §305 – Interior Surfaces)\nInspect for:\n•\tBroken fixtures or appliances\n•\tExposed nails, screws, metal edges\n•\tDamaged window or door frames\n•\tBroken furniture creating injury risk\n•\tSharp edges on flooring transitions or thresholds\nSeverity Guidance:\n•\tSharp edge capable of causing immediate injury = Immediate Hazard\n•\tMinor sharp edges (non injury) = Moderate\n3. Trip Hazards (IPMC §305 / IBC §1003 – Means of Egress)\nInspect for:\n•\tLoose flooring, tiles, or planks\n•\tRaised transitions or thresholds\n•\tTorn or bunched carpet\n•\tElectrical cords across pathways\n•\tClutter blocking walking paths\n•\tUneven surfaces or floor settlement\n•\tPoor lighting contributing to trip risk\nSeverity Guidance:\n•\tMajor trip hazard in egress path = Severe\n•\tMinor unevenness = Moderate"
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Evidence of cockroaches (i",
+      "deficiencyDetail": "Evidence of cockroaches (i.e, of dead or alive cockroache), any sign",
+      "standard": "(i.e, of dead or alive cockroache, shed skins, droppings (tiny black specks or smears), and egg cases).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Evidence of mice (i",
+      "deficiencyDetail": "Evidence of mice (i.e., a live or dead mouse or mice), any sign",
+      "standard": "Evidence of mice (any sign). (i.e. a live or dead mouse or mice, droppings, chewed holes, or urine trails).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Evidence of other pests",
+      "deficiencyDetail": "Evidence of other pests.",
+      "standard": "Evidence of other pests. such as ants, wasps, squirrels, birds, or bats—may pose health and safety risks to residents.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Evidence of rats (any sign)",
+      "deficiencyDetail": "Evidence of rats (any sign).",
+      "standard": "Evidence of rats (any sign). i.e., a live or dead rat, droppings, or chewed holes.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Extensive bedbugs infestation",
+      "deficiencyDetail": "Extensive bedbugs infestation.",
+      "standard": "Extensive bedbugs infestation. At least one live bedbug in two or more units or two rooms of the same unit during the daytime surface visual assessment.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Extensive cockroach infestation",
+      "deficiencyDetail": "Extensive cockroach infestation.",
+      "standard": "Sighting of one or more live cockroaches in two or more unit areas observed simultaneously during visual assessment on the inspection day.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Extensive mouse infestation",
+      "deficiencyDetail": "Extensive mouse infestation.",
+      "standard": "Extensive mouse infestation. Sighting of at least one live mouse in two or more units or two rooms of the same unit during the daytime through surface visual assessment.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "16. Hazard",
+      "deficiencySelected": "Extensive rate infestation",
+      "deficiencyDetail": "Extensive rate infestation. A live rat is seen in the unit.",
+      "standard": "Extensive rate infestation. A live rat is seen in the unit.",
+      "inspectionProtocol": ""
     },
     {
       "category": "16. Hazard",
@@ -823,6 +1264,20 @@
     },
     {
       "category": "18. Kitchen",
+      "deficiencySelected": "Cooking range, cooktop,  or oven component is damaged or missing, such that the device is unsafe for",
+      "deficiencyDetail": "Cooking range, cooktop,  or oven component is damaged or missing, such that the device is unsafe for use.",
+      "standard": "DEFICIENCY CRITERIA: Cooking range, cooktop, or oven component is damaged (i.e., visibly defective) such that the device is unsafe for use.\nOR\nCooking range, cooktop, or oven component is missing (i.e., evidence of prior installation, but now not present or is incomplete) such that the device is unsafe for use.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Cooking range, cooktop or oven does not ignite or produce heat",
+      "deficiencyDetail": "Cooking range, cooktop or oven does not ignite or produce heat.",
+      "standard": "DEFICIENCY CRITERIA: No burner on the cooking range or cooktop produces heat. \nOR\n The oven does not produce heat temperature.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
       "deficiencySelected": "Food preparation Area",
       "deficiencyDetail": "The food preparation area (countertop)is damaged or not functionally adequate.",
       "standard": "DEFICIENCY CRITERIA: Exposed substrate surface comprises at least 10% or more of the total food preparation area. OR The food preparation area is not functionally adequate (i.e., does not reasonably allow for adequate preparation of food).",
@@ -837,9 +1292,37 @@
     },
     {
       "category": "18. Kitchen",
+      "deficiencySelected": "Presence of mold-like substance at extremely high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at extremely high levels is observed visually.More than 9'SF(cumulative)-",
+      "standard": "DEFICIENCY D: Presence of mold-like substance at extremely high levels is observed visually\nDEFICIENCY CRITERIA: The cumulative area of patches is more than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Presence of mold-like substance at high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at high levels is observed visually. 1' to 9' SF(cumulative)-",
+      "standard": "DEFICIENCY C: Presence of mold-like substance at high levels is observed visually\nDEFICIENCY CRITERIA: Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Presence of mold-like substance at a moderate level is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at a moderate level is observed visually. 4\" or less than 1 square foot in a room. (cumulative)-",
+      "standard": "DEFICIENCY CRITERIA: Cumulative area of patches is more than 4 square inches, i.e., above de minimis, and less than 1 square foot in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
       "deficiencySelected": "Refrigerator",
       "deficiencyDetail": "Rrefrigerator component is damaged, such that it impacts functionality.",
       "standard": "DEFICIENCY CRITERIA: Refrigerator component is damaged (i.e., visibly defective) such that it impacts functionality",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Refrigerator is inoperable such that it may be unable to safely and adequately store food",
+      "deficiencyDetail": "Refrigerator is inoperable such that it may be unable to safely and adequately store food.",
+      "standard": "DEFICIENCY CRITERIA: Refrigerator is inoperable (i.e., overall system is not meeting function or purpose; with or without visible damage) such that it may be unable to safely and adequately store food",
       "inspectionProtocol": ""
     },
     {
@@ -851,9 +1334,72 @@
     },
     {
       "category": "18. Kitchen",
+      "deficiencySelected": "Sink or sink component is damaged or missing, and the sink is not functionally adequate",
+      "deficiencyDetail": "Sink or sink component is damaged or missing, and the sink is not functionally adequate",
+      "standard": "DEFICIENCY CRITERIA: Sink or sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is not functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sin",
+      "deficiencyDetail": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "standard": "DEFICIENCY CRITERIA: Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "The sink is not draining, not functioning adequately",
+      "deficiencyDetail": "The sink is not draining, not functioning adequately.",
+      "standard": "DEFICIENCY CRITERIA: Water is not draining from the basin of the sink.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Sink component is damaged or missing, and the sink is functionally adequate",
+      "deficiencyDetail": "Sink component is damaged or missing, and the sink is functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Water is directed outside the basin",
+      "deficiencyDetail": "Water is directed outside the basin.",
+      "standard": "DEFICIENCY CRITERIA: Water is directed outside of the basin.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "The kitchen does not have proper ventilation; it is not present and operable",
+      "deficiencyDetail": "The kitchen does not have proper ventilation; it is not present and operable. An exhaust fan, window, or adequate means of ventilation is not present and operable.",
+      "standard": "DEFICIENCY CRITERIA: An exhaust fan, window, or adequate means of ventilation is not present and operable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
       "deficiencySelected": "Ventilation",
       "deficiencyDetail": "Exhaust system component is damaged or missing.",
       "standard": "DEFICIENCY CRITERIA: Exhaust system component is damaged (i.e., visibly defective; impacts functionality). \nOR \nExhaust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Exhaust system does not respond to the control switch",
+      "deficiencyDetail": "Exhaust system does not respond to the control switch.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system does not respond to the control switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Exhaust system has restricted airflow",
+      "deficiencyDetail": "Exhaust system has restricted airflow.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "18. Kitchen",
+      "deficiencySelected": "Exhaust system has restricted air flow",
+      "deficiencyDetail": "Exhaust system has restricted air flow.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
       "inspectionProtocol": ""
     },
     {
@@ -927,11 +1473,46 @@
       "inspectionProtocol": ""
     },
     {
+      "category": "22. Lighting",
+      "deficiencySelected": "A permanently installed light fixture is not secure",
+      "deficiencyDetail": "A permanently installed light fixture is not secure.",
+      "standard": "DEFICIENCY CRITERIA: A permanently installed light fixture is not secure to the designed attachment point or the attachment point is not stable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "22. Lighting",
+      "deficiencySelected": "At least one (1) permanently installed light fixture is not present in the kitchen or bathroom",
+      "deficiencyDetail": "At least one (1) permanently installed light fixture is not present in the kitchen or bathroom.",
+      "standard": "DEFICIENCY CRITERIA: At least one (1) permanently installed light fixture is not present in the kitchen and bathroom.",
+      "inspectionProtocol": ""
+    },
+    {
       "category": "23. Mold",
       "deficiencySelected": "Mold - Like Substance",
       "deficiencyDetail": "Elevated moisture level. (e.g., peeling paint or wallpaper, a wall that is warped or\nstained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).",
       "standard": "Poor ventilation, (e.g., peeling paint or wallpaper, a wall that is warped or\nstained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).",
       "inspectionProtocol": "International (ICC) Protocol – Mold Inspection - Common Area\n1. Scope & Applicability (IPMC §305.1 / §309)\nA mold inspection applies when any of the following are present:\n•\tMold like substance on walls, ceilings, floors, or fixtures\n•\tMoisture staining or water damage\n•\tMusty odor\n•\tActive leaks or condensation\n•\tVisible biological growth on building materials\nIf none are present → Not Applicable.\n2. Visual Assessment (IPMC §305 – Interior Conditions)\nInspect:\n•\tWalls, ceilings, floors\n•\tBehind/under sinks, cabinets, appliances\n•\tBathroom surfaces (tub, shower, tile, grout)\n•\tHVAC registers, window A/C, wall heaters\n•\tWindowsills and frames\n•\tClosets and low ventilation areas\nLook for:\n•\tDark, green, black, or white growth\n•\tMoisture staining or bubbling paint\n•\tSwollen drywall or flooring\n•\tPeeling or delaminated surfaces\n•\tCondensation on windows or walls\nImmediate Hazard: Mold + electrical hazard or mold caused by sewage.\n3. Moisture Source Identification (IPC §701–§706 / IMC §307)\nCheck for:\n•\tActive plumbing leaks\n•\tRoof or ceiling leaks from upper units\n•\tWindow leaks or condensation\n•\tHVAC condensation issues\n•\tWater intrusion at slab or foundation edges\n•\tPoor ventilation in bathrooms/kitchens\nSevere: Any active leak causing mold.\n4. Bathroom & Kitchen Moisture Zones\nInspect:\n•\tShower/tub tile, grout, caulking\n•\tSink base cabinets\n•\tDishwasher and refrigerator areas\n•\tRange hood and exhaust fan operation\n•\tToilet base and wax ring area\nLook for:\n•\tMold like substance\n•\tMoisture staining\n•\tMusty odor\n•\tSoft or swollen materials\nSevere: Mold + active plumbing leak.\n5. HVAC & Ventilation (IMC §501 / §603)\nInspect:\n•\tWindow A/C units (filters, frames, drainage)\n•\tWall heaters (dust buildup, moisture exposure)\n•\tSupply/return vents\n•\tBathroom exhaust fan operation\n•\tKitchen hood ventilation\nLook for:\n•\tMold on vents or filters\n•\tCondensation around HVAC components\n•\tPoor airflow contributing to moisture buildup\nSevere: Mold caused by HVAC moisture or blocked ventilation.\n6. Odor Assessment (IPMC §305.1)\nCheck for:\n•\tMusty odor indicating hidden mold\n•\tOdor near plumbing fixtures\n•\tOdor near HVAC components\n•\tOdor near walls or ceilings with moisture history\nSevere: Strong odor with visible moisture damage.\n7. Structural Indicators (IPMC §305 / IBC Structural)\nInspect:\n•\tSoft drywall\n•\tSagging ceilings\n•\tWarped flooring\n•\tDelaminated cabinets\n•\tCrumbling or deteriorated materials\nImmediate Hazard: Ceiling collapse risk from moisture."
+    },
+    {
+      "category": "23. Mold",
+      "deficiencySelected": "Presence of mold-like substance at extremely high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at extremely high levels is observed visually.More than 9'SF(cumulative)-",
+      "standard": "DEFICIENCY D: Presence of mold-like substance at extremely high levels is observed visually\nDEFICIENCY CRITERIA: The cumulative area of patches is more than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "23. Mold",
+      "deficiencySelected": "Presence of mold-like substance at high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at high levels is observed visually. 1' to 9' SF(cumulative)-",
+      "standard": "DEFICIENCY C: Presence of mold-like substance at high levels is observed visually\nDEFICIENCY CRITERIA: Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "23. Mold",
+      "deficiencySelected": "Presence of mold-like substance at a moderate level is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at a moderate level is observed visually. 4\" or less than 1 square foot in a room. (cumulative)-",
+      "standard": "DEFICIENCY CRITERIA: Cumulative area of patches is more than 4 square inches, i.e., above de minimis, and less than 1 square foot in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food).",
+      "inspectionProtocol": ""
     },
     {
       "category": "24.  Paint Or Potential Lead-Based Paint Hazards – Visual Assessment",
@@ -956,9 +1537,37 @@
     },
     {
       "category": "25. Railings",
+      "deficiencySelected": "Guard rail is not functionally adequate",
+      "deficiencyDetail": "Guard rail is not functionally adequate",
+      "standard": "DEFICIENCY CRITERIA: Guardrail is missing functional component(s) (i.e., a component that is critical to the guardrail protecting from fall hazards).\n OR\n Guardrail is damaged (i.e., visibly defective; impacts functionality). OR Guardrail is less than 30 inches in height. \nOR \nGuardrail is not securely attached and cannot reasonably protect from fall hazards.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "25. Railings",
       "deficiencySelected": "Handrail",
       "deficiencyDetail": "A handrail is missing",
       "standard": "DEFICIENCY CRITERIA: Handrail is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "25. Railings",
+      "deficiencySelected": "Handrail is not functionally adequate",
+      "deficiencyDetail": "Handrail is not functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Handrail is not functionally adequate (i.e., it cannot reasonably be grasped by hand to provide stability or support when ascending or descending stairways).\n OR\n The handrail is not continuous for the full length of each stair flight.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "25. Railings",
+      "deficiencySelected": "Handrail is not installed where required",
+      "deficiencyDetail": "Handrail is not installed where required..",
+      "standard": "DEFICIENCY CRITERIA: 4 or more stair risers are present, and a handrail is not installed.  Or a ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches, and a handrail is not installed on both sides.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "25. Railings",
+      "deficiencySelected": "Handrail is not secured",
+      "deficiencyDetail": "Handrail is not secured.",
+      "standard": "DEFICIENCY CRITERIA: There is movement in the anchors of the handrail.",
       "inspectionProtocol": ""
     },
     {
@@ -967,6 +1576,27 @@
       "deficiencyDetail": "Only 1 bathtub or shower is inoperable or does not drain,",
       "standard": "DEFICIENCY CRITERIA: Only 1 bathtub or shower is present within the unit, and it is inoperable (i.e., overall system is not meeting function or purpose, with or without visible damage) or standing water is present such that the inspector believes water is unable to drain.",
       "inspectionProtocol": "International (ICC) Bathroom Inspection Protocol – Common Area Restroom (Including Mold & Grab Bars)\n1. Safety & Initial Conditions (IPMC §305 / §604)\n•\tAssess lighting and visibility.\n•\tIdentify immediate hazards: exposed wiring, active leaks, sewage, slippery floors.\n•\tConfirm safe entry.\n2. Required Fixtures (IPMC §505 / IPC §405–409)\nVerify presence, stability, and operability of:\n•\tToilet — flushes fully, refills, no leaks.\n•\tSink — hot/cold water, drains properly.\n•\tTub/Shower — hot/cold water, diverter works, drains properly.\nFixtures must be securely mounted and free of cracks.\n3. Water Supply (IPC §604–606)\n•\tTest hot and cold water at sink and tub/shower.\n•\tVerify adequate pressure and temperature.\n•\tInspect supply lines for leaks, corrosion, improper materials.\n4. Drainage & Waste System (IPC §701–706)\n•\tDrains must flow freely; no standing water.\n•\tP traps must be present and properly installed.\n•\tNo sewer gas odor.\n•\tNo leaks at traps or drain connections.\n5. Ventilation (IPMC §403 / IBC §1203)\n•\tMechanical exhaust fan must operate and vent to exterior.\n•\tIf no fan, window must open fully.\n•\tCheck for moisture buildup, condensation, mildew indicators.\n6. Electrical Safety (IPMC §604 / NEC reference)\n•\tLight fixture operable.\n•\tGFCI protection required for bathroom receptacles.\n•\tNo exposed wiring, open junction boxes, or damaged devices.\n•\tNo electrical components subject to moisture.\n7. Surfaces & Structural Integrity (IPMC §305–309)\n•\tFloors intact; no slip/trip hazards.\n•\tWalls/ceilings intact; no holes or loose materials.\n•\tInspect for water damage, swelling, rot, or mold like substance.\n•\tTile, grout, and finishes must be intact and cleanable.\nMold specific ICC guidance:\n•\tMold like substance indicates moisture failure and must be traced to source (ventilation, plumbing, envelope).\n8. Mold & Moisture Assessment (IPMC §305.1 / §309)\n•\tIdentify any mold like substance on walls, ceilings, floors, fixtures, or caulking.\n•\tCheck behind/around tub, shower, and sink for moisture staining.\n•\tInspect for active leaks contributing to mold.\n•\tNote any persistent mold odor.\nSeverity:\n•\tMold like substance = Moderate\n•\tMold caused by active leak = Severe\n•\tMold with electrical involvement = Immediate Hazard\n9. Grab Bars & Accessibility (ICC A117.1 / ISO 21542)\n(Required only in accessible units or designated accessible bathrooms)\n•\tGrab bars must be present, secure, and properly anchored.\n•\tNo looseness or movement when pulled.\n•\tBars must be free of rust, cracks, or sharp edges.\n•\tClear floor space must be provided at toilet and tub/shower.\n•\tControls (faucets, switches) must be operable with one hand.\nGrab bar failure = Severe safety deficiency.\n10. Sanitation & Hygiene (IPMC §502–503)\n•\tNo human waste, sewage, or heavy filth.\n•\tNo persistent sewage or mold odors.\n•\tBathroom must be hygienic and free of infestation.\n11. Privacy & Security (IPMC §702)\n•\tBathroom door must close and latch.\n•\tWindow must have privacy covering if visibility to exterior/common areas exists."
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Bathtub or shower is inoperable or does not drain, and at least one bathtub or shower is present els",
+      "deficiencyDetail": "Bathtub or shower is inoperable or does not drain, and at least one bathtub or shower is present elsewhere that is operational.",
+      "standard": "DEFICIENCY CRITERIA: A bathtub or shower is inoperable (i.e., overall system is not meeting function or purpose, with or without visible damage) or standing water is present such that the inspector believes water is unable to drain and at least 1 bathtub or shower is present elsewhere within the Unit that is operational.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "A bathtub or shower component is damaged, inoperable, or missing, and it may limit the resident's ab",
+      "deficiencyDetail": "A bathtub or shower component is damaged, inoperable, or missing, and it may limit the resident's ability to maintain personal hygiene.(tub discoloration <50%)",
+      "standard": "DEFICIENCY CRITERIA: Bathtub component or shower component is damaged (i.e., visibly defective; impacts functionality) such that it may limit the resident’s ability to maintain personal hygiene.\n OR\n Bathtub component or shower component is inoperable (i.e., component is not meeting function or purpose, with or without visible damage) such that it may limit the resident’s ability to maintain personal hygiene. \nOR\n Bathtub component or shower component is missing (i.e., evidence of prior installation, but is now not present or is incomplete) such that it may limit the resident’s ability to maintain personal hygiene.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Bathtub or shower cannot be used in private",
+      "deficiencyDetail": "Bathtub or shower cannot be used in private.",
+      "standard": "DEFICIENCY CRITERIA: For this Standard, the resident should be able to use the bathtub or shower without being observed from an adjacent room or exterior space.",
+      "inspectionProtocol": ""
     },
     {
       "category": "26. Restroom",
@@ -991,9 +1621,65 @@
     },
     {
       "category": "26. Restroom",
+      "deficiencySelected": "Presence of mold-like substance at extremely high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at extremely high levels is observed visually.More than 9'SF(cumulative)-",
+      "standard": "DEFICIENCY D: Presence of mold-like substance at extremely high levels is observed visually\nDEFICIENCY CRITERIA: The cumulative area of patches is more than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Presence of mold-like substance at high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at high levels is observed visually. 1' to 9' SF(cumulative)-",
+      "standard": "DEFICIENCY C: Presence of mold-like substance at high levels is observed visually\nDEFICIENCY CRITERIA: Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Presence of mold-like substance at a moderate level is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at a moderate level is observed visually. 4\" or less than 1 square foot in a room. (cumulative)-",
+      "standard": "DEFICIENCY CRITERIA: Cumulative area of patches is more than 4 square inches, i.e., above de minimis, and less than 1 square foot in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
       "deficiencySelected": "Sink",
       "deficiencyDetail": "Cannot be activated or deactivated for hot and cold water",
       "standard": "DEFICIENCY CRITERIA: Control knobs do not activate or deactivate hot and cold water.\nOR\nWater is directed outside of the basin",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Sink or sink component is damaged or missing, and the sink is not functionally adequate",
+      "deficiencyDetail": "Sink or sink component is damaged or missing, and the sink is not functionally adequate",
+      "standard": "DEFICIENCY CRITERIA: Sink or sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is not functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sin",
+      "deficiencyDetail": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "standard": "DEFICIENCY CRITERIA: Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Sink is not draining",
+      "deficiencyDetail": "Sink is not draining.",
+      "standard": "DEFICIENCY CRITERIA: Water is not draining from the basin of the sink.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Sink component is damaged or missing, and the sink is functionally adequate",
+      "deficiencyDetail": "Sink component is damaged or missing, and the sink is functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Water is directed outside of the basin when in use",
+      "deficiencyDetail": "Water is directed outside of the basin when in use.",
+      "standard": "DEFICIENCY CRITERIA: Water is directed outside of the basin.",
       "inspectionProtocol": ""
     },
     {
@@ -1005,9 +1691,79 @@
     },
     {
       "category": "26. Restroom",
+      "deficiencySelected": "A toilet is missing, and at least one toilet is installed elsewhere that is operational",
+      "deficiencyDetail": "A toilet is missing, and at least one toilet is installed elsewhere that is operational.",
+      "standard": "DEFICIENCY CRITERIA: A toilet is missing (i.e., evidence of prior installation, but now not present or is incomplete) and at least 1 toilet is installed elsewhere within the Unit that is operational",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Only one toilet was installed, and it is damaged or inoperable",
+      "deficiencyDetail": "Only one toilet was installed, and it is damaged or inoperable.",
+      "standard": "DEFICIENCY CRITERIA: Only 1 toilet was installed, and it is damaged (i.e., visibly defective; impacts functionality).\n OR \nOnly 1 toilet was installed, and it is inoperable (i.e., overall system is not meeting function or purpose; with or without visible damage).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Only one toilet was installed, and it is missing",
+      "deficiencyDetail": "Only one toilet was installed, and it is missing.",
+      "standard": "DEFICIENCY CRITERIA: Only 1 toilet was installed, and it is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Toilet can not be used in private (no privacy)",
+      "deficiencyDetail": "Toilet can not be used in private (no privacy)",
+      "standard": "DEFICIENCY CRITERIA: The toilet cannot be used in private.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Toilet component is damaged, inoperable, or missing and it does not limit the resident’s ability to ",
+      "deficiencyDetail": "Toilet component is damaged, inoperable, or missing and it does not limit the resident’s ability to discharge human waste.",
+      "standard": "DEFICIENCY CRITERIA: Toilet component is damaged (i.e., visibly defective; impacts functionality) and it does not limit the resident’s ability to safely discharge human waste. \nOR \nToilet component is inoperable (i.e., component is not meeting function or purpose; with or without visible damage) and it does not limit the resident’s ability to safely discharge human waste. \nOR\n A toilet component is missing (i.e., evidence of prior installation, but now not present or is incomplete) and it does not limit the resident’s ability to safely discharge human waste.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Toilet component is damaged, inoperable, or missing such that it may limit the resident’s ability to",
+      "deficiencyDetail": "Toilet component is damaged, inoperable, or missing such that it may limit the resident’s ability to safely discharge human waste.",
+      "standard": "DEFICIENCY CRITERIA: Toilet component is damaged (i.e., visibly defective; impacts functionality) such that it may limit the resident’s ability to safely discharge human waste. \nOR\n Toilet component is inoperable (i.e., component is not meeting function or purpose; with or without visible damage) such that it may limit the resident’s ability to safely discharge human waste.\n OR \nToilet component is missing (i.e., evidence of prior installation, but now not present or is incomplete) such that it may limit the resident’s ability to safely discharge human waste.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Toilet is not secured at the base",
+      "deficiencyDetail": "Toilet is not secured at the base.",
+      "standard": "DEFICIENCY CRITERIA: Toilet is not secured at the base.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
       "deficiencySelected": "Ventilation",
       "deficiencyDetail": "The restroom does not have ventilation, not present and operable.",
       "standard": "DEFICIENCY CRITERIA: An exhaust fan, window, or adequate means of ventilation or dehumidification is not present and operable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "The exhaust system component is missing or damaged, affecting the function adequately",
+      "deficiencyDetail": "The exhaust system component is missing or damaged, affecting the function adequately.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system component is damaged (i.e., visibly defective; impacts functionality). \nOR \nExhaust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Exhaust system does not respond to the control switch",
+      "deficiencyDetail": "Exhaust system does not respond to the control switch.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system does not respond to the control switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "26. Restroom",
+      "deficiencySelected": "Exhaust system has restricted air flow",
+      "deficiencyDetail": "Exhaust system has restricted air flow.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
       "inspectionProtocol": ""
     },
     {
@@ -1095,11 +1851,46 @@
       "inspectionProtocol": "International (ICC) Protocol – Ventilation (Other Than Kitchen & Bath) –Common Area\n1. Scope & Applicability (IPMC §402–404 / IMC §501)\nInspection applies to:\n•\tLaundry/utility exhaust fans\n•\tPassive wall/ceiling vents\n•\tTransfer grilles\n•\tCloset ventilation openings\n•\tWindow ventilation components\n•\tMechanical exhaust fans not tied to HVAC\n•\tAny non kitchen, non bathroom ventilation system\nIf none exist → Not Applicable.\n2. Laundry / Utility Exhaust Vent (IMC §504)\nInspect:\n•\tFan operates and pulls air\n•\tNo lint buildup blocking grille\n•\tNo moisture staining around vent\n•\tNo mold like substance\n•\tNo exposed wiring\n•\tDucting intact and connected (if visible)\nHazard Severity:\n•\tLint buildup creating fire hazard → Severe\n•\tExposed wiring → Immediate Hazard\n3. Passive Vents (Wall, Ceiling, Closet) – IPMC §402–403\nInspect:\n•\tVents unobstructed\n•\tNo paint sealing vents shut\n•\tNo debris or dust blockage\n•\tNo mold like substance\n•\tNo damaged or missing vent covers\n•\tNo sharp edges or broken louvers\nHazard Severity:\n•\tBlocked ventilation → Severe\n•\tSharp edges → Immediate Hazard\n4. Transfer Grilles (Airflow Between Rooms)\nInspect:\n•\tGrille intact and secure\n•\tNo blockage or obstruction\n•\tNo dust buildup reducing airflow\n•\tNo mold like substance\n•\tNo sharp edges or broken fins\nHazard Severity:\n•\tBlocked grille → Severe\n•\tSharp edges → Immediate Hazard\n5. Window Ventilation Components\nInspect:\n•\tWindows operable (open/close smoothly)\n•\tNo broken glass\n•\tNo damaged screens\n•\tNo mold like substance on frames\n•\tNo condensation causing deterioration\n•\tNo gaps allowing pests\nHazard Severity:\n•\tBroken glass → Immediate Hazard\n•\tMold + moisture → Severe\n6. Closet / Enclosed Space Ventilation\nInspect:\n•\tVent openings present (if required)\n•\tNo blocked or sealed vents\n•\tNo mold like substance\n•\tNo moisture buildup\n•\tNo odors indicating poor ventilation\nHazard Severity:\n•\tMold + moisture → Severe\n7. Mechanical Exhaust (Non Kitchen / Non Bath)\nInspect:\n•\tFan operates and pulls air\n•\tNo excessive noise or vibration\n•\tNo dust blockage\n•\tNo exposed wiring\n•\tNo moisture staining around fan\n•\tNo mold like substance\nHazard Severity:\n•\tInoperable fan → Severe\n•\tExposed wiring → Immediate Hazard\n8. Moisture & Ventilation Interaction (IPMC §305.1 / §309)\nInspect:\n•\tMoisture staining near vents\n•\tMold like substance around ventilation openings\n•\tCondensation buildup\n•\tOdors indicating inadequate air movement\n•\tPoor ventilation causing humidity accumulation\nHazard Severity:\n•\tMold + active moisture → Severe\n•\tMoisture + electrical → Immediate Hazard\n9. Fire Safety Interaction (IFC §603)\nInspect:\n•\tNo lint buildup near laundry exhaust\n•\tNo combustible materials near vents\n•\tNo overheating of fan motors\n•\tNo grease or dust accumulation creating ignition risk\nHazard Severity:\n•\tLint fire hazard → Severe\n•\tOverheating motor → Immediate Hazard"
     },
     {
+      "category": "31. Ventilation",
+      "deficiencySelected": "Exhaust system component is damaged or missing",
+      "deficiencyDetail": "Exhaust system component is damaged or missing.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system component is damaged (i.e., visibly defective; impacts functionality). \nOR \nExhaust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "31. Ventilation",
+      "deficiencySelected": "Exhaust system does not respond to the control switch",
+      "deficiencyDetail": "Exhaust system does not respond to the control switch.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system does not respond to the control switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "31. Ventilation",
+      "deficiencySelected": "Exhaust system has restricted air flow",
+      "deficiencyDetail": "Exhaust system has restricted air flow.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
+      "inspectionProtocol": ""
+    },
+    {
       "category": "32. Wall",
       "deficiencySelected": "Wall-Interior",
       "deficiencyDetail": "Interior wall component(s), severe cracks, not functionally adequate. Damaged trim greater than 10% to 50% of the wall area.",
       "standard": "DEFICIENCY CRITERIA: Interior wall component(s) is not functionally adequate (i.e., impacts the integrity of the interior wall or does not allow interior wall to provide vertical separation between rooms or spaces).",
       "inspectionProtocol": "International (ICC) Protocol – Wall & Wall Component Inspection (Common Area)\n1. Scope & Applicability (IPMC §305 – Interior Structure)\nInspection applies to:\n•\tInterior walls (load bearing & non load bearing)\n•\tDemising walls between units\n•\tPartition walls\n•\tWall finishes (drywall, plaster, paneling)\n•\tWall components (trim, baseboards, wall mounted fixtures)\n•\tFire rated assemblies (where applicable)\nIf no wall deterioration exists → Not Applicable.\n2. Structural Condition of Walls\nInspect:\n•\tCracks (vertical, horizontal, diagonal)\n•\tBulging, bowing, or leaning walls\n•\tLoose, delaminated, or unstable drywall/plaster\n•\tSeparation at corners, joints, or seams\n•\tMovement around door/window frames\n•\tHoles or penetrations compromising structure\nHazard Severity:\n•\tBowing or leaning → Immediate Hazard\n•\tStructural cracks indicating movement → Severe\n3. Wall Surface Condition (IPMC §305.1)\nInspect:\n•\tPeeling, flaking, or blistering paint\n•\tDamaged drywall (holes, gouges, punctures)\n•\tLoose or missing wall panels\n•\tExposed substrate (wood, gypsum, plaster)\n•\tSharp edges or protruding fasteners\n•\tStains or discoloration\nHazard Severity:\n•\tSharp edges → Immediate Hazard\n•\tExposed substrate → Severe\n4. Moisture & Water Intrusion Indicators\nInspect:\n•\tWater stains\n•\tBubbling or delaminated paint\n•\tSwollen drywall or paneling\n•\tSoft or spongy wall sections\n•\tMold like substance\n•\tMoisture around plumbing walls, windows, or exterior facing walls\nHazard Severity:\n•\tMoisture + structural deterioration → Severe\n•\tMold + electrical → Immediate Hazard\n5. Fire Resistance & Penetrations (IBC §714)\nInspect:\n•\tPenetrations in fire rated demising walls\n•\tMissing or damaged fire blocking\n•\tUnsealed openings around pipes, cables, or conduits\n•\tDamaged fire rated gypsum board\nHazard Severity:\n•\tBreach in fire rated wall → Severe\n6. Wall Mounted Components\nInspect:\n•\tElectrical outlets and switches\n•\tWall heaters\n•\tCabinets, shelves, and brackets\n•\tHandrails or grab bars\n•\tThermostats and sensors\nCheck for:\n•\tLoose or unstable mounting\n•\tExposed wiring\n•\tDamage to wall from mounting failure\nHazard Severity:\n•\tExposed electrical → Immediate Hazard\n•\tLoose heavy wall mounted items → Severe\n7. Baseboards, Trim & Joint Components\nInspect:\n•\tLoose or missing baseboards\n•\tGaps between trim and wall\n•\tMoisture damage at baseboards\n•\tTermite or pest damage\n•\tSharp edges or splintering\nHazard Severity:\n•\tSharp edges → Immediate Hazard\n•\tMoisture damaged trim indicating leak → Severe\n8. Pest & Termite Indicators (IPMC §309)\nInspect:\n•\tHoles or tunnels in drywall\n•\tFrass (termite droppings)\n•\tChewed or damaged wall components\n•\tSoft or hollow sounding wood trim\nHazard Severity:\n•\tStructural termite damage → Severe\n9. Safety Interaction (IFC §603)\nInspect:\n•\tWater near electrical outlets\n•\tLoose wall sections that may fall\n•\tTrip hazards from fallen wall debris\n•\tNo destructive inspection allowed (no opening walls)\nHazard Severity:\n•\tWater + electrical → Immediate Hazard\n•\tFalling wall material → Immediate Hazard"
+    },
+    {
+      "category": "32. Wall",
+      "deficiencySelected": "Hole is greater than 2 inches in diameter",
+      "deficiencyDetail": "Hole is greater than 2 inches in diameter. OR An accumulation of holes in any one wall is greater than 6 inches by 6 inches.",
+      "standard": "DEFICIENCY CRITERIA: Hole is greater than 2 inches in diameter. \nOR \nAn accumulation of holes in any one wall is greater than 6 inches by 6 inches.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "32. Wall",
+      "deficiencySelected": "Interior wall has a loose or detached surface covering",
+      "deficiencyDetail": "Interior wall has a loose or detached surface covering.",
+      "standard": "DEFICIENCY CRITERIA: Interior wall has a loose or detached surface covering. (e.g, drywall, plaster, paneling).",
+      "inspectionProtocol": ""
     },
     {
       "category": "33. Water Heater",
@@ -1175,6 +1966,34 @@
     },
     {
       "category": "1. Bathroom",
+      "deficiencySelected": "A bathtub or shower component is damaged, inoperable, or missing, and it may limit the resident's ab",
+      "deficiencyDetail": "A bathtub or shower component is damaged, inoperable, or missing, and it may limit the resident's ability to maintain personal hygiene.(tub discoloration <50%)",
+      "standard": "DEFICIENCY CRITERIA: A bathtub or shower is inoperable (i.e., overall system is not meeting function or purpose, with or without visible damage) or standing water is present such that the inspector believes water is unable to drain and at least 1 bathtub or shower is present elsewhere within the Unit that is operational.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Bathtub or shower component is damaged, inoperable, or missing, and it may limit the resident's abil",
+      "deficiencyDetail": "Bathtub or shower component is damaged, inoperable, or missing, and it may limit the resident's ability to maintain personal hygiene. (tub discoloration>50%)",
+      "standard": "DEFICIENCY CRITERIA: Bathtub component or shower component is damaged (i.e., visibly defective; impacts functionality) such that it may limit the resident’s ability to maintain personal hygiene.\n OR\n Bathtub component or shower component is inoperable (i.e., component is not meeting function or purpose, with or without visible damage) such that it may limit the resident’s ability to maintain personal hygiene. \nOR\n Bathtub component or shower component is missing (i.e., evidence of prior installation, but is now not present or is incomplete) such that it may limit the resident’s ability to maintain personal hygiene.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Bathtub or shower cannot be used in private(no privacy)",
+      "deficiencyDetail": "Bathtub or shower cannot be used in private(no privacy).",
+      "standard": "DEFICIENCY CRITERIA: For this Standard, the resident should be able to use the bathtub or shower without being observed from an adjacent room or exterior space.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Only one bathtub or shower is present, and it is inoperable or does not drain (the system is not mee",
+      "deficiencyDetail": "Only one bathtub or shower is present, and it is inoperable or does not drain (the system is not meeting its function or purpose).",
+      "standard": "DEFICIENCY CRITERIA: Bathtub component or shower component is damaged (i.e., visibly defective; impacts functionality) and it does not limit the resident’s ability to maintain personal hygiene. \nOR \nA bathtub component or shower component is inoperable (i.e., component is not meeting function or purpose, with or without visible damage) and it does not limit the resident’s ability to maintain personal hygiene.\n OR \nA bathtub component or shower component is missing (i.e., evidence of prior installation, but is now not present or is incomplete) and it does not limit the resident’s ability to maintain personal hygiene.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
       "deficiencySelected": "Cabinet and Storage",
       "deficiencyDetail": "Storage component is damaged, inoperable, or missing .",
       "standard": "DEFICIENCY CRITERIA: 50% or more of the kitchen, bath, or laundry cabinet doors, drawers, or shelves are missing (i.e. evidence of prior installation, but now not present or is incomplete).\nOR\n50% or more of the kitchen, bath, or laundry cabinet doors, drawers, or shelves are damaged (i.e. visibly defective; impacts functionality).\nOR\n50% or more of the kitchen, bath, or laundry cabinet doors, drawers, or shelves are inoperable (i.e. overall system or component thereof not meeting function or purpose; with or without visible damage).",
@@ -1196,9 +2015,65 @@
     },
     {
       "category": "1. Bathroom",
+      "deficiencySelected": "Presence of mold-like substance at extremely high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at extremely high levels is observed visually.More than 9'SF(cumulative)-",
+      "standard": "DEFICIENCY CRITERIA: Presence of mold-like substance at extremely high levels is observed visually\nDEFICIENCY CRITERIA: The cumulative area of patches is more than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Presence of mold-like substance at high levels is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at high levels is observed visually. 1' to 9' SF(cumulative)-",
+      "standard": "DEFICIENCY C: Presence of mold-like substance at high levels is observed visually\nDEFICIENCY CRITERIA: Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Presence of mold-like substance at a moderate level is observed visually",
+      "deficiencyDetail": "Presence of mold-like substance at a moderate level is observed visually. 4\" or less than 1 square foot in a room. (cumulative)-",
+      "standard": "DEFICIENCY CRITERIA: Cumulative area of patches is more than 4 square inches, i.e., above de minimis, and less than 1 square foot in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
       "deficiencySelected": "Sink",
       "deficiencyDetail": "Cannot be activated or deactivated for hot and cold water",
       "standard": "DEFICIENCY CRITERIA: Control knobs do not activate or deactivate hot and cold water.\nOR\nWater is directed outside of the basin",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Sink or sink component is damaged or missing, and the sink is not functionally adequate",
+      "deficiencyDetail": "Sink or sink component is damaged or missing, and the sink is not functionally adequate",
+      "standard": "DEFICIENCY CRITERIA: Sink or sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is not functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sin",
+      "deficiencyDetail": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "standard": "DEFICIENCY CRITERIA: Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Sink is not draining",
+      "deficiencyDetail": "Sink is not draining.",
+      "standard": "DEFICIENCY CRITERIA: Water is not draining from the basin of the sink.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Sink component is damaged or missing, and the sink is functionally adequate",
+      "deficiencyDetail": "Sink component is damaged or missing, and the sink is functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Water is directed outside of the basin when in use",
+      "deficiencyDetail": "Water is directed outside of the basin when in use.",
+      "standard": "DEFICIENCY CRITERIA: Water is directed outside of the basin.",
       "inspectionProtocol": ""
     },
     {
@@ -1210,9 +2085,79 @@
     },
     {
       "category": "1. Bathroom",
+      "deficiencySelected": "A toilet is missing, and at least one toilet is installed elsewhere that is operational",
+      "deficiencyDetail": "A toilet is missing, and at least one toilet is installed elsewhere that is operational.",
+      "standard": "DEFICIENCY CRITERIA: A toilet is missing (i.e., evidence of prior installation, but now not present or is incomplete) and at least 1 toilet is installed elsewhere within the Unit that is operational",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Only one toilet was installed, and it is damaged or inoperable",
+      "deficiencyDetail": "Only one toilet was installed, and it is damaged or inoperable.",
+      "standard": "DEFICIENCY CRITERIA: Only 1 toilet was installed, and it is damaged (i.e., visibly defective; impacts functionality).\n OR \nOnly 1 toilet was installed, and it is inoperable (i.e., overall system is not meeting function or purpose; with or without visible damage).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Only one toilet was installed, and it is missing",
+      "deficiencyDetail": "Only one toilet was installed, and it is missing.",
+      "standard": "DEFICIENCY CRITERIA: Only 1 toilet was installed, and it is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Toilet can not be used in private (no privacy)",
+      "deficiencyDetail": "Toilet can not be used in private (no privacy)",
+      "standard": "DEFICIENCY CRITERIA: The toilet cannot be used in private.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Toilet component is damaged, inoperable, or missing and it does not limit the resident’s ability to ",
+      "deficiencyDetail": "Toilet component is damaged, inoperable, or missing and it does not limit the resident’s ability to discharge human waste.",
+      "standard": "DEFICIENCY CRITERIA: Toilet component is damaged (i.e., visibly defective; impacts functionality) and it does not limit the resident’s ability to safely discharge human waste. \nOR \nToilet component is inoperable (i.e., component is not meeting function or purpose; with or without visible damage) and it does not limit the resident’s ability to safely discharge human waste. \nOR\n A toilet component is missing (i.e., evidence of prior installation, but now not present or is incomplete) and it does not limit the resident’s ability to safely discharge human waste.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Toilet component is damaged, inoperable, or missing such that it may limit the resident’s ability to",
+      "deficiencyDetail": "Toilet component is damaged, inoperable, or missing such that it may limit the resident’s ability to safely discharge human waste.",
+      "standard": "DEFICIENCY CRITERIA: Toilet component is damaged (i.e., visibly defective; impacts functionality) such that it may limit the resident’s ability to safely discharge human waste. \nOR\n Toilet component is inoperable (i.e., component is not meeting function or purpose; with or without visible damage) such that it may limit the resident’s ability to safely discharge human waste.\n OR \nToilet component is missing (i.e., evidence of prior installation, but now not present or is incomplete) such that it may limit the resident’s ability to safely discharge human waste.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Toilet is not secured at the base",
+      "deficiencyDetail": "Toilet is not secured at the base.",
+      "standard": "DEFICIENCY CRITERIA: Toilet is not secured at the base.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
       "deficiencySelected": "Ventilation",
       "deficiencyDetail": "The bathroom does not have proper ventilation or dehumidification",
       "standard": "DEFICIENCY CRITERIA: An exhaust fan, window, or adequate means of ventilation or dehumidification is not present and operable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "The exhaust system component is missing or damaged, affecting the function adequately",
+      "deficiencyDetail": "The exhaust system component is missing or damaged, affecting the function adequately.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system component is damaged (i.e., visibly defective; impacts functionality). \nOR \nExhaust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "The exhaust system does not respond to the control switch (inoperable)",
+      "deficiencyDetail": "The exhaust system does not respond to the control switch (inoperable).",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system does not respond to the control switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "1. Bathroom",
+      "deficiencySelected": "Exhaust system has restricted air flow",
+      "deficiencyDetail": "Exhaust system has restricted air flow.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
       "inspectionProtocol": ""
     },
     {
@@ -1336,9 +2281,114 @@
     },
     {
       "category": "8. Doors",
+      "deficiencySelected": "Entry door component is damaged, missing, inoperable, or has a hole ¼ inch or greater in diameter or",
+      "deficiencyDetail": "Entry door component is damaged, missing, inoperable, or has a hole ¼ inch or greater in diameter or a split or crack ¼ inch or greater in width that penetrates through the door.",
+      "standard": "DEFICIENCY CRITERIA: A hole 1/4\" or greater in diameter that penetrates all the way through the door.\nOR\nA split or crack 1/4\" or greater in width that penetrates all the way through the door.\nOR\nA hole or a crack with separation is present, or the glass is missing within the door, side lites, or transom.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Entry door frame, threshold, or trim is damaged",
+      "deficiencyDetail": "Entry door frame, threshold, or trim is damaged. Evidence of prior installation, now missing.",
+      "standard": "DEFICIENCY CRITERIA: The entry door frame, threshold, or trim is damaged (i.e. visibly defective; impacts functionality).\nOR\nThe entry door frame, threshold, or trim is missing (i.e. evidence of prior installation, but now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Entry door is missing",
+      "deficiencyDetail": "Entry door is missing. Not present or incomplete.",
+      "standard": "DEFICIENCY CRITERIA: The entry door is missing.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Entry door seal, gasket, or stripping is damaged, inoperable or missing",
+      "deficiencyDetail": "Entry door seal, gasket, or stripping is damaged, inoperable or missing. or nonfunctional—causing a gap ≥¼ inch that lets in light or shows signs of water damage or dry rot.",
+      "standard": "DEFICIENCY CRITERIA: The entry door seal, gasket, or stripping is:\n- damaged (i.e. visibly defective; impacts functionality);\n- inoperable (i.e. overall system or component thereof not meeting function / purpose; with or without visible damage); or\n- missing (i.e. evidence of prior installation, but now not present or is incomplete).\nAND ONE OF THE FOLLOWING CONDITIONS:\nCondition 1:\n- General door type: Results in a gap of ¼ inch wide or greater between the door slab and the stop molding on the jamb, or the jamb itself, or between the bottom of the door and the threshold or floor AND permits light around the closed door.\n- Special door type: Results in a gap of ¼ inch wide or greater around or under the door or where the doors meet AND permits light around the closed door or where the doors meet.\nCondition 2:\n- General door type: There is evidence of water penetrating (e.g. water damage or dry rot) around or under the door.\n- Special door type: There is evidence of water penetrating (e.g. water damage or dry rot) around or under the door or where the doors meet.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Self-closing mechanism is damaged, missing(sign of previously installed), or fails to close and latc",
+      "deficiencyDetail": "Self-closing mechanism is damaged, missing(sign of previously installed), or fails to close and latch the door properly.",
+      "standard": "DEFICIENCY CRITERIA: The self-closing mechanism is damaged (i.e., visibly defective; impacts functionality).\nOR\nThe self-closing mechanism does not pull the door closed and engage the latch.\nOR\nThe self-closing mechanism is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Entry door surface is delaminated or separated, 2 inches or greater",
+      "deficiencyDetail": "Entry door surface is delaminated or separated, 2 inches or greater.\nOr there is delamination or separation that affects the integrity of the door",
+      "standard": "DEFICIENCY CRITERIA: There is delamination or separation of the door surface 2 inches wide or greater.\nOR\nThere is delamination or separation that affects the integrity of the door (i.e., surface protection or the strength of the door).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Entry door will not close (does not function adequately)",
+      "deficiencyDetail": "Entry door will not close (does not function adequately)",
+      "standard": "DEFICIENCY CRITERIA: Entry door does not close (i.e., door seats in frame).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Entry door will not open",
+      "deficiencyDetail": "Entry door will not open.(does not function adequately)",
+      "standard": "DEFICIENCY CRITERIA: Entry door does not open.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Hole, split, or crack that penetrates completely through the entry door",
+      "deficiencyDetail": "Hole, split, or crack that penetrates completely through the entry door. Or hole1/4 inch or greater in diameter penetrating through the door or door sides.",
+      "standard": "DEFICIENCY CRITERIA: Entry door component is damaged (i.e., visibly defective; impacts functionality) and it does not limit the door’s ability to provide privacy or protection from weather or infestation.\n OR \nEntry door component is inoperable (i.e., component is not meeting function or purpose, with or without visible damage), and it does not limit the door’s ability to provide privacy or protection from weather or infestation. \nOR\n Entry door component is missing (i.e., evidence of prior installation, but it is now not present or is incomplete) and it does not limit the door’s ability to provide privacy or protection from weather or infestation.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
       "deficiencySelected": "Door – Fire Labeled",
       "deficiencyDetail": "An object is present that may prevent the fire-labeled door from closing  and latching or self-closing and latching.",
       "standard": "DEFICIENCY CRITERIA: An object is present that may prevent the fire labeled door from closing (i.e., door seats in frame) and latching. \nOR\n An object is present that may prevent the fire labeled door from self-closing (i.e., door seats in frame) and latching\nHEALTH AND",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "A fire-labeled door assembly has a hole of any size",
+      "deficiencyDetail": "A fire-labeled door assembly has a hole of any size. Or assembly is damaged such that its integrity may be compromised.",
+      "standard": "DEFICIENCY CRITERIA: A fire labeled door assembly has a hole of any size.\n OR\n A fire labeled door assembly is damaged (i.e., visibly defective; impacts functionality) such that its integrity may be compromised",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Fire-labeled door can not be secured",
+      "deficiencyDetail": "Fire-labeled door can not be secured. door cannot be secured (i.e., access controlled) by at least one installed lock.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door cannot be secured (i.e., access controlled) by at least 1 installed lock.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Fire labeled door does not close and latch",
+      "deficiencyDetail": "Fire labeled door does not close and latch. OR is damaged or missing such that the door does not self-close )nd latch and latching.a",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door does not close (i.e., door seats in frame) and latch. OR Fire labeled door self-closing hardware is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but is now not present or is incomplete) such that the door does not self-close (i.e., door seats in frame) and latch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "The fire-labeled door does not open",
+      "deficiencyDetail": "The fire-labeled door does not open. A fire-labeled door that does not open may limit access between spaces.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door does not open such that it may limit access between spaces.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Fire-labeled door is missing",
+      "deficiencyDetail": "Fire-labeled door is missing.(i.e., evidence of prior installation, but now not present or is incomplete.",
+      "standard": "DEFICIENCY CRITERIA: Fire labeled door is missing (i.e., evidence of prior installation, but is now not present or is incomplete).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Fire-labeled door seal or gasket is damaged",
+      "deficiencyDetail": "Fire-labeled door seal or gasket is damaged. The fire-labeled door seal or gasket is damaged or missing, affecting proper function.",
+      "standard": "DEFICIENCY CRITERIA: fire labeled door seal or gasket is damaged (i.e. visibly defective; impacts functionality).\nOR\nA fire labeled door seal or gasket is missing (i.e. evidence of prior installation, but now not present or is incomplete).",
       "inspectionProtocol": ""
     },
     {
@@ -1350,9 +2400,30 @@
     },
     {
       "category": "8. Doors",
+      "deficiencySelected": "A passage door does not open such that it may limit the resident’s ability to move freely between ro",
+      "deficiencyDetail": "A passage door does not open such that it may limit the resident’s ability to move freely between rooms.",
+      "standard": "DEFICIENCY CRITERIA: A passage door does not open such that it may limit the resident’s ability to move freely between rooms",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "A passage door that is not intended to permit access between rooms (e",
+      "deficiencyDetail": "A passage door that is not intended to permit access between rooms (e.g., pantry door, closet door) has a damaged component, inoperable or missing components.",
+      "standard": "DEFICIENCY CRITERIA: A passage door that is not intended to permit access between rooms has a damaged (i.e., visibly defective; impacts functionality) component. \n OR\n A passage door that is not intended to permit access between rooms has an inoperable (i.e., component is not meeting function or purpose, with or without visible damage) component.\n OR\n A passage door that is not intended to permit access between rooms has a missing (i.e., evidence of prior installation, but is now not present or is incomplete) component.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
       "deficiencySelected": "Garage Door",
       "deficiencyDetail": "Garage door does not opaen, close, or remain closed. Does not function adequaetly.",
       "standard": "DEFICIENCY CRITERIA: Door will not open and remain open.\nOR\nDoor will not close and remain closed.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "8. Doors",
+      "deficiencySelected": "Garage door has a hole of any size that penetrates through to the interior",
+      "deficiencyDetail": "Garage door has a hole of any size that penetrates through to the interior.",
+      "standard": "DEFICIENCY CRITERIA: Garage door has a hole of any size that penetrates through to the interior.",
       "inspectionProtocol": ""
     },
     {
@@ -1370,11 +2441,53 @@
       "inspectionProtocol": "International (ICC) Protocol – Unit Egress (Exit Access) Inspection\n1. Safety & Initial Conditions (IPMC §305 / IBC §1001)\n•\tConfirm safe entry and adequate lighting.\n•\tIdentify immediate hazards: blocked exits, collapse risks, exposed wiring, or fire door failures.\n•\tEnsure the egress path is fully visible and unobstructed.\n2. Required Egress Path Identification (IBC §1006 / §1008)\nVerify the unit has a compliant exit access path:\n•\tFrom unit interior → corridor → exit discharge\n•\tPath must be continuous, unobstructed, and clearly defined\n•\tNo storage, furniture, or debris blocking the route\n•\tNo dead end corridors exceeding allowed length\nBlocked egress = Immediate Hazard.\n3. Doorway Requirements (IBC §1010 / IPMC §304)\nInspect the unit entry door and any interior doors along the egress path:\n•\tDoor must open easily without special knowledge or tools\n•\tNo excessive force required\n•\tNo broken hardware, binding, or obstruction\n•\tClear width maintained (minimum 32 inches for accessible units)\n•\tDoor must latch securely (entry door)\nInoperable entry door = Immediate Hazard.\n4. Fire Rated Door Requirements (IBC §716 / NFPA 80)\n(If the unit opens into a rated corridor) Verify:\n•\tFire label present and legible\n•\tDoor self closes fully\n•\tDoor self latches without manual assistance\n•\tNo field modifications\n•\tNo missing intumescent seals\n•\tNo penetrations through door or frame\nFire door not self closing = Immediate Hazard.\n5. Egress Pathway Condition (IPMC §305 / IBC §1003)\nInspect:\n•\tFloors intact, no tripping hazards\n•\tNo loose tiles, torn carpet, or uneven surfaces\n•\tNo water intrusion or slippery conditions\n•\tNo mold like substance along the path\n•\tNo protruding hazards reducing clear width\nTrip hazards = Moderate to Severe depending on severity.\n6. Lighting & Visibility (IBC §1008 / IPMC §605)\nVerify:\n•\tAdequate lighting along the egress path\n•\tLight fixtures operable\n•\tNo exposed wiring\n•\tNo missing or damaged covers\n•\tEmergency lighting (if required) functional\nExposed wiring = Immediate Hazard.\n7. Egress Signage (If Applicable) (IBC §1013)\nIn some multi unit buildings:\n•\tExit signs must be visible from the unit corridor\n•\tSigns must be illuminated\n•\tNo missing or damaged signage\nMissing required signage = Severe.\n8. Stairways & Ramps (If Part of Unit Egress) (IBC §1011 / §1012)\nInspect:\n•\tHandrails secure\n•\tNo loose or damaged steps\n•\tNo uneven risers or treads\n•\tNo obstructions\n•\tNo water or mold accumulation\n•\tAdequate lighting\nLoose handrail = Severe.\n9. Mold & Moisture Assessment (IPMC §305.1 / §309)\nInspect:\n•\tMold like substance on walls, ceilings, floors, or doors along egress\n•\tMoisture staining or active leaks\n•\tPersistent mold odor\nSeverity:\n•\tMold + active leak = Severe\n•\tMold + electrical hazard = Immediate Hazard\n•\tMold like substance alone = Moderate\n10. Accessibility Requirements (ICC A117.1)\n(If unit is designated accessible) Verify:\n•\tClear width of 32 inches minimum\n•\tDoor hardware operable with one hand\n•\tNo tight grasping, pinching, or twisting\n•\tThreshold height compliant\n•\tNo protruding objects reducing accessible route width\n•\tAdequate turning space at doorways\nNon compliant accessible egress = Moderate to Severe."
     },
     {
+      "category": "10. Egress",
+      "deficiencySelected": "Obstructed means of egress",
+      "deficiencyDetail": "Obstructed means of egress. Interior, closets, bedroom, bathroom., hallway and corridors. (exit paths—including doors, stairways, and egress windows—must remain clear and operable without keys, tools, or special effort.",
+      "standard": "DEFICIENCY CRITERIA: The exit access or exit is obstructed. 1. Exit access - path from any interior location to an exit. 2. Exit doors to the outside and enclosed exit stairways. Double-key cylinder deadbolts, or security features that require a key, a tool, or special effort from the inside to the exterior (street side), are not allowed",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "10. Egress",
+      "deficiencySelected": "Sleeping room is located on the 3rd floor or below and has an obtrude rescue opening",
+      "deficiencyDetail": "Sleeping room is located on the 3rd floor or below and has an obtrude rescue opening. Egress may be blocked by locks, bars, or obstructions.",
+      "standard": "DEFICIENCY CRITERIA: Sleeping room is located on the third floor or below and has an obstructed rescue opening",
+      "inspectionProtocol": ""
+    },
+    {
       "category": "11. Electrical",
       "deficiencySelected": "Conductor-Outlet, and Switch",
       "deficiencyDetail": "The electrical conductor is not properly enclosed, secured, or insulated (e.g., damaged or missing sheathing, open ports, missing knockouts, missing outlet/switch covers, or missing breaker/fuse). OR an opening or gap is present that exceeds 1/2\".",
       "standard": "DEFICIENCY CRITERIA: Electrical conductor is not enclosed or properly insulated (e.g., damaged sheathing, open port, missing knockout, missing outlet or switch cover, missing breaker or fuse).  OR. An opening or gap is present and measures greater than ½”",
       "inspectionProtocol": "International (ICC) Protocol – Unit Electrical, Outlets, Switches, AFCI, GFCI & Minimum Lighting\n1. Safety & Initial Conditions (IPMC §305 / NEC Article 110)\n•\tConfirm safe entry and adequate lighting.\n•\tIdentify immediate hazards: exposed wiring, burn marks, arcing, overheating, or water intrusion.\n•\tEnsure electrical components are accessible and unobstructed.\n2. Required Electrical Components (IPMC §604 / NEC)\nVerify presence and proper installation of:\n•\tWorking lighting in all required rooms\n•\tOutlets spaced per NEC (typically every 12 ft, and on each wall >2 ft)\n•\tGFCI protection in wet/damp areas\n•\tAFCI protection in living spaces\n•\tProperly installed switches controlling lighting or receptacles\nMissing required protection (GFCI/AFCI) = Immediate Hazard.\n3. Outlet Inspection (Standard & GFCI)\nGeneral Outlets\nInspect:\n•\tNo cracks, missing covers, or loose devices\n•\tNo burn marks, discoloration, or melting\n•\tNo exposed wiring\n•\tOutlet firmly mounted\n•\tPolarity correct (if tester used)\n•\tNo backstabbed wiring if visible\nGFCI Outlets (NEC 210.8)\nRequired in:\n•\tBathrooms\n•\tKitchens\n•\tLaundry areas\n•\tExterior locations\n•\tWet/damp areas\nTest:\n•\tPress TEST → power must shut off\n•\tPress RESET → power must restore\n•\tConfirm downstream outlets behave correctly\nGFCI failure = Immediate Hazard.\n4. Switch Inspection\nInspect:\n•\tSwitch operates smoothly\n•\tNo cracking, looseness, or missing cover\n•\tNo arcing, buzzing, or delay\n•\tNo exposed wiring\n•\tSwitch controls correct fixture or outlet\n•\tNo heat damage or discoloration\nInoperable switch controlling required lighting = Severe.\n5. AFCI Protection (NEC 210.12)\nRequired in:\n•\tBedrooms\n•\tLiving rooms\n•\tHallways\n•\tClosets\n•\tMost habitable rooms\nInspection:\n•\tAFCI breaker labeled correctly\n•\tPress TEST → breaker must trip\n•\tReset breaker → circuit must restore\n•\tNo buzzing, arcing, or overheating\n•\tNo mixed circuits defeating AFCI protection\nAFCI failure = Immediate Hazard.\n6. Minimum Lighting Requirements (IPMC §605 / IBC §1205)\nVerify:\n•\tEach habitable room has a permanent light fixture or switched outlet\n•\tBathrooms must have permanent lighting\n•\tHallways and egress paths must be illuminated\n•\tNo missing bulbs in required fixtures\n•\tNo flickering, dimming, or unsafe fixtures\n•\tNo exposed wiring or broken globes/shades\nMissing required lighting = Severe.\n7. Electrical Panel (If Located Inside Unit)\nInspect:\n•\tPanel cover present and secure\n•\tNo open knockouts\n•\tBreakers labeled\n•\tNo contamination (infestation-paint-foreign materials)\n•\tNo scorch marks or overheating\n•\tNo water intrusion\n•\tNo missing AFCI/GFCI breakers where required\nExposed bus bars or missing panel cover = Immediate Hazard.\n8. Moisture, Mold & Water Intrusion (IPMC §305.1 / §309)\nInspect:\n•\tMold like substance near outlets, switches, or fixtures\n•\tMoisture staining or swelling of walls\n•\tActive leaks near electrical components\n•\tCondensation near lighting fixtures\nSeverity:\n•\tMold + active leak = Severe\n•\tMold + electrical hazard = Immediate Hazard\n•\tMold like substance alone = Moderate\n9. Accessibility (ICC A117.1)\n(If unit is designated accessible) Verify:\n•\tSwitches and outlets within reach ranges\n•\tControls operable with one hand\n•\tNo tight grasping, pinching, or twisting required\n•\tClear floor space at switches and outlets"
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "The outlet does not have visible damage, and testing indicates that it is not energized",
+      "deficiencyDetail": "The outlet does not have visible damage, and testing indicates that it is not energized.",
+      "standard": "DEFICIENCY CRITERIA: An outlet that is reasonably accessible (i.e., can be reached without moving obstructions, dismantling, destructive measures, or actions that may pose a risk to persons or property) does not have visible damage and testing indicates that it is not energized.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "The outlet or switch is damaged",
+      "deficiencyDetail": "The outlet or switch is damaged. Any portion of a visually accessible outlet or switch is damaged  such that it may not safely carry or control electrical current at the outlet or switch",
+      "standard": "DEFICIENCY CRITERIA: Any portion of a visually accessible (i.e., can be reasonably accessed and observed) outlet or switch is damaged (i.e., visibly defective; impacts functionality) such that it may not safely carry or control electrical current at the outlet or switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "Testing of a three-pronged outlet indicates that it is not wired correctly or grounded",
+      "deficiencyDetail": "Testing of a three-pronged outlet indicates that it is not wired correctly or grounded.",
+      "standard": "DEFICIENCY CRITERIA: Testing of a three-pronged outlet that is reasonably accessible (i.e., can be reached without moving obstructions, dismantling, destructive measures, or actions that may pose a risk to persons or property) indicates that it is not properly wired or grounded.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "water is currently in contact with an electrical conductor",
+      "deficiencyDetail": "water is currently in contact with an electrical conductor. Check for the source (water infiltration from the ceiling or inside of the wall).",
+      "standard": "DEFICIENCY CRITERIA: Water is currently in contact with an electrical conductor.",
+      "inspectionProtocol": ""
     },
     {
       "category": "11. Electrical",
@@ -1385,8 +2498,36 @@
     },
     {
       "category": "11. Electrical",
+      "deficiencySelected": "An unprotected outlet is present within six feet of a water source located in the same room",
+      "deficiencyDetail": "An unprotected outlet is present within six feet of a water source located in the same room. An outlet designed for major appliances, when in use, is not evaluated under this category.",
+      "standard": "DEFICIENCY CRITERIA: Outlet is present within six feet of a water source (i.e., sink, bathtub, shower, water faucet, toilet) that is located in the same room. And Outlet is not GFCI protected.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable",
+      "deficiencyDetail": "GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable.",
+      "standard": "DEFICIENCY CRITERIA: GFCI outlet or GFCI breaker does not have visible damage and the test or reset button is inoperable (i.e., overall system or component thereof is not meeting function or purpose).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
       "deficiencySelected": "Electrical Service Panel",
       "deficiencyDetail": "Electrical service panel is not reasonably accessible. Or it is locked or in a locked location, no key to access.",
+      "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is damaged (i.e., visibly defective; impacts functionality) such that it may not interrupt the circuit during an overcurrent condition.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "The overcurrent protection device is contaminated by foreign material (e",
+      "deficiencyDetail": "The overcurrent protection device is contaminated by foreign material (e.g., paint, water, rust, corrosion, infestation).",
+      "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is contaminated (e.g., water, rust, corrosion)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "11. Electrical",
+      "deficiencySelected": "The overcurrent protection device (i",
+      "deficiencyDetail": "The overcurrent protection device (i.e., fuse or breaker) is damaged such that it may not interrupt the circuit during an over current condition.",
       "standard": "DEFICIENCY CRITERIA: The overcurrent protection device (i.e., fuse or breaker) is damaged (i.e., visibly defective; impacts functionality) such that it may not interrupt the circuit during an overcurrent condition.",
       "inspectionProtocol": ""
     },
@@ -1406,6 +2547,20 @@
     },
     {
       "category": "12. Fire Safety",
+      "deficiencySelected": "The fire extinguisher pressure gauge reads over or undercharged",
+      "deficiencyDetail": "The fire extinguisher pressure gauge reads over or undercharged.",
+      "standard": "DEFICIENCY CRITERIA: Pressure gauge indicates that the fire extinguisher is over or under charged.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Fire extinguisher is noncompliant if the service tag is over a year old, missing, illegible, or if a",
+      "deficiencyDetail": "Fire extinguisher is noncompliant if the service tag is over a year old, missing, illegible, or if a disposable unit is over 12 years old.",
+      "standard": "DEFICIENCY CRITERIA: The date on the service tag of any fire extinguisher has exceeded one year.\nOR\nThe fire extinguisher tag is missing or illegible.\nOR\nA non-chargeable or disposable fire extinguisher is more than 12 years old (based on manufacture date).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
       "deficiencySelected": "Flammable and Combustible Item",
       "deficiencyDetail": "The flammable or combustible material is on or within 3 feet of an appliance that provides heat for thermal comfort or a fuel-burning water heater. Or an improperly stored chemical.",
       "standard": "DEFICIENCY CRITERIA: Flammable or combustible material is on or near an ignition source.\nOR\nImproperly stored chemicals.",
@@ -1420,9 +2575,51 @@
     },
     {
       "category": "12. Fire Safety",
+      "deficiencySelected": "Smoke alarm not installed inside each bedroom, and Smoke alarm not installed outside the bedroom(s) ",
+      "deficiencyDetail": "Smoke alarm not installed inside each bedroom, and Smoke alarm not installed outside the bedroom(s) and in each bedroom or on each level.",
+      "standard": "DEFICIENCY CRITERIA: Smoke alarm is not installed inside each bedroom.  AND  Smoke alarm is not installed outside the bedroom(s). \n AND \nSmoke alarm is not installed on each level.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Smoke alarm is obstructed, covered by a foreign object (e",
+      "deficiencyDetail": "Smoke alarm is obstructed, covered by a foreign object (e.g., plastic bag, shower cap, zip tie, paint, tape, decorative stickers).",
+      "standard": "DEFICIENCY CRITERIA: Smoke alarm is obstructed (e.g., plastic bag, shower cap, zip tie, paint, tape, decorative stickers).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "A required smoke alarm is not hardwired or a 10-year non-rechargeable, sealed, tamper-resistant, bat",
+      "deficiencyDetail": "A required smoke alarm is not hardwired or a 10-year non-rechargeable, sealed, tamper-resistant, battery-powered smoke alarm device.",
+      "standard": "DEFICIENCY CRITERIA: If unable to determine if a required smoke alarm meets the requirements of this standard, consider the condition a deficiency",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
       "deficiencySelected": "Sprinkler Assembly",
       "deficiencyDetail": "The sprinkler assembly component is damaged, inoperable, or missing, and it is detrimental to performance.",
       "standard": "DEFICIENCY CRITERIA: Sprinkler assembly component is damaged (i.e., visibly defective; impacts functionality), inoperable (i.e., overall system or component thereof not meeting function or purpose; with or without visible damage), or missing (i.e., evidence of prior installation, but now not present or is incomplete) and it is detrimental to performance.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Sprinkler head assembly has evidence of corrosion",
+      "deficiencyDetail": "Sprinkler head assembly has evidence of corrosion.",
+      "standard": "DEFICIENCY CRITERIA: Sprinkler assembly has evidence of corrosion",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Sprinkler assembly has evidence of debris, paint, or Foreign material covers 50% or more of the spri",
+      "deficiencyDetail": "Sprinkler assembly has evidence of debris, paint, or Foreign material covers 50% or more of the sprinkler assembly or 50% or more of the glass bulb on the sprinkler assembly.",
+      "standard": "DEFICIENCY CRITERIA: Foreign material covers 75% or more of the sprinkler assembly.\n OR\n Foreign material covers 75% or more of the glass bulb",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "12. Fire Safety",
+      "deficiencySelected": "Sprinkler head assembly is obstructed by an item, object, or encasement within  18 inches",
+      "deficiencyDetail": "Sprinkler head assembly is obstructed by an item, object, or encasement within  18 inches.  clearance is not due to features within the built (e.g., closet, utility closet).",
+      "standard": "DEFICIENCY CRITERIA: Sprinkler head assembly is obstructed by item, object, or encasement within 18 inches of the sprinkler head.",
       "inspectionProtocol": ""
     },
     {
@@ -1473,6 +2670,62 @@
       "deficiencyDetail": "Evidence of bedbugs.(i.e., live or dead bedbugs, feces, eggs, or blood trail).",
       "standard": "Evidence of bedbugs.(i.e., (i.e.,   live or dead bedbugs, feces, eggs, or blood trail).",
       "inspectionProtocol": "International (ICC) Protocol – Hazard Inspection (Infestation + Sharp Edges + Trip Hazards)\n1. Infestation (IPMC §309 – Pest Management)\nInspect for:\n•\tInsects: roaches, ants, bedbugs, fleas, termites\n•\tRodents: droppings, gnaw marks, nests, odors\n•\tEntry points: gaps at baseboards, holes in walls, pipe penetrations\n•\tFood sources: trash accumulation, food debris, dirty appliances\n•\tMoisture sources: leaks, damp areas, mold like substance\nSeverity Guidance:\n•\tActive infestation = Severe\n•\tTermite structural damage = Severe\n•\tPest entry due to structural gaps = Moderate\n2. Sharp Edges (IPMC §305 – Interior Surfaces)\nInspect for:\n•\tBroken fixtures or appliances\n•\tExposed nails, screws, metal edges\n•\tDamaged window or door frames\n•\tBroken furniture creating injury risk\n•\tSharp edges on flooring transitions or thresholds\nSeverity Guidance:\n•\tSharp edge capable of causing immediate injury = Immediate Hazard\n•\tMinor sharp edges (non injury) = Moderate\n3. Trip Hazards (IPMC §305 / IBC §1003 – Means of Egress)\nInspect for:\n•\tLoose flooring, tiles, or planks\n•\tRaised transitions or thresholds\n•\tTorn or bunched carpet\n•\tElectrical cords across pathways\n•\tClutter blocking walking paths\n•\tUneven surfaces or floor settlement\n•\tPoor lighting contributing to trip risk\nSeverity Guidance:\n•\tMajor trip hazard in egress path = Severe\n•\tMinor unevenness = Moderate"
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Evidence of cockroaches   (i",
+      "deficiencyDetail": "Evidence of cockroaches   (i.e.. of dead or live cockroaches, shed skins, droppings (tiny black specks or smears), and egg cases).",
+      "standard": "(i.e, of dead or alive cockroaches, shed skins, droppings (tiny black specks or smears), and egg cases).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Evidence of mice (any sign)",
+      "deficiencyDetail": "Evidence of mice (any sign). (i.e. a live or dead mouse or mice, droppings, chewed holes, or urine trails).",
+      "standard": "Evidence of mice (any sign). (i.e. a live or dead mouse or mice, droppings, chewed holes, or urine trails).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Evidence of other pests",
+      "deficiencyDetail": "Evidence of other pests. such as ants, wasps, squirrels, birds, or bats—may pose health and safety risks to residents.",
+      "standard": "Evidence of other pests. such as ants, wasps, squirrels, birds, or bats—may pose health and safety risks to residents.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Evidence of rats (any sign)",
+      "deficiencyDetail": "Evidence of rats (any sign). i.e., a live or dead rat, droppings, or chewed holes.",
+      "standard": "Evidence of rats (any sign). i.e., a live or dead rat, droppings, or chewed holes.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Extensive bedbugs infestation",
+      "deficiencyDetail": "Extensive bedbugs infestation. At least one live bedbug in two or more units or two rooms of the same unit during the daytime surface visual assessment.",
+      "standard": "Extensive bedbugs infestation. At least one live bedbug in two or more units or two rooms of the same unit during the daytime surface visual assessment.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Extensive cockroach infestation",
+      "deficiencyDetail": "Extensive cockroach infestation. Sighting of one or more live cockroaches in two or more unit areas observed simultaneously during visual assessment on the inspection day.",
+      "standard": "Sighting of one or more live cockroaches in two or more unit areas observed simultaneously during visual assessment on the inspection day.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Extensive mouse infestation",
+      "deficiencyDetail": "Extensive mouse infestation. Sighting of at least one live mouse in two or more units or two rooms of the same unit during the daytime through surface visual assessment.",
+      "standard": "Extensive mouse infestation. Sighting of at least one live mouse in two or more units or two rooms of the same unit during the daytime through surface visual assessment.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "15.Hazard",
+      "deficiencySelected": "Extensive rate infestation",
+      "deficiencyDetail": "Extensive rate infestation. A live rat is seen in the unit.",
+      "standard": "Extensive rate infestation. A live rat is seen in the unit.",
+      "inspectionProtocol": ""
     },
     {
       "category": "15.Hazard",
@@ -1553,9 +2806,44 @@
     },
     {
       "category": "17. Kitchen",
+      "deficiencySelected": "Storage component is damaged, inoperable, or missing, with 50% or more of kitchen cabinet doors, dra",
+      "deficiencyDetail": "Storage component is damaged, inoperable, or missing, with 50% or more of kitchen cabinet doors, drawers, or shelves absent. The condition is visibly defective and impacts functionality or the ability to serve its intended purpose.",
+      "standard": "DEFICIENCY CRITERIA: Storage component is damaged, inoperable, or missing, with 50% or more of kitchen cabinet doors, drawers, or shelves absent. The condition is visibly defective and impacts functionality or the ability to serve its intended purpose.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
       "deficiencySelected": "Cooking Appliance.",
       "deficiencyDetail": "A burner does not produce heat, but at least one other burner is present on the cooking range or cooktop and does produce heat.",
       "standard": "DEFICIENCY CRITERIA: No burner on the cooking range or cooktop produces heat. \nOR\n The oven does not produce heat temperature.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Microwave is the primary cooking appliance, and it is damaged",
+      "deficiencyDetail": "Microwave is the primary cooking appliance, and it is damaged. (i.e., visibly defective; impacts functionality)",
+      "standard": "DEFICIENCY CRITERIA: A microwave is the primary cooking appliance, and it is damaged (i.e., visibly defective; impacts functionality).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "A control knob is missing, or the oven, cooktop component is damaged or missing, making the device u",
+      "deficiencyDetail": "A control knob is missing, or the oven, cooktop component is damaged or missing, making the device unsafe for use, including the oven door seal.",
+      "standard": "DEFICIENCY CRITERIA: Cooking range, cooktop, or oven component is damaged (i.e., visibly defective) such that the device is unsafe for use.\nOR\nCooking range, cooktop, or oven component is missing (i.e., evidence of prior installation, but now not present or is incomplete) such that the device is unsafe for use.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Cooktop or oven does not ignite or produce heat",
+      "deficiencyDetail": "Cooktop or oven does not ignite or produce heat.",
+      "standard": "DEFICIENCY CRITERIA: No burner on the cooking range or cooktop produces heat. \nOR\n The oven does not produce heat temperature.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "The primary cooking appliance is missing",
+      "deficiencyDetail": "The primary cooking appliance is missing.(i.e., evidence of prior installation, but now not present or is incomplete).",
+      "standard": "DEFICIENCY CRITERIA: Primary cooking appliance is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
       "inspectionProtocol": ""
     },
     {
@@ -1567,9 +2855,37 @@
     },
     {
       "category": "17. Kitchen",
+      "deficiencySelected": "The food preparation area, the countertop is not present",
+      "deficiencyDetail": "The food preparation area, the countertop is not present. (Countertops must be fully surfaced and functional exposed substrate over 10% or setups that hinder food prep are deficient.",
+      "standard": "DEFICIENCY CRITERIA: The food preparation area, the countertop is not present. (Countertops must be fully surfaced and functional exposed substrate over 10% or setups that hinder food prep are deficient.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
       "deficiencySelected": "MOLD-LIKE SUBSTANCE",
       "deficiencyDetail": "Elevated moisture level. (e.g., peeling paint or wallpaper, a wall that is warped or\nstained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).",
       "standard": "DEFICIENCY CRITERIA: Poor ventilation, (e.g., peeling paint or wallpaper, a wall that is warped or\nstained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "More than 9'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed vis",
+      "deficiencyDetail": "More than 9'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.",
+      "standard": "DEFICIENCY D: Presence of mold-like substance at extremely high levels is observed visually\nDEFICIENCY CRITERIA: The cumulative area of patches is more than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "1' to 9' SF(cumulative)-Presence of mold-like substance at high levels is observed visually",
+      "deficiencyDetail": "1' to 9' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.",
+      "standard": "DEFICIENCY C: Presence of mold-like substance at high levels is observed visually\nDEFICIENCY CRITERIA: Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "4\" or less than 1 square foot in a room",
+      "deficiencyDetail": "4\" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.",
+      "standard": "DEFICIENCY CRITERIA: Cumulative area of patches is more than 4 square inches, i.e., above de minimis, and less than 1 square foot in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food).",
       "inspectionProtocol": ""
     },
     {
@@ -1581,6 +2897,20 @@
     },
     {
       "category": "17. Kitchen",
+      "deficiencySelected": "Refrigerator is inoperable such that it may be unable to safely and adequately store food",
+      "deficiencyDetail": "Refrigerator is inoperable such that it may be unable to safely and adequately store food.",
+      "standard": "DEFICIENCY CRITERIA: Refrigerator is inoperable (i.e., overall system is not meeting function or purpose; with or without visible damage) such that it may be unable to safely and adequately store food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Refrigerator is missing (i",
+      "deficiencyDetail": "Refrigerator is missing (i.e., evidence of prior installation but is now not present).",
+      "standard": "DEFICIENCY CRITERIA: Refrigerator is missing (i.e., evidence of prior installation but is now not present).",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
       "deficiencySelected": "Sink",
       "deficiencyDetail": "Hot and cold water cannot be activated or deactivated.",
       "standard": "DEFICIENCY CRITERIA: Control knobs do not activate or deactivate hot and cold water.\nOR\nWater is directed outside of the basin",
@@ -1588,9 +2918,72 @@
     },
     {
       "category": "17. Kitchen",
+      "deficiencySelected": "The sink component is damaged or missing, and the sink is not functionally adequate",
+      "deficiencyDetail": "The sink component is damaged or missing, and the sink is not functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Sink or sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is not functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sin",
+      "deficiencyDetail": "Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "standard": "DEFICIENCY CRITERIA: Sink is improperly installed, pulling away from the wall, leaning, or there are gaps between the sink and wall.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Sink is missing (i",
+      "deficiencyDetail": "Sink is missing (i.e., evidence of prior installation, but now not present or is incomplete) or not installed (i.e., never installed, but should have been) in the primary kitchen.",
+      "standard": "DEFICIENCY CRITERIA: Sink is missing (i.e., evidence of prior installation, but now not present or is incomplete) or not installed (i.e., never installed, but should have been) in the primary kitchen.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "The sink is not draining, not functioning adequately",
+      "deficiencyDetail": "The sink is not draining, not functioning adequately.",
+      "standard": "DEFICIENCY CRITERIA: Water is not draining from the basin of the sink.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "The dishwasher or other Sink component is damaged or missing, and the sink is functionally adequate",
+      "deficiencyDetail": "The dishwasher or other Sink component is damaged or missing, and the sink is functionally adequate.",
+      "standard": "DEFICIENCY CRITERIA: Sink component is damaged (i.e., visibly defective; impacts functionality) or missing (i.e., evidence of prior installation, but now not present or is incomplete) and the sink is functionally adequate.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Water pressure, direction (outside the basin)",
+      "deficiencyDetail": "Water pressure, direction (outside the basin). The water pressure direction is not functioning properly.",
+      "standard": "DEFICIENCY CRITERIA: Water is directed outside of the basin.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
       "deficiencySelected": "Ventilation",
       "deficiencyDetail": "The kitchen does not have proper ventilation; it is not present and operable. An exhaust fan, window, or adequate means of ventilation is not present and operable.",
       "standard": "DEFICIENCY CRITERIA: An exhaust fan, window, or adequate means of ventilation is not present and operable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Exhaust system component is damaged or missing",
+      "deficiencyDetail": "Exhaust system component is damaged or missing.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system component is damaged (i.e., visibly defective; impacts functionality). \nOR \nExhaust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Exhaust system does not respond to the control switch",
+      "deficiencyDetail": "Exhaust system does not respond to the control switch.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system does not respond to the control switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "17. Kitchen",
+      "deficiencySelected": "Exhaust system is blocked, such that airflow may be restricted",
+      "deficiencyDetail": "Exhaust system is blocked, such that airflow may be restricted.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
       "inspectionProtocol": ""
     },
     {
@@ -1658,6 +3051,20 @@
     },
     {
       "category": "21. Lighting",
+      "deficiencySelected": "A permanently installed light fixture is not secure to the designed attachment point or the attachme",
+      "deficiencyDetail": "A permanently installed light fixture is not secure to the designed attachment point or the attachment point is not stable.",
+      "standard": "DEFICIENCY CRITERIA: A permanently installed light fixture is not secure to the designed attachment point or the attachment point is not stable.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "21. Lighting",
+      "deficiencySelected": "At least one (1) permanently installed light fixture is not present in the kitchen or bathroom",
+      "deficiencyDetail": "At least one (1) permanently installed light fixture is not present in the kitchen or bathroom.",
+      "standard": "DEFICIENCY CRITERIA: At least one (1) permanently installed light fixture is not present in the kitchen and bathroom.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "21. Lighting",
       "deficiencySelected": "Minimum Electrical and Lighting",
       "deficiencyDetail": "At least two (2) working outlets are absent within each habitable room. Or at least one (1) working outlet and one (1) permanently installed light fixture not present within each habitable room.",
       "standard": "DEFICIENCY CRITERIA: At least two (2) working outlets are absent within each habitable room. Or at least one (1) working outlet and one (1) permanently installed light fixture not present within each habitable room.",
@@ -1669,6 +3076,27 @@
       "deficiencyDetail": "Elevated moisture level (e.g., peeling paint or wallpaper, a wall that is warped or\nstained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).",
       "standard": "Poor ventilation, (e.g., peeling paint or wallpaper, a wall that is warped or\nstained, or a buckled, cracked, or water-stained ceiling, carpet, or wooden floor).",
       "inspectionProtocol": "International (ICC) Protocol – Mold Inspection (Unit Interior)\n1. Scope & Applicability (IPMC §305.1 / §309)\nA mold inspection applies when any of the following are present:\n•\tMold like substance on walls, ceilings, floors, or fixtures\n•\tMoisture staining or water damage\n•\tMusty odor\n•\tActive leaks or condensation\n•\tVisible biological growth on building materials\nIf none are present → Not Applicable.\n2. Visual Assessment (IPMC §305 – Interior Conditions)\nInspect:\n•\tWalls, ceilings, floors\n•\tBehind/under sinks, cabinets, appliances\n•\tBathroom surfaces (tub, shower, tile, grout)\n•\tHVAC registers, window A/C, wall heaters\n•\tWindowsills and frames\n•\tClosets and low ventilation areas\nLook for:\n•\tDark, green, black, or white growth\n•\tMoisture staining or bubbling paint\n•\tSwollen drywall or flooring\n•\tPeeling or delaminated surfaces\n•\tCondensation on windows or walls\nImmediate Hazard: Mold + electrical hazard or mold caused by sewage.\n3. Moisture Source Identification (IPC §701–§706 / IMC §307)\nCheck for:\n•\tActive plumbing leaks\n•\tRoof or ceiling leaks from upper units\n•\tWindow leaks or condensation\n•\tHVAC condensation issues\n•\tWater intrusion at slab or foundation edges\n•\tPoor ventilation in bathrooms/kitchens\nSevere: Any active leak causing mold.\n4. Bathroom & Kitchen Moisture Zones\nInspect:\n•\tShower/tub tile, grout, caulking\n•\tSink base cabinets\n•\tDishwasher and refrigerator areas\n•\tRange hood and exhaust fan operation\n•\tToilet base and wax ring area\nLook for:\n•\tMold like substance\n•\tMoisture staining\n•\tMusty odor\n•\tSoft or swollen materials\nSevere: Mold + active plumbing leak.\n5. HVAC & Ventilation (IMC §501 / §603)\nInspect:\n•\tWindow A/C units (filters, frames, drainage)\n•\tWall heaters (dust buildup, moisture exposure)\n•\tSupply/return vents\n•\tBathroom exhaust fan operation\n•\tKitchen hood ventilation\nLook for:\n•\tMold on vents or filters\n•\tCondensation around HVAC components\n•\tPoor airflow contributing to moisture buildup\nSevere: Mold caused by HVAC moisture or blocked ventilation.\n6. Odor Assessment (IPMC §305.1)\nCheck for:\n•\tMusty odor indicating hidden mold\n•\tOdor near plumbing fixtures\n•\tOdor near HVAC components\n•\tOdor near walls or ceilings with moisture history\nSevere: Strong odor with visible moisture damage.\n7. Structural Indicators (IPMC §305 / IBC Structural)\nInspect:\n•\tSoft drywall\n•\tSagging ceilings\n•\tWarped flooring\n•\tDelaminated cabinets\n•\tCrumbling or deteriorated materials\nImmediate Hazard: Ceiling collapse risk from moisture."
+    },
+    {
+      "category": "22. Mold",
+      "deficiencySelected": "More than 9'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed vis",
+      "deficiencyDetail": "More than 9'SF(cumulative)- Presence of mold-like substance at extremely high levels is observed visually.",
+      "standard": "DEFICIENCY D: Presence of mold-like substance at extremely high levels is observed visually\nDEFICIENCY CRITERIA: The cumulative area of patches is more than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "22. Mold",
+      "deficiencySelected": "1' to 9' SF(cumulative)-Presence of mold-like substance at high levels is observed visually",
+      "deficiencyDetail": "1' to 9' SF(cumulative)-Presence of mold-like substance at high levels is observed visually.",
+      "standard": "DEFICIENCY C: Presence of mold-like substance at high levels is observed visually\nDEFICIENCY CRITERIA: Cumulative area of patches is more than 1 square foot and less than 9 square feet in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "22. Mold",
+      "deficiencySelected": "4\" or less than 1 square foot in a room",
+      "deficiencyDetail": "4\" or less than 1 square foot in a room. (cumulative)-- Presence of mold-like substance at a moderate level observed visually.",
+      "standard": "DEFICIENCY CRITERIA: Cumulative area of patches is more than 4 square inches, i.e., above de minimis, and less than 1 square foot in a room. Odor is an indicator, but not a diagnostic; if a musty odor is detected, visual confirmation of “mold-like substance” is required. Odor may be indicated in a “notes” field. This deficiency is not recorded if observed on household items (e.g., clothing, upholstery, food).",
+      "inspectionProtocol": ""
     },
     {
       "category": "23-Paint &- Potential Lead-Based Paint Hazards – Visual Assessment",
@@ -1693,9 +3121,37 @@
     },
     {
       "category": "24. Railings",
+      "deficiencySelected": "Guard rail component, missing,  visibly damaged, under 30 inches in height, or not securely attached",
+      "deficiencyDetail": "Guard rail component, missing,  visibly damaged, under 30 inches in height, or not securely attached to reasonably prevent fall hazards.",
+      "standard": "DEFICIENCY CRITERIA: Guardrail is missing functional component(s) (i.e., a component that is critical to the guardrail protecting from fall hazards).\n OR\n Guardrail is damaged (i.e., visibly defective; impacts functionality). OR Guardrail is less than 30 inches in height. \nOR \nGuardrail is not securely attached and cannot reasonably protect from fall hazards.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. Railings",
       "deficiencySelected": "Handrail",
       "deficiencyDetail": "A handrail is deficient if it cannot be reasonably grasped for support, is not continuous along the full stair flight, or is outside the required height range of 28 to 42 inches",
       "standard": "A handrail is deficient if it cannot be reasonably grasped for support, is not continuous along the full stair flight, or is outside the required height range of 28 to 42 inches",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. Railings",
+      "deficiencySelected": "Handrail is not functionally adequate",
+      "deficiencyDetail": "Handrail is not functionally adequate.\n Or  Handrail is not continuous for the full length of each flight of stairs. or Handrail is not between 28 inches and 42 inches in height.",
+      "standard": "Handrail is not functionally adequate.\n Or  Handrail is not continuous for the full length of each flight of stairs. or Handrail is not between 28 inches and 42 inches in height.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. Railings",
+      "deficiencySelected": "4 or more stair risers are present, and a handrail is not installed",
+      "deficiencyDetail": "4 or more stair risers are present, and a handrail is not installed.  Or a ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches and a handrail is not installed on both sides.",
+      "standard": "4 or more stair risers are present, and a handrail is not installed.  Or a ramp has a rise greater than 6 inches or a horizontal projection greater than 72 inches and a handrail is not installed on both sides.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "24. Railings",
+      "deficiencySelected": "Handrail is not secured",
+      "deficiencyDetail": "Handrail is not secured. There is movement in the anchors of the handrail.",
+      "standard": "Handrail is not secured.There is movement in the anchors of the handrail.",
       "inspectionProtocol": ""
     },
     {
@@ -1776,11 +3232,46 @@
       "inspectionProtocol": "International (ICC) Protocol – Ventilation (Other Than Kitchen & Bath) – Unit Interior\n1. Scope & Applicability (IPMC §402–404 / IMC §501)\nInspection applies to:\n•\tLaundry/utility exhaust fans\n•\tPassive wall/ceiling vents\n•\tTransfer grilles\n•\tCloset ventilation openings\n•\tWindow ventilation components\n•\tMechanical exhaust fans not tied to HVAC\n•\tAny non kitchen, non bathroom ventilation system\nIf none exist → Not Applicable.\n2. Laundry / Utility Exhaust Vent (IMC §504)\nInspect:\n•\tFan operates and pulls air\n•\tNo lint buildup blocking grille\n•\tNo moisture staining around vent\n•\tNo mold like substance\n•\tNo exposed wiring\n•\tDucting intact and connected (if visible)\nHazard Severity:\n•\tLint buildup creating fire hazard → Severe\n•\tExposed wiring → Immediate Hazard\n3. Passive Vents (Wall, Ceiling, Closet) – IPMC §402–403\nInspect:\n•\tVents unobstructed\n•\tNo paint sealing vents shut\n•\tNo debris or dust blockage\n•\tNo mold like substance\n•\tNo damaged or missing vent covers\n•\tNo sharp edges or broken louvers\nHazard Severity:\n•\tBlocked ventilation → Severe\n•\tSharp edges → Immediate Hazard\n4. Transfer Grilles (Airflow Between Rooms)\nInspect:\n•\tGrille intact and secure\n•\tNo blockage or obstruction\n•\tNo dust buildup reducing airflow\n•\tNo mold like substance\n•\tNo sharp edges or broken fins\nHazard Severity:\n•\tBlocked grille → Severe\n•\tSharp edges → Immediate Hazard\n5. Window Ventilation Components\nInspect:\n•\tWindows operable (open/close smoothly)\n•\tNo broken glass\n•\tNo damaged screens\n•\tNo mold like substance on frames\n•\tNo condensation causing deterioration\n•\tNo gaps allowing pests\nHazard Severity:\n•\tBroken glass → Immediate Hazard\n•\tMold + moisture → Severe\n6. Closet / Enclosed Space Ventilation\nInspect:\n•\tVent openings present (if required)\n•\tNo blocked or sealed vents\n•\tNo mold like substance\n•\tNo moisture buildup\n•\tNo odors indicating poor ventilation\nHazard Severity:\n•\tMold + moisture → Severe\n7. Mechanical Exhaust (Non Kitchen / Non Bath)\nInspect:\n•\tFan operates and pulls air\n•\tNo excessive noise or vibration\n•\tNo dust blockage\n•\tNo exposed wiring\n•\tNo moisture staining around fan\n•\tNo mold like substance\nHazard Severity:\n•\tInoperable fan → Severe\n•\tExposed wiring → Immediate Hazard\n8. Moisture & Ventilation Interaction (IPMC §305.1 / §309)\nInspect:\n•\tMoisture staining near vents\n•\tMold like substance around ventilation openings\n•\tCondensation buildup\n•\tOdors indicating inadequate air movement\n•\tPoor ventilation causing humidity accumulation\nHazard Severity:\n•\tMold + active moisture → Severe\n•\tMoisture + electrical → Immediate Hazard\n9. Fire Safety Interaction (IFC §603)\nInspect:\n•\tNo lint buildup near laundry exhaust\n•\tNo combustible materials near vents\n•\tNo overheating of fan motors\n•\tNo grease or dust accumulation creating ignition risk\nHazard Severity:\n•\tLint fire hazard → Severe\n•\tOverheating motor → Immediate Hazard"
     },
     {
+      "category": "28. Ventilation (interior)",
+      "deficiencySelected": "Exhaust system component is damaged",
+      "deficiencyDetail": "Exhaust system component is damaged. \nOr an aust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete).",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system component is damaged (i.e., visibly defective; impacts functionality). \nOR \nExhaust system component is missing (i.e., evidence of prior installation, but now not present or is incomplete)",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "28. Ventilation (interior)",
+      "deficiencySelected": "Exhaust system does not respond to the control switch",
+      "deficiencyDetail": "Exhaust system does not respond to the control switch.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system does not respond to the control switch.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "28. Ventilation (interior)",
+      "deficiencySelected": "Exhaust system has restricted air flow",
+      "deficiencyDetail": "Exhaust system has restricted air flow.",
+      "standard": "DEFICIENCY CRITERIA: Exhaust system is blocked such that airflow may be restricted",
+      "inspectionProtocol": ""
+    },
+    {
       "category": "29. Wall",
       "deficiencySelected": "Wall-Interior",
       "deficiencyDetail": "Interior wall component(s), severe cracks, not functionally adequate. Damaged trim greater than 10% to 50% of the wall area.",
       "standard": "DEFICIENCY CRITERIA: Interior wall component(s) is not functionally adequate (i.e., impacts the integrity of the interior wall or does not allow interior wall to provide vertical separation between rooms or spaces).",
       "inspectionProtocol": "International (ICC) Protocol – Wall & Wall Component Inspection (Unit Interior)\n1. Scope & Applicability (IPMC §305 – Interior Structure)\nInspection applies to:\n•\tInterior walls (load bearing & non load bearing)\n•\tDemising walls between units\n•\tPartition walls\n•\tWall finishes (drywall, plaster, paneling)\n•\tWall components (trim, baseboards, wall mounted fixtures)\n•\tFire rated assemblies (where applicable)\nIf no wall deterioration exists → Not Applicable.\n2. Structural Condition of Walls\nInspect:\n•\tCracks (vertical, horizontal, diagonal)\n•\tBulging, bowing, or leaning walls\n•\tLoose, delaminated, or unstable drywall/plaster\n•\tSeparation at corners, joints, or seams\n•\tMovement around door/window frames\n•\tHoles or penetrations compromising structure\nHazard Severity:\n•\tBowing or leaning → Immediate Hazard\n•\tStructural cracks indicating movement → Severe\n3. Wall Surface Condition (IPMC §305.1)\nInspect:\n•\tPeeling, flaking, or blistering paint\n•\tDamaged drywall (holes, gouges, punctures)\n•\tLoose or missing wall panels\n•\tExposed substrate (wood, gypsum, plaster)\n•\tSharp edges or protruding fasteners\n•\tStains or discoloration\nHazard Severity:\n•\tSharp edges → Immediate Hazard\n•\tExposed substrate → Severe\n4. Moisture & Water Intrusion Indicators\nInspect:\n•\tWater stains\n•\tBubbling or delaminated paint\n•\tSwollen drywall or paneling\n•\tSoft or spongy wall sections\n•\tMold like substance\n•\tMoisture around plumbing walls, windows, or exterior facing walls\nHazard Severity:\n•\tMoisture + structural deterioration → Severe\n•\tMold + electrical → Immediate Hazard\n5. Fire Resistance & Penetrations (IBC §714)\nInspect:\n•\tPenetrations in fire rated demising walls\n•\tMissing or damaged fire blocking\n•\tUnsealed openings around pipes, cables, or conduits\n•\tDamaged fire rated gypsum board\nHazard Severity:\n•\tBreach in fire rated wall → Severe\n6. Wall Mounted Components\nInspect:\n•\tElectrical outlets and switches\n•\tWall heaters\n•\tCabinets, shelves, and brackets\n•\tHandrails or grab bars\n•\tThermostats and sensors\nCheck for:\n•\tLoose or unstable mounting\n•\tExposed wiring\n•\tDamage to wall from mounting failure\nHazard Severity:\n•\tExposed electrical → Immediate Hazard\n•\tLoose heavy wall mounted items → Severe\n7. Baseboards, Trim & Joint Components\nInspect:\n•\tLoose or missing baseboards\n•\tGaps between trim and wall\n•\tMoisture damage at baseboards\n•\tTermite or pest damage\n•\tSharp edges or splintering\nHazard Severity:\n•\tSharp edges → Immediate Hazard\n•\tMoisture damaged trim indicating leak → Severe\n8. Pest & Termite Indicators (IPMC §309)\nInspect:\n•\tHoles or tunnels in drywall\n•\tFrass (termite droppings)\n•\tChewed or damaged wall components\n•\tSoft or hollow sounding wood trim\nHazard Severity:\n•\tStructural termite damage → Severe\n9. Safety Interaction (IFC §603)\nInspect:\n•\tWater near electrical outlets\n•\tLoose wall sections that may fall\n•\tTrip hazards from fallen wall debris\n•\tNo destructive inspection allowed (no opening walls)\nHazard Severity:\n•\tWater + electrical → Immediate Hazard\n•\tFalling wall material → Immediate Hazard"
+    },
+    {
+      "category": "29. Wall",
+      "deficiencySelected": "Hole is greater than 2 inches in diameter",
+      "deficiencyDetail": "Hole is greater than 2 inches in diameter. OR An accumulation of holes in any one wall is greater than 6 inches by 6 inches.",
+      "standard": "DEFICIENCY CRITERIA: Hole is greater than 2 inches in diameter. \nOR \nAn accumulation of holes in any one wall is greater than 6 inches by 6 inches.",
+      "inspectionProtocol": ""
+    },
+    {
+      "category": "29. Wall",
+      "deficiencySelected": "Interior wall has a loose or detached surface covering",
+      "deficiencyDetail": "Interior wall has a loose or detached surface covering. (e.g., drywall, plaster, paneling).",
+      "standard": "DEFICIENCY CRITERIA: Interior wall has a loose or detached surface covering. (e.g, drywall, plaster, paneling).",
+      "inspectionProtocol": ""
     },
     {
       "category": "30. Water Heater",

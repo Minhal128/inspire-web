@@ -207,6 +207,7 @@ export default function InspectionCategoryPage() {
     const generalGalleryInputRef = useRef<HTMLInputElement>(null);
     const [modalStep, setModalStep] = useState(1); // 1: Add New, 2: Form, 3: Selection (Selected/Detail/Criteria)
     const [isHowToInspectOpen, setIsHowToInspectOpen] = useState(false);
+    const [inspectModalType, setInspectModalType] = useState<\'standard\' | \'protocol\' | null>(null); // Track which modal is open
     const [currentModalItem, setCurrentModalItem] = useState<string | null>(null);
     const [selectionType, setSelectionType] = useState<'selected' | 'detail' | 'criteria'>('selected');
     const [detailFilterName, setDetailFilterName] = useState<string | null>(null);
@@ -1907,6 +1908,27 @@ export default function InspectionCategoryPage() {
                                             )
                                         })()}
                                     </div>
+                                    {/* INSPECTION PROTOCOL (INTERNATIONAL) BUTTON */}
+                                    <div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL (INTERNATIONAL) ✅</label>
+                                        {(() => {
+                                            if (!selectedDeficiency) {
+                                                return <div className="text-xs text-gray-400 italic bg-gray-50 p-4 rounded-2xl border border-gray-200">Select deficiency first</div>
+                                            }
+                                            return (
+                                                <button
+                                                    onClick={() => {
+                                                        setInspectModalType('protocol');
+                                                        setIsHowToInspectOpen(true);
+                                                    }}
+                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
+                                                >
+                                                    INSPECTION PROTOCOL (INTERNATIONAL) ✅
+                                                </button>
+                                            )
+                                        })()}
+                                    </div>
+
 
                                     {/* 4. PIC - one photo per deficiency */}
                                     <div>
@@ -2198,7 +2220,7 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">STANDARD ✅</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">{inspectModalType === 'standard' ? 'STANDARD ✅' : 'INSPECTION PROTOCOL ✅'}</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>
@@ -2210,6 +2232,10 @@ export default function InspectionCategoryPage() {
                                     ? getInspectionStandardAndProtocol(currentSection, currentModalItem, selectedDeficiency?.selected || undefined)
                                     : null;
 
+                                // Determine what to show based on which button was clicked
+                                const showStandard = inspectModalType === 'standard';
+                                const showProtocol = inspectModalType === 'protocol';
+
                                 if (!standardData || (!standardData.standard && !standardData.inspectionProtocol)) {
                                     return (
                                         <p className="text-gray-500 text-sm italic">
@@ -2220,8 +2246,8 @@ export default function InspectionCategoryPage() {
 
                                 return (
                                     <>
-                                        {/* Standard Section */}
-                                        {standardData.standard && (
+                                        {/* Standard Section - Only show when Standard button clicked */}
+                                {showStandard && standardData.standard && (
                                             <div className="space-y-2">
                                                 <h4 className="font-black text-[#0E7490] text-base uppercase tracking-wide">
                                                     📋 Standard
@@ -2240,8 +2266,8 @@ export default function InspectionCategoryPage() {
                                             </div>
                                         )}
 
-                                        {/* Inspection Protocol Section */}
-                                        {standardData.inspectionProtocol && (
+                                        {/* Inspection Protocol Section - Only show when Protocol button clicked */}
+                                {showProtocol && standardData.inspectionProtocol && (
                                             <div className="space-y-2">
                                                 <h4 className="font-black text-[#F84B5F] text-base uppercase tracking-wide">
                                                     ✅ Inspection Protocol
