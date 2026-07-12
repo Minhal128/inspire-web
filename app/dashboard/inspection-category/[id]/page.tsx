@@ -949,6 +949,13 @@ export default function InspectionCategoryPage() {
                     def.selected
                 );
                 
+                console.log('[DEBUG] Looking up Standard & Protocol:', {
+                    section: currentSection,
+                    category: odForm.category,
+                    deficiency: def.selected,
+                    result: standardProtocolData
+                });
+                
                 const newFinding = {
                     id: newFindingId,
                     imageUri: photos[0],
