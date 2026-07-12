@@ -207,7 +207,7 @@ export default function InspectionCategoryPage() {
     const generalGalleryInputRef = useRef<HTMLInputElement>(null);
     const [modalStep, setModalStep] = useState(1); // 1: Add New, 2: Form, 3: Selection (Selected/Detail/Criteria)
     const [isHowToInspectOpen, setIsHowToInspectOpen] = useState(false);
-    const [inspectModalType, setInspectModalType] = useState<\'standard\' | \'protocol\' | null>(null); // Track which modal is open
+    const [inspectModalType, setInspectModalType] = useState<'standard' | 'protocol' | null>(null); // Track which modal is open
     const [currentModalItem, setCurrentModalItem] = useState<string | null>(null);
     const [selectionType, setSelectionType] = useState<'selected' | 'detail' | 'criteria'>('selected');
     const [detailFilterName, setDetailFilterName] = useState<string | null>(null);
@@ -2319,8 +2319,6 @@ export default function InspectionCategoryPage() {
                                         )}
                                     </>
                                 );
-                            })()}
-                        </div>
                             })()}
                         </div>
                         <div className="p-4 border-t bg-gray-50">
