@@ -215,6 +215,8 @@ export default function InspectionCategoryPage() {
     const [guideDeficiency, setGuideDeficiency] = useState<DeficiencyDetail | null>(null);
     const [lastSavedFindingId, setLastSavedFindingId] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [showStandardModal, setShowStandardModal] = useState(false);
+    const [showProtocolModal, setShowProtocolModal] = useState(false);
     const [photos, setPhotos] = useState<string[]>([]);
     const [odForm, setOdForm] = useState({
         category: "",
@@ -1383,6 +1385,72 @@ export default function InspectionCategoryPage() {
                 <div className="flex items-center justify-center min-h-[60vh]">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
                 </div>
+            {/* Standard Modal */}
+            {showStandardModal && selectedDeficiency && (() => {
+                const standardData = getInspectionStandardAndProtocol(
+                    currentSection as 'outside' | 'inside' | 'unit',
+                    odForm.category,
+                    selectedDeficiency.selected
+                );
+                
+                return (
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowStandardModal(false)}>
+                        <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-blue-600 p-5 flex items-center justify-between">
+                                <h3 className="text-lg font-black text-white">STANDARD - {selectedDeficiency.selected}</h3>
+                                <button onClick={() => setShowStandardModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+                            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
+                                {standardData?.standard ? (
+                                    <div className="prose prose-sm max-w-none">
+                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg">
+                                            {standardData.standard}
+                                        </pre>
+                                    </div>
+                                ) : (
+                                    <p className="text-gray-500 italic text-center py-8">No standard information available for this deficiency.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
+
+            {/* Inspection Protocol Modal */}
+            {showProtocolModal && selectedDeficiency && (() => {
+                const protocolData = getInspectionStandardAndProtocol(
+                    currentSection as 'outside' | 'inside' | 'unit',
+                    odForm.category,
+                    selectedDeficiency.selected
+                );
+                
+                return (
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowProtocolModal(false)}>
+                        <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-green-600 p-5 flex items-center justify-between">
+                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL (INTERNATIONAL) - {selectedDeficiency.selected}</h3>
+                                <button onClick={() => setShowProtocolModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+                            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
+                                {protocolData?.inspectionProtocol ? (
+                                    <div className="prose prose-sm max-w-none">
+                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg">
+                                            {protocolData.inspectionProtocol}
+                                        </pre>
+                                    </div>
+                                ) : (
+                                    <p className="text-gray-500 italic text-center py-8">No inspection protocol information available for this deficiency.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
+
             </ManagementDashboardLayout>
         )
     }
@@ -2037,6 +2105,27 @@ export default function InspectionCategoryPage() {
                                         </div>
                                     </div>
 
+                                {/* Standard and Protocol Viewing Buttons */}
+                                {selectedDeficiency && (
+                                    <div className="flex gap-3 mb-4">
+                                        <button
+                                            onClick={() => setShowStandardModal(true)}
+                                            className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            <FileText className="w-4 h-4" />
+                                            STANDARD ✅
+                                        </button>
+                                        <button
+                                            onClick={() => setShowProtocolModal(true)}
+                                            className="flex-1 px-4 py-3 bg-green-600 text-white rounded-xl text-sm font-semibold hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            <FileText className="w-4 h-4" />
+                                            INSPECTION PROTOCOL (INTERNATIONAL) ✅
+                                        </button>
+                                    </div>
+                                )}
+
+
                                     {/* 6. INSPECTION SCORING - Auto-calculated card */}
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Inspection Scoring</label>
@@ -2352,6 +2441,72 @@ export default function InspectionCategoryPage() {
                     overflow: hidden !important;
                 }
             `}</style>
+            {/* Standard Modal */}
+            {showStandardModal && selectedDeficiency && (() => {
+                const standardData = getInspectionStandardAndProtocol(
+                    currentSection as 'outside' | 'inside' | 'unit',
+                    odForm.category,
+                    selectedDeficiency.selected
+                );
+                
+                return (
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowStandardModal(false)}>
+                        <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-blue-600 p-5 flex items-center justify-between">
+                                <h3 className="text-lg font-black text-white">STANDARD - {selectedDeficiency.selected}</h3>
+                                <button onClick={() => setShowStandardModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+                            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
+                                {standardData?.standard ? (
+                                    <div className="prose prose-sm max-w-none">
+                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg">
+                                            {standardData.standard}
+                                        </pre>
+                                    </div>
+                                ) : (
+                                    <p className="text-gray-500 italic text-center py-8">No standard information available for this deficiency.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
+
+            {/* Inspection Protocol Modal */}
+            {showProtocolModal && selectedDeficiency && (() => {
+                const protocolData = getInspectionStandardAndProtocol(
+                    currentSection as 'outside' | 'inside' | 'unit',
+                    odForm.category,
+                    selectedDeficiency.selected
+                );
+                
+                return (
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowProtocolModal(false)}>
+                        <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-green-600 p-5 flex items-center justify-between">
+                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL (INTERNATIONAL) - {selectedDeficiency.selected}</h3>
+                                <button onClick={() => setShowProtocolModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+                            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
+                                {protocolData?.inspectionProtocol ? (
+                                    <div className="prose prose-sm max-w-none">
+                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg">
+                                            {protocolData.inspectionProtocol}
+                                        </pre>
+                                    </div>
+                                ) : (
+                                    <p className="text-gray-500 italic text-center py-8">No inspection protocol information available for this deficiency.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            })()}
+
         </ManagementDashboardLayout>
     )
 }
