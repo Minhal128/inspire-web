@@ -1825,6 +1825,44 @@ function NSPIREInspectionSummaryContent() {
                 </div>
               </div>
 
+              {/* Deficiency Preview */}
+              {report?.deficiencies && report.deficiencies.length > 0 && (
+                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                  <h3 className="text-lg font-bold text-[#006795] mb-3">Deficiency Preview (1 of {report.deficiencies.length})</h3>
+                  <div className="flex gap-3 items-start border border-gray-100 rounded-lg p-3 bg-gray-50">
+                    {report.deficiencies[0].imageUri ? (
+                        <div className="w-20 h-20 shrink-0">
+                          <img
+                            src={report.deficiencies[0].imageUri}
+                            alt="Deficiency"
+                            className="w-full h-full object-cover rounded-md border border-gray-200"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-20 h-20 shrink-0 bg-gray-200 rounded-md flex items-center justify-center text-gray-400">
+                          <ImageIcon className="w-8 h-8" />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <p className="text-sm font-bold text-gray-900 truncate">
+                            {report.deficiencies[0].deficiencyName}
+                          </p>
+                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${SEVERITY_COLORS[report.deficiencies[0].severity]}`}>
+                            {report.deficiencies[0].severity}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-600 line-clamp-2 mb-2">
+                          {report.deficiencies[0].deficiencyDetails}
+                        </p>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                          {report.deficiencies[0].area} • {report.deficiencies[0].building} {report.deficiencies[0].unit && `• ${report.deficiencies[0].unit}`}
+                        </p>
+                      </div>
+                  </div>
+                </div>
+              )}
+
               {/* Email Input Section */}
               <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
                 <h3 className="text-base font-bold text-amber-900 mb-3 flex items-center gap-2">

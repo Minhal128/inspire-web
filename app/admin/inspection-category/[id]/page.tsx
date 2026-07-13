@@ -2000,10 +2000,30 @@ export default function InspectionCategoryPage() {
                                             return (
                                                 <button
                                                     type="button"
-                                                    onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
+                                                    onClick={() => { setInspectModalType('standard'); setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                     className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
                                                 >
                                                     STANDARD ✅
+                                                </button>
+                                            )
+                                        })()}
+                                    </div>
+                                    {/* INSPECTION PROTOCOL (INTERNATIONAL) BUTTON */}
+                                    <div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL (INTERNATIONAL) ✅</label>
+                                        {(() => {
+                                            if (!selectedDeficiency) {
+                                                return <div className="text-xs text-gray-400 italic bg-gray-50 p-4 rounded-2xl border border-gray-200">Select deficiency first</div>
+                                            }
+                                            return (
+                                                <button
+                                                    onClick={() => {
+                                                        setInspectModalType('protocol');
+                                                        setIsHowToInspectOpen(true);
+                                                    }}
+                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
+                                                >
+                                                    INSPECTION PROTOCOL (INTERNATIONAL) ✅
                                                 </button>
                                             )
                                         })()}
@@ -2320,13 +2340,67 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0" onClick={() => setIsHowToInspectOpen(false)} />
                     <Card className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] flex flex-col max-h-[75vh]">
                         <div className="p-5 border-b flex items-center justify-between bg-white sticky top-0 z-10">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">STANDARD ✅</h3>
+                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">{inspectModalType === 'standard' ? 'STANDARD ✅' : 'INSPECTION PROTOCOL ✅'}</h3>
                             <button onClick={() => setIsHowToInspectOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
-                        <div className="p-6 md:p-8 overflow-y-auto space-y-2 custom-scrollbar">
+                        <div className="p-6 md:p-8 overflow-y-auto space-y-4 custom-scrollbar">
                             {(() => {
+                                if (inspectModalType === 'protocol') {
+                                    // Protocol mode: use getInspectionStandardAndProtocol from JSON
+                                    const standardData = currentModalItem && currentSection
+                                        ? getInspectionStandardAndProtocol(currentSection as 'outside' | 'inside' | 'unit', currentModalItem, selectedDeficiency?.selected || undefined)
+                                        : null;
+
+                                    if (!standardData || !standardData.inspectionProtocol) {
+                                        return (
+                                            <p className="text-gray-500 text-sm italic">
+                                                No inspection protocol information available for this deficiency.
+                                            </p>
+                                        );
+                                    }
+
+                                    return (
+                                        <div className="space-y-2">
+                                            <h4 className="font-black text-[#F84B5F] text-base uppercase tracking-wide">
+                                                ✅ Inspection Protocol
+                                            </h4>
+                                            <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                                                {standardData.inspectionProtocol.split('\n').map((line, i) => {
+                                                    const trimmed = line.trim();
+                                                    if (!trimmed) return <div key={i} className="h-1" />;
+
+                                                    const isHeader = /^[\d]+\./.test(trimmed) || /^[A-Z][a-z]+:/.test(trimmed);
+                                                    
+                                                    if (isHeader) {
+                                                        return (
+                                                            <p key={i} className="font-bold text-gray-900 mt-3 first:mt-0 text-sm">
+                                                                {trimmed}
+                                                            </p>
+                                                        );
+                                                    }
+
+                                                    if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
+                                                        return (
+                                                            <p key={i} className="text-gray-700 ml-4 text-sm leading-relaxed">
+                                                                {trimmed}
+                                                            </p>
+                                                        );
+                                                    }
+
+                                                    return (
+                                                        <p key={i} className="text-gray-600 text-sm leading-relaxed">
+                                                            {trimmed}
+                                                        </p>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    );
+                                }
+
+                                // Standard mode: use lookupCodeReference (existing behavior)
                                 const activeGuide = guideDeficiency || selectedDeficiency || null;
                                 const guideText = activeGuide
                                     ? lookupCodeReference(currentSection, currentModalItem || '', activeGuide.selected)

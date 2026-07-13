@@ -2001,7 +2001,7 @@ export default function InspectionCategoryPage() {
                                             return (
                                                 <button
                                                     type="button"
-                                                    onClick={() => { setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
+                                                    onClick={() => { setInspectModalType('standard'); setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                     className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
                                                 >
                                                     STANDARD ✅
