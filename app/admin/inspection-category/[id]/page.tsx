@@ -1385,21 +1385,21 @@ export default function InspectionCategoryPage() {
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
                 </div>
             
+            
             {/* Standard Modal */}
             {showStandardModal && selectedDeficiency && (() => {
-                const standardData = getInspectionStandardAndProtocol(
+                const dataResult = getInspectionStandardAndProtocol(
                     currentSection as 'outside' | 'inside' | 'unit',
                     odForm.category,
                     selectedDeficiency.selected
                 );
                 
-                console.log('[DEBUG Standard Modal]', {
-                    section: currentSection,
+                console.log('[Standard Modal Debug]', {
                     category: odForm.category,
                     deficiency: selectedDeficiency.selected,
-                    standardData: standardData,
-                    hasStandard: !!standardData?.standard,
-                    standardLength: standardData?.standard?.length || 0
+                    section: currentSection,
+                    hasData: !!dataResult,
+                    standardValue: dataResult?.standard
                 });
                 
                 return (
@@ -1412,18 +1412,16 @@ export default function InspectionCategoryPage() {
                                 </button>
                             </div>
                             <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
-                                {standardData?.standard ? (
+                                {dataResult?.standard ? (
                                     <div className="prose prose-sm max-w-none">
                                         <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                            {standardData.standard}
-                                        </pre>
+{dataResult.standard}</pre>
                                     </div>
                                 ) : (
                                     <div className="text-center py-8">
                                         <p className="text-gray-500 italic mb-2">No standard information available for this deficiency.</p>
                                         <p className="text-xs text-gray-400">Category: {odForm.category}</p>
                                         <p className="text-xs text-gray-400">Deficiency: {selectedDeficiency.selected}</p>
-                                        <p className="text-xs text-gray-400">Section: {currentSection}</p>
                                     </div>
                                 )}
                             </div>
@@ -1431,21 +1429,21 @@ export default function InspectionCategoryPage() {
                     </div>
                 );
             })()}
+
             {/* Inspection Protocol Modal */}
             {showProtocolModal && selectedDeficiency && (() => {
-                const protocolData = getInspectionStandardAndProtocol(
+                const dataResult = getInspectionStandardAndProtocol(
                     currentSection as 'outside' | 'inside' | 'unit',
                     odForm.category,
                     selectedDeficiency.selected
                 );
                 
-                console.log('[DEBUG Protocol Modal]', {
-                    section: currentSection,
+                console.log('[Protocol Modal Debug]', {
                     category: odForm.category,
                     deficiency: selectedDeficiency.selected,
-                    protocolData: protocolData,
-                    hasProtocol: !!protocolData?.inspectionProtocol,
-                    protocolLength: protocolData?.inspectionProtocol?.length || 0
+                    section: currentSection,
+                    hasData: !!dataResult,
+                    protocolValue: dataResult?.inspectionProtocol
                 });
                 
                 return (
@@ -1458,18 +1456,16 @@ export default function InspectionCategoryPage() {
                                 </button>
                             </div>
                             <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
-                                {protocolData?.inspectionProtocol ? (
+                                {dataResult?.inspectionProtocol ? (
                                     <div className="prose prose-sm max-w-none">
                                         <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                            {protocolData.inspectionProtocol}
-                                        </pre>
+{dataResult.inspectionProtocol}</pre>
                                     </div>
                                 ) : (
                                     <div className="text-center py-8">
                                         <p className="text-gray-500 italic mb-2">No inspection protocol information available for this deficiency.</p>
                                         <p className="text-xs text-gray-400">Category: {odForm.category}</p>
                                         <p className="text-xs text-gray-400">Deficiency: {selectedDeficiency.selected}</p>
-                                        <p className="text-xs text-gray-400">Section: {currentSection}</p>
                                     </div>
                                 )}
                             </div>
@@ -1477,7 +1473,6 @@ export default function InspectionCategoryPage() {
                     </div>
                 );
             })()}
-
             </AdminDashboardLayout>
         )
     }
@@ -2400,21 +2395,21 @@ export default function InspectionCategoryPage() {
                 }
             `}</style>
             
+            
             {/* Standard Modal */}
             {showStandardModal && selectedDeficiency && (() => {
-                const standardData = getInspectionStandardAndProtocol(
+                const dataResult = getInspectionStandardAndProtocol(
                     currentSection as 'outside' | 'inside' | 'unit',
                     odForm.category,
                     selectedDeficiency.selected
                 );
                 
-                console.log('[DEBUG Standard Modal]', {
-                    section: currentSection,
+                console.log('[Standard Modal Debug]', {
                     category: odForm.category,
                     deficiency: selectedDeficiency.selected,
-                    standardData: standardData,
-                    hasStandard: !!standardData?.standard,
-                    standardLength: standardData?.standard?.length || 0
+                    section: currentSection,
+                    hasData: !!dataResult,
+                    standardValue: dataResult?.standard
                 });
                 
                 return (
@@ -2427,18 +2422,16 @@ export default function InspectionCategoryPage() {
                                 </button>
                             </div>
                             <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
-                                {standardData?.standard ? (
+                                {dataResult?.standard ? (
                                     <div className="prose prose-sm max-w-none">
                                         <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                            {standardData.standard}
-                                        </pre>
+{dataResult.standard}</pre>
                                     </div>
                                 ) : (
                                     <div className="text-center py-8">
                                         <p className="text-gray-500 italic mb-2">No standard information available for this deficiency.</p>
                                         <p className="text-xs text-gray-400">Category: {odForm.category}</p>
                                         <p className="text-xs text-gray-400">Deficiency: {selectedDeficiency.selected}</p>
-                                        <p className="text-xs text-gray-400">Section: {currentSection}</p>
                                     </div>
                                 )}
                             </div>
@@ -2446,21 +2439,21 @@ export default function InspectionCategoryPage() {
                     </div>
                 );
             })()}
+
             {/* Inspection Protocol Modal */}
             {showProtocolModal && selectedDeficiency && (() => {
-                const protocolData = getInspectionStandardAndProtocol(
+                const dataResult = getInspectionStandardAndProtocol(
                     currentSection as 'outside' | 'inside' | 'unit',
                     odForm.category,
                     selectedDeficiency.selected
                 );
                 
-                console.log('[DEBUG Protocol Modal]', {
-                    section: currentSection,
+                console.log('[Protocol Modal Debug]', {
                     category: odForm.category,
                     deficiency: selectedDeficiency.selected,
-                    protocolData: protocolData,
-                    hasProtocol: !!protocolData?.inspectionProtocol,
-                    protocolLength: protocolData?.inspectionProtocol?.length || 0
+                    section: currentSection,
+                    hasData: !!dataResult,
+                    protocolValue: dataResult?.inspectionProtocol
                 });
                 
                 return (
@@ -2473,18 +2466,16 @@ export default function InspectionCategoryPage() {
                                 </button>
                             </div>
                             <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
-                                {protocolData?.inspectionProtocol ? (
+                                {dataResult?.inspectionProtocol ? (
                                     <div className="prose prose-sm max-w-none">
                                         <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                            {protocolData.inspectionProtocol}
-                                        </pre>
+{dataResult.inspectionProtocol}</pre>
                                     </div>
                                 ) : (
                                     <div className="text-center py-8">
                                         <p className="text-gray-500 italic mb-2">No inspection protocol information available for this deficiency.</p>
                                         <p className="text-xs text-gray-400">Category: {odForm.category}</p>
                                         <p className="text-xs text-gray-400">Deficiency: {selectedDeficiency.selected}</p>
-                                        <p className="text-xs text-gray-400">Section: {currentSection}</p>
                                     </div>
                                 )}
                             </div>
@@ -2492,7 +2483,6 @@ export default function InspectionCategoryPage() {
                     </div>
                 );
             })()}
-
-        </AdminDashboardLayout>
+            </AdminDashboardLayout>
     )
 }
