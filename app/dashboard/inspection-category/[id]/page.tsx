@@ -1481,7 +1481,7 @@ export default function InspectionCategoryPage() {
                         </div>
                     </div>
                 );
-            })()})()}
+            })()}
 
             </DashboardLayout>
         )

@@ -1477,7 +1477,7 @@ export default function InspectionCategoryPage() {
                         </div>
                     </div>
                 );
-            })()})()}
+            })()}
 
             </ManagementDashboardLayout>
         )
@@ -2561,7 +2561,7 @@ export default function InspectionCategoryPage() {
                         </div>
                     </div>
                 );
-            })()})()}
+            })()}
 
         </ManagementDashboardLayout>
     )
