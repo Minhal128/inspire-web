@@ -2129,24 +2129,7 @@ export default function InspectionCategoryPage() {
                                     </div>
 
                                 {/* Standard and Protocol Viewing Buttons */}
-                                {selectedDeficiency && (
-                                    <div className="flex gap-3 mb-4">
-                                        <button
-                                            onClick={() => setShowStandardModal(true)}
-                                            className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-                                        >
-                                            <FileText className="w-4 h-4" />
-                                            STANDARD ✅
-                                        </button>
-                                        <button
-                                            onClick={() => setShowProtocolModal(true)}
-                                            className="flex-1 px-4 py-3 bg-green-600 text-white rounded-xl text-sm font-semibold hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
-                                        >
-                                            <FileText className="w-4 h-4" />
-                                            INSPECTION PROTOCOL (INTERNATIONAL) ✅
-                                        </button>
-                                    </div>
-                                )}
+
 
 
                                     {/* 6. INSPECTION SCORING - Auto-calculated card */}
