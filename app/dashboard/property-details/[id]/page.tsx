@@ -1220,10 +1220,37 @@ export default function PropertyDetailsPage() {
                                         </td>
                                         <td className="py-6 px-8 text-center">
                                             {completed > 0 ? (
-                                                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${allDone ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
-                                                    {allDone ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Clock className="w-3.5 h-3.5" />}
-                                                    {completed}/{building.unitsForInspection}
-                                                </span>
+                                                <div className="space-y-1">
+                                                    {/* Outside progress */}
+                                                    {(() => {
+                                                        const completedUnits = completedUnitsMap[building.buildingId] || []
+                                                        const hasOutside = completedUnits.includes('Outside')
+                                                        const hasInside = completedUnits.includes('Inside')
+                                                        const unitCompletedCount = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside').length
+                                                        
+                                                        return (
+                                                            <>
+                                                                <div className="text-xs font-bold text-gray-700">
+                                                                    <span className={hasOutside ? 'text-green-600' : 'text-gray-400'}>
+                                                                        Outside {hasOutside ? '100%' : '0%'}
+                                                                    </span>
+                                                                </div>
+                                                                <div className="text-xs font-bold text-gray-700">
+                                                                    <span className={hasInside ? 'text-green-600' : 'text-gray-400'}>
+                                                                        Inside {hasInside ? '100%' : '0%'}
+                                                                    </span>
+                                                                </div>
+                                                                {building.unitsForInspection > 0 && (
+                                                                    <div className="text-xs font-bold text-gray-700">
+                                                                        <span className={unitCompletedCount >= building.unitsForInspection ? 'text-green-600' : 'text-amber-600'}>
+                                                                            Units {Math.round((unitCompletedCount / building.unitsForInspection) * 100)}%
+                                                                        </span>
+                                                                    </div>
+                                                                )}
+                                                            </>
+                                                        )
+                                                    })()}
+                                                </div>
                                             ) : (
                                                 <span className="text-xs text-gray-400 font-bold">Not started</span>
                                             )}
@@ -1331,10 +1358,36 @@ export default function PropertyDetailsPage() {
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Progress</span>
                                         {completed > 0 ? (
-                                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${allDone ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
-                                                {allDone ? <CheckCircle2 className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
-                                                {completed}/{building.unitsForInspection}
-                                            </span>
+                                            <div className="space-y-1 text-right">
+                                                {(() => {
+                                                    const completedUnits = completedUnitsMap[building.buildingId] || []
+                                                    const hasOutside = completedUnits.includes('Outside')
+                                                    const hasInside = completedUnits.includes('Inside')
+                                                    const unitCompletedCount = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside').length
+                                                    
+                                                    return (
+                                                        <>
+                                                            <div className="text-[10px] font-bold">
+                                                                <span className={hasOutside ? 'text-green-600' : 'text-gray-400'}>
+                                                                    Outside {hasOutside ? '100%' : '0%'}
+                                                                </span>
+                                                            </div>
+                                                            <div className="text-[10px] font-bold">
+                                                                <span className={hasInside ? 'text-green-600' : 'text-gray-400'}>
+                                                                    Inside {hasInside ? '100%' : '0%'}
+                                                                </span>
+                                                            </div>
+                                                            {building.unitsForInspection > 0 && (
+                                                                <div className="text-[10px] font-bold">
+                                                                    <span className={unitCompletedCount >= building.unitsForInspection ? 'text-green-600' : 'text-amber-600'}>
+                                                                        Units {Math.round((unitCompletedCount / building.unitsForInspection) * 100)}%
+                                                                    </span>
+                                                                </div>
+                                                            )}
+                                                        </>
+                                                    )
+                                                })()}
+                                            </div>
                                         ) : (
                                             <span className="text-xs text-gray-400 font-bold">Not started</span>
                                         )}
