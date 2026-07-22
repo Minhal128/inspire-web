@@ -1639,7 +1639,7 @@ export default function InspectionCategoryPage() {
                                                 </span>
                                                 <button
                                                     onClick={() => setUnitSelectionPopupOpen(true)}
-                                                    className="text-xs font-bold text-[#006795] hover:underline flex items-center gap-1 bg-[#006795]/5 px-2 py-1 rounded-md transition-colors"
+                                                    className="text-xs font-bold text-[#D92D20] hover:underline flex items-center gap-1 bg-[#D92D20]/10 hover:bg-[#D92D20]/20 px-2 py-1 rounded-md transition-colors"
                                                 >
                                                     <CheckCircle2 className="w-3.5 h-3.5" />
                                                     Submit Unit
@@ -1987,53 +1987,6 @@ export default function InspectionCategoryPage() {
                                         </div>
                                     </div>
 
-                                    {/* 3. INSPECT */}
-                                    <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">STANDARD ✅</label>
-                                        {(() => {
-                                            if (!selectedDeficiency) {
-                                                return (
-                                                    <button
-                                                        type="button"
-                                                        disabled
-                                                        className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white opacity-60 text-center cursor-not-allowed"
-                                                    >
-                                                        Select deficiency first to open Inspect
-                                                    </button>
-                                                )
-                                            }
-                                            return (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => { setInspectModalType('standard'); setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
-                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
-                                                >
-                                                    STANDARD 
-                                                </button>
-                                            )
-                                        })()}
-                                    </div>
-                                    {/* INSPECTION PROTOCOL (INTERNATIONAL) BUTTON */}
-                                    <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL (INTERNATIONAL) </label>
-                                        {(() => {
-                                            if (!selectedDeficiency) {
-                                                return <div className="text-xs text-gray-400 italic bg-gray-50 p-4 rounded-2xl border border-gray-200">Select deficiency first</div>
-                                            }
-                                            return (
-                                                <button
-                                                    onClick={() => {
-                                                        setInspectModalType('protocol');
-                                                        setIsHowToInspectOpen(true);
-                                                    }}
-                                                    className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
-                                                >
-                                                    INSPECTION PROTOCOL (INTERNATIONAL) 
-                                                </button>
-                                            )
-                                        })()}
-                                    </div>
-
 
                                     {/* 4. PIC - one photo per deficiency */}
                                     <div>
@@ -2204,6 +2157,54 @@ export default function InspectionCategoryPage() {
                                                     </p>
                                                 </div>
                                             )}
+                                        </div>
+                                    </div>
+
+                                    {/* Standard and Protocol Viewing Buttons */}
+                                    <div className="space-y-4 mt-6">
+                                        <div>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">STANDARD ✅</label>
+                                            {(() => {
+                                                if (!selectedDeficiency) {
+                                                    return (
+                                                        <button
+                                                            type="button"
+                                                            disabled
+                                                            className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white opacity-60 text-center cursor-not-allowed"
+                                                        >
+                                                            Select deficiency first to open Inspect
+                                                        </button>
+                                                    )
+                                                }
+                                                return (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => { setInspectModalType('standard'); setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
+                                                        className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
+                                                    >
+                                                        STANDARD 
+                                                    </button>
+                                                )
+                                            })()}
+                                        </div>
+                                        <div>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL (INTERNATIONAL) </label>
+                                            {(() => {
+                                                if (!selectedDeficiency) {
+                                                    return <div className="text-xs text-gray-400 italic bg-gray-50 p-4 rounded-2xl border border-gray-200">Select deficiency first</div>
+                                                }
+                                                return (
+                                                    <button
+                                                        onClick={() => {
+                                                            setInspectModalType('protocol');
+                                                            setIsHowToInspectOpen(true);
+                                                        }}
+                                                        className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
+                                                    >
+                                                        INSPECTION PROTOCOL (INTERNATIONAL) 
+                                                    </button>
+                                                )
+                                            })()}
                                         </div>
                                     </div>
                                 </div>

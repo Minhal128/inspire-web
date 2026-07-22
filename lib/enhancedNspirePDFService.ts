@@ -44,10 +44,11 @@ function generateEnhancedStyles(options: PDFGenerationOptions): string {
       margin-bottom: 20px;
     }
     
-    .hud-logo {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 10px;
+    .nspire-logo {
+      width: 180px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 20px;
       display: block;
     }
     
@@ -343,9 +344,14 @@ function generateEnhancedHeader(metadata: InspectionMetadata, options: PDFGenera
     </svg>
   `)}`;
 
+  let logoSrc = '/logo.png';
+  if (typeof window !== 'undefined') {
+    logoSrc = window.location.origin + '/logo.png';
+  }
+
   return `
     <div class="report-header">
-      <img src="${hudLogoSvg}" class="hud-logo" alt="US Department of Housing and Urban Development" />
+      <img src="${logoSrc}" class="nspire-logo" alt="NSPIRE Logo" />
       
       <h1 class="header-title">NSPIRE - NATIONAL STANDARDS FOR THE PHYSICAL INSPECTION OF REAL ESTATE</h1>
       

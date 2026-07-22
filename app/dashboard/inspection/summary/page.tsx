@@ -19,6 +19,7 @@ import {
   calculateDeductionPoints,
   mapCategoryToNSPIRECode,
 } from "@/lib/nspireReport"
+import { getEnhancedReportHTML } from "@/lib/enhancedNspirePDFService"
 
 
 // Icons
@@ -108,6 +109,7 @@ function NSPIREInspectionSummaryContent() {
   const [shareEmail, setShareEmail] = useState("")
   const [sharingPayment, setSharingPayment] = useState(false)
   const [showSummaryModal, setShowSummaryModal] = useState(false)
+  const [showPdfPreview, setShowPdfPreview] = useState(false)
   // Custom column header from the building table (editable in property-details)
   const [buildingColumnHeader, setBuildingColumnHeader] = useState('Building')
   // Deficiency preview modal
@@ -1155,16 +1157,14 @@ function NSPIREInspectionSummaryContent() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <Button
-                    onClick={handleUnlockWithStripe}
-                    disabled={purchasingUnlock}
+                    onClick={() => setShowSummaryModal(true)}
                     className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
                   >
                     <Lock className="w-3.5 h-3.5" />
-                    {purchasingUnlock ? 'Redirecting...' : 'Unlock Report · $49'}
+                    Unlock Report · $49
                   </Button>
                   <Button
-                    onClick={() => setShowSummaryModal(true)}
-                    disabled={purchasingUnlock || sharingPayment}
+                    onClick={() => setShowPdfPreview(true)}
                     variant="outline"
                     className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
                   >
@@ -1917,6 +1917,28 @@ function NSPIREInspectionSummaryContent() {
                   <span className="font-bold">💡 Note:</span> The full report includes detailed photos, inspector comments, repair timelines, and compliance codes for each deficiency.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showPdfPreview && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[90vh] flex flex-col relative">
+            <div className="p-4 border-b flex items-center justify-between">
+              <h2 className="text-xl font-bold text-[#006795]">Report PDF Preview</h2>
+              <button
+                onClick={() => setShowPdfPreview(false)}
+                className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+              >
+                ×
+              </button>
+            </div>
+            <div className="flex-1 p-2 bg-gray-100 overflow-hidden font-sans">
+              <iframe
+                srcDoc={getEnhancedReportHTML(report)}
+                className="w-full h-full border-0 rounded-lg bg-white"
+                title="PDF Report Preview"
+              />
             </div>
           </div>
         </div>
