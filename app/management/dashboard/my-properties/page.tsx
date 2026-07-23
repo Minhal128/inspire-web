@@ -331,6 +331,17 @@ export default function MyInspection() {
                         <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.units || 1}</td>
                         <td className="py-5 px-6 text-center">
                           {(() => {
+                            const progress = propertyProgress[property._id] || 0
+                            if (progress === 100) {
+                              return (
+                                <div className="flex items-center justify-center gap-2">
+                                  <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-green-200">
+                                    Complete
+                                  </span>
+                                </div>
+                              )
+                            }
+
                             const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
                             const isActive = activeInspectionPropertyId === property._id
                             return (

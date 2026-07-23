@@ -1175,20 +1175,7 @@ function NSPIREInspectionSummaryContent() {
               </div>
             )}
 
-            <div className="flex gap-1 mb-6 bg-gray-100 p-1 rounded-lg overflow-x-auto">
-          {(['summary', 'deficiencies'] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 sm:px-6 py-2 rounded-md font-medium transition-all whitespace-nowrap ${activeTab === tab
-                ? 'bg-white text-[#006795] shadow-sm'
-                : 'text-gray-600 hover:text-gray-800'
-                }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          ))}
-        </div>
+
 
             {/* 2. Inspection Data Table */}
             <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">

@@ -520,6 +520,23 @@ export default function Dashboard() {
                       </td>
                       <td className="py-3 px-3">
                         {(() => {
+                          const progress = propertyProgress[property._id] || 0
+                          if (progress === 100) {
+                            return (
+                              <div className="flex items-center justify-center gap-2">
+                                <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-green-200">
+                                  Complete
+                                </span>
+                                <button
+                                  onClick={() => handleRemoveProperty(property)}
+                                  className="px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            )
+                          }
+
                           const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
                           const isActive = activeInspectionPropertyId === property._id
                           return (
@@ -581,6 +598,17 @@ export default function Dashboard() {
                       <p className="text-gray-600 text-sm">{property.address}</p>
                     </div>
                     {(() => {
+                      const progress = propertyProgress[property._id] || 0
+                      if (progress === 100) {
+                        return (
+                          <div className="ml-2">
+                            <span className="bg-green-50 text-green-700 px-3 py-2 rounded-lg text-xs font-bold border border-green-200">
+                              Complete
+                            </span>
+                          </div>
+                        )
+                      }
+
                       const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
                       const isActive = activeInspectionPropertyId === property._id
                       return (
