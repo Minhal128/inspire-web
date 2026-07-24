@@ -1507,7 +1507,7 @@ export default function InspectionCategoryPage() {
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
-                        View Summary
+                        View deficiency
                     </Button>
                 </div>
 
@@ -1638,7 +1638,7 @@ export default function InspectionCategoryPage() {
                                                     className="text-xs font-bold text-[#D92D20] hover:underline flex items-center gap-1 bg-[#D92D20]/10 hover:bg-[#D92D20]/20 px-2 py-1 rounded-md transition-colors"
                                                 >
                                                     <CheckCircle2 className="w-3.5 h-3.5" />
-                                                    Submit Unit
+                                                    Submit
                                                 </button>
                                             </div>
                                         )}

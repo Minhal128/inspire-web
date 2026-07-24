@@ -1179,7 +1179,7 @@ function NSPIREInspectionSummaryContent() {
                     className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
                   >
                     <Mail className="w-3.5 h-3.5" />
-                    View Summary
+                    View deficiency
                   </Button>
                 </div>
               </div>
@@ -1541,7 +1541,7 @@ function NSPIREInspectionSummaryContent() {
             
             <h3 className="text-lg font-bold text-[#006795] mb-2 flex items-center gap-2">
               <Mail className="w-5 h-5" />
-              View Summary
+              View deficiency
             </h3>
             <p className="text-sm text-gray-600 mb-6">
               Enter the client's email address below. We'll send them a secure Stripe payment link to pay and unlock the full report.
