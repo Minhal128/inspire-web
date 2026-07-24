@@ -1067,7 +1067,7 @@ function NSPIREInspectionSummaryContent() {
       <DashboardLayout>
         <div className="flex flex-col items-center justify-center h-96">
           <p className="text-gray-600 mb-4">No inspection data found</p>
-          <Button onClick={() => router.push('/admin/my-inspection')}>
+          <Button onClick={() => router.push('/dashboard/my-inspection')}>
             Back to Inspections
           </Button>
         </div>
@@ -1545,7 +1545,7 @@ function NSPIREInspectionSummaryContent() {
             BACK TO INSPECTION
           </Button>
           <Button
-            onClick={() => router.push('/admin/my-inspection')}
+            onClick={() => router.push('/dashboard/my-inspection')}
             variant="outline"
             className="px-10 h-14 w-full sm:w-auto font-black rounded-xl border-2 hover:bg-gray-50 text-gray-600"
           >

@@ -702,7 +702,6 @@ export const usersAPI = {
   },
 };
 
-// Admin API (for management portal)
 export const adminAPI = {
   getInspections: async (params?: { status?: string; search?: string; page?: number; limit?: number }) => {
     const queryString = new URLSearchParams(
@@ -712,8 +711,44 @@ export const adminAPI = {
       `/api/admin/inspections${queryString ? `?${queryString}` : ''}`
     );
   },
-  getStats: async () => {
-    return apiRequest<{ success: boolean; stats: any }>('/api/admin/stats');
+  getDashboardStats: async () => {
+    return apiRequest<{ success: boolean; stats: any }>('/api/admin/dashboard/stats');
+  },
+  getProperties: async (params?: { status?: string; search?: string; page?: number; limit?: number }) => {
+    const queryString = new URLSearchParams(
+      Object.entries(params || {}).filter(([_, v]) => v !== undefined) as [string, string][]
+    ).toString();
+    return apiRequest<{ success: boolean; properties: any[]; pagination: any }>(
+      `/api/admin/properties${queryString ? `?${queryString}` : ''}`
+    );
+  },
+  getInspectors: async (params?: { status?: string; search?: string; page?: number; limit?: number }) => {
+    const queryString = new URLSearchParams(
+      Object.entries(params || {}).filter(([_, v]) => v !== undefined) as [string, string][]
+    ).toString();
+    return apiRequest<{ success: boolean; inspectors: any[]; pagination: any }>(
+      `/api/admin/inspectors${queryString ? `?${queryString}` : ''}`
+    );
+  },
+  updateUserStatus: async (id: string, isActive: boolean) => {
+    return apiRequest<{ success: boolean; message: string; user: any }>(
+      `/api/admin/users/${id}/status`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({ isActive }),
+      }
+    );
+  },
+  deleteUser: async (id: string) => {
+    return apiRequest<{ success: boolean; message: string }>(
+      `/api/admin/users/${id}`,
+      {
+        method: 'DELETE',
+      }
+    );
+  },
+  getSystemStats: async () => {
+    return apiRequest<{ success: boolean; stats: any }>('/api/admin/system/stats');
   },
 };
 

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
 import { Country, State, City } from 'country-state-city'
+import { adminAPI } from "@/lib/api"
 
 interface Property {
   id: string
@@ -72,89 +73,28 @@ export default function AdminDashboard() {
     }
   }
 
-  // Mock data for properties
-  const properties: Property[] = [
-    {
-      id: "DE001000006",
-      name: "CRESTVIEW APTS",
-      buildings: 15,
-      units: 191,
-      address: "2700 N Market St",
-      city: "Wilmington",
-      state: "DE",
-      zip: "19802",
-    },
-    {
-      id: "CA002000123",
-      name: "SUNRISE TERRACE",
-      buildings: 8,
-      units: 96,
-      address: "1450 Ocean Blvd",
-      city: "Los Angeles",
-      state: "CA",
-      zip: "90001",
-    },
-    {
-      id: "TX003000456",
-      name: "LONE STAR RESIDENCES",
-      buildings: 12,
-      units: 144,
-      address: "3200 Main Street",
-      city: "Houston",
-      state: "TX",
-      zip: "77001",
-    },
-    {
-      id: "NY004000789",
-      name: "EMPIRE STATE LIVING",
-      buildings: 20,
-      units: 250,
-      address: "500 5th Avenue",
-      city: "New York",
-      state: "NY",
-      zip: "10001",
-    },
-    {
-      id: "FL005000321",
-      name: "PALM BEACH GARDENS",
-      buildings: 6,
-      units: 72,
-      address: "8800 Collins Ave",
-      city: "Miami",
-      state: "FL",
-      zip: "33101",
-    },
-    {
-      id: "AZ006000654",
-      name: "DESERT OASIS HOMES",
-      buildings: 10,
-      units: 120,
-      address: "4500 Camelback Rd",
-      city: "Phoenix",
-      state: "AZ",
-      zip: "85001",
-    },
-    {
-      id: "WA007000987",
-      name: "PACIFIC NORTHWEST APTS",
-      buildings: 7,
-      units: 84,
-      address: "1200 Pike Street",
-      city: "Seattle",
-      state: "WA",
-      zip: "98101",
-    },
-    {
-      id: "IL008000147",
-      name: "WINDY CITY TOWERS",
-      buildings: 18,
-      units: 216,
-      address: "233 S Wacker Dr",
-      city: "Chicago",
-      state: "IL",
-      zip: "60601",
-    },
-  ]
+  const [properties, setProperties] = useState<Property[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Fetch properties on mount
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        setIsLoading(true)
+        const response = await adminAPI.getProperties()
+        if (response.success && response.properties) {
+          setProperties(response.properties)
+        }
+      } catch (error) {
+        console.error("Error fetching properties:", error)
+        toast.error("Failed to load properties", { position: "top-right" })
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchProperties()
+  }, [])
 
   const handleSearch = () => {
     toast.info("Searching properties...", { position: "top-right" })
