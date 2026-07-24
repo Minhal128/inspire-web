@@ -167,9 +167,10 @@ export default function Dashboard() {
             })
             
             // Total tasks = (buildings * 2) + allocated units for inspection
+            // Use buildingDetails.unitsForInspection if available, then calculatedUnits, then prop.units
             const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
                 ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
-                : prop.units
+                : (prop.calculatedUnits ?? prop.units)
             
             const totalTasks = (prop.buildings * 2) + actualUnitsForInspection
             
