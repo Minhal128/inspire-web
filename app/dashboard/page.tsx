@@ -522,12 +522,15 @@ export default function Dashboard() {
                       <td className="py-3 px-3">
                         {(() => {
                           const progress = propertyProgress[property._id] || 0
-                          if (progress === 100) {
+                          if (progress === 100 || property.hasInspection) {
                             return (
                               <div className="flex items-center justify-center gap-2">
-                                <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-green-200">
-                                  Complete
-                                </span>
+                                <button
+                                  onClick={() => router.push('/dashboard/inspection-status')}
+                                  className="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 hover:bg-green-700 rounded-md transition-colors"
+                                >
+                                  View Report
+                                </button>
                                 <button
                                   onClick={() => handleRemoveProperty(property)}
                                   className="px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
@@ -600,12 +603,21 @@ export default function Dashboard() {
                     </div>
                     {(() => {
                       const progress = propertyProgress[property._id] || 0
-                      if (progress === 100) {
+                      if (progress === 100 || property.hasInspection) {
                         return (
-                          <div className="ml-2">
-                            <span className="bg-green-50 text-green-700 px-3 py-2 rounded-lg text-xs font-bold border border-green-200">
-                              Complete
-                            </span>
+                          <div className="ml-2 flex flex-col gap-2">
+                            <Button
+                              onClick={() => router.push('/dashboard/inspection-status')}
+                              className="bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap flex items-center gap-1"
+                            >
+                              View Report
+                            </Button>
+                            <Button
+                              onClick={() => handleRemoveProperty(property)}
+                              className="bg-red-50 hover:bg-red-100 text-red-600 font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap flex items-center justify-center gap-1"
+                            >
+                              Remove
+                            </Button>
                           </div>
                         )
                       }

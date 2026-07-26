@@ -448,12 +448,23 @@ export default function PropertyDetailsPage() {
         // Check if there is another property that has active progress (started but not complete)
         try {
             const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
-            const response = await fetch(`${API_URL}/api/inspections/progress`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            const data = await response.json()
+            const token = localStorage.getItem('token')
+            const [progressResponse, completedInspRes] = await Promise.all([
+                fetch(`${API_URL}/api/inspections/progress`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch(`${API_URL}/api/inspections`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+            ])
+            const data = await progressResponse.json()
+            const completedData = completedInspRes.ok ? await completedInspRes.json() : { success: false }
+            // Build a set of property IDs that have a completed inspection record
+            const completedPropertyIds = new Set<string>(
+                completedData.success && Array.isArray(completedData.inspections)
+                    ? completedData.inspections.map((insp: any) => insp.property?._id || insp.property).filter(Boolean)
+                    : []
+            )
             if (data.success && Array.isArray(data.progress)) {
                 // Find any other property IDs that have progress records
                 const propertiesWithProgress = new Set(
@@ -472,6 +483,8 @@ export default function PropertyDetailsPage() {
                         // Check if any of these active other properties is not completed (100% progress)
                         for (const activeProp of activeOtherProps) {
                             if (activeProp.status === 'hold') continue
+                            // If property has a completed inspection record, it is done — skip it
+                            if (completedPropertyIds.has(activeProp._id)) continue
 
                             const propProgress = data.progress.filter((p: any) => 
                                 p.propertyId === activeProp._id || p.propertyId?._id === activeProp._id
@@ -528,12 +541,23 @@ export default function PropertyDetailsPage() {
         // Check if there is another property that has active progress (started but not complete)
         try {
             const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
-            const response = await fetch(`${API_URL}/api/inspections/progress`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            const data = await response.json()
+            const token = localStorage.getItem('token')
+            const [progressResponse, completedInspRes] = await Promise.all([
+                fetch(`${API_URL}/api/inspections/progress`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch(`${API_URL}/api/inspections`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+            ])
+            const data = await progressResponse.json()
+            const completedData = completedInspRes.ok ? await completedInspRes.json() : { success: false }
+            // Build a set of property IDs that have a completed inspection record
+            const completedPropertyIds = new Set<string>(
+                completedData.success && Array.isArray(completedData.inspections)
+                    ? completedData.inspections.map((insp: any) => insp.property?._id || insp.property).filter(Boolean)
+                    : []
+            )
             if (data.success && Array.isArray(data.progress)) {
                 const propertiesWithProgress = new Set(
                     data.progress
@@ -547,6 +571,8 @@ export default function PropertyDetailsPage() {
                         const activeOtherProps = propsRes.properties.filter(p => propertiesWithProgress.has(p._id))
                         for (const activeProp of activeOtherProps) {
                             if (activeProp.status === 'hold') continue
+                            // If property has a completed inspection record, it is done — skip it
+                            if (completedPropertyIds.has(activeProp._id)) continue
 
                             const propProgress = data.progress.filter((p: any) => 
                                 p.propertyId === activeProp._id || p.propertyId?._id === activeProp._id
