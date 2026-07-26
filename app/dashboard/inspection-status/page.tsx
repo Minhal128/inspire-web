@@ -369,15 +369,19 @@ export default function InspectionStatusPage() {
     router.push(`/dashboard/inspection-category/${property._id}`)
   }
 
-  // The property currently being actively inspected (progress > 0 and < 100, not on hold)
+  // The property currently being actively inspected (progress > 0 and < 100, not on hold, not completed)
   const activeInspectionPropertyId = useMemo(() => {
     // Iterate through properties array to maintain consistent order
     const activeProperty = properties.find(prop => {
       const id = prop._id
       // Check if property is on hold using status field
       if (prop?.status === 'hold') return false
-      // Only consider properties with progress > 0 and < 100
+      // If inspection is fully completed, it does NOT block other properties
+      if (prop.hasInspection) return false
       const progress = propertyProgress[id] || 0
+      // Also skip if progress has reached 100 (completed)
+      if (progress >= 100) return false
+      // Only consider properties with progress > 0 and < 100
       return progress > 0 && progress < 100
     })
     return activeProperty?._id || null
