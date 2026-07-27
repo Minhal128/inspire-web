@@ -1928,9 +1928,24 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0 -z-10" onClick={handleODModalClose} />
 
                     <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col h-auto max-h-[70vh] self-center">
-                        <div className="p-5 border-b shrink-0 flex items-center justify-between bg-white/90 backdrop-blur-md sticky top-0 z-20">
-                            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight truncate pr-4">{currentModalItem}</h3>
-                            <button onClick={handleODModalClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500 shrink-0">
+                        {/* Professional Header with Logo and Gradient */}
+                        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] px-5 py-4 shrink-0 flex items-center justify-between sticky top-0 z-20 shadow-lg">
+                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                                {/* Logo Badge */}
+                                <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 shrink-0">
+                                    <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-4 0-7-3-7-7V8.3l7-3.11 7 3.11V13c0 4-3 7-7 7z"/>
+                                        <path d="M10.5 13l-2-2-1.41 1.41L10.5 15.83l6-6L15.09 8.41z"/>
+                                    </svg>
+                                </div>
+                                {/* Title */}
+                                <div className="flex-1 min-w-0">
+                                    <h3 className="text-sm font-black text-white uppercase tracking-tight truncate">{currentModalItem}</h3>
+                                    <p className="text-[10px] text-white/80 font-medium">NSPIRE Deficiency Inspection</p>
+                                </div>
+                            </div>
+                            {/* Close Button */}
+                            <button onClick={handleODModalClose} className="p-2 hover:bg-white/20 rounded-full transition-colors text-white shrink-0 ml-2">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
