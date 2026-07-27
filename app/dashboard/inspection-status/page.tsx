@@ -219,9 +219,10 @@ export default function InspectionStatusPage() {
                 }
             })
             
+            const propAny = prop as any
             const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
                 ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
-                : prop.units || 0
+                : propAny.calculatedUnits !== undefined ? propAny.calculatedUnits : (prop.units ?? 0)
             
             const totalTasks = ((prop.buildings || 0) * 2) + actualUnitsForInspection
             
