@@ -427,10 +427,10 @@ export default function MyInspection() {
                               insp => insp.property?._id === property._id && insp.status === 'completed'
                             )
                             
-                            // Consider completed ONLY if:
-                            // 1. Inspection marked as 'completed' in database, OR
-                            // 2. Progress is EXACTLY 100%
-                            const isCompleted = completedInspection || progress === 100
+                            // Consider completed ONLY if progress is EXACTLY 100%
+                            // If progress data exists, use it as source of truth
+                            // Only fall back to DB status if no progress data available
+                            const isCompleted = progress > 0 ? progress === 100 : !!completedInspection
                             const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
                             const isActive = activeInspectionPropertyId === property._id
                             

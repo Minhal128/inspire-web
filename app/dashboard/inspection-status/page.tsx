@@ -132,12 +132,13 @@ export default function InspectionStatusPage() {
           }
         )
         
-        // Mark as complete ONLY if: 
-        // 1. There's a completed inspection record in DB (inspection with status 'completed'), OR
-        // 2. Progress has reached EXACTLY 100%
+        // Mark as complete ONLY if progress has reached EXACTLY 100%
+        // If progress data exists, use it as the source of truth
+        // Only fall back to DB inspection status if no progress data is available
+        const progressValue = progressMap[property._id]
+        const progressComplete = progressValue === 100
         const hasCompletedInspection = inspection && inspection.status === 'completed'
-        const progressComplete = progressMap[property._id] === 100
-        const isComplete = hasCompletedInspection || progressComplete
+        const isComplete = progressValue !== undefined ? progressComplete : !!hasCompletedInspection
 
         console.log(`Property ${property.name}:`, {
           hasInspection: inspection ? 'YES' : 'NO',
