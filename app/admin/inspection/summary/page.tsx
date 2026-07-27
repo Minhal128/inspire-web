@@ -1021,7 +1021,7 @@ function NSPIREInspectionSummaryContent() {
           propertyId: propertyId,
           inspectionData: {
             ...report,
-            status: 'in-progress',
+            status: 'completed',
             completedAt: new Date().toISOString(),
             pdfExported: true
           }

@@ -25,6 +25,7 @@ export default function MyInspection() {
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
   const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
+  const [completedInspections, setCompletedInspections] = useState<any[]>([])
 
   const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
   const [showBuildingDivisionModal, setShowBuildingDivisionModal] = useState(false)
@@ -100,8 +101,26 @@ export default function MyInspection() {
         state: selectedState || undefined,
         city: selectedCity || undefined,
       })
+      
+      // Fetch completed inspections
+      const token = localStorage.getItem('token')
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
+      const inspectionsRes = await fetch(`${API_URL}/api/inspections`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      
       if (response.success) {
         setProperties(response.properties)
+        
+        if (inspectionsRes.ok) {
+          const inspData = await inspectionsRes.json()
+          if (inspData.success) {
+            setCompletedInspections(inspData.inspections || [])
+          }
+        }
+        
         fetchProgress(response.properties)
       }
     } catch (error: any) {
@@ -402,7 +421,13 @@ export default function MyInspection() {
                         <td className="py-5 px-6 text-center">
                           {(() => {
                             const progress = propertyProgress[property._id] || 0
-                            const isCompleted = progress === 100
+                            
+                            // Check if there's a completed inspection in the database
+                            const completedInspection = completedInspections.find(
+                              insp => insp.property?._id === property._id && insp.status === 'completed'
+                            )
+                            
+                            const isCompleted = completedInspection || progress === 100
                             const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
                             const isActive = activeInspectionPropertyId === property._id
                             
