@@ -1484,19 +1484,33 @@ export default function InspectionCategoryPage() {
 
     return (
         <DashboardLayout>
-            <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto font-sans">
-                <div className="flex items-center justify-between mb-8">
-                    <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <ChevronLeft className="w-6 h-6 text-gray-600" />
+            <div className="p-2 sm:p-3 lg:p-4 max-w-7xl mx-auto font-sans">
+                {/* Header with Logo and User */}
+                <div className="flex items-center justify-between mb-4 bg-gradient-to-r from-[#006795] to-[#0891B2] px-4 py-3 rounded-xl shadow-sm">
+                    <button onClick={() => router.back()} className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                        <ChevronLeft className="w-5 h-5 text-white" />
                     </button>
+                    
+                    {/* Logo in center */}
                     <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-gray-900">{user?.fullName || "Guest User"}</span>
-                        <div className="w-3 h-1.5 border-2 border-gray-400 rotate-45 border-t-0 border-l-0 ml-1" />
+                        <div className="bg-white rounded-lg px-3 py-1.5 flex items-center gap-2">
+                            <svg className="w-5 h-5 text-[#006795]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-4 0-7-3-7-7V8.3l7-3.11 7 3.11V13c0 4-3 7-7 7z"/>
+                                <path d="M10.5 13l-2-2-1.41 1.41L10.5 15.83l6-6L15.09 8.41z"/>
+                            </svg>
+                            <span className="text-xs font-black text-[#006795] tracking-tight">NSPIRE INSPECTION</span>
+                        </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-white">{user?.fullName || "Guest"}</span>
+                        <div className="w-2 h-1 border-2 border-white rotate-45 border-t-0 border-l-0" />
                     </div>
                 </div>
-                <div className="mb-8 flex items-center justify-between">
+                
+                <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <p className="text-base font-bold text-gray-900 uppercase tracking-tight">{columnHeaderName}: {buildingName}</p>
+                        <p className="text-sm font-bold text-gray-900 uppercase tracking-tight">{columnHeaderName}: {buildingName}</p>
                         <button
                             onClick={openBuildingEditModal}
                             className="p-1.5 rounded-full hover:bg-[#006795]/10 text-[#006795] transition-colors"
@@ -2314,7 +2328,7 @@ export default function InspectionCategoryPage() {
                                 <Button
                                     onClick={handleProceed}
                                     disabled={isAnalyzing || photos.length === 0 || !selectedDeficiency}
-                                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-black h-14 rounded-xl shadow-lg shadow-blue-100 uppercase text-[10px] tracking-widest disabled:opacity-50 disabled:cursor-not-allowed group"
+                                    className="flex-1 bg-red-600 hover:bg-red-700 text-white font-black h-14 rounded-xl shadow-lg shadow-red-100 uppercase text-[10px] tracking-widest disabled:opacity-50 disabled:cursor-not-allowed group"
                                 >
                                     {isAnalyzing ? 'Analyzing...' : 'Proceed'}
                                 </Button>
