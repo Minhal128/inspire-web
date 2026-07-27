@@ -134,10 +134,19 @@ export default function InspectionStatusPage() {
         
         // Mark as complete if: 
         // 1. There's a completed inspection record in DB (inspection with status 'completed'), OR
-        // 2. Progress has reached 100%
+        // 2. Progress has reached 100%, OR
+        // 3. There's an inspection record (any status) AND progress >= 95% (account for rounding errors)
         const hasCompletedInspection = inspection && inspection.status === 'completed'
         const progressComplete = progressMap[property._id] === 100
-        const isComplete = hasCompletedInspection || progressComplete
+        const nearlyComplete = inspection && progressMap[property._id] >= 95
+        const isComplete = hasCompletedInspection || progressComplete || nearlyComplete
+
+        console.log(`Property ${property.name}:`, {
+          hasInspection: inspection ? 'YES' : 'NO',
+          inspectionStatus: inspection?.status,
+          progress: progressMap[property._id],
+          isComplete
+        })
 
         return {
           ...property, // This includes the status field if it exists
@@ -502,7 +511,7 @@ export default function InspectionStatusPage() {
               <Card 
                 key={property._id} 
                 className={`p-4 sm:p-6 hover:shadow-lg transition-all overflow-hidden ${
-                  propertyProgress[property._id] === 100 
+                  property.hasInspection 
                     ? 'border-2 border-green-500 bg-green-50/30' 
                     : propertyProgress[property._id] > 0
                       ? 'border-2 border-amber-500 bg-amber-50/30'
@@ -513,9 +522,9 @@ export default function InspectionStatusPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start gap-3 sm:gap-4 min-w-0">
                       <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                        propertyProgress[property._id] === 100 ? 'bg-green-100' : propertyProgress[property._id] > 0 ? 'bg-amber-100' : 'bg-red-100'
+                        property.hasInspection ? 'bg-green-100' : propertyProgress[property._id] > 0 ? 'bg-amber-100' : 'bg-red-100'
                       }`}>
-                        {propertyProgress[property._id] === 100 ? (
+                        {property.hasInspection ? (
                           <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                         ) : propertyProgress[property._id] > 0 ? (
                           <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
@@ -574,7 +583,7 @@ export default function InspectionStatusPage() {
                   </div>
  
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0 flex-shrink-0">
-                    {propertyProgress[property._id] === 100 ? (
+                    {property.hasInspection ? (
                       property.isUnlocked ? (
                         <div className="flex flex-col sm:flex-row gap-2">
                           <Button
