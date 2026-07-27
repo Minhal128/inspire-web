@@ -427,16 +427,10 @@ export default function MyInspection() {
                               insp => insp.property?._id === property._id && insp.status === 'completed'
                             )
                             
-                            // Check if there's ANY inspection record (even if not marked as completed)
-                            const anyInspection = completedInspections.find(
-                              insp => insp.property?._id === property._id
-                            )
-                            
-                            // Consider completed if:
-                            // 1. Inspection marked as completed, OR
-                            // 2. Progress is 100%, OR  
-                            // 3. There's an inspection record AND progress >= 95% (accounting for rounding)
-                            const isCompleted = completedInspection || progress === 100 || (anyInspection && progress >= 95)
+                            // Consider completed ONLY if:
+                            // 1. Inspection marked as 'completed' in database, OR
+                            // 2. Progress is EXACTLY 100%
+                            const isCompleted = completedInspection || progress === 100
                             const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
                             const isActive = activeInspectionPropertyId === property._id
                             

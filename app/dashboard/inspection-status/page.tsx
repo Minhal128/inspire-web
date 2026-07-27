@@ -132,14 +132,12 @@ export default function InspectionStatusPage() {
           }
         )
         
-        // Mark as complete if: 
+        // Mark as complete ONLY if: 
         // 1. There's a completed inspection record in DB (inspection with status 'completed'), OR
-        // 2. Progress has reached 100%, OR
-        // 3. There's an inspection record (any status) AND progress >= 95% (account for rounding errors)
+        // 2. Progress has reached EXACTLY 100%
         const hasCompletedInspection = inspection && inspection.status === 'completed'
         const progressComplete = progressMap[property._id] === 100
-        const nearlyComplete = inspection && progressMap[property._id] >= 95
-        const isComplete = hasCompletedInspection || progressComplete || nearlyComplete
+        const isComplete = hasCompletedInspection || progressComplete
 
         console.log(`Property ${property.name}:`, {
           hasInspection: inspection ? 'YES' : 'NO',
@@ -538,13 +536,13 @@ export default function InspectionStatusPage() {
                             {property.name}
                           </h3>
                           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold w-fit flex-shrink-0 whitespace-nowrap ${
-                            propertyProgress[property._id] === 100 
+                            property.hasInspection 
                               ? 'bg-green-100 text-green-800' 
                               : propertyProgress[property._id] > 0
                                 ? 'bg-amber-100 text-amber-800'
                                 : 'bg-red-100 text-red-800'
                           }`}>
-                            {propertyProgress[property._id] === 100 
+                            {property.hasInspection 
                               ? 'Completed' 
                               : propertyProgress[property._id] > 0 
                                 ? `In Progress (${propertyProgress[property._id]}%)` 
