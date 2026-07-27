@@ -2313,7 +2313,7 @@ export default function InspectionCategoryPage() {
                                     <Button
                                         variant="outline"
                                         onClick={handleODModalClose}
-                                        className="w-full font-black h-12 rounded-xl border-2 uppercase text-[10px] tracking-widest"
+                                        className="w-full bg-red-600 hover:bg-red-700 text-white font-black h-12 rounded-xl border-2 border-red-600 uppercase text-[10px] tracking-widest"
                                     >
                                         Continue Inspection
                                     </Button>
