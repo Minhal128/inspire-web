@@ -162,7 +162,7 @@ export default function MyInspection() {
             
             const actualUnitsForInspection = prop.buildingDetails && prop.buildingDetails.length > 0
                 ? prop.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
-                : (prop.calculatedUnits ?? prop.units)
+                : prop.calculatedUnits !== undefined ? prop.calculatedUnits : (prop.units ?? 0)
             
             const totalTasks = (prop.buildings * 2) + actualUnitsForInspection
             
