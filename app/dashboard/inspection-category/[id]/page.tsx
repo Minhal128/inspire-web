@@ -1929,14 +1929,15 @@ export default function InspectionCategoryPage() {
 
                     <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col h-auto max-h-[70vh] self-center">
                         {/* Professional Header with Logo and Gradient */}
-                        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] px-5 py-4 shrink-0 flex items-center justify-between sticky top-0 z-20 shadow-lg">
-                            <div className="flex items-center gap-3 flex-1 min-w-0">
-                                {/* Logo Badge */}
-                                <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 shrink-0">
-                                    <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-4 0-7-3-7-7V8.3l7-3.11 7 3.11V13c0 4-3 7-7 7z"/>
-                                        <path d="M10.5 13l-2-2-1.41 1.41L10.5 15.83l6-6L15.09 8.41z"/>
-                                    </svg>
+                        <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] px-4 py-2.5 shrink-0 flex items-center justify-between sticky top-0 z-20 shadow-lg">
+                            <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                                {/* Website Logo */}
+                                <div className="bg-white rounded-lg p-1.5 shrink-0">
+                                    <img 
+                                        src="/logo.png" 
+                                        alt="Logo" 
+                                        className="w-6 h-6 object-contain"
+                                    />
                                 </div>
                                 {/* Title */}
                                 <div className="flex-1 min-w-0">
@@ -1945,26 +1946,39 @@ export default function InspectionCategoryPage() {
                                 </div>
                             </div>
                             {/* Close Button */}
-                            <button onClick={handleODModalClose} className="p-2 hover:bg-white/20 rounded-full transition-colors text-white shrink-0 ml-2">
+                            <button onClick={handleODModalClose} className="p-1.5 hover:bg-white/20 rounded-full transition-colors text-white shrink-0 ml-2">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
-
-                        <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 custom-scrollbar overscroll-contain">
+                        <div className={`flex-1 overflow-y-auto p-4 md:p-5 space-y-4 custom-scrollbar overscroll-contain ${modalStep === 4 ? 'hidden' : ''}`}>
                             {modalStep === 1 && (
-                                <div className="py-20 flex flex-col items-center justify-center text-center">
-                                    <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-6">
-                                        <Plus className="w-8 h-8 text-gray-300" />
+                                <div className="py-12 flex flex-col items-center justify-center text-center">
+                                    {/* Big Logo in Center */}
+                                    <div className="mb-6">
+                                        <img 
+                                            src="/logo.png" 
+                                            alt="Logo" 
+                                            className="w-32 h-32 object-contain mx-auto"
+                                        />
                                     </div>
-                                    <p className="text-sm font-bold text-gray-400 mb-8 max-w-xs">{`No existing deficiency record for this item.`}</p>
-                                    <Button onClick={() => setModalStep(2)} className="bg-[#006795] hover:bg-blue-700 text-white font-black px-12 h-14 rounded-2xl shadow-lg uppercase tracking-widest text-xs">Add New</Button>
+                                    <p className="text-sm font-bold text-gray-400 mb-6 max-w-xs">{`No existing deficiency record for this item.`}</p>
+                                    <Button onClick={() => setModalStep(2)} className="bg-[#006795] hover:bg-blue-700 text-white font-black px-10 h-12 rounded-2xl shadow-lg uppercase tracking-widest text-xs">Add New</Button>
                                 </div>
                             )}
 
                             {modalStep === 2 && (
-                                <div className="space-y-6 animate-in fade-in duration-300 pb-6">
+                                <div className="space-y-4 animate-in fade-in duration-300 pb-4">
                                     {savedItemFindings.length > 0 && (
                                         <div>
+                                            {/* Big Logo Above Saved Items */}
+                                            <div className="flex justify-center mb-6">
+                                                <img 
+                                                    src="/logo.png" 
+                                                    alt="Logo" 
+                                                    className="w-24 h-24 object-contain"
+                                                />
+                                            </div>
+                                            
                                             <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">
                                                 Already Saved ({savedItemFindings.length})
                                             </label>
@@ -2283,8 +2297,13 @@ export default function InspectionCategoryPage() {
                         {modalStep === 4 && (
                             <div className="flex-1 overflow-y-auto flex flex-col p-6 md:p-8 space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500 min-h-0">
                                 <div className="text-center">
-                                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                                    {/* Big Logo in Center */}
+                                    <div className="flex justify-center mb-4">
+                                        <img 
+                                            src="/logo.png" 
+                                            alt="Logo" 
+                                            className="w-28 h-28 object-contain"
+                                        />
                                     </div>
                                     <h3 className="text-xl font-black text-gray-900">Saved for Summary Report</h3>
                                     <p className="text-gray-500 text-xs mt-1">

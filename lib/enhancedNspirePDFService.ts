@@ -491,24 +491,24 @@ function generateEnhancedSummaryPage(
         <tbody>
           <tr>
             <td class="left-align">Inside</td>
-            <td>${summary.lifeThreatening}</td>
-            <td>${summary.severe}</td>
-            <td>${summary.moderate}</td>
-            <td>${summary.low}</td>
+            <td>${summary.inside?.lifeThreatening || 0}</td>
+            <td>${summary.inside?.severe || 0}</td>
+            <td>${summary.inside?.moderate || 0}</td>
+            <td>${summary.inside?.low || 0}</td>
           </tr>
           <tr>
             <td class="left-align">Outside</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td>${summary.outside?.lifeThreatening || 0}</td>
+            <td>${summary.outside?.severe || 0}</td>
+            <td>${summary.outside?.moderate || 0}</td>
+            <td>${summary.outside?.low || 0}</td>
           </tr>
           <tr>
             <td class="left-align">Units</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td>${summary.units?.lifeThreatening || 0}</td>
+            <td>${summary.units?.severe || 0}</td>
+            <td>${summary.units?.moderate || 0}</td>
+            <td>${summary.units?.low || 0}</td>
           </tr>
         </tbody>
       </table>
@@ -529,51 +529,71 @@ function generateEnhancedDeficiencyTable(deficiencies: DeficiencyEntry[], option
     `;
   }
 
-  return `
-    <div class="deficiency-details-section">
-      <h3 class="section-title">Inspectable Areas Deficiencies</h3>
-      <table class="deficiency-details-table">
-        <thead>
-          <tr>
-            <th style="width: 25%;">Deficiency Details</th>
-            <th style="width: 15%;">Deficiency Name/Location</th>
-            <th style="width: 15%;">Comments</th>
-            <th style="width: 15%;">Deficiency Picture</th>
-            <th style="width: 10%;">Deduction Pts</th>
-            <th style="width: 10%;">Repeat Indicator</th>
-            <th style="width: 10%;">Severity</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${deficiencies.map(def => `
-            <tr class="avoid-break">
-              <td class="left-align">
-                ${def.deficiencyDetails || 'Address or building identification codes are broken, missing, or not visible'}
-              </td>
-              <td class="left-align">
-                <div class="deficiency-name">${def.deficiencyName}</div>
-                <div class="nspire-code">${def.nspireCode}</div>
-                <div class="location-info">${def.building} | ${def.unit}</div>
-              </td>
-              <td class="left-align">
-                ${def.comments || 'Wait for Input'}
-              </td>
-              <td>
-                ${options.includeImages && def.imageUri
-                  ? `<img src="${def.imageUri}" alt="Deficiency Image" class="deficiency-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                     <div class="image-placeholder" style="display: none;">Image Failed</div>`
-                  : `<div class="image-placeholder">N/A</div>`
-                }
-              </td>
-              <td>${def.deductionPts}.0</td>
-              <td>${def.repeatIndicator}</td>
-              <td>${def.severity}</td>
+  const insideDeficiencies = deficiencies.filter(d => d.area?.toLowerCase() === 'inside');
+  const outsideDeficiencies = deficiencies.filter(d => d.area?.toLowerCase() === 'outside' || d.area?.toLowerCase() === 'site');
+  const unitDeficiencies = deficiencies.filter(d => d.area?.toLowerCase() === 'unit' || d.area?.toLowerCase() === 'units');
+  
+  const categorizedIds = new Set([...insideDeficiencies, ...outsideDeficiencies, ...unitDeficiencies].map(d => d.id));
+  const otherDeficiencies = deficiencies.filter(d => !categorizedIds.has(d.id));
+
+  const generateTable = (title: string, defs: DeficiencyEntry[]) => {
+    if (defs.length === 0) return '';
+    return `
+      <div class="deficiency-details-section avoid-break">
+        <h3 class="section-title">${title} Deficiencies</h3>
+        <table class="deficiency-details-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Deficiency Details</th>
+              <th style="width: 15%;">Deficiency Name/Location</th>
+              <th style="width: 15%;">Comments</th>
+              <th style="width: 15%;">Deficiency Picture</th>
+              <th style="width: 10%;">Deduction Pts</th>
+              <th style="width: 10%;">Repeat Indicator</th>
+              <th style="width: 10%;">Severity</th>
             </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    </div>
-  `;
+          </thead>
+          <tbody>
+            ${defs.map(def => `
+              <tr class="avoid-break">
+                <td class="left-align">
+                  ${def.deficiencyDetails || 'Address or building identification codes are broken, missing, or not visible'}
+                </td>
+                <td class="left-align">
+                  <div class="deficiency-name">${def.deficiencyName}</div>
+                  <div class="nspire-code">${def.nspireCode}</div>
+                  <div class="location-info">${def.building} | ${def.unit}</div>
+                </td>
+                <td class="left-align">
+                  ${def.comments || 'Wait for Input'}
+                </td>
+                <td>
+                  ${options.includeImages && def.imageUri
+                    ? `<img src="${def.imageUri}" alt="Deficiency Image" class="deficiency-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                       <div class="image-placeholder" style="display: none;">Image Failed</div>`
+                    : `<div class="image-placeholder">N/A</div>`
+                  }
+                </td>
+                <td>${def.deductionPts}.0</td>
+                <td>${def.repeatIndicator}</td>
+                <td>${def.severity}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  };
+
+  let html = '';
+  html += generateTable('Outside', outsideDeficiencies);
+  html += generateTable('Inside', insideDeficiencies);
+  html += generateTable('Unit', unitDeficiencies);
+  if (otherDeficiencies.length > 0) {
+    html += generateTable('Other', otherDeficiencies);
+  }
+
+  return html;
 }
 
 /**
@@ -747,7 +767,7 @@ export function convertToEnhancedNSPIREFormat(data: any): NSPIREInspectionReport
     building: item.building || data.building || 'Building A',
     unit: item.unit || data.unit || 'Unit Multiple',
     room: item.location || item.room || item.area || 'General Area',
-    area: item.subCategory || item.category || 'Inside',
+    area: item.area || item.subCategory || item.category || 'Inside',
     deficiencyName: item.title || item.description || item.deficiencyName || 'Unnamed Issue',
     nspireCode: item.nspireCode || mapCategoryToEnhancedNSPIRECode(item.category || item.area),
     deficiencyDetails: item.description || item.details || item.deficiencyDetails || 'Address or building identification codes are broken, missing, or not visible',
@@ -767,6 +787,24 @@ export function convertToEnhancedNSPIREFormat(data: any): NSPIREInspectionReport
     moderate: deficiencies.filter((d: { severity: string; }) => d.severity === 'Moderate').length,
     low: deficiencies.filter((d: { severity: string; }) => d.severity === 'Low').length,
     total: deficiencies.length,
+    inside: {
+      lifeThreatening: deficiencies.filter((d: any) => d.severity === 'Life-Threatening' && d.area?.toLowerCase() === 'inside').length,
+      severe: deficiencies.filter((d: any) => d.severity === 'Severe' && d.area?.toLowerCase() === 'inside').length,
+      moderate: deficiencies.filter((d: any) => d.severity === 'Moderate' && d.area?.toLowerCase() === 'inside').length,
+      low: deficiencies.filter((d: any) => d.severity === 'Low' && d.area?.toLowerCase() === 'inside').length,
+    },
+    outside: {
+      lifeThreatening: deficiencies.filter((d: any) => d.severity === 'Life-Threatening' && d.area?.toLowerCase() === 'outside').length,
+      severe: deficiencies.filter((d: any) => d.severity === 'Severe' && d.area?.toLowerCase() === 'outside').length,
+      moderate: deficiencies.filter((d: any) => d.severity === 'Moderate' && d.area?.toLowerCase() === 'outside').length,
+      low: deficiencies.filter((d: any) => d.severity === 'Low' && d.area?.toLowerCase() === 'outside').length,
+    },
+    units: {
+      lifeThreatening: deficiencies.filter((d: any) => d.severity === 'Life-Threatening' && (d.area?.toLowerCase() === 'unit' || d.area?.toLowerCase() === 'units')).length,
+      severe: deficiencies.filter((d: any) => d.severity === 'Severe' && (d.area?.toLowerCase() === 'unit' || d.area?.toLowerCase() === 'units')).length,
+      moderate: deficiencies.filter((d: any) => d.severity === 'Moderate' && (d.area?.toLowerCase() === 'unit' || d.area?.toLowerCase() === 'units')).length,
+      low: deficiencies.filter((d: any) => d.severity === 'Low' && (d.area?.toLowerCase() === 'unit' || d.area?.toLowerCase() === 'units')).length,
+    },
     byBuilding: {},
     byCategory: {},
     repeatDeficiencies: deficiencies.filter((d: { repeatIndicator: any; }) => d.repeatIndicator).length,

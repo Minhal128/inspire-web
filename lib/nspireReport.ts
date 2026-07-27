@@ -138,6 +138,11 @@ export interface DeficiencySummary {
     low: number;
     total: number;
 
+    // Area breakdowns
+    inside: { lifeThreatening: number; severe: number; moderate: number; low: number; };
+    outside: { lifeThreatening: number; severe: number; moderate: number; low: number; };
+    units: { lifeThreatening: number; severe: number; moderate: number; low: number; };
+
     // Additional breakdowns
     byBuilding: Record<string, number>;
     byCategory: Record<string, number>;
