@@ -6,7 +6,7 @@ import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
-import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock, FileSpreadsheet } from "lucide-react"
+import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock, FileSpreadsheet, Clock } from "lucide-react"
 import { toast } from "react-toastify"
 
 interface Property {
@@ -132,7 +132,12 @@ export default function InspectionStatusPage() {
           }
         )
         
-        const isComplete = progressMap[property._id] === 100
+        // Mark as complete if: 
+        // 1. There's a completed inspection record in DB (inspection with status 'completed'), OR
+        // 2. Progress has reached 100%
+        const hasCompletedInspection = inspection && inspection.status === 'completed'
+        const progressComplete = progressMap[property._id] === 100
+        const isComplete = hasCompletedInspection || progressComplete
 
         return {
           ...property, // This includes the status field if it exists
@@ -357,16 +362,25 @@ export default function InspectionStatusPage() {
   }
 
   const handleStartInspection = (property: PropertyWithInspection) => {
-    // Block only when another property is actively in progress (not on hold)
-    if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
-      const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
-      toast.error(
-        `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
-        { position: 'top-right', autoClose: 6000 }
-      )
-      return
+    try {
+      // Block only when another property is actively in progress (not on hold)
+      if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
+        const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
+        toast.error(
+          `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
+          { position: 'top-right', autoClose: 6000 }
+        )
+        return
+      }
+      
+      // Navigate to property-details page to select building/unit properly
+      // This ensures all required URL params are set correctly
+      console.log('Navigating to property details:', property._id)
+      router.push(`/dashboard/property-details/${property._id}`)
+    } catch (error) {
+      console.error('Navigation error:', error)
+      toast.error('Failed to navigate to property details', { position: 'top-right' })
     }
-    router.push(`/dashboard/inspection-category/${property._id}`)
   }
 
   // The property currently being actively inspected (progress > 0 and < 100, not on hold, not completed)
@@ -504,7 +518,7 @@ export default function InspectionStatusPage() {
                         {propertyProgress[property._id] === 100 ? (
                           <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                         ) : propertyProgress[property._id] > 0 ? (
-                          <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 animate-spin" />
+                          <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
                         ) : (
                           <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
                         )}
