@@ -1378,6 +1378,7 @@ function NSPIREInspectionSummaryContent() {
                               <th className="p-3 text-left">Description</th>
                               <th className="p-3 text-center">Severity</th>
                               <th className="p-3 text-center">H&S</th>
+                              <th className="p-3 text-center">Points Lost</th>
                               <th className="p-3 text-center">Repair By</th>
                               <th className="p-3 text-center">Status</th>
                             </tr>
@@ -1434,10 +1435,12 @@ function NSPIREInspectionSummaryContent() {
                                   <span className={`inline-block px-3 py-1 rounded text-[10px] font-black uppercase ${getSeverityBadgeClass(def.severity)}`}>
                                     {def.severity}
                                   </span>
-                                  <div className="text-[10px] text-gray-400 mt-1 font-bold">-{def.deductionPts} PTS</div>
                                 </td>
                                 <td className="p-3 text-center">
                                   <span className="text-[10px] font-black text-red-600 uppercase">{def.healthAndSafety}</span>
+                                </td>
+                                <td className="p-3 text-center">
+                                  <span className="text-sm font-bold text-gray-800">{def.deductionPts}</span>
                                 </td>
                                 <td className="p-3 text-center">
                                   <span className="inline-block bg-amber-100 text-amber-800 text-[10px] font-black px-2 py-1 rounded">
