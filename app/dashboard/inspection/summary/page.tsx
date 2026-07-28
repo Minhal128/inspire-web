@@ -1397,6 +1397,7 @@ function NSPIREInspectionSummaryContent() {
                               <th className="p-3 text-left">Description</th>
                               <th className="p-3 text-center">Severity</th>
                               <th className="p-3 text-center">H&S</th>
+                              <th className="p-3 text-center">Points Lost</th>
                               <th className="p-3 text-center">Repair By</th>
                               <th className="p-3 text-center">Status</th>
                             </tr>
