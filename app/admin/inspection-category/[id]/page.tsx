@@ -973,7 +973,8 @@ export default function InspectionCategoryPage() {
                     status: 'Open',
                     timestamp: new Date().toISOString(),
                     area: currentSection,
-                    item: currentModalItem
+                    item: currentModalItem,
+                    deductionPts: scoringResult?.ptsLost || 0
                 };
 
                 const currentStatuses = currentSection === 'outside' ? outsideStatuses
