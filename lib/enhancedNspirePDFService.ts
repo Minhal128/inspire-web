@@ -548,7 +548,7 @@ function generateEnhancedDeficiencyTable(deficiencies: DeficiencyEntry[], option
               <th style="width: 15%;">Deficiency Name/Location</th>
               <th style="width: 15%;">Comments</th>
               <th style="width: 15%;">Deficiency Picture</th>
-              <th style="width: 10%;">Deduction Pts</th>
+              <th style="width: 10%;">Points LTS</th>
               <th style="width: 10%;">Repeat Indicator</th>
               <th style="width: 10%;">Severity</th>
             </tr>
@@ -574,7 +574,7 @@ function generateEnhancedDeficiencyTable(deficiencies: DeficiencyEntry[], option
                     : `<div class="image-placeholder">N/A</div>`
                   }
                 </td>
-                <td>${def.deductionPts}.0</td>
+                <td>${def.deductionPts}</td>
                 <td>${def.repeatIndicator}</td>
                 <td>${def.severity}</td>
               </tr>
@@ -772,7 +772,7 @@ export function convertToEnhancedNSPIREFormat(data: any): NSPIREInspectionReport
     nspireCode: item.nspireCode || mapCategoryToEnhancedNSPIRECode(item.category || item.area),
     deficiencyDetails: item.description || item.details || item.deficiencyDetails || 'Address or building identification codes are broken, missing, or not visible',
     comments: item.notes || item.comments || item.recommendation || 'Wait for Input',
-    deductionPts: calculateEnhancedDeductionPoints(item.severity),
+    deductionPts: item.deductionPts !== undefined ? item.deductionPts : calculateEnhancedDeductionPoints(item.severity),
     repeatIndicator: item.repeat,
     severity: mapSeverityToEnhancedNSPIRE(item.severity) as DeficiencySeverity,
     inspectedDate: now.toLocaleDateString(),
