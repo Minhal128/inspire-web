@@ -1251,10 +1251,14 @@ function NSPIREInspectionSummaryContent() {
 
             {/* 3. Score Cards */}
             <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 text-white">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center">
                 <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
                   <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary Score</p>
                   <p className="text-3xl font-bold">{report.metadata.preliminaryScore}</p>
+                </div>
+                <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
+                  <p className="text-xs opacity-80 uppercase tracking-wide">Points Lost</p>
+                  <p className="text-3xl font-bold text-red-200">-{report.deficiencies.reduce((sum, d) => sum + d.deductionPts, 0)}</p>
                 </div>
                 <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
                   <p className="text-xs opacity-80 uppercase tracking-wide">Calculated Score</p>
@@ -1724,7 +1728,7 @@ function NSPIREInspectionSummaryContent() {
                   <p className="text-amber-800 font-bold text-lg">{selectedDeficiency.repairTimeline}</p>
                 </div>
                 <div className="text-right">
-                  <h4 className="font-bold text-amber-900 text-sm uppercase mb-1">Deduction Points</h4>
+                  <h4 className="font-bold text-amber-900 text-sm uppercase mb-1">Points Lost</h4>
                   <p className="text-amber-800 font-bold text-2xl">-{selectedDeficiency.deductionPts}</p>
                 </div>
               </div>
