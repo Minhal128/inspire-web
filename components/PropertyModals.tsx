@@ -520,6 +520,14 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4">
       <div className="bg-white rounded-lg p-4 sm:p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative modal-content">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-5 pointer-events-none rounded-lg"
+          style={{ backgroundImage: "url('/shield-check.png')" }}
+        ></div>
+        
+        {/* Content */}
+        <div className="relative z-10">
         <button
           onClick={handleClose}
           className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 z-10"
@@ -589,7 +597,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">City/Area *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">City (Area) *</label>
                   <input
                     type="text"
                     value={formData.city}
@@ -613,7 +621,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State/Province *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State (Province) *</label>
                   <input
                     type="text"
                     value={formData.state}
@@ -773,6 +781,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
               Next
             </Button>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -1384,7 +1393,7 @@ export function EditPropertyModal({ isOpen, onClose, onSuccess, propertyData }: 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State/Province</label>
+              <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State (Province)</label>
               <input
                 type="text"
                 value={formData.state}

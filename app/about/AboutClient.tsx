@@ -12,18 +12,17 @@ export default function AboutClient() {
   return (
     <MainLayout>
       <div className="w-full min-h-screen bg-white overflow-x-hidden">
-        {/* Main Hero Section - AI-Driven Inspections */}
+        {/* Main Hero Section - Data Security */}
         <section className="bg-white py-20 md:py-32 px-4 md:px-6">
           <div className="max-w-[1400px] mx-auto">
             <div className="text-center mb-16">
-              <p className="text-sm font-bold text-[#006795] uppercase tracking-widest mb-4">The Future Is Here</p>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-                Say Goodbye to the <span className="text-[#006795]">Clipboard</span> and <span className="text-[#F84B5F]">Slow Apps</span>
+                Data IN retention
               </h1>
               <div className="w-20 h-1.5 bg-[#F84B5F] rounded-full mx-auto mb-8"></div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-                How AI-Driven NSPIRE Property Inspections Are Changing the Game
-              </h2>
+              <p className="text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                We use encrypted administrative, technical, and physical safeguards designed to protect all information. Despite our efforts, no method of transmitting or storing data is completely secure.
+              </p>
             </div>
 
             <div className="max-w-5xl mx-auto space-y-10 text-gray-700 leading-relaxed">
@@ -122,13 +121,6 @@ export default function AboutClient() {
               </div>
 
               {/* Human Touch Section */}
-              <div className="bg-gradient-to-r from-[#006795] to-[#004A6B] p-12 rounded-[40px] text-white mt-12">
-                <h3 className="text-3xl font-bold mb-6">Data Security and Retention</h3>
-                <p className="text-lg text-white/90 leading-relaxed">
-                  We use Cyber Security administrative, technical, and physical safeguards designed to protect all information. Despite our efforts, no method of transmitting or storing data is completely secure.
-                </p>
-              </div>
-
               <div className="bg-white p-12 rounded-[40px] border-2 border-gray-100 mt-12">
                 <h3 className="text-3xl font-bold mb-6 text-[#006795]">The Human Touch Remains Crucial</h3>
                 <p className="text-lg text-gray-700 leading-relaxed">

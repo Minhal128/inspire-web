@@ -1924,6 +1924,13 @@ export default function InspectionCategoryPage() {
                     <div className="absolute inset-0 -z-10" onClick={handleODModalClose} />
 
                     <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col h-auto max-h-[70vh] self-center">
+                        {/* Background Image */}
+                        <div 
+                            className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-5 pointer-events-none rounded-3xl"
+                            style={{ backgroundImage: "url(\'/shield-check.png\')" }}
+                        ></div>
+                        {/* Content Wrapper */}
+                        <div className="relative z-10 h-full flex flex-col">
                         {/* Professional Header with Logo and Gradient */}
                         <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] px-5 py-4 shrink-0 flex items-center justify-between sticky top-0 z-20 shadow-lg">
                             <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -2237,8 +2244,7 @@ export default function InspectionCategoryPage() {
 
                             {modalStep === 3 && (
                                 <div className="space-y-4 animate-in slide-in-from-right duration-300 pb-10">
-                                    <div className="flex items-center gap-4 mb-8 sticky top-0 bg-white/95 backdrop-blur-sm p-1 z-10">
-                                        <button
+                                    <div className="flex items-center gap-4 mb-8 sticky top-0 bg-white/95 backdrop-blur-sm p-1 z-10"><button
                                             onClick={() => {
                                                 if (selectionType === 'detail') {
                                                     setSelectionType('selected');
@@ -2274,10 +2280,15 @@ export default function InspectionCategoryPage() {
                                     </div>
                                 </div>
                             )}
+                            </div>
                         </div>
 
                         {modalStep === 4 && (
-                            <div className="flex-1 overflow-y-auto flex flex-col p-6 md:p-8 space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500 min-h-0">
+                            <div className="flex-1 overflow-y-auto flex flex-col p-6 md:p-8 space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500 min-h-0 relative isolate">
+                                <div 
+                                    className="absolute inset-0 bg-no-repeat bg-center pointer-events-none -z-10"
+                                    style={{ backgroundImage: "url('/nationalstandard.png')", backgroundSize: '60%', opacity: 0.2 }}
+                                ></div>
                                 <div className="text-center">
                                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                                         <CheckCircle2 className="w-8 h-8 text-green-600" />

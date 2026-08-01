@@ -92,12 +92,12 @@ export default function Home() {
 
     <div className="flex flex-col sm:flex-row gap-4">
       <Button
-        onClick={handleGetStarted}
+        onClick={() => window.open('https://nspireinspectionapp.com/', '_blank')}
         variant="default"
         size="lg"
         className="hover:scale-105 transition-all w-full sm:w-auto cursor-pointer px-8 rounded-full"
       >
-        Get Started
+        Nspire Public
       </Button>
       <Button
         onClick={() => router.push("/find-inspectors")}
@@ -125,28 +125,7 @@ export default function Home() {
     </section>
 
     {/* THE PROCESS */}
-    <section className="px-4 md:px-6 py-16 md:py-20 bg-white">
-    <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-10">
-    <div className="text-center mb-12">
-    <p className="text-xs font-bold text-[#006795] uppercase tracking-wider">THE PROCESS</p>
-    <h2 className="text-4xl md:text-5xl font-bold text-black mt-3">What to Expect</h2>
-    </div>
-
-    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    {[
-      { num: "1", title: "Schedule", desc: "Start inspection" },
-      { num: "2", title: "Evaluate", desc: "System by System check of the entire property." },
-      { num: "3", title: "Report", desc: "Receive digital report (PDF) and clear repair recommendation (Excel format)" }
-    ].map((step) => (
-      <div key={step.num} className="text-center">
-      <div className="w-20 h-20 mx-auto bg-[#006795] text-white rounded-2xl flex items-center justify-center text-4xl font-bold mb-6">{step.num}</div>
-      <h3 className="font-bold text-xl mb-3">{step.title}</h3>
-      <p className="text-gray-600">{step.desc}</p>
-      </div>
-    ))}
-    </div>
-    </div>
-    </section>
+    
 
     {/* Public Housing Section */}
     <section className="bg-[#0F172A] text-white py-20">

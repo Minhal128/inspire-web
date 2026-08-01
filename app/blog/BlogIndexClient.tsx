@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import MainLayout from "@/components/MainLayout";
 import { useRouter } from "next/navigation";
 import { CheckCircle2, Shield, Activity, Home } from "lucide-react";
+import { useState } from "react";
 
 export default function InspectionGuide() {
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState("general");
 
   const inspectionCategories = [
     {
@@ -41,7 +43,7 @@ export default function InspectionGuide() {
               NSPIRE-Aligned Property Inspection Guide
             </p>
             <p className="text-lg text-white/80 max-w-4xl mx-auto leading-relaxed">
-              Apartment inspections ensure that a unit meets the National Standard for Inspection of Real Estate (NSPIRE) safety, health, and functional standards. Inspectors evaluate life-safety devices, electrical and plumbing systems, heating and cooling, structural integrity, moisture intrusion, and overall sanitation.
+              Apartment inspections ensure that a unit meets the National Standard for Inspection of Real Estate (NSPIRE) safety, health, and functional standards. Inspectors evaluate life-safety devices, electrical and plumbing systems, heating and cooling, structural integrity, moisture intrusion, and overall sanitation. Every item is assessed against NSPIRE's three core principles:
             </p>
           </div>
         </section>
@@ -309,56 +311,6 @@ export default function InspectionGuide() {
                   <li className="flex items-center gap-2"><input type="checkbox" className="w-5 h-5 rounded" /> Floors/walls/ceilings intact</li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="bg-gray-50 py-16 md:py-20">
-          <div className="max-w-[900px] mx-auto px-4 md:px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-[#006795] mb-12">
-              FAQs (NSPIRE-Aligned)
-            </h2>
-            <div className="space-y-6">
-              {[
-                {
-                  q: "What do NSPIRE inspections look for?",
-                  a: "Safety, health, and functionality: alarms, electrical, plumbing, HVAC, leaks, mold-like substances, structural issues, and cleanliness."
-                },
-                {
-                  q: "Why do apartments do inspections?",
-                  a: "To catch hazards early, maintain compliance, and protect residents and property value."
-                },
-                {
-                  q: "What do city inspectors look for?",
-                  a: "Fire code, health code, structural integrity, safe exits, and habitability."
-                },
-                {
-                  q: "How much notice is required?",
-                  a: "Most states require 24–48 hours. NSPIRE follows local law."
-                },
-                {
-                  q: "Can apartments do random inspections?",
-                  a: "Yes, but they must follow notice and reasonableness standards."
-                },
-                {
-                  q: "What happens if I fail an inspection?",
-                  a: "Deficiencies must be corrected. Life-safety issues require immediate action."
-                },
-                {
-                  q: "How often can a landlord inspect?",
-                  a: "Typically once or twice per year unless repairs or emergencies require entry."
-                },
-                {
-                  q: "What counts as damage vs wear & tear?",
-                  a: "Wear & tear = minor scuffs, small nail holes. Damage = broken fixtures, large holes, misuse."
-                }
-              ].map((faq, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">{faq.q}</h3>
-                  <p className="text-gray-600">{faq.a}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

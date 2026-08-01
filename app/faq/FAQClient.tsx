@@ -113,6 +113,61 @@ export default function FAQClient() {
           </div>
         </section>
 
+        {/* FAQ Section with Tabs */}
+        <section className="bg-gray-50 py-16 md:py-20">
+          <div className="max-w-[1000px] mx-auto px-4 md:px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-[#006795] mb-8">
+              FAQs (NSPIRE-Aligned)
+            </h2>
+            
+            {/* Tab Content - All FAQs in one section */}
+            <div className="space-y-6">
+              {[
+                {
+                  q: "What do NSPIRE inspections look for?",
+                  a: "Safety, health, and functionality: alarms, electrical, plumbing, HVAC, leaks, mold-like substances, structural issues, and cleanliness."
+                },
+                {
+                  q: "Why do apartments do inspections?",
+                  a: "To catch hazards early, maintain compliance, and protect residents and property value."
+                },
+                {
+                  q: "What do city inspectors look for?",
+                  a: "Fire code, health code, structural integrity, safe exits, and habitability."
+                },
+                {
+                  q: "How much notice is required?",
+                  a: "Most states require 24–48 hours. NSPIRE follows local law."
+                },
+                {
+                  q: "Can apartments do random inspections?",
+                  a: "Yes, but they must follow notice and reasonableness standards."
+                },
+                {
+                  q: "What happens if I fail an inspection?",
+                  a: "Deficiencies must be corrected. Life-safety issues require immediate action."
+                },
+                {
+                  q: "How often can a landlord inspect?",
+                  a: "Typically once or twice per year unless repairs or emergencies require entry."
+                },
+                {
+                  q: "What counts as damage vs wear & tear?",
+                  a: "Wear & tear = minor scuffs, small nail holes. Damage = broken fixtures, large holes, misuse."
+                }
+              ].map((faq, idx) => (
+                <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 flex items-start gap-3">
+                    <span className="text-[#006795] text-xl">Q:</span>
+                    <span>{faq.q}</span>
+                  </h3>
+                  <p className="text-gray-600 ml-8">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Video Buttons Section */}
         <section className="bg-[#F8F9FA] px-4 md:px-6 py-20 md:py-28">
           <div className="max-w-[1400px] mx-auto">
