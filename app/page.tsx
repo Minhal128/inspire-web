@@ -75,15 +75,19 @@ export default function Home() {
     <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
     <div className="flex-1 w-full lg:max-w-[600px] pt-4 md:pt-8">
     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold text-black mb-4 md:mb-6 leading-[1.1]">
-    Trusted and Certified
+    NSPIRE.AI
     <br />
-    Multi-Unit Inspections
+    <span className="text-[#006795]">National Standard for the Physical Inspection of Real Estate</span>
     <br />
-    <span className="text-[#F84B5F] italic font-bold">Across the NATION</span>
+    <span className="text-[#F84B5F] italic font-bold">Across the Nation</span>
     </h1>
 
     <p className="text-gray-700 mb-8 md:mb-12 leading-relaxed text-sm md:text-[15px] max-w-xl">
-    NSPIREinspection.AI stands at the forefront of the multi-unit inspection industry, offering multi-unit property inspections and advanced risk-mitigation solutions. Whether you are a first-time investor or a seasoned property manager, NSPIREinspection.AI provides professional and comprehensive PDF reports and Excel worksheets.
+    <strong>Services</strong> — Public and Affordable Housing Inspections • Buyer Inspections
+    </p>
+
+    <p className="text-gray-600 mb-4 text-xs md:text-sm max-w-xl">
+    <strong>NspireInspectionApp.Com/Public & NspireInspection.Ai</strong>
     </p>
 
     <div className="flex flex-col sm:flex-row gap-4">

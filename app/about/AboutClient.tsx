@@ -123,8 +123,15 @@ export default function AboutClient() {
 
               {/* Human Touch Section */}
               <div className="bg-gradient-to-r from-[#006795] to-[#004A6B] p-12 rounded-[40px] text-white mt-12">
-                <h3 className="text-3xl font-bold mb-6">The Human Touch Remains Crucial</h3>
+                <h3 className="text-3xl font-bold mb-6">Data Security and Retention</h3>
                 <p className="text-lg text-white/90 leading-relaxed">
+                  We use Cyber Security administrative, technical, and physical safeguards designed to protect all information. Despite our efforts, no method of transmitting or storing data is completely secure.
+                </p>
+              </div>
+
+              <div className="bg-white p-12 rounded-[40px] border-2 border-gray-100 mt-12">
+                <h3 className="text-3xl font-bold mb-6 text-[#006795]">The Human Touch Remains Crucial</h3>
+                <p className="text-lg text-gray-700 leading-relaxed">
                   While AI is handling the heavy lifting of data analysis and routine report generation, human judgment remains irreplaceable. AI is an incredibly powerful digital assistant that augments your expertise, allowing you to focus on strategic maintenance and tenant relations rather than tedious paperwork.
                 </p>
               </div>

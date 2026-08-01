@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import BlogIndex from './BlogIndexClient'
 
 export const metadata: Metadata = {
-  title: 'Blog | NSPIREinspection.AI',
-  description: 'Read the latest articles and insights on home inspections, property maintenance, and real estate from the experts at Nspire.',
+  title: 'Inspection Guide | NSPIREinspection.AI',
+  description: 'NSPIRE-Aligned Property Inspection Guide - Comprehensive guide to apartment inspections following National Standard for Inspection of Real Estate (NSPIRE).',
 }
 
 export default function Page() {

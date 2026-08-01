@@ -222,7 +222,7 @@ export default function Header() {
             </Link>
             <Link href="/blog" className="flex flex-col group items-center">
               <span className="text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight text-center">
-                BLOGS
+                INSPECTION GUIDE
               </span>
               <span className="text-[10px] text-gray-500 italic tracking-wider">
                 AI-Driven Property Inspection
@@ -344,7 +344,7 @@ export default function Header() {
               { href: "/about", icon: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z", label: "ABOUT", subtitle: "Our Story" },
               { href: "/contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z", label: "CONTACT", subtitle: "Get in Touch" },
               { href: "/faq", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253", label: "EDUCATION & TRAINING", subtitle: "NSPIRE Videos" },
-              { href: "/blog", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z", label: "BLOGS", subtitle: "AI-Driven Insights" },
+              { href: "/blog", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z", label: "INSPECTION GUIDE", subtitle: "NSPIRE Standards" },
             ].map((item) => (
               <Link
                 key={item.href}
