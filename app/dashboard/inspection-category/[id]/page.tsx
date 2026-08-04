@@ -1501,12 +1501,12 @@ export default function InspectionCategoryPage() {
                     
                     {/* Logo in center */}
                     <div className="flex items-center gap-2">
-                        <div className="bg-white rounded-lg px-3 py-1.5 flex items-center gap-2">
-                            <svg className="w-5 h-5 text-[#006795]" viewBox="0 0 24 24" fill="currentColor">
+                        <div className="bg-white rounded-xl px-5 py-2.5 flex items-center gap-3 shadow-sm">
+                            <svg className="w-7 h-7 sm:w-8 sm:h-8 text-[#006795]" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-4 0-7-3-7-7V8.3l7-3.11 7 3.11V13c0 4-3 7-7 7z"/>
                                 <path d="M10.5 13l-2-2-1.41 1.41L10.5 15.83l6-6L15.09 8.41z"/>
                             </svg>
-                            <span className="text-xs font-black text-[#006795] tracking-tight">NSPIRE INSPECTION</span>
+                            <span className="text-base sm:text-lg font-black text-[#006795] tracking-tight">NSPIRE INSPECTION</span>
                         </div>
                     </div>
                     

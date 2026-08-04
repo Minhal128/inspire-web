@@ -13,22 +13,28 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
   const router = useRouter()
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [userName, setUserName] = useState("Asset Manager")
-  const [userRole, setUserRole] = useState("Asset Portal")
+  const [userName, setUserName] = useState("User")
+  const [userRole, setUserRole] = useState("Inspector")
 
   useEffect(() => {
+    // Auth guard — redirect unauthenticated users
+    const token = localStorage.getItem('token')
+    if (!token) {
+      router.replace('/login?role=inspector')
+      return
+    }
     // Load user data from localStorage
     const userData = localStorage.getItem('user')
     if (userData) {
       try {
         const user = JSON.parse(userData)
-        setUserName(user.name || user.firstName || user.email?.split('@')[0] || 'Asset Manager')
-        setUserRole(user.role || 'Asset Portal')
+        setUserName(user.name || user.firstName || user.email?.split('@')[0] || 'User')
+        setUserRole(user.role || 'Inspector')
       } catch (e) {
         console.error('Error parsing user data:', e)
       }
     }
-  }, [])
+  }, [router])
 
   const isActive = (path: string) => pathname === path
 
@@ -41,52 +47,97 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
           <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
         </svg>
       )
-    }
+    },
+    {
+      path: '/asset-manager/dashboard/my-inspection',
+      label: 'My Inspection',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+          <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+        </svg>
+      )
+    },
+    {
+      path: '/asset-manager/dashboard/inspection-status',
+      label: 'Inspection Status',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+        </svg>
+      )
+    },
+    {
+      path: '/asset-manager/dashboard/delete-account',
+      label: 'Delete Account',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+        </svg>
+      )
+    },
+    // {
+    //   path: '/asset-manager/dashboard/reports',
+    //   label: 'Reports',
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+    //       <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
+    //       <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+    //     </svg>
+    //   )
+    // },
+    // {
+    //   path: '/asset-manager/dashboard/analytics',
+    //   label: 'Analytics',
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+    //       <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+    //     </svg>
+    //   )
+    // }
   ]
 
   return (
-    <div className="min-h-screen bg-[#E8F4F8] flex">
+    <div className="h-screen bg-[#E8F4F8] flex overflow-hidden">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:flex-col w-64 bg-gradient-to-b from-[#0D7FA8] to-[#0A5F7F] shadow-lg fixed h-full z-10">
         <div className="p-6 border-b border-[#0A5F7F] flex justify-center">
           <Image
             src="/logo.png"
             alt="INSPIRE"
-            width={300}
-            height={100}
-            className="h-28 w-auto cursor-pointer"
+            width={350}
+            height={150}
+            className="h-16 w-auto cursor-pointer hover:scale-105 transition-transform"
             onClick={() => router.push('/')}
           />
         </div>
-        
+
         <nav className="flex-1 p-4 overflow-y-auto">
           {navigationItems.map((item) => (
             <button
               key={item.path}
               onClick={() => router.push(item.path)}
-              className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-                isActive(item.path) ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
-              }`}
+              className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${isActive(item.path) ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
+                }`}
             >
               {item.icon}
               {item.label}
             </button>
           ))}
         </nav>
-        
+
         <div className="p-4 border-t border-[#0A5F7F]">
           <button
-            onClick={() => router.push('/asset-manager/settings')}
-            className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-              isActive('/asset-manager/settings') ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
-            }`}
+            onClick={() => router.push('/asset-manager/dashboard/settings')}
+            className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${isActive('/asset-manager/dashboard/settings') ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
+              }`}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
             </svg>
             Settings
           </button>
-          
+
           <button
             onClick={() => {
               localStorage.removeItem('token')
@@ -106,23 +157,22 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
       {/* Mobile Sidebar */}
-      <aside className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#0D7FA8] to-[#0A5F7F] shadow-lg z-50 transform transition-transform duration-300 lg:hidden ${
-        isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}>
+      <aside className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#0D7FA8] to-[#0A5F7F] shadow-lg z-50 transform transition-transform duration-300 lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
         <div className="p-4 border-b border-[#0A5F7F] flex items-center justify-between">
           <Image
             src="/logo.png"
             alt="INSPIRE"
-            width={180}
-            height={60}
-            className="w-auto h-14 cursor-pointer"
+            width={220}
+            height={80}
+            className="w-auto h-12 cursor-pointer"
             onClick={() => {
               router.push('/')
               setIsMobileMenuOpen(false)
@@ -137,7 +187,7 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
             </svg>
           </button>
         </div>
-        
+
         <nav className="flex-1 p-4 overflow-y-auto">
           {navigationItems.map((item) => (
             <button
@@ -146,32 +196,30 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
                 router.push(item.path)
                 setIsMobileMenuOpen(false)
               }}
-              className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-                isActive(item.path) ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
-              }`}
+              className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${isActive(item.path) ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
+                }`}
             >
               {item.icon}
               {item.label}
             </button>
           ))}
         </nav>
-        
+
         <div className="p-4 border-t border-[#0A5F7F]">
           <button
             onClick={() => {
-              router.push('/asset-manager/settings')
+              router.push('/asset-manager/dashboard/settings')
               setIsMobileMenuOpen(false)
             }}
-            className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${
-              isActive('/asset-manager/settings') ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
-            }`}
+            className={`w-full flex items-center gap-3 px-4 py-3 mb-2 rounded-lg font-medium transition-colors ${isActive('/asset-manager/dashboard/settings') ? 'bg-white text-[#0D7FA8]' : 'text-white hover:bg-[#0A5F7F]'
+              }`}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
             </svg>
             Settings
           </button>
-          
+
           <button
             onClick={() => {
               toast.success("Logged out successfully!", { position: "top-right" })
@@ -189,7 +237,7 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 lg:ml-64">
+      <main className="flex-1 lg:ml-64 flex flex-col h-screen overflow-y-auto">
         {/* Top Header */}
         <header className="bg-gradient-to-r from-[#0D7FA8] to-[#0A5F7F] shadow-md px-4 md:px-6 py-4 sticky top-0 z-30">
           <div className="flex items-center justify-between gap-4">
@@ -208,18 +256,18 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
               <Image
                 src="/logo.png"
                 alt="INSPIRE"
-                width={120}
-                height={40}
-                className="w-auto h-10 cursor-pointer"
+                width={200}
+                height={80}
+                className="w-auto h-10 sm:h-12 cursor-pointer"
                 onClick={() => router.push('/')}
               />
             </div>
 
 
-            
+
             <div className="flex items-center gap-2 md:gap-4 ml-auto">
-              <button 
-                onClick={() => router.push('/asset-manager/notifications')}
+              <button
+                onClick={() => router.push('/asset-manager/dashboard/notifications')}
                 className="relative p-2 hover:bg-[#0A5F7F] rounded-lg transition-colors"
               >
                 <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -227,7 +275,7 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
                 </svg>
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
-              
+
               <div className="flex items-center gap-2">
                 <Image
                   src={`https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=0D7FA8&color=fff`}
@@ -237,7 +285,7 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
                   className="rounded-full w-8 h-8 md:w-10 md:h-10"
                 />
                 <div className="hidden sm:block">
-                  <p className="text-sm font-semibold text-white">{userName.toUpperCase()}</p>
+                  <p className="text-sm font-semibold text-white">{(userName || '').toUpperCase()}</p>
                   <p className="text-xs text-white text-opacity-70">{userRole}</p>
                 </div>
               </div>
@@ -246,7 +294,7 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
         </header>
 
         {/* Page Content */}
-        {children}
+        <div className="flex-1">{children}</div>
       </main>
     </div>
   )

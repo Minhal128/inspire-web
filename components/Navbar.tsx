@@ -13,7 +13,7 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
-    <nav className="bg-white/95 border-b border-slate-200 px-4 md:px-6 py-2 sticky top-0 z-50 backdrop-blur-xl shadow-sm">
+    <nav className="bg-white/95 border-b border-slate-200 px-4 md:px-6 py-4 md:py-5 sticky top-0 z-50 backdrop-blur-xl shadow-sm">
       <div className="max-w-[1280px] mx-auto w-full flex items-center justify-between">
         {/* Mobile Menu Button - Left */}
         <button
@@ -30,9 +30,24 @@ export default function Navbar() {
         </button>
 
         {/* Logo - Center on mobile, Left on desktop */}
-        <div className="flex-1 md:flex-none flex justify-center md:justify-start lg:mr-8 xl:mr-16">
-          <Link href="/">
-            <Image src="/logo.png" alt="INSPIRE" width={140} height={44} className="object-contain h-9 md:h-10 w-auto" priority />
+        <div className="flex-1 md:flex-none flex justify-center md:justify-start lg:mr-8 xl:mr-16 relative">
+          <Link href="/" className="flex items-center justify-center">
+            {/* Desktop Logo */}
+            <img 
+              src="/logo.png" 
+              alt="INSPIRE" 
+              className="hidden md:block absolute top-1/2 -translate-y-1/2 left-0" 
+              style={{ width: '500px', height: 'auto', maxWidth: 'none', zIndex: 100 }} 
+            />
+            <img 
+              src="/logo.png" 
+              alt="INSPIRE" 
+              className="block md:hidden absolute top-1/2 -translate-y-1/2" 
+              style={{ width: '250px', height: 'auto', maxWidth: 'none', zIndex: 100 }} 
+            />
+            {/* Invisible spacer to maintain some width in the flex container */}
+            <div className="hidden md:block" style={{ width: '450px', height: '10px' }}></div>
+            <div className="block md:hidden" style={{ width: '250px', height: '10px' }}></div>
           </Link>
         </div>
 

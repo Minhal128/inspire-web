@@ -97,7 +97,7 @@ export default function Home() {
         size="lg"
         className="hover:scale-105 transition-all w-full sm:w-auto cursor-pointer px-8 rounded-full"
       >
-        Nspire Public
+        NSPIRE (USA)
       </Button>
       <Button
         onClick={() => router.push("/find-inspectors")}
@@ -108,17 +108,78 @@ export default function Home() {
         View Inspectors
       </Button>
     </div>
+
+    {/* App Store Badges */}
+    <div className="flex flex-col sm:flex-row gap-4 mt-6">
+      {/* Google Play Store */}
+      <a
+        href="https://play.google.com/store/apps/details?id=com.minhal.inspire"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 bg-black text-white px-5 py-3 rounded-xl hover:bg-gray-900 transition-all hover:scale-105 cursor-pointer w-full sm:w-auto"
+      >
+        <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.18 23.76c.37.21.8.24 1.2.06l12.15-6.93L13.6 12 3.18 23.76z" fill="#EA4335"/>
+          <path d="M20.47 9.93l-2.64-1.51-3.6 3.24.77.77 5.48-2.5z" fill="#FBBC05"/>
+          <path d="M3.18.24C2.81.45 2.58.84 2.58 1.36v21.28c0 .52.23.91.6 1.12L13.6 12 3.18.24z" fill="#4285F4"/>
+          <path d="M17.83 8.42L4.38.18C4 -.05 3.56.02 3.18.24L13.6 12l4.23-3.58z" fill="#34A853"/>
+        </svg>
+        <div className="text-left">
+          <div className="text-[10px] leading-tight text-gray-400">GET IT ON</div>
+          <div className="text-sm font-semibold leading-tight">Google Play</div>
+        </div>
+      </a>
+
+      {/* Apple App Store */}
+      <a
+        href="https://apps.apple.com/vn/app/nspire-international/id6761992254"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 bg-black text-white px-5 py-3 rounded-xl hover:bg-gray-900 transition-all hover:scale-105 cursor-pointer w-full sm:w-auto"
+      >
+        <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <div className="text-left">
+          <div className="text-[10px] leading-tight text-gray-400">Download on the</div>
+          <div className="text-sm font-semibold leading-tight">App Store</div>
+        </div>
+      </a>
+    </div>
     </div>
 
-    <div className="flex-1 w-full flex justify-center lg:justify-end">
-    <Image
-    src="/hero.png"
-    alt="INSPIRE App Mockup"
-    width={700}
-    height={820}
-    priority
-    className="object-contain drop-shadow-2xl"
-    />
+    <div className="group flex-1 w-full flex justify-center lg:justify-end relative" style={{ perspective: '1000px' }}>
+      <div 
+        className="relative w-full max-w-[700px] h-[820px] transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
+        style={{ transformStyle: 'preserve-3d', transformOrigin: 'center' }}
+      >
+        {/* Front Side (Original Hero) */}
+        <div className="absolute inset-0 backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
+          <Image
+            src="/hero.png"
+            alt="INSPIRE App Mockup"
+            fill
+            priority
+            className="object-contain drop-shadow-2xl"
+          />
+        </div>
+
+        {/* Back Side (New Hover Hero) */}
+        <div 
+          className="absolute inset-0 backface-hidden" 
+          style={{ 
+            backfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)'
+          }}
+        >
+          <Image
+            src="/hover-hero.png"
+            alt="Hover Alternate"
+            fill
+            className="object-contain drop-shadow-2xl"
+          />
+        </div>
+      </div>
     </div>
     </div>
     </div>

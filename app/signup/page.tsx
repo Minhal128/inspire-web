@@ -310,13 +310,18 @@ export default function Signup() {
                 <label htmlFor="role" className="block text-sm font-semibold text-[#006795] mb-2">
                   Role
                 </label>
-                <input
-                  type="text"
+                <select
                   id="role"
-                  value="Inspector"
-                  readOnly
-                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 font-semibold cursor-default"
-                />
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="w-full px-4 py-3 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 font-semibold focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                >
+                  <option value="inspector">Inspector</option>
+                  <option value="admin">Admin</option>
+                  <option value="management">Management</option>
+                  <option value="asset-manager">Asset Manager</option>
+                  <option value="other">Other People</option>
+                </select>
               </div>
             </div>
 

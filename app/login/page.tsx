@@ -21,6 +21,7 @@ export default function Login() {
   const getRoleDisplayName = () => {
     if (role === 'inspector') return 'Inspector'
     if (role === 'management') return 'Management'
+    if (role === 'other') return 'Other People'
     return 'User'
   }
 

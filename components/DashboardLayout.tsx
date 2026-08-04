@@ -105,9 +105,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Image
             src="/logo.png"
             alt="INSPIRE"
-            width={300}
-            height={100}
-            className="h-28 w-auto cursor-pointer"
+            width={350}
+            height={150}
+            className="h-16 w-auto cursor-pointer hover:scale-105 transition-transform"
             onClick={() => router.push('/')}
           />
         </div>
@@ -170,9 +170,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Image
             src="/logo.png"
             alt="INSPIRE"
-            width={180}
-            height={60}
-            className="w-auto h-14 cursor-pointer"
+            width={220}
+            height={80}
+            className="w-auto h-12 cursor-pointer"
             onClick={() => {
               router.push('/')
               setIsMobileMenuOpen(false)
@@ -256,9 +256,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <Image
                 src="/logo.png"
                 alt="INSPIRE"
-                width={120}
-                height={40}
-                className="w-auto h-10 cursor-pointer"
+                width={200}
+                height={80}
+                className="w-auto h-10 sm:h-12 cursor-pointer"
                 onClick={() => router.push('/')}
               />
             </div>
