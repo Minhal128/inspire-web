@@ -116,7 +116,7 @@ export default function UnitSelection() {
                   onClick={() => router.push('/dashboard/inspection/summary')}
                   className="w-full sm:flex-1 bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
                 >
-                  View deficiency
+                  Summary
                 </Button>
                 <Button
                   onClick={() => router.push('/dashboard')}

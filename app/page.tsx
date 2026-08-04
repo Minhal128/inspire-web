@@ -75,7 +75,7 @@ export default function Home() {
     <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
     <div className="flex-1 w-full lg:max-w-[600px] pt-4 md:pt-8">
     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold text-black mb-4 md:mb-6 leading-[1.1]">
-    NSPIRE.AI
+    A project Of StateLicensees
     <br />
     <span className="text-[#006795]">National Standard for the Physical Inspection of Real Estate</span>
     <br />

@@ -546,7 +546,7 @@ function generateEnhancedDeficiencyTable(deficiencies: DeficiencyEntry[], option
             <tr>
               <th style="width: 25%;">Deficiency Details</th>
               <th style="width: 15%;">Deficiency Name/Location</th>
-              <th style="width: 15%;">Comments</th>
+              <th style="width: 15%;">Note</th>
               <th style="width: 15%;">Deficiency Picture</th>
               <th style="width: 10%;">Points LTS</th>
               <th style="width: 10%;">Repeat Indicator</th>
@@ -616,7 +616,7 @@ function generateCertificatesTable(): string {
           <tr>
             <th class="left-align">Certificate Type</th>
             <th>Status</th>
-            <th class="left-align">Comment</th>
+            <th class="left-align">Note</th>
           </tr>
         </thead>
         <tbody>

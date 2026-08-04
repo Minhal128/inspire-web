@@ -894,6 +894,13 @@ export default function InspectionCategoryPage() {
     const [reportUrl, setReportUrl] = useState<string | null>(null);
     const [analysisResult, setAnalysisResult] = useState<any>(null);
 
+    // Deficiency Summary Modal
+    const [defSummarySection, setDefSummarySection] = useState<'outside' | 'inside' | 'unit' | null>(null);
+
+    const getDefSummaryFindings = (sec: 'outside' | 'inside' | 'unit') => {
+        return propertyFindings.filter((f: any) => f.area === sec && (f.building === urlBuilding || f.building === buildingName));
+    };
+
     const handleProceed = async () => {
         if (!selectedDeficiency) {
             toast.error("Please select a deficiency");
@@ -1526,7 +1533,7 @@ export default function InspectionCategoryPage() {
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
-                        View deficiency
+                        Summary
                     </Button>
                 </div>
 
@@ -1628,6 +1635,19 @@ export default function InspectionCategoryPage() {
                                 <div className="w-full h-2 bg-white rounded-full overflow-hidden max-w-4xl shadow-inner">
                                     <div className="h-full bg-[#006795] transition-all duration-500" style={{ width: `${sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}%` }}></div>
                                 </div>
+                                {/* View Deficiency Summary */}
+                                {(() => {
+                                    const count = getDefSummaryFindings(sec as any).length;
+                                    return count > 0 ? (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setDefSummarySection(sec as any); }}
+                                            className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-[#F84B5F] hover:bg-[#e04050] px-3 py-1.5 rounded-full transition-colors shadow-sm"
+                                        >
+                                            <FileText className="w-3 h-3" />
+                                            View Deficiency Summary ({count})
+                                        </button>
+                                    ) : null;
+                                })()}
                             </div>
                             <button
                                 onClick={() => {
@@ -1925,10 +1945,10 @@ export default function InspectionCategoryPage() {
 
             {/* OD Modal - BULLETPROOF SCROLLING AND POSITIONING */}
             {isODModalOpen && (
-                <div className="fixed inset-0 bg-black/80 z-[1000] flex items-start justify-center p-4 sm:p-6 md:p-10 overflow-hidden isolate">
+                <div className="fixed inset-0 bg-black/80 z-[1000] flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto isolate">
                     <div className="absolute inset-0 -z-10" onClick={handleODModalClose} />
 
-                    <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col h-auto max-h-[70vh] self-center">
+                    <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col max-h-[90vh] my-auto">
                         {/* Background Image */}
                         <div 
                             className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-5 pointer-events-none rounded-3xl"
@@ -2518,7 +2538,7 @@ export default function InspectionCategoryPage() {
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                     background: #cbd5e1;
                 }
-                body.modal-open {
+                body.modal-open main {
                     overflow: hidden !important;
                 }
             `}</style>

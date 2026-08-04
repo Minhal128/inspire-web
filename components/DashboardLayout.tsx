@@ -98,7 +98,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ]
 
   return (
-    <div className="min-h-screen bg-[#E8F4F8] flex">
+    <div className="h-screen bg-[#E8F4F8] flex overflow-hidden">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:flex-col w-64 bg-gradient-to-b from-[#0D7FA8] to-[#0A5F7F] shadow-lg fixed h-full z-10">
         <div className="p-6 border-b border-[#0A5F7F] flex justify-center">
@@ -237,7 +237,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 lg:ml-64">
+      <main className="flex-1 lg:ml-64 flex flex-col h-screen overflow-y-auto">
         {/* Top Header */}
         <header className="bg-gradient-to-r from-[#0D7FA8] to-[#0A5F7F] shadow-md px-4 md:px-6 py-4 sticky top-0 z-30">
           <div className="flex items-center justify-between gap-4">
@@ -294,7 +294,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page Content */}
-        {children}
+        <div className="flex-1">{children}</div>
       </main>
     </div>
   )

@@ -1521,7 +1521,7 @@ export default function InspectionCategoryPage() {
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
-                        View deficiency
+                        Summary
                     </Button>
                 </div>
 
