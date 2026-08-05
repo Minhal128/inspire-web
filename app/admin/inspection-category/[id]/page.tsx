@@ -1930,7 +1930,7 @@ export default function InspectionCategoryPage() {
                             style={{ backgroundImage: "url(\'/shield-check.png\')" }}
                         ></div>
                         {/* Content Wrapper */}
-                        <div className="relative z-10 h-full flex flex-col">
+                        <div className="relative z-10 flex-1 min-h-0 flex flex-col">
                         {/* Professional Header with Logo and Gradient */}
                         <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] px-5 py-4 shrink-0 flex items-center justify-between sticky top-0 z-20 shadow-lg">
                             <div className="flex items-center gap-3 flex-1 min-w-0">

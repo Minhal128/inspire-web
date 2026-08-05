@@ -102,7 +102,7 @@ export default function ProfileSelection() {
                   <line x1="20" y1="40" x2="36" y2="40" stroke="#F84B5F" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
-              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Other</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Other People</h2>
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4 sm:mb-6">
                 For other users and stakeholders.
               </p>

@@ -249,14 +249,14 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 z-[90]"
+          className="md:hidden fixed inset-0 bg-black/50 z-[110]"
           onClick={() => setMobileMenuOpen(false)}
         ></div>
       )}
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`md:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-[95] transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`md:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-[120] transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* Logo in Drawer */}
         <div className="p-6 border-b border-gray-200 bg-white">
@@ -265,7 +265,7 @@ export default function Header() {
             alt="INSPIRE"
             width={220}
             height={60}
-            className="h-16 w-auto"
+            className="h-12 w-auto"
           />
         </div>
 
