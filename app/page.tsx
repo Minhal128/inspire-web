@@ -86,29 +86,6 @@ export default function Home() {
     <p className="text-gray-700 mb-8 md:mb-12 leading-relaxed text-sm md:text-[15px] max-w-xl">
     <strong>Services</strong> — Public and Affordable Housing Inspections • Buyer Inspections
     </p>
-
-    <p className="text-gray-600 mb-4 text-xs md:text-sm max-w-xl">
-    <strong>NspireInspectionApp.Com/Public & NspireInspection.Ai</strong>
-    </p>
-
-    <div className="flex flex-col sm:flex-row gap-4">
-      <Button
-        onClick={() => window.open('https://nspireinspectionapp.com/', '_blank')}
-        variant="default"
-        size="lg"
-        className="hover:scale-105 transition-all w-full sm:w-auto cursor-pointer px-8 rounded-full"
-      >
-        NSPIRE (USA)
-      </Button>
-      <Button
-        onClick={() => router.push("/find-inspectors")}
-        variant="outline"
-        size="lg"
-        className="hover:scale-105 transition-all w-full sm:w-auto cursor-pointer px-8 rounded-full border-[#006795] text-[#006795] bg-transparent hover:bg-[#E8F4F8]"
-      >
-        View Inspectors
-      </Button>
-    </div>
     </div>
 
     <div className="flex-1 w-full flex justify-center lg:justify-end relative" style={{ perspective: '1000px' }}>

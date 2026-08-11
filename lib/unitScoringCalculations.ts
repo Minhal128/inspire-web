@@ -42,16 +42,35 @@ const UNIT_SEVERITY_BASE_POINTS: { [key: string]: number } = {
  * Get base points for a unit deficiency
  * Uses the points formula if provided, otherwise falls back to severity-based lookup
  * 
+ * SPECIAL CASES:
+ * - Carbon Monoxide (CO) Alarm deficiencies: Always 0.000 points regardless of severity
+ * - Smoke Alarm deficiencies: Always 0.000 points regardless of severity
+ * 
  * @param severity The severity level from deficiency mapping
- * @param pointsFormula Optional points formula string (e.g., "2.4/n", "60/n")
+ * @param pointsFormula Optional points formula string (e.g., "2.4/n", "60/n", "0.000")
+ * @param itemName Optional item name for special case detection
  * @returns Base points value
  */
-export function getUnitBasePoints(severity: string, pointsFormula?: string): number {
-    // If a points formula is provided, parse it to get the exact base points
+export function getUnitBasePoints(severity: string, pointsFormula?: string, itemName?: string): number {
+    // Check if the points formula explicitly specifies 0.000 or 0
     if (pointsFormula) {
         const parsed = parsePointsFormula(pointsFormula);
+        if (parsed === 0) {
+            return 0;
+        }
         if (parsed > 0) {
             return parsed;
+        }
+    }
+
+    // Special case: CO Alarm and Smoke Alarm deficiencies are ALWAYS 0 points
+    if (itemName) {
+        const lowerName = itemName.toLowerCase();
+        if (lowerName.includes('carbon monoxide') || 
+            lowerName.includes('co alarm') ||
+            lowerName.includes('smoke alarm') ||
+            lowerName.includes('smoke detector')) {
+            return 0;
         }
     }
 

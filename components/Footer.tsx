@@ -144,15 +144,23 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <NextLink href="/">
-            <Image
-              src="/logo.png"
-              alt="INSPIRE"
-              width={200}
-              height={100}
-              className="object-contain h-16 md:h-20 w-auto"
-            />
-          </NextLink>
+          <div className="flex items-center gap-6">
+            <NextLink href="/">
+              <Image
+                src="/logo.png"
+                alt="INSPIRE"
+                width={200}
+                height={100}
+                className="object-contain h-16 md:h-20 w-auto"
+              />
+            </NextLink>
+            <button
+              onClick={() => window.open('https://nspireinspectionapp.com/', '_blank')}
+              className="bg-white text-black hover:bg-gray-200 px-6 py-2 rounded-full font-semibold transition-all whitespace-nowrap"
+            >
+              NSPIRE (USA)
+            </button>
+          </div>
 
           <div className="flex gap-6 text-gray-400">
             <NextLink href="/terms" className="hover:text-white">
