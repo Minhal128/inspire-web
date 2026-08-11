@@ -372,16 +372,6 @@ export default function InspectionStatusPage() {
 
   const handleStartInspection = (property: PropertyWithInspection) => {
     try {
-      // Block only when another property is actively in progress (not on hold)
-      if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
-        const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
-        toast.error(
-          `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
-          { position: 'top-right', autoClose: 6000 }
-        )
-        return
-      }
-      
       // Navigate to property-details page to select building/unit properly
       // This ensures all required URL params are set correctly
       console.log('Navigating to property details:', property._id)
@@ -391,24 +381,6 @@ export default function InspectionStatusPage() {
       toast.error('Failed to navigate to property details', { position: 'top-right' })
     }
   }
-
-  // The property currently being actively inspected (progress > 0 and < 100, not on hold, not completed)
-  const activeInspectionPropertyId = useMemo(() => {
-    // Iterate through properties array to maintain consistent order
-    const activeProperty = properties.find(prop => {
-      const id = prop._id
-      // Check if property is on hold using status field
-      if (prop?.status === 'hold') return false
-      // If inspection is fully completed, it does NOT block other properties
-      if (prop.hasInspection) return false
-      const progress = propertyProgress[id] || 0
-      // Also skip if progress has reached 100 (completed)
-      if (progress >= 100) return false
-      // Only consider properties with progress > 0 and < 100
-      return progress > 0 && progress < 100
-    })
-    return activeProperty?._id || null
-  }, [propertyProgress, properties])
 
   const completedCount = properties.filter(p => p.hasInspection).length
   const pendingCount = properties.filter(p => !p.hasInspection).length
@@ -654,35 +626,13 @@ export default function InspectionStatusPage() {
                         </Button>
                       )
                     ) : (
-                      (() => {
-                        const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
-                        const isActive = activeInspectionPropertyId === property._id
-                        return (
-                          <Button
-                            onClick={() => handleStartInspection(property)}
-                            disabled={isLocked}
-                            className={`flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap ${
-                              isLocked
-                                ? 'bg-[#F84B5F] hover:bg-[#F84B5F] text-white cursor-not-allowed'
-                                : 'bg-[#006795] hover:bg-blue-700 text-white'
-                            }`}
-                          >
-                            {isLocked ? (
-                              <>
-                                <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
-                                </svg>
-                                <span>Locked</span>
-                              </>
-                            ) : (
-                              <>
-                                <FileText className="w-4 h-4 flex-shrink-0" />
-                                <span>{isActive ? 'Continue Inspection' : 'Start Inspection'}</span>
-                              </>
-                            )}
-                          </Button>
-                        )
-                      })()
+                      <Button
+                        onClick={() => handleStartInspection(property)}
+                        className="flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap bg-[#006795] hover:bg-blue-700 text-white"
+                      >
+                        <FileText className="w-4 h-4 flex-shrink-0" />
+                        <span>{(propertyProgress[property._id] || 0) > 0 ? 'Continue Inspection' : 'Start Inspection'}</span>
+                      </Button>
                     )}
                   </div>
                 </div>

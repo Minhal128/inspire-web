@@ -1012,18 +1012,6 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
               Edit Property
             </button>
           )}
-          
-          {inspectionStarted && onHoldInspection && (
-            <button
-              onClick={() => {
-                onHoldInspection()
-                onClose()
-              }}
-              className="w-full px-6 py-4 bg-amber-500 text-white font-bold rounded-xl text-base transition-all hover:bg-amber-600 shadow-lg active:scale-95"
-            >
-              Hold Inspection
-            </button>
-          )}
 
           <button
             onClick={handleStartInspection}

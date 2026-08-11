@@ -447,20 +447,9 @@ export default function MyInspection() {
                             return (
                               <button
                                 onClick={() => handleInitiate(property)}
-                                disabled={isLocked}
-                                title={isLocked ? 'Another inspection is in progress. Put it on hold first.' : ''}
-                                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 mx-auto whitespace-nowrap ${
-                                  isLocked
-                                    ? 'bg-[#F84B5F] text-white cursor-not-allowed'
-                                    : 'text-white bg-[#006795] hover:bg-[#0A5670]'
-                                }`}
+                                className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 mx-auto whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                               >
-                                {isLocked ? (
-                                  <>
-                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
-                                    Locked
-                                  </>
-                                ) : isActive ? 'In Progress' : 'Initiate'}
+                                {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                               </button>
                             )
                           })()}

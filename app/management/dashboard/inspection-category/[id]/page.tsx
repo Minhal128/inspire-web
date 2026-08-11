@@ -1451,7 +1451,7 @@ export default function InspectionCategoryPage() {
                     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowProtocolModal(false)}>
                         <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
                             <div className="bg-green-600 p-5 flex items-center justify-between">
-                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL (INTERNATIONAL) - {selectedDeficiency.selected}</h3>
+                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL - {selectedDeficiency.selected}</h3>
                                 <button onClick={() => setShowProtocolModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
                                     <X className="w-5 h-5" />
                                 </button>
@@ -2235,7 +2235,7 @@ export default function InspectionCategoryPage() {
                                             })()}
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL (INTERNATIONAL) ✅</label>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL ✅</label>
                                             {(() => {
                                                 if (!selectedDeficiency) {
                                                     return <div className="text-xs text-gray-400 italic bg-gray-50 p-4 rounded-2xl border border-gray-200">Select deficiency first</div>
@@ -2248,7 +2248,7 @@ export default function InspectionCategoryPage() {
                                                         }}
                                                         className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
                                                     >
-                                                        INSPECTION PROTOCOL (INTERNATIONAL) ✅
+                                                        INSPECTION PROTOCOL ✅
                                                     </button>
                                                 )
                                             })()}
@@ -2574,7 +2574,7 @@ export default function InspectionCategoryPage() {
                     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowProtocolModal(false)}>
                         <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
                             <div className="bg-green-600 p-5 flex items-center justify-between">
-                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL (INTERNATIONAL) - {selectedDeficiency.selected}</h3>
+                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL - {selectedDeficiency.selected}</h3>
                                 <button onClick={() => setShowProtocolModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
                                     <X className="w-5 h-5" />
                                 </button>

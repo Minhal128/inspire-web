@@ -444,26 +444,8 @@ export default function PropertyDetailsPage() {
         return '-'
     }
 
-    const resumeFromHoldIfNeeded = async () => {
-        if (property?.status !== 'hold') return true
-        try {
-            const response = await propertiesAPI.hold(property._id || id)
-            if (response.success) {
-                setProperty((prev: any) =>
-                    prev ? { ...prev, status: response.property?.status ?? 'active' } : prev
-                )
-                return true
-            }
-        } catch (error: any) {
-            toast.error(error.message || 'Failed to resume inspection')
-        }
-        return false
-    }
-
     const handleBuildingClick = async (building: typeof buildings[0]) => {
         const propId = property._id || id
-
-        if (!(await resumeFromHoldIfNeeded())) return
 
         // Check if there is another property that has active progress (started but not complete)
         try {
@@ -502,7 +484,7 @@ export default function PropertyDetailsPage() {
                         
                         // Check if any of these active other properties is not completed (100% progress)
                         for (const activeProp of activeOtherProps) {
-                            if (activeProp.status === 'hold') continue
+                            // Hold check removed
                             // If property has a completed inspection record, it is done — skip it
                             if (completedPropertyIds.has(activeProp._id)) continue
 
@@ -590,7 +572,7 @@ export default function PropertyDetailsPage() {
                     if (propsRes.success) {
                         const activeOtherProps = propsRes.properties.filter(p => propertiesWithProgress.has(p._id))
                         for (const activeProp of activeOtherProps) {
-                            if (activeProp.status === 'hold') continue
+                            // Hold check removed
                             // If property has a completed inspection record, it is done — skip it
                             if (completedPropertyIds.has(activeProp._id)) continue
 

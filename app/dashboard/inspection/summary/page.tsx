@@ -1189,7 +1189,7 @@ function NSPIREInspectionSummaryContent() {
                     className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
                   >
                     <Mail className="w-3.5 h-3.5" />
-                    Summary
+                    View Deficiency
                   </Button>
                 </div>
               </div>

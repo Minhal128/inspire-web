@@ -104,7 +104,7 @@ export default function ProfileSelection() {
               </div>
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Other People</h2>
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4 sm:mb-6">
-                For other users and stakeholders.
+                For other users.
               </p>
               <Button
                 className="w-full bg-[#006795] hover:bg-[#006795]/90 text-white rounded-lg py-2.5 font-medium text-sm mt-auto"
