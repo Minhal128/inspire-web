@@ -153,7 +153,7 @@ export default function OtherLogin() {
           <Image src="/logo.png" alt="NSPIREinspection.AI Logo" width={480} height={560} className="w-auto h-24 md:h-32 lg:h-36 cursor-pointer" onClick={() => router.push('/')} />
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Welcome to NSPIREinspection.AI</h1>
-        <p className="text-sm md:text-base text-gray-600">Other People</p>
+        <p className="text-sm md:text-base text-gray-600">Other</p>
       </div>
 
       <div className="flex-1 flex items-center justify-center px-4 py-8">

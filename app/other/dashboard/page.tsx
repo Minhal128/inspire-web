@@ -113,7 +113,7 @@ export default function OtherDashboard() {
       <div className="p-4 sm:p-6 lg:p-8">
         {/* Header Section */}
         <div className="mb-6 lg:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Other People Portal</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Other Portal</h1>
           <p className="text-gray-600 text-sm sm:text-base">Manage and track your activities</p>
         </div>
 

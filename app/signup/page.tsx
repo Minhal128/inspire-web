@@ -320,7 +320,7 @@ export default function Signup() {
                   <option value="admin">Admin</option>
                   <option value="management">Management</option>
                   <option value="asset-manager">Asset Manager</option>
-                  <option value="other">Other People</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>
