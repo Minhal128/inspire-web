@@ -2130,17 +2130,28 @@ export default function InspectionCategoryPage() {
                                                 value={odForm.location}
                                                 onChange={(e) => setOdForm({ ...odForm, location: e.target.value })}
                                             >
-                                                {[
-                                                    'Building Site S', 'Building Site N', 'Building Site E', 'Building Site W',
-                                                    'Parking Lot', 'Driveway', 'Sidewalk', 'Roof', 'Common Area', 'Main Lobby',
-                                                    'Basement', 'Attic/Loft', 'Bathroom 1', 'Bathroom 2', 'Bathroom 3',
-                                                    'Bedroom 1', 'Bedroom 2', 'Bedroom 3', 'Bedroom 4', 'Bedroom 5',
-                                                    'Closet', 'Dining Area', 'Entryway', 'Garage', 'Hallway/Stairs',
-                                                    'Home Office/Study', 'Kitchen', 'Laundry Room', 'Living Room',
-                                                    'Mechanical Room', 'Office', 'Patio/Porch/Balcony', 'Storage Room', 'Other'
-                                                ].map((loc: string) => (
-                                                    <option key={loc} value={loc}>{loc}</option>
-                                                ))}
+                                                <optgroup label="Outside">
+                                                    {['Building Site S', 'Building Site N', 'Building Site E', 'Building Site W',
+                                                        'Parking Lot', 'Driveway', 'Sidewalk', 'Roof', 'Patio/Porch/Balcony'
+                                                    ].map((loc: string) => (
+                                                        <option key={loc} value={loc}>{loc}</option>
+                                                    ))}
+                                                </optgroup>
+                                                <optgroup label="Inside">
+                                                    {['Common Area', 'Main Lobby', 'Hallway/Stairs', 'Mechanical Room', 'Storage Room', 'Other'
+                                                    ].map((loc: string) => (
+                                                        <option key={loc} value={loc}>{loc}</option>
+                                                    ))}
+                                                </optgroup>
+                                                <optgroup label="Units">
+                                                    {['Basement', 'Attic/Loft', 'Bathroom 1', 'Bathroom 2', 'Bathroom 3',
+                                                        'Bedroom 1', 'Bedroom 2', 'Bedroom 3', 'Bedroom 4', 'Bedroom 5',
+                                                        'Closet', 'Dining Area', 'Entryway', 'Garage', 'Home Office/Study', 'Kitchen', 
+                                                        'Laundry Room', 'Living Room', 'Office'
+                                                    ].map((loc: string) => (
+                                                        <option key={loc} value={loc}>{loc}</option>
+                                                    ))}
+                                                </optgroup>
                                             </select>
                                         </div>
                                         <div>
