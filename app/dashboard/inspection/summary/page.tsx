@@ -1131,7 +1131,7 @@ function NSPIREInspectionSummaryContent() {
                 disabled={exportingExcel || checkingUnlock || purchasingUnlock}
                 className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white"
               >
-                {isReportUnlocked ? <Excel /> : <Lock className="w-5 h-5" />} {exportingExcel ? 'Generating...' : isReportUnlocked ? 'Export Excel' : 'Unlock to Export Excel'}
+                {isReportUnlocked ? <Excel /> : <Lock className="w-5 h-5" />} {exportingExcel ? 'Generating...' : isReportUnlocked ? 'Export Excel' : 'Work Order'}
               </Button>
               <Button
                 onClick={handleBackToInspection}
@@ -1181,7 +1181,7 @@ function NSPIREInspectionSummaryContent() {
                     className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
                   >
                     <Lock className="w-3.5 h-3.5" />
-                    Unlock Report · $49
+                    Unlock Report · $1
                   </Button>
                   <Button
                     onClick={() => setShowPdfPreview(true)}
