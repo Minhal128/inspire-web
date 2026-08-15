@@ -2,23 +2,28 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { UnitSelectionModal } from "@/components/UnitSelectionModal";
 import MainLayout from "@/components/MainLayout";
+import { authCookies, setJsonCookie, migrateFromLocalStorage } from "@/lib/cookies";
 
 export default function Home() {
   const router = useRouter();
   const [unitSelectionOpen, setUnitSelectionOpen] = useState(false);
   const [heroFlipped, setHeroFlipped] = useState(false);
 
+  // Migrate from localStorage to cookies on component mount
+  useEffect(() => {
+    migrateFromLocalStorage();
+  }, []);
+
   const handleGetStarted = () => {
-    const token = localStorage.getItem('token');
-    const userStr = localStorage.getItem('user');
+    const token = authCookies.getToken();
+    const user = authCookies.getUser();
     
-    if (token && userStr) {
+    if (token && user) {
       try {
-        const user = JSON.parse(userStr);
         const userRole = user.role;
         
         if (userRole === 'admin') {
@@ -40,14 +45,13 @@ export default function Home() {
 
   const handleUnitSelectionContinue = (selectedUnits: string[]) => {
     setUnitSelectionOpen(false);
-    localStorage.setItem("selectedUnits", JSON.stringify(selectedUnits));
+    setJsonCookie("selectedUnits", selectedUnits, { expires: 7 });
     
-    const token = localStorage.getItem('token');
-    const userStr = localStorage.getItem('user');
+    const token = authCookies.getToken();
+    const user = authCookies.getUser();
     
-    if (token && userStr) {
+    if (token && user) {
       try {
-        const user = JSON.parse(userStr);
         const userRole = user.role;
         
         if (userRole === 'admin') {
@@ -76,16 +80,10 @@ export default function Home() {
     <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
     <div className="flex-1 w-full lg:max-w-[600px] pt-4 md:pt-8">
     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold text-black mb-4 md:mb-6 leading-[1.1]">
-    A project Of StateLicensees
-    <br />
     <span className="text-[#006795]">National Standard for the Physical Inspection of Real Estate</span>
     <br />
-    <span className="text-[#F84B5F] italic font-bold">Across the Nation</span>
+    <span className="text-[#F84B5F] italic font-bold">Multi-Unit Property Inspection App</span>
     </h1>
-
-    <p className="text-gray-700 mb-8 md:mb-12 leading-relaxed text-sm md:text-[15px] max-w-xl">
-    <strong>Services</strong> — Public and Affordable Housing Inspections • Buyer Inspections
-    </p>
     </div>
 
     <div className="flex-1 w-full flex justify-center lg:justify-end relative" style={{ perspective: '1000px' }}>
@@ -100,6 +98,23 @@ export default function Home() {
           transform: heroFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
         }}
       >
+        {/* Flip Indicator - Red Circle with Arrow */}
+        <div className="absolute top-4 right-4 z-10 bg-red-500 rounded-full p-4 shadow-lg animate-pulse">
+          <svg 
+            className="w-12 h-12 text-white" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={3} 
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
+            />
+          </svg>
+        </div>
+
         {/* Front Side (Original Hero) */}
         <div className="absolute inset-0 backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
           <Image
@@ -139,7 +154,7 @@ export default function Home() {
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-[#006795] text-xs font-bold tracking-widest uppercase mb-4">TAKE IT WITH YOU</p>
         <h2 className="text-3xl md:text-5xl font-extrabold mb-16">
-          <span className="text-[#006795]">Download NSPIRE Inspection (International)</span>
+          <span className="text-[#006795]">Download NspireInspection.Ai</span>
         </h2>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">

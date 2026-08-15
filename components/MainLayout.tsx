@@ -2,6 +2,7 @@
 
 import Header from "./Header";
 import Footer from "./Footer";
+import CookieConsent from "./CookieConsent";
 
 export default function MainLayout({
   children,
@@ -13,6 +14,7 @@ export default function MainLayout({
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }

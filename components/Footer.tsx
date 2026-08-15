@@ -46,6 +46,7 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-4">Contact</h3>
             <div className="space-y-3 text-gray-400">
+              <p className="font-semibold text-white">State Licensees</p>
               <p className="flex items-center gap-2">
                 <svg
                   className="w-5 h-5"
@@ -61,42 +62,18 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="mailto:support@inspire.com"
+                  href="mailto:Support@StateLicensees.Com"
                   className="hover:text-white"
                 >
-                  support@inspire.com
+                  Support@StateLicensees.Com
                 </a>
-              </p>
-              <p className="flex items-start gap-2">
-                <svg
-                  className="w-5 h-5 mt-0.5 shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <span className="hover:text-white text-left">
-                  2829 Townsgate Road, Suite 100, Westlake Village, California
-                </span>
               </p>
             </div>
           </div>
 
           {/* Subscribe */}
           <div>
-            <h3 className="font-bold mb-4">Subscribe</h3>
+            <h3 className="font-bold mb-4">Subscribe (Nspire Update)</h3>
             <div className="flex mb-4">
               <div className="relative flex-1">
                 <svg
@@ -144,22 +121,29 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-12 md:gap-16">
             <NextLink href="/">
-              <Image
-                src="/logo.png"
-                alt="INSPIRE"
-                width={200}
-                height={100}
-                className="object-contain h-16 md:h-20 w-auto"
-              />
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/logo.png"
+                  alt="INSPIRE"
+                  width={200}
+                  height={100}
+                  className="object-contain h-16 md:h-20 w-auto"
+                />
+              </div>
             </NextLink>
-            <button
-              onClick={() => window.open('https://nspireinspectionapp.com/', '_blank')}
-              className="bg-white text-black hover:bg-gray-200 px-6 py-2 rounded-full font-semibold transition-all whitespace-nowrap"
-            >
-              NSPIRE (USA)
-            </button>
+            <NextLink href="https://nspireinspectionapp.com/" target="_blank">
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/logo1.png"
+                  alt="NSPIRE (Public)"
+                  width={600}
+                  height={300}
+                  className="object-contain h-16 md:h-20 w-auto scale-[3]"
+                />
+              </div>
+            </NextLink>
           </div>
 
           <div className="flex gap-6 text-gray-400">
@@ -170,7 +154,7 @@ export default function Footer() {
               Privacy
             </NextLink>
             <NextLink href="/cookies" className="hover:text-white">
-              Cookies
+              Cookies Cookies
             </NextLink>
           </div>
 

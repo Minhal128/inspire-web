@@ -103,16 +103,6 @@ export default function Header() {
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
                   <div className="bg-white rounded-xl shadow-xl border border-gray-200 py-2 min-w-[220px]">
                     <Link
-                      href="/service"
-                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
-                      onClick={() => setServicesDropdownOpen(false)}
-                    >
-                      <span className="w-2 h-2 rounded-full bg-primary"></span>
-                      <span className="text-sm text-gray-700 hover:text-primary">
-                        Public and Affordable Housing Inspection
-                      </span>
-                    </Link>
-                    <Link
                       href="/inspection-services/owners"
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
                       onClick={() => setServicesDropdownOpen(false)}
@@ -170,16 +160,6 @@ export default function Header() {
                       <span className="w-2 h-2 rounded-full bg-[#8B5CF6]"></span>
                       <span className="text-sm text-gray-700 hover:text-primary">
                         Public Housing
-                      </span>
-                    </Link>
-                    <Link
-                      href="/inspection-services/insurance-risk"
-                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#E8F4F8] transition-colors"
-                      onClick={() => setServicesDropdownOpen(false)}
-                    >
-                      <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
-                      <span className="text-sm text-gray-700 hover:text-primary">
-                        Buyer Inspections
                       </span>
                     </Link>
                   </div>
@@ -307,14 +287,12 @@ export default function Header() {
               {mobileServicesOpen && (
                 <div className="pl-11 mt-1 space-y-1">
                   {[
-                    { href: "/service", label: "Public and Affordable Housing Inspection" },
                     { href: "/inspection-services/owners", label: "Owners" },
                     { href: "/inspection-services/sellers", label: "Sellers" },
                     { href: "/inspection-services/rental", label: "Rental" },
                     { href: "/inspection-services/specialized", label: "Specialized" },
                     { href: "/inspection-services/commercial", label: "Commercial" },
                     { href: "/inspection-services/public-housing", label: "Public Housing" },
-                    { href: "/inspection-services/insurance-risk", label: "Buyer Inspections" },
                   ].map((item) => (
                     <Link
                       key={item.href}

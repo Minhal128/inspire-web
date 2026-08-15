@@ -10,15 +10,6 @@ import MainLayout from "@/components/MainLayout";
 
 const services = [
   {
-    title: "Buyer Inspection Services",
-    subtitle: "Informed Property Decisions",
-    description: "Inspire's Buyer Inspection Services support confident purchasing decisions for residential, multi-family, commercial, and public housing properties across the USA. Our inspections include multi-unit buyer inspection, single-family home buyer inspection, condominium and townhome buyer inspection, and commercial property pre-purchase evaluation. We conduct comprehensive property condition assessments for buyers, covering structural, mechanical, and electrical review while identifying hazards and compliance risks. Each buyer inspection includes Inspire buyer safety compliance checks, repair and maintenance cost estimation, and buyer decision support reports.",
-    moreText: "Buyer Risk Analysis, Compliance, and Negotiation Support: Our buyer-focused inspections emphasize hazard and risk identification, safety compliance, and financial clarity. Inspire delivers buyer decision support reports that highlight structural deficiencies, system failures, and safety concerns affecting value and insurability.",
-    image: "/family_housing_complex.png",
-    color: "bg-blue-50",
-    href: "/inspection-services/buyers"
-  },
-  {
     title: "Owner Inspection Services",
     subtitle: "Asset Protection and Longevity",
     description: "Inspire's Owner Inspection Services help property owners maintain asset value, ensure compliance, and plan preventive maintenance. Our annual owner property inspection, multi-unit owner inspection, and building health and maintenance evaluation identify issues before they escalate. We perform property condition assessments (PCA), insurance risk checks for owners, and tenant safety and habitability reviews.",
@@ -62,15 +53,6 @@ const services = [
     image: "/candid_public_housing.png",
     color: "bg-purple-50",
     href: "/inspection-services/public-housing"
-  },
-  {
-    title: "Insurance Risk Management",
-    subtitle: "Property Risk Assessment",
-    description: "Inspire's insurance risk management inspections address property risk assessment, hazard and liability review, and multi-unit insurance inspection requirements. We conduct commercial insurance inspections, fire and safety risk reporting, and environmental risk analysis. Our foundation, electrical, and structural risk reviews support insurance claim prevention and pre-coverage inspection needs.",
-    moreText: "Insurance Compliance and Claim Prevention Reporting: Insurance-focused inspections emphasize loss prevention and underwriting readiness. Inspire provides annual insurance compliance checks and actionable recommendations to reduce exposure.",
-    image: "/insurance_risk_mgmt.png",
-    color: "bg-teal-50",
-    href: "/inspection-services/insurance-risk"
   }
 ];
 
