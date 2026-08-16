@@ -856,8 +856,16 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
   }
 
   const totalCalculatedUnits = calculateTotalUnits()
+  const originalTotalUnits = parseInt(propertyData?.units) || 0
 
   const handleUpdate = () => {
+    // Validate that total units match
+    if (totalCalculatedUnits !== originalTotalUnits) {
+      toast.error(`Total units must equal ${originalTotalUnits}. Current total: ${totalCalculatedUnits}`, { 
+        position: "top-right" 
+      })
+      return
+    }
     // Validate building names
     for (let i = 0; i < buildings.length; i++) {
       if (!buildings[i].name.trim()) {
@@ -934,16 +942,40 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
         </div>
 
         {/* Total Units Display */}
-        <div className="bg-gradient-to-r from-[#006795] to-[#0a5670] rounded-xl p-6 mb-6 shadow-lg">
+        <div className={`rounded-xl p-6 mb-6 shadow-lg transition-colors ${
+          totalCalculatedUnits === originalTotalUnits 
+            ? 'bg-gradient-to-r from-green-500 to-green-600' 
+            : 'bg-gradient-to-r from-red-500 to-red-600'
+        }`}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-white/80 text-sm font-medium mb-1">Total Units Across All Buildings</p>
-              <p className="text-white text-3xl font-bold">{totalCalculatedUnits}</p>
+              <p className="text-white/90 text-sm font-medium mb-1">Total Units Across All Buildings</p>
+              <p className="text-white text-3xl font-bold">
+                {totalCalculatedUnits} 
+                <span className="text-xl font-normal ml-2">/ {originalTotalUnits}</span>
+              </p>
+              {totalCalculatedUnits !== originalTotalUnits && (
+                <p className="text-white/90 text-xs mt-1">
+                  {totalCalculatedUnits > originalTotalUnits 
+                    ? `Remove ${totalCalculatedUnits - originalTotalUnits} units` 
+                    : `Add ${originalTotalUnits - totalCalculatedUnits} more units`}
+                </p>
+              )}
             </div>
-            <div className="bg-white/20 rounded-full p-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
+            <div className={`rounded-full p-4 ${
+              totalCalculatedUnits === originalTotalUnits 
+                ? 'bg-white/20' 
+                : 'bg-white/20 animate-pulse'
+            }`}>
+              {totalCalculatedUnits === originalTotalUnits ? (
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              )}
             </div>
           </div>
         </div>

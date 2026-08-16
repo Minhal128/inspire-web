@@ -993,7 +993,7 @@ export default function PropertyDetailsPage() {
                         onClick={() => router.back()}
                         className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                     >
-                        <ChevronLeft className="w-6 h-6 text-gray-600" />
+                        <ChevronLeft className="w-12 h-12 text-gray-600" />
                     </button>
                     <div className="flex items-center gap-2 pr-4">
                         <span className="text-sm font-bold text-gray-900">{user?.fullName || "Guest User"}</span>

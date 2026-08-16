@@ -11,9 +11,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
           {/* Quick Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400">
+            <ul className="space-y-2 text-gray-400 flex flex-col items-center md:items-start">
               <li>
                 <NextLink href="/" className="hover:text-white">
                   Home
@@ -43,13 +43,13 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="text-center">
             <h3 className="font-bold mb-4">Contact</h3>
             <div className="space-y-3 text-gray-400">
               <p className="font-semibold text-white">State Licensees</p>
-              <p className="flex items-center gap-2">
+              <p className="flex flex-col sm:flex-row items-center justify-center gap-2">
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -63,7 +63,7 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:Support@StateLicensees.Com"
-                  className="hover:text-white"
+                  className="hover:text-white break-all sm:break-normal"
                 >
                   Support@StateLicensees.Com
                 </a>
@@ -72,7 +72,7 @@ export default function Footer() {
           </div>
 
           {/* Subscribe */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold mb-4">Subscribe (Nspire Update)</h3>
             <div className="flex mb-4">
               <div className="relative flex-1">
@@ -92,7 +92,7 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email address"
-                  className="pl-10 pr-4 py-3 rounded-l bg-white text-gray-900 placeholder-gray-500 w-full border-0 outline-none"
+                  className="pl-10 pr-4 py-3 rounded-l bg-white text-gray-900 placeholder-gray-500 w-full border-0 outline-none text-sm"
                 />
               </div>
               <button className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded-r flex items-center justify-center">
@@ -121,26 +121,26 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-12 md:gap-16">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <NextLink href="/">
-              <div className="flex items-center justify-center">
+              <div className="bg-white p-3 sm:p-5 rounded-lg shadow-md w-[160px] h-[70px] sm:w-[240px] sm:h-[100px] flex items-center justify-center">
                 <Image
                   src="/logo.png"
                   alt="INSPIRE"
-                  width={200}
-                  height={100}
-                  className="object-contain h-16 md:h-20 w-auto"
+                  width={220}
+                  height={90}
+                  className="object-contain w-full h-full"
                 />
               </div>
             </NextLink>
             <NextLink href="https://nspireinspectionapp.com/" target="_blank">
-              <div className="flex items-center justify-center">
+              <div className="bg-white p-3 sm:p-5 rounded-lg shadow-md w-[160px] h-[70px] sm:w-[240px] sm:h-[100px] flex items-center justify-center overflow-visible">
                 <Image
                   src="/logo1.png"
                   alt="NSPIRE (Public)"
-                  width={600}
-                  height={300}
-                  className="object-contain h-16 md:h-20 w-auto scale-[3]"
+                  width={1200}
+                  height={480}
+                  className="object-contain scale-[1.15]"
                 />
               </div>
             </NextLink>
