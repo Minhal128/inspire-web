@@ -118,7 +118,7 @@ export default function Home() {
         >
           <div className="relative w-2/3 h-2/3 max-w-[350px] max-h-[350px]">
             <Image
-              src="/hover-hero.png"
+              src="/nationalstandard.png"
               alt="Hover Alternate"
               fill
               className="object-contain drop-shadow-2xl"
@@ -132,7 +132,7 @@ export default function Home() {
     </section>
 
     {/* APP DOWNLOAD SECTION */}
-    <section className="bg-[#E8F4F8] py-16 md:py-24 text-center">
+    <section className="bg-sky-50 py-16 md:py-24 text-center shadow-inner">
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-[#006795] text-xs font-bold tracking-widest uppercase mb-4">TAKE IT WITH YOU</p>
         <h2 className="text-3xl md:text-5xl font-extrabold mb-16">

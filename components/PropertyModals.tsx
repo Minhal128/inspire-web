@@ -844,10 +844,36 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
     setBuildings(updated)
   }
 
-  const updateBuildingUnits = (index: number, units: number) => {
-    const updated = [...buildings]
-    updated[index] = { ...updated[index], units }
-    setBuildings(updated)
+  const updateBuildingUnits = (index: number, newUnits: number) => {
+    setBuildings(prev => {
+      const updated = prev.map(b => ({ ...b }))
+      const oldUnits = updated[index].units
+      const diff = newUnits - oldUnits
+      
+      updated[index].units = newUnits
+      if (diff === 0) return updated
+
+      let remainingDiff = -diff
+      
+      for (let i = 0; i < updated.length; i++) {
+        if (i === index) continue
+        
+        if (remainingDiff > 0) {
+          updated[i].units += remainingDiff
+          remainingDiff = 0
+          break
+        } else if (remainingDiff < 0) {
+          const available = updated[i].units
+          if (available > 0) {
+            const toSubtract = Math.min(available, Math.abs(remainingDiff))
+            updated[i].units -= toSubtract
+            remainingDiff += toSubtract
+            if (remainingDiff === 0) break
+          }
+        }
+      }
+      return updated
+    })
   }
 
   // Calculate total units from all buildings
