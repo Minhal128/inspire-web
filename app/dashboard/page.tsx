@@ -282,6 +282,11 @@ export default function Dashboard() {
         zipCode: data.zipCode,
         buildings: buildings.length,
         units: buildings.reduce((sum, b) => sum + b.units, 0),
+        buildingDetails: buildings.map((b, i) => ({
+            buildingId: `B${i + 1}`,
+            totalUnits: b.units,
+            unitsForInspection: 0
+        })),
       })
       if (response.success) {
         toast.success("Data saved successfully", { position: "top-right" })
