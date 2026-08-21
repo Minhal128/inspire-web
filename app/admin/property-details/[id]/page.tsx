@@ -227,22 +227,47 @@ export default function PropertyDetailsPage() {
         const totalUnits = property.units || 1
         const unitsToInspect = calculatedUnitsParam || totalUnits
 
-        // Distribute total units across buildings
-        const baseTotalPerBuilding = Math.floor(totalUnits / totalBuildings)
-        const remainderTotal = totalUnits % totalBuildings
-
-        // Distribute inspection units across buildings
-        const baseInspectionPerBuilding = Math.floor(unitsToInspect / totalBuildings)
-        const remainderInspection = unitsToInspect % totalBuildings
-
+        let totalAssigned = 0;
         const rows = []
         for (let i = 0; i < totalBuildings; i++) {
+            let buildingTotalUnits = 0;
+            if (property.buildingDetails && property.buildingDetails[i]) {
+                buildingTotalUnits = property.buildingDetails[i].totalUnits || property.buildingDetails[i].units || 0;
+            } else {
+                const baseTotalPerBuilding = Math.floor(totalUnits / totalBuildings)
+                const remainderTotal = totalUnits % totalBuildings
+                buildingTotalUnits = baseTotalPerBuilding + (i < remainderTotal ? 1 : 0);
+            }
+
+            let unitsForInspection = 0;
+            if (unitsToInspect === totalUnits) {
+                unitsForInspection = buildingTotalUnits;
+            } else {
+                unitsForInspection = Math.round((buildingTotalUnits / totalUnits) * unitsToInspect);
+            }
+
             rows.push({
                 buildingId: `B${i + 1}`,
-                totalUnits: baseTotalPerBuilding + (i < remainderTotal ? 1 : 0),
-                unitsForInspection: baseInspectionPerBuilding + (i < remainderInspection ? 1 : 0),
+                totalUnits: buildingTotalUnits,
+                unitsForInspection: unitsForInspection,
             })
+            totalAssigned += unitsForInspection;
         }
+
+        // Adjust for any rounding differences to ensure total matches exactly
+        let diff = unitsToInspect - totalAssigned;
+        let index = 0;
+        while (diff !== 0 && index < 1000) { // prevent infinite loop just in case
+            if (diff > 0) {
+                rows[index % totalBuildings].unitsForInspection += 1;
+                diff -= 1;
+            } else if (diff < 0 && rows[index % totalBuildings].unitsForInspection > 0) {
+                rows[index % totalBuildings].unitsForInspection -= 1;
+                diff += 1;
+            }
+            index++;
+        }
+
         return rows
     }, [property, calculatedUnitsParam])
 
@@ -1203,15 +1228,9 @@ export default function PropertyDetailsPage() {
                                         </td>
                                         <td className="py-6 px-8 text-sm text-gray-900 text-center font-black">{building.totalUnits}</td>
                                         <td className="py-6 px-8 text-center">
-                                            <input
-                                                type="number"
-                                                min={0}
-                                                max={totalInspectionUnits}
-                                                value={building.unitsForInspection}
-                                                onChange={(e) => handleInspectionUnitChange(building.buildingId, parseInt(e.target.value) || 0)}
-                                                disabled={overallProgress > 0}
-                                                className="w-20 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1.5 px-2 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent transition-all hover:border-[#006795]/50 disabled:opacity-50 disabled:cursor-not-allowed"
-                                            />
+                                            <div className="w-20 mx-auto text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1.5 px-2 bg-gray-50">
+                                                {building.unitsForInspection}
+                                            </div>
                                         </td>
                                         <td className="py-6 px-8 text-center">
                                             {completed > 0 ? (
@@ -1313,15 +1332,9 @@ export default function PropertyDetailsPage() {
                                     </div>
                                     <div className="flex justify-between items-center pb-3 border-b border-gray-100">
                                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Unit for Inspection</span>
-                                        <input
-                                            type="number"
-                                            min={0}
-                                            max={totalInspectionUnits}
-                                            value={building.unitsForInspection}
-                                            onChange={(e) => handleInspectionUnitChange(building.buildingId, parseInt(e.target.value) || 0)}
-                                            disabled={overallProgress > 0}
-                                            className="w-16 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1 px-1 focus:outline-none focus:ring-2 focus:ring-[#006795] focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                                        />
+                                        <div className="w-16 text-center text-sm font-black text-gray-900 border-2 border-gray-200 rounded-lg py-1 px-1 bg-gray-50">
+                                            {building.unitsForInspection}
+                                        </div>
                                     </div>
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Progress</span>

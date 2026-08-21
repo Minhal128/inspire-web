@@ -213,6 +213,7 @@ export const propertiesAPI = {
     zipCode: string;
     buildings: number;
     units: number;
+    buildingDetails?: any[];
   }) => {
     return apiRequest<{ success: boolean; message: string; property: any }>(
       '/api/properties',
