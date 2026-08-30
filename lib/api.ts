@@ -763,6 +763,48 @@ export const adminAPI = {
   getSystemStats: async () => {
     return apiRequest<{ success: boolean; stats: any }>('/api/admin/system/stats');
   },
+  // Admin-scoped property CRUD. The backend has served these since routes/admin.js
+  // was written, but no frontend page consumed them until the admin portal build.
+  createProperty: async (data: {
+    propertyId?: string;
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    buildings?: number;
+    units?: number;
+  }) => {
+    return apiRequest<{ success: boolean; message?: string; property: any }>(
+      '/api/admin/properties',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }
+    );
+  },
+  updateProperty: async (id: string, data: Record<string, any>) => {
+    return apiRequest<{ success: boolean; message?: string; property: any }>(
+      `/api/admin/properties/${id}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      }
+    );
+  },
+  deleteProperty: async (id: string) => {
+    return apiRequest<{ success: boolean; message: string }>(
+      `/api/admin/properties/${id}`,
+      {
+        method: 'DELETE',
+      }
+    );
+  },
+  getInspection: async (id: string) => {
+    return apiRequest<{ success: boolean; inspection: any }>(
+      `/api/admin/inspections/${id}`
+    );
+  },
 };
 
 // Payments API
