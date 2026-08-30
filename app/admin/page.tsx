@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
-import OtherDashboardLayout from "@/components/OtherDashboardLayout"
+import AdminDashboardLayout from "@/components/AdminDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
@@ -331,7 +331,7 @@ export default function Dashboard() {
       // Coverage already selected, go directly to property details
       setShowActionModal(false)
       router.push(
-        `/other/dashboard/property-details/${propId}?coverage=${prop.inspectionCoverage}&calculatedUnits=${prop.calculatedUnits}`
+        `/admin/property-details/${propId}?coverage=${prop.inspectionCoverage}&calculatedUnits=${prop.calculatedUnits}`
       )
     } else {
       // First time, show coverage selection modal
@@ -381,7 +381,7 @@ export default function Dashboard() {
     }
 
     router.push(
-      `/other/dashboard/property-details/${propId}?coverage=${coverage}&calculatedUnits=${calculatedUnits}`
+      `/admin/property-details/${propId}?coverage=${coverage}&calculatedUnits=${calculatedUnits}`
     )
   }
 
@@ -395,7 +395,7 @@ export default function Dashboard() {
   }
 
   return (
-    <OtherDashboardLayout>
+    <AdminDashboardLayout>
       <div className="p-4 sm:p-6 lg:p-8">
         {/* Header Section */}
         <div className="mb-6 lg:mb-8">
@@ -514,7 +514,7 @@ export default function Dashboard() {
                             return (
                               <div className="flex items-center justify-center gap-2">
                                 <button
-                                  onClick={() => router.push('/other/dashboard/inspection-status')}
+                                  onClick={() => router.push('/admin/inspection-status')}
                                   className="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 hover:bg-green-700 rounded-md transition-colors"
                                 >
                                   View Report
@@ -582,7 +582,7 @@ export default function Dashboard() {
                         return (
                           <div className="ml-2 flex flex-col gap-2">
                             <Button
-                              onClick={() => router.push('/other/dashboard/inspection-status')}
+                              onClick={() => router.push('/admin/inspection-status')}
                               className="bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap flex items-center gap-1"
                             >
                               View Report
@@ -686,6 +686,6 @@ export default function Dashboard() {
         onSuccess={fetchProperties}
         propertyData={newPropertyData}
       />
-    </OtherDashboardLayout>
+    </AdminDashboardLayout>
   )
 }

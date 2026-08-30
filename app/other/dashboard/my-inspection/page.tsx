@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import AdminDashboardLayout from "@/components/AdminDashboardLayout"
+import OtherDashboardLayout from "@/components/OtherDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
@@ -86,7 +86,7 @@ export default function MyInspection() {
       position: "top-right",
       autoClose: 2000,
     })
-    router.push('/admin/inspection/summary')
+    router.push('/other/dashboard/inspection/summary')
   }
 
   useEffect(() => {
@@ -334,7 +334,7 @@ export default function MyInspection() {
   }
 
   return (
-    <AdminDashboardLayout>
+    <OtherDashboardLayout>
       <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 text-black">
         <div className="max-w-7xl mx-auto">
           <Card className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -470,7 +470,7 @@ export default function MyInspection() {
         onEdit={handleEditProperty}
         onStartInspection={() => {
           setActionModalOpen(false)
-          router.push(`/admin/property-details/${selectedProperty?._id}`)
+          router.push(`/other/dashboard/property-details/${selectedProperty?._id}`)
         }}
         onHoldInspection={handleHoldInspection}
         onRemoveProperty={handleRemoveProperty}
@@ -504,6 +504,6 @@ export default function MyInspection() {
         propertyData={newPropertyData}
         onUpdate={handleBuildingUpdate}
       />
-    </AdminDashboardLayout>
+    </OtherDashboardLayout>
   )
 }

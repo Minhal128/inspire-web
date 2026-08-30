@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback } from "react"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
-import AdminDashboardLayout from "@/components/AdminDashboardLayout"
+import AssetManagerDashboardLayout from "@/components/AssetManagerDashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
@@ -1393,7 +1393,7 @@ export default function InspectionCategoryPage() {
 
     if (loading) {
         return (
-            <AdminDashboardLayout>
+            <AssetManagerDashboardLayout>
                 <div className="flex items-center justify-center min-h-[60vh]">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
                 </div>
@@ -1486,12 +1486,12 @@ export default function InspectionCategoryPage() {
                     </div>
                 );
             })()}
-            </AdminDashboardLayout>
+            </AssetManagerDashboardLayout>
         )
     }
 
     return (
-        <AdminDashboardLayout>
+        <AssetManagerDashboardLayout>
             <div className="p-2 sm:p-3 lg:p-4 max-w-7xl mx-auto font-sans">
                 {/* Header with Logo and User */}
                 <div className="flex items-center justify-between mb-4 bg-gradient-to-r from-[#006795] to-[#0891B2] px-4 py-3 rounded-xl shadow-sm">
@@ -1529,7 +1529,7 @@ export default function InspectionCategoryPage() {
                     </div>
 
                     <Button
-                        onClick={() => router.push(`/admin/inspection/summary?propertyId=${id}`)}
+                        onClick={() => router.push(`/asset-manager/dashboard/inspection/summary?propertyId=${id}`)}
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
@@ -2550,6 +2550,6 @@ export default function InspectionCategoryPage() {
                     overflow: hidden !important;
                 }
             `}</style>
-        </AdminDashboardLayout >
+        </AssetManagerDashboardLayout >
     )
 }

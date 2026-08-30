@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import AdminDashboardLayout from "@/components/AdminDashboardLayout"
+import OtherDashboardLayout from "@/components/OtherDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { toast } from "react-toastify"
 import { propertiesAPI, inspectionsAPI, paymentsAPI } from "@/lib/api"
@@ -73,11 +73,11 @@ const Mail = ({ className }: { className?: string }) => (
 // Loading fallback component
 function LoadingFallback() {
   return (
-    <AdminDashboardLayout>
+    <OtherDashboardLayout>
       <div className="flex items-center justify-center h-96">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
       </div>
-    </AdminDashboardLayout>
+    </OtherDashboardLayout>
   )
 }
 
@@ -148,13 +148,13 @@ function NSPIREInspectionSummaryContent() {
   const handleBackToInspection = () => {
     const propertyId = searchParams.get('propertyId') || searchParams.get('id');
     if (propertyId) {
-      router.push(`/admin/inspection-category/${propertyId}`);
+      router.push(`/other/dashboard/inspection-category/${propertyId}`);
       return;
     }
 
     // Priority 1: Current unit context from localStorage
     if (inspectionContext) {
-      router.push(`/admin/inspection-category/${inspectionContext.propertyId}`);
+      router.push(`/other/dashboard/inspection-category/${inspectionContext.propertyId}`);
       return;
     }
 
@@ -168,7 +168,7 @@ function NSPIREInspectionSummaryContent() {
         const unit = parsed.currentUnit || parsed.unitId || '';
 
         if (propertyId) {
-          let url = `/admin/inspection-category/${propertyId}`;
+          let url = `/other/dashboard/inspection-category/${propertyId}`;
           const params = new URLSearchParams();
           if (building) params.append('building', building);
           if (unit) params.append('unit', unit);
@@ -190,14 +190,14 @@ function NSPIREInspectionSummaryContent() {
         const prop = JSON.parse(storedPropertyRaw);
         const pid = prop._id || prop.id;
         if (pid) {
-          router.push(`/admin/inspection-category/${pid}?building=B1&unit=Outside&units=1`);
+          router.push(`/other/dashboard/inspection-category/${pid}?building=B1&unit=Outside&units=1`);
           return;
         }
       } catch { }
     }
 
     // Priority 4: Dashboard
-    router.push('/admin');
+    router.push('/other/dashboard');
   }
 
   // Load inspection data from URL params or localStorage
@@ -426,8 +426,8 @@ function NSPIREInspectionSummaryContent() {
       cleanParams.delete('payment')
       cleanParams.delete('session_id')
       const nextUrl = cleanParams.toString()
-        ? `/admin/inspection/summary?${cleanParams.toString()}`
-        : '/admin/inspection/summary'
+        ? `/other/dashboard/inspection/summary?${cleanParams.toString()}`
+        : '/other/dashboard/inspection/summary'
       router.replace(nextUrl)
     }
 
@@ -1074,29 +1074,29 @@ function NSPIREInspectionSummaryContent() {
 
   if (loading) {
     return (
-      <AdminDashboardLayout>
+      <OtherDashboardLayout>
         <div className="flex items-center justify-center h-96">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#006795]"></div>
         </div>
-      </AdminDashboardLayout>
+      </OtherDashboardLayout>
     )
   }
 
   if (!report) {
     return (
-      <AdminDashboardLayout>
+      <OtherDashboardLayout>
         <div className="flex flex-col items-center justify-center h-96">
           <p className="text-gray-600 mb-4">No inspection data found</p>
-          <Button onClick={() => router.push('/admin/my-inspection')}>
+          <Button onClick={() => router.push('/other/dashboard/my-inspection')}>
             Back to Inspections
           </Button>
         </div>
-      </AdminDashboardLayout>
+      </OtherDashboardLayout>
     )
   }
 
   return (
-    <AdminDashboardLayout>
+    <OtherDashboardLayout>
       <div className="p-4 md:p-6 max-w-7xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-gray-200">
@@ -1572,7 +1572,7 @@ function NSPIREInspectionSummaryContent() {
             BACK TO INSPECTION
           </Button>
           <Button
-            onClick={() => router.push('/admin/my-inspection')}
+            onClick={() => router.push('/other/dashboard/my-inspection')}
             variant="outline"
             className="px-10 h-14 w-full sm:w-auto font-black rounded-xl border-2 hover:bg-gray-50 text-gray-600"
           >
@@ -1957,7 +1957,7 @@ function NSPIREInspectionSummaryContent() {
           </div>
         </div>
       )}
-    </AdminDashboardLayout>
+    </OtherDashboardLayout>
   )
 }
 

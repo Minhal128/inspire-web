@@ -1,6 +1,18 @@
 // API Configuration
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sea-lion-app-2u676.ondigitalocean.app';
 
+// Portals that own a login page under their own route prefix. The inspector portal
+// lives at the root, so anything not listed here falls back to '/login'.
+const PORTAL_SEGMENTS = ['management', 'admin', 'asset-manager', 'other'];
+
+// Send an expired session back to the login page of the portal the user is actually in,
+// rather than dumping every portal's users on the inspector login.
+function portalLoginPath(): string {
+  if (typeof window === 'undefined') return '/login';
+  const segment = window.location.pathname.split('/')[1];
+  return PORTAL_SEGMENTS.includes(segment) ? `/${segment}/login` : '/login';
+}
+
 // Generic API request function
 async function apiRequest<T>(
   endpoint: string,
@@ -23,7 +35,7 @@ async function apiRequest<T>(
     // Token expired or invalid
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = '/login';
+    window.location.href = portalLoginPath();
     throw new Error('Unauthorized');
   }
 

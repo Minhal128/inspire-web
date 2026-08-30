@@ -20,7 +20,7 @@ export default function OtherDashboardLayout({ children }: OtherDashboardLayoutP
     // Auth guard — redirect unauthenticated users
     const token = localStorage.getItem('token')
     if (!token) {
-      router.replace('/login?role=inspector')
+      router.replace('/other/login')
       return
     }
     // Load user data from localStorage

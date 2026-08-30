@@ -5,8 +5,24 @@ import { Button } from "@/components/ui/button"
 import { toast } from "react-toastify"
 import { inspectionsAPI, propertiesAPI } from "@/lib/api"
 import * as XLSX from 'xlsx'
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { Country, State, City } from 'country-state-city'
+
+// This file is shared by every portal, so it must not hardcode inspector routes.
+// Resolve the current portal's flow base from the URL. Note admin is the odd one out:
+// its routes have no '/dashboard' segment.
+const PORTAL_BASES: Record<string, string> = {
+  admin: '/admin',
+  management: '/management/dashboard',
+  'asset-manager': '/asset-manager/dashboard',
+  other: '/other/dashboard',
+}
+
+function usePortalBase(): string {
+  const pathname = usePathname() || ''
+  const segment = pathname.split('/')[1]
+  return PORTAL_BASES[segment] ?? '/dashboard'
+}
 
 
 interface RequestInspectionModalProps {
@@ -1038,6 +1054,7 @@ interface ActionModalProps {
 }
 
 export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHoldInspection, onRemoveProperty, propertyData, inspectionStarted }: ActionModalProps) {
+  const portalBase = usePortalBase()
   const router = useRouter()
 
   const handleStartInspection = () => {
@@ -1077,7 +1094,7 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
             <button
               onClick={() => {
                 const propId = propertyData?._id || propertyData?.id
-                router.push(`/dashboard/inspection/summary?propertyId=${propId}`)
+                router.push(`${portalBase}/inspection/summary?propertyId=${propId}`)
                 onClose()
               }}
               className="w-full px-6 py-4 bg-white border-2 border-black text-black font-bold rounded-xl text-base transition-all hover:bg-gray-50 active:scale-95 text-center"

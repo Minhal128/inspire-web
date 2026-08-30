@@ -20,7 +20,7 @@ export default function AssetManagerDashboardLayout({ children }: AssetManagerDa
     // Auth guard — redirect unauthenticated users
     const token = localStorage.getItem('token')
     if (!token) {
-      router.replace('/login?role=inspector')
+      router.replace('/asset-manager/login')
       return
     }
     // Load user data from localStorage

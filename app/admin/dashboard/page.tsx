@@ -1,266 +1,29 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import AdminDashboardLayout from "@/components/AdminDashboardLayout"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { toast } from "react-toastify"
-import { Country, State, City } from 'country-state-city'
-import { adminAPI } from "@/lib/api"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
-interface Property {
-  id: string
-  name: string
-  buildings: number
-  units: number
-  address: string
-  city: string
-  state: string
-  zip: string
-}
+/**
+ * Legacy route: /admin/dashboard
+ *
+ * The admin portal's dashboard now lives at /admin (see app/admin/page.tsx),
+ * which is what AdminDashboardLayout's "Dashboard" nav item points at.
+ * Several login/signup pages still push to /admin/dashboard, so this route is
+ * kept as a client-side redirect to the canonical location instead of deleted.
+ */
+export default function AdminDashboardRedirect() {
+  const router = useRouter()
 
-export default function AdminDashboard() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [propertyName, setPropertyName] = useState("")
-  const [selectedCountry, setSelectedCountry] = useState("")
-  const [selectedState, setSelectedState] = useState("")
-  const [selectedCity, setSelectedCity] = useState("")
-
-  // Location data from country-state-city package
-  const [countries, setCountries] = useState<any[]>([])
-  const [states, setStates] = useState<any[]>([])
-  const [cities, setCities] = useState<any[]>([])
-
-  // Load countries on mount
   useEffect(() => {
-    const allCountries = Country.getAllCountries()
-    const allowedCountries = ['United States', 'Canada', 'United Kingdom', 'Australia']
-    const filteredCountries = allCountries.filter(country => 
-      allowedCountries.includes(country.name)
-    )
-    setCountries(filteredCountries)
-  }, [])
-
-  // Handle country change
-  const handleCountryChange = (countryName: string) => {
-    setSelectedCountry(countryName)
-    setSelectedState("")
-    setSelectedCity("")
-    
-    const country = countries.find(c => c.name === countryName)
-    if (country) {
-      const countryStates = State.getStatesOfCountry(country.isoCode)
-      setStates(countryStates)
-    } else {
-      setStates([])
-    }
-    setCities([])
-  }
-
-  // Handle state change
-  const handleStateChange = (stateName: string) => {
-    setSelectedState(stateName)
-    setSelectedCity("")
-    
-    const country = countries.find(c => c.name === selectedCountry)
-    const state = states.find(s => s.name === stateName)
-    
-    if (country && state) {
-      const stateCities = City.getCitiesOfState(country.isoCode, state.isoCode)
-      setCities(stateCities)
-    } else {
-      setCities([])
-    }
-  }
-
-  const [properties, setProperties] = useState<Property[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  // Fetch properties on mount
-  useEffect(() => {
-    const fetchProperties = async () => {
-      try {
-        setIsLoading(true)
-        const response = await adminAPI.getProperties()
-        if (response.success && response.properties) {
-          setProperties(response.properties)
-        }
-      } catch (error) {
-        console.error("Error fetching properties:", error)
-        toast.error("Failed to load properties", { position: "top-right" })
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchProperties()
-  }, [])
-
-  const handleSearch = () => {
-    toast.info("Searching properties...", { position: "top-right" })
-    console.log("Search params:", { searchQuery, propertyName, selectedState, selectedCity })
-  }
-
-  const handleSelectEdit = (property: Property) => {
-    toast.info(`Selected property: ${property.name}`, { position: "top-right" })
-    console.log("Selected property:", property)
-  }
-
-  const handleAddProperty = () => {
-    toast.info("Add Property clicked", { position: "top-right" })
-  }
+    router.replace('/admin')
+  }, [router])
 
   return (
-    <AdminDashboardLayout>
-      <div className="p-4 sm:p-6 lg:p-8">
-        {/* Header Section */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 lg:mb-8">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-            <p className="text-gray-600 text-sm sm:text-base">Manage all properties and inspections</p>
-          </div>
-          <Button
-            onClick={handleAddProperty}
-            className="w-full sm:w-auto bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-6 py-3 rounded-lg text-base shadow-sm hover:shadow-md transition-all duration-200"
-          >
-            Add Property
-          </Button>
-        </div>
-
-
-
-        {/* Properties Table */}
-        <Card className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">Property Records</h2>
-            <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-              {properties.length} properties
-            </span>
-          </div>
-
-          {/* Desktop Table */}
-          <div className="hidden lg:block overflow-x-auto rounded-lg border border-gray-200">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    Property ID
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    Property Name
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    No Of Building(s)
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    No Of Unit(s)
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    Address
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    City (Area)
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    State (Province)
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    Postal Code
-                  </th>
-                  <th className="text-left py-4 px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {properties.map((property) => (
-                  <tr
-                    key={property.id}
-                    className="hover:bg-gray-50 transition-colors duration-150"
-                  >
-                    <td className="py-4 px-4">
-                      <span className="text-blue-600 font-medium text-sm bg-blue-50 px-2 py-1 rounded">
-                        {property.id}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4">
-                      <span className="font-medium text-gray-900">{property.name}</span>
-                    </td>
-                    <td className="py-4 px-4 text-gray-900 font-medium">{property.buildings}</td>
-                    <td className="py-4 px-4 text-gray-900 font-medium">{property.units}</td>
-                    <td className="py-4 px-4 text-gray-600">{property.address}</td>
-                    <td className="py-4 px-4 text-gray-600">{property.city}</td>
-                    <td className="py-4 px-4">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        {property.state}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 text-gray-600 font-mono text-sm">{property.zip}</td>
-                    <td className="py-4 px-4">
-                      <Button
-                        onClick={() => handleSelectEdit(property)}
-                        className="bg-[#1E3A5F] hover:bg-[#152A45] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm hover:shadow-md transition-all duration-200"
-                      >
-                        Select/ Edit
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Mobile & Tablet Cards */}
-          <div className="lg:hidden space-y-4">
-            {properties.map((property) => (
-              <Card
-                key={property.id}
-                className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-blue-600 font-semibold text-sm bg-blue-50 px-2 py-1 rounded">
-                        {property.id}
-                      </span>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        {property.state}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-gray-900 text-base mb-1">{property.name}</h3>
-                    <p className="text-gray-600 text-sm">{property.address}</p>
-                  </div>
-                  <Button
-                    onClick={() => handleSelectEdit(property)}
-                    className="bg-[#1E3A5F] hover:bg-[#152A45] text-white font-semibold px-3 py-2 rounded-lg text-xs shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap ml-2"
-                  >
-                    Select/ Edit
-                  </Button>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div className="bg-gray-50 p-2 rounded-lg">
-                    <span className="text-gray-500 text-xs block mb-1">Buildings</span>
-                    <p className="font-semibold text-gray-900 text-base">{property.buildings}</p>
-                  </div>
-                  <div className="bg-gray-50 p-2 rounded-lg">
-                    <span className="text-gray-500 text-xs block mb-1">Units</span>
-                    <p className="font-semibold text-gray-900 text-base">{property.units}</p>
-                  </div>
-                  <div className="bg-gray-50 p-2 rounded-lg">
-                    <span className="text-gray-500 text-xs block mb-1">City</span>
-                    <p className="font-semibold text-gray-900 text-base">{property.city}</p>
-                  </div>
-                  <div className="bg-gray-50 p-2 rounded-lg">
-                    <span className="text-gray-500 text-xs block mb-1">Postal Code</span>
-                    <p className="font-semibold text-gray-900 text-base font-mono">{property.zip}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </Card>
+    <div className="min-h-screen flex items-center justify-center bg-[#E8F4F8]">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0D7FA8] mx-auto"></div>
+        <p className="mt-4 text-gray-600">Redirecting...</p>
       </div>
-    </AdminDashboardLayout>
+    </div>
   )
 }
