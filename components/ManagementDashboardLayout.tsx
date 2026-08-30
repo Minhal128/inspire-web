@@ -20,7 +20,7 @@ export default function ManagementDashboardLayout({ children }: ManagementDashbo
     // Auth guard — redirect unauthenticated users
     const token = localStorage.getItem('token')
     if (!token) {
-      router.replace('/login?role=inspector')
+      router.replace('/management/login')
       return
     }
     // Load user data from localStorage

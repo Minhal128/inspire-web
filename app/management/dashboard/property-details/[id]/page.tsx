@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 import ManagementDashboardLayout from "@/components/ManagementDashboardLayout"
+import { CoverageSelectionModal } from "@/components/PropertyModals"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
@@ -134,6 +135,7 @@ export default function PropertyDetailsPage() {
     // Coverage params from query string or backend property data
     const coverage = searchParams.get('coverage') || '100'
     const calculatedUnitsParam = parseInt(searchParams.get('calculatedUnits') || '0')
+    const [showCoverageModal, setShowCoverageModal] = useState(false)
 
     // Load coverage from backend property data if not in URL
     useEffect(() => {
@@ -141,9 +143,27 @@ export default function PropertyDetailsPage() {
             // Check if property already has coverage saved in backend
             if (property.inspectionCoverage && property.calculatedUnits) {
                 router.replace(`/management/dashboard/property-details/${id}?coverage=${property.inspectionCoverage}&calculatedUnits=${property.calculatedUnits}`)
+            } else {
+                // No coverage selected yet, show modal
+                setShowCoverageModal(true)
             }
         }
     }, [id, property, searchParams, router])
+
+    const handleCoverageUpdate = async (newCoverage: string, newCalculatedUnits: number) => {
+        // Save to backend database
+        try {
+            await propertiesAPI.update(id, {
+                inspectionCoverage: newCoverage,
+                calculatedUnits: newCalculatedUnits
+            })
+            setShowCoverageModal(false)
+            router.replace(`/management/dashboard/property-details/${id}?coverage=${newCoverage}&calculatedUnits=${newCalculatedUnits}`)
+        } catch (error) {
+            console.error('Failed to save coverage:', error)
+            toast.error('Failed to save coverage selection')
+        }
+    }
 
     // Load column header name from localStorage on mount
     useEffect(() => {
@@ -552,7 +572,7 @@ export default function PropertyDetailsPage() {
         const displayName = getBuildingDisplayName(building.buildingId)
         localStorage.setItem(`buildingDisplayName_${propId}_${building.buildingId}`, displayName)
         router.push(
-            `/management/management/dashboard/inspection-category/${propId}?building=${building.buildingId}&totalUnits=${building.unitsForInspection}&coverage=${coverage}`
+            `/management/dashboard/inspection-category/${propId}?building=${building.buildingId}&totalUnits=${building.unitsForInspection}&coverage=${coverage}`
         )
     }
 
@@ -652,7 +672,7 @@ export default function PropertyDetailsPage() {
         }))
 
         toast.success(`Starting inspection for ${buildingId} → ${unitName}`, { position: "top-right" })
-        router.push(`/management/management/dashboard/inspection-category/${property._id}?building=${buildingId}&unit=${encodeURIComponent(unitName)}&units=1`)
+        router.push(`/management/dashboard/inspection-category/${property._id}?building=${buildingId}&unit=${encodeURIComponent(unitName)}&units=1`)
     }
 
     const getCompletedCount = (buildingId: string) => {
@@ -769,7 +789,7 @@ export default function PropertyDetailsPage() {
             const token = localStorage.getItem('token')
             if (!token) {
                 toast.error('Please login to export in-progress report.', { position: 'top-right' })
-                router.push('/login')
+                router.push('/management/login')
                 return
             }
 
@@ -997,7 +1017,7 @@ export default function PropertyDetailsPage() {
                 autoClose: 1800,
             })
 
-            router.push(`/management/management/dashboard/inspection/summary?propertyId=${id}`)
+            router.push(`/management/dashboard/inspection/summary?propertyId=${id}`)
         } catch (error: any) {
             console.error('Export in-progress failed:', error)
             toast.error(`Failed to export in-progress report: ${error?.message || 'Unknown error'}`, {
@@ -1034,7 +1054,7 @@ export default function PropertyDetailsPage() {
                         onClick={() => router.back()}
                         className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                     >
-                        <ChevronLeft className="w-12 h-12 text-gray-600" />
+                        <ChevronLeft className="w-16 h-16 text-red-600" />
                     </button>
                     <div className="flex items-center gap-2 pr-4">
                         <span className="text-sm font-bold text-gray-900">{user?.fullName || "Guest User"}</span>
@@ -1069,7 +1089,18 @@ export default function PropertyDetailsPage() {
                             <span className="text-sm text-gray-900 font-black">{property.buildings || 1}</span>
                             <div className="mt-1">
                                 <span className="text-sm font-black text-gray-900">Selection: </span>
-                                <span className="text-sm text-gray-600 font-bold">{getCoverageLabel()}</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm text-gray-600 font-bold">{getCoverageLabel()}</span>
+                                    {Object.keys(completedUnitsMap).length === 0 && (
+                                        <button 
+                                            onClick={() => setShowCoverageModal(true)}
+                                            className="text-[#006795] hover:bg-blue-50 rounded-full p-1 transition-colors"
+                                            title="Edit Selection"
+                                        >
+                                            <Pencil className="w-3.5 h-3.5" />
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
@@ -1232,10 +1263,37 @@ export default function PropertyDetailsPage() {
                                         </td>
                                         <td className="py-6 px-8 text-center">
                                             {completed > 0 ? (
-                                                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${allDone ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
-                                                    {allDone ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Clock className="w-3.5 h-3.5" />}
-                                                    {completed}/{building.unitsForInspection}
-                                                </span>
+                                                <div className="space-y-1">
+                                                    {/* Outside progress */}
+                                                    {(() => {
+                                                        const completedUnits = completedUnitsMap[building.buildingId] || []
+                                                        const hasOutside = completedUnits.includes('Outside')
+                                                        const hasInside = completedUnits.includes('Inside')
+                                                        const unitCompletedCount = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside').length
+                                                        
+                                                        return (
+                                                            <>
+                                                                <div className="text-xs font-bold text-gray-700">
+                                                                    <span className={hasOutside ? 'text-green-600' : 'text-gray-400'}>
+                                                                        Outside {hasOutside ? '100%' : '0%'}
+                                                                    </span>
+                                                                </div>
+                                                                <div className="text-xs font-bold text-gray-700">
+                                                                    <span className={hasInside ? 'text-green-600' : 'text-gray-400'}>
+                                                                        Inside {hasInside ? '100%' : '0%'}
+                                                                    </span>
+                                                                </div>
+                                                                {building.unitsForInspection > 0 && (
+                                                                    <div className="text-xs font-bold text-gray-700">
+                                                                        <span className={unitCompletedCount >= building.unitsForInspection ? 'text-green-600' : 'text-amber-600'}>
+                                                                            Units {Math.round((unitCompletedCount / building.unitsForInspection) * 100)}%
+                                                                        </span>
+                                                                    </div>
+                                                                )}
+                                                            </>
+                                                        )
+                                                    })()}
+                                                </div>
                                             ) : (
                                                 <span className="text-xs text-gray-400 font-bold">Not started</span>
                                             )}
@@ -1337,10 +1395,36 @@ export default function PropertyDetailsPage() {
                                     <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Progress</span>
                                         {completed > 0 ? (
-                                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${allDone ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
-                                                {allDone ? <CheckCircle2 className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
-                                                {completed}/{building.unitsForInspection}
-                                            </span>
+                                            <div className="space-y-1 text-right">
+                                                {(() => {
+                                                    const completedUnits = completedUnitsMap[building.buildingId] || []
+                                                    const hasOutside = completedUnits.includes('Outside')
+                                                    const hasInside = completedUnits.includes('Inside')
+                                                    const unitCompletedCount = completedUnits.filter(u => u !== 'Outside' && u !== 'Inside').length
+                                                    
+                                                    return (
+                                                        <>
+                                                            <div className="text-[10px] font-bold">
+                                                                <span className={hasOutside ? 'text-green-600' : 'text-gray-400'}>
+                                                                    Outside {hasOutside ? '100%' : '0%'}
+                                                                </span>
+                                                            </div>
+                                                            <div className="text-[10px] font-bold">
+                                                                <span className={hasInside ? 'text-green-600' : 'text-gray-400'}>
+                                                                    Inside {hasInside ? '100%' : '0%'}
+                                                                </span>
+                                                            </div>
+                                                            {building.unitsForInspection > 0 && (
+                                                                <div className="text-[10px] font-bold">
+                                                                    <span className={unitCompletedCount >= building.unitsForInspection ? 'text-green-600' : 'text-amber-600'}>
+                                                                        Units {Math.round((unitCompletedCount / building.unitsForInspection) * 100)}%
+                                                                    </span>
+                                                                </div>
+                                                            )}
+                                                        </>
+                                                    )
+                                                })()}
+                                            </div>
                                         ) : (
                                             <span className="text-xs text-gray-400 font-bold">Not started</span>
                                         )}
@@ -1508,6 +1592,11 @@ export default function PropertyDetailsPage() {
                     </div>
                 </div>
             )}
+            <CoverageSelectionModal
+                isOpen={showCoverageModal}
+                onClose={() => setShowCoverageModal(false)}
+                onStartInspection={handleCoverageUpdate}
+            />
         </ManagementDashboardLayout>
     )
 }

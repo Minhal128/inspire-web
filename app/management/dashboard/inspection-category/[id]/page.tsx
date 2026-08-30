@@ -723,16 +723,13 @@ export default function InspectionCategoryPage() {
     };
 
     const handleClearAndGoBack = () => {
-        // Reset all OD modal fields
-        setIsODModalOpen(false);
+        // Just clear the deficiency selection without navigating away
         setSelectedDeficiency(null);
         setDetailFilterName(null);
         setGuideDeficiency(null);
         setLastSavedFindingId(null);
         setPhotos([]);
-        setOdForm({ category: "", note: "", location: "Building Site S", healthAndSafety: "", repairBy: "", codeAndCompliance: "", deficiencySelected: "", deficiencyDetail: "" });
-        // Navigate back to the unit/inside/outside screen
-        router.back();
+        setOdForm(prev => ({ ...prev, deficiencySelected: "", deficiencyDetail: "", note: "" }));
     };
 
     const resetFormForNewDeficiency = () => {
@@ -897,6 +894,13 @@ export default function InspectionCategoryPage() {
     const [reportUrl, setReportUrl] = useState<string | null>(null);
     const [analysisResult, setAnalysisResult] = useState<any>(null);
 
+    // Deficiency Summary Modal
+    const [defSummarySection, setDefSummarySection] = useState<'outside' | 'inside' | 'unit' | null>(null);
+
+    const getDefSummaryFindings = (sec: 'outside' | 'inside' | 'unit') => {
+        return propertyFindings.filter((f: any) => f.area === sec && (f.building === urlBuilding || f.building === buildingName));
+    };
+
     const handleProceed = async () => {
         if (!selectedDeficiency) {
             toast.error("Please select a deficiency");
@@ -954,6 +958,13 @@ export default function InspectionCategoryPage() {
                     def.selected
                 );
                 
+                console.log('[DEBUG] Looking up Standard & Protocol:', {
+                    section: currentSection,
+                    category: odForm.category,
+                    deficiency: def.selected,
+                    result: standardProtocolData
+                });
+                
                 const newFinding = {
                     id: newFindingId,
                     imageUri: photos[0],
@@ -974,7 +985,8 @@ export default function InspectionCategoryPage() {
                     status: 'Open',
                     timestamp: new Date().toISOString(),
                     area: currentSection,
-                    item: currentModalItem
+                    item: currentModalItem,
+                    deductionPts: scoringResult?.ptsLost || 0
                 };
 
                 const currentStatuses = currentSection === 'outside' ? outsideStatuses
@@ -1489,12 +1501,12 @@ export default function InspectionCategoryPage() {
                     
                     {/* Logo in center */}
                     <div className="flex items-center gap-2">
-                        <div className="bg-white rounded-lg px-3 py-1.5 flex items-center gap-2">
-                            <svg className="w-5 h-5 text-[#006795]" viewBox="0 0 24 24" fill="currentColor">
+                        <div className="bg-white rounded-xl px-5 py-2.5 flex items-center gap-3 shadow-sm">
+                            <svg className="w-7 h-7 sm:w-8 sm:h-8 text-[#006795]" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-4 0-7-3-7-7V8.3l7-3.11 7 3.11V13c0 4-3 7-7 7z"/>
                                 <path d="M10.5 13l-2-2-1.41 1.41L10.5 15.83l6-6L15.09 8.41z"/>
                             </svg>
-                            <span className="text-xs font-black text-[#006795] tracking-tight">NSPIRE INSPECTION</span>
+                            <span className="text-base sm:text-lg font-black text-[#006795] tracking-tight">NSPIRE INSPECTION</span>
                         </div>
                     </div>
                     
@@ -1517,7 +1529,7 @@ export default function InspectionCategoryPage() {
                     </div>
 
                     <Button
-                        onClick={() => router.push(`/management/management/dashboard/inspection/summary?propertyId=${id}`)}
+                        onClick={() => router.push(`/management/dashboard/inspection/summary?propertyId=${id}`)}
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
@@ -1623,6 +1635,19 @@ export default function InspectionCategoryPage() {
                                 <div className="w-full h-2 bg-white rounded-full overflow-hidden max-w-4xl shadow-inner">
                                     <div className="h-full bg-[#006795] transition-all duration-500" style={{ width: `${sec === 'outside' ? outsideProgress.percentage : sec === 'inside' ? insideProgress.percentage : unitProgress.percentage}%` }}></div>
                                 </div>
+                                {/* View Deficiency Summary */}
+                                {(() => {
+                                    const count = getDefSummaryFindings(sec as any).length;
+                                    return count > 0 ? (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setDefSummarySection(sec as any); }}
+                                            className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-[#F84B5F] hover:bg-[#e04050] px-3 py-1.5 rounded-full transition-colors shadow-sm"
+                                        >
+                                            <FileText className="w-3 h-3" />
+                                            View Deficiency Summary ({count})
+                                        </button>
+                                    ) : null;
+                                })()}
                             </div>
                             <button
                                 onClick={() => {
@@ -1920,10 +1945,10 @@ export default function InspectionCategoryPage() {
 
             {/* OD Modal - BULLETPROOF SCROLLING AND POSITIONING */}
             {isODModalOpen && (
-                <div className="fixed inset-0 bg-black/80 z-[1000] flex items-start justify-center p-4 sm:p-6 md:p-10 overflow-hidden isolate">
+                <div className="fixed inset-0 bg-black/80 z-[1000] flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto isolate">
                     <div className="absolute inset-0 -z-10" onClick={handleODModalClose} />
 
-                    <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col h-auto max-h-[70vh] self-center">
+                    <Card className="w-full max-w-xl bg-white rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] animate-in slide-in-from-top-4 duration-300 flex flex-col max-h-[90vh] my-auto">
                         {/* Background Image */}
                         <div 
                             className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-5 pointer-events-none rounded-3xl"
@@ -2018,7 +2043,7 @@ export default function InspectionCategoryPage() {
                                             <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />
                                         </div>
                                         <button onClick={handleClearAndGoBack} className="flex items-center gap-1 mt-2 text-xs font-medium text-red-500 hover:text-red-600">
-                                            <ChevronLeft className="w-3 h-3" /> Back
+                                            <X className="w-3 h-3" /> Back
                                         </button>
                                     </div>
 
@@ -2032,7 +2057,6 @@ export default function InspectionCategoryPage() {
                                             {selectedDeficiency && <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-[#0E7490]" />}
                                         </div>
                                     </div>
-
 
 
                                     {/* 4. PIC - one photo per deficiency */}
@@ -2237,13 +2261,13 @@ export default function InspectionCategoryPage() {
                                                         onClick={() => { setInspectModalType('standard'); setGuideDeficiency(selectedDeficiency); setIsHowToInspectOpen(true); }}
                                                         className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#006795] text-white hover:bg-blue-800 transition-colors text-center shadow-md"
                                                     >
-                                                        STANDARD ✅
+                                                        STANDARD 
                                                     </button>
                                                 )
                                             })()}
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL ✅</label>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">INSPECTION PROTOCOL </label>
                                             {(() => {
                                                 if (!selectedDeficiency) {
                                                     return <div className="text-xs text-gray-400 italic bg-gray-50 p-4 rounded-2xl border border-gray-200">Select deficiency first</div>
@@ -2256,7 +2280,7 @@ export default function InspectionCategoryPage() {
                                                         }}
                                                         className="w-full rounded-2xl p-4 text-xs font-bold leading-relaxed bg-[#10b981] text-white hover:bg-emerald-700 transition-colors text-center shadow-md"
                                                     >
-                                                        INSPECTION PROTOCOL ✅
+                                                        INSPECTION PROTOCOL 
                                                     </button>
                                                 )
                                             })()}
@@ -2439,6 +2463,11 @@ export default function InspectionCategoryPage() {
                                                 </div>
                                             </div>
                                         )}
+                                        {showStandard && !standardData.standard && (
+                                            <p className="text-gray-500 text-sm italic">
+                                                No standard information available for this deficiency.
+                                            </p>
+                                        )}
 
                                         {/* Inspection Protocol Section - Only show when Protocol button clicked */}
                                 {showProtocol && standardData.inspectionProtocol && (
@@ -2481,6 +2510,11 @@ export default function InspectionCategoryPage() {
                                                 </div>
                                             </div>
                                         )}
+                                        {showProtocol && !standardData.inspectionProtocol && (
+                                            <p className="text-gray-500 text-sm italic">
+                                                No inspection protocol information available for this deficiency.
+                                            </p>
+                                        )}
                                     </>
                                 );
                             })()}
@@ -2512,99 +2546,10 @@ export default function InspectionCategoryPage() {
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                     background: #cbd5e1;
                 }
-                body.modal-open {
+                body.modal-open main {
                     overflow: hidden !important;
                 }
             `}</style>
-            
-            
-            {/* Standard Modal */}
-            {showStandardModal && selectedDeficiency && (() => {
-                const dataResult = getInspectionStandardAndProtocol(
-                    currentSection as 'outside' | 'inside' | 'unit',
-                    odForm.category,
-                    selectedDeficiency.selected
-                );
-                
-                console.log('[Standard Modal Debug]', {
-                    category: odForm.category,
-                    deficiency: selectedDeficiency.selected,
-                    section: currentSection,
-                    hasData: !!dataResult,
-                    standardValue: dataResult?.standard
-                });
-                
-                return (
-                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowStandardModal(false)}>
-                        <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                            <div className="bg-blue-600 p-5 flex items-center justify-between">
-                                <h3 className="text-lg font-black text-white">STANDARD - {selectedDeficiency.selected}</h3>
-                                <button onClick={() => setShowStandardModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
-                                    <X className="w-5 h-5" />
-                                </button>
-                            </div>
-                            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
-                                {dataResult?.standard ? (
-                                    <div className="prose prose-sm max-w-none">
-                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
-{dataResult.standard}</pre>
-                                    </div>
-                                ) : (
-                                    <div className="text-center py-8">
-                                        <p className="text-gray-500 italic mb-2">No standard information available for this deficiency.</p>
-                                        <p className="text-xs text-gray-400">Category: {odForm.category}</p>
-                                        <p className="text-xs text-gray-400">Deficiency: {selectedDeficiency.selected}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                );
-            })()}
-
-            {/* Inspection Protocol Modal */}
-            {showProtocolModal && selectedDeficiency && (() => {
-                const dataResult = getInspectionStandardAndProtocol(
-                    currentSection as 'outside' | 'inside' | 'unit',
-                    odForm.category,
-                    selectedDeficiency.selected
-                );
-                
-                console.log('[Protocol Modal Debug]', {
-                    category: odForm.category,
-                    deficiency: selectedDeficiency.selected,
-                    section: currentSection,
-                    hasData: !!dataResult,
-                    protocolValue: dataResult?.inspectionProtocol
-                });
-                
-                return (
-                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4" onClick={() => setShowProtocolModal(false)}>
-                        <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                            <div className="bg-green-600 p-5 flex items-center justify-between">
-                                <h3 className="text-lg font-black text-white">INSPECTION PROTOCOL - {selectedDeficiency.selected}</h3>
-                                <button onClick={() => setShowProtocolModal(false)} className="text-white hover:bg-white/20 rounded-full p-2">
-                                    <X className="w-5 h-5" />
-                                </button>
-                            </div>
-                            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)] custom-scrollbar">
-                                {dataResult?.inspectionProtocol ? (
-                                    <div className="prose prose-sm max-w-none">
-                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200">
-{dataResult.inspectionProtocol}</pre>
-                                    </div>
-                                ) : (
-                                    <div className="text-center py-8">
-                                        <p className="text-gray-500 italic mb-2">No inspection protocol information available for this deficiency.</p>
-                                        <p className="text-xs text-gray-400">Category: {odForm.category}</p>
-                                        <p className="text-xs text-gray-400">Deficiency: {selectedDeficiency.selected}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                );
-            })()}
-            </ManagementDashboardLayout>
+        </ManagementDashboardLayout >
     )
 }
