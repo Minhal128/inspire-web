@@ -4,14 +4,64 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import MainLayout from "@/components/MainLayout";
+import { toast } from "react-toastify";
 
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    subject: "General Inquiry",
+    message: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Add real form submission logic here if needed
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        toast.success("Message sent successfully! We'll get back to you soon.", {
+          position: "top-right",
+        });
+        setFormData({
+          fullName: "",
+          email: "",
+          subject: "General Inquiry",
+          message: "",
+        });
+      } else {
+        toast.error(data.message || "Failed to send message. Please try again.", {
+          position: "top-right",
+        });
+      }
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error("Failed to send message. Please try again later.", {
+        position: "top-right",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -43,7 +93,7 @@ export default function ContactClient() {
                 </div>
                 <h3 className="text-xl font-bold text-black mb-2">Email Us</h3>
                 <p className="text-gray-500 text-sm mb-4">Our friendly team is here to help.</p>
-                <a href="mailto:support@nspireinspection.ai" className="text-[#006795] font-bold hover:underline text-lg">support@nspireinspection.ai</a>
+                <a href="mailto:Info@NspireInspection.Ai" className="text-[#006795] font-bold hover:underline text-lg">Info@NspireInspection.Ai</a>
               </div>
 
               <div className="bg-white p-8 rounded-[40px] shadow-xl border border-gray-100 flex flex-col items-center text-center">
@@ -90,16 +140,40 @@ export default function ContactClient() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-gray-700 ml-2">Full Name</label>
-                      <input required type="text" placeholder="John Doe" className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all" />
+                      <input 
+                        required 
+                        type="text" 
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        placeholder="John Doe" 
+                        className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all disabled:opacity-50 disabled:cursor-not-allowed" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-gray-700 ml-2">Email Address</label>
-                      <input required type="email" placeholder="john@example.com" className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all" />
+                      <input 
+                        required 
+                        type="email" 
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        placeholder="john@example.com" 
+                        className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all disabled:opacity-50 disabled:cursor-not-allowed" 
+                      />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-700 ml-2">Subject</label>
-                    <select className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all">
+                    <select 
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <option>General Inquiry</option>
                       <option>Technical Support</option>
                       <option>Sales & Partnerships</option>
@@ -108,10 +182,32 @@ export default function ContactClient() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-700 ml-2">Your Message</label>
-                    <textarea required rows={5} placeholder="How can we help you?" className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all resize-none"></textarea>
+                    <textarea 
+                      required 
+                      rows={5} 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      placeholder="How can we help you?" 
+                      className="w-full bg-[#F8F9FA] border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#006795] transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    ></textarea>
                   </div>
-                  <Button type="submit" variant="secondary" size="lg" className="w-full py-8 hover:scale-[1.01] transition-all">
-                    Send Message
+                  <Button 
+                    type="submit" 
+                    variant="secondary" 
+                    size="lg" 
+                    disabled={isSubmitting}
+                    className="w-full py-8 hover:scale-[1.01] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Sending...
+                      </div>
+                    ) : (
+                      'Send Message'
+                    )}
                   </Button>
                 </form>
               )}

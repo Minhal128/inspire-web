@@ -116,10 +116,10 @@ export default function Home() {
             transform: 'rotateY(180deg)'
           }}
         >
-          <div className="relative w-2/3 h-2/3 max-w-[350px] max-h-[350px]">
+          <div className="relative w-full h-full">
             <Image
-              src="/nationalstandard.png"
-              alt="Hover Alternate"
+              src="/TABLET 2.png"
+              alt="NSPIRE Tablet Interface"
               fill
               className="object-contain drop-shadow-2xl"
             />

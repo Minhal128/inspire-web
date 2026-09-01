@@ -1,11 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/image"; // Wait, app/page.tsx used Image for logo in footer, but Link for navigation.
-// Let's re-verify imports.
 import NextLink from "next/link";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email address", { position: "top-right" });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Successfully subscribed! Check your email for confirmation.", {
+          position: "top-right",
+        });
+        setEmail("");
+      } else {
+        toast.error(data.message || "Failed to subscribe. Please try again.", {
+          position: "top-right",
+        });
+      }
+    } catch (error) {
+      console.error("Subscription error:", error);
+      toast.error("Failed to subscribe. Please try again later.", {
+        position: "top-right",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="bg-black text-white px-4 md:px-6 py-12 md:py-16">
       <div className="max-w-7xl mx-auto">
@@ -46,7 +90,7 @@ export default function Footer() {
           <div className="text-center">
             <h3 className="font-bold mb-4">Contact</h3>
             <div className="space-y-3 text-gray-400">
-              <p className="font-semibold text-white">State Licensees</p>
+              <p className="font-semibold text-white">Email us</p>
               <p className="flex flex-col sm:flex-row items-center justify-center gap-2">
                 <svg
                   className="w-5 h-5 flex-shrink-0"
@@ -62,10 +106,10 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="mailto:Support@StateLicensees.Com"
+                  href="mailto:Info@NspireInspection.Ai"
                   className="hover:text-white break-all sm:break-normal"
                 >
-                  Support@StateLicensees.Com
+                  Info@NspireInspection.Ai
                 </a>
               </p>
             </div>
@@ -73,8 +117,8 @@ export default function Footer() {
 
           {/* Subscribe */}
           <div className="text-center md:text-left">
-            <h3 className="font-bold mb-4">Subscribe (Nspire Update)</h3>
-            <div className="flex mb-4">
+            <h3 className="font-bold mb-4">Subscribe (Nspire Update by State Licensees)</h3>
+            <form onSubmit={handleSubscribe} className="flex mb-4">
               <div className="relative flex-1">
                 <svg
                   className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
@@ -92,25 +136,37 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email address"
-                  className="pl-10 pr-4 py-3 rounded-l bg-white text-gray-900 placeholder-gray-500 w-full border-0 outline-none text-sm"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isSubmitting}
+                  className="pl-10 pr-4 py-3 rounded-l bg-white text-gray-900 placeholder-gray-500 w-full border-0 outline-none text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  required
                 />
               </div>
-              <button className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded-r flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded-r flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {isSubmitting ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                )}
               </button>
-            </div>
+            </form>
             <p className="text-gray-400 text-sm">
               Hello we are UI Monks. Our goal is to translate the positive
               effects from revolutionizing how companies engage with their
@@ -138,9 +194,9 @@ export default function Footer() {
                 <Image
                   src="/logo1.png"
                   alt="NSPIRE (Public)"
-                  width={1200}
-                  height={480}
-                  className="object-contain scale-[1.15]"
+                  width={220}
+                  height={90}
+                  className="object-contain w-full h-full scale-[2.6]"
                 />
               </div>
             </NextLink>
