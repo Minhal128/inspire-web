@@ -11,7 +11,6 @@ import { authCookies, setJsonCookie, migrateFromLocalStorage } from "@/lib/cooki
 export default function Home() {
   const router = useRouter();
   const [unitSelectionOpen, setUnitSelectionOpen] = useState(false);
-  const [heroFlipped, setHeroFlipped] = useState(false);
 
   // Migrate from localStorage to cookies on component mount
   useEffect(() => {
@@ -86,45 +85,15 @@ export default function Home() {
     </h1>
     </div>
 
-    <div className="flex-1 w-full flex justify-center lg:justify-end relative" style={{ perspective: '1000px' }}>
-      <div 
-        onMouseEnter={() => setHeroFlipped(true)}
-        onMouseLeave={() => setHeroFlipped(false)}
-        onClick={() => setHeroFlipped(f => !f)}
-        className="relative w-full max-w-[700px] h-[320px] sm:h-[500px] lg:h-[820px] transition-transform duration-700 cursor-pointer"
-        style={{ 
-          transformStyle: 'preserve-3d', 
-          transformOrigin: 'center',
-          transform: heroFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-        }}
-      >
-        <div className="absolute inset-0 backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
-          <Image
-            src="/hero.png"
-            alt="INSPIRE App Mockup"
-            fill
-            priority
-            className="object-contain drop-shadow-2xl"
-          />
-        </div>
-
-        {/* Back Side (New Hover Hero) */}
-        <div 
-          className="absolute inset-0 backface-hidden flex items-center justify-center" 
-          style={{ 
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)'
-          }}
-        >
-          <div className="relative w-full h-full">
-            <Image
-              src="/TABLET 2.png"
-              alt="NSPIRE Tablet Interface"
-              fill
-              className="object-contain drop-shadow-2xl"
-            />
-          </div>
-        </div>
+    <div className="flex-1 w-full flex justify-center lg:justify-end relative">
+      <div className="relative w-full max-w-[700px] h-[320px] sm:h-[500px] lg:h-[820px]">
+        <Image
+          src="/TABLET 2.png"
+          alt="NSPIRE Tablet Interface"
+          fill
+          priority
+          className="object-contain drop-shadow-2xl"
+        />
       </div>
     </div>
     </div>
