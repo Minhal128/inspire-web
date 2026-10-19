@@ -77,6 +77,9 @@ export default function InspectionStatusPage() {
   const [downloadingId, setDownloadingId] = useState<string | null>(null)
   const [user, setUser] = useState<any>(null)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+  // Raw findings from the progress (draft) records, merged with the finalized
+  // inspection's before counting so this page agrees with the summary page.
+  const [propertyDeficiencies, setPropertyDeficiencies] = useState<Record<string, any[]>>({})
 
   useEffect(() => {
     fetchData()
@@ -119,8 +122,9 @@ export default function InspectionStatusPage() {
       }
 
       // Fetch progress records to calculate accurate progress
-      const progressMap = await fetchProgress(allProperties)
+      const { progressMap, deficiencyMap } = await fetchProgress(allProperties)
       setPropertyProgress(progressMap)
+      setPropertyDeficiencies(deficiencyMap)
 
       // Map properties with their inspection status (preserve status field from API)
       const mappedProperties: PropertyWithInspection[] = allProperties.map(property => {
@@ -201,13 +205,22 @@ export default function InspectionStatusPage() {
       const data = await response.json()
       if (data.success && Array.isArray(data.progress)) {
         const progressMap: Record<string, number> = {}
-        
+        // Deficiencies live on the progress records until an inspection is
+        // finalized, so a property mid-inspection has findings here and none
+        // on its Inspection document. Counting only the document showed 0
+        // against the 3 the inspector could see in the app.
+        const deficiencyMap: Record<string, any[]> = {}
+
         propertyList.forEach(prop => {
             const propId = prop._id
-            const propProgress = data.progress.filter((p: any) => 
+            const propProgress = data.progress.filter((p: any) =>
                 p.propertyId === propId || p.propertyId?._id === propId
             )
-            
+
+            deficiencyMap[propId] = propProgress.flatMap((p: any) =>
+                p.inspectionData?.findings || p.inspectionData?.deficiencies || []
+            )
+
             const uniqueTasks = new Set()
             propProgress.forEach((p: any) => {
                 const type = String(p.inspectionType || '').toLowerCase()
@@ -232,13 +245,26 @@ export default function InspectionStatusPage() {
                 progressMap[propId] = 0
             }
         })
-        return progressMap
+        return { progressMap, deficiencyMap }
       }
     } catch (e) {
       console.error('Error fetching progress:', e)
     }
-    return {}
+    return { progressMap: {}, deficiencyMap: {} }
   }
+
+  /**
+   * Deficiencies for a property, counted over both places they live: the
+   * progress (draft) records the app writes as the inspector works, and the
+   * finalized Inspection document. Counting only the document reported 0 while
+   * the app showed 3, because nothing copies drafts onto it until finalize.
+   * Both are deduplicated together, so a finding in both is counted once.
+   */
+  const deficiencyCount = (property: PropertyWithInspection): number =>
+    getUniqueDeficiencyCount([
+      ...(propertyDeficiencies[property._id] || []),
+      ...(property.inspection?.findings || property.inspection?.deficiencies || []),
+    ])
 
   const handleRefresh = () => {
     toast.info("Refreshing inspection status...", { position: "top-right" })
@@ -543,10 +569,10 @@ export default function InspectionStatusPage() {
                             </>
                           )}
                         </div>
-                        {property.inspection && getUniqueDeficiencyCount(property.inspection.findings || property.inspection.deficiencies) > 0 ? (
+                        {deficiencyCount(property) > 0 ? (
                           <div className="mt-2">
                             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-800 whitespace-nowrap">
-                              {getUniqueDeficiencyCount(property.inspection.findings || property.inspection.deficiencies)} Deficiencies
+                              {deficiencyCount(property)} Deficiencies
                             </span>
                           </div>
                         ) : null}
