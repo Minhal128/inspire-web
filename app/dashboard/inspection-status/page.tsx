@@ -6,7 +6,7 @@ import DashboardLayout from "@/components/DashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
-import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, Lock, FileSpreadsheet, Clock } from "lucide-react"
+import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, FileSpreadsheet, Clock } from "lucide-react"
 import { toast } from "react-toastify"
 
 interface Property {
@@ -623,34 +623,7 @@ export default function InspectionStatusPage() {
                             )}
                           </Button>
                         </div>
-                      ) : (
-                        <Button
-                          onClick={async () => {
-                            if (property.inspection?._id) {
-                              try {
-                                toast.info('Initiating payment...', { position: 'top-right' })
-                                const data = await paymentsAPI.createStripeCheckoutSession(property.inspection._id);
-                                if (data?.isReportUnlocked || data?.alreadyUnlocked) {
-                                  toast.success('Report is already unlocked.', { position: 'top-right' })
-                                  fetchData(true)
-                                  return
-                                }
-                                if (!data?.checkoutUrl) throw new Error('Stripe checkout URL is missing.')
-                                window.location.href = data.checkoutUrl
-                              } catch (error: any) {
-                                console.error('Stripe checkout start error:', error)
-                                toast.error(`Unable to start payment: ${error.message}`, { position: 'top-right' })
-                              }
-                            } else {
-                              toast.error("Inspection details not found")
-                            }
-                          }}
-                          className="bg-amber-600 hover:bg-amber-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
-                        >
-                          <Lock className="w-4 h-4 flex-shrink-0" />
-                          <span>Pay to Unlock Report</span>
-                        </Button>
-                      )
+                      ) : null
                     ) : (
                       <Button
                         onClick={() => handleStartInspection(property)}
