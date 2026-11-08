@@ -906,42 +906,44 @@ export default function InspectionCategoryPage() {
             toast.error("Please select a deficiency");
             return;
         }
-        if (photos.length === 0) {
-            toast.error("Please upload a photo first");
-            return;
-        }
+        // Photo is optional: the inspector can proceed with or without a picture.
+        const hasPhoto = photos.length > 0;
 
         setIsAnalyzing(true);
-        const toastId = toast.loading("AI is analyzing the photo...", { autoClose: false });
+        const toastId = toast.loading(hasPhoto ? "AI is analyzing the photo..." : "Saving deficiency...", { autoClose: false });
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/inspect`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    imageUrl: photos[0],
-                    propertyId: property?._id || params.id, // Use property._id or params.id as propertyId
-                    inspectorId: user?.id || user?._id,
-                    inspectionId: null, // Let backend create new inspection
-                    deficiencyData: {
-                        category: mapToBackendCategory(odForm.category),
-                        subCategory: odForm.category, // Keep original as subCategory
-                        note: odForm.note,
-                        location: odForm.location,
-                        healthAndSafety: odForm.healthAndSafety,
-                        repairBy: odForm.repairBy,
-                        codeAndCompliance: odForm.codeAndCompliance,
-                        selectedDeficiency: selectedDeficiency
-                    }
-                }),
-            });
+            let data: any = { success: true };
 
-            const data = await response.json();
+            if (hasPhoto) {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/inspect`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        imageUrl: photos[0],
+                        propertyId: property?._id || params.id, // Use property._id or params.id as propertyId
+                        inspectorId: user?.id || user?._id,
+                        inspectionId: null, // Let backend create new inspection
+                        deficiencyData: {
+                            category: mapToBackendCategory(odForm.category),
+                            subCategory: odForm.category, // Keep original as subCategory
+                            note: odForm.note,
+                            location: odForm.location,
+                            healthAndSafety: odForm.healthAndSafety,
+                            repairBy: odForm.repairBy,
+                            codeAndCompliance: odForm.codeAndCompliance,
+                            selectedDeficiency: selectedDeficiency
+                        }
+                    }),
+                });
+
+                data = await response.json();
+            }
 
             if (data.success) {
-                toast.update(toastId, { render: "Analysis Complete! Item marked as inspected.", type: "success", isLoading: false, autoClose: 2000 });
+                toast.update(toastId, { render: hasPhoto ? "Analysis Complete! Item marked as inspected." : "Deficiency saved. Item marked as inspected.", type: "success", isLoading: false, autoClose: 2000 });
 
                 // Result is nested in data.data or data.analysis depending on controller path
                 const resultData = data.data || data;
@@ -967,7 +969,7 @@ export default function InspectionCategoryPage() {
                 
                 const newFinding = {
                     id: newFindingId,
-                    imageUri: photos[0],
+                    imageUri: photos[0] || '',
                     title: def.selected || analysisResult?.defect || odForm.category,
                     description: def.detail || analysisResult?.description || analysisResult?.comment || 'Deficiency detected by AI inspection',
                     category: odForm.category,
@@ -2061,8 +2063,6 @@ export default function InspectionCategoryPage() {
 
                                     {/* 4. PIC - one photo per deficiency */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Pic (one photo for this deficiency)</label>
-
                                         {/* Image Grid */}
                                         {photos.length > 0 && (
                                             <div className="flex flex-wrap gap-3 mb-4">
@@ -2401,7 +2401,7 @@ export default function InspectionCategoryPage() {
                                 <Button variant="outline" onClick={handleODModalClose} className="flex-1 font-black h-14 rounded-xl border-2 bg-white hover:bg-gray-50 text-gray-500 uppercase text-[10px] tracking-widest">Cancel</Button>
                                 <Button
                                     onClick={handleProceed}
-                                    disabled={isAnalyzing || photos.length === 0 || !selectedDeficiency}
+                                    disabled={isAnalyzing || !selectedDeficiency}
                                     className="flex-1 bg-red-600 hover:bg-red-700 text-white font-black h-14 rounded-xl shadow-lg shadow-red-100 uppercase text-[10px] tracking-widest disabled:opacity-50 disabled:cursor-not-allowed group"
                                 >
                                     {isAnalyzing ? 'Analyzing...' : 'Proceed'}
