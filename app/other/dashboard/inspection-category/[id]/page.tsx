@@ -218,6 +218,9 @@ export default function InspectionCategoryPage() {
     const [showStandardModal, setShowStandardModal] = useState(false);
     const [showProtocolModal, setShowProtocolModal] = useState(false);
     const [photos, setPhotos] = useState<string[]>([]);
+    // A save in flight. The ref is what actually guards the second click:
+    // the disabled prop only lands on the next render.
+    const submittingRef = useRef(false);
     const [odForm, setOdForm] = useState({
         category: "",
         note: "",
@@ -258,7 +261,7 @@ export default function InspectionCategoryPage() {
     }, [propertyFindings, currentModalItem, currentSection, getCurrentItemUnit, urlBuilding, buildingName]);
 
     const savedItemFindings = getCurrentItemFindings();
-    const deficiencyCount = savedItemFindings.length + (selectedDeficiency ? 1 : 0);
+    const deficiencyCount = savedItemFindings.length + (selectedDeficiency ? Math.max(photos.length, 1) : 0);
 
     // Update scoring dynamically when deficiency is selected/changed
     useEffect(() => {
@@ -372,7 +375,7 @@ export default function InspectionCategoryPage() {
             });
             setOutsideScoringResult(null);
         }
-    }, [selectedDeficiency, deficiencyCount, totalSamples, odForm.healthAndSafety, odForm.note, currentSection, currentModalItem, savedItemFindings.length]);
+    }, [selectedDeficiency, deficiencyCount, totalSamples, odForm.healthAndSafety, odForm.note, currentSection, currentModalItem, savedItemFindings.length, photos.length]);
 
     useEffect(() => {
         if (id) {
@@ -906,70 +909,93 @@ export default function InspectionCategoryPage() {
             toast.error("Please select a deficiency");
             return;
         }
-        // Photo is optional: the inspector can proceed with or without a picture.
-        const hasPhoto = photos.length > 0;
+        // The photo is optional and more than one is allowed. One finding is
+        // recorded per picture, the way the app does it; with no picture the
+        // loop still runs once and records the deficiency on its own.
+        const shots = photos.length > 0 ? photos : [''];
+
+        // One press, one save.
+        if (submittingRef.current) return;
+        submittingRef.current = true;
+
+        // A request that never answers used to leave this spinning for ever.
+        const AI_TIMEOUT_MS = 45000;
 
         setIsAnalyzing(true);
-        const toastId = toast.loading(hasPhoto ? "AI is analyzing the photo..." : "Saving deficiency...", { autoClose: false });
+        const toastId = toast.loading(
+            photos.length > 1
+                ? `AI is analyzing ${photos.length} photos...`
+                : photos.length === 1
+                    ? "AI is analyzing the photo..."
+                    : "Saving deficiency...",
+            { autoClose: false }
+        );
 
         try {
-            let data: any = { success: true };
+            const unitVal = getCurrentItemUnit();
+            const def = selectedDeficiency;
 
-            if (hasPhoto) {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/inspect`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        imageUrl: photos[0],
-                        propertyId: property?._id || params.id, // Use property._id or params.id as propertyId
-                        inspectorId: user?.id || user?._id,
-                        inspectionId: null, // Let backend create new inspection
-                        deficiencyData: {
-                            category: mapToBackendCategory(odForm.category),
-                            subCategory: odForm.category, // Keep original as subCategory
-                            note: odForm.note,
-                            location: odForm.location,
-                            healthAndSafety: odForm.healthAndSafety,
-                            repairBy: odForm.repairBy,
-                            codeAndCompliance: odForm.codeAndCompliance,
-                            selectedDeficiency: selectedDeficiency
-                        }
-                    }),
-                });
+            // Get Standard and Inspection Protocol from JSON data
+            const standardProtocolData = getInspectionStandardAndProtocol(
+                currentSection as 'outside' | 'inside' | 'unit',
+                odForm.category,
+                def.selected
+            );
 
-                data = await response.json();
-            }
+            const newFindings: any[] = [];
+            let lastAnalysis: any = null;
+            let lastReportUrl: string | null = null;
 
-            if (data.success) {
-                toast.update(toastId, { render: hasPhoto ? "Analysis Complete! Item marked as inspected." : "Deficiency saved. Item marked as inspected.", type: "success", isLoading: false, autoClose: 2000 });
+            for (let index = 0; index < shots.length; index++) {
+                const photo = shots[index];
+                let data: any = { success: true };
+
+                if (photo) {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/inspect`, {
+                        method: 'POST',
+                        signal: controller.signal,
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            imageUrl: photo,
+                            propertyId: property?._id || params.id,
+                            inspectorId: user?.id || user?._id,
+                            inspectionId: null,
+                            deficiencyData: {
+                                category: mapToBackendCategory(odForm.category),
+                                subCategory: odForm.category,
+                                note: odForm.note,
+                                location: odForm.location,
+                                healthAndSafety: odForm.healthAndSafety,
+                                repairBy: odForm.repairBy,
+                                codeAndCompliance: odForm.codeAndCompliance,
+                                selectedDeficiency: selectedDeficiency
+                            }
+                        }),
+                    });
+
+                    clearTimeout(timeoutId);
+                    data = await response.json();
+                }
+
+                if (!data.success) {
+                    throw new Error(data.message || "Analysis failed");
+                }
 
                 // Result is nested in data.data or data.analysis depending on controller path
                 const resultData = data.data || data;
                 const analysisResult = resultData.deficiency || data.analysis;
+                lastAnalysis = analysisResult;
+                if (resultData.reportUrl) {
+                    lastReportUrl = resultData.reportUrl;
+                }
 
-                const unitVal = getCurrentItemUnit();
-                const def = selectedDeficiency;
-                const newFindingId = `DEF-${Date.now()}`;
-                
-                // Get Standard and Inspection Protocol from JSON data
-                const standardProtocolData = getInspectionStandardAndProtocol(
-                    currentSection as 'outside' | 'inside' | 'unit',
-                    odForm.category,
-                    def.selected
-                );
-                
-                console.log('[DEBUG] Looking up Standard & Protocol:', {
-                    section: currentSection,
-                    category: odForm.category,
-                    deficiency: def.selected,
-                    result: standardProtocolData
-                });
-                
-                const newFinding = {
-                    id: newFindingId,
-                    imageUri: photos[0] || '',
+                newFindings.push({
+                    id: `DEF-${Date.now()}-${index}`,
+                    imageUri: photo,
                     title: def.selected || analysisResult?.defect || odForm.category,
                     description: def.detail || analysisResult?.description || analysisResult?.comment || 'Deficiency detected by AI inspection',
                     category: odForm.category,
@@ -989,77 +1015,92 @@ export default function InspectionCategoryPage() {
                     area: currentSection,
                     item: currentModalItem,
                     deductionPts: scoringResult?.ptsLost || 0
-                };
-
-                const currentStatuses = currentSection === 'outside' ? outsideStatuses
-                    : currentSection === 'inside' ? insideStatuses
-                        : unitStatuses;
-
-                const updatedStatuses = {
-                    ...currentStatuses,
-                    [currentModalItem as string]: 'OD'
-                };
-
-                if (currentSection === 'outside') setOutsideStatuses(updatedStatuses as Record<string, ItemStatus>);
-                else if (currentSection === 'inside') setInsideStatuses(updatedStatuses as Record<string, ItemStatus>);
-                else setUnitStatuses(updatedStatuses as Record<string, ItemStatus>);
-
-                const mergedFindings = [...propertyFindings, newFinding];
-                await persistItemFindings(mergedFindings, updatedStatuses as Record<string, ItemStatus>);
-
-                toast.success('Deficiency saved. Add another or continue inspection.', { position: 'top-right' });
-
-                setAnalysisResult(analysisResult);
-                setLastSavedFindingId(newFindingId);
-                if (resultData.reportUrl) {
-                    setReportUrl(resultData.reportUrl);
-                }
-                if (currentSection && currentModalItem) {
-                    const savedKey = `${urlBuilding}:${currentSection}:${currentModalItem}`;
-                    setSavedODItems(prev => new Set(prev).add(savedKey));
-                }
-                setSelectedDeficiency(null);
-                setPhotos([]);
-                setModalStep(4);
-
-            } else {
-                throw new Error(data.message || "Analysis failed");
+                });
             }
+
+            toast.update(toastId, { render: photos.length > 0 ? "Analysis Complete! Item marked as inspected." : "Deficiency saved. Item marked as inspected.", type: "success", isLoading: false, autoClose: 2000 });
+
+            const currentStatuses = currentSection === 'outside' ? outsideStatuses
+                : currentSection === 'inside' ? insideStatuses
+                    : unitStatuses;
+
+            const updatedStatuses = {
+                ...currentStatuses,
+                [currentModalItem as string]: 'OD'
+            };
+
+            if (currentSection === 'outside') setOutsideStatuses(updatedStatuses as Record<string, ItemStatus>);
+            else if (currentSection === 'inside') setInsideStatuses(updatedStatuses as Record<string, ItemStatus>);
+            else setUnitStatuses(updatedStatuses as Record<string, ItemStatus>);
+
+            const mergedFindings = [...propertyFindings, ...newFindings];
+            await persistItemFindings(mergedFindings, updatedStatuses as Record<string, ItemStatus>);
+
+            toast.success(
+                newFindings.length > 1
+                    ? `${newFindings.length} deficiencies saved. Add another or continue inspection.`
+                    : 'Deficiency saved. Add another or continue inspection.',
+                { position: 'top-right' }
+            );
+
+            setAnalysisResult(lastAnalysis);
+            setLastSavedFindingId(newFindings[newFindings.length - 1].id);
+            if (lastReportUrl) {
+                setReportUrl(lastReportUrl);
+            }
+            if (currentSection && currentModalItem) {
+                const savedKey = `${urlBuilding}:${currentSection}:${currentModalItem}`;
+                setSavedODItems(prev => new Set(prev).add(savedKey));
+            }
+            setSelectedDeficiency(null);
+            setPhotos([]);
+            setModalStep(4);
         } catch (error: any) {
             console.error("AI Analysis error:", error);
-            toast.update(toastId, { render: `Analysis failed: ${error.message}`, type: "error", isLoading: false, autoClose: 4000 });
+            const message = error?.name === 'AbortError'
+                ? 'The server did not answer in time. Nothing was saved, please try again.'
+                : `Analysis failed: ${error.message}`;
+            toast.update(toastId, { render: message, type: "error", isLoading: false, autoClose: 4000 });
         } finally {
+            submittingRef.current = false;
             setIsAnalyzing(false);
         }
     };
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
+        // Several pictures can be picked at once, and each batch adds to the
+        // ones already taken rather than replacing them.
+        const files = Array.from(e.target.files || []);
+        if (files.length === 0) return;
 
-        const toastId = toast.loading("Uploading image...", { autoClose: false });
+        const toastId = toast.loading(files.length > 1 ? `Uploading ${files.length} images...` : "Uploading image...", { autoClose: false });
 
         try {
-            const formData = new FormData();
-            formData.append('image', file);
-            formData.append('folder', 'nspire-inspections/deficiencies');
+            const uploaded: string[] = [];
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/upload-image`, {
-                method: 'POST',
-                body: formData,
-            });
+            for (const file of files) {
+                const formData = new FormData();
+                formData.append('image', file);
+                formData.append('folder', 'nspire-inspections/deficiencies');
 
-            const data = await response.json();
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/upload-image`, {
+                    method: 'POST',
+                    body: formData,
+                });
 
-            if (data.success) {
-                setPhotos([data.data.url]);
-                toast.update(toastId, { render: "Image uploaded! Damage detected.", type: "success", isLoading: false, autoClose: 3000 });
-                // Simulate analysis effect
-                setIsAnalyzing(true);
-                setTimeout(() => setIsAnalyzing(false), 2000);
-            } else {
-                throw new Error(data.message || "Upload failed");
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || "Upload failed");
+                }
+                uploaded.push(data.data.url);
             }
+
+            setPhotos(prev => [...prev, ...uploaded]);
+            toast.update(toastId, { render: uploaded.length > 1 ? `${uploaded.length} images uploaded!` : "Image uploaded! Damage detected.", type: "success", isLoading: false, autoClose: 3000 });
+            // Simulate analysis effect
+            setIsAnalyzing(true);
+            setTimeout(() => setIsAnalyzing(false), 2000);
         } catch (error) {
             console.error(error);
             toast.update(toastId, { render: "Upload failed. Please try again.", type: "error", isLoading: false, autoClose: 3000 });
@@ -1151,16 +1192,6 @@ export default function InspectionCategoryPage() {
                             })() ? 'bg-red-600 hover:bg-red-700 text-white border-red-600' : 'bg-white hover:bg-red-50 text-[#DC2626] border-[#DC2626]'
                                 }`}
                         >
-                            <div className={`w-4 h-4 border flex items-center justify-center rounded ${(() => {
-                                const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
-                            })() ? 'bg-white/20 border-white/40' : 'bg-white border-[#DC2626]'
-                                }`}>
-                                {(() => {
-                                    const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                    return toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD') ? <Check className="w-3 h-3 text-white" strokeWidth={4} /> : null;
-                                })()}
-                            </div>
                             Observe Deficiency
                         </Button>
                         <Button
@@ -1252,13 +1283,6 @@ export default function InspectionCategoryPage() {
                             </th>
                             <th className="py-2 px-2">
                                 <Button onClick={() => selectAll(section, 'OD')} className="w-full bg-white hover:bg-red-50 text-[#DC2626] border border-[#DC2626] text-[10px] h-8 font-bold flex items-center gap-1.5 px-3 uppercase">
-                                    <div className="w-3 h-3 bg-white border border-[#DC2626] flex items-center justify-center">
-                                        {(() => {
-                                            const toggleableItems = items.filter(i => !savedODItems.has(`${section}:${i}`));
-                                            const isChecked = toggleableItems.length > 0 && toggleableItems.every(item => statuses[item] === 'OD');
-                                            return isChecked ? <Check className="w-2.5 h-2.5 text-[#DC2626]" strokeWidth={4} /> : null;
-                                        })()}
-                                    </div>
                                     Observe Deficiency
                                 </Button>
                             </th>
@@ -2089,12 +2113,13 @@ export default function InspectionCategoryPage() {
                                                 <div className="w-12 h-12 rounded-full bg-cyan-50 flex items-center justify-center mb-2 group-hover:bg-[#0E7490] transition-colors">
                                                     <Camera className="w-5 h-5 text-[#0E7490] group-hover:text-white transition-colors" />
                                                 </div>
-                                                <span className="text-[10px] font-bold text-gray-500 group-hover:text-[#0E7490]">Take Photo</span>
+                                                <span className="text-[10px] font-bold text-gray-500 group-hover:text-[#0E7490]">{photos.length > 0 ? 'Add Photo' : 'Take Photo'}</span>
                                             </div>
                                         </div>
                                         <input
                                             type="file"
                                             ref={fileInputRef}
+                                            multiple
                                             className="hidden"
                                             accept="image/*"
                                             onChange={handleFileUpload}
