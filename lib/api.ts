@@ -393,7 +393,7 @@ export const inspectionsAPI = {
    * The free route: the PDF and the spreadsheet go straight to an address
    * instead of being unlocked for download. Costs nothing and has no limit.
    */
-  emailReport: async (id: string, email: string) => {
+  emailReport: async (id: string, email: string, report?: any) => {
     return apiRequest<{
       success: boolean;
       message: string;
@@ -401,7 +401,10 @@ export const inspectionsAPI = {
       pdfIncluded: boolean;
     }>(`/api/inspections/${id}/email-report`, {
       method: 'POST',
-      body: JSON.stringify({ email }),
+      // The report on screen goes with it, the way the download endpoints take
+      // it: a summary is often assembled from progress data and has no saved
+      // inspection behind it, so an id alone finds nothing to send.
+      body: JSON.stringify(report ? { email, report } : { email }),
     });
   },
 

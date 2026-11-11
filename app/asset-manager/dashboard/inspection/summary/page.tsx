@@ -128,7 +128,7 @@ function NSPIREInspectionSummaryContent() {
 
     setSendingFreeReport(true)
     try {
-      const data = await inspectionsAPI.emailReport(inspectionIdentifier, address)
+      const data = await inspectionsAPI.emailReport(inspectionIdentifier, address, report)
       toast.success(
         data?.pdfIncluded === false
           ? `Sent to ${address}. The PDF could not be built this time, so the spreadsheet went on its own.`
