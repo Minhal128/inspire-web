@@ -194,16 +194,18 @@ export default function Footer() {
               </div>
             </NextLink>
             <NextLink href="https://nspireinspectionapp.com/" target="_blank">
-              {/* Same box as its neighbour. logo1.png is 4501x4501, square, so
-                  it fits by height and leaves white at the sides; it used to be
-                  scaled up past the edges to hide that. */}
-              <div className="bg-white p-1 rounded-lg shadow-md w-[70px] h-[44px] sm:w-[96px] sm:h-[60px] flex items-center justify-center">
+              {/* Same box as its neighbour. logo1.png is 4501x4501 and square,
+                  with a wide empty margin baked into the image, so fitting it
+                  honestly leaves the mark far smaller than the logo next door.
+                  Scaling up and letting the box clip trims that margin away, so
+                  the two read as the same size. */}
+              <div className="bg-white p-1 rounded-lg shadow-md w-[70px] h-[44px] sm:w-[96px] sm:h-[60px] flex items-center justify-center overflow-hidden">
                 <Image
                   src="/logo1.png"
                   alt="NSPIRE (Public)"
                   width={220}
                   height={220}
-                  className="object-contain w-full h-full"
+                  className="object-contain w-full h-full scale-[2.3]"
                 />
               </div>
             </NextLink>
