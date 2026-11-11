@@ -178,34 +178,18 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <NextLink href="/">
-              {/* Both boxes are the same size, on purpose: side by side,
-                  different sizes read as a mistake. The two logos are not the
-                  same shape though -- logo.png is 1080x593 (1.82:1) and fills
-                  this almost exactly, while logo1.png is square and keeps a
-                  little white down its sides. That is the cost of matching. */}
-              <div className="bg-white p-1 rounded-lg shadow-md w-[70px] h-[44px] sm:w-[96px] sm:h-[60px] flex items-center justify-center">
+              {/* One logo where two used to sit, across the width they took
+                  together. 216x94 is the artwork's own 2.30:1 -- it was supplied
+                  as a 2000x2000 square with the mark in a band across the middle,
+                  and that empty margin is cropped out of footer-logo.png, so it
+                  needs no scaling and the box has nothing to clip. */}
+              <div className="bg-white p-1 rounded-lg shadow-md w-[160px] h-[70px] sm:w-[216px] sm:h-[94px] flex items-center justify-center">
                 <Image
-                  src="/logo.png"
-                  alt="INSPIRE"
-                  width={220}
-                  height={90}
+                  src="/footer-logo.png"
+                  alt="NSPIRE — National Standards for the Physical Inspection of Real Estate"
+                  width={1944}
+                  height={844}
                   className="object-contain w-full h-full"
-                />
-              </div>
-            </NextLink>
-            <NextLink href="https://nspireinspectionapp.com/" target="_blank">
-              {/* Same box as its neighbour. logo1.png is 4501x4501 and square,
-                  with a wide empty margin baked into the image, so fitting it
-                  honestly leaves the mark far smaller than the logo next door.
-                  Scaling up and letting the box clip trims that margin away, so
-                  the two read as the same size. */}
-              <div className="bg-white p-1 rounded-lg shadow-md w-[70px] h-[44px] sm:w-[96px] sm:h-[60px] flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/logo1.png"
-                  alt="NSPIRE (Public)"
-                  width={220}
-                  height={220}
-                  className="object-contain w-full h-full scale-[2.3]"
                 />
               </div>
             </NextLink>
