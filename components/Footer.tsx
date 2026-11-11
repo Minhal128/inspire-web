@@ -178,7 +178,9 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <NextLink href="/">
-              <div className="bg-white p-2 rounded-lg shadow-md w-[100px] h-[44px] sm:w-[140px] sm:h-[60px] flex items-center justify-center">
+              {/* 80x44 and 109x60 are logo.png's own 1.82:1. A wider box just
+                  letterboxes it and shows as white down both sides. */}
+              <div className="bg-white p-1 rounded-lg shadow-md w-[80px] h-[44px] sm:w-[109px] sm:h-[60px] flex items-center justify-center">
                 <Image
                   src="/logo.png"
                   alt="INSPIRE"
@@ -189,17 +191,16 @@ export default function Footer() {
               </div>
             </NextLink>
             <NextLink href="https://nspireinspectionapp.com/" target="_blank">
-              <div className="bg-white p-2 rounded-lg shadow-md w-[100px] h-[44px] sm:w-[140px] sm:h-[60px] flex items-center justify-center overflow-hidden">
+              {/* logo1.png is 4501x4501 -- square. In a wide box most of what
+                  showed was white, which is why it used to be scaled up past
+                  the edges. A square box lets it simply fill. */}
+              <div className="bg-white p-1 rounded-lg shadow-md w-[44px] h-[44px] sm:w-[60px] sm:h-[60px] flex items-center justify-center">
                 <Image
                   src="/logo1.png"
                   alt="NSPIRE (Public)"
                   width={220}
-                  height={90}
-                  // logo1.png carries a lot of empty margin, so it needs
-                  // scaling up to read at all. It used to be 2.6 with the box
-                  // set to overflow-visible, which simply spilled it over the
-                  // edges; this fills the box and the box clips the rest.
-                  className="object-contain w-full h-full scale-[1.9]"
+                  height={220}
+                  className="object-contain w-full h-full"
                 />
               </div>
             </NextLink>
