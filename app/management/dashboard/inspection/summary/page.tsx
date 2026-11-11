@@ -110,6 +110,40 @@ function NSPIREInspectionSummaryContent() {
   const [sharingPayment, setSharingPayment] = useState(false)
   const [showSummaryModal, setShowSummaryModal] = useState(false)
   const [showPdfPreview, setShowPdfPreview] = useState(false)
+  // The free route: an address to mail the report to, and whether it is going.
+  const [showFreeEmail, setShowFreeEmail] = useState(false)
+  const [freeEmail, setFreeEmail] = useState('')
+  const [sendingFreeReport, setSendingFreeReport] = useState(false)
+
+  const handleEmailFreeReport = async () => {
+    const address = freeEmail.trim()
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address)) {
+      toast.error('Please enter a valid email address', { position: 'top-right' })
+      return
+    }
+    if (!inspectionIdentifier) {
+      toast.error('This inspection has not been saved yet', { position: 'top-right' })
+      return
+    }
+
+    setSendingFreeReport(true)
+    try {
+      const data = await inspectionsAPI.emailReport(inspectionIdentifier, address)
+      toast.success(
+        data?.pdfIncluded === false
+          ? `Sent to ${address}. The PDF could not be built this time, so the spreadsheet went on its own.`
+          : `Report sent to ${address}`,
+        { position: 'top-right' }
+      )
+      setShowFreeEmail(false)
+      setFreeEmail('')
+    } catch (error: any) {
+      console.error('Free report email error:', error)
+      toast.error(error?.message || 'Could not send the report. Please try again.', { position: 'top-right' })
+    } finally {
+      setSendingFreeReport(false)
+    }
+  }
   // Custom column header from the building table (editable in property-details)
   const [buildingColumnHeader, setBuildingColumnHeader] = useState('Building')
   // Deficiency preview modal
@@ -1120,20 +1154,6 @@ function NSPIREInspectionSummaryContent() {
             </div>
             <div className="flex flex-wrap gap-3">
               <Button
-                onClick={handleExportPDF}
-                disabled={exporting || checkingUnlock || purchasingUnlock}
-                className="gap-2 bg-[#006795] hover:bg-[#0a5670] text-white"
-              >
-                {isReportUnlocked ? <Download /> : <Lock className="w-5 h-5" />} {exporting ? 'Generating...' : isReportUnlocked ? 'Export PDF' : 'Unlock to Export'}
-              </Button>
-              <Button
-                onClick={handleExportExcel}
-                disabled={exportingExcel || checkingUnlock || purchasingUnlock}
-                className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white"
-              >
-                {isReportUnlocked ? <Excel /> : <Lock className="w-5 h-5" />} {exportingExcel ? 'Generating...' : isReportUnlocked ? 'Export Excel' : 'Work Order'}
-              </Button>
-              <Button
                 onClick={handleBackToInspection}
                 className="gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold"
               >
@@ -1181,7 +1201,7 @@ function NSPIREInspectionSummaryContent() {
                     className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
                   >
                     <Lock className="w-3.5 h-3.5" />
-                    Unlock Report · $1
+                    Unlock Report · $10
                   </Button>
                   <Button
                     onClick={() => setShowPdfPreview(true)}
@@ -1191,6 +1211,39 @@ function NSPIREInspectionSummaryContent() {
                     <Mail className="w-3.5 h-3.5" />
                     View Deficiency
                   </Button>
+                </div>
+
+                {/* Free route: the report is emailed instead of unlocked. */}
+                <div className="mt-3 pt-3 border-t border-amber-200">
+                  {showFreeEmail ? (
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input
+                        type="email"
+                        value={freeEmail}
+                        onChange={(e) => setFreeEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        disabled={sendingFreeReport}
+                        className="flex-1 h-10 rounded-lg border border-amber-300 px-3 text-xs outline-none focus:border-amber-500 disabled:opacity-60"
+                      />
+                      <Button
+                        onClick={handleEmailFreeReport}
+                        disabled={sendingFreeReport}
+                        className="h-10 gap-2 bg-[#006795] hover:bg-[#0a5670] text-white text-xs font-bold rounded-lg"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        {sendingFreeReport ? 'Sending...' : 'Send PDF + Excel'}
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={() => setShowFreeEmail(true)}
+                      variant="outline"
+                      className="h-10 w-full gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      View Free Report — emailed as PDF + Excel
+                    </Button>
+                  )}
                 </div>
               </div>
             )}

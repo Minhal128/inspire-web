@@ -389,6 +389,22 @@ export const inspectionsAPI = {
     return apiRequest<{ success: boolean; inspection: any }>(`/api/inspections/${id}`);
   },
 
+  /**
+   * The free route: the PDF and the spreadsheet go straight to an address
+   * instead of being unlocked for download. Costs nothing and has no limit.
+   */
+  emailReport: async (id: string, email: string) => {
+    return apiRequest<{
+      success: boolean;
+      message: string;
+      sent: string[];
+      pdfIncluded: boolean;
+    }>(`/api/inspections/${id}/email-report`, {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    });
+  },
+
   update: async (id: string, data: any) => {
     return apiRequest<{ success: boolean; message: string; inspection: any }>(
       `/api/inspections/${id}`,
