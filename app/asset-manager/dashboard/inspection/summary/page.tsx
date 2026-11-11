@@ -1247,7 +1247,7 @@ function NSPIREInspectionSummaryContent() {
                     className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
                   >
                     <Lock className="w-3.5 h-3.5" />
-                    Unlock Report · $10
+                    Unlock Report · $1
                   </Button>
                   <Button
                     onClick={() => setShowPdfPreview(true)}
