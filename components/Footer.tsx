@@ -117,7 +117,7 @@ export default function Footer() {
 
           {/* Subscribe */}
           <div className="text-center md:text-left">
-            <h3 className="font-bold mb-4">Subscribe (Nspire Update by State Licensees)</h3>
+            <h3 className="font-bold mb-4">Nspire Update by State Licensees</h3>
             <form onSubmit={handleSubscribe} className="flex mb-4">
               <div className="relative flex-1">
                 <svg
@@ -168,9 +168,8 @@ export default function Footer() {
               </button>
             </form>
             <p className="text-gray-400 text-sm">
-              Hello we are UI Monks. Our goal is to translate the positive
-              effects from revolutionizing how companies engage with their
-              clients & their team.
+              Subscribe to get the latest NSPIRE updates, news, and inspection
+              resources.
             </p>
           </div>
         </div>
@@ -179,7 +178,7 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <NextLink href="/">
-              <div className="bg-white p-3 sm:p-5 rounded-lg shadow-md w-[160px] h-[70px] sm:w-[240px] sm:h-[100px] flex items-center justify-center">
+              <div className="bg-white p-2 rounded-lg shadow-md w-[100px] h-[44px] sm:w-[140px] sm:h-[60px] flex items-center justify-center">
                 <Image
                   src="/logo.png"
                   alt="INSPIRE"
@@ -190,13 +189,17 @@ export default function Footer() {
               </div>
             </NextLink>
             <NextLink href="https://nspireinspectionapp.com/" target="_blank">
-              <div className="bg-white p-3 sm:p-5 rounded-lg shadow-md w-[160px] h-[70px] sm:w-[240px] sm:h-[100px] flex items-center justify-center overflow-visible">
+              <div className="bg-white p-2 rounded-lg shadow-md w-[100px] h-[44px] sm:w-[140px] sm:h-[60px] flex items-center justify-center overflow-hidden">
                 <Image
                   src="/logo1.png"
                   alt="NSPIRE (Public)"
                   width={220}
                   height={90}
-                  className="object-contain w-full h-full scale-[2.6]"
+                  // logo1.png carries a lot of empty margin, so it needs
+                  // scaling up to read at all. It used to be 2.6 with the box
+                  // set to overflow-visible, which simply spilled it over the
+                  // edges; this fills the box and the box clips the rest.
+                  className="object-contain w-full h-full scale-[1.9]"
                 />
               </div>
             </NextLink>
