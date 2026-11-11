@@ -144,6 +144,45 @@ function NSPIREInspectionSummaryContent() {
       setSendingFreeReport(false)
     }
   }
+
+  // The report can be emailed in either state. Locked, this is the free way to
+  // get it; unlocked, it is the only way left on this page, since the two
+  // export buttons at the top were removed.
+  const renderEmailReport = (tone: 'amber' | 'green', label: string) => {
+    const edge = tone === 'amber' ? 'border-amber-300' : 'border-green-300'
+    const ink = tone === 'amber' ? 'text-amber-800 hover:bg-amber-100' : 'text-green-800 hover:bg-green-100'
+    const ring = tone === 'amber' ? 'focus:border-amber-500' : 'focus:border-green-500'
+
+    return showFreeEmail ? (
+      <div className="flex flex-col sm:flex-row gap-2">
+        <input
+          type="email"
+          value={freeEmail}
+          onChange={(e) => setFreeEmail(e.target.value)}
+          placeholder="you@example.com"
+          disabled={sendingFreeReport}
+          className={`flex-1 h-10 rounded-lg border ${edge} px-3 text-xs outline-none ${ring} disabled:opacity-60`}
+        />
+        <Button
+          onClick={handleEmailFreeReport}
+          disabled={sendingFreeReport}
+          className="h-10 gap-2 bg-[#006795] hover:bg-[#0a5670] text-white text-xs font-bold rounded-lg"
+        >
+          <Mail className="w-3.5 h-3.5" />
+          {sendingFreeReport ? 'Sending...' : 'Send PDF + Excel'}
+        </Button>
+      </div>
+    ) : (
+      <Button
+        onClick={() => setShowFreeEmail(true)}
+        variant="outline"
+        className={`h-10 w-full gap-2 ${edge} ${ink} text-xs font-bold rounded-lg`}
+      >
+        <Mail className="w-3.5 h-3.5" />
+        {label}
+      </Button>
+    )
+  }
   // Custom column header from the building table (editable in property-details)
   const [buildingColumnHeader, setBuildingColumnHeader] = useState('Building')
   // Deficiency preview modal
@@ -1180,9 +1219,16 @@ function NSPIREInspectionSummaryContent() {
                 <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
               </div>
             ) : isReportUnlocked ? (
-              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200 flex items-center gap-3">
-                <Unlock className="w-5 h-5 text-green-700" />
-                <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
+              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200">
+                <div className="flex items-center gap-3">
+                  <Unlock className="w-5 h-5 text-green-700" />
+                  <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
+                </div>
+                {/* Paid, and still worth emailing: this page has no other
+                    export button since the two at the top were removed. */}
+                <div className="mt-3 pt-3 border-t border-green-200">
+                  {renderEmailReport('green', 'Email this report — PDF + Excel')}
+                </div>
               </div>
             ) : (
               <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
@@ -1213,37 +1259,9 @@ function NSPIREInspectionSummaryContent() {
                   </Button>
                 </div>
 
-                {/* Free route: the report is emailed instead of unlocked. */}
+                {/* The free route: the report is emailed instead of unlocked. */}
                 <div className="mt-3 pt-3 border-t border-amber-200">
-                  {showFreeEmail ? (
-                    <div className="flex flex-col sm:flex-row gap-2">
-                      <input
-                        type="email"
-                        value={freeEmail}
-                        onChange={(e) => setFreeEmail(e.target.value)}
-                        placeholder="you@example.com"
-                        disabled={sendingFreeReport}
-                        className="flex-1 h-10 rounded-lg border border-amber-300 px-3 text-xs outline-none focus:border-amber-500 disabled:opacity-60"
-                      />
-                      <Button
-                        onClick={handleEmailFreeReport}
-                        disabled={sendingFreeReport}
-                        className="h-10 gap-2 bg-[#006795] hover:bg-[#0a5670] text-white text-xs font-bold rounded-lg"
-                      >
-                        <Mail className="w-3.5 h-3.5" />
-                        {sendingFreeReport ? 'Sending...' : 'Send PDF + Excel'}
-                      </Button>
-                    </div>
-                  ) : (
-                    <Button
-                      onClick={() => setShowFreeEmail(true)}
-                      variant="outline"
-                      className="h-10 w-full gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
-                    >
-                      <Mail className="w-3.5 h-3.5" />
-                      View Free Report — emailed as PDF + Excel
-                    </Button>
-                  )}
+                  {renderEmailReport('amber', 'View Free Report — emailed as PDF + Excel')}
                 </div>
               </div>
             )}
