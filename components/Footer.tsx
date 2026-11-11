@@ -178,9 +178,12 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <NextLink href="/">
-              {/* 80x44 and 109x60 are logo.png's own 1.82:1. A wider box just
-                  letterboxes it and shows as white down both sides. */}
-              <div className="bg-white p-1 rounded-lg shadow-md w-[80px] h-[44px] sm:w-[109px] sm:h-[60px] flex items-center justify-center">
+              {/* Both boxes are the same size, on purpose: side by side,
+                  different sizes read as a mistake. The two logos are not the
+                  same shape though -- logo.png is 1080x593 (1.82:1) and fills
+                  this almost exactly, while logo1.png is square and keeps a
+                  little white down its sides. That is the cost of matching. */}
+              <div className="bg-white p-1 rounded-lg shadow-md w-[70px] h-[44px] sm:w-[96px] sm:h-[60px] flex items-center justify-center">
                 <Image
                   src="/logo.png"
                   alt="INSPIRE"
@@ -191,10 +194,10 @@ export default function Footer() {
               </div>
             </NextLink>
             <NextLink href="https://nspireinspectionapp.com/" target="_blank">
-              {/* logo1.png is 4501x4501 -- square. In a wide box most of what
-                  showed was white, which is why it used to be scaled up past
-                  the edges. A square box lets it simply fill. */}
-              <div className="bg-white p-1 rounded-lg shadow-md w-[44px] h-[44px] sm:w-[60px] sm:h-[60px] flex items-center justify-center">
+              {/* Same box as its neighbour. logo1.png is 4501x4501, square, so
+                  it fits by height and leaves white at the sides; it used to be
+                  scaled up past the edges to hide that. */}
+              <div className="bg-white p-1 rounded-lg shadow-md w-[70px] h-[44px] sm:w-[96px] sm:h-[60px] flex items-center justify-center">
                 <Image
                   src="/logo1.png"
                   alt="NSPIRE (Public)"
