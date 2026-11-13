@@ -1,131 +1,219 @@
 "use client"
 
+/**
+ * Unit selection, matching the app's UnitInspectionScreen.
+ *
+ * What stood here was a mockup: three hardcoded units (101, 102, 103) and one
+ * hardcoded property named "COHEN'S PARK APA...". Nothing was loaded and
+ * nothing was sampled.
+ *
+ * The app picks units by the NSPIRE table and a seed derived from the property
+ * id, so the same property always sends every inspector to the same doors.
+ * lib/unitSampling.ts is that logic, ported unchanged.
+ */
+
 import { useRouter, useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import ManagementDashboardLayout from "@/components/ManagementDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { toast } from "react-toastify"
+import { propertiesAPI } from "@/lib/api"
+import {
+  generateRandomUnitSample,
+  getSamplingExplanation,
+  isRandomSelectionAvailable,
+  type UnitSample,
+} from "@/lib/unitSampling"
 
 export default function UnitSelection() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const propertyId = searchParams.get('property')
-  const [searchName, setSearchName] = useState("")
-  const [selectedState, setSelectedState] = useState("")
-  const [selectedCity, setSelectedCity] = useState("")
+  const propertyId = searchParams.get("property") || searchParams.get("id") || ""
 
-  const units = [
-    { id: "101", status: "needs-attention", label: "Needs Attention", color: "text-gray-900", bgColor: "bg-white" },
-    { id: "102", status: "completed", label: "Completed", color: "text-gray-900", bgColor: "bg-white" },
-    { id: "103", status: "unpaid", label: "Unpaid", color: "text-gray-900", bgColor: "bg-white" },
-  ]
+  const [property, setProperty] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [sample, setSample] = useState<UnitSample | null>(null)
 
-  const properties = [
-    { id: "001", name: "COHEN'S PARK APA...", units: 12 }
-  ]
+  const loadProperty = useCallback(async () => {
+    if (!propertyId) {
+      setLoading(false)
+      return
+    }
+    try {
+      const data = await propertiesAPI.getById(propertyId)
+      setProperty(data?.property || data)
+    } catch (error: any) {
+      console.error("Could not load the property:", error)
+      toast.error(error?.message || "Could not load this property", { position: "top-right" })
+    } finally {
+      setLoading(false)
+    }
+  }, [propertyId])
+
+  useEffect(() => {
+    loadProperty()
+  }, [loadProperty])
+
+  const totalUnits = Number(property?.totalUnits ?? property?.units ?? 0)
+
+  // Unit 001 .. Unit NNN, the names the sampler works in.
+  const allUnits = useMemo(
+    () =>
+      Array.from({ length: totalUnits }, (_, i) => `Unit ${(i + 1).toString().padStart(3, "0")}`),
+    [totalUnits]
+  )
+
+  const inspectUnit = (unitName: string) => {
+    router.push(
+      `/management/dashboard/inspection-category/${propertyId}?unit=${encodeURIComponent(unitName)}&units=1`
+    )
+  }
+
+  const handleRandomUnitSelection = () => {
+    try {
+      if (!isRandomSelectionAvailable(totalUnits)) {
+        toast.error(`Random selection needs at least 1 unit; this property has ${totalUnits}.`, {
+          position: "top-right",
+        })
+        return
+      }
+      setSample(generateRandomUnitSample(totalUnits, propertyId))
+    } catch (error: any) {
+      toast.error(error?.message || "Could not generate a unit sample", { position: "top-right" })
+    }
+  }
+
+  if (loading) {
+    return (
+      <ManagementDashboardLayout>
+        <div className="min-h-screen bg-[#E8F4F8] p-6 flex items-center justify-center">
+          <span className="text-sm font-semibold text-gray-600">Loading property...</span>
+        </div>
+      </ManagementDashboardLayout>
+    )
+  }
+
+  if (!property) {
+    return (
+      <ManagementDashboardLayout>
+        <div className="min-h-screen bg-[#E8F4F8] p-6">
+          <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-md p-6">
+            <h1 className="text-xl font-bold text-gray-900 mb-2">No property selected</h1>
+            <p className="text-sm text-gray-600 mb-4">
+              Open this page from a property so its units can be loaded.
+            </p>
+            <Button onClick={() => router.push("/management/dashboard")} className="bg-[#006795] text-white">
+              Back to Dashboard
+            </Button>
+          </div>
+        </div>
+      </ManagementDashboardLayout>
+    )
+  }
 
   return (
     <ManagementDashboardLayout>
       <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 lg:p-8">
-        {/* Header Section */}
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">
-            Unit Selection
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6">
+            Select Unit For Inspection
           </h1>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col gap-3 mb-6">
-            <Button
-              className="w-full bg-[#F84B5F] hover:bg-[#E63946] text-white font-semibold py-3 sm:py-4 md:py-5 rounded-lg text-sm sm:text-base md:text-lg shadow-md transition-all"
-            >
-              Add Property
-            </Button>
-          </div>
+          {/* Property card */}
+          <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6">
+            <h2 className="text-lg sm:text-xl font-bold text-[#006795]">{property.name}</h2>
+            <p className="text-sm text-gray-600 mb-4">
+              {[property.address, property.city, property.state].filter(Boolean).join(", ")}
+            </p>
 
-          {/* Property Results */}
-          <div className="space-y-3 sm:space-y-4 mb-6">
-            {properties.map((property) => (
-              <div
-                key={property.id}
-                className="bg-white rounded-xl shadow-md p-4 sm:p-5 md:p-6 hover:shadow-lg transition-shadow"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Button
+                onClick={() =>
+                  router.push(`/management/dashboard/inspection-category/${propertyId}?units=${totalUnits}`)
+                }
+                className="h-11 gap-2 bg-[#006795] hover:bg-[#0A5670] text-white font-semibold rounded-lg"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs sm:text-sm font-semibold text-gray-500">
-                        #{property.id}
-                      </span>
-                    </div>
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-1">
-                      {property.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600">
-                      Units: {property.units}
-                    </p>
-                  </div>
-                  <Button
-                    onClick={() => router.push(`/management/dashboard/inspection/unit-selection?property=${property.id}`)}
-                    className="w-full sm:w-auto bg-[#006795] hover:bg-[#00567a] text-white font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base shadow-md transition-all"
-                  >
-                    Initiate
-                  </Button>
-                </div>
-              </div>
-            ))}
+                Start AI Inspection
+              </Button>
+
+              {isRandomSelectionAvailable(totalUnits) && (
+                <Button
+                  onClick={handleRandomUnitSelection}
+                  className="h-11 gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg"
+                >
+                  Random Unit Selection
+                </Button>
+              )}
+            </div>
+
+            {isRandomSelectionAvailable(totalUnits) && (
+              <p className="text-xs text-gray-500 mt-3">{getSamplingExplanation(totalUnits)}</p>
+            )}
           </div>
 
-          {/* Unit Selection Section - Only show if property is selected */}
-          {propertyId && (
-            <>
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 mt-8">
-                Select Units for Property {propertyId}
-              </h2>
+          {/* The sample, once asked for */}
+          {sample && (
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5 shadow-sm mb-6">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-bold text-emerald-900 uppercase tracking-wide">
+                  Sampling Summary
+                </h3>
+                <span className="text-xs font-semibold text-emerald-700">
+                  {sample.unitsToInspect} of {sample.totalUnits} units
+                </span>
+              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
-                {units.map((unit) => (
-                  <Card
-                    key={unit.id}
-                    className={`${unit.bgColor} border-2 border-gray-300 rounded-xl p-4 sm:p-5 md:p-6 cursor-pointer hover:shadow-lg hover:border-[#006795] transition-all`}
-                    onClick={() => router.push(`/management/dashboard/inspection/${unit.id}`)}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {sample.selectedUnits.map((unitName) => (
+                  <button
+                    key={unitName}
+                    onClick={() => inspectUnit(unitName)}
+                    className="px-3 py-1.5 rounded-lg bg-white border border-emerald-300 text-xs font-semibold text-emerald-900 hover:bg-emerald-100"
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="w-2 h-2 sm:w-3 sm:h-3 bg-gray-400 rounded-full"></span>
-                          <span className={`text-xs sm:text-sm font-medium ${unit.color}`}>
-                            {unit.label}
-                          </span>
-                        </div>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                          Unit {unit.id}
-                        </h3>
-                      </div>
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-600">Click to inspect</p>
-                  </Card>
+                    {unitName}
+                  </button>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button
-                  onClick={() => router.push('/management/dashboard/inspection/summary')}
-                  className="w-full sm:flex-1 bg-[#006795] hover:bg-[#0A5670] text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
-                >
-                  Summary
-                </Button>
-                <Button
-                  onClick={() => router.push('/management/dashboard')}
-                  className="w-full sm:flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 sm:py-4 rounded-lg text-sm sm:text-base shadow-md transition-all"
-                >
-                  Back to Dashboard
-                </Button>
-              </div>
-            </>
+              <Button
+                onClick={() => inspectUnit(sample.selectedUnits[0])}
+                className="h-10 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg"
+              >
+                Start Inspection
+              </Button>
+            </div>
+          )}
+
+          {/* Every unit, for picking one by hand */}
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
+            All Units ({totalUnits})
+          </h2>
+
+          {totalUnits === 0 ? (
+            <p className="text-sm text-gray-600">This property has no units recorded yet.</p>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              {allUnits.map((unitName) => {
+                const inSample = sample?.selectedUnits.includes(unitName)
+                return (
+                  <Card
+                    key={unitName}
+                    onClick={() => inspectUnit(unitName)}
+                    className={`cursor-pointer rounded-xl p-4 border-2 transition-all hover:shadow-lg ${
+                      inSample
+                        ? "border-emerald-400 bg-emerald-50 hover:border-emerald-500"
+                        : "border-gray-300 bg-white hover:border-[#006795]"
+                    }`}
+                  >
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900">{unitName}</h3>
+                    <p className="text-xs text-gray-600 mt-1">
+                      {inSample ? "In NSPIRE sample" : "Click to inspect"}
+                    </p>
+                  </Card>
+                )
+              })}
+            </div>
           )}
         </div>
       </div>
