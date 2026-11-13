@@ -7,6 +7,12 @@ import { inspectionsAPI, propertiesAPI } from "@/lib/api"
 import * as XLSX from 'xlsx'
 import { useRouter, usePathname } from "next/navigation"
 import { Country, State, City } from 'country-state-city'
+import {
+  divideUnitsEvenly,
+  redivideKeepingNames,
+  setUnitsRebalancingAfter,
+  totalUnitsOf,
+} from "@/lib/buildingDivision"
 
 // This file is shared by every portal, so it must not hardcode inspector routes.
 // Resolve the current portal's flow base from the URL. Note admin is the odd one out:
@@ -807,10 +813,11 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 // ============================================
 // Building Division Modal (Property Details)
 // ============================================
-interface BuildingData {
-  name: string
-  units: number
-}
+// The split lives in lib/buildingDivision.ts, shared with the app. Editing one
+// building re-spreads only the buildings after it; this modal used to push the
+// whole difference into the first other building in the list, which could sit
+// before the edited one, so changing B3 sent B1 somewhere nobody asked for.
+import type { BuildingData } from "@/lib/buildingDivision"
 
 interface BuildingDivisionModalProps {
   isOpen: boolean
@@ -828,29 +835,12 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
       const numBuildings = parseInt(propertyData.buildings) || 1
       const totalUnits = parseInt(propertyData.units) || 0
 
-      // Evenly divide units across buildings
-      const unitsPerBuilding = Math.floor(totalUnits / numBuildings)
-      const remainder = totalUnits % numBuildings
-
-      setBuildings(prev => {
-        // If we already have the correct number of buildings, just update units
-        if (prev.length === numBuildings) {
-          return prev.map((b, i) => ({
-            ...b,
-            units: unitsPerBuilding + (i < remainder ? 1 : 0)
-          }))
-        }
-
-        // Otherwise, initialize new list
-        const buildingList: BuildingData[] = []
-        for (let i = 0; i < numBuildings; i++) {
-          buildingList.push({
-            name: `B${i + 1}`,
-            units: unitsPerBuilding + (i < remainder ? 1 : 0),
-          })
-        }
-        return buildingList
-      })
+      // An even split to start from; names the user already typed survive it.
+      setBuildings(prev =>
+        prev.length === numBuildings
+          ? redivideKeepingNames(prev, totalUnits)
+          : divideUnitsEvenly(totalUnits, numBuildings)
+      )
     }
   }, [propertyData, isOpen])
 
@@ -861,43 +851,11 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
   }
 
   const updateBuildingUnits = (index: number, newUnits: number) => {
-    setBuildings(prev => {
-      const updated = prev.map(b => ({ ...b }))
-      const oldUnits = updated[index].units
-      const diff = newUnits - oldUnits
-      
-      updated[index].units = newUnits
-      if (diff === 0) return updated
-
-      let remainingDiff = -diff
-      
-      for (let i = 0; i < updated.length; i++) {
-        if (i === index) continue
-        
-        if (remainingDiff > 0) {
-          updated[i].units += remainingDiff
-          remainingDiff = 0
-          break
-        } else if (remainingDiff < 0) {
-          const available = updated[i].units
-          if (available > 0) {
-            const toSubtract = Math.min(available, Math.abs(remainingDiff))
-            updated[i].units -= toSubtract
-            remainingDiff += toSubtract
-            if (remainingDiff === 0) break
-          }
-        }
-      }
-      return updated
-    })
+    const totalUnits = parseInt(propertyData?.units) || 0
+    setBuildings(prev => setUnitsRebalancingAfter(prev, index, newUnits, totalUnits))
   }
 
-  // Calculate total units from all buildings
-  const calculateTotalUnits = () => {
-    return buildings.reduce((total, building) => total + (building.units || 0), 0)
-  }
-
-  const totalCalculatedUnits = calculateTotalUnits()
+  const totalCalculatedUnits = totalUnitsOf(buildings)
   const originalTotalUnits = parseInt(propertyData?.units) || 0
 
   const handleUpdate = () => {
