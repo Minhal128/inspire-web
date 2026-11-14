@@ -28,6 +28,12 @@ export default function Dashboard() {
   const [showRequestModal, setShowRequestModal] = useState(false)
   const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
   const [showBuildingDivisionModal, setShowBuildingDivisionModal] = useState(false)
+  // One add-property flow is one mount of the two modals below. They keep what
+  // was typed for as long as the flow is open -- that is what lets Back return
+  // to a filled form -- so a finished flow has to be thrown away on purpose, or
+  // the next property opens with the last one's form and building names in it.
+  const [addFlowKey, setAddFlowKey] = useState(0)
+  const startFreshAddFlow = () => setAddFlowKey(k => k + 1)
   const [showActionModal, setShowActionModal] = useState(false)
   const [showCoverageModal, setShowCoverageModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
@@ -311,6 +317,7 @@ export default function Dashboard() {
         fetchProperties()
         setNewPropertyData(response.property || data)
         setShowBuildingDivisionModal(false)
+        startFreshAddFlow()
         setShowActionModal(true)
       }
     } catch (error: any) {
@@ -661,11 +668,13 @@ export default function Dashboard() {
         onClose={() => setShowRequestModal(false)}
       />
       <AddPropertyModal
+        key={`add-property-${addFlowKey}`}
         isOpen={showAddPropertyModal}
-        onClose={() => setShowAddPropertyModal(false)}
+        onClose={() => { setShowAddPropertyModal(false); startFreshAddFlow() }}
         onNext={handleAddPropertyNext}
       />
       <BuildingDivisionModal
+        key={`building-division-${addFlowKey}`}
         isOpen={showBuildingDivisionModal}
         onClose={() => setShowBuildingDivisionModal(false)}
         onBack={handleBuildingBack}
