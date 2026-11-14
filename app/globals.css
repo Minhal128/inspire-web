@@ -76,8 +76,18 @@
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  /* "Geist" was never actually loaded -- the only faces registered are
+     Next.js's own dev-overlay font, under a different family name
+     (__nextjs-Geist) and capped at weight 600. So everything fell through to
+     a fallback with no real bold face, and 600, 700 and 900 all rendered
+     identically: measured on canvas, the same string inked 2678 at every one
+     of them. That is why the app looked bolder than the web despite the web
+     carrying more bold classes -- 98 of them were doing nothing.
+
+     The system stack is what the app itself uses, having no fontFamily of its
+     own, and its weights are real: 2741 at 600, 3563 at 700, 4523 at 900. */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
