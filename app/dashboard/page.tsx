@@ -271,6 +271,13 @@ export default function Dashboard() {
     setShowBuildingDivisionModal(true)
   }
 
+  // Back from the building split to the form. The property is only created on
+  // Update, so there is nothing to undo -- just swap which modal is showing.
+  const handleBuildingBack = () => {
+    setShowBuildingDivisionModal(false)
+    setShowAddPropertyModal(true)
+  }
+
   const handleBuildingUpdate = async (data: any, buildings: { name: string; units: number }[]) => {
     try {
       const response = await propertiesAPI.create({
@@ -662,6 +669,7 @@ export default function Dashboard() {
       <BuildingDivisionModal
         isOpen={showBuildingDivisionModal}
         onClose={() => setShowBuildingDivisionModal(false)}
+        onBack={handleBuildingBack}
         onUpdate={handleBuildingUpdate}
         propertyData={newPropertyData}
       />

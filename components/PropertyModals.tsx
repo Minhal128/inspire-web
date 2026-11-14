@@ -822,11 +822,14 @@ import type { BuildingData } from "@/lib/buildingDivision"
 interface BuildingDivisionModalProps {
   isOpen: boolean
   onClose: () => void
-  onUpdate: (data: any, buildings: BuildingData[]) => void
+  // Back to the Add Property form. Without it the modal shows no Back button.
+  onBack?: () => void
+  // May return the save's promise: the modal waits on it to learn the save ended.
+  onUpdate: (data: any, buildings: BuildingData[]) => void | Promise<void>
   propertyData: any
 }
 
-export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData }: BuildingDivisionModalProps) {
+export function BuildingDivisionModal({ isOpen, onClose, onBack, onUpdate, propertyData }: BuildingDivisionModalProps) {
   const [buildings, setBuildings] = useState<BuildingData[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -858,7 +861,7 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
   const totalCalculatedUnits = totalUnitsOf(buildings)
   const originalTotalUnits = parseInt(propertyData?.units) || 0
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     // Validate that total units match
     if (totalCalculatedUnits !== originalTotalUnits) {
       toast.error(`Total units must equal ${originalTotalUnits}. Current total: ${totalCalculatedUnits}`, { 
@@ -873,8 +876,16 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
         return
       }
     }
+    // Cleared when the save settles. This modal stays mounted while hidden, so a
+    // flag that was only ever set outlived the save: after a failed one, Update
+    // read "Saving..." and stayed dead until the page was reloaded -- which
+    // would also strand anyone who stepped Back to fix the form and returned.
     setIsLoading(true)
-    onUpdate(propertyData, buildings)
+    try {
+      await onUpdate(propertyData, buildings)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (!isOpen || !propertyData) return null
@@ -894,7 +905,26 @@ export function BuildingDivisionModal({ isOpen, onClose, onUpdate, propertyData 
           </svg>
         </button>
 
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Property Details</h2>
+        {/* Back returns to the Add Property form. Nothing is saved before Update
+            and the form keeps what was typed, so stepping back loses nothing.
+            Held while a save is in flight, or its result would land on top of
+            the reopened form. */}
+        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 pr-8 sm:pr-10">
+          {onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              disabled={isLoading}
+              className="flex items-center gap-1 pl-2 pr-3 py-1.5 border border-[#006795] text-[#006795] hover:bg-[#E8F4F8] disabled:opacity-50 disabled:cursor-not-allowed text-sm font-semibold rounded-lg transition-colors shrink-0"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back
+            </button>
+          )}
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Property Details</h2>
+        </div>
 
         {/* Property Info Header */}
         <div className="bg-gray-100 rounded-lg p-3 sm:p-4 mb-6 border border-gray-200">
