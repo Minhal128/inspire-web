@@ -1,380 +1,261 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import ManagementDashboardLayout from "@/components/ManagementDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
-import { propertiesAPI, inspectionsAPI, usersAPI } from "@/lib/api"
 
-interface PropertyPerformance {
+interface User {
+  id: string
   name: string
-  score: number
-  color: string
+  email: string
+  role: string
+  properties: string[]
+  status: "Active" | "Inactive"
+  joinDate: string
 }
 
-interface CommonIssue {
-  name: string
-  percentage: number
-}
+export default function OthersPage() {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [roleFilter, setRoleFilter] = useState("")
+  const [statusFilter, setStatusFilter] = useState("")
 
-interface Property {
-  _id: string
-  name: string
-}
+  // Mock data - non-inspector users from signup
+  const users: User[] = [
+    {
+      id: "USR-001",
+      name: "Sarah Mitchell",
+      email: "sarah.mitchell@example.com",
+      role: "Property Manager",
+      properties: ["Sunset Apartments", "River Heights", "Oakwood Towers"],
+      status: "Active",
+      joinDate: "2024-01-15",
+    },
+    {
+      id: "USR-002",
+      name: "Michael Chen",
+      email: "michael.chen@example.com",
+      role: "Property Manager",
+      properties: ["Courthouse Apartments", "Calhoun Homes"],
+      status: "Active",
+      joinDate: "2024-02-10",
+    },
+    {
+      id: "USR-003",
+      name: "Emma Johnson",
+      email: "emma.johnson@example.com",
+      role: "Supervisor",
+      properties: ["STEPHEN'S PARK APA", "Demure St-Hilaire"],
+      status: "Active",
+      joinDate: "2024-01-20",
+    },
+    {
+      id: "USR-004",
+      name: "David Martinez",
+      email: "david.martinez@example.com",
+      role: "Coordinator",
+      properties: ["Sunset Apartments"],
+      status: "Inactive",
+      joinDate: "2023-12-05",
+    },
+    {
+      id: "USR-005",
+      name: "Jessica Lee",
+      email: "jessica.lee@example.com",
+      role: "Property Manager",
+      properties: ["River Heights", "Oakwood Towers", "Courthouse Apartments"],
+      status: "Active",
+      joinDate: "2024-01-08",
+    },
+  ]
 
-interface Inspector {
-  _id: string
-  name: string
-}
+  // Filter users
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch =
+      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesRole = !roleFilter || user.role === roleFilter
+    const matchesStatus = !statusFilter || user.status === statusFilter
+    return matchesSearch && matchesRole && matchesStatus
+  })
 
-export default function Analytics() {
-  const [selectedProperty, setSelectedProperty] = useState("")
-  const [selectedTimeRange, setSelectedTimeRange] = useState("")
-  const [selectedInspector, setSelectedInspector] = useState("")
-  const [properties, setProperties] = useState<Property[]>([])
-  const [inspectors, setInspectors] = useState<Inspector[]>([])
-  const [propertyPerformance, setPropertyPerformance] = useState<PropertyPerformance[]>([])
-  const [commonIssues, setCommonIssues] = useState<CommonIssue[]>([])
-  const [stats, setStats] = useState({ compliant: 50, needsAttention: 30, nonCompliant: 20 })
-  const [loading, setLoading] = useState(true)
+  const handleViewDetails = (userId: string) => {
+    toast.info(`Viewing details for user ${userId}`, { position: "top-right" })
+  }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      
-      // Fetch properties
-      const propertiesRes = await propertiesAPI.getAll()
-      const propertiesData = propertiesRes.properties || []
-      setProperties(propertiesData)
-      
-      // Calculate property performance from actual properties
-      const performance = propertiesData.slice(0, 5).map((p: any) => ({
-        name: p.name,
-        score: p.complianceScore || Math.floor(Math.random() * 50 + 50),
-        color: (p.complianceScore || 75) >= 70 ? 'bg-green-500' : (p.complianceScore || 75) >= 50 ? 'bg-yellow-500' : 'bg-red-500'
-      }))
-      setPropertyPerformance(performance)
-      
-      // Fetch inspections for stats
-      const inspectionsRes = await inspectionsAPI.getAll()
-      const inspections = inspectionsRes.inspections || []
-      
-      // Calculate compliance distribution
-      const completed = inspections.filter((i: any) => i.status === 'completed' || i.result === 'pass').length
-      const pending = inspections.filter((i: any) => i.status === 'pending' || i.status === 'in-progress').length
-      const failed = inspections.filter((i: any) => i.result === 'fail' || i.status === 'failed').length
-      const total = inspections.length || 1
-      
-      setStats({
-        compliant: Math.round((completed / total) * 100) || 50,
-        needsAttention: Math.round((pending / total) * 100) || 30,
-        nonCompliant: Math.round((failed / total) * 100) || 20
-      })
-      
-      // Fetch inspectors
-      try {
-        const usersRes = await usersAPI.getAllUsers()
-        const users = usersRes.users || []
-        const inspectorUsers = users.filter((u: any) => u.role === 'inspector')
-        setInspectors(inspectorUsers)
-      } catch (error) {
-        console.error('Failed to fetch inspectors:', error)
-      }
-      
-      // Set common issues (from inspection findings when available)
-      setCommonIssues([
-        { name: "Electrical", percentage: 75 },
-        { name: "Plumbing", percentage: 80 },
-        { name: "Fire Safety", percentage: 60 },
-        { name: "General Windows", percentage: 45 }
-      ])
-      
-    } catch (error) {
-      console.error('Failed to fetch analytics data:', error)
-      toast.error('Failed to load analytics data')
-    } finally {
-      setLoading(false)
+  const getRoleColor = (role: string) => {
+    const colors: { [key: string]: string } = {
+      "Property Manager": "bg-blue-100 text-blue-700",
+      "Supervisor": "bg-purple-100 text-purple-700",
+      "Coordinator": "bg-green-100 text-green-700",
     }
+    return colors[role] || "bg-gray-100 text-gray-700"
   }
 
-  const handleApply = () => {
-    toast.info("Applying filters...", { position: "top-right" })
-    fetchData()
+  const getStatusColor = (status: string) => {
+    return status === "Active"
+      ? "bg-green-100 text-green-700"
+      : "bg-gray-100 text-gray-700"
   }
 
-  const handleExport = () => {
-    toast.success("Exporting analytics data...", { position: "top-right" })
-  }
-
-  const handleShareDashboard = () => {
-    toast.success("Dashboard shared successfully!", { position: "top-right" })
-  }
+  const uniqueRoles = [...new Set(users.map(u => u.role))]
 
   return (
     <ManagementDashboardLayout>
-      <div className="p-4 md:p-6">
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Analytics & Insights</h1>
-          <p className="text-sm text-gray-600">Track inspection performance and compliance trends across all your properties</p>
-        </div>
-
-        {/* Filters */}
-        <Card className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="bg-white rounded-lg p-4 sm:p-5 md:p-6 mb-4 sm:mb-6 shadow-sm">
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-2">Property</label>
-              <select
-                value={selectedProperty}
-                onChange={(e) => setSelectedProperty(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
-              >
-                <option value="">All Properties</option>
-                {properties.map(property => (
-                  <option key={property._id} value={property._id}>{property.name}</option>
-                ))}
-              </select>
-            </div>
-            
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-2">Time Period</label>
-              <select
-                value={selectedTimeRange}
-                onChange={(e) => setSelectedTimeRange(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
-              >
-                <option value="">Select Period</option>
-                <option value="7days">Last 7 Days</option>
-                <option value="week">This Week</option>
-                <option value="month">This Month</option>
-                <option value="quarter">This Quarter</option>
-              </select>
-            </div>
-            
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-2">Inspector</label>
-              <select
-                value={selectedInspector}
-                onChange={(e) => setSelectedInspector(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-[#E8F4F8] border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
-              >
-                <option value="">All Inspectors</option>
-                {inspectors.map(inspector => (
-                  <option key={inspector._id} value={inspector._id}>{inspector.name}</option>
-                ))}
-              </select>
-            </div>
-            
-            <div className="flex items-end">
-              <Button
-                onClick={handleApply}
-                className="w-full bg-[#006795] hover:bg-[#0A5670] text-white font-medium py-2 rounded-lg"
-              >
-                Apply
-              </Button>
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-1">Others</h1>
+              <p className="text-sm sm:text-base text-gray-600">
+                View all non-inspector users (Property Managers, Supervisors, Coordinators) and their associated properties.
+              </p>
             </div>
           </div>
-        </Card>
 
-        {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          {/* Overall Compliance Trend */}
-          <Card className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Overall Compliance Trend</h2>
-            
-            <div className="relative h-64">
-              <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
-                {/* Grid lines */}
-                <line x1="0" y1="0" x2="400" y2="0" stroke="#E5E7EB" strokeWidth="1"/>
-                <line x1="0" y1="50" x2="400" y2="50" stroke="#E5E7EB" strokeWidth="1"/>
-                <line x1="0" y1="100" x2="400" y2="100" stroke="#E5E7EB" strokeWidth="1"/>
-                <line x1="0" y1="150" x2="400" y2="150" stroke="#E5E7EB" strokeWidth="1"/>
-                <line x1="0" y1="200" x2="400" y2="200" stroke="#E5E7EB" strokeWidth="1"/>
-                
-                {/* Green line */}
-                <polyline
-                  fill="none"
-                  stroke="#10B981"
-                  strokeWidth="3"
-                  points="0,120 50,100 100,80 150,60 200,50 250,55 300,45 350,50 400,60"
-                />
-                
-                {/* Yellow line */}
-                <polyline
-                  fill="none"
-                  stroke="#F59E0B"
-                  strokeWidth="3"
-                  points="0,150 50,145 100,140 150,138 200,135 250,132 300,135 350,140 400,145"
-                />
-                
-                {/* Red line */}
-                <polyline
-                  fill="none"
-                  stroke="#EF4444"
-                  strokeWidth="3"
-                  points="0,180 50,178 100,175 150,172 200,170 250,172 300,175 350,178 400,180"
-                />
-              </svg>
-              
-              <div className="flex justify-between mt-2 text-xs text-gray-500">
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>March</span>
-                <span>April</span>
-                <span>May</span>
-                <span>June</span>
-                <span>July</span>
+          {/* Filters */}
+          <Card className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-6">
+            <h3 className="text-sm font-semibold text-gray-700 mb-4">Filters</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Search */}
+              <div className="lg:col-span-2">
+                <label className="block text-xs font-medium text-gray-700 mb-2">
+                  Search by Name or Email
+                </label>
+                <div className="relative">
+                  <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Search users..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Y-axis Labels */}
-            <div className="mt-4 text-xs text-gray-500">
-              <div className="flex items-center gap-2 text-gray-600">
-                <span>0</span>
-                <span className="flex-1"></span>
-                <span>100</span>
-                <span className="flex-1"></span>
-                <span>200</span>
-                <span className="flex-1"></span>
-                <span>300</span>
+              {/* Role Filter */}
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-2">Role</label>
+                <select
+                  value={roleFilter}
+                  onChange={(e) => setRoleFilter(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                >
+                  <option value="">All Roles</option>
+                  {uniqueRoles.map((role) => (
+                    <option key={role} value={role}>{role}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Status Filter */}
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-2">Status</label>
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#006795] text-sm"
+                >
+                  <option value="">All Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
               </div>
             </div>
           </Card>
 
-          {/* Property Performance */}
-          <Card className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-gray-900">Property Performance</h2>
-              <div className="flex gap-2">
-                <Button
-                  onClick={handleExport}
-                  className="bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm"
-                >
-                  Export Analytics
-                </Button>
-                <Button
-                  onClick={handleShareDashboard}
-                  className="bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm"
-                >
-                  Share Dashboard
-                </Button>
-              </div>
-            </div>
+          {/* Users List */}
+          <div className="space-y-4">
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((user) => (
+                <Card key={user.id} className="bg-white rounded-lg shadow-sm p-4 md:p-6">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    {/* User Info */}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#006795] to-[#0A5F7F] flex items-center justify-center text-white font-bold text-lg">
+                          {user.name.charAt(0)}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-gray-900">{user.name}</h3>
+                          <p className="text-sm text-gray-600">{user.email}</p>
+                        </div>
+                      </div>
 
-            <div className="space-y-4">
-              {loading ? (
-                <p className="text-gray-500 text-center py-4">Loading...</p>
-              ) : propertyPerformance.length === 0 ? (
-                <p className="text-gray-500 text-center py-4">No property data available</p>
-              ) : (
-              propertyPerformance.map((property, index) => (
-                <div key={index}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-gray-700">{property.name}</span>
-                    <span className="text-sm font-bold text-gray-900">{property.score}%</span>
+                      {/* Role and Status Badges */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getRoleColor(user.role)}`}>
+                          {user.role}
+                        </span>
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(user.status)}`}>
+                          {user.status}
+                        </span>
+                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
+                          Joined {user.joinDate}
+                        </span>
+                      </div>
+
+                      {/* Associated Properties */}
+                      <div className="mt-4">
+                        <p className="text-sm font-semibold text-gray-700 mb-2">
+                          Associated Properties ({user.properties.length})
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {user.properties.map((property, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 rounded-lg bg-[#E8F4F8] text-[#006795] text-xs font-medium"
+                            >
+                              {property}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex flex-col gap-2 md:w-auto">
+                      <Button
+                        onClick={() => handleViewDetails(user.id)}
+                        className="w-full md:w-auto bg-[#006795] hover:bg-[#0a5670] text-white px-4 py-2 rounded-lg text-sm font-medium"
+                      >
+                        View Details
+                      </Button>
+                    </div>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div
-                      className={`${property.color} h-3 rounded-full`}
-                      style={{ width: `${property.score}%` }}
-                    ></div>
-                  </div>
-                </div>
+                </Card>
               ))
-              )}
-            </div>
-          </Card>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Common Issues */}
-          <Card className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Common Issues</h2>
-            
-            <div className="space-y-4">
-              {commonIssues.map((issue, index) => (
-                <div key={index}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-gray-700">{issue.name}</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-gray-900 h-2 rounded-full"
-                      style={{ width: `${issue.percentage}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          {/* Compliance Distribution */}
-          <Card className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Compliance Distribution</h2>
-            
-            <div className="flex items-center justify-center">
-              {/* Pie Chart */}
-              <div className="relative w-48 h-48">
-                <svg className="transform -rotate-90 w-48 h-48" viewBox="0 0 100 100">
-                  {/* Green segment (Compliant) */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="#10B981"
-                    strokeWidth="20"
-                    strokeDasharray={`${2 * Math.PI * 40 * (stats.compliant / 100)} ${2 * Math.PI * 40}`}
-                    strokeDashoffset="0"
-                  />
-                  {/* Yellow segment (Needs Attention) */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="#F59E0B"
-                    strokeWidth="20"
-                    strokeDasharray={`${2 * Math.PI * 40 * (stats.needsAttention / 100)} ${2 * Math.PI * 40}`}
-                    strokeDashoffset={`${-2 * Math.PI * 40 * (stats.compliant / 100)}`}
-                  />
-                  {/* Red segment (Non-Compliant) */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="#EF4444"
-                    strokeWidth="20"
-                    strokeDasharray={`${2 * Math.PI * 40 * (stats.nonCompliant / 100)} ${2 * Math.PI * 40}`}
-                    strokeDashoffset={`${-2 * Math.PI * 40 * ((stats.compliant + stats.needsAttention) / 100)}`}
-                  />
+            ) : (
+              <Card className="bg-white rounded-lg shadow-sm p-8 text-center">
+                <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM6 20a9 9 0 0118 0v2h2v-2a11 11 0 10-20 0v2h2v-2z" />
                 </svg>
-              </div>
-              
-              {/* Legend */}
-              <div className="ml-8 space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="text-sm font-medium text-gray-700">Compliant ({stats.compliant}%)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <span className="text-sm font-medium text-gray-700">Needs Attention ({stats.needsAttention}%)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <span className="text-sm font-medium text-gray-700">Non-Compliant ({stats.nonCompliant}%)</span>
-                </div>
-              </div>
-            </div>
-          </Card>
+                <p className="text-gray-600 font-medium">No users found matching your filters</p>
+                <p className="text-sm text-gray-500 mt-1">Try adjusting your search or filter criteria</p>
+              </Card>
+            )}
+          </div>
+
+          {/* Summary Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            <Card className="bg-white rounded-lg shadow-sm p-4">
+              <p className="text-sm text-gray-600 mb-1">Total Users</p>
+              <p className="text-2xl font-bold text-gray-900">{users.length}</p>
+            </Card>
+            <Card className="bg-white rounded-lg shadow-sm p-4">
+              <p className="text-sm text-gray-600 mb-1">Active Users</p>
+              <p className="text-2xl font-bold text-green-600">{users.filter(u => u.status === "Active").length}</p>
+            </Card>
+            <Card className="bg-white rounded-lg shadow-sm p-4">
+              <p className="text-sm text-gray-600 mb-1">Inactive Users</p>
+              <p className="text-2xl font-bold text-gray-600">{users.filter(u => u.status === "Inactive").length}</p>
+            </Card>
+          </div>
         </div>
       </div>
     </ManagementDashboardLayout>

@@ -28,30 +28,49 @@ export default function NotificationsPage() {
   const fetchNotifications = async () => {
     try {
       setIsLoading(true)
+      // Mock notifications for now - replace with API call when backend is ready
       const mockNotifications: Notification[] = [
         {
           _id: '1',
-          title: 'System Update',
-          message: 'The NSPIRE system has been updated with new features.',
+          title: 'Inspection Scheduled',
+          message: 'Your inspection for Sunset Apartments Unit 101 has been scheduled for January 5, 2026.',
           type: 'info',
           isRead: false,
-          createdAt: new Date().toISOString()
+          createdAt: new Date().toISOString(),
+          link: '/other/dashboard/my-inspection'
         },
         {
           _id: '2',
-          title: 'Task Assigned',
-          message: 'You have been assigned a new task by the administrator.',
-          type: 'info',
+          title: 'Inspection Complete',
+          message: 'Inspection for River Heights Unit 205 has been completed successfully.',
+          type: 'success',
           isRead: false,
           createdAt: new Date(Date.now() - 3600000).toISOString()
         },
         {
           _id: '3',
-          title: 'Report Available',
-          message: 'Your monthly report is now available for download.',
+          title: 'Action Required',
+          message: 'Follow-up required for Courthouse Apartments Unit 312. Please review the findings.',
+          type: 'warning',
+          isRead: true,
+          createdAt: new Date(Date.now() - 86400000).toISOString(),
+          link: '/other/dashboard/my-inspection'
+        },
+        {
+          _id: '4',
+          title: 'System Update',
+          message: 'NSPIREinspection.AI inspection criteria have been updated. Please review the new guidelines.',
+          type: 'info',
+          isRead: true,
+          createdAt: new Date(Date.now() - 172800000).toISOString()
+        },
+        {
+          _id: '5',
+          title: 'Report Generated',
+          message: 'Your weekly inspection report has been generated and is ready for download.',
           type: 'success',
           isRead: true,
-          createdAt: new Date(Date.now() - 86400000).toISOString()
+          createdAt: new Date(Date.now() - 259200000).toISOString()
         }
       ]
       setNotifications(mockNotifications)
@@ -64,7 +83,7 @@ export default function NotificationsPage() {
   }
 
   const markAsRead = (id: string) => {
-    setNotifications(prev => 
+    setNotifications(prev =>
       prev.map(n => n._id === id ? { ...n, isRead: true } : n)
     )
     toast.success('Marked as read', { position: 'top-right' })
@@ -153,6 +172,7 @@ export default function NotificationsPage() {
   return (
     <OtherDashboardLayout>
       <div className="p-4 md:p-6">
+        {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Notifications</h1>
@@ -162,68 +182,115 @@ export default function NotificationsPage() {
           </div>
           <div className="flex gap-2">
             {unreadCount > 0 && (
-              <Button onClick={markAllAsRead} variant="outline" className="text-sm">
+              <Button
+                onClick={markAllAsRead}
+                variant="outline"
+                className="text-sm"
+              >
                 Mark all as read
               </Button>
             )}
             {notifications.length > 0 && (
-              <Button onClick={clearAll} variant="outline" className="text-sm text-red-600 border-red-300 hover:bg-red-50">
+              <Button
+                onClick={clearAll}
+                variant="outline"
+                className="text-sm text-red-600 border-red-300 hover:bg-red-50"
+              >
                 Clear all
               </Button>
             )}
           </div>
         </div>
 
+        {/* Filter Tabs */}
         <div className="flex gap-2 mb-6">
-          {['all', 'unread', 'read'].map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f as 'all' | 'unread' | 'read')}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                filter === f ? 'bg-[#0D7FA8] text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === 'all'
+                ? 'bg-[#0D7FA8] text-white'
+                : 'bg-white text-gray-700 hover:bg-gray-100'
               }`}
-            >
-              {f.charAt(0).toUpperCase() + f.slice(1)} ({f === 'all' ? notifications.length : f === 'unread' ? unreadCount : notifications.length - unreadCount})
-            </button>
-          ))}
+          >
+            All ({notifications.length})
+          </button>
+          <button
+            onClick={() => setFilter('unread')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === 'unread'
+                ? 'bg-[#0D7FA8] text-white'
+                : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+          >
+            Unread ({unreadCount})
+          </button>
+          <button
+            onClick={() => setFilter('read')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === 'read'
+                ? 'bg-[#0D7FA8] text-white'
+                : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+          >
+            Read ({notifications.length - unreadCount})
+          </button>
         </div>
 
+        {/* Notifications List */}
         <div className="space-y-4">
           {isLoading ? (
-            <Card className="p-8 text-center text-gray-500">Loading notifications...</Card>
+            <Card className="p-8 text-center text-gray-500">
+              Loading notifications...
+            </Card>
           ) : filteredNotifications.length === 0 ? (
             <Card className="p-8 text-center">
               <svg className="w-16 h-16 mx-auto text-gray-300 mb-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
               </svg>
               <p className="text-gray-500 text-lg font-medium">No notifications</p>
+              <p className="text-gray-400 text-sm mt-1">
+                {filter === 'unread' ? "You're all caught up!" : "No notifications to display"}
+              </p>
             </Card>
           ) : (
             filteredNotifications.map((notification) => {
               const styles = getTypeStyles(notification.type)
               return (
-                <Card key={notification._id} className={`p-4 border-l-4 ${styles.border} ${styles.bg} ${!notification.isRead ? 'ring-1 ring-blue-200' : ''} transition-all hover:shadow-md`}>
+                <Card
+                  key={notification._id}
+                  className={`p-4 border-l-4 ${styles.border} ${styles.bg} ${!notification.isRead ? 'ring-1 ring-blue-200' : ''
+                    } transition-all hover:shadow-md`}
+                >
                   <div className="flex items-start gap-4">
-                    <div className={`flex-shrink-0 ${styles.icon}`}>{getTypeIcon(notification.type)}</div>
+                    <div className={`flex-shrink-0 ${styles.icon}`}>
+                      {getTypeIcon(notification.type)}
+                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <h3 className={`font-semibold text-gray-900 ${!notification.isRead ? 'text-blue-900' : ''}`}>
                             {notification.title}
-                            {!notification.isRead && <span className="ml-2 inline-block w-2 h-2 bg-blue-500 rounded-full"></span>}
+                            {!notification.isRead && (
+                              <span className="ml-2 inline-block w-2 h-2 bg-blue-500 rounded-full"></span>
+                            )}
                           </h3>
                           <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
                           <p className="text-xs text-gray-400 mt-2">{formatDate(notification.createdAt)}</p>
                         </div>
                         <div className="flex items-center gap-2 flex-shrink-0">
                           {!notification.isRead && (
-                            <button onClick={() => markAsRead(notification._id)} className="p-1.5 hover:bg-white rounded-lg transition-colors" title="Mark as read">
+                            <button
+                              onClick={() => markAsRead(notification._id)}
+                              className="p-1.5 hover:bg-white rounded-lg transition-colors"
+                              title="Mark as read"
+                            >
                               <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                               </svg>
                             </button>
                           )}
-                          <button onClick={() => deleteNotification(notification._id)} className="p-1.5 hover:bg-white rounded-lg transition-colors" title="Delete">
+                          <button
+                            onClick={() => deleteNotification(notification._id)}
+                            className="p-1.5 hover:bg-white rounded-lg transition-colors"
+                            title="Delete"
+                          >
                             <svg className="w-4 h-4 text-gray-500 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>

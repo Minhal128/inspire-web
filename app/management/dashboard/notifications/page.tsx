@@ -28,15 +28,16 @@ export default function NotificationsPage() {
   const fetchNotifications = async () => {
     try {
       setIsLoading(true)
+      // Mock notifications for now - replace with API call when backend is ready
       const mockNotifications: Notification[] = [
         {
           _id: '1',
-          title: 'New Property Added',
-          message: 'A new property "Sunset Apartments" has been added to your portfolio.',
+          title: 'Inspection Scheduled',
+          message: 'Your inspection for Sunset Apartments Unit 101 has been scheduled for January 5, 2026.',
           type: 'info',
           isRead: false,
           createdAt: new Date().toISOString(),
-          link: '/management/dashboard'
+          link: '/management/dashboard/my-inspection'
         },
         {
           _id: '2',
@@ -52,12 +53,13 @@ export default function NotificationsPage() {
           message: 'Follow-up required for Courthouse Apartments Unit 312. Please review the findings.',
           type: 'warning',
           isRead: true,
-          createdAt: new Date(Date.now() - 86400000).toISOString()
+          createdAt: new Date(Date.now() - 86400000).toISOString(),
+          link: '/management/dashboard/my-inspection'
         },
         {
           _id: '4',
-          title: 'New Inspector Assigned',
-          message: 'Emma Johnson has been assigned to your properties.',
+          title: 'System Update',
+          message: 'NSPIREinspection.AI inspection criteria have been updated. Please review the new guidelines.',
           type: 'info',
           isRead: true,
           createdAt: new Date(Date.now() - 172800000).toISOString()
@@ -65,7 +67,7 @@ export default function NotificationsPage() {
         {
           _id: '5',
           title: 'Report Generated',
-          message: 'Your monthly compliance report has been generated and is ready for download.',
+          message: 'Your weekly inspection report has been generated and is ready for download.',
           type: 'success',
           isRead: true,
           createdAt: new Date(Date.now() - 259200000).toISOString()
@@ -81,7 +83,7 @@ export default function NotificationsPage() {
   }
 
   const markAsRead = (id: string) => {
-    setNotifications(prev => 
+    setNotifications(prev =>
       prev.map(n => n._id === id ? { ...n, isRead: true } : n)
     )
     toast.success('Marked as read', { position: 'top-right' })
@@ -204,31 +206,28 @@ export default function NotificationsPage() {
         <div className="flex gap-2 mb-6">
           <button
             onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'all' 
-                ? 'bg-[#006795] text-white' 
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === 'all'
+                ? 'bg-[#0D7FA8] text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-100'
-            }`}
+              }`}
           >
             All ({notifications.length})
           </button>
           <button
             onClick={() => setFilter('unread')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'unread' 
-                ? 'bg-[#006795] text-white' 
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === 'unread'
+                ? 'bg-[#0D7FA8] text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-100'
-            }`}
+              }`}
           >
             Unread ({unreadCount})
           </button>
           <button
             onClick={() => setFilter('read')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'read' 
-                ? 'bg-[#006795] text-white' 
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === 'read'
+                ? 'bg-[#0D7FA8] text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-100'
-            }`}
+              }`}
           >
             Read ({notifications.length - unreadCount})
           </button>
@@ -254,11 +253,10 @@ export default function NotificationsPage() {
             filteredNotifications.map((notification) => {
               const styles = getTypeStyles(notification.type)
               return (
-                <Card 
+                <Card
                   key={notification._id}
-                  className={`p-4 border-l-4 ${styles.border} ${styles.bg} ${
-                    !notification.isRead ? 'ring-1 ring-blue-200' : ''
-                  } transition-all hover:shadow-md`}
+                  className={`p-4 border-l-4 ${styles.border} ${styles.bg} ${!notification.isRead ? 'ring-1 ring-blue-200' : ''
+                    } transition-all hover:shadow-md`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`flex-shrink-0 ${styles.icon}`}>

@@ -1,399 +1,431 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import { useRouter } from "next/navigation"
 import ManagementDashboardLayout from "@/components/ManagementDashboardLayout"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
+import Image from "next/image"
+import { usersAPI, authAPI } from "@/lib/api"
 
-export default function Settings() {
+type TabType = "profile" | "notifications" | "security"
+
+export default function SettingsPage() {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState("profile")
+  const [activeTab, setActiveTab] = useState<TabType>("profile")
+  const [isLoading, setIsLoading] = useState(false)
+
+  // Profile state
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("+1 (555) 123-4567")
-  const [role, setRole] = useState("")
-  const [language, setLanguage] = useState("English US")
-  const [timezone, setTimezone] = useState("GMT +05:00")
+  const [phone, setPhone] = useState("")
+  const [role, setRole] = useState("Inspector")
+  const [language, setLanguage] = useState("English")
+  const [timezone, setTimezone] = useState("EST")
 
-  // Load user data from localStorage
+  // Load user data on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
+    const loadUserData = async () => {
       try {
-        const user = JSON.parse(storedUser)
-        setName(user.fullName || '')
-        setEmail(user.email || '')
-        setRole(getRoleDisplayName(user.role) || '')
-      } catch (e) {
-        console.error('Error parsing user data:', e)
+        const userData = localStorage.getItem('user')
+        if (userData) {
+          const user = JSON.parse(userData)
+          setName(user.fullName || '')
+          setEmail(user.email || '')
+          setRole(user.role || 'Inspector')
+        }
+        
+        // Try to get fresh data from API
+        const response = await authAPI.getMe()
+        if (response.success) {
+          setName(response.user.fullName || '')
+          setEmail(response.user.email || '')
+          setPhone(response.user.phone || '')
+          setRole(response.user.role || 'Inspector')
+          setLanguage(response.user.language || 'English')
+          setTimezone(response.user.timezone || 'EST')
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error)
       }
     }
+    loadUserData()
   }, [])
 
-  const getRoleDisplayName = (role: string) => {
-    const roleNames: { [key: string]: string } = {
-      'property-manager': 'Property Manager',
-      'management': 'Management',
-      'supervisor': 'Supervisor',
-      'inspector': 'Inspector',
-      'other': 'Other Manager',
-      'asset-manager': 'Asset Manager'
-    }
-    return roleNames[role] || role
-  }
+  // Notification state
+  const [emailNotifications, setEmailNotifications] = useState({
+    inspectionReminders: true,
+    reportCompletion: true,
+    followUpTasks: false,
+    systemUpdates: true,
+  })
+  const [inAppNotifications, setInAppNotifications] = useState({
+    inspectionReminders: true,
+    reportCompletion: true,
+    followUpTasks: true,
+    systemUpdates: false,
+  })
 
-  // Notification preferences
-  const [inspectionReminders, setInspectionReminders] = useState({ email: true, inApp: false })
-  const [reportCompletion, setReportCompletion] = useState({ email: false, inApp: true })
-  const [followUpTasks, setFollowUpTasks] = useState({ email: false, inApp: false })
-  const [systemUpdates, setSystemUpdates] = useState({ email: true, inApp: false })
-
-  // Security settings
-  const [oldPassword, setOldPassword] = useState("")
+  // Security state
+  const [currentPassword, setCurrentPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false)
 
-  const handleSaveProfile = () => {
-    toast.success("Profile settings saved successfully!", { position: "top-right" })
+  const handleSaveProfile = async () => {
+    setIsLoading(true)
+    try {
+      const response = await usersAPI.updateProfile({
+        fullName: name,
+        email,
+        phone,
+        role,
+        language,
+        timezone,
+      })
+      if (response.success) {
+        toast.success("Profile updated successfully!", { position: "top-right" })
+        // Update local storage
+        const userData = localStorage.getItem('user')
+        if (userData) {
+          const user = JSON.parse(userData)
+          user.fullName = name
+          user.email = email
+          localStorage.setItem('user', JSON.stringify(user))
+        }
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to update profile", { position: "top-right" })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleSaveNotifications = () => {
-    toast.success("Notification preferences saved successfully!", { position: "top-right" })
+  const handleSaveNotifications = async () => {
+    setIsLoading(true)
+    try {
+      const response = await usersAPI.updateNotificationSettings(
+        emailNotifications.inspectionReminders,
+        inAppNotifications.inspectionReminders
+      )
+      if (response.success) {
+        toast.success("Notification preferences saved!", { position: "top-right" })
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to save notifications", { position: "top-right" })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleSaveSecurity = () => {
+  const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
       toast.error("Passwords do not match!", { position: "top-right" })
       return
     }
-    toast.success("Security settings updated successfully!", { position: "top-right" })
-    setOldPassword("")
-    setNewPassword("")
-    setConfirmPassword("")
+    if (newPassword.length < 8) {
+      toast.error("Password must be at least 8 characters!", { position: "top-right" })
+      return
+    }
+    setIsLoading(true)
+    try {
+      const response = await usersAPI.changePassword(currentPassword, newPassword)
+      if (response.success) {
+        toast.success("Password changed successfully!", { position: "top-right" })
+        setCurrentPassword("")
+        setNewPassword("")
+        setConfirmPassword("")
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to change password", { position: "top-right" })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleLogout = (deviceId: string) => {
-    toast.success("Device logged out successfully!", { position: "top-right" })
+  const handleToggle2FA = async () => {
+    setIsLoading(true)
+    try {
+      const response = await usersAPI.toggleTwoFactor()
+      if (response.success) {
+        setTwoFactorEnabled(response.twoFactorEnabled)
+        toast.success(response.message, { position: "top-right" })
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to toggle 2FA", { position: "top-right" })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await authAPI.logout()
+    } catch (error) {
+      // Ignore logout errors
+    }
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    toast.info("Logged out successfully", { position: "top-right" })
+    setTimeout(() => router.push("/"), 1000)
   }
 
   return (
     <ManagementDashboardLayout>
       <div className="p-4 md:p-6">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Settings</h1>
-          <p className="text-sm text-gray-600">Manage your account, organization, and app preferences.</p>
+        <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
+          <h1 className="text-2xl font-bold text-gray-800 mb-1">Settings</h1>
+          <p className="text-gray-600">Manage your account preferences and security</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar Navigation */}
-          <Card className="bg-white rounded-lg shadow-sm p-4 h-fit">
-            <nav className="space-y-2">
-              <button
-                onClick={() => setActiveTab("profile")}
-                className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeTab === "profile" ? "bg-[#F84B5F] text-white" : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                Profile Settings
-              </button>
-              <button
-                onClick={() => setActiveTab("notifications")}
-                className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeTab === "notifications" ? "bg-[#F84B5F] text-white" : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                Notification Preferences
-              </button>
-              <button
-                onClick={() => setActiveTab("security")}
-                className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeTab === "security" ? "bg-[#F84B5F] text-white" : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                Security Settings
-              </button>
-            </nav>
-          </Card>
+        <div className="grid lg:grid-cols-4 gap-6">
+          {/* Sidebar Tabs */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <nav className="space-y-2">
+                <button
+                  onClick={() => setActiveTab("profile")}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+                    activeTab === "profile"
+                      ? "bg-[#006795] text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                  Profile Settings
+                </button>
 
-          {/* Main Content */}
+                <button
+                  onClick={() => setActiveTab("notifications")}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+                    activeTab === "notifications"
+                      ? "bg-[#006795] text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                  </svg>
+                  Notifications
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("security")}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+                    activeTab === "security"
+                      ? "bg-[#006795] text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                  </svg>
+                  Security Settings
+                </button>
+              </nav>
+            </div>
+          </div>
+
+          {/* Content Area */}
           <div className="lg:col-span-3">
             {/* Profile Settings */}
             {activeTab === "profile" && (
-              <Card className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">Profile Settings</h2>
-                    <p className="text-sm text-gray-600">Manage personal details of the logged-in user.</p>
-                  </div>
-                  <Button
-                    onClick={handleSaveProfile}
-                    className="bg-[#006795] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
-                  >
-                    Save Changes
-                  </Button>
-                </div>
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h2 className="text-xl font-bold text-gray-800 mb-6">Profile Settings</h2>
 
-                {/* Profile Picture */}
-                <div className="flex items-center gap-4 mb-8">
+                {/* Avatar */}
+                <div className="flex items-center gap-4 mb-8 pb-6 border-b">
                   <Image
-                    src="https://ui-avatars.com/api/?name=John+Doe&background=0D6A8D&color=fff&size=100"
+                    src="https://ui-avatars.com/api/?name=Emma+Johnson&size=100&background=FF4757&color=fff"
                     alt="Profile"
                     width={100}
                     height={100}
                     className="rounded-full"
                   />
-                  <Button
-                    onClick={() => toast.info("Change profile picture feature coming soon!", { position: "top-right" })}
-                    className="bg-white border border-[#006795] text-[#006795] hover:bg-[#E8F4F8] px-4 py-2 rounded-lg font-medium"
-                  >
-                    Change Photo
-                  </Button>
+                  <div>
+                    <Button className="bg-[#006795] hover:bg-[#0a5670] text-white">
+                      Change Photo
+                    </Button>
+                    <p className="text-sm text-gray-500 mt-2">JPG, PNG or GIF. Max size 2MB</p>
+                  </div>
                 </div>
 
-                {/* Form Fields */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Form */}
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Name
-                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <input
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Email
-                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Phone
-                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                     <input
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Role
-                      <button className="ml-2 text-[#006795] text-xs font-normal hover:underline">Edit</button>
-                    </label>
-                    <input
-                      type="text"
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                    <select
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
-                    />
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                    >
+                      <option value="Inspector">Inspector</option>
+                      <option value="Property Manager">Property Manager</option>
+                      <option value="Admin">Admin</option>
+                    </select>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">Language</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
                     <select
                       value={language}
                       onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
-                      <option value="English US">English US</option>
+                      <option value="English">English</option>
                       <option value="Spanish">Spanish</option>
                       <option value="French">French</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">Timezone</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Timezone</label>
                     <select
                       value={timezone}
                       onChange={(e) => setTimezone(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
-                      <option value="GMT +05:00">GMT +05:00</option>
-                      <option value="GMT -05:00">GMT -05:00</option>
-                      <option value="GMT +00:00">GMT +00:00</option>
+                      <option value="EST">EST (UTC-5)</option>
+                      <option value="CST">CST (UTC-6)</option>
+                      <option value="MST">MST (UTC-7)</option>
+                      <option value="PST">PST (UTC-8)</option>
                     </select>
                   </div>
                 </div>
-              </Card>
+
+                <div className="flex justify-end">
+                  <Button onClick={handleSaveProfile} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
+                    Save Changes
+                  </Button>
+                </div>
+              </div>
             )}
 
             {/* Notification Preferences */}
             {activeTab === "notifications" && (
-              <Card className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex justify-between items-center mb-6">
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h2 className="text-xl font-bold text-gray-800 mb-6">Notification Preferences</h2>
+
+                <div className="space-y-8">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">Notification Preferences</h2>
-                    <p className="text-sm text-gray-600">Manage in-app and email notifications.</p>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Email Notifications</h3>
+                    <div className="space-y-4">
+                      {Object.entries(emailNotifications).map(([key, value]) => (
+                        <div key={key} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                          <div>
+                            <p className="font-medium text-gray-800">
+                              {key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Receive email notifications for{" "}
+                              {key.replace(/([A-Z])/g, " $1").toLowerCase()}
+                            </p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={value}
+                              onChange={() =>
+                                setEmailNotifications({ ...emailNotifications, [key]: !value })
+                              }
+                              className="sr-only peer"
+                            />
+                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#006795]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#006795]"></div>
+                          </label>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <Button
-                    onClick={handleSaveNotifications}
-                    className="bg-[#006795] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
-                  >
-                    Save Changes
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">In-App Notifications</h3>
+                    <div className="space-y-4">
+                      {Object.entries(inAppNotifications).map(([key, value]) => (
+                        <div key={key} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                          <div>
+                            <p className="font-medium text-gray-800">
+                              {key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Show in-app notifications for{" "}
+                              {key.replace(/([A-Z])/g, " $1").toLowerCase()}
+                            </p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={value}
+                              onChange={() =>
+                                setInAppNotifications({ ...inAppNotifications, [key]: !value })
+                              }
+                              className="sr-only peer"
+                            />
+                            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#006795]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#006795]"></div>
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end mt-6">
+                  <Button onClick={handleSaveNotifications} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
+                    Save Preferences
                   </Button>
                 </div>
-
-                <div className="space-y-6">
-                  {/* Inspection Reminders */}
-                  <div className="border-b pb-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">Inspection Reminders</h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-8">
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={inspectionReminders.email}
-                            onChange={(e) => setInspectionReminders({ ...inspectionReminders, email: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">Email</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={inspectionReminders.inApp}
-                            onChange={(e) => setInspectionReminders({ ...inspectionReminders, inApp: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">In-App</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Report Completion Alerts */}
-                  <div className="border-b pb-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">Report Completion Alerts</h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-8">
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={reportCompletion.email}
-                            onChange={(e) => setReportCompletion({ ...reportCompletion, email: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">Email</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={reportCompletion.inApp}
-                            onChange={(e) => setReportCompletion({ ...reportCompletion, inApp: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">In-App</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Follow-Up Tasks */}
-                  <div className="border-b pb-4">
-                    <h3 className="font-semibold text-gray-900 mb-3">Follow-Up Tasks</h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-8">
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={followUpTasks.email}
-                            onChange={(e) => setFollowUpTasks({ ...followUpTasks, email: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">Email</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={followUpTasks.inApp}
-                            onChange={(e) => setFollowUpTasks({ ...followUpTasks, inApp: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">In-App</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* System Updates */}
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-3">System Updates</h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-8">
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={systemUpdates.email}
-                            onChange={(e) => setSystemUpdates({ ...systemUpdates, email: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">Email</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={systemUpdates.inApp}
-                            onChange={(e) => setSystemUpdates({ ...systemUpdates, inApp: e.target.checked })}
-                            className="w-4 h-4 rounded border-gray-300"
-                          />
-                          <span className="text-sm text-gray-700">In-App</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+              </div>
             )}
 
             {/* Security Settings */}
             {activeTab === "security" && (
-              <Card className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">Security Settings 🔒</h2>
-                    <p className="text-sm text-gray-600">Manage passwords, sessions, and 2FA.</p>
-                  </div>
-                  <Button
-                    onClick={handleSaveSecurity}
-                    className="bg-[#006795] hover:bg-[#0A5670] text-white px-6 py-2 rounded-lg font-medium"
-                  >
-                    Save Changes
-                  </Button>
-                </div>
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h2 className="text-xl font-bold text-gray-800 mb-6">Security Settings</h2>
 
                 {/* Change Password */}
-                <div className="mb-8">
-                  <h3 className="font-semibold text-gray-900 mb-4">Change Password</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="mb-8 pb-8 border-b">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Change Password</h3>
+                  <div className="space-y-4 max-w-md">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Old Password</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
                       <input
                         type="password"
-                        value={oldPassword}
-                        onChange={(e) => setOldPassword(e.target.value)}
-                        placeholder="Enter your old password"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                        value={currentPassword}
+                        onChange={(e) => setCurrentPassword(e.target.value)}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                        placeholder="Enter current password"
                       />
                     </div>
                     <div>
@@ -402,71 +434,83 @@ export default function Settings() {
                         type="password"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="Enter your old password"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                        placeholder="Enter new password"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
                       <input
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Confirm your new password"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border-0 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
+                        placeholder="Confirm new password"
                       />
                     </div>
+                    <Button onClick={handleChangePassword} className="bg-[#006795] hover:bg-[#0a5670] text-white">
+                      Update Password
+                    </Button>
                   </div>
                 </div>
 
-                {/* 2FA Toggle */}
+                {/* Two-Factor Authentication */}
                 <div className="mb-8 pb-8 border-b">
-                  <h3 className="font-semibold text-gray-900 mb-4">2FA Toggle</h3>
-                  <Button
-                    onClick={() => {
-                      setTwoFactorEnabled(!twoFactorEnabled)
-                      toast.success(twoFactorEnabled ? "2FA disabled" : "2FA enabled", { position: "top-right" })
-                    }}
-                    className={`${
-                      twoFactorEnabled ? "bg-green-600 hover:bg-green-700" : "bg-gray-600 hover:bg-gray-700"
-                    } text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2`}
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                    </svg>
-                    {twoFactorEnabled ? "Disable Two-Factor Authentication" : "Enable Two-Factor Authentication"}
-                  </Button>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Two-Factor Authentication</h3>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg max-w-2xl">
+                    <div>
+                      <p className="font-medium text-gray-800 mb-1">Enable Two-Factor Authentication</p>
+                      <p className="text-sm text-gray-600">
+                        Add an extra layer of security to your account by requiring a verification code
+                      </p>
+                    </div>
+                    <Button
+                      onClick={handleToggle2FA}
+                      className={`${
+                        twoFactorEnabled
+                          ? "bg-red-500 hover:bg-red-600"
+                          : "bg-[#006795] hover:bg-[#6de600] text-black"
+                      } text-white font-semibold`}
+                    >
+                      {twoFactorEnabled ? "Disable" : "Enable"}
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Session Management */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Session Management</h3>
-                  <p className="text-sm text-gray-600 mb-4">Review And Manage Devices Currently Logged In To Your NSPIRE Account.</p>
-                  
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Session Management</h3>
                   <div className="space-y-3">
-                    <div className="bg-gray-50 rounded-lg p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center">
-                          <svg className="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <div>
-                          <p className="font-medium text-gray-900">Web Browser</p>
-                          <p className="text-sm text-gray-600">Chrome On Windows • 192.168.0.15</p>
-                          <p className="text-sm text-gray-600">NewYork NY • 2 hours ago</p>
-                        </div>
+                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="font-medium text-gray-800">Current Device</p>
+                        <p className="text-sm text-gray-600">Windows · Chrome · {new Date().toLocaleString()}</p>
                       </div>
-                      <Button
-                        onClick={() => handleLogout("device1")}
-                        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
-                      >
+                      <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                        Active
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="font-medium text-gray-800">iPhone 13</p>
+                        <p className="text-sm text-gray-600">iOS · Safari · Last active 2 hours ago</p>
+                      </div>
+                      <Button variant="outline" className="text-red-600 hover:text-red-700">
                         Log Out
                       </Button>
                     </div>
                   </div>
+                  <div className="mt-6">
+                    <Button
+                      onClick={handleLogout}
+                      variant="outline"
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                    >
+                      Log Out From All Devices
+                    </Button>
+                  </div>
                 </div>
-              </Card>
+              </div>
             )}
           </div>
         </div>

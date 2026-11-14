@@ -10,18 +10,20 @@ import { usersAPI, authAPI } from "@/lib/api"
 
 type TabType = "profile" | "notifications" | "security"
 
-export default function OtherSettingsPage() {
+export default function SettingsPage() {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState<TabType>("profile")
   const [isLoading, setIsLoading] = useState(false)
 
+  // Profile state
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
-  const [role, setRole] = useState("Other")
+  const [role, setRole] = useState("Inspector")
   const [language, setLanguage] = useState("English")
   const [timezone, setTimezone] = useState("EST")
 
+  // Load user data on mount
   useEffect(() => {
     const loadUserData = async () => {
       try {
@@ -30,15 +32,16 @@ export default function OtherSettingsPage() {
           const user = JSON.parse(userData)
           setName(user.fullName || '')
           setEmail(user.email || '')
-          setRole(user.role || 'Other')
+          setRole(user.role || 'Inspector')
         }
         
+        // Try to get fresh data from API
         const response = await authAPI.getMe()
         if (response.success) {
           setName(response.user.fullName || '')
           setEmail(response.user.email || '')
           setPhone(response.user.phone || '')
-          setRole(response.user.role || 'Other')
+          setRole(response.user.role || 'Inspector')
           setLanguage(response.user.language || 'English')
           setTimezone(response.user.timezone || 'EST')
         }
@@ -49,6 +52,7 @@ export default function OtherSettingsPage() {
     loadUserData()
   }, [])
 
+  // Notification state
   const [emailNotifications, setEmailNotifications] = useState({
     inspectionReminders: true,
     reportCompletion: true,
@@ -62,6 +66,7 @@ export default function OtherSettingsPage() {
     systemUpdates: false,
   })
 
+  // Security state
   const [currentPassword, setCurrentPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -80,6 +85,7 @@ export default function OtherSettingsPage() {
       })
       if (response.success) {
         toast.success("Profile updated successfully!", { position: "top-right" })
+        // Update local storage
         const userData = localStorage.getItem('user')
         if (userData) {
           const user = JSON.parse(userData)
@@ -156,6 +162,7 @@ export default function OtherSettingsPage() {
     try {
       await authAPI.logout()
     } catch (error) {
+      // Ignore logout errors
     }
     localStorage.removeItem('token')
     localStorage.removeItem('user')
@@ -166,12 +173,14 @@ export default function OtherSettingsPage() {
   return (
     <OtherDashboardLayout>
       <div className="p-4 md:p-6">
+        {/* Header */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
           <h1 className="text-2xl font-bold text-gray-800 mb-1">Settings</h1>
           <p className="text-gray-600">Manage your account preferences and security</p>
         </div>
 
         <div className="grid lg:grid-cols-4 gap-6">
+          {/* Sidebar Tabs */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-4 shadow-sm">
               <nav className="space-y-2">
@@ -220,14 +229,17 @@ export default function OtherSettingsPage() {
             </div>
           </div>
 
+          {/* Content Area */}
           <div className="lg:col-span-3">
+            {/* Profile Settings */}
             {activeTab === "profile" && (
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h2 className="text-xl font-bold text-gray-800 mb-6">Profile Settings</h2>
 
+                {/* Avatar */}
                 <div className="flex items-center gap-4 mb-8 pb-6 border-b">
                   <Image
-                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'User')}&size=100&background=0D7FA8&color=fff`}
+                    src="https://ui-avatars.com/api/?name=Emma+Johnson&size=100&background=FF4757&color=fff"
                     alt="Profile"
                     width={100}
                     height={100}
@@ -241,6 +253,7 @@ export default function OtherSettingsPage() {
                   </div>
                 </div>
 
+                {/* Form */}
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -279,10 +292,9 @@ export default function OtherSettingsPage() {
                       onChange={(e) => setRole(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006795]"
                     >
-                      <option value="other">Other</option>
-                      <option value="property-manager">Property Manager</option>
-                      <option value="supervisor">Supervisor</option>
-                      <option value="management">Management</option>
+                      <option value="Inspector">Inspector</option>
+                      <option value="Property Manager">Property Manager</option>
+                      <option value="Admin">Admin</option>
                     </select>
                   </div>
 
@@ -315,13 +327,14 @@ export default function OtherSettingsPage() {
                 </div>
 
                 <div className="flex justify-end">
-                  <Button onClick={handleSaveProfile} disabled={isLoading} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
-                    {isLoading ? "Saving..." : "Save Changes"}
+                  <Button onClick={handleSaveProfile} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
+                    Save Changes
                   </Button>
                 </div>
               </div>
             )}
 
+            {/* Notification Preferences */}
             {activeTab === "notifications" && (
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h2 className="text-xl font-bold text-gray-800 mb-6">Notification Preferences</h2>
@@ -389,17 +402,19 @@ export default function OtherSettingsPage() {
                 </div>
 
                 <div className="flex justify-end mt-6">
-                  <Button onClick={handleSaveNotifications} disabled={isLoading} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
-                    {isLoading ? "Saving..." : "Save Preferences"}
+                  <Button onClick={handleSaveNotifications} className="px-8 bg-[#006795] hover:bg-[#6de600] text-white font-semibold">
+                    Save Preferences
                   </Button>
                 </div>
               </div>
             )}
 
+            {/* Security Settings */}
             {activeTab === "security" && (
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h2 className="text-xl font-bold text-gray-800 mb-6">Security Settings</h2>
 
+                {/* Change Password */}
                 <div className="mb-8 pb-8 border-b">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Change Password</h3>
                   <div className="space-y-4 max-w-md">
@@ -433,12 +448,13 @@ export default function OtherSettingsPage() {
                         placeholder="Confirm new password"
                       />
                     </div>
-                    <Button onClick={handleChangePassword} disabled={isLoading} className="bg-[#006795] hover:bg-[#0a5670] text-white">
-                      {isLoading ? "Updating..." : "Update Password"}
+                    <Button onClick={handleChangePassword} className="bg-[#006795] hover:bg-[#0a5670] text-white">
+                      Update Password
                     </Button>
                   </div>
                 </div>
 
+                {/* Two-Factor Authentication */}
                 <div className="mb-8 pb-8 border-b">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Two-Factor Authentication</h3>
                   <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg max-w-2xl">
@@ -450,7 +466,6 @@ export default function OtherSettingsPage() {
                     </div>
                     <Button
                       onClick={handleToggle2FA}
-                      disabled={isLoading}
                       className={`${
                         twoFactorEnabled
                           ? "bg-red-500 hover:bg-red-600"
@@ -462,6 +477,7 @@ export default function OtherSettingsPage() {
                   </div>
                 </div>
 
+                {/* Session Management */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Session Management</h3>
                   <div className="space-y-3">
