@@ -314,12 +314,11 @@ export default function Dashboard() {
         setShowActionModal(true)
       }
     } catch (error: any) {
+      // A failed save stops here, with the building split still open, so it can
+      // be corrected (Back) and tried again. A leftover dev fallback used to
+      // follow the error with "Data saved successfully" and open the Action
+      // modal for a property that had never been created.
       toast.error(error.message || "Failed to add property", { position: "top-right" })
-      // Fallback for dev
-      toast.success("Data saved successfully", { position: "top-right" })
-      setNewPropertyData(data)
-      setShowBuildingDivisionModal(false)
-      setShowActionModal(true)
     }
   }
 
