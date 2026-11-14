@@ -64,6 +64,12 @@ const ChevronLeft = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const FileText = ({ className }: { className?: string }) => (
+  <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+  </svg>
+)
+
 const Mail = ({ className }: { className?: string }) => (
   <svg className={className || "w-5 h-5"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -145,42 +151,86 @@ function NSPIREInspectionSummaryContent() {
     }
   }
 
-  // The report can be emailed in either state. Locked, this is the free way to
-  // get it; unlocked, it is the only way left on this page, since the two
-  // export buttons at the top were removed.
-  const renderEmailReport = (tone: 'amber' | 'green', label: string) => {
-    const edge = tone === 'amber' ? 'border-amber-300' : 'border-green-300'
-    const ink = tone === 'amber' ? 'text-amber-800 hover:bg-amber-100' : 'text-green-800 hover:bg-green-100'
-    const ring = tone === 'amber' ? 'focus:border-amber-500' : 'focus:border-green-500'
+  // The report actions in the page header, in the order the client asked for:
+  // View Report, Share Report, then Unlock while the report is still locked.
+  // Share Report emails it as PDF + Excel and works in either state -- locked,
+  // it is the free way to get the report; unlocked, it is the only export left
+  // on this page, since the two export buttons at the top were removed.
+  const renderReportActions = () => {
+    if (checkingUnlock) {
+      return (
+        <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5">
+          <svg className="h-3.5 w-3.5 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          <span className="text-xs font-semibold text-gray-600">Checking report access...</span>
+        </div>
+      )
+    }
 
-    return showFreeEmail ? (
-      <div className="flex flex-col sm:flex-row gap-2">
-        <input
-          type="email"
-          value={freeEmail}
-          onChange={(e) => setFreeEmail(e.target.value)}
-          placeholder="you@example.com"
-          disabled={sendingFreeReport}
-          className={`flex-1 h-10 rounded-lg border ${edge} px-3 text-xs outline-none ${ring} disabled:opacity-60`}
-        />
-        <Button
-          onClick={handleEmailFreeReport}
-          disabled={sendingFreeReport}
-          className="h-10 gap-2 bg-[#006795] hover:bg-[#0a5670] text-white text-xs font-bold rounded-lg"
-        >
-          <Mail className="w-3.5 h-3.5" />
-          {sendingFreeReport ? 'Sending...' : 'Send PDF + Excel'}
-        </Button>
+    const actionButton = 'h-9 gap-2 px-4 text-white text-xs font-bold uppercase tracking-wide rounded-lg shadow-sm'
+
+    return (
+      <div className="mt-3">
+        <div className="flex flex-wrap items-center gap-2">
+          {isReportUnlocked ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-green-300 bg-green-50 px-3 py-1.5 text-xs font-bold text-green-800">
+              <Unlock className="w-3.5 h-3.5" />
+              Full Report Unlocked
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-800">
+              <Lock className="w-3.5 h-3.5" />
+              Full Report Locked
+            </span>
+          )}
+          <Button
+            onClick={() => setShowPdfPreview(true)}
+            className={`${actionButton} bg-emerald-600 hover:bg-emerald-700`}
+          >
+            <FileText className="w-3.5 h-3.5" />
+            View Report
+          </Button>
+          <Button
+            onClick={() => setShowFreeEmail(open => !open)}
+            className={`${actionButton} bg-[#F84B5F] hover:bg-[#EE3646]`}
+          >
+            <Mail className="w-3.5 h-3.5" />
+            Share Report
+          </Button>
+          {!isReportUnlocked && (
+            <Button
+              onClick={() => setShowSummaryModal(true)}
+              className={`${actionButton} bg-[#006795] hover:bg-[#0a5670]`}
+            >
+              <Lock className="w-3.5 h-3.5" />
+              Unlock Report $1
+            </Button>
+          )}
+        </div>
+
+        {showFreeEmail && (
+          <div className="mt-3 flex flex-col sm:flex-row gap-2 max-w-xl">
+            <input
+              type="email"
+              value={freeEmail}
+              onChange={(e) => setFreeEmail(e.target.value)}
+              placeholder="you@example.com"
+              disabled={sendingFreeReport}
+              className="flex-1 h-10 rounded-lg border border-gray-300 px-3 text-xs outline-none focus:border-[#006795] disabled:opacity-60"
+            />
+            <Button
+              onClick={handleEmailFreeReport}
+              disabled={sendingFreeReport}
+              className="h-10 gap-2 bg-[#006795] hover:bg-[#0a5670] text-white text-xs font-bold rounded-lg"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              {sendingFreeReport ? 'Sending...' : 'Send PDF + Excel'}
+            </Button>
+          </div>
+        )}
       </div>
-    ) : (
-      <Button
-        onClick={() => setShowFreeEmail(true)}
-        variant="outline"
-        className={`h-10 w-full gap-2 ${edge} ${ink} text-xs font-bold rounded-lg`}
-      >
-        <Mail className="w-3.5 h-3.5" />
-        {label}
-      </Button>
     )
   }
   // Custom column header from the building table (editable in property-details)
@@ -1190,6 +1240,7 @@ function NSPIREInspectionSummaryContent() {
                   {buildingColumnHeader}: {inspectionContext.buildingId} &rarr; {inspectionContext.unitName}
                 </p>
               )}
+              {renderReportActions()}
             </div>
             <div className="flex flex-wrap gap-3">
               <Button
@@ -1209,65 +1260,6 @@ function NSPIREInspectionSummaryContent() {
         {/* Summary Tab */}
         {activeTab === 'summary' && (
           <div className="space-y-6">
-            {/* 1. Unlock Card */}
-            {checkingUnlock ? (
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200 flex items-center gap-3">
-                <svg className="h-4 w-4 animate-spin text-gray-500" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-                <span className="text-sm text-gray-600 font-semibold">Checking report access...</span>
-              </div>
-            ) : isReportUnlocked ? (
-              <div className="bg-green-50 rounded-lg p-4 shadow-sm border border-green-200">
-                <div className="flex items-center gap-3">
-                  <Unlock className="w-5 h-5 text-green-700" />
-                  <span className="text-sm font-semibold text-green-700">Report Unlocked — Full export access enabled</span>
-                </div>
-                {/* Paid, and still worth emailing: this page has no other
-                    export button since the two at the top were removed. */}
-                <div className="mt-3 pt-3 border-t border-green-200">
-                  {renderEmailReport('green', 'Email this report — PDF + Excel')}
-                </div>
-              </div>
-            ) : (
-              <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <Lock className="w-4 h-4 text-amber-700" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-amber-900 uppercase tracking-wide">Report Locked</p>
-                    <p className="text-xs text-amber-700">Pay once to unlock full export access</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <Button
-                    onClick={() => setShowSummaryModal(true)}
-                    className="h-10 gap-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm rounded-lg"
-                  >
-                    <Lock className="w-3.5 h-3.5" />
-                    Unlock Report · $1
-                  </Button>
-                  <Button
-                    onClick={() => setShowPdfPreview(true)}
-                    variant="outline"
-                    className="h-10 gap-2 border-amber-300 text-amber-800 hover:bg-amber-100 text-xs font-bold rounded-lg"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    View Deficiency
-                  </Button>
-                </div>
-
-                {/* The free route: the report is emailed instead of unlocked. */}
-                <div className="mt-3 pt-3 border-t border-amber-200">
-                  {renderEmailReport('amber', 'View Free Report — emailed as PDF + Excel')}
-                </div>
-              </div>
-            )}
-
-
-
             {/* 2. Inspection Data Table */}
             <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
@@ -1426,7 +1418,7 @@ function NSPIREInspectionSummaryContent() {
             {!checkingUnlock && !isReportUnlocked && report.deficiencies.length > visibleDeficiencies.length && (
               <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
                 <span className="font-semibold text-base block mb-1">Unlock to Export PDF</span>
-                <span className="font-semibold italic">Locked preview:</span> showing {visibleDeficiencies.length} of {report.deficiencies.length} deficiencies. Unlock for $99.00 to view all items and export full PDF.
+                <span className="font-semibold italic">Locked preview:</span> showing {visibleDeficiencies.length} of {report.deficiencies.length} deficiencies. Unlock for $1 to view all items and export full PDF.
               </div>
             )}
 
