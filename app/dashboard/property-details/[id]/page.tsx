@@ -1510,14 +1510,29 @@ export default function PropertyDetailsPage() {
                             <div className="w-full bg-gray-200 rounded-full h-2">
                                 <div
                                     className="bg-gradient-to-r from-[#006795] to-[#0891B2] h-2 rounded-full transition-all duration-500"
-                                    style={{ width: `${(getCompletedCount(selectedBuilding.buildingId) / selectedBuilding.unitsForInspection) * 100}%` }}
+                                    // Out of the units plus Outside and Inside, which is what
+                                    // this building actually has to get through -- and which
+                                    // also keeps a unitless building from dividing by zero.
+                                    style={{
+                                        width: `${Math.min(100, Math.round(
+                                            ((completedUnitsMap[selectedBuilding.buildingId] || []).length /
+                                                (selectedBuilding.unitsForInspection + 2)) * 100
+                                        ))}%`
+                                    }}
                                 />
                             </div>
                         </div>
 
                         {/* Unit List */}
                         <div className="p-5 overflow-y-auto max-h-[60vh] space-y-2">
-                            {generateUnitNames(selectedBuilding.buildingId, selectedBuilding.unitsForInspection).map((unitName, idx) => {
+                            {/* Outside and Inside come first and are always here. They are
+                                the building itself, not one of its units, and the only way
+                                into the inspection screen used to be clicking a unit -- so a
+                                building with no units could not be inspected at all, even
+                                though neither of these depends on having any. The screen
+                                already reads unit=Outside and unit=Inside; it was the way in
+                                that was missing. */}
+                            {['Outside', 'Inside', ...generateUnitNames(selectedBuilding.buildingId, selectedBuilding.unitsForInspection)].map((unitName, idx) => {
                                 const completed = (completedUnitsMap[selectedBuilding.buildingId] || []).includes(unitName)
                                 return (
                                     <div
