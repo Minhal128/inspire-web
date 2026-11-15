@@ -27,9 +27,8 @@ export default function MyInspection() {
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
   // The saved records themselves: which property was worked on last is in them.
   const [progressRecords, setProgressRecords] = useState<any[]>([])
-  // Every property the inspector has, for the lock. The rows below are one
-  // page of ten, or a search result, and the property being inspected is not
-  // always among them.
+  // Every property the inspector has, for the lock. The rows below can be a
+  // search result, and the property being inspected is not always in it.
   const [lockProperties, setLockProperties] = useState<any[]>([])
   const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
   const [completedInspections, setCompletedInspections] = useState<any[]>([])
@@ -113,6 +112,9 @@ export default function MyInspection() {
         search: propertyName || undefined,
         state: selectedState || undefined,
         city: selectedCity || undefined,
+        // Every property. Asked for nothing, the server sends the newest ten,
+        // and the eleventh was nowhere on this list.
+        limit: 1000,
       })
       
       // Fetch completed inspections
@@ -187,11 +189,16 @@ export default function MyInspection() {
         })
         setPropertyProgress(progressMap)
         setProgressRecords(data.progress)
-        try {
-          const everything = await propertiesAPI.getAll({ limit: 1000 })
-          setLockProperties(everything.success ? everything.properties : propertyList)
-        } catch {
+        // With no search on, the rows are already every property.
+        if (!propertyName && !selectedState && !selectedCity) {
           setLockProperties(propertyList)
+        } else {
+          try {
+            const everything = await propertiesAPI.getAll({ limit: 1000 })
+            setLockProperties(everything.success ? everything.properties : propertyList)
+          } catch {
+            setLockProperties(propertyList)
+          }
         }
       }
     } catch (e) {

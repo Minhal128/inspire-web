@@ -104,6 +104,9 @@ export default function Dashboard() {
         search: searchQuery || undefined,
         state: selectedState || undefined,
         city: selectedCity || undefined,
+        // Every property. Asked for nothing, the server sends the newest ten,
+        // and the eleventh was nowhere on this list.
+        limit: 1000,
       })
       if (response.success) {
         setProperties(response.properties)

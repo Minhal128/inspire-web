@@ -96,7 +96,9 @@ export default function InspectionStatusPage() {
       
       const [userRes, propertiesRes, inspectionsRes] = await Promise.all([
         authAPI.getMe(),
-        propertiesAPI.getAll(),
+        // Every property, not the newest ten the server sends when asked for
+        // nothing.
+        propertiesAPI.getAll({ limit: 1000 }),
         fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections`, {
           headers: {
             'Authorization': `Bearer ${token}`
