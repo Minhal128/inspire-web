@@ -511,11 +511,19 @@ export default function PropertyDetailsPage() {
                 fetch(`${API_URL}/api/inspections/progress`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                propertiesAPI.getAll(),
+                // Every property, not the page of ten the lists ask for: the one
+                // being inspected can be older than those ten.
+                propertiesAPI.getAll({ limit: 1000 }),
             ])
             const data = await progressResponse.json()
             if (!data.success || !Array.isArray(data.progress) || !propsRes.success) return null
-            return blockingInspection<any>(property._id || id, propsRes.properties, data.progress)
+            const propId = property._id || id
+            // This property counts whether or not that list has it, so that its
+            // being the one worked on last is never missed.
+            const everyProperty = propsRes.properties.some((p: any) => p._id === propId)
+                ? propsRes.properties
+                : [...propsRes.properties, property]
+            return blockingInspection<any>(propId, everyProperty, data.progress)
         } catch (e) {
             console.error("Failed to check active inspections:", e)
             return null

@@ -27,6 +27,10 @@ export default function MyInspection() {
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
   // The saved records themselves: which property was worked on last is in them.
   const [progressRecords, setProgressRecords] = useState<any[]>([])
+  // Every property the inspector has, for the lock. The rows below are one
+  // page of ten, or a search result, and the property being inspected is not
+  // always among them.
+  const [lockProperties, setLockProperties] = useState<any[]>([])
   const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
   const [completedInspections, setCompletedInspections] = useState<any[]>([])
 
@@ -183,6 +187,12 @@ export default function MyInspection() {
         })
         setPropertyProgress(progressMap)
         setProgressRecords(data.progress)
+        try {
+          const everything = await propertiesAPI.getAll({ limit: 1000 })
+          setLockProperties(everything.success ? everything.properties : propertyList)
+        } catch {
+          setLockProperties(propertyList)
+        }
       }
     } catch (e) {
       console.error('Error fetching progress:', e)
@@ -332,14 +342,14 @@ export default function MyInspection() {
   // property came first in the list, so the two pages could each lock the
   // property the other one called active.
   const activeInspectionPropertyId = useMemo(
-    () => findActiveInspection<any>(properties, progressRecords)?._id ?? null,
-    [properties, progressRecords]
+    () => findActiveInspection<any>(lockProperties, progressRecords)?._id ?? null,
+    [lockProperties, progressRecords]
   )
 
   const handleInitiate = (property: any) => {
     // Block only when another property is actively in progress (not on hold)
     if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
-      const activeProp = properties.find(p => p._id === activeInspectionPropertyId)
+      const activeProp = lockProperties.find(p => p._id === activeInspectionPropertyId)
       toast.error(
         `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
         { position: 'top-right', autoClose: 6000 }
