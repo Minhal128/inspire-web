@@ -6,6 +6,7 @@ import AdminDashboardLayout from "@/components/AdminDashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
+import { GENERAL_COMMENT_CODE, generalCommentDedupeToken } from "@/lib/generalComments"
 import { outsideDeficiencyMapping, insideDeficiencyMapping, DeficiencyDetail } from "@/lib/deficiencyMapping"
 import { unitDeficiencyMapping } from "@/lib/unitDeficiencyMapping"
 import { calculateUnitInspectionScore, calculateUnitScore, ScoringResult, POSSIBLE_SCORE, SEVERITY_LEVELS } from "@/lib/scoringCalculations"
@@ -199,7 +200,10 @@ export default function InspectionCategoryPage() {
     // General Comment modal state
     const [isGeneralModalOpen, setIsGeneralModalOpen] = useState(false);
     const [generalNote, setGeneralNote] = useState('');
-    const [generalImage, setGeneralImage] = useState<string | null>(null);
+    // Every photo attached to the comment being written. There was room for
+    // one, and Save kept neither it nor the note.
+    const [generalPhotos, setGeneralPhotos] = useState<string[]>([]);
+    const [isSavingGeneralComment, setIsSavingGeneralComment] = useState(false);
     const [currentGeneralSection, setCurrentGeneralSection] = useState<'outside' | 'inside' | 'unit' | null>(null);
     const [currentGeneralItem, setCurrentGeneralItem] = useState<string | null>(null);
     const [isUploadingGeneralImage, setIsUploadingGeneralImage] = useState(false);
@@ -461,7 +465,9 @@ export default function InspectionCategoryPage() {
                         const item = f.item || f.deficiencyName || f.title || 'unknown';
 
                         const defKey = f.nspireCode || f.title || f.deficiencyName || '';
-                        const key = `${bldg}|${area}|${unit}|${item}|${defKey}`.toLowerCase().trim();
+                        // A general comment with several photos is several findings that
+                        // share all of that; the token keeps one per photo, not the first.
+                        const key = `${bldg}|${area}|${unit}|${item}|${defKey}${generalCommentDedupeToken(f)}`.toLowerCase().trim();
                         if (seen.has(key)) return false;
                         seen.add(key);
                         return true;
@@ -604,7 +610,7 @@ export default function InspectionCategoryPage() {
             setCurrentGeneralSection(section);
             setCurrentGeneralItem(itemName);
             setGeneralNote('');
-            setGeneralImage(null);
+            setGeneralPhotos([]);
             setIsGeneralModalOpen(true);
             return;
         }
@@ -749,21 +755,23 @@ export default function InspectionCategoryPage() {
         setModalStep(2);
     };
 
-    const persistItemFindings = async (mergedFindings: any[], updatedStatuses: Record<string, ItemStatus>) => {
-        const type = currentSection === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (currentSection!.charAt(0).toUpperCase() + currentSection!.slice(1));
-        const isComplete = currentSection === 'outside'
-            ? outsideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
-            : currentSection === 'inside'
-                ? insideItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
-                : currentSection === 'unit'
-                    ? unitItemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined)
-                    : false;
+    // Saves one section's answers together with every finding of the property.
+    // The section is named: a general comment is written from the item list,
+    // where no deficiency form is open to say which section it is.
+    const persistSectionFindings = async (
+        section: 'outside' | 'inside' | 'unit',
+        mergedFindings: any[],
+        updatedStatuses: Record<string, ItemStatus>
+    ) => {
+        const type = section === 'unit' ? `unit_${urlBuilding}_${activeInspectionUnit}` : (section.charAt(0).toUpperCase() + section.slice(1));
+        const itemsList = section === 'outside' ? outsideItemsList : section === 'inside' ? insideItemsList : unitItemsList;
+        const isComplete = itemsList.every(item => updatedStatuses[item] !== null && updatedStatuses[item] !== undefined);
 
         setPropertyFindings(mergedFindings);
 
         await inspectionsAPI.saveProgress({
             property_id: property?._id || params.id,
-            unit_id: currentSection === 'unit' ? activeInspectionUnit : urlBuilding,
+            unit_id: section === 'unit' ? activeInspectionUnit : urlBuilding,
             building_id: urlBuilding,
             inspection_type: type,
             responses: updatedStatuses,
@@ -774,6 +782,9 @@ export default function InspectionCategoryPage() {
             }
         });
     };
+
+    const persistItemFindings = (mergedFindings: any[], updatedStatuses: Record<string, ItemStatus>) =>
+        persistSectionFindings(currentSection!, mergedFindings, updatedStatuses);
 
     const handleRemoveSavedFinding = async (findingId: string) => {
         if (!confirm('Remove this saved deficiency from the report?')) return;
@@ -819,49 +830,114 @@ export default function InspectionCategoryPage() {
     const handleGeneralModalClose = () => {
         setIsGeneralModalOpen(false);
         setGeneralNote('');
-        setGeneralImage(null);
+        setGeneralPhotos([]);
         setCurrentGeneralSection(null);
         setCurrentGeneralItem(null);
     };
 
-    const handleSaveGeneralComment = () => {
-        if (currentGeneralSection && currentGeneralItem) {
-            if (currentGeneralSection === 'outside') {
-                setOutsideStatuses(prev => ({ ...prev, [currentGeneralItem!]: 'OD' }));
-            } else if (currentGeneralSection === 'inside') {
-                setInsideStatuses(prev => ({ ...prev, [currentGeneralItem!]: 'OD' }));
-            } else {
-                setUnitStatuses(prev => ({ ...prev, [currentGeneralItem!]: 'OD' }));
-            }
+    // Keeps the comment. It is stored the way a deficiency with several photos
+    // is -- one finding per photo -- and marked as a general comment, so every
+    // page shows it as one and none counts it as a deficiency.
+    //
+    // This used to answer "General comment saved!" having kept nothing: the
+    // note and the photo were dropped when the modal closed.
+    const handleSaveGeneralComment = async () => {
+        if (!currentGeneralSection || !currentGeneralItem) {
+            handleGeneralModalClose();
+            return;
         }
-        toast.success('General comment saved!', { position: 'top-right' });
-        handleGeneralModalClose();
+        if (isSavingGeneralComment) return;
+
+        const section = currentGeneralSection;
+        const item = currentGeneralItem;
+        const note = generalNote.trim();
+        const unitVal = section === 'unit' ? (activeInspectionUnit || '-') : '-';
+
+        const currentStatuses = section === 'outside' ? outsideStatuses
+            : section === 'inside' ? insideStatuses
+                : unitStatuses;
+        const updatedStatuses = { ...currentStatuses, [item]: 'OD' } as Record<string, ItemStatus>;
+
+        // A note with no photo is one finding with no picture; nothing written
+        // and nothing attached is no finding at all, only the item answered.
+        const shots = generalPhotos.length > 0 ? generalPhotos : (note ? [''] : []);
+        const stamp = Date.now();
+        const newFindings = shots.map((photo, index) => ({
+            id: `DEF-${stamp}-${index}`,
+            imageUri: photo,
+            title: `General Comment \u2022 ${item}`,
+            description: note || item,
+            category: item,
+            building: buildingName,
+            unit: unitVal,
+            location: section.charAt(0).toUpperCase() + section.slice(1),
+            severity: 'Low',
+            healthAndSafety: 'Low',
+            repairBy: '30 Days',
+            notes: note,
+            nspireCode: GENERAL_COMMENT_CODE,
+            isGeneralComment: true,
+            status: 'Open',
+            timestamp: new Date().toISOString(),
+            area: section,
+            item,
+            deductionPts: 0,
+        }));
+
+        setIsSavingGeneralComment(true);
+        try {
+            if (newFindings.length > 0) {
+                await persistSectionFindings(section, [...propertyFindings, ...newFindings], updatedStatuses);
+            }
+            if (section === 'outside') setOutsideStatuses(updatedStatuses);
+            else if (section === 'inside') setInsideStatuses(updatedStatuses);
+            else setUnitStatuses(updatedStatuses);
+
+            toast.success('General comment saved!', { position: 'top-right' });
+            handleGeneralModalClose();
+        } catch (error: any) {
+            // The modal stays open with everything in it, to try again.
+            toast.error(error?.message || 'The comment could not be saved. Please try again.', { position: 'top-right' });
+        } finally {
+            setIsSavingGeneralComment(false);
+        }
     };
 
     const handleGeneralImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
+        // Every file that was picked: the gallery takes several at once, and
+        // each batch adds to the photos already there.
+        const files = Array.from(e.target.files || []);
+        if (files.length === 0) return;
         setIsUploadingGeneralImage(true);
+        let failed = 0;
         try {
-            const formData = new FormData();
-            formData.append('image', file);
-            formData.append('folder', 'nspire-inspections/general-comments');
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/upload-image`, {
-                method: 'POST',
-                body: formData,
-            });
-            const data = await response.json();
-            if (data.success) {
-                setGeneralImage(data.data.url);
-                toast.success('Image uploaded!', { position: 'top-right' });
-            } else {
-                throw new Error(data.message || 'Upload failed');
+            for (const file of files) {
+                try {
+                    const formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('folder', 'nspire-inspections/general-comments');
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/ai/upload-image`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const data = await response.json();
+                    if (!data.success) throw new Error(data.message || 'Upload failed');
+                    setGeneralPhotos(prev => [...prev, data.data.url]);
+                } catch {
+                    failed += 1;
+                }
             }
-        } catch {
-            toast.error('Image upload failed. Please try again.', { position: 'top-right' });
+            if (failed === 0) {
+                toast.success(files.length === 1 ? 'Image uploaded!' : `${files.length} images uploaded!`, { position: 'top-right' });
+            } else if (failed === files.length) {
+                toast.error('Image upload failed. Please try again.', { position: 'top-right' });
+            } else {
+                toast.error(`${failed} of ${files.length} images could not be uploaded.`, { position: 'top-right' });
+            }
         } finally {
             setIsUploadingGeneralImage(false);
             if (generalFileInputRef.current) generalFileInputRef.current.value = '';
+            if (generalGalleryInputRef.current) generalGalleryInputRef.current.value = '';
         }
     };
 
@@ -1555,7 +1631,7 @@ export default function InspectionCategoryPage() {
                     </div>
 
                     <Button
-                        onClick={() => router.push(`/admin/inspection/summary?propertyId=${id}`)}
+                        onClick={() => router.push(`/admin/inspection/summary?propertyId=${id}&returnTo=${encodeURIComponent(window.location.pathname + window.location.search)}`)}
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
                     >
                         <FileText className="w-4 h-4" />
@@ -1878,7 +1954,7 @@ export default function InspectionCategoryPage() {
                         </div>
 
                         {/* Body */}
-                        <div className="p-5 space-y-4">
+                        <div className="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
                             {/* Note text area */}
                             <div>
                                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Comment</label>
@@ -1891,45 +1967,51 @@ export default function InspectionCategoryPage() {
                                 />
                             </div>
 
-                            {/* Image upload */}
+                            {/* Photos: as many as the comment needs */}
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Photo</label>
-                                {generalImage ? (
-                                    <div className="relative rounded-xl overflow-hidden border border-gray-200">
-                                        <img src={generalImage} alt="General comment" className="w-full h-40 object-cover" />
-                                        <button
-                                            onClick={() => setGeneralImage(null)}
-                                            className="absolute top-2 right-2 w-7 h-7 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
-                                        >
-                                            <X className="w-3.5 h-3.5" />
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <div className="grid grid-cols-2 gap-3">
-                                        {/* Take Photo */}
-                                        <button
-                                            onClick={() => generalFileInputRef.current?.click()}
-                                            disabled={isUploadingGeneralImage}
-                                            className="flex flex-col items-center justify-center gap-2 py-6 border-2 border-dashed border-[#006795]/40 rounded-xl text-[#006795] bg-[#F1F7FE] hover:bg-[#e1eef8] hover:border-[#006795] transition-all cursor-pointer"
-                                        >
-                                            {isUploadingGeneralImage ? (
-                                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#006795]" />
-                                            ) : (
-                                                <Camera className="w-6 h-6" />
-                                            )}
-                                            <span className="text-[11px] font-bold">Take Photo</span>
-                                        </button>
-                                        {/* Upload from Gallery */}
-                                        <button
-                                            onClick={() => generalGalleryInputRef.current?.click()}
-                                            disabled={isUploadingGeneralImage}
-                                            className="flex flex-col items-center justify-center gap-2 py-6 border-2 border-dashed border-gray-300 rounded-xl text-gray-500 bg-gray-50 hover:bg-gray-100 hover:border-gray-400 transition-all cursor-pointer"
-                                        >
-                                            <ImageIcon className="w-6 h-6" />
-                                            <span className="text-[11px] font-bold">Upload Photo</span>
-                                        </button>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">
+                                    {generalPhotos.length > 0 ? `Photos (${generalPhotos.length})` : 'Photos'}
+                                </label>
+                                {generalPhotos.length > 0 && (
+                                    <div className="flex flex-wrap gap-2 mb-3">
+                                        {generalPhotos.map((photo, index) => (
+                                            <div key={`${photo}-${index}`} className="relative w-20 h-20 rounded-xl overflow-hidden border border-gray-200">
+                                                <img src={photo} alt={`Photo ${index + 1}`} className="w-full h-full object-cover" />
+                                                <button
+                                                    onClick={() => setGeneralPhotos(prev => prev.filter((_, i) => i !== index))}
+                                                    aria-label={`Remove photo ${index + 1}`}
+                                                    className="absolute top-1 right-1 w-6 h-6 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+                                                >
+                                                    <X className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                        ))}
                                     </div>
                                 )}
+                                <div className="grid grid-cols-2 gap-3">
+                                    {/* Take Photo */}
+                                    <button
+                                        onClick={() => generalFileInputRef.current?.click()}
+                                        disabled={isUploadingGeneralImage}
+                                        className="flex flex-col items-center justify-center gap-2 py-6 border-2 border-dashed border-[#006795]/40 rounded-xl text-[#006795] bg-[#F1F7FE] hover:bg-[#e1eef8] hover:border-[#006795] transition-all cursor-pointer"
+                                    >
+                                        {isUploadingGeneralImage ? (
+                                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#006795]" />
+                                        ) : (
+                                            <Camera className="w-6 h-6" />
+                                        )}
+                                        <span className="text-[11px] font-bold">Take Photo</span>
+                                    </button>
+                                    {/* Upload from Gallery: several at once */}
+                                    <button
+                                        onClick={() => generalGalleryInputRef.current?.click()}
+                                        disabled={isUploadingGeneralImage}
+                                        className="flex flex-col items-center justify-center gap-2 py-6 border-2 border-dashed border-gray-300 rounded-xl text-gray-500 bg-gray-50 hover:bg-gray-100 hover:border-gray-400 transition-all cursor-pointer"
+                                    >
+                                        <ImageIcon className="w-6 h-6" />
+                                        <span className="text-[11px] font-bold">Upload Photos</span>
+                                    </button>
+                                </div>
                                 {/* Camera capture input */}
                                 <input
                                     ref={generalFileInputRef}
@@ -1944,6 +2026,7 @@ export default function InspectionCategoryPage() {
                                     ref={generalGalleryInputRef}
                                     type="file"
                                     accept="image/*"
+                                    multiple
                                     className="hidden"
                                     onChange={handleGeneralImageUpload}
                                 />
@@ -1960,9 +2043,10 @@ export default function InspectionCategoryPage() {
                             </button>
                             <button
                                 onClick={handleSaveGeneralComment}
-                                className="flex-1 px-4 py-3 bg-[#006795] hover:bg-[#0a5670] text-white rounded-xl text-sm font-bold transition-colors"
+                                disabled={isUploadingGeneralImage || isSavingGeneralComment}
+                                className="flex-1 px-4 py-3 bg-[#006795] hover:bg-[#0a5670] disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl text-sm font-bold transition-colors"
                             >
-                                Save Comment
+                                {isSavingGeneralComment ? 'Saving...' : 'Save Comment'}
                             </button>
                         </div>
                     </div>

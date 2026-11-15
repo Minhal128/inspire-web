@@ -20,6 +20,13 @@ import {
   mapCategoryToNSPIRECode,
 } from "@/lib/nspireReport"
 import { getEnhancedReportHTML } from "@/lib/enhancedNspirePDFService"
+import {
+  collectGeneralComments,
+  generalCommentDedupeToken,
+  generalCommentFindings,
+  generalCommentHeading,
+  withoutGeneralComments,
+} from "@/lib/generalComments"
 
 
 // Icons
@@ -267,60 +274,33 @@ function NSPIREInspectionSummaryContent() {
     return report.deficiencies.slice(0, 2)
   }, [report, isReportUnlocked, searchParams])
 
-  // Handle "Back to Inspection" - return to the active inspection screen
+  // Back from the summary goes to the property page, where the buildings are
+  // listed. It used to reopen the inspection page with no building named, and
+  // that page falls back to B1: coming back from B3's summary put you in B1.
   const handleBackToInspection = () => {
-    const propertyId = searchParams.get('propertyId') || searchParams.get('id');
+    const reportPropertyId = report?.metadata?.propertyId
+    const propertyId =
+      searchParams.get('propertyId') ||
+      (reportPropertyId && reportPropertyId !== '-' ? reportPropertyId : '') ||
+      inspectionContext?.propertyId
     if (propertyId) {
-      router.push(`/admin/inspection-category/${propertyId}`);
-      return;
+      router.push(`/admin/property-details/${propertyId}`)
+      return
     }
+    router.push('/admin')
+  }
 
-    // Priority 1: Current unit context from localStorage
-    if (inspectionContext) {
-      router.push(`/admin/inspection-category/${inspectionContext.propertyId}`);
-      return;
+  // CONTINUE INSPECTION returns to the building that was being inspected: its
+  // page passes its own address along when it opens the summary. Opened from
+  // anywhere else there is no such building, and the property page is where
+  // one is chosen. Only an address of that page is accepted.
+  const handleContinueInspection = () => {
+    const returnTo = searchParams.get('returnTo')
+    if (returnTo && returnTo.startsWith('/admin/inspection-category/')) {
+      router.push(returnTo)
+      return
     }
-
-    // Priority 2: Fallback to currentInspectionData
-    try {
-      const storedDataRaw = localStorage.getItem('currentInspectionData');
-      if (storedDataRaw) {
-        const parsed = JSON.parse(storedDataRaw);
-        const propertyId = parsed.propertyId || parsed.inspectionId;
-        const building = parsed.building || parsed.buildingId || '';
-        const unit = parsed.currentUnit || parsed.unitId || '';
-
-        if (propertyId) {
-          let url = `/admin/inspection-category/${propertyId}`;
-          const params = new URLSearchParams();
-          if (building) params.append('building', building);
-          if (unit) params.append('unit', unit);
-          params.append('units', '1');
-
-          url += `?${params.toString()}`;
-          router.push(url);
-          return;
-        }
-      }
-    } catch (e) {
-      console.error('Failed to parse inspection data for return URL', e);
-    }
-
-    // Priority 3: Try to find any progress record to go back to
-    const storedPropertyRaw = localStorage.getItem('currentInspectionProperty');
-    if (storedPropertyRaw) {
-      try {
-        const prop = JSON.parse(storedPropertyRaw);
-        const pid = prop._id || prop.id;
-        if (pid) {
-          router.push(`/admin/inspection-category/${pid}?building=B1&unit=Outside&units=1`);
-          return;
-        }
-      } catch { }
-    }
-
-    // Priority 4: Dashboard
-    router.push('/admin');
+    handleBackToInspection()
   }
 
   // Load inspection data from URL params or localStorage
@@ -459,7 +439,9 @@ function NSPIREInspectionSummaryContent() {
                 // Content-based deduplication: the database stores many duplicate records
                 // from drafts/progress saves, each with a different _id. We must deduplicate
                 // purely by content to get the real count.
-                const dedupKey = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}`;
+                // A general comment with several photos is several findings that
+                // read alike; the token keeps one per photo, not just the first.
+                const dedupKey = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}${generalCommentDedupeToken(f)}`;
                 
                 if (!seenKeys.has(dedupKey)) {
                     seenKeys.add(dedupKey);
@@ -591,8 +573,13 @@ function NSPIREInspectionSummaryContent() {
   const convertToNSPIREReport = (data: any, property: any): NSPIREInspectionReport => {
     const now = new Date()
 
+    // General comments are observations, not deficiencies: no row, no severity
+    // and no points. They are listed in a block of their own.
+    const allFindings: any[] = data.findings || data.deficiencies || []
+    const generalCommentEntries = collectGeneralComments(allFindings)
+
     // Convert findings to deficiency entries
-    const deficiencies: DeficiencyEntry[] = (data.findings || data.deficiencies || []).map((finding: any, index: number) => {
+    const deficiencies: DeficiencyEntry[] = withoutGeneralComments(allFindings).map((finding: any, index: number) => {
       const severity = mapSeverityToNSPIRE(finding.severity || finding.healthAndSafety || 'Moderate')
       return {
         id: finding.id || `DEF-${index + 1}`,
@@ -703,6 +690,7 @@ function NSPIREInspectionSummaryContent() {
       categoryBreakdown: [],
       deficiencies,
       generalComments: data.notes || data.generalComments || '',
+      generalCommentEntries,
       recommendations: data.recommendations || [],
       certification: {
         certifiedBy: data.inspectorName || 'Inspector',
@@ -950,7 +938,12 @@ function NSPIREInspectionSummaryContent() {
         return '';
       };
 
-      const formattedDeficiencies = exportDeficiencies.map((d: any) => {
+      // General comments ride along as rows marked for what they are: the
+      // server's report lists them under their own heading, with no points.
+      const formattedDeficiencies = [
+        ...exportDeficiencies,
+        ...generalCommentFindings(report.generalCommentEntries),
+      ].map((d: any) => {
         const img = extractImageUrl(d);
         return {
           ...d,
@@ -1150,6 +1143,10 @@ function NSPIREInspectionSummaryContent() {
           propertyId: propertyId,
           inspectionData: {
             ...report,
+            // The inspection's record is built from these rows. General comments
+            // are no longer among the deficiencies, so they are sent with them,
+            // marked for what they are.
+            deficiencies: [...report.deficiencies, ...generalCommentFindings(report.generalCommentEntries)],
             status: 'completed',
             completedAt: new Date().toISOString(),
             pdfExported: true
@@ -1245,7 +1242,7 @@ function NSPIREInspectionSummaryContent() {
             </div>
             <div className="flex flex-wrap gap-3">
               <Button
-                onClick={handleBackToInspection}
+                onClick={handleContinueInspection}
                 className="gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -1606,11 +1603,37 @@ function NSPIREInspectionSummaryContent() {
           </div>
         )}
 
-        {/* General Comments */}
-        {report.generalComments && (
+        {/* General Comments: the inspector's notes and their pictures. They are
+            observations, not deficiencies, so they are listed here and not in
+            the tables above. */}
+        {(report.generalComments || (report.generalCommentEntries?.length ?? 0) > 0) && (
           <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-[#006795] mt-6">
             <h3 className="font-bold text-[#006795] mb-2">General Comments</h3>
-            <p className="text-gray-700">{report.generalComments}</p>
+            {report.generalComments && (
+              <p className="text-gray-700 break-words whitespace-pre-wrap">{report.generalComments}</p>
+            )}
+            <div className="space-y-4 mt-2">
+              {(report.generalCommentEntries || []).map((entry, index) => (
+                <div key={index} className="border-b border-gray-100 last:border-b-0 pb-3 last:pb-0">
+                  <p className="text-xs font-black uppercase text-gray-700 break-words">{generalCommentHeading(entry)}</p>
+                  {entry.note && (
+                    <p className="text-sm text-gray-700 mt-1 break-words whitespace-pre-wrap">{entry.note}</p>
+                  )}
+                  {entry.photos.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {entry.photos.map((photo, photoIndex) => (
+                        <img
+                          key={photoIndex}
+                          src={photo}
+                          alt={`Comment photo ${photoIndex + 1}`}
+                          className="w-20 h-20 object-cover rounded-lg border border-gray-200"
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
