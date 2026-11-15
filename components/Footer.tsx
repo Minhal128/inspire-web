@@ -177,7 +177,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            <NextLink href="/">
+            {/* The logo leads to the public site by its full address, which is
+                what the client asked for, not to "/" on whichever host this
+                happens to be served from. */}
+            <NextLink href="https://nspireinspectionapp.com/">
               {/* One logo where two used to sit, across the width they took
                   together. 216x94 is the artwork's own 2.30:1 -- it was supplied
                   as a 2000x2000 square with the mark in a band across the middle,
