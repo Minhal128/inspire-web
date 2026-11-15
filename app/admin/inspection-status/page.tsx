@@ -6,6 +6,7 @@ import AdminDashboardLayout from "@/components/AdminDashboardLayout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
+import { withoutGeneralComments } from "@/lib/generalComments"
 import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, FileSpreadsheet, Clock } from "lucide-react"
 import { toast } from "react-toastify"
 
@@ -48,12 +49,13 @@ interface PropertyWithInspection extends Property {
   isUnlocked?: boolean
 }
 
-// Deduplicate findings by content to get the real count
+// Deduplicate findings by content to get the real count. A general comment is
+// an observation, not a deficiency, and is not counted as one.
 function getUniqueDeficiencyCount(findings: any[] | undefined): number {
   if (!findings || findings.length === 0) return 0;
   const seen = new Set<string>();
   let count = 0;
-  findings.forEach((f: any) => {
+  withoutGeneralComments(findings).forEach((f: any) => {
     const areaStr = String(f.area || f.subCategory || f.category || '').toLowerCase();
     const titleStr = String(f.title || f.deficiencyName || f.name || '').toLowerCase();
     const descStr = String(f.description || f.details || f.deficiencyDetails || '').toLowerCase();
@@ -99,7 +101,11 @@ export default function InspectionStatusPage() {
         // Every property, not the newest ten the server sends when asked for
         // nothing.
         propertiesAPI.getAll({ limit: 1000 }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections`, {
+        // Every inspection, in the server's list view: no pictures and no long
+        // texts, which a row has no use for. Asked plainly, the server sends
+        // the ten newest whole records, and a property whose inspection was
+        // older than those showed as having no report at all.
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'}/api/inspections?view=list`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

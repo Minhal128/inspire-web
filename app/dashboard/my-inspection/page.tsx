@@ -120,7 +120,9 @@ export default function MyInspection() {
       // Fetch completed inspections
       const token = localStorage.getItem('token')
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
-      const inspectionsRes = await fetch(`${API_URL}/api/inspections`, {
+      // Every inspection, in the server's list view; asked plainly it sends
+      // only the ten newest.
+      const inspectionsRes = await fetch(`${API_URL}/api/inspections?view=list`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
