@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
 import { useState, useEffect, useMemo } from "react"
 import { propertiesAPI } from "@/lib/api"
+import { findActiveInspection } from "@/lib/inspectionLock"
 import { UnitSelectionModal } from "@/components/UnitSelectionModal"
 import { ActionModal, EditPropertyModal, AddPropertyModal, BuildingDivisionModal } from "@/components/PropertyModals"
 import { Country, State, City } from 'country-state-city'
@@ -24,6 +25,8 @@ export default function MyInspection() {
   const [actionModalOpen, setActionModalOpen] = useState(false)
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+  // The saved records themselves: which property was worked on last is in them.
+  const [progressRecords, setProgressRecords] = useState<any[]>([])
   const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
   const [completedInspections, setCompletedInspections] = useState<any[]>([])
 
@@ -179,6 +182,7 @@ export default function MyInspection() {
             }
         })
         setPropertyProgress(progressMap)
+        setProgressRecords(data.progress)
       }
     } catch (e) {
       console.error('Error fetching progress:', e)
@@ -322,16 +326,15 @@ export default function MyInspection() {
     }
   }
 
-  // The property currently being actively inspected (progress > 0 and < 100, not on hold)
-  const activeInspectionPropertyId = useMemo(() => {
-    return Object.keys(propertyProgress).find(
-      id => {
-        const prop = properties.find(p => p._id === id)
-        if (prop?.status === 'hold') return false
-        return propertyProgress[id] > 0 && propertyProgress[id] < 100
-      }
-    ) || null
-  }, [propertyProgress, properties])
+  // The property being inspected right now: started, not finished, not on hold
+  // -- and of those, the one worked on last. It is the answer the property page
+  // gets too (lib/inspectionLock.ts). This used to be whichever part-inspected
+  // property came first in the list, so the two pages could each lock the
+  // property the other one called active.
+  const activeInspectionPropertyId = useMemo(
+    () => findActiveInspection<any>(properties, progressRecords)?._id ?? null,
+    [properties, progressRecords]
+  )
 
   const handleInitiate = (property: any) => {
     // Block only when another property is actively in progress (not on hold)
@@ -463,7 +466,7 @@ export default function MyInspection() {
                                 onClick={() => handleInitiate(property)}
                                 className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 mx-auto whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                               >
-                                {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
+                                {property.status === 'hold' ? 'On Hold' : (propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                               </button>
                             )
                           })()}

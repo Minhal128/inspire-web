@@ -550,7 +550,7 @@ export default function Dashboard() {
                                 onClick={() => handleInitiate(property)}
                                 className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                               >
-                                {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
+                                {property.status === 'hold' ? 'On Hold' : (propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                               </button>
                               <button
                                 onClick={() => handleRemoveProperty(property)}
@@ -617,7 +617,7 @@ export default function Dashboard() {
                           onClick={() => handleInitiate(property)}
                           className="font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap ml-2 flex items-center gap-1 bg-[#006795] hover:bg-[#00567a] text-white shadow-sm hover:shadow-md"
                         >
-                          {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
+                          {property.status === 'hold' ? 'On Hold' : (propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                         </Button>
                       )
                     })()}

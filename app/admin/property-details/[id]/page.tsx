@@ -7,6 +7,7 @@ import { CoverageSelectionModal } from "@/components/PropertyModals"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
+import { blockingInspection } from "@/lib/inspectionLock"
 import { toast } from "react-toastify"
 import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check, RefreshCw } from "lucide-react"
 import { generateRandomUnitSample, getUnitsToInspect, getSamplingExplanation } from "@/lib/unitSamplingService"
@@ -493,86 +494,50 @@ export default function PropertyDetailsPage() {
         return false
     }
 
-    const handleBuildingClick = async (building: typeof buildings[0]) => {
-        const propId = property._id || id
-
-        // Check if there is another property that has active progress (started but not complete)
+    // The property that has to be finished or put on hold before this one can
+    // be inspected, or null when this one is free to go.
+    //
+    // This check used to refuse a property whenever any other one was part-way
+    // through. With two part-inspected properties each refused the other, and
+    // neither could be opened again. It asks for one answer now -- the property
+    // worked on last -- and that property is never the one refused.
+    //
+    // A lookup that fails locks nothing: with no answer, the inspection goes on.
+    const findBlockingProperty = async () => {
         try {
             const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
             const token = localStorage.getItem('token')
-            const [progressResponse, completedInspRes] = await Promise.all([
+            const [progressResponse, propsRes] = await Promise.all([
                 fetch(`${API_URL}/api/inspections/progress`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch(`${API_URL}/api/inspections`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                })
+                propertiesAPI.getAll(),
             ])
             const data = await progressResponse.json()
-            const completedData = completedInspRes.ok ? await completedInspRes.json() : { success: false }
-            // Build a set of property IDs that have a completed inspection record
-            const completedPropertyIds = new Set<string>(
-                completedData.success && Array.isArray(completedData.inspections)
-                    ? completedData.inspections.map((insp: any) => insp.property?._id || insp.property).filter(Boolean)
-                    : []
-            )
-            if (data.success && Array.isArray(data.progress)) {
-                // Find any other property IDs that have progress records
-                const propertiesWithProgress = new Set(
-                    data.progress
-                        .map((p: any) => p.propertyId?._id || p.propertyId)
-                        .filter((pid): pid is string => !!pid && pid !== propId)
-                )
-
-                // If we found other properties with progress, check if any of them is not fully complete yet
-                if (propertiesWithProgress.size > 0) {
-                    // Fetch properties list to calculate if they are under 100%
-                    const propsRes = await propertiesAPI.getAll()
-                    if (propsRes.success) {
-                        const activeOtherProps = propsRes.properties.filter(p => propertiesWithProgress.has(p._id))
-                        
-                        // Check if any of these active other properties is not completed (100% progress)
-                        for (const activeProp of activeOtherProps) {
-                            // Hold check removed
-                            // If property has a completed inspection record, it is done — skip it
-                            if (completedPropertyIds.has(activeProp._id)) continue
-
-                            const propProgress = data.progress.filter((p: any) => 
-                                p.propertyId === activeProp._id || p.propertyId?._id === activeProp._id
-                            )
-                            
-                            const uniqueTasks = new Set()
-                            propProgress.forEach((p: any) => {
-                                const type = String(p.inspectionType || '').toLowerCase()
-                                const buildingId = p.buildingId || 'B1'
-                                if (type.startsWith('unit_')) {
-                                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
-                                } else if (type === 'inside' || type === 'outside') {
-                                    uniqueTasks.add(`${buildingId}_${type}`)
-                                }
-                            })
-                            
-                            const actualUnitsForInspection = activeProp.buildingDetails && activeProp.buildingDetails.length > 0
-                                ? activeProp.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
-                                : activeProp.units || 0
-                            
-                            const totalTasks = ((activeProp.buildings || 0) * 2) + actualUnitsForInspection
-                            const progressPercent = totalTasks > 0 ? Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100)) : 0
-                            
-                            if (progressPercent > 0 && progressPercent < 100) {
-                                toast.error(`Cannot start inspection. Property "${activeProp.name}" is already in progress. Please put it on hold or complete it first.`, {
-                                    position: "top-right",
-                                    autoClose: 5000
-                                })
-                                return
-                            }
-                        }
-                    }
-                }
-            }
+            if (!data.success || !Array.isArray(data.progress) || !propsRes.success) return null
+            return blockingInspection<any>(property._id || id, propsRes.properties, data.progress)
         } catch (e) {
             console.error("Failed to check active inspections:", e)
+            return null
         }
+    }
+
+    const handleBuildingClick = async (building: typeof buildings[0]) => {
+        const propId = property._id || id
+
+        // One property is inspected at a time; lib/inspectionLock.ts has the rule.
+        const blocker = await findBlockingProperty()
+        if (blocker) {
+            toast.error(`Cannot start inspection. Property "${blocker.name}" is already in progress. Please put it on hold or complete it first.`, {
+                position: "top-right",
+                autoClose: 5000
+            })
+            return
+        }
+
+        // On hold and about to be inspected: it is the active inspection again,
+        // so it is this property the next one has to wait for.
+        if (!(await resumeFromHoldIfNeeded())) return
 
         // Store column header name so inspection-category can read it
         localStorage.setItem(`buildingColHeader_${propId}`, columnHeaderName)
@@ -587,80 +552,19 @@ export default function PropertyDetailsPage() {
     const handleStartUnitInspection = async (buildingId: string, unitName: string) => {
         const propId = property._id || id
 
-        if (!(await resumeFromHoldIfNeeded())) return
-
-        // Check if there is another property that has active progress (started but not complete)
-        try {
-            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
-            const token = localStorage.getItem('token')
-            const [progressResponse, completedInspRes] = await Promise.all([
-                fetch(`${API_URL}/api/inspections/progress`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                }),
-                fetch(`${API_URL}/api/inspections`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                })
-            ])
-            const data = await progressResponse.json()
-            const completedData = completedInspRes.ok ? await completedInspRes.json() : { success: false }
-            // Build a set of property IDs that have a completed inspection record
-            const completedPropertyIds = new Set<string>(
-                completedData.success && Array.isArray(completedData.inspections)
-                    ? completedData.inspections.map((insp: any) => insp.property?._id || insp.property).filter(Boolean)
-                    : []
-            )
-            if (data.success && Array.isArray(data.progress)) {
-                const propertiesWithProgress = new Set(
-                    data.progress
-                        .map((p: any) => p.propertyId?._id || p.propertyId)
-                        .filter((pid): pid is string => !!pid && pid !== propId)
-                )
-
-                if (propertiesWithProgress.size > 0) {
-                    const propsRes = await propertiesAPI.getAll()
-                    if (propsRes.success) {
-                        const activeOtherProps = propsRes.properties.filter(p => propertiesWithProgress.has(p._id))
-                        for (const activeProp of activeOtherProps) {
-                            // Hold check removed
-                            // If property has a completed inspection record, it is done — skip it
-                            if (completedPropertyIds.has(activeProp._id)) continue
-
-                            const propProgress = data.progress.filter((p: any) => 
-                                p.propertyId === activeProp._id || p.propertyId?._id === activeProp._id
-                            )
-                            
-                            const uniqueTasks = new Set()
-                            propProgress.forEach((p: any) => {
-                                const type = String(p.inspectionType || '').toLowerCase()
-                                const buildingId = p.buildingId || 'B1'
-                                if (type.startsWith('unit_')) {
-                                    uniqueTasks.add(`${buildingId}_unit_${p.unitId}`)
-                                } else if (type === 'inside' || type === 'outside') {
-                                    uniqueTasks.add(`${buildingId}_${type}`)
-                                }
-                            })
-                            
-                            const actualUnitsForInspection = activeProp.buildingDetails && activeProp.buildingDetails.length > 0
-                                ? activeProp.buildingDetails.reduce((sum: number, b: any) => sum + (b.unitsForInspection || 0), 0)
-                                : activeProp.units || 0
-                            
-                            const totalTasks = ((activeProp.buildings || 0) * 2) + actualUnitsForInspection
-                            const progressPercent = totalTasks > 0 ? Math.min(100, Math.round((uniqueTasks.size / totalTasks) * 100)) : 0
-                            
-                            if (progressPercent > 0 && progressPercent < 100) {
-                                toast.error(`Cannot start inspection. Property "${activeProp.name}" is already in progress. Please put it on hold or complete it first.`, {
-                                    position: "top-right",
-                                    autoClose: 5000
-                                })
-                                return
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (e) {
-            console.error("Failed to check active inspections:", e)
+        // One property is inspected at a time; lib/inspectionLock.ts has the rule.
+        const blocker = await findBlockingProperty()
+        if (blocker) {
+            toast.error(`Cannot start inspection. Property "${blocker.name}" is already in progress. Please put it on hold or complete it first.`, {
+                position: "top-right",
+                autoClose: 5000
+            })
+            return
         }
+
+        // On hold and about to be inspected: it is the active inspection again,
+        // so it is this property the next one has to wait for.
+        if (!(await resumeFromHoldIfNeeded())) return
 
         const completed = completedUnitsMap[buildingId] || []
 

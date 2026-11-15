@@ -1101,6 +1101,23 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
             </button>
           )}
 
+          {/* Putting an inspection on hold is what lets another property be
+              started before this one is finished; the lock's own message says
+              so. This button was taken out while the lock stayed, which left no
+              way to do it. A property already on hold needs no button: it comes
+              off hold by itself when its inspection is continued. */}
+          {inspectionStarted && onHoldInspection && propertyData?.status !== 'hold' && (
+            <button
+              onClick={() => {
+                onHoldInspection()
+                onClose()
+              }}
+              className="w-full px-6 py-4 bg-amber-500 text-white font-bold rounded-xl text-base transition-all hover:bg-amber-600 shadow-lg active:scale-95"
+            >
+              Hold Inspection
+            </button>
+          )}
+
           <button
             onClick={handleStartInspection}
             className="w-full px-6 py-4 bg-[#00718F] text-white font-bold rounded-xl text-base transition-all hover:bg-[#005a72] shadow-lg active:scale-95"
