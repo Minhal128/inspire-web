@@ -141,7 +141,7 @@ export default function PropertyDetailsPage() {
     useEffect(() => {
         if (id && property && !searchParams.get('coverage')) {
             // Check if property already has coverage saved in backend
-            if (property.inspectionCoverage && property.calculatedUnits) {
+            if (property.inspectionCoverage && property.calculatedUnits != null) {
                 router.replace(`/asset-manager/dashboard/property-details/${id}?coverage=${property.inspectionCoverage}&calculatedUnits=${property.calculatedUnits}`)
             } else {
                 // No coverage selected yet, show modal
@@ -236,7 +236,10 @@ export default function PropertyDetailsPage() {
     // Total inspection units (fixed, must not change)
     const totalInspectionUnits = useMemo(() => {
         if (!property) return 0
-        return calculatedUnitsParam || property.units || 1
+        // A property with no units has none to inspect, whatever coverage was
+        // saved while it still had some (Edit Property can set units to 0).
+        if (property.units === 0) return 0
+        return calculatedUnitsParam || (property.units ?? 1)
     }, [property, calculatedUnitsParam])
 
     // Calculate initial buildings with unit distribution
@@ -244,8 +247,13 @@ export default function PropertyDetailsPage() {
         if (!property) return []
 
         const totalBuildings = property.buildings || 1
-        const totalUnits = property.units || 1
-        const unitsToInspect = calculatedUnitsParam || totalUnits
+        // `??`, not `||`: a property with no units has 0, not "unknown". Read as
+        // 1, the rounding step further down gave building B1 a unit to inspect
+        // that the property does not have.
+        const totalUnits = property.units ?? 1
+        // Same for the split: with no units, a stale calculatedUnits would be
+        // divided by zero further down.
+        const unitsToInspect = totalUnits === 0 ? 0 : (calculatedUnitsParam || totalUnits)
 
         let totalAssigned = 0;
         const rows = []
@@ -681,13 +689,20 @@ export default function PropertyDetailsPage() {
         return completed.filter(u => u !== 'Outside' && u !== 'Inside').length
     }
 
+    // Everything finished in a building: Outside and Inside as well as units.
+    // The table decided "Not started" from the unit count alone, so a building
+    // with no units stayed "Not started" for good -- and every other building
+    // did too, until its first unit was done.
+    const getStartedCount = (buildingId: string) => (completedUnitsMap[buildingId] || []).length
+
     const isAllCompleted = (building: typeof buildings[0]) => {
         const completed = completedUnitsMap[building.buildingId] || []
         const hasOutside = completed.includes('Outside')
         const hasInside = completed.includes('Inside')
         const unitCompletedCount = getCompletedCount(building.buildingId)
         
-        return hasOutside && hasInside && unitCompletedCount >= building.unitsForInspection && building.unitsForInspection > 0
+        // A building with no units is done once its Outside and Inside are.
+        return hasOutside && hasInside && unitCompletedCount >= building.unitsForInspection
     }
 
     const normalizeToken = (value: unknown): string => String(value ?? '').trim().toLowerCase()
@@ -1223,7 +1238,7 @@ export default function PropertyDetailsPage() {
                         </thead>
                         <tbody className="divide-y divide-gray-50">
                             {buildings.map((building) => {
-                                const completed = getCompletedCount(building.buildingId)
+                                const completed = getStartedCount(building.buildingId)
                                 const allDone = isAllCompleted(building)
                                 return (
                                     <tr key={building.buildingId} className="hover:bg-gray-50/50 transition-colors">
@@ -1341,7 +1356,7 @@ export default function PropertyDetailsPage() {
                 {/* Mobile Card View */}
                 <div className="md:hidden space-y-4">
                     {buildings.map((building) => {
-                        const completed = getCompletedCount(building.buildingId)
+                        const completed = getStartedCount(building.buildingId)
                         const allDone = isAllCompleted(building)
                         return (
                             <div key={building.buildingId} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">

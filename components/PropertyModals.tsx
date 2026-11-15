@@ -522,7 +522,10 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
         toast.error(`Buildings must be a valid number for Property ${i + 1}`, { position: "top-right" })
         return
       }
-      if (isNaN(parseInt(prop.units)) || parseInt(prop.units) <= 0) {
+      // Zero is a real answer: a property can have no units, and its buildings
+      // are still inspected Outside and Inside. Only a negative or unreadable
+      // count is refused. This used to turn 0 away as "not a valid number".
+      if (isNaN(parseInt(prop.units)) || parseInt(prop.units) < 0) {
         toast.error(`Units must be a valid number for Property ${i + 1}`, { position: "top-right" })
         return
       }
@@ -1134,6 +1137,8 @@ const NSPIRE_SAMPLING_RANGES: [number, number, number][] = [
 ]
 
 function getNspireScoringFactor(totalUnits: number): number {
+  // No units, nothing to sample. Without this the lookup fell through to 32.
+  if (totalUnits < 1) return 0
   for (const [min, max, factor] of NSPIRE_SAMPLING_RANGES) {
     if (totalUnits >= min && totalUnits <= max) return factor
   }
@@ -1157,7 +1162,10 @@ export function CoverageSelectionModal({ isOpen, onClose, onStartInspection, pro
   const [selectedCoverage, setSelectedCoverage] = useState('100')
   const [calculatedUnits, setCalculatedUnits] = useState(0)
 
-  const totalUnits = parseInt(propertyData?.units) || 1
+  // A property can have no units; `|| 1` used to turn that into one unit, and
+  // the coverage it saved then handed the property a unit to inspect.
+  const parsedUnits = parseInt(propertyData?.units)
+  const totalUnits = Number.isNaN(parsedUnits) ? 1 : Math.max(0, parsedUnits)
 
   useEffect(() => {
     if (isOpen && propertyData) {
@@ -1288,7 +1296,8 @@ export function EditPropertyModal({ isOpen, onClose, onSuccess, propertyData }: 
         stateCode: propertyData.stateCode || "",
         buildings: String(propertyData.buildings || ""),
         city: propertyData.city || "",
-        units: String(propertyData.units || ""),
+        // `??`: a property with no units shows 0 here, not an empty box.
+        units: String(propertyData.units ?? ""),
         zipCode: propertyData.zipCode || ""
       })
     }

@@ -340,7 +340,9 @@ export default function Dashboard() {
     const propId = prop?._id || prop?.id
     
     // Check if coverage is already saved in the property
-    if (prop?.inspectionCoverage && prop?.calculatedUnits) {
+    // `!= null`, not truthiness: a property with no units has 0 calculated
+    // units, and that is still a coverage that was chosen.
+    if (prop?.inspectionCoverage && prop?.calculatedUnits != null) {
       // Coverage already selected, go directly to property details
       setShowActionModal(false)
       router.push(

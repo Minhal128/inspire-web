@@ -431,7 +431,7 @@ export default function MyInspection() {
                         <td className="py-5 px-6 font-bold text-xs text-gray-900 text-center">{property.city}</td>
                         <td className="py-5 px-6 font-bold text-xs text-gray-500 text-center">{property.zipCode}</td>
                         <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.buildings || 1}</td>
-                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.units || 1}</td>
+                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.units ?? 1}</td>
                         <td className="py-5 px-6 text-center">
                           {(() => {
                             const progress = propertyProgress[property._id] || 0
