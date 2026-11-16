@@ -1090,7 +1090,13 @@ export default function InspectionCategoryPage() {
                     timestamp: new Date().toISOString(),
                     area: currentSection,
                     item: currentModalItem,
-                    deductionPts: scoringResult?.ptsLost || 0
+                    deductionPts: scoringResult?.ptsLost || 0,
+                    // The deficiency's own points: the report prints them as PTS and
+                    // works the points lost out from them (lib/reportRules).
+                    ptsLostRaw: scoringResult?.ptsLostRaw,
+                    pointsFormula: insideScoringResult?.specialFormula === 'divide_50n'
+                        ? `${insideScoringResult.pointsLostRaw}/50xn`
+                        : ((def as any).pointsFormula ?? selectedDeficiency?.pointsFormula)
                 });
             }
 

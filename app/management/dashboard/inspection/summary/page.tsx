@@ -13,10 +13,8 @@ import {
   InspectionMetadata,
   DeficiencySeverity,
   SEVERITY_COLORS,
-  REPAIR_TIMELINES,
   DEFAULT_PDF_OPTIONS,
   mapSeverityToNSPIRE,
-  calculateDeductionPoints,
   mapCategoryToNSPIRECode,
 } from "@/lib/nspireReport"
 import { getEnhancedReportHTML } from "@/lib/enhancedNspirePDFService"
@@ -27,6 +25,17 @@ import {
   generalCommentHeading,
   withoutGeneralComments,
 } from "@/lib/generalComments"
+import {
+  CERTIFICATE_STATEMENT,
+  COUNT_COLUMNS,
+  INSPECTION_TYPE,
+  formatPoints,
+  propertyBuildings,
+  reportScores,
+  rowRules,
+  sampleSize as sampleSizeFor,
+  scoreArea,
+} from "@/lib/reportRules"
 
 
 // Icons
@@ -454,6 +463,30 @@ function NSPIREInspectionSummaryContent() {
             // Update local unlock state if server reports any inspection is unlocked
             if (serverUnlocked) setIsReportUnlocked(true);
 
+            // The units inspected: every unit with a record of its own, and
+            // every unit something was found or noted in.
+            const inspectedUnits = new Set<string>();
+            uniqueRecords.forEach(record => {
+                if (scoreArea(record.area) === 'unit' && record.unit) {
+                    inspectedUnits.add(`${record.building}|${record.unit}`);
+                }
+            });
+            finalFindings.forEach((f: any) => {
+                const unit = String(f.unit || '').toUpperCase().trim();
+                if (scoreArea(f.area) === 'unit' && unit && unit !== '-') {
+                    inspectedUnits.add(`${String(f.building || '').toUpperCase().trim()}|${unit}`);
+                }
+            });
+
+            // The report carries the name of whoever is signed in.
+            let inspectorName = '';
+            try {
+                const signedIn = JSON.parse(localStorage.getItem('user') || 'null');
+                inspectorName = signedIn?.fullName || signedIn?.name || '';
+            } catch (e) {
+                inspectorName = '';
+            }
+
             // 4. Update inspectionData with combined findings
             inspectionData = {
               ...(inspectionData || {}),
@@ -461,7 +494,9 @@ function NSPIREInspectionSummaryContent() {
               propertyName: propertyData?.name || 'Property',
               propertyAddress: propertyData?.address || '-',
               findings: finalFindings,
-              deficiencies: finalFindings
+              deficiencies: finalFindings,
+              unitsInspected: inspectedUnits.size,
+              inspectorName
             };
           } catch (fetchError) {
             console.error('Error fetching property-wide progress:', fetchError);
@@ -578,9 +613,19 @@ function NSPIREInspectionSummaryContent() {
     const allFindings: any[] = data.findings || data.deficiencies || []
     const generalCommentEntries = collectGeneralComments(allFindings)
 
+    // The property's sample size: what a deficiency's points are divided by,
+    // and what the report prints beside the unit counts.
+    const totalUnits = Number(property?.units ?? 0) || 0
+    const sampleSize = sampleSizeFor(totalUnits)
+    const unitsInspected = Number(data.unitsInspected) || 0
+    const buildingNames = propertyBuildings(property)
+    const inspectorName = data.inspectorName || '-'
+
     // Convert findings to deficiency entries
     const deficiencies: DeficiencyEntry[] = withoutGeneralComments(allFindings).map((finding: any, index: number) => {
       const severity = mapSeverityToNSPIRE(finding.severity || finding.healthAndSafety || 'Moderate')
+      // PTS, points lost, possible score, repair time and date (lib/reportRules).
+      const rules = rowRules(finding, sampleSize)
       return {
         id: finding.id || `DEF-${index + 1}`,
         imageUri: finding.imageUri || finding.imageUrl || finding.photos?.[0]?.url || '',
@@ -592,13 +637,15 @@ function NSPIREInspectionSummaryContent() {
         nspireCode: finding.nspireCode || mapCategoryToNSPIRECode(finding.category || finding.area),
         deficiencyDetails: finding.description || finding.detail || finding.deficiencyDetails || '',
         comments: finding.notes || finding.comments || finding.recommendation || '',
-        deductionPts: finding.deductionPts !== undefined ? finding.deductionPts : calculateDeductionPoints(finding.severity || 'moderate'),
+        // What the deficiency takes off the score: its PTS over the sample size.
+        deductionPts: rules.ptsLost,
+        ...rules,
         repeatIndicator: finding.repeat || false,
         severity,
         healthAndSafety: finding.healthAndSafety || severity,
         standard: finding.standard || '',
         inspectionProtocol: finding.inspectionProtocol || finding.protocol || '',
-        repairTimeline: finding.repairBy || finding.repairTimeline || REPAIR_TIMELINES[severity],
+        repairTimeline: rules.repairTime,
         codeAndCompliance: finding.codeAndCompliance || '',
         inspectedDate: now.toLocaleDateString(),
         inspectedTime: finding.timestamp ? new Date(finding.timestamp).toLocaleTimeString() : now.toLocaleTimeString(),
@@ -644,10 +691,9 @@ function NSPIREInspectionSummaryContent() {
       summary.byCategory[cat] = (summary.byCategory[cat] || 0) + 1;
     });
 
-    // Calculate score
-    const totalDeductions = deficiencies.reduce((sum, d) => sum + d.deductionPts, 0)
-    const preliminaryScore = Math.max(0, 100 - totalDeductions)
-    const finalScore = Math.max(0, preliminaryScore - 5)
+    // The scores: 100 to begin with (outside 25, inside 25, units 50), the
+    // points the deficiencies lost, and what is left of the 100.
+    const scores = reportScores(deficiencies)
 
     return {
       reportId: `RPT-${Date.now()}`,
@@ -655,7 +701,7 @@ function NSPIREInspectionSummaryContent() {
       generatedAt: now.toISOString(),
       metadata: {
         inspectionNo: data?.inspectionNo || data?.inspectionId || `INSP-${Date.now().toString(36).toUpperCase()}`,
-        inspectionType: data.inspectionType || 'General NSPIRE',
+        inspectionType: INSPECTION_TYPE,
         escortName: data.escortName || property?.contactName || '-',
         propertyAddress: property?.address || data.address || data.propertyAddress || '-',
         propertyName: property?.name || data.propertyName || '-',
@@ -665,21 +711,21 @@ function NSPIREInspectionSummaryContent() {
         endDate: data.endDate || now.toLocaleDateString(),
         endTime: data.endTime || now.toLocaleTimeString(),
         reportCreatedDate: now.toLocaleDateString(),
-        preliminaryScore: preliminaryScore,
-        finalScore: finalScore,
-        calculatedScore: finalScore,
+        preliminaryScore: scores.preliminary,
+        finalScore: scores.final,
+        calculatedScore: scores.calculated,
         healthSafetyThreshold: 60,
         physicalConditionThreshold: 60,
-        inspectorName: data.inspectorName || 'Inspector',
+        inspectorName,
         inspectorId: data.inspectorId || 'INS-001',
       },
       inspectionData: [
-        { type: 'Building', propertyTotal: property?.buildings || 1, sampleSize: 1, totalUnitsInspected: 1 },
-        // A property with no units has none sampled and none inspected.
-        { type: 'Unit', propertyTotal: property?.units ?? 1, sampleSize: property?.units === 0 ? 0 : 1, totalUnitsInspected: property?.units === 0 ? 0 : 1 },
-        { type: 'Site', propertyTotal: 1, sampleSize: 1, totalUnitsInspected: 1 },
-        { type: 'Common Area', propertyTotal: 1, sampleSize: 1, totalUnitsInspected: 1 },
+        { type: 'Building', propertyTotal: buildingNames.length, sampleSize: buildingNames.length, totalUnitsInspected: buildingNames.length },
+        { type: 'Unit', propertyTotal: totalUnits, sampleSize, totalUnitsInspected: unitsInspected },
       ],
+      inspectionCounts: { buildings: buildingNames.length, units: totalUnits, sampleSize, unitsInspected },
+      // Every building of the property has its block in the report.
+      buildingNames,
       occupancyInfo: {
         totalUnits: property?.units ?? 1,
         occupiedUnits: property?.occupiedUnits || (property?.units ?? 1),
@@ -693,9 +739,9 @@ function NSPIREInspectionSummaryContent() {
       generalCommentEntries,
       recommendations: data.recommendations || [],
       certification: {
-        certifiedBy: data.inspectorName || 'Inspector',
+        certifiedBy: inspectorName,
         certificationDate: now.toLocaleDateString(),
-        certificationStatement: 'I certify that this inspection was conducted in accordance with HUD NSPIRE protocols and that the findings documented in this report accurately reflect the conditions observed during the inspection.',
+        certificationStatement: CERTIFICATE_STATEMENT,
       },
     }
   }
@@ -828,7 +874,7 @@ function NSPIREInspectionSummaryContent() {
       certification: {
         certifiedBy: 'John Smith',
         certificationDate: now.toLocaleDateString(),
-        certificationStatement: 'I certify that this inspection was conducted in accordance with HUD NSPIRE protocols and that the findings documented in this report accurately reflect the conditions observed during the inspection.',
+        certificationStatement: CERTIFICATE_STATEMENT,
       },
     }
   }
@@ -1264,48 +1310,18 @@ function NSPIREInspectionSummaryContent() {
                 INSPECTION DATA
               </h2>
 
-              {/* Desktop Table */}
-              <div className="hidden sm:block overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-[#006795] text-white">
-                      <th className="text-left p-3 rounded-tl-lg">Type</th>
-                      <th className="text-center p-3">Property Total</th>
-                      <th className="text-center p-3">Sample Size</th>
-                      <th className="text-center p-3 rounded-tr-lg">Units Inspected</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {report.inspectionData.map((row, index) => (
-                      <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                        <td className="p-3 font-semibold">{row.type}</td>
-                        <td className="p-3 text-center">{row.propertyTotal}</td>
-                        <td className="p-3 text-center">{row.sampleSize}</td>
-                        <td className="p-3 text-center">{row.totalUnitsInspected}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Mobile Cards */}
-              <div className="sm:hidden space-y-3">
-                {report.inspectionData.map((row, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                    <div className="font-bold text-[#006795] mb-2">{row.type}</div>
-                    <div className="grid grid-cols-3 gap-2 text-sm">
-                      <div>
-                        <div className="text-xs text-gray-500">Property Total</div>
-                        <div className="font-semibold">{row.propertyTotal}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500">Sample Size</div>
-                        <div className="font-semibold">{row.sampleSize}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-gray-500">Inspected</div>
-                        <div className="font-semibold">{row.totalUnitsInspected}</div>
-                      </div>
+              {/* The same four counts the report prints */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {COUNT_COLUMNS.map((label, index) => (
+                  <div key={label} className="bg-gray-50 rounded-lg p-3 border border-gray-200 text-center">
+                    <div className="text-xs text-gray-500">{label}</div>
+                    <div className="text-xl font-bold text-[#006795]">
+                      {[
+                        report.inspectionCounts?.buildings,
+                        report.inspectionCounts?.units,
+                        report.inspectionCounts?.sampleSize,
+                        report.inspectionCounts?.unitsInspected,
+                      ][index] ?? 0}
                     </div>
                   </div>
                 ))}
@@ -1314,22 +1330,20 @@ function NSPIREInspectionSummaryContent() {
 
             {/* 3. Score Cards */}
             <div className="bg-gradient-to-r from-[#006795] to-[#0891B2] rounded-lg p-4 text-white">
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
                   <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary Score</p>
-                  <p className="text-3xl font-bold">{report.metadata.preliminaryScore}</p>
-                </div>
-                <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
-                  <p className="text-xs opacity-80 uppercase tracking-wide">Points Lost</p>
-                  <p className="text-3xl font-bold text-red-200">-{report.deficiencies.reduce((sum, d) => sum + d.deductionPts, 0)}</p>
+                  <p className="text-3xl font-bold">{formatPoints(report.metadata.preliminaryScore)}</p>
+                  <p className="text-xs opacity-80 mt-1">Outside 25 + Inside 25 + Units 50</p>
                 </div>
                 <div className="sm:border-r border-white/30 pb-4 sm:pb-0">
                   <p className="text-xs opacity-80 uppercase tracking-wide">Calculated Score</p>
-                  <p className="text-3xl font-bold">{report.metadata.calculatedScore}</p>
+                  <p className="text-3xl font-bold text-red-200">{formatPoints(report.metadata.calculatedScore)}</p>
+                  <p className="text-xs opacity-80 mt-1">Points lost</p>
                 </div>
                 <div>
                   <p className="text-xs opacity-80 uppercase tracking-wide">Final Score</p>
-                  <p className="text-3xl font-bold">{report.metadata.finalScore}</p>
+                  <p className="text-3xl font-bold">{formatPoints(report.metadata.finalScore)}</p>
                   <p className="text-xs opacity-80 mt-1">
                     {report.metadata.finalScore >= 60 ? '✓ Passing' : '✗ Below Threshold'}
                   </p>
@@ -1530,7 +1544,7 @@ function NSPIREInspectionSummaryContent() {
                                   <span className="text-[10px] font-black text-red-600 uppercase">{def.healthAndSafety}</span>
                                 </td>
                                 <td className="p-3 text-center">
-                                  <span className="text-sm font-bold text-gray-800">{def.deductionPts}</span>
+                                  <span className="text-sm font-bold text-gray-800">{formatPoints(def.deductionPts)}</span>
                                 </td>
                                 <td className="p-3 text-center">
                                   <span className="inline-block bg-amber-100 text-amber-800 text-[10px] font-black px-2 py-1 rounded">
@@ -1818,7 +1832,7 @@ function NSPIREInspectionSummaryContent() {
                 </div>
                 <div className="text-right">
                   <h4 className="font-bold text-amber-900 text-sm uppercase mb-1">Points Lost</h4>
-                  <p className="text-amber-800 font-bold text-2xl">-{selectedDeficiency.deductionPts}</p>
+                  <p className="text-amber-800 font-bold text-2xl">-{formatPoints(selectedDeficiency.deductionPts)}</p>
                 </div>
               </div>
 
@@ -1913,15 +1927,15 @@ function NSPIREInspectionSummaryContent() {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <p className="text-xs opacity-80 uppercase tracking-wide">Preliminary</p>
-                    <p className="text-2xl font-bold">{report?.metadata.preliminaryScore}</p>
+                    <p className="text-2xl font-bold">{formatPoints(report?.metadata.preliminaryScore)}</p>
                   </div>
                   <div>
                     <p className="text-xs opacity-80 uppercase tracking-wide">Calculated</p>
-                    <p className="text-2xl font-bold">{report?.metadata.calculatedScore}</p>
+                    <p className="text-2xl font-bold">{formatPoints(report?.metadata.calculatedScore)}</p>
                   </div>
                   <div>
                     <p className="text-xs opacity-80 uppercase tracking-wide">Final Score</p>
-                    <p className="text-2xl font-bold">{report?.metadata.finalScore}</p>
+                    <p className="text-2xl font-bold">{formatPoints(report?.metadata.finalScore)}</p>
                   </div>
                 </div>
               </div>
