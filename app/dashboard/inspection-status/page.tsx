@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
 import { withoutGeneralComments } from "@/lib/generalComments"
+import { findingKey } from "@/lib/reportRules"
 import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, FileSpreadsheet, Clock } from "lucide-react"
 import { toast } from "react-toastify"
 
@@ -56,13 +57,11 @@ function getUniqueDeficiencyCount(findings: any[] | undefined): number {
   const seen = new Set<string>();
   let count = 0;
   withoutGeneralComments(findings).forEach((f: any) => {
-    const areaStr = String(f.area || f.subCategory || f.category || '').toLowerCase();
-    const titleStr = String(f.title || f.deficiencyName || f.name || '').toLowerCase();
-    const descStr = String(f.description || f.details || f.deficiencyDetails || '').toLowerCase();
-    const bldgStr = String(f.building || f.buildingName || '').toLowerCase();
-    const unitStr = String(f.unit || f.unitNumber || '').toLowerCase();
-    if (!titleStr && !descStr) return;
-    const key = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}`;
+    // Read from whichever shape the finding was saved in: the app keeps its
+    // name and description inside `deficiency`, and read only at the top a
+    // finding from a phone was skipped here as a blank record.
+    const key = findingKey(f);
+    if (!key) return;
     if (!seen.has(key)) {
       seen.add(key);
       count++;

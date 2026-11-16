@@ -14,7 +14,6 @@ import {
   DeficiencySeverity,
   SEVERITY_COLORS,
   DEFAULT_PDF_OPTIONS,
-  mapSeverityToNSPIRE,
   mapCategoryToNSPIRECode,
 } from "@/lib/nspireReport"
 import { getEnhancedReportHTML } from "@/lib/enhancedNspirePDFService"
@@ -29,6 +28,9 @@ import {
   CERTIFICATE_STATEMENT,
   COUNT_COLUMNS,
   INSPECTION_TYPE,
+  SCORE_AREAS,
+  findingFacts,
+  findingKey,
   formatPoints,
   propertyBuildings,
   reportScores,
@@ -418,11 +420,14 @@ function NSPIREInspectionSummaryContent() {
             uniqueRecords.forEach(record => {
                 if (Array.isArray(record.findings)) {
                     record.findings.forEach((f: any) => {
+                        // A finding keeps its own place; the record's is for one
+                        // that names none. The web writes building / unit / area,
+                        // the app buildingInspectionId / _unit / _area.
                         allFindings.push({
                             ...f,
-                            building: f.building || record.building,
-                            unit: f.unit || record.unit,
-                            area: f.area || record.area,
+                            building: f.building || f.buildingInspectionId || record.building,
+                            unit: f.unit ?? f._unit ?? record.unit,
+                            area: f.area || f._area || record.area,
                             isFinalized: record.isFinalized
                         });
                     });
@@ -434,14 +439,16 @@ function NSPIREInspectionSummaryContent() {
             const seenKeys = new Set<string>();
             
             allFindings.forEach((f: any) => {
-                const bldgStr = String(f.building || '').toLowerCase();
-                const unitStr = String(f.unit || '').toLowerCase();
-                const areaStr = String(f.area || f.subCategory || f.category || '').toLowerCase();
-                const titleStr = String(f.title || f.deficiencyName || f.name || '').toLowerCase();
-                const descStr = String(f.description || f.details || f.deficiencyDetails || '').toLowerCase();
+                // Where the finding was found and what it says, read from
+                // whichever shape it was saved in (lib/reportRules). The app
+                // keeps a finding's name and description inside `deficiency`;
+                // read only at the top, every finding from a phone looked like
+                // a blank record and was dropped here, and an inspection done
+                // in the app showed with nothing found and a full score.
+                const findingContent = findingKey(f);
                 
                 // Filter out empty "ghost" records that have no title and no description
-                if (!titleStr && !descStr) {
+                if (!findingContent) {
                     return;
                 }
 
@@ -450,7 +457,7 @@ function NSPIREInspectionSummaryContent() {
                 // purely by content to get the real count.
                 // A general comment with several photos is several findings that
                 // read alike; the token keeps one per photo, not just the first.
-                const dedupKey = `${areaStr}|${bldgStr}|${unitStr}|${titleStr}|${descStr}${generalCommentDedupeToken(f)}`;
+                const dedupKey = `${findingContent}${generalCommentDedupeToken(f)}`;
                 
                 if (!seenKeys.has(dedupKey)) {
                     seenKeys.add(dedupKey);
@@ -472,9 +479,9 @@ function NSPIREInspectionSummaryContent() {
                 }
             });
             finalFindings.forEach((f: any) => {
-                const unit = String(f.unit || '').toUpperCase().trim();
-                if (scoreArea(f.area) === 'unit' && unit && unit !== '-') {
-                    inspectedUnits.add(`${String(f.building || '').toUpperCase().trim()}|${unit}`);
+                const found = findingFacts(f);
+                if (found.area === 'unit' && found.unit) {
+                    inspectedUnits.add(`${found.building.toUpperCase()}|${found.unit.toUpperCase()}`);
                 }
             });
 
@@ -623,20 +630,22 @@ function NSPIREInspectionSummaryContent() {
 
     // Convert findings to deficiency entries
     const deficiencies: DeficiencyEntry[] = withoutGeneralComments(allFindings).map((finding: any, index: number) => {
-      const severity = mapSeverityToNSPIRE(finding.severity || finding.healthAndSafety || 'Moderate')
+      // What the finding says, whether the web saved it or the app did.
+      const found = findingFacts(finding)
+      const severity = found.severity
       // PTS, points lost, possible score, repair time and date (lib/reportRules).
       const rules = rowRules(finding, sampleSize)
       return {
-        id: finding.id || `DEF-${index + 1}`,
-        imageUri: finding.imageUri || finding.imageUrl || finding.photos?.[0]?.url || '',
-        building: finding.building || property?.building || 'A',
-        unit: finding.unit || property?.unit || '-',
+        id: finding.id || finding.deficiencyQRId || `DEF-${index + 1}`,
+        imageUri: found.picture,
+        building: found.building || property?.building || '',
+        unit: found.unit || '-',
         room: finding.location || finding.room || '-',
-        area: finding.area || finding.category || '-',
-        deficiencyName: finding.title || finding.selected || finding.deficiencyName || 'Unnamed Deficiency',
-        nspireCode: finding.nspireCode || mapCategoryToNSPIRECode(finding.category || finding.area),
-        deficiencyDetails: finding.description || finding.detail || finding.deficiencyDetails || '',
-        comments: finding.notes || finding.comments || finding.recommendation || '',
+        area: SCORE_AREAS.find(({ area }) => area === found.area)?.label || finding.area || finding.category || '-',
+        deficiencyName: found.name || 'Unnamed Deficiency',
+        nspireCode: found.code || mapCategoryToNSPIRECode(finding.category || finding.area),
+        deficiencyDetails: found.details,
+        comments: found.note || finding.recommendation || '',
         // What the deficiency takes off the score: its PTS over the sample size.
         deductionPts: rules.ptsLost,
         ...rules,
