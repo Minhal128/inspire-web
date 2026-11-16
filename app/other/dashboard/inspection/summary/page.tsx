@@ -641,6 +641,9 @@ function NSPIREInspectionSummaryContent() {
         building: found.building || property?.building || '',
         unit: found.unit || '-',
         room: finding.location || finding.room || '-',
+        // The item inspected. The spreadsheet names it beside the area; the
+        // website saves it as `item`, the app as `itemName`.
+        itemName: finding.itemName || finding.item || '',
         area: SCORE_AREAS.find(({ area }) => area === found.area)?.label || finding.area || finding.category || '-',
         deficiencyName: found.name || 'Unnamed Deficiency',
         nspireCode: found.code || mapCategoryToNSPIRECode(finding.category || finding.area),
