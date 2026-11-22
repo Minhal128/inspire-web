@@ -64,8 +64,17 @@ export default function UnitSelection() {
     [totalUnits]
   )
 
+  const openInspection = async (url: string) => {
+    try {
+      await propertiesAPI.startInspection(property._id || propertyId)
+      router.push(url)
+    } catch (error: any) {
+      toast.error(error.message || "Could not start inspection", { position: "top-right" })
+    }
+  }
+
   const inspectUnit = (unitName: string) => {
-    router.push(
+    void openInspection(
       `/dashboard/inspection-category/${propertyId}?unit=${encodeURIComponent(unitName)}&units=1`
     )
   }
@@ -130,7 +139,7 @@ export default function UnitSelection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Button
                 onClick={() =>
-                  router.push(`/dashboard/inspection-category/${propertyId}?units=${totalUnits}`)
+                  openInspection(`/dashboard/inspection-category/${propertyId}?units=${totalUnits}`)
                 }
                 className="h-11 gap-2 bg-[#006795] hover:bg-[#0A5670] text-white font-semibold rounded-lg"
               >

@@ -30,7 +30,8 @@ import {
   INSPECTION_TYPE,
   SCORE_AREAS,
   findingFacts,
-  findingKey,
+  findingPictures,
+  uniqueReportFindings,
   formatPoints,
   propertyBuildings,
   reportScores,
@@ -277,13 +278,7 @@ function NSPIREInspectionSummaryContent() {
     return id || null
   }, [searchParams])
 
-  const visibleDeficiencies = useMemo(() => {
-    if (!report) return []
-    // If we're just previewing progress (not finalizing), show everything so they can review
-    const isFinalizing = searchParams.get('finalize') === 'true';
-    if (isReportUnlocked || !isFinalizing) return report.deficiencies
-    return report.deficiencies.slice(0, 2)
-  }, [report, isReportUnlocked, searchParams])
+  const visibleDeficiencies = report?.deficiencies || []
 
   // Back from the summary goes to the property page, where the buildings are
   // listed. It used to reopen the inspection page with no building named, and
@@ -434,36 +429,7 @@ function NSPIREInspectionSummaryContent() {
                 }
             });
 
-            // Deduplicate findings to prevent duplicate ODs
-            const finalFindings: any[] = [];
-            const seenKeys = new Set<string>();
-            
-            allFindings.forEach((f: any) => {
-                // Where the finding was found and what it says, read from
-                // whichever shape it was saved in (lib/reportRules). The app
-                // keeps a finding's name and description inside `deficiency`;
-                // read only at the top, every finding from a phone looked like
-                // a blank record and was dropped here, and an inspection done
-                // in the app showed with nothing found and a full score.
-                const findingContent = findingKey(f);
-                
-                // Filter out empty "ghost" records that have no title and no description
-                if (!findingContent) {
-                    return;
-                }
-
-                // Content-based deduplication: the database stores many duplicate records
-                // from drafts/progress saves, each with a different _id. We must deduplicate
-                // purely by content to get the real count.
-                // A general comment with several photos is several findings that
-                // read alike; the token keeps one per photo, not just the first.
-                const dedupKey = `${findingContent}${generalCommentDedupeToken(f)}`;
-                
-                if (!seenKeys.has(dedupKey)) {
-                    seenKeys.add(dedupKey);
-                    finalFindings.push(f);
-                }
-            });
+            const finalFindings = uniqueReportFindings(allFindings, generalCommentDedupeToken);
 
             console.log(`Summary Aggregation: Final unique deficiencies=${finalFindings.length} (from ${allFindings.length} total)`);
 
@@ -638,6 +604,8 @@ function NSPIREInspectionSummaryContent() {
       return {
         id: finding.id || finding.deficiencyQRId || `DEF-${index + 1}`,
         imageUri: found.picture,
+        photos: findingPictures(finding),
+        deficiencyQRId: finding.deficiencyQRId,
         building: found.building || property?.building || '',
         unit: found.unit || '-',
         room: finding.location || finding.room || '-',
@@ -956,12 +924,6 @@ function NSPIREInspectionSummaryContent() {
       return
     }
 
-    const isPreview = !isReportUnlocked;
-
-    if (isPreview) {
-      toast.info('Exporting 2-item preview PDF...', { position: 'top-right' })
-    }
-
     setExporting(true)
     try {
       toast.info("Generating PDF through Puppeteer service...", { position: "top-right" })
@@ -975,26 +937,7 @@ function NSPIREInspectionSummaryContent() {
       });
 
       // 2. Build PDF payload EXACTLY from our deduplicated `report` state
-      const exportDeficiencies = isPreview ? report.deficiencies.slice(0, 2) : report.deficiencies;
-      
-      const extractImageUrl = (d: any): string => {
-        if (typeof d.imageUri === 'string' && d.imageUri.startsWith('http')) return d.imageUri;
-        if (typeof d.imageUrl === 'string' && d.imageUrl.startsWith('http')) return d.imageUrl;
-        if (typeof d.photo === 'string' && d.photo.startsWith('http')) return d.photo;
-        if (typeof d.image === 'string' && d.image.startsWith('http')) return d.image;
-        if (Array.isArray(d.photos) && d.photos.length > 0) {
-          const first = d.photos[0];
-          if (typeof first === 'string' && first.startsWith('http')) return first;
-          if (first?.url && typeof first.url === 'string' && first.url.startsWith('http')) return first.url;
-        }
-        for (const key of Object.keys(d)) {
-          const val = d[key];
-          if (typeof val === 'string' && val.startsWith('http') && (val.includes('cloudinary') || val.includes('.jpg') || val.includes('.png') || val.includes('.jpeg') || val.includes('.webp'))) {
-            return val;
-          }
-        }
-        return '';
-      };
+      const exportDeficiencies = report.deficiencies;
 
       // General comments ride along as rows marked for what they are: the
       // server's report lists them under their own heading, with no points.
@@ -1002,7 +945,8 @@ function NSPIREInspectionSummaryContent() {
         ...exportDeficiencies,
         ...generalCommentFindings(report.generalCommentEntries),
       ].map((d: any) => {
-        const img = extractImageUrl(d);
+        const photos = findingPictures(d);
+        const img = photos[0] || '';
         return {
           ...d,
           title: d.deficiencyName || d.title,
@@ -1011,7 +955,7 @@ function NSPIREInspectionSummaryContent() {
           category: d.area || d.category,
           imageUri: img,
           imageUrl: img,
-          photos: img ? [img] : []
+          photos
         };
       });
 
@@ -1322,15 +1266,16 @@ function NSPIREInspectionSummaryContent() {
                 INSPECTION DATA
               </h2>
 
-              {/* The same four counts the report prints */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {/* The counts shown in the PDF */}
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                 {COUNT_COLUMNS.map((label, index) => (
-                  <div key={label} className="bg-gray-50 rounded-lg p-3 border border-gray-200 text-center">
+                  <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200 text-center">
                     <div className="text-xs text-gray-500">{label}</div>
                     <div className="text-xl font-bold text-[#006795]">
                       {[
                         report.inspectionCounts?.buildings,
                         report.inspectionCounts?.units,
+                        report.inspectionCounts?.unitsInspected,
                         report.inspectionCounts?.sampleSize,
                         report.inspectionCounts?.unitsInspected,
                       ][index] ?? 0}
@@ -1366,7 +1311,7 @@ function NSPIREInspectionSummaryContent() {
             {/* 4. Deficiency Summary */}
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
               <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
-                DEFICIENCY SUMMARY
+                PROPERTY-WIDE DEFICIENCY SUMMARY
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-4">
                 <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg text-center">
@@ -1438,13 +1383,6 @@ function NSPIREInspectionSummaryContent() {
             <h2 className="text-lg font-bold text-[#006795] mb-4 pb-2 border-b-2 border-[#006795]">
               DEFICIENCY DETAILS
             </h2>
-
-            {!checkingUnlock && !isReportUnlocked && report.deficiencies.length > visibleDeficiencies.length && (
-              <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-                <span className="font-semibold text-base block mb-1">Unlock to Export PDF</span>
-                <span className="font-semibold italic">Locked preview:</span> showing {visibleDeficiencies.length} of {report.deficiencies.length} deficiencies. Unlock for $1 to view all items and export full PDF.
-              </div>
-            )}
 
             {/* Unit header banner */}
             {inspectionContext?.unitName && (
@@ -1955,37 +1893,20 @@ function NSPIREInspectionSummaryContent() {
               {/* Deficiency Preview */}
               {report?.deficiencies && report.deficiencies.length > 0 && (
                 <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <h3 className="text-lg font-bold text-[#006795] mb-3">Deficiency Preview (1 of {report.deficiencies.length})</h3>
-                  <div className="flex gap-3 items-start border border-gray-100 rounded-lg p-3 bg-gray-50">
-                    {report.deficiencies[0].imageUri ? (
-                        <div className="w-20 h-20 shrink-0">
-                          <img
-                            src={report.deficiencies[0].imageUri}
-                            alt="Deficiency"
-                            className="w-full h-full object-cover rounded-md border border-gray-200"
-                          />
+                  <h3 className="text-lg font-bold text-[#006795] mb-3">Deficiency Preview ({report.deficiencies.length})</h3>
+                  <div className="space-y-3">
+                    {report.deficiencies.map(deficiency => (
+                      <div key={deficiency.id} className="rounded-lg border border-gray-100 bg-gray-50 p-3">
+                        <p className="text-sm font-bold text-gray-900">{deficiency.deficiencyName}</p>
+                        <p className="text-xs text-gray-600">{deficiency.deficiencyDetails}</p>
+                        <p className="text-xs font-semibold text-gray-600">{deficiency.area} · {deficiency.building} {deficiency.unit}</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {findingPictures(deficiency).map((photo, index) => (
+                            <img key={photo} src={photo} alt={`Deficiency photo ${index + 1}`} className="h-20 w-20 rounded-md border object-cover" />
+                          ))}
                         </div>
-                      ) : (
-                        <div className="w-20 h-20 shrink-0 bg-gray-200 rounded-md flex items-center justify-center text-gray-400">
-                          <ImageIcon className="w-8 h-8" />
-                        </div>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2 mb-1">
-                          <p className="text-sm font-bold text-gray-900 truncate">
-                            {report.deficiencies[0].deficiencyName}
-                          </p>
-                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${SEVERITY_COLORS[report.deficiencies[0].severity]}`}>
-                            {report.deficiencies[0].severity}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600 line-clamp-2 mb-2">
-                          {report.deficiencies[0].deficiencyDetails}
-                        </p>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                          {report.deficiencies[0].area} • {report.deficiencies[0].building} {report.deficiencies[0].unit && `• ${report.deficiencies[0].unit}`}
-                        </p>
                       </div>
+                    ))}
                   </div>
                 </div>
               )}

@@ -1,5 +1,8 @@
 "use client"
 
+import { findingFacts, findingsFromProgress, uniqueReportFindings } from "@/lib/reportRules"
+import { isGeneralCommentFinding } from "@/lib/generalComments"
+
 import { useState, useEffect, useMemo, useRef, useCallback } from "react"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 import AdminDashboardLayout from "@/components/AdminDashboardLayout"
@@ -445,37 +448,10 @@ export default function InspectionCategoryPage() {
                     if (unitRec && unitRec.responses) setUnitStatuses(unitRec.responses);
                 }
 
-                // Restore findings for summary page if they exist in any record
-                const allFindings: any[] = [];
-                (res as any).progress.forEach((p: any) => {
-                    if (p.inspectionData && Array.isArray(p.inspectionData.findings)) {
-                        allFindings.push(...p.inspectionData.findings);
-                    }
-                });
-
-                if (allFindings.length > 0) {
-                    // Dedupe findings
-                    const seen = new Set();
-                    const uniqueFindings = allFindings.filter((f: any) => {
-                        // Aggressive deduplication: Building + Area + Unit + Item
-                        // If building is unknown, we treat it as potentially belonging to the current building to avoid duplicates
-                        const bldg = (f.building && !['unknown', 'UNKNOWN-BUILDING'].includes(f.building)) ? f.building : (urlBuilding || 'unknown');
-                        const area = f.area || f.category || 'unknown';
-                        const unit = f.unit || '-';
-                        const item = f.item || f.deficiencyName || f.title || 'unknown';
-
-                        const defKey = f.nspireCode || f.title || f.deficiencyName || '';
-                        // A general comment with several photos is several findings that
-                        // share all of that; the token keeps one per photo, not the first.
-                        const key = `${bldg}|${area}|${unit}|${item}|${defKey}${generalCommentDedupeToken(f)}`.toLowerCase().trim();
-                        if (seen.has(key)) return false;
-                        seen.add(key);
-                        return true;
-                    });
-
-                    // CRITICAL: Always use server findings as the source of truth
-                    setPropertyFindings(uniqueFindings);
-                }
+                setPropertyFindings(uniqueReportFindings(
+                    findingsFromProgress((res as any).progress),
+                    generalCommentDedupeToken
+                ));
                 // Restore OD form snapshots so re-opening a saved OD pre-fills the form
                 const restoredSnapshots: Record<string, any> = {};
                 const restoredSavedODKeys = new Set<string>();
@@ -977,7 +953,12 @@ export default function InspectionCategoryPage() {
     const [defSummarySection, setDefSummarySection] = useState<'outside' | 'inside' | 'unit' | null>(null);
 
     const getDefSummaryFindings = (sec: 'outside' | 'inside' | 'unit') => {
-        return propertyFindings.filter((f: any) => f.area === sec && (f.building === urlBuilding || f.building === buildingName));
+        const buildingLabels = [urlBuilding, buildingName].map((value) => String(value || '').trim().toLowerCase());
+        return propertyFindings.filter((finding: any) => {
+            const facts = findingFacts(finding);
+            return !isGeneralCommentFinding(finding) && facts.area === sec &&
+                buildingLabels.includes(facts.building.toLowerCase());
+        });
     };
 
     const handleProceed = async () => {
@@ -1752,11 +1733,21 @@ export default function InspectionCategoryPage() {
                                             className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-[#F84B5F] hover:bg-[#e04050] px-3 py-1.5 rounded-full transition-colors shadow-sm"
                                         >
                                             <FileText className="w-3 h-3" />
-                                            View Deficiency Summary ({count})
+                                            {buildingName || urlBuilding} {sec === 'unit' ? 'Units' : sec === 'outside' ? 'Outside' : 'Inside'} Deficiencies ({count})
                                         </button>
                                     ) : null;
                                 })()}
                             </div>
+                            {sec === 'unit' && rawUnitIds.length > 0 && (
+                                <button
+                                    type="button"
+                                    onClick={() => setUnitSelectionPopupOpen(true)}
+                                    className="shrink-0 rounded-md bg-white px-3 py-1.5 text-sm font-bold text-[#006795] shadow-sm hover:bg-blue-50"
+                                    aria-label="Next: select a unit"
+                                >
+                                    Next
+                                </button>
+                            )}
                             <button
                                 onClick={() => {
                                     if (sec === 'unit' && !activeInspectionUnit) {
@@ -1811,6 +1802,34 @@ export default function InspectionCategoryPage() {
             </div>
 
             {/* Unit Selection Popup - shown when user clicks Units section without a unit selected */}
+            {defSummarySection && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setDefSummarySection(null)}>
+                    <section role="dialog" aria-modal="true" aria-labelledby="area-deficiencies-title" className="max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-white p-5" onClick={(event) => event.stopPropagation()}>
+                        <div className="mb-4 flex items-center justify-between gap-4">
+                            <h2 id="area-deficiencies-title" className="text-lg font-bold text-gray-900">
+                                {buildingName || urlBuilding} · {defSummarySection === 'unit' ? 'Units' : defSummarySection === 'outside' ? 'Outside' : 'Inside'} Deficiencies
+                            </h2>
+                            <button type="button" aria-label="Close deficiencies" onClick={() => setDefSummarySection(null)}><X className="h-5 w-5" /></button>
+                        </div>
+                        <ul className="space-y-3">
+                            {getDefSummaryFindings(defSummarySection).map((finding: any, index: number) => {
+                                const facts = findingFacts(finding);
+                                return (
+                                    <li key={finding.id || index} className="flex gap-3 rounded-lg border p-3">
+                                        {facts.picture && <img src={facts.picture} alt="Saved deficiency photo" className="h-20 w-24 shrink-0 rounded object-cover" />}
+                                        <div>
+                                            <p className="font-bold">{facts.name || facts.details}</p>
+                                            {facts.unit && <p className="text-sm">{facts.unit}</p>}
+                                            {facts.note && <p className="text-sm text-gray-600">{facts.note}</p>}
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </section>
+                </div>
+            )}
+
             {unitSelectionPopupOpen && (
                 <div
                     className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 sm:p-4"
@@ -2130,7 +2149,7 @@ export default function InspectionCategoryPage() {
                                                 {savedItemFindings.map((finding: any) => (
                                                     <div key={finding.id} className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-2xl">
                                                         {finding.imageUri && (
-                                                            <img src={finding.imageUri} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0 border border-white shadow-sm" />
+                                                            <img src={finding.imageUri} alt="Saved deficiency photo" className="w-14 h-14 rounded-lg object-cover shrink-0 border border-white shadow-sm" />
                                                         )}
                                                         <div className="min-w-0 flex-1">
                                                             <p className="text-xs font-bold text-gray-900 truncate">{finding.title}</p>
@@ -2470,7 +2489,7 @@ export default function InspectionCategoryPage() {
                                     {savedItemFindings.map((finding: any) => (
                                         <div key={finding.id} className={`flex items-center gap-3 p-3 rounded-2xl border ${finding.id === lastSavedFindingId ? 'bg-green-50 border-green-300' : 'bg-white border-gray-100'}`}>
                                             {finding.imageUri ? (
-                                                <img src={finding.imageUri} alt="" className="w-16 h-16 rounded-xl object-cover shrink-0 border shadow-sm" />
+                                                <img src={finding.imageUri} alt="Saved deficiency photo" className="w-16 h-16 rounded-xl object-cover shrink-0 border shadow-sm" />
                                             ) : (
                                                 <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
                                                     <ImageIcon className="w-6 h-6 text-gray-300" />

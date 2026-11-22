@@ -201,23 +201,6 @@ export default function Dashboard() {
     toast.info("Searching properties...", { position: "top-right" })
   }
 
-  const handleHoldInspection = async (property: any) => {
-    if (!property) return
-    try {
-      const response = await propertiesAPI.hold(property._id)
-      if (response.success) {
-        const newStatus = response.property?.status ?? 'hold'
-        setProperties(prev =>
-          prev.map(p => (p._id === property._id ? { ...p, status: newStatus } : p))
-        )
-        toast.success(response.message || `Inspection for ${property.name} put on hold`, { position: "top-right" })
-        fetchProperties()
-      }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to hold inspection")
-    }
-  }
-
   const handleRemoveProperty = async (property: any) => {
     if (confirm(`Are you sure you want to remove ${property.name}?`)) {
       try {
@@ -382,22 +365,6 @@ export default function Dashboard() {
       }
     }
 
-    // Resume this property if it was on hold so it becomes the active inspection
-    if (prop?.status === 'hold' && propId !== 'new') {
-      try {
-        const response = await propertiesAPI.hold(propId)
-        if (response.success) {
-          const newStatus = response.property?.status ?? 'active'
-          setProperties(prev =>
-            prev.map(p => (p._id === propId ? { ...p, status: newStatus } : p))
-          )
-        }
-      } catch (error: any) {
-        toast.error(error.message || 'Failed to resume inspection')
-        return
-      }
-    }
-
     router.push(
       `/other/dashboard/property-details/${propId}?coverage=${coverage}&calculatedUnits=${calculatedUnits}`
     )
@@ -553,7 +520,7 @@ export default function Dashboard() {
                                 onClick={() => handleInitiate(property)}
                                 className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                               >
-                                {property.status === 'hold' ? 'On Hold' : (propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
+                                {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                               </button>
                               <button
                                 onClick={() => handleRemoveProperty(property)}
@@ -620,7 +587,7 @@ export default function Dashboard() {
                           onClick={() => handleInitiate(property)}
                           className="font-semibold px-3 py-2 rounded-lg text-xs shadow-sm transition-all duration-200 whitespace-nowrap ml-2 flex items-center gap-1 bg-[#006795] hover:bg-[#00567a] text-white shadow-sm hover:shadow-md"
                         >
-                          {property.status === 'hold' ? 'On Hold' : (propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
+                          {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                         </Button>
                       )
                     })()}
@@ -691,7 +658,6 @@ export default function Dashboard() {
         onClose={() => setShowActionModal(false)}
         onEdit={handleEditProperty}
         onStartInspection={handleActionStartInspection}
-        onHoldInspection={() => handleHoldInspection(newPropertyData || selectedProperty)}
         propertyData={newPropertyData || selectedProperty}
         inspectionStarted={(propertyProgress[newPropertyData?._id] || propertyProgress[selectedProperty?._id] || 0) > 0}
       />

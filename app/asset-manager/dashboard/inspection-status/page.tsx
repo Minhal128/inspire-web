@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, paymentsAPI } from "@/lib/api"
 import { withoutGeneralComments } from "@/lib/generalComments"
 import { findingKey } from "@/lib/reportRules"
-import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, FileSpreadsheet, Clock } from "lucide-react"
+import { Download, FileText, Calendar, MapPin, User, CheckCircle2, Loader2, Trash2, AlertCircle, Building2, RefreshCw, FileSpreadsheet, Clock, Lock } from "lucide-react"
 import { toast } from "react-toastify"
 
 interface Property {
@@ -135,21 +135,13 @@ export default function InspectionStatusPage() {
 
       // Map properties with their inspection status (preserve status field from API)
       const mappedProperties: PropertyWithInspection[] = allProperties.map(property => {
-        const inspection = completedInspections.find(
-          insp => {
-            // Safety check: ensure insp.property exists
-            if (!insp || !insp.property || !insp.property._id) return false
-            return insp.property._id === property._id || insp.property._id.toString() === property._id.toString()
-          }
-        )
-        
-        // Mark as complete ONLY if progress has reached EXACTLY 100%
-        // If progress data exists, use it as the source of truth
-        // Only fall back to DB inspection status if no progress data is available
-        const progressValue = progressMap[property._id]
-        const progressComplete = progressValue === 100
-        const hasCompletedInspection = inspection && inspection.status === 'completed'
-        const isComplete = progressValue !== undefined ? progressComplete : !!hasCompletedInspection
+        const inspections = completedInspections.filter(insp => {
+          const propertyId = typeof insp?.property === 'object' ? insp.property?._id : insp?.property
+          return propertyId && String(propertyId) === String(property._id)
+        })
+        const completed = inspections.find(insp => insp.status === 'completed')
+        const inspection = completed || inspections[0]
+        const isComplete = Boolean(completed)
 
         console.log(`Property ${property.name}:`, {
           hasInspection: inspection ? 'YES' : 'NO',
@@ -284,6 +276,11 @@ export default function InspectionStatusPage() {
       return
     }
 
+    if (!property.isUnlocked) {
+      router.push(`/asset-manager/dashboard/inspection/summary?inspectionId=${encodeURIComponent(property.inspection._id)}&propertyId=${encodeURIComponent(property._id)}`)
+      return
+    }
+
     setDownloadingId(property._id)
     try {
       toast.info("Generating PDF report...", { position: "top-right" })
@@ -362,6 +359,11 @@ export default function InspectionStatusPage() {
   const handleDownloadExcel = async (property: PropertyWithInspection) => {
     if (!property.inspection) {
       toast.error("No inspection completed for this property")
+      return
+    }
+
+    if (!property.isUnlocked) {
+      router.push(`/asset-manager/dashboard/inspection/summary?inspectionId=${encodeURIComponent(property.inspection._id)}&propertyId=${encodeURIComponent(property._id)}`)
       return
     }
 
@@ -589,12 +591,12 @@ export default function InspectionStatusPage() {
  
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0 flex-shrink-0">
                     {property.hasInspection ? (
-                      property.isUnlocked ? (
                         <div className="flex flex-col sm:flex-row gap-2">
                           <Button
                             onClick={() => handleDownloadPDF(property)}
+                            title={property.isUnlocked ? undefined : "Open report to unlock downloads"}
                             disabled={downloadingId === property._id || downloadingId === property._id + '_excel'}
-                            className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                            className="min-h-11 rounded-full bg-amber-700 hover:bg-amber-800 text-white flex items-center justify-center gap-2 text-sm sm:text-base font-bold w-full sm:w-auto whitespace-nowrap"
                           >
                             {downloadingId === property._id ? (
                               <>
@@ -604,16 +606,16 @@ export default function InspectionStatusPage() {
                               </>
                             ) : (
                               <>
-                                <Download className="w-4 h-4 flex-shrink-0" />
-                                <span className="hidden sm:inline">Download PDF</span>
-                                <span className="sm:hidden">PDF</span>
+                                {property.isUnlocked ? (<Download className="w-4 h-4 flex-shrink-0" />) : (<Lock aria-label="Locked report" className="w-4 h-4 flex-shrink-0" />)}
+                                <span>Download PDF</span>
                               </>
                             )}
                           </Button>
                           <Button
                             onClick={() => handleDownloadExcel(property)}
+                            title={property.isUnlocked ? undefined : "Open report to unlock downloads"}
                             disabled={downloadingId === property._id || downloadingId === property._id + '_excel'}
-                            className="bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap"
+                            className="min-h-11 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white flex items-center justify-center gap-2 text-sm sm:text-base font-bold w-full sm:w-auto whitespace-nowrap"
                           >
                             {downloadingId === property._id + '_excel' ? (
                               <>
@@ -623,14 +625,12 @@ export default function InspectionStatusPage() {
                               </>
                             ) : (
                               <>
-                                <FileSpreadsheet className="w-4 h-4 flex-shrink-0" />
-                                <span className="hidden sm:inline">Download Excel</span>
-                                <span className="sm:hidden">Excel</span>
+                                {property.isUnlocked ? (<FileSpreadsheet className="w-4 h-4 flex-shrink-0" />) : (<Lock aria-label="Locked report" className="w-4 h-4 flex-shrink-0" />)}
+                                <span>Download Excel</span>
                               </>
                             )}
                           </Button>
                         </div>
-                      ) : null
                     ) : (
                       <Button
                         onClick={() => handleStartInspection(property)}

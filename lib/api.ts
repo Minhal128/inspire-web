@@ -325,11 +325,11 @@ export const propertiesAPI = {
     );
   },
 
-  hold: async (id: string) => {
-    return apiRequest<{ success: boolean; message: string; property: any }>(
-      `/api/properties/${id}/hold`,
+  startInspection: async (id: string) => {
+    return apiRequest<{ success: boolean }>(
+      `/api/inspections/start/${id}`,
       {
-        method: 'PATCH',
+        method: 'POST',
       }
     );
   },

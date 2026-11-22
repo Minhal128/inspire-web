@@ -273,21 +273,6 @@ export default function MyInspection() {
     setEditModalOpen(true)
   }
 
-  const handleHoldInspection = async () => {
-    if (!selectedProperty) return
-    try {
-      const response = await propertiesAPI.hold(selectedProperty._id)
-      if (response.success) {
-        toast.success(response.message, { position: "top-right" })
-        fetchProperties()
-      }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to hold inspection")
-    } finally {
-      setActionModalOpen(false)
-    }
-  }
-
   const handleRemoveProperty = async () => {
     if (!selectedProperty) return
     if (confirm(`Are you sure you want to remove ${selectedProperty.name}?`)) {
@@ -345,7 +330,7 @@ export default function MyInspection() {
     }
   }
 
-  // The property being inspected right now: started, not finished, not on hold
+  // The property being inspected right now: started and unfinished
   // -- and of those, the one worked on last. It is the answer the property page
   // gets too (lib/inspectionLock.ts). This used to be whichever part-inspected
   // property came first in the list, so the two pages could each lock the
@@ -355,14 +340,14 @@ export default function MyInspection() {
     [lockProperties, progressRecords]
   )
 
+  const [inspectionStartError, setInspectionStartError] = useState("")
+
   const handleInitiate = (property: any) => {
-    // Block only when another property is actively in progress (not on hold)
+    setInspectionStartError("")
+    // Block only when another property is actively in progress
     if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
       const activeProp = lockProperties.find(p => p._id === activeInspectionPropertyId)
-      toast.error(
-        `"${activeProp?.name || 'Another property'}" is currently being inspected. Please put it on hold before starting a new inspection.`,
-        { position: 'top-right', autoClose: 6000 }
-      )
+      setInspectionStartError(`"${activeProp?.name || 'Another property'}" is currently being inspected. Please complete it before starting a new inspection.`)
       return
     }
     setSelectedProperty(property)
@@ -373,17 +358,23 @@ export default function MyInspection() {
     <ManagementDashboardLayout>
       <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 text-black">
         <div className="max-w-7xl mx-auto">
+          <h1 className="mb-4 text-2xl font-extrabold text-gray-900 sm:text-3xl">My Inspections</h1>
+          {inspectionStartError && (
+            <p role="alert" className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-950">
+              {inspectionStartError}
+            </p>
+          )}
           <Card className="bg-white rounded-lg shadow-sm overflow-hidden">
             <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-[#F8FAFC]">
               <div className="flex items-center gap-4">
                 <h3 className="text-lg font-bold text-gray-900">Your Properties</h3>
-                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{properties.length} properties</span>
+                <span className="text-sm font-bold text-gray-600 uppercase tracking-wide">{properties.length} properties</span>
               </div>
               <div className="flex items-center gap-3">
                 {selectedProperties.size > 0 && (
                   <Button
                     onClick={handleBulkDelete}
-                    className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all flex items-center gap-2"
+                    className="bg-red-600 hover:bg-red-700 text-white font-semibold min-h-11 px-4 py-2 rounded-lg text-sm shadow-sm transition-all flex items-center gap-2"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -393,7 +384,7 @@ export default function MyInspection() {
                 )}
                 <Button
                   onClick={() => setShowAddPropertyModal(true)}
-                  className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
+                  className="bg-[#F84B5F] hover:bg-[#EE3646] text-white font-semibold min-h-11 px-4 py-2 rounded-lg text-sm shadow-sm transition-all"
                 >
                   Add New Property
                 </Button>
@@ -416,15 +407,15 @@ export default function MyInspection() {
                           className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
                         />
                       </th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property ID</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Property Name</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Address</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">State/Province</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">City/Area</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Postal Code</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Buildings</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Units</th>
-                      <th className="text-center py-4 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Action</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Property ID</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Property Name</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Address</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">State/Province</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">City/Area</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Postal Code</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Buildings</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Units</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
@@ -438,23 +429,23 @@ export default function MyInspection() {
                             className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
                           />
                         </td>
-                        <td className="py-5 px-6 text-center">
-                          <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-xs shadow-sm border border-cyan-100/50 inline-block">
+                        <td className="py-4 px-4 text-center">
+                          <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-sm shadow-sm border border-cyan-100/50 inline-block">
                             {property.propertyId}
                           </span>
                         </td>
-                        <td className="py-5 px-6 font-bold text-sm text-gray-900 text-center">{property.name}</td>
-                        <td className="py-5 px-6 font-bold text-xs text-gray-500 max-w-[150px] truncate text-center">{property.address}</td>
-                        <td className="py-5 px-6 text-center">
+                        <td className="py-4 px-4 font-bold text-base text-gray-900 text-center">{property.name}</td>
+                        <td className="py-4 px-4 font-bold text-sm text-gray-500 max-w-[150px] truncate text-center">{property.address}</td>
+                        <td className="py-4 px-4 text-center">
                           <span className="bg-green-50 text-green-700 px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-tight">
                             {property.state}
                           </span>
                         </td>
-                        <td className="py-5 px-6 font-bold text-xs text-gray-900 text-center">{property.city}</td>
-                        <td className="py-5 px-6 font-bold text-xs text-gray-500 text-center">{property.zipCode}</td>
-                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.buildings || 1}</td>
-                        <td className="py-5 px-6 text-center font-black text-gray-900 text-sm">{property.units ?? 1}</td>
-                        <td className="py-5 px-6 text-center">
+                        <td className="py-4 px-4 font-bold text-sm text-gray-900 text-center">{property.city}</td>
+                        <td className="py-4 px-4 font-bold text-sm text-gray-500 text-center">{property.zipCode}</td>
+                        <td className="py-4 px-4 text-center font-black text-gray-900 text-sm">{property.buildings || 1}</td>
+                        <td className="py-4 px-4 text-center font-black text-gray-900 text-sm">{property.units ?? 1}</td>
+                        <td className="py-4 px-4 text-center">
                           {(() => {
                             const progress = propertyProgress[property._id] || 0
                             
@@ -473,7 +464,7 @@ export default function MyInspection() {
                             if (isCompleted) {
                               return (
                                 <div className="flex items-center justify-center gap-2">
-                                  <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-green-200">
+                                  <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-lg text-sm font-bold border border-green-200">
                                     Complete
                                   </span>
                                 </div>
@@ -483,9 +474,9 @@ export default function MyInspection() {
                             return (
                               <button
                                 onClick={() => handleInitiate(property)}
-                                className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 mx-auto whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
+                                className="min-h-11 px-4 py-2 text-sm font-bold rounded-lg transition-colors flex items-center gap-1 mx-auto whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                               >
-                                {property.status === 'hold' ? 'On Hold' : (propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
+                                {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                               </button>
                             )
                           })()}
@@ -508,7 +499,6 @@ export default function MyInspection() {
           setActionModalOpen(false)
           router.push(`/management/dashboard/property-details/${selectedProperty?._id}`)
         }}
-        onHoldInspection={handleHoldInspection}
         onRemoveProperty={handleRemoveProperty}
         propertyData={selectedProperty}
         inspectionStarted={(propertyProgress[selectedProperty?._id] || 0) > 0}

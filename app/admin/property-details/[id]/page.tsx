@@ -7,7 +7,6 @@ import { CoverageSelectionModal } from "@/components/PropertyModals"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
-import { blockingInspection } from "@/lib/inspectionLock"
 import { toast } from "react-toastify"
 import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check, RefreshCw } from "lucide-react"
 import { generateRandomUnitSample, getUnitsToInspect, getSamplingExplanation } from "@/lib/unitSamplingService"
@@ -478,74 +477,23 @@ export default function PropertyDetailsPage() {
         return '-'
     }
 
-    const resumeFromHoldIfNeeded = async () => {
-        if (property?.status !== 'hold') return true
-        try {
-            const response = await propertiesAPI.hold(property._id || id)
-            if (response.success) {
-                setProperty((prev: any) =>
-                    prev ? { ...prev, status: response.property?.status ?? 'active' } : prev
-                )
-                return true
-            }
-        } catch (error: any) {
-            toast.error(error.message || 'Failed to resume inspection')
-        }
-        return false
-    }
+    const [inspectionStartError, setInspectionStartError] = useState("")
 
-    // The property that has to be finished or put on hold before this one can
-    // be inspected, or null when this one is free to go.
-    //
-    // This check used to refuse a property whenever any other one was part-way
-    // through. With two part-inspected properties each refused the other, and
-    // neither could be opened again. It asks for one answer now -- the property
-    // worked on last -- and that property is never the one refused.
-    //
-    // A lookup that fails locks nothing: with no answer, the inspection goes on.
-    const findBlockingProperty = async () => {
+    const startPropertyInspection = async (propertyId: string) => {
+        setInspectionStartError("")
         try {
-            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
-            const token = localStorage.getItem('token')
-            const [progressResponse, propsRes] = await Promise.all([
-                fetch(`${API_URL}/api/inspections/progress`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                }),
-                // Every property, not the page of ten the lists ask for: the one
-                // being inspected can be older than those ten.
-                propertiesAPI.getAll({ limit: 1000 }),
-            ])
-            const data = await progressResponse.json()
-            if (!data.success || !Array.isArray(data.progress) || !propsRes.success) return null
-            const propId = property._id || id
-            // This property counts whether or not that list has it, so that its
-            // being the one worked on last is never missed.
-            const everyProperty = propsRes.properties.some((p: any) => p._id === propId)
-                ? propsRes.properties
-                : [...propsRes.properties, property]
-            return blockingInspection<any>(propId, everyProperty, data.progress)
-        } catch (e) {
-            console.error("Failed to check active inspections:", e)
-            return null
+            await propertiesAPI.startInspection(propertyId)
+            return true
+        } catch (error: any) {
+            setInspectionStartError(error.message || "Could not start inspection")
+            return false
         }
     }
 
     const handleBuildingClick = async (building: typeof buildings[0]) => {
         const propId = property._id || id
 
-        // One property is inspected at a time; lib/inspectionLock.ts has the rule.
-        const blocker = await findBlockingProperty()
-        if (blocker) {
-            toast.error(`Cannot start inspection. Property "${blocker.name}" is already in progress. Please put it on hold or complete it first.`, {
-                position: "top-right",
-                autoClose: 5000
-            })
-            return
-        }
-
-        // On hold and about to be inspected: it is the active inspection again,
-        // so it is this property the next one has to wait for.
-        if (!(await resumeFromHoldIfNeeded())) return
+        if (!(await startPropertyInspection(propId))) return
 
         // Store column header name so inspection-category can read it
         localStorage.setItem(`buildingColHeader_${propId}`, columnHeaderName)
@@ -560,20 +508,6 @@ export default function PropertyDetailsPage() {
     const handleStartUnitInspection = async (buildingId: string, unitName: string) => {
         const propId = property._id || id
 
-        // One property is inspected at a time; lib/inspectionLock.ts has the rule.
-        const blocker = await findBlockingProperty()
-        if (blocker) {
-            toast.error(`Cannot start inspection. Property "${blocker.name}" is already in progress. Please put it on hold or complete it first.`, {
-                position: "top-right",
-                autoClose: 5000
-            })
-            return
-        }
-
-        // On hold and about to be inspected: it is the active inspection again,
-        // so it is this property the next one has to wait for.
-        if (!(await resumeFromHoldIfNeeded())) return
-
         const completed = completedUnitsMap[buildingId] || []
 
         if (completed.includes(unitName)) {
@@ -582,6 +516,8 @@ export default function PropertyDetailsPage() {
                 return
             }
         }
+
+        if (!(await startPropertyInspection(propId))) return
 
         // Store context for the inspection flow
         localStorage.setItem('currentInspectionUnit', JSON.stringify({
@@ -989,35 +925,35 @@ export default function PropertyDetailsPage() {
                     </div>
                 </div>
 
-                <h1 className="text-xl font-black text-gray-900 mb-6 px-1 tracking-tight">Property Details</h1>
+                <h1 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 px-1 tracking-tight">Property Details</h1>
 
                 <Card className="bg-[#F1F7FE] border-none shadow-none p-8 mb-12 rounded-xl">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-12">
                         <div className="space-y-1">
-                            <span className="text-sm font-black text-gray-900">Property ID: </span>
-                            <span className="text-sm text-[#006795] font-black">{property.propertyId || property._id?.slice(-8)?.toUpperCase()}</span>
+                            <span className="text-base md:text-lg font-black text-gray-900">Property ID: </span>
+                            <span className="text-base md:text-lg text-[#006795] font-black">{property.propertyId || property._id?.slice(-8)?.toUpperCase()}</span>
                             <div className="mt-1">
-                                <span className="text-sm font-black text-gray-900">State: </span>
-                                <span className="text-sm text-gray-600 font-bold">{property.state}</span>
+                                <span className="text-base md:text-lg font-black text-gray-900">State: </span>
+                                <span className="text-base md:text-lg text-gray-600 font-bold">{property.state}</span>
                             </div>
                         </div>
 
                         <div className="space-y-1">
-                            <span className="text-sm font-black text-gray-900">Zip: </span>
-                            <span className="text-sm text-gray-600 font-bold pl-4">{property.zipCode}</span>
+                            <span className="text-base md:text-lg font-black text-gray-900">Zip: </span>
+                            <span className="text-base md:text-lg text-gray-600 font-bold pl-4">{property.zipCode}</span>
                             <div className="mt-1">
-                                <span className="text-sm font-black text-gray-900">Address: </span>
-                                <span className="text-sm text-gray-600 font-bold">{property.address}</span>
+                                <span className="text-base md:text-lg font-black text-gray-900">Address: </span>
+                                <span className="text-base md:text-lg text-gray-600 font-bold">{property.address}</span>
                             </div>
                         </div>
 
                         <div className="space-y-1">
-                            <span className="text-sm font-black text-gray-900 block">No. of Building: </span>
-                            <span className="text-sm text-gray-900 font-black">{property.buildings || 1}</span>
+                            <span className="text-base md:text-lg font-black text-gray-900 block">No. of Building: </span>
+                            <span className="text-base md:text-lg text-gray-900 font-black">{property.buildings || 1}</span>
                             <div className="mt-1">
-                                <span className="text-sm font-black text-gray-900">Selection: </span>
+                                <span className="text-base md:text-lg font-black text-gray-900">Selection: </span>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-sm text-gray-600 font-bold">{getCoverageLabel()}</span>
+                                    <span className="text-base md:text-lg text-gray-600 font-bold">{getCoverageLabel()}</span>
                                     {Object.keys(completedUnitsMap).length === 0 && (
                                         <button 
                                             onClick={() => setShowCoverageModal(true)}
@@ -1032,23 +968,23 @@ export default function PropertyDetailsPage() {
                         </div>
 
                         <div className="space-y-1">
-                            <span className="text-sm font-black text-gray-900">Property Name: </span>
-                            <span className="text-sm text-gray-600 font-bold">{property.name}</span>
+                            <span className="text-base md:text-lg font-black text-gray-900">Property Name: </span>
+                            <span className="text-base md:text-lg text-gray-600 font-bold">{property.name}</span>
                             <div className="mt-1">
-                                <span className="text-sm font-black text-gray-900">City: </span>
-                                <span className="text-sm text-gray-600 font-bold pl-4">{property.city}</span>
+                                <span className="text-base md:text-lg font-black text-gray-900">City: </span>
+                                <span className="text-base md:text-lg text-gray-600 font-bold pl-4">{property.city}</span>
                             </div>
                         </div>
                     </div>
                 </Card>
 
                 <div className="mb-12">
-                    <h2 className="text-xl font-black text-gray-900 mb-6 px-1 tracking-tight">Unit Status Summary</h2>
+                    <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 px-1 tracking-tight">Unit Status Summary</h2>
                     <Card className="bg-white border border-gray-100 shadow-sm p-8 rounded-2xl">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
                             <div className="flex-1">
                                 <div className="flex items-center justify-between mb-4">
-                                    <span className="text-sm font-black text-gray-500 uppercase tracking-widest">Overall Inspection Progress</span>
+                                    <span className="text-base md:text-lg font-black text-gray-500 uppercase tracking-widest">Overall Inspection Progress</span>
                                     <span className="text-2xl font-black text-[#006795]">{overallProgress}%</span>
                                 </div>
                                 <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden border border-gray-50">
@@ -1058,8 +994,8 @@ export default function PropertyDetailsPage() {
                                     />
                                 </div>
                                 <div className="flex justify-between mt-3">
-                                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">Not Started</span>
-                                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">Completed</span>
+                                    <span className="text-sm font-extrabold text-gray-600 uppercase tracking-tighter">Not Started</span>
+                                    <span className="text-sm font-extrabold text-gray-600 uppercase tracking-tighter">Completed</span>
                                 </div>
                             </div>
                             
@@ -1068,13 +1004,13 @@ export default function PropertyDetailsPage() {
                                     <p className="text-2xl font-black text-gray-900">
                                         {Object.values(completedUnitsMap).flat().length}
                                     </p>
-                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Tasks Done</p>
+                                    <p className="text-sm font-black text-gray-600 uppercase tracking-widest">Tasks Done</p>
                                 </div>
                                 <div className="text-center px-4">
                                     <p className="text-2xl font-black text-gray-900">
                                         {buildings.reduce((sum, b) => sum + (2 + b.unitsForInspection), 0)}
                                     </p>
-                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Tasks</p>
+                                    <p className="text-sm font-black text-gray-600 uppercase tracking-widest">Total Tasks</p>
                                 </div>
                             </div>
                         </div>
@@ -1082,6 +1018,12 @@ export default function PropertyDetailsPage() {
                 </div>
 
                 <h2 className="text-xl font-black text-gray-900 mb-6 px-1 tracking-tight">Building</h2>
+
+                {inspectionStartError && (
+                    <p role="alert" className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-950">
+                        {inspectionStartError}
+                    </p>
+                )}
 
                 {/* Edit Column Header Modal */}
                 {editColumnHeaderOpen && (
@@ -1538,6 +1480,7 @@ export default function PropertyDetailsPage() {
                 isOpen={showCoverageModal}
                 onClose={() => setShowCoverageModal(false)}
                 onStartInspection={handleCoverageUpdate}
+                propertyData={property}
             />
         </AdminDashboardLayout>
     )

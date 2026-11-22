@@ -564,9 +564,6 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
         <div className="flex items-center justify-between mb-4 sm:mb-6 pr-8">
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#F84B5F]">Add New Property</h2>
-          <span className="bg-[#006795] text-white text-sm font-medium px-3 py-1 rounded-full">
-            {properties.length} {properties.length === 1 ? 'Property' : 'Properties'}
-          </span>
         </div>
 
         <div className="space-y-6">
@@ -1038,13 +1035,12 @@ interface ActionModalProps {
   onClose: () => void
   onEdit: () => void
   onStartInspection?: () => void
-  onHoldInspection?: () => void
   onRemoveProperty?: () => void
   propertyData: any
   inspectionStarted?: boolean
 }
 
-export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHoldInspection, onRemoveProperty, propertyData, inspectionStarted }: ActionModalProps) {
+export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onRemoveProperty, propertyData, inspectionStarted }: ActionModalProps) {
   const portalBase = usePortalBase()
   const router = useRouter()
 
@@ -1098,23 +1094,6 @@ export function ActionModal({ isOpen, onClose, onEdit, onStartInspection, onHold
               className="w-full px-6 py-4 bg-white border-2 border-black text-black font-bold rounded-xl text-base transition-all hover:bg-gray-50 active:scale-95"
             >
               Edit Property
-            </button>
-          )}
-
-          {/* Putting an inspection on hold is what lets another property be
-              started before this one is finished; the lock's own message says
-              so. This button was taken out while the lock stayed, which left no
-              way to do it. A property already on hold needs no button: it comes
-              off hold by itself when its inspection is continued. */}
-          {inspectionStarted && onHoldInspection && propertyData?.status !== 'hold' && (
-            <button
-              onClick={() => {
-                onHoldInspection()
-                onClose()
-              }}
-              className="w-full px-6 py-4 bg-amber-500 text-white font-bold rounded-xl text-base transition-all hover:bg-amber-600 shadow-lg active:scale-95"
-            >
-              Hold Inspection
             </button>
           )}
 
