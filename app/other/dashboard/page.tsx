@@ -42,6 +42,7 @@ export default function Dashboard() {
   const [properties, setProperties] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
+  const [completedPropertyIds, setCompletedPropertyIds] = useState<Set<string>>(new Set())
   const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
   const [showBulkDelete, setShowBulkDelete] = useState(false)
 
@@ -112,6 +113,7 @@ export default function Dashboard() {
         setProperties(response.properties)
         // Fetch progress for these properties
         fetchProgress(response.properties)
+        fetchCompletedProperties()
       }
     } catch (error: any) {
       console.error('Error fetching properties:', error)
@@ -142,6 +144,25 @@ export default function Dashboard() {
       ])
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchCompletedProperties = async () => {
+    try {
+      const response = await fetch(`${API_URL}/api/inspections?view=list`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      })
+      if (!response.ok) return
+      const data = await response.json()
+      if (!data.success || !Array.isArray(data.inspections)) return
+      const ids = new Set<string>()
+      for (const inspection of data.inspections) {
+        const propertyId = typeof inspection.property === 'object' ? inspection.property?._id : inspection.property
+        if (inspection.status === 'completed' && propertyId) ids.add(propertyId)
+      }
+      setCompletedPropertyIds(ids)
+    } catch (error) {
+      console.error('Error fetching completed inspections:', error)
     }
   }
 
@@ -494,8 +515,7 @@ export default function Dashboard() {
                       </td>
                       <td className="py-3 px-3">
                         {(() => {
-                          const progress = propertyProgress[property._id] || 0
-                          if (progress === 100 || property.hasInspection) {
+                          if ((propertyProgress[property._id] || 0) >= 100 && completedPropertyIds.has(property._id)) {
                             return (
                               <div className="flex items-center justify-center gap-2">
                                 <button
@@ -562,8 +582,7 @@ export default function Dashboard() {
                       <p className="text-gray-600 text-sm">{property.address}</p>
                     </div>
                     {(() => {
-                      const progress = propertyProgress[property._id] || 0
-                      if (progress === 100 || property.hasInspection) {
+                      if ((propertyProgress[property._id] || 0) >= 100 && completedPropertyIds.has(property._id)) {
                         return (
                           <div className="ml-2 flex flex-col gap-2">
                             <Button

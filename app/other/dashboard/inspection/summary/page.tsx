@@ -682,7 +682,7 @@ function NSPIREInspectionSummaryContent() {
       metadata: {
         inspectionNo: data?.inspectionNo || data?.inspectionId || `INSP-${Date.now().toString(36).toUpperCase()}`,
         inspectionType: INSPECTION_TYPE,
-        escortName: data.escortName || property?.contactName || '-',
+        escortName: inspectorName,
         propertyAddress: property?.address || data.address || data.propertyAddress || '-',
         propertyName: property?.name || data.propertyName || '-',
         propertyId: property?._id || property?.propertyId || data.propertyId || '-',

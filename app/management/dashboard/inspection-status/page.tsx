@@ -141,7 +141,7 @@ export default function InspectionStatusPage() {
         })
         const completed = inspections.find(insp => insp.status === 'completed')
         const inspection = completed || inspections[0]
-        const isComplete = Boolean(completed)
+        const isComplete = (progressMap[property._id] || 0) >= 100 && Boolean(completed)
 
         console.log(`Property ${property.name}:`, {
           hasInspection: inspection ? 'YES' : 'NO',
@@ -161,7 +161,7 @@ export default function InspectionStatusPage() {
       // Fetch payment/unlock status for properties that have a completed inspection
       const propertiesWithStatus = await Promise.all(
         mappedProperties.map(async (property) => {
-          if (property.hasInspection && property.inspection?._id) {
+          if (property.inspection?.status === 'completed' && property.inspection._id) {
             try {
               const unlockData = await paymentsAPI.checkReportUnlock(property.inspection._id)
               return {
@@ -471,7 +471,7 @@ export default function InspectionStatusPage() {
           <Card className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-green-100 border-green-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm font-bold text-green-600 uppercase tracking-wide">Completed</p>
+                <p className="text-xs sm:text-sm font-extrabold text-green-600 uppercase tracking-wide">Completed</p>
                 <p className="text-2xl sm:text-3xl font-black text-green-900 mt-1 sm:mt-2">{completedCount}</p>
               </div>
               <CheckCircle2 className="w-8 h-8 sm:w-12 sm:h-12 text-green-500 opacity-50" />
@@ -481,7 +481,7 @@ export default function InspectionStatusPage() {
           <Card className="p-4 sm:p-6 bg-gradient-to-br from-red-50 to-red-100 border-red-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs sm:text-sm font-bold text-red-600 uppercase tracking-wide">Pending</p>
+                <p className="text-xs sm:text-sm font-extrabold text-red-600 uppercase tracking-wide">Pending</p>
                 <p className="text-2xl sm:text-3xl font-black text-red-900 mt-1 sm:mt-2">{pendingCount}</p>
               </div>
               <AlertCircle className="w-8 h-8 sm:w-12 sm:h-12 text-red-500 opacity-50" />
@@ -541,10 +541,10 @@ export default function InspectionStatusPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-1 min-w-0">
-                          <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate min-w-0">
+                          <h3 className="text-lg sm:text-xl font-extrabold text-gray-900 truncate min-w-0">
                             {property.name}
                           </h3>
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold w-fit flex-shrink-0 whitespace-nowrap ${
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-sm font-extrabold w-fit flex-shrink-0 whitespace-nowrap ${
                             property.hasInspection 
                               ? 'bg-green-100 text-green-800' 
                               : propertyProgress[property._id] > 0
@@ -590,7 +590,7 @@ export default function InspectionStatusPage() {
                   </div>
  
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0 flex-shrink-0">
-                    {property.hasInspection ? (
+                    {property.inspection?.status === 'completed' && (
                         <div className="flex flex-col sm:flex-row gap-2">
                           <Button
                             onClick={() => handleDownloadPDF(property)}
@@ -631,7 +631,8 @@ export default function InspectionStatusPage() {
                             )}
                           </Button>
                         </div>
-                    ) : (
+                    )}
+                    {!property.hasInspection && (
                       <Button
                         onClick={() => handleStartInspection(property)}
                         className="flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto whitespace-nowrap bg-[#006795] hover:bg-blue-700 text-white"

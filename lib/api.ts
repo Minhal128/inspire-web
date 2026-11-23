@@ -325,15 +325,6 @@ export const propertiesAPI = {
     );
   },
 
-  startInspection: async (id: string) => {
-    return apiRequest<{ success: boolean }>(
-      `/api/inspections/start/${id}`,
-      {
-        method: 'POST',
-      }
-    );
-  },
-
   getStats: async () => {
     return apiRequest<{
       success: boolean;

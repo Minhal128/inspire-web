@@ -5,9 +5,8 @@ import OtherDashboardLayout from "@/components/OtherDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { toast } from "react-toastify"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import { propertiesAPI } from "@/lib/api"
-import { findActiveInspection } from "@/lib/inspectionLock"
 import { UnitSelectionModal } from "@/components/UnitSelectionModal"
 import { ActionModal, EditPropertyModal, AddPropertyModal, BuildingDivisionModal } from "@/components/PropertyModals"
 import { Country, State, City } from 'country-state-city'
@@ -26,10 +25,8 @@ export default function MyInspection() {
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [propertyProgress, setPropertyProgress] = useState<Record<string, number>>({})
   // The saved records themselves: which property was worked on last is in them.
-  const [progressRecords, setProgressRecords] = useState<any[]>([])
   // Every property the inspector has, for the lock. The rows below can be a
   // search result, and the property being inspected is not always in it.
-  const [lockProperties, setLockProperties] = useState<any[]>([])
   const [selectedProperties, setSelectedProperties] = useState<Set<string>>(new Set())
   const [completedInspections, setCompletedInspections] = useState<any[]>([])
 
@@ -190,18 +187,6 @@ export default function MyInspection() {
             }
         })
         setPropertyProgress(progressMap)
-        setProgressRecords(data.progress)
-        // With no search on, the rows are already every property.
-        if (!propertyName && !selectedState && !selectedCity) {
-          setLockProperties(propertyList)
-        } else {
-          try {
-            const everything = await propertiesAPI.getAll({ limit: 1000 })
-            setLockProperties(everything.success ? everything.properties : propertyList)
-          } catch {
-            setLockProperties(propertyList)
-          }
-        }
       }
     } catch (e) {
       console.error('Error fetching progress:', e)
@@ -330,26 +315,7 @@ export default function MyInspection() {
     }
   }
 
-  // The property being inspected right now: started and unfinished
-  // -- and of those, the one worked on last. It is the answer the property page
-  // gets too (lib/inspectionLock.ts). This used to be whichever part-inspected
-  // property came first in the list, so the two pages could each lock the
-  // property the other one called active.
-  const activeInspectionPropertyId = useMemo(
-    () => findActiveInspection<any>(lockProperties, progressRecords)?._id ?? null,
-    [lockProperties, progressRecords]
-  )
-
-  const [inspectionStartError, setInspectionStartError] = useState("")
-
   const handleInitiate = (property: any) => {
-    setInspectionStartError("")
-    // Block only when another property is actively in progress
-    if (activeInspectionPropertyId && activeInspectionPropertyId !== property._id) {
-      const activeProp = lockProperties.find(p => p._id === activeInspectionPropertyId)
-      setInspectionStartError(`"${activeProp?.name || 'Another property'}" is currently being inspected. Please complete it before starting a new inspection.`)
-      return
-    }
     setSelectedProperty(property)
     setActionModalOpen(true)
   }
@@ -359,11 +325,6 @@ export default function MyInspection() {
       <div className="min-h-screen bg-[#E8F4F8] p-3 sm:p-4 md:p-6 text-black">
         <div className="max-w-7xl mx-auto">
           <h1 className="mb-4 text-2xl font-extrabold text-gray-900 sm:text-3xl">My Inspections</h1>
-          {inspectionStartError && (
-            <p role="alert" className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-950">
-              {inspectionStartError}
-            </p>
-          )}
           <Card className="bg-white rounded-lg shadow-sm overflow-hidden">
             <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-[#F8FAFC]">
               <div className="flex items-center gap-4">
@@ -451,15 +412,10 @@ export default function MyInspection() {
                             
                             // Check if there's a completed inspection in the database
                             const completedInspection = completedInspections.find(
-                              insp => insp.property?._id === property._id && insp.status === 'completed'
+                              insp => (insp.property?._id ?? insp.property) === property._id && insp.status === 'completed'
                             )
                             
-                            // Consider completed ONLY if progress is EXACTLY 100%
-                            // If progress data exists, use it as source of truth
-                            // Only fall back to DB status if no progress data available
-                            const isCompleted = progress > 0 ? progress === 100 : !!completedInspection
-                            const isLocked = !!(activeInspectionPropertyId && activeInspectionPropertyId !== property._id)
-                            const isActive = activeInspectionPropertyId === property._id
+                            const isCompleted = progress >= 100 && Boolean(completedInspection)
                             
                             if (isCompleted) {
                               return (

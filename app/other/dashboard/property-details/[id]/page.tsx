@@ -477,23 +477,8 @@ export default function PropertyDetailsPage() {
         return '-'
     }
 
-    const [inspectionStartError, setInspectionStartError] = useState("")
-
-    const startPropertyInspection = async (propertyId: string) => {
-        setInspectionStartError("")
-        try {
-            await propertiesAPI.startInspection(propertyId)
-            return true
-        } catch (error: any) {
-            setInspectionStartError(error.message || "Could not start inspection")
-            return false
-        }
-    }
-
     const handleBuildingClick = async (building: typeof buildings[0]) => {
         const propId = property._id || id
-
-        if (!(await startPropertyInspection(propId))) return
 
         // Store column header name so inspection-category can read it
         localStorage.setItem(`buildingColHeader_${propId}`, columnHeaderName)
@@ -516,8 +501,6 @@ export default function PropertyDetailsPage() {
                 return
             }
         }
-
-        if (!(await startPropertyInspection(propId))) return
 
         // Store context for the inspection flow
         localStorage.setItem('currentInspectionUnit', JSON.stringify({
@@ -1018,12 +1001,6 @@ export default function PropertyDetailsPage() {
                 </div>
 
                 <h2 className="text-xl font-black text-gray-900 mb-6 px-1 tracking-tight">Building</h2>
-
-                {inspectionStartError && (
-                    <p role="alert" className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-950">
-                        {inspectionStartError}
-                    </p>
-                )}
 
                 {/* Edit Column Header Modal */}
                 {editColumnHeaderOpen && (

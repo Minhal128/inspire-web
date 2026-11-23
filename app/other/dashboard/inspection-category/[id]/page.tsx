@@ -1742,7 +1742,7 @@ export default function InspectionCategoryPage() {
                                 <button
                                     type="button"
                                     onClick={() => setUnitSelectionPopupOpen(true)}
-                                    className="shrink-0 rounded-md bg-white px-3 py-1.5 text-sm font-bold text-[#006795] shadow-sm hover:bg-blue-50"
+                                    className="shrink-0 rounded border border-gray-200 bg-white px-3 py-1 text-xs font-bold uppercase text-gray-700 shadow-sm hover:bg-gray-50"
                                     aria-label="Next: select a unit"
                                 >
                                     Next
