@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import ManagementDashboardLayout from "@/components/ManagementDashboardLayout"
 import { Button } from "@/components/ui/button"
 import { toast } from "react-toastify"
+import { EXPORT_IN_PROGRESS_ENABLED, IN_PROGRESS_SUMMARY_ENABLED } from "@/lib/featureFlags"
 import { propertiesAPI, inspectionsAPI, paymentsAPI } from "@/lib/api"
 import {
   NSPIREInspectionReport,
@@ -121,6 +122,28 @@ export default function NSPIREInspectionSummaryPage() {
 function NSPIREInspectionSummaryContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
+
+  // The in-progress summary is switched off (lib/featureFlags.ts): opened in
+  // the middle of an inspection it cleared the unit inspection. A saved
+  // inspection's report still opens here, from Inspection Status, and so does
+  // the page somebody comes back to from paying. An address that names no
+  // saved inspection is the in-progress summary, and is sent back.
+  const [returnedFromPayment] = useState(() => Boolean(searchParams.get('payment')))
+  const inProgressSummaryBlocked =
+    !IN_PROGRESS_SUMMARY_ENABLED &&
+    !EXPORT_IN_PROGRESS_ENABLED &&
+    !returnedFromPayment &&
+    !(searchParams.get('inspectionId') || searchParams.get('id'))
+
+  useEffect(() => {
+    if (!inProgressSummaryBlocked) return
+    toast.info('The summary is switched off while an inspection is in progress.', {
+      position: 'top-right',
+      toastId: 'in-progress-summary-off',
+    })
+    const blockedPropertyId = searchParams.get('propertyId')
+    router.replace(blockedPropertyId ? `/management/dashboard/property-details/${blockedPropertyId}` : '/management/dashboard')
+  }, [inProgressSummaryBlocked])
 
   const [report, setReport] = useState<NSPIREInspectionReport | null>(null)
   const [loading, setLoading] = useState(true)
@@ -311,6 +334,7 @@ function NSPIREInspectionSummaryContent() {
 
   // Load inspection data from URL params or localStorage
   useEffect(() => {
+    if (inProgressSummaryBlocked) return
     const loadInspectionData = async () => {
       try {
         setLoading(true);
@@ -1193,6 +1217,10 @@ function NSPIREInspectionSummaryContent() {
       'Verified': 'bg-blue-100 text-blue-700',
     }
     return classes[status] || 'bg-gray-100 text-gray-700'
+  }
+
+  if (inProgressSummaryBlocked) {
+    return <LoadingFallback />
   }
 
   if (loading) {

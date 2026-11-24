@@ -10,6 +10,7 @@ import { propertiesAPI, authAPI, inspectionsAPI } from "@/lib/api"
 import { toast } from "react-toastify"
 import { ChevronLeft, CheckCircle2, Clock, X, ChevronRight, Pencil, Check, RefreshCw } from "lucide-react"
 import { generateRandomUnitSample, getUnitsToInspect, getSamplingExplanation } from "@/lib/unitSamplingService"
+import { EXPORT_IN_PROGRESS_ENABLED } from "@/lib/featureFlags"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005'
 
@@ -628,6 +629,8 @@ export default function PropertyDetailsPage() {
     }
 
     const handleExportInProgress = async () => {
+        // Switched off (lib/featureFlags.ts); the button is hidden too.
+        if (!EXPORT_IN_PROGRESS_ENABLED) return
         if (!property) return
 
         setIsExporting(true)
@@ -943,7 +946,7 @@ export default function PropertyDetailsPage() {
                                             className="text-[#006795] hover:bg-blue-50 rounded-full p-1 transition-colors"
                                             title="Edit Selection"
                                         >
-                                            <Pencil className="w-3.5 h-3.5" />
+                                            <Pencil className="w-3.5 h-3.5 text-red-600" />
                                         </button>
                                     )}
                                 </div>
@@ -1056,7 +1059,7 @@ export default function PropertyDetailsPage() {
                                                 className="p-1 rounded hover:bg-blue-50 text-[#006795] transition-colors"
                                                 title="Edit column name"
                                             >
-                                                <Pencil className="w-3.5 h-3.5" />
+                                                <Pencil className="w-3.5 h-3.5 text-red-600" />
                                             </button>
                                         )}
                                     </span>
@@ -1095,7 +1098,7 @@ export default function PropertyDetailsPage() {
                                                     <span className="text-sm text-gray-900 font-black">{getBuildingDisplayName(building.buildingId)}</span>
                                                     {!(overallProgress > 0) && (
                                                         <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
-                                                            <Pencil className="w-3.5 h-3.5" />
+                                                            <Pencil className="w-3.5 h-3.5 text-red-600" />
                                                         </button>
                                                     )}
                                                 </div>
@@ -1197,7 +1200,7 @@ export default function PropertyDetailsPage() {
                                             {columnHeaderName}
                                             {!(overallProgress > 0) && (
                                                 <button onClick={() => { setTempColumnHeaderName(columnHeaderName); setEditColumnHeaderOpen(true) }} className="p-0.5 rounded hover:bg-blue-50 text-[#006795]" title="Edit column name">
-                                                    <Pencil className="w-3 h-3" />
+                                                    <Pencil className="w-3 h-3 text-red-600" />
                                                 </button>
                                             )}
                                         </span>
@@ -1222,7 +1225,7 @@ export default function PropertyDetailsPage() {
                                                     <span className="text-sm text-gray-900 font-black">{getBuildingDisplayName(building.buildingId)}</span>
                                                     {!(overallProgress > 0) && (
                                                         <button onClick={() => handleStartBuildingEdit(building.buildingId)} className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-blue-50 text-[#006795] transition-opacity">
-                                                            <Pencil className="w-3.5 h-3.5" />
+                                                            <Pencil className="w-3.5 h-3.5 text-red-600" />
                                                         </button>
                                                     )}
                                                 </div>
@@ -1293,6 +1296,8 @@ export default function PropertyDetailsPage() {
                     })}
                 </div>
 
+                {/* Hidden at the client's request, not removed: lib/featureFlags.ts. */}
+                {EXPORT_IN_PROGRESS_ENABLED && (
                 <div className="mt-8 flex justify-center">
                     <Button
                         onClick={handleExportInProgress}
@@ -1302,6 +1307,7 @@ export default function PropertyDetailsPage() {
                         {isExporting ? 'Preparing Report...' : 'Export In Progress'}
                     </Button>
                 </div>
+                )}
             </div>
 
             {/* ====== Unit Selection Popup ====== */}

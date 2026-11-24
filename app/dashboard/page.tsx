@@ -405,7 +405,7 @@ export default function Dashboard() {
       <div className="p-4 sm:p-6 lg:p-8">
         {/* Header Section */}
         <div className="mb-6 lg:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Property Dashboard</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">Property Dashboard</h1>
           <p className="text-gray-600 text-sm sm:text-base">Manage your properties and initiate inspections</p>
         </div>
 

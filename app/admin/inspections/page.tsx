@@ -420,7 +420,7 @@ export default function AllInspectionsPage() {
                         </td>
                         <td className="py-5 px-6 text-center">
                           <Link
-                            href={`/admin/inspection/summary?propertyId=${inspection.property?._id || inspection._id}`}
+                            href={`/admin/inspection/summary?inspectionId=${inspection._id}&propertyId=${inspection.property?._id || inspection._id}`}
                             className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors inline-flex items-center gap-1 whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                           >
                             View
@@ -504,7 +504,7 @@ export default function AllInspectionsPage() {
                     </div>
 
                     <Link
-                      href={`/admin/inspection/summary?propertyId=${inspection.property?._id || inspection._id}`}
+                      href={`/admin/inspection/summary?inspectionId=${inspection._id}&propertyId=${inspection.property?._id || inspection._id}`}
                       className="mt-3 w-full px-3 py-2 text-xs font-semibold rounded-md transition-colors inline-flex items-center justify-center gap-1 text-white bg-[#006795] hover:bg-[#0A5670]"
                     >
                       View Inspection

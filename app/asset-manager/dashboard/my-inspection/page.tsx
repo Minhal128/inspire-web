@@ -376,6 +376,7 @@ export default function MyInspection() {
                       <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Postal Code</th>
                       <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Buildings</th>
                       <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Units</th>
+                      <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Progress</th>
                       <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Action</th>
                     </tr>
                   </thead>
@@ -406,6 +407,18 @@ export default function MyInspection() {
                         <td className="py-4 px-4 font-bold text-sm text-gray-500 text-center">{property.zipCode}</td>
                         <td className="py-4 px-4 text-center font-black text-gray-900 text-sm">{property.buildings || 1}</td>
                         <td className="py-4 px-4 text-center font-black text-gray-900 text-sm">{property.units ?? 1}</td>
+                        {/* The same figure the property list and Inspection Status show. */}
+                        <td className="py-4 px-4">
+                          <div className="w-full min-w-[72px] bg-gray-100 rounded-full h-2 mb-1">
+                            <div
+                              className="bg-blue-600 h-2 rounded-full transition-all duration-500"
+                              style={{ width: `${propertyProgress[property._id] || 0}%` }}
+                            />
+                          </div>
+                          <span className="text-xs font-bold text-gray-500 block text-center">
+                            {propertyProgress[property._id] || 0}%
+                          </span>
+                        </td>
                         <td className="py-4 px-4 text-center">
                           {(() => {
                             const progress = propertyProgress[property._id] || 0

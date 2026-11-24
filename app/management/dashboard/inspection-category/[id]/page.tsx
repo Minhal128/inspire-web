@@ -2,6 +2,7 @@
 
 import { findingFacts, findingsFromProgress, uniqueReportFindings } from "@/lib/reportRules"
 import { isGeneralCommentFinding } from "@/lib/generalComments"
+import { IN_PROGRESS_SUMMARY_ENABLED } from "@/lib/featureFlags"
 
 import { useState, useEffect, useMemo, useRef, useCallback } from "react"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
@@ -1613,10 +1614,12 @@ export default function InspectionCategoryPage() {
                             className="p-1.5 rounded-full hover:bg-[#006795]/10 text-[#006795] transition-colors"
                             title="Edit building name"
                         >
-                            <Pencil className="w-4 h-4" />
+                            <Pencil className="w-4 h-4 text-red-600" />
                         </button>
                     </div>
 
+                    {/* Hidden at the client's request, not removed: lib/featureFlags.ts. */}
+                    {IN_PROGRESS_SUMMARY_ENABLED && (
                     <Button
                         onClick={() => router.push(`/management/dashboard/inspection/summary?propertyId=${id}&returnTo=${encodeURIComponent(window.location.pathname + window.location.search)}`)}
                         className="bg-[#006795] hover:bg-[#0a5670] text-white font-black px-6 rounded-xl shadow-md uppercase tracking-widest text-[10px] flex items-center gap-2"
@@ -1624,6 +1627,7 @@ export default function InspectionCategoryPage() {
                         <FileText className="w-4 h-4" />
                         Summary
                     </Button>
+                    )}
                 </div>
 
 
@@ -1714,7 +1718,7 @@ export default function InspectionCategoryPage() {
                     <div key={sec} className="mb-6 border border-blue-100/50 rounded-lg overflow-hidden shadow-sm">
                         <div className="w-full bg-[#EBF5FF] p-4 flex items-center justify-between transition-colors text-left font-black">
                             <div className="flex-1">
-                                <p className="text-sm text-[#006795] mb-1 uppercase tracking-tight">
+                                <p className="text-sm text-red-600 mb-1 uppercase tracking-tight">
                                     {sec === 'outside' ? 'Outside (Areas affected by Rain, Snow, Wind)' : sec === 'inside' ? 'Inside (Interior Common area, Utility closet, Mechanical rooms)' : 'Units (Individual unit inspections)'}
                                 </p>
                                 <div className="flex items-center gap-4 mb-2 text-[#006795]">
@@ -1789,7 +1793,7 @@ export default function InspectionCategoryPage() {
                                                 className="p-1.5 rounded-full hover:bg-[#006795]/10 text-[#006795] transition-colors"
                                                 title="Edit unit names"
                                             >
-                                                <Pencil className="w-4 h-4" />
+                                                <Pencil className="w-4 h-4 text-red-600" />
                                             </button>
                                         </div>
                                     </div>
@@ -1920,7 +1924,7 @@ export default function InspectionCategoryPage() {
                                                                 className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-[#006795] transition-colors shrink-0"
                                                                 title="Rename unit"
                                                             >
-                                                                <Pencil className="w-3 h-3" />
+                                                                <Pencil className="w-3 h-3 text-red-600" />
                                                             </button>
                                                         </div>
                                                     )}
@@ -1982,7 +1986,7 @@ export default function InspectionCategoryPage() {
                         <div className="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
                             {/* Note text area */}
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Comment</label>
+                                <label className="block text-xs font-bold text-red-600 uppercase tracking-widest mb-1.5">Comment</label>
                                 <textarea
                                     value={generalNote}
                                     onChange={(e) => setGeneralNote(e.target.value)}
@@ -2237,7 +2241,7 @@ export default function InspectionCategoryPage() {
 
                                     {/* 4. NOTE - Text area */}
                                     <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase mb-2 tracking-widest">Comment</label>
+                                        <label className="block text-[10px] font-black text-red-600 uppercase mb-2 tracking-widest">Comment</label>
                                         <textarea
                                             className="w-full border border-gray-100 bg-gray-50 rounded-2xl p-4 text-xs font-bold text-gray-900 focus:bg-white focus:border-[#0E7490] outline-none transition-all h-24 resize-none"
                                             value={odForm.note}
