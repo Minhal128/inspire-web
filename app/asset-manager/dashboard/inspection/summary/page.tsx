@@ -126,13 +126,16 @@ function NSPIREInspectionSummaryContent() {
   // The in-progress summary is switched off (lib/featureFlags.ts): opened in
   // the middle of an inspection it cleared the unit inspection. A saved
   // inspection's report still opens here, from Inspection Status, and so does
-  // the page somebody comes back to from paying. An address that names no
-  // saved inspection is the in-progress summary, and is sent back.
+  // the page somebody comes back to from paying, and the report of an
+  // inspection that is 100% done (the property page opens it with
+  // finalize=true). Any other address that names no saved inspection is the
+  // in-progress summary, and is sent back.
   const [returnedFromPayment] = useState(() => Boolean(searchParams.get('payment')))
   const inProgressSummaryBlocked =
     !IN_PROGRESS_SUMMARY_ENABLED &&
     !EXPORT_IN_PROGRESS_ENABLED &&
     !returnedFromPayment &&
+    searchParams.get('finalize') !== 'true' &&
     !(searchParams.get('inspectionId') || searchParams.get('id'))
 
   useEffect(() => {

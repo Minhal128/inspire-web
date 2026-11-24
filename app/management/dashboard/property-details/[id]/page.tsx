@@ -629,8 +629,9 @@ export default function PropertyDetailsPage() {
     }
 
     const handleExportInProgress = async () => {
-        // Switched off (lib/featureFlags.ts); the button is hidden too.
-        if (!EXPORT_IN_PROGRESS_ENABLED) return
+        // Switched off for an inspection in progress (lib/featureFlags.ts), and
+        // the button is hidden with it. A finished inspection has its report.
+        if (!EXPORT_IN_PROGRESS_ENABLED && overallProgress < 100) return
         if (!property) return
 
         setIsExporting(true)
@@ -866,7 +867,8 @@ export default function PropertyDetailsPage() {
                 autoClose: 1800,
             })
 
-            router.push(`/management/dashboard/inspection/summary?propertyId=${id}`)
+            // A finished inspection opens as the report, not as a report in progress.
+            router.push(`/management/dashboard/inspection/summary?propertyId=${id}${overallProgress >= 100 ? '&finalize=true' : ''}`)
         } catch (error: any) {
             console.error('Export in-progress failed:', error)
             toast.error(`Failed to export in-progress report: ${error?.message || 'Unknown error'}`, {
@@ -1296,15 +1298,16 @@ export default function PropertyDetailsPage() {
                     })}
                 </div>
 
-                {/* Hidden at the client's request, not removed: lib/featureFlags.ts. */}
-                {EXPORT_IN_PROGRESS_ENABLED && (
+                {/* Hidden while the inspection is in progress, at the client's request
+                    (lib/featureFlags.ts). At 100% it is the way to the report. */}
+                {(EXPORT_IN_PROGRESS_ENABLED || overallProgress >= 100) && (
                 <div className="mt-8 flex justify-center">
                     <Button
                         onClick={handleExportInProgress}
                         disabled={isExporting}
                         className="w-full md:w-auto min-w-[220px] bg-[#10B981] hover:bg-[#0ea56f] text-white font-black py-3 px-8 rounded-xl shadow-md"
                     >
-                        {isExporting ? 'Preparing Report...' : 'Export In Progress'}
+                        {isExporting ? 'Preparing Report...' : overallProgress >= 100 ? 'View Report' : 'Export In Progress'}
                     </Button>
                 </div>
                 )}

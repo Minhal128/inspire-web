@@ -8,6 +8,10 @@
  * comes back, on every portal, and the summary page opens for an inspection
  * in progress again.
  *
+ * One thing is not behind them: an inspection that is 100% done. The property
+ * page shows its button again then, as "View Report", and the summary page
+ * opens for it.
+ *
  * The app has the same two switches in src/config/featureFlags.ts.
  */
 
