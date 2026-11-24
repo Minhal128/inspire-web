@@ -434,8 +434,8 @@ export default function Dashboard() {
         {/* Properties Section */}
         <Card className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">Your Properties</h2>
-            <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+            <h2 className="text-lg font-bold text-gray-900">Your Properties</h2>
+            <span className="text-sm font-bold text-gray-600 uppercase tracking-wide">
               {properties.length} properties
             </span>
           </div>
@@ -447,10 +447,10 @@ export default function Dashboard() {
             ) : properties.length === 0 ? (
               <div className="p-8 text-center text-gray-500">No properties found. Add your first property!</div>
             ) : (
-              <table className="w-full min-w-[1000px]">
+              <table className="w-full min-w-[1100px]">
                 <thead className="bg-gray-50">
                   <tr className="border-b border-gray-200">
-                    <th className="text-center py-3 px-3 w-12">
+                    <th className="text-center py-4 px-4 w-12">
                       <input
                         type="checkbox"
                         checked={properties.length > 0 && selectedProperties.size === properties.length}
@@ -458,16 +458,16 @@ export default function Dashboard() {
                         className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
                       />
                     </th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Property ID</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Property Name</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Address</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">State/Province</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">City/Area</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Postal Code</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Buildings</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Units</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Progress</th>
-                    <th className="text-center py-3 px-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Actions</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Property ID</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Property Name</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Address</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">State/Province</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">City/Area</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Postal Code</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Buildings</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Units</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Progress</th>
+                    <th className="text-center py-4 px-4 text-sm font-extrabold text-gray-700 uppercase tracking-wide">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -476,7 +476,7 @@ export default function Dashboard() {
                       key={property._id || property.propertyId}
                       className="hover:bg-gray-50 transition-colors duration-150"
                     >
-                      <td className="py-3 px-3 text-center">
+                      <td className="py-5 px-4 text-center">
                         <input
                           type="checkbox"
                           checked={selectedProperties.has(property._id)}
@@ -484,49 +484,49 @@ export default function Dashboard() {
                           className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
                         />
                       </td>
-                      <td className="py-3 px-3 text-center">
-                        <span className="text-blue-600 font-medium text-xs bg-blue-50 px-2 py-1 rounded truncate block mx-auto w-fit">
+                      <td className="py-4 px-4 text-center">
+                        <span className="bg-cyan-50 text-[#006795] font-black px-3 py-1.5 rounded-lg text-sm shadow-sm border border-cyan-100/50 inline-block">
                           {property.propertyId}
                         </span>
                       </td>
-                      <td className="py-3 px-3 text-center">
-                        <span className="font-medium text-gray-900 text-sm truncate block">{property.name}</span>
+                      <td className="py-4 px-4 text-center">
+                        <span className="font-bold text-gray-900 text-base truncate block">{property.name}</span>
                       </td>
-                      <td className="py-3 px-3 text-gray-600 text-sm truncate text-center">{property.address}</td>
-                      <td className="py-3 px-3 text-center">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 truncate">
+                      <td className="py-4 px-4 font-bold text-sm text-gray-500 max-w-[150px] truncate text-center">{property.address}</td>
+                      <td className="py-4 px-4 text-center">
+                        <span className="bg-green-50 text-green-700 px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-tight">
                           {property.state}
                         </span>
                       </td>
-                      <td className="py-3 px-3 text-gray-600 text-sm truncate text-center">{property.city}</td>
-                      <td className="py-3 px-3 text-gray-600 font-mono text-xs text-center">{property.zipCode}</td>
-                      <td className="py-3 px-3 text-gray-900 font-medium text-sm text-center">{property.buildings}</td>
-                      <td className="py-3 px-3 text-gray-900 font-medium text-sm text-center">{property.units}</td>
-                      <td className="py-3 px-3">
-                        <div className="w-full bg-gray-100 rounded-full h-2 mb-1">
+                      <td className="py-4 px-4 font-bold text-sm text-gray-900 text-center">{property.city}</td>
+                      <td className="py-4 px-4 font-bold text-sm text-gray-500 text-center">{property.zipCode}</td>
+                      <td className="py-4 px-4 text-center font-black text-gray-900 text-sm">{property.buildings}</td>
+                      <td className="py-4 px-4 text-center font-black text-gray-900 text-sm">{property.units}</td>
+                      <td className="py-4 px-4">
+                        <div className="w-full min-w-[72px] bg-gray-100 rounded-full h-2 mb-1">
                           <div 
                             className="bg-blue-600 h-2 rounded-full transition-all duration-500" 
                             style={{ width: `${propertyProgress[property._id] || 0}%` }}
                           />
                         </div>
-                        <span className="text-[10px] font-bold text-gray-500 block text-center">
+                        <span className="text-xs font-bold text-gray-500 block text-center">
                           {propertyProgress[property._id] || 0}%
                         </span>
                       </td>
-                      <td className="py-3 px-3">
+                      <td className="py-4 px-4">
                         {(() => {
                           if ((propertyProgress[property._id] || 0) >= 100 && completedPropertyIds.has(property._id)) {
                             return (
                               <div className="flex items-center justify-center gap-2">
                                 <button
                                   onClick={() => router.push('/asset-manager/dashboard/inspection-status')}
-                                  className="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 hover:bg-green-700 rounded-md transition-colors"
+                                  className="min-h-11 px-4 py-2 text-sm font-bold text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors whitespace-nowrap"
                                 >
                                   View Report
                                 </button>
                                 <button
                                   onClick={() => handleRemoveProperty(property)}
-                                  className="px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
+                                  className="min-h-11 px-4 py-2 text-sm font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
                                 >
                                   Remove
                                 </button>
@@ -538,13 +538,13 @@ export default function Dashboard() {
                             <div className="flex items-center justify-center gap-2">
                               <button
                                 onClick={() => handleInitiate(property)}
-                                className="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors flex items-center gap-1 whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
+                                className="min-h-11 px-4 py-2 text-sm font-bold rounded-lg transition-colors flex items-center gap-1 whitespace-nowrap text-white bg-[#006795] hover:bg-[#0A5670]"
                               >
                                 {(propertyProgress[property._id] || 0) > 0 ? 'In Progress' : 'Initiate'}
                               </button>
                               <button
                                 onClick={() => handleRemoveProperty(property)}
-                                className="px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors"
+                                className="min-h-11 px-4 py-2 text-sm font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
                               >
                                 Remove
                               </button>
