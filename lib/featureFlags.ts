@@ -8,9 +8,11 @@
  * comes back, on every portal, and the summary page opens for an inspection
  * in progress again.
  *
- * One thing is not behind them: an inspection that is 100% done. The property
- * page shows its button again then, as "View Report", and the summary page
- * opens for it.
+ * Two things are not behind them. An inspection that is 100% done: the
+ * property page shows its button again then, as "View Report", and the summary
+ * page opens for it. And Export in the unit page's header, where the client's
+ * reference site has it: it opens the summary of the inspection in progress,
+ * and comes back to the same building and unit.
  *
  * The app has the same two switches in src/config/featureFlags.ts.
  */

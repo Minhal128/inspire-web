@@ -128,13 +128,17 @@ function NSPIREInspectionSummaryContent() {
   // inspection's report still opens here, from Inspection Status, and so does
   // the page somebody comes back to from paying, and the report of an
   // inspection that is 100% done (the property page opens it with
-  // finalize=true). Any other address that names no saved inspection is the
-  // in-progress summary, and is sent back.
+  // finalize=true), and the summary that Export in the unit page's header
+  // opens (the client's reference site has it there). Any other address
+  // that names no saved inspection is the in-progress summary, and is sent
+  // back.
   const [returnedFromPayment] = useState(() => Boolean(searchParams.get('payment')))
+  const openedFromExport = (searchParams.get('returnTo') || '').startsWith('/management/dashboard/inspection-category/')
   const inProgressSummaryBlocked =
     !IN_PROGRESS_SUMMARY_ENABLED &&
     !EXPORT_IN_PROGRESS_ENABLED &&
     !returnedFromPayment &&
+    !openedFromExport &&
     searchParams.get('finalize') !== 'true' &&
     !(searchParams.get('inspectionId') || searchParams.get('id'))
 

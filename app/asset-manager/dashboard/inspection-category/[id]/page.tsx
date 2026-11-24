@@ -1600,9 +1600,19 @@ export default function InspectionCategoryPage() {
                         </div>
                     </div>
                     
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-white">{user?.fullName || "Guest"}</span>
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        {/* The inspector's name, in a size that can be read. */}
+                        <span className="text-sm sm:text-base font-bold text-white truncate max-w-[9rem] sm:max-w-none">{user?.fullName || "Guest"}</span>
                         <div className="w-2 h-1 border-2 border-white rotate-45 border-t-0 border-l-0" />
+                        {/* Export: the way to the summary of an inspection in progress,
+                            where the client's reference site has it (its header, top right). */}
+                        <Button
+                            onClick={() => router.push(`/asset-manager/dashboard/inspection/summary?propertyId=${id}&returnTo=${encodeURIComponent(window.location.pathname + window.location.search)}`)}
+                            className="h-9 sm:h-10 px-3 sm:px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2"
+                        >
+                            <FileText className="hidden sm:block w-4 h-4" />
+                            Export
+                        </Button>
                     </div>
                 </div>
                 
