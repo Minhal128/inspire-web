@@ -586,7 +586,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Property ID (Optional)</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">Property ID (Optional)</label>
                   <input
                     type="text"
                     value={formData.propertyId}
@@ -596,7 +596,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Address *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">Address *</label>
                   <input
                     type="text"
                     value={formData.address}
@@ -609,7 +609,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Property Name *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">Property Name *</label>
                   <input
                     type="text"
                     value={formData.propertyName}
@@ -619,7 +619,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">City (Area) *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">City (Area) *</label>
                   <input
                     type="text"
                     value={formData.city}
@@ -633,7 +633,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Number Of Buildings *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">Number Of Buildings *</label>
                   <input
                     type="text"
                     value={formData.buildings}
@@ -643,7 +643,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">State (Province) *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">State (Province) *</label>
                   <input
                     type="text"
                     value={formData.state}
@@ -657,7 +657,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Number Of Units *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">Number Of Units *</label>
                   <input
                     type="text"
                     value={formData.units}
@@ -667,7 +667,7 @@ export function AddPropertyModal({ isOpen, onClose, onNext }: AddPropertyModalPr
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#006795] mb-2">Zip *</label>
+                  <label className="block text-xs sm:text-sm font-semibold text-red-600 mb-2">Zip *</label>
                   <input
                     type="text"
                     value={formData.zipCode}

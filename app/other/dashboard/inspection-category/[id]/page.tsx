@@ -1728,7 +1728,7 @@ export default function InspectionCategoryPage() {
                     <div key={sec} className="mb-6 border border-blue-100/50 rounded-lg overflow-hidden shadow-sm">
                         <div className="w-full bg-[#EBF5FF] p-4 flex items-center justify-between transition-colors text-left font-black">
                             <div className="flex-1">
-                                <p className="text-sm text-red-600 mb-1 uppercase tracking-tight">
+                                <p className="text-sm text-[#006795] mb-1 uppercase tracking-tight">
                                     {sec === 'outside' ? 'Outside (Areas affected by Rain, Snow, Wind)' : sec === 'inside' ? 'Inside (Interior Common area, Utility closet, Mechanical rooms)' : 'Units (Individual unit inspections)'}
                                 </p>
                                 <div className="flex items-center gap-4 mb-2 text-[#006795]">
